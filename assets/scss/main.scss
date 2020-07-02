@@ -27,7 +27,9 @@ html,body{
   @include column;
   align-items: center;
 }
-
+.row{
+  @include row;
+}
 .column{
   @include column;
 }
@@ -327,5 +329,124 @@ footer{
     font-weight: bold;
     border: 2px solid white;
     border-radius: 100%;
+  }
+}
+
+.login-box{
+  > *+*{
+    margin-top: 2em;
+  }
+  a.social-button{
+    position: relative;
+    max-width: 304px;
+    width:100%;
+    height: 48px;
+    @include row;
+    align-items: center;
+    border-radius:5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    &.fb{
+      background: #1877F2;
+    }
+    &.line{
+      background: #00C300;
+    }
+    &.google{
+      background: white;
+      color:black;
+    }
+    &.email{
+      background: #880012;
+    }
+    > span{
+      flex:1;
+      text-align: center;
+      margin-right:.5em;
+      
+    }
+  }
+  .ic{
+    position: relative;
+    display:inline-block;
+    height:100%;
+    width:40px;
+    margin: 0 1em;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    &-fb{
+      background-image: url('/img/ic-fb.svg');
+    }
+    &-line{
+      background-image: url('/img/ic-line.svg');
+      &:after{
+        content:'';
+        position: absolute;
+        display:block;
+        height:100%;
+        right:-1em;
+        border-right:2px solid #00B300;
+      }
+      
+    }
+    &-google{
+      background-image: url('/img/ic-google.svg');
+    }
+    &-email{
+      background-image: url('/img/ic-email.svg');
+    }
+  }
+}
+
+form {
+  max-width: 340px;
+  width:100%;
+  margin: 0 2em;
+  input{
+    width:100%;
+    background:none;
+    border:0;
+    border-bottom:1px solid white;
+    width:100%;
+    font-size: 20px;
+    color:white;
+    padding: .5em 0;
+  }
+  .top{
+    justify-content: flex-start;
+  }
+  .checkbox{
+    margin-right:1em;
+    label{
+      position: relative;
+      display:block;
+      width:22px;
+      height: 22px;
+      border:2px solid white;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+    input{
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+
+      &:checked ~ span{
+        position: absolute;
+        display:block;
+        width:14px;
+        height:14px;
+        background:white;
+        border-radius: 100%;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    
   }
 }
