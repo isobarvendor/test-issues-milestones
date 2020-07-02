@@ -9,7 +9,16 @@ export default {
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
-  target: 'static',
+  target: 'server',
+  /*
+  ** ENVs
+  */
+  publicRuntimeConfig: {
+    //baseURL: 'https://nuxtjs.org'
+  },
+  privateRuntimeConfig: {
+    //apiSecret: process.env.API_SECRET
+  },
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -29,12 +38,17 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/assets/scss/main.scss',
+		'@/assets/scss/variables.scss',
+    '@/assets/scss/mixins.scss',
+    'swiper/css/swiper.css'
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    "./plugins/vue-awesome-swiper.js"
   ],
   /*
   ** Auto import components
@@ -51,6 +65,9 @@ export default {
   */
   modules: [
   ],
+  styleResources: {
+		scss: ['./assets/scss/*.scss']
+	},
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

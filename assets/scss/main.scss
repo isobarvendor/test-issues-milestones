@@ -1,0 +1,331 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  user-select: none;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    min-height: 100vh;
+    background:$body-bg-color;
+    color:$body-font-color;
+    font-size:$body-font-size;
+}
+
+#main{
+  min-height: 100vh;
+  @include column;
+  justify-content: space-between;
+}
+.wrapper{
+  @include column;
+  align-items: center;
+}
+
+.column{
+  @include column;
+}
+
+.center{
+  justify-content: center;
+  align-items: center;
+}
+
+a{
+  color:$body-font-color;
+  cursor: pointer;
+}
+
+a.button{
+  color:black;
+  font-size:14px;
+  font-weight: bold;
+  background:white;
+  border-radius: 5px;
+  max-width: 370px;
+  width:100%;
+  padding:1.4em 1em;
+  text-align: center;
+  filter: $shadow;
+}
+
+header{
+  @include row;
+  justify-content: space-between;
+  position: absolute;
+  max-width:1280px;
+  top:0;
+  left:0;
+  right:0;
+  padding: $masthead-vpadding $masthead-hpadding;
+  margin: 0 auto;
+}
+
+footer{
+  @include column;
+  align-items: center;
+  background:$footer-bg-color;
+  text-align: center;
+  width:100%;
+  padding:1em;
+
+  & a+a:before{
+    content: '|';
+    padding:0 1em;
+  }
+
+  & p+p{
+    margin-top:1em;
+  }
+}
+
+.nav{
+  &-button{
+    @include column;
+    justify-content: center;
+    align-items: center;
+    width:65px;
+    height:65px;
+    border-radius: 100%;
+    background-color: white;
+
+    & > div {
+      pointer-events: none;
+    }
+    & span{
+      display:block;
+      background:black;
+      height:2px;
+      border-radius: 5px;
+      width:18px;
+      transition: transform .3s, opacity.3s;
+      transform-origin: left center;
+
+      &+span{
+        margin-top:4px;
+      }
+      &:nth-child(2){
+        opacity: 1;
+        transform: scaleX(.6)
+      }
+      &:last-child{
+        transform: scaleX(.8)
+      }
+    }
+
+    &.active{
+      span{
+        margin-top:0;
+        &:first-child{
+          transform: translate(1px,-5px) scaleX(1.5) rotate(55deg)
+        }
+        &:nth-child(2){opacity:0;}
+        &:last-child{
+          transform: translate(1px,6px) scaleX(1.5) rotate(-55deg)
+        }
+      }
+    }
+  }
+}
+
+.profile{
+  &-button{
+    @include row;
+    height:65px;
+    border-radius: 65px;
+    background:black;
+    filter: $shadow;
+  }
+
+  & > *{
+    pointer-events: none;
+  }
+  &-image{
+    width:65px;
+    height:65px;
+    border-radius: 100%;
+  }
+
+  &-content{
+    @include row;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    padding:2em;
+    
+    >*{
+      position: relative;
+      font-size:12px;
+    }
+    > *+*{
+      margin-left:50px;
+    }
+    > *+*:before{
+      content:'';
+      position: absolute;
+      left:-25px;
+      display:block;
+      height:100%;
+      width:2px;
+      background:white;
+    }
+
+     .user-coins{
+      font-size:24px;
+      font-weight: bold;
+    }
+  }
+}
+
+#masthead{
+  max-width:1280px;
+  padding:0;
+
+  & .masthead-content{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    @include column;
+    justify-content: center;
+    align-items: left;
+    padding:0 $masthead-hpadding;
+
+    & h1{
+      margin-bottom:.5em;
+      font-size: 38px;
+    }
+  }
+}
+
+.container {
+  @include column;
+  position: relative;
+  max-width: $content-max-width;
+  width:100%;
+  padding: 0 1em;
+}
+
+.campaign-section{
+  align-items: center;
+}
+
+.campaign-section:nth-child(2) {
+  margin-top: 2em;
+}
+.campaign-section:last-child {
+  margin-bottom: 3em;
+}
+
+.campaign-section + .campaign-section:before{
+  content:'';
+  width:100%;
+  height:2px;
+  background: $secondary-color;
+  margin:2em 0;
+}
+
+.campaign-period{
+  font-size:26px;
+  font-weight: bold;
+  margin-top:.5em;
+}
+
+.campaign-section{
+  .header{
+    font-size:38px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+  }
+}
+
+.prize-item{
+  border: 1px solid $secondary-color;
+  border-radius: 20px;
+
+  & img{
+    height:280px;
+    width:100%;
+    object-fit: contain;
+  }
+
+  & .prize-description{
+    font-size:20px;
+    height:calc(414px - 280px);
+    padding:1em 20px;
+    border-top:1px solid $secondary-color;
+  }
+}
+
+.coke-swiper{
+  margin:2em 0;
+  &-pagination{
+    text-align: center;
+    margin-top:20px;
+    position: relative;
+    bottom:0 !important;
+    & &-bullet{
+      position: relative;
+      background:$secondary-color;
+      width:15px;
+      height:15px;
+      display: inline-block;
+      border-radius: 100%;
+      &-active{
+        background:white;
+      }
+    }
+    & > *+*{
+      margin-left:40px;
+      &:before{
+        content:'';
+          display:block;
+          position: absolute;
+          top: calc(15px / 2);
+          right:15px;
+          margin: auto 0;
+          height:1px;
+          width:40px;
+          background:$secondary-color;
+      }
+    }
+    
+  }
+}
+
+.howitworks{
+  @include row;
+  flex-wrap: wrap;
+  width:100%;
+  justify-content: center;
+
+  &-item{
+    @include column;
+    align-items: center;
+    padding: 1em;
+    width:33%;
+    
+    & img{
+      margin:1.5em 0;
+    }
+  }
+
+  &-number{
+    @include row;
+    align-items: center;
+    justify-content: center;
+    width:50px;
+    height: 50px;;
+    font-size:22px;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 100%;
+  }
+}
