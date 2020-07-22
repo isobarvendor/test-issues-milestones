@@ -15,7 +15,11 @@ html,body{
     min-height: 100vh;
     background:$body-bg-color;
     color:$body-font-color;
-    font-size:$body-font-size;
+    font-size:$mobile-body-font-size;
+    
+    @include breakpoint(md){
+      font-size:$body-font-size;
+    }
 }
 
 #main{
@@ -65,8 +69,11 @@ header{
   top:0;
   left:0;
   right:0;
-  padding: $masthead-vpadding $masthead-hpadding;
   margin: 0 auto;
+  padding: $content-hpadding $content-hpadding;
+  @include breakpoint(lg){
+    padding: $masthead-vpadding $masthead-hpadding;
+  }
 }
 
 footer{
@@ -79,7 +86,7 @@ footer{
 
   & a+a:before{
     content: '|';
-    padding:0 1em;
+    padding:0 $content-hpadding;;
   }
 
   & p+p{
@@ -92,10 +99,15 @@ footer{
     @include column;
     justify-content: center;
     align-items: center;
-    width:65px;
-    height:65px;
+    width:50px;
+    height:50px;
     border-radius: 100%;
     background-color: white;
+
+    @include breakpoint(lg){
+      width:65px;
+      height:65px;
+    }
 
     & > div {
       pointer-events: none;
@@ -139,19 +151,27 @@ footer{
 .profile{
   &-button{
     @include row;
-    height:65px;
+    height:50px;
     border-radius: 65px;
     background:black;
     filter: $shadow;
+
+    @include breakpoint(lg){
+      height:65px;
+    }
   }
 
   & > *{
     pointer-events: none;
   }
   &-image{
-    width:65px;
-    height:65px;
+    width:50px;
+    height:50px;
     border-radius: 100%;
+    @include breakpoint(lg){
+      width:65px;
+      height:65px;
+    }
   }
 
   &-content{
@@ -159,11 +179,14 @@ footer{
     justify-content: center;
     align-items: center;
     height:100%;
-    padding:2em;
+    padding:0 2em;
     
     >*{
       position: relative;
-      font-size:12px;
+      font-size:0.75rem;
+      @include breakpoint(lg){
+        line-height: initial;
+      }
     }
     > *+*{
       margin-left:50px;
@@ -178,9 +201,22 @@ footer{
       background:white;
     }
 
-     .user-coins{
-      font-size:24px;
+    .user-coins{
+      font-size:1.5rem;
       font-weight: bold;
+      line-height: 1em;
+      @include breakpoint(lg){
+        line-height:initial;
+      }
+    }
+
+    img{
+      width:19px;
+      height: 19px;
+      @include breakpoint(lg){
+        width:auto;
+        height: auto;
+      }
     }
   }
 }
@@ -191,17 +227,28 @@ footer{
 
   & .masthead-content{
     position: absolute;
-    top:0;
+    top: calc(82px + 1rem);
     left:0;
-    bottom:0;
     @include column;
-    justify-content: center;
-    align-items: left;
-    padding:0 $masthead-hpadding;
-
+    padding:0 $content-hpadding;
+    @include breakpoint(md){
+      top: calc(82px + 2rem);
+      padding:0 2rem;
+    }
+    @include breakpoint(lg){
+      top:0;
+      bottom:0;
+      width:50%;
+      justify-content: center;
+      padding:0 $masthead-hpadding;
+    }
     & h1{
       margin-bottom:.5em;
-      font-size: 38px;
+      font-size: 1.285rem;
+
+      @include breakpoint(md){
+        font-size: 2.375rem;
+      }
     }
   }
 }
@@ -211,7 +258,10 @@ footer{
   position: relative;
   max-width: $content-max-width;
   width:100%;
-  padding: 0 1em;
+  padding: 0 $content-hpadding;
+  @include breakpoint(md){
+    padding: 0 2em;
+  }
 }
 
 .campaign-section{
@@ -241,7 +291,7 @@ footer{
 
 .campaign-section{
   .header{
-    font-size:38px;
+    font-size:2.375rem;
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: .5em;
@@ -253,16 +303,23 @@ footer{
   border-radius: 20px;
 
   & img{
-    height:280px;
+    height:154px;
     width:100%;
     object-fit: contain;
+    @include breakpoint(lg){
+      height:280px;
+    }
   }
 
   & .prize-description{
-    font-size:20px;
-    height:calc(414px - 280px);
+    font-size:1rem;
+    height:calc(251px - 154px);
     padding:1em 20px;
     border-top:1px solid $secondary-color;
+    @include breakpoint(lg){
+      font-size:20px;
+      height:calc(414px - 280px);
+    }
   }
 }
 
@@ -311,9 +368,13 @@ footer{
   &-item{
     @include column;
     align-items: center;
-    padding: 1em;
-    width:33%;
-    
+    padding: 2em;
+    width:100%;
+    @include breakpoint(md){
+      padding: 1em;
+      width:33%;
+    }
+  
     & img{
       margin:1.5em 0;
     }
@@ -323,12 +384,19 @@ footer{
     @include row;
     align-items: center;
     justify-content: center;
-    width:50px;
-    height: 50px;;
-    font-size:22px;
+    width:40px;
+    height: 40px;
+    font-size:16px;
     font-weight: bold;
-    border: 2px solid white;
+    border: 3px solid white;
     border-radius: 100%;
+
+    @include breakpoint(md){
+      width:50px;
+      height: 50px;
+      font-size:22px;
+      border: 2px solid white;
+    }
   }
 }
 

@@ -64,6 +64,20 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
+    [
+      'nuxt-mq',
+      {
+        // Default breakpoint for SSR
+        defaultBreakpoint: 'sm',
+        breakpoints: {
+          sm: 576,
+          md: 768,
+          lg: 992,
+          xl: Infinity
+        }
+      }
+    ]
   ],
   styleResources: {
 		scss: ['./assets/scss/*.scss']
