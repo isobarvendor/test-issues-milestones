@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <SliderHeader>Coin Transactions</SliderHeader>
     <swiper class="swiper wallet-swiper" :options="swiperOption">
       <swiper-slide
