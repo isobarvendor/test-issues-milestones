@@ -39,8 +39,7 @@ export default {
   */
   css: [
     '@/assets/scss/main.scss',
-		'@/assets/scss/variables.scss',
-    '@/assets/scss/mixins.scss',
+    '@/assets/scss/fonts.scss',
     'swiper/css/swiper.css'
   ],
   /*
@@ -80,8 +79,11 @@ export default {
     ]
   ],
   styleResources: {
-		scss: ['./assets/scss/*.scss']
-	},
+    scss: [
+      '~assets/scss/variables.scss',
+      '~assets/scss/mixins.scss',
+    ]
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

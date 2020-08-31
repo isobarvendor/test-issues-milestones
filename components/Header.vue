@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a class="profile-button" @click="toggleLog">
+    <a class="profile-button" :class="{'dark': isDark}" @click="toggleLog">
         <img class="profile-image" src="/img/dummy_profile.jpg">
         <div class="profile-content">
             <template v-if="logged">Sign in</template>
@@ -30,7 +30,13 @@
 export default {
     data(){
         return{
-            logged:false
+            logged:false,
+            isDark:false
+        }
+    },
+    watch:{
+        $route(n,o){
+            console.log(n)
         }
     },
     methods:{
@@ -42,6 +48,9 @@ export default {
             e.stopPropagation();
             this.logged = !this.logged
         }
+    }, 
+    mounted(){
+        this.isDark = this.$route.name!="index"
     }
 };
 </script>

@@ -2,17 +2,23 @@
   <div class="container campaign-section">
     <div class="header">{{data.title}}</div>
     <a href>{{data.description}}</a>
-    <swiper class="swiper coke-swiper container" :options="swiperOption">
-      <swiper-slide
-        v-for="(item, index) in data.exclusivePrizes"
-        :key="'prize'+index"
-        class="prize-item"
-      >
-        <img :src="item.image.url" />
-        <div class="prize-description">{{item.text}}</div>
-      </swiper-slide>
-      <div class="coke-swiper-pagination" slot="pagination"></div>
-    </swiper>
+    <div class="container">
+      <swiper class="swiper prize-swiper" :options="swiperOption">
+        <swiper-slide
+          v-for="(item, index) in data.exclusivePrizes"
+          :key="'prize'+index"
+          class="prize-item"
+        >
+          <img
+            v-if="$mq == 'sm'"
+            :src="item.imageMobile ? item.imageMobile.url : '/img/prize-default.svg'"
+          />
+          <img v-else :src="item.imageDesktop ? item.imageDesktop.url : '/img/prize-default.svg'" />
+          <div class="prize-description">{{item.text}}</div>
+        </swiper-slide>
+        <div class="prize-swiper-pagination" slot="pagination"></div>
+      </swiper>
+    </div>
     <div v-if="winners.luckyWinnerFile">
       <div class="header">{{winners.downloadLabel}}</div>
       <a class="button">View winner list</a>
@@ -25,7 +31,7 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 export default {
   components: {
     Swiper,
-    SwiperSlide
+    SwiperSlide,
   },
   data() {
     return {
@@ -35,31 +41,28 @@ export default {
         breakpoints: {
           // when window width is >= 320px
           768: {
-            slidesPerView: 4,
-            spaceBetween: 20
+            slidesPerView: 3,
+            spaceBetween: 20,
           },
-          992:{
-            slidesPerView: 4,
-            spaceBetween: 30
-          }
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
         },
         freeMode: true,
         pagination: {
-          el: ".coke-swiper-pagination",
+          el: ".prize-swiper-pagination",
           clickable: true,
-          bulletClass: "coke-swiper-pagination-bullet",
-          bulletActiveClass: "coke-swiper-pagination-bullet-active"
-        }
-      }
+          bulletClass: "prize-swiper-pagination-bullet",
+          bulletActiveClass: "prize-swiper-pagination-bullet-active",
+        },
+      },
     };
   },
   props: {
     data: null,
-    winners: null
+    winners: null,
   },
-  beforeMount() {}
+  beforeMount() {},
 };
 </script>
-
-<style>
-</style>

@@ -4,10 +4,9 @@
       <Masthead :data="data.mastheadSection"/>
       <CampaignPeriod :data="data.campaignPeriods"/>
       <Prizes :data="data.exclusivePrizes" :winners="data.luckyWinner"/>
-      <HowItWorks />
+      <HowItWorks :data="data.worksSection"/>
       <SubmissionMechanics />
     </div>
-    <Header />
     <Footer :data="data.footer"/>
   </div>
   <div v-else-if="dataStatus.status >= 500">
@@ -17,18 +16,22 @@
 </template>
 
 <script >
-import Header from '../components/Header'
-import Masthead from '../components/Masthead'
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
 import HowItWorks from '../components/HowItWorks'
 import SubmissionMechanics from '../components/SubmissionMechanics'
 import Footer from '../components/Footer'
+
+//const campaignCoin = "coin"
+//const campaignEmail = "email"
+//const campaign
+
 export default {
   data(){
     return{
       dataStatus:{},
-      data:null
+      data:null,
+      campaignType: 0
     }
   },
   head() {

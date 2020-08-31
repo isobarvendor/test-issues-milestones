@@ -13,16 +13,18 @@ html,body{
     margin:0;
     padding:0;
     min-height: 100vh;
-    background:$body-bg-color;
     color:$body-font-color;
+    background:$body-bg-color;
     font-size:$mobile-body-font-size;
-    
+    font-family: $body-fontfamily;
+    transition: background .3s;
     @include breakpoint(md){
       font-size:$body-font-size;
     }
 }
 
 #main{
+  overflow-x: hidden;
   min-height: 100vh;
   @include column;
   justify-content: space-between;
@@ -155,9 +157,14 @@ footer{
     border-radius: 65px;
     background:black;
     filter: $shadow;
+    transition: background 0.3s;
 
     @include breakpoint(lg){
       height:65px;
+    }
+
+    &.dark{
+      background: $wallet-button-gradient;
     }
   }
 
@@ -291,21 +298,18 @@ footer{
 
 .campaign-section{
   .header{
-    font-size:2.375rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: .5em;
+    @include section-header;
   }
 }
 
 .prize-item{
-  border: 1px solid $secondary-color;
+  border: 2px solid $secondary-color;
   border-radius: 20px;
 
   & img{
     height:154px;
     width:100%;
-    object-fit: contain;
+    object-fit: cover;
     @include breakpoint(lg){
       height:280px;
     }
@@ -315,7 +319,7 @@ footer{
     font-size:1rem;
     height:calc(251px - 154px);
     padding:1em 20px;
-    border-top:1px solid $secondary-color;
+    border-top:2px solid $secondary-color;
     @include breakpoint(lg){
       font-size:20px;
       height:calc(414px - 280px);
@@ -323,8 +327,12 @@ footer{
   }
 }
 
-.coke-swiper{
+.prize-swiper{
+  width:100%;
+  position: relative;
   margin:2em 0;
+  overflow: visible !important;
+
   &-pagination{
     text-align: center;
     margin-top:20px;
@@ -377,6 +385,7 @@ footer{
   
     & img{
       margin:1.5em 0;
+      flex:1;
     }
   }
 
@@ -516,5 +525,117 @@ form {
       }
     }
     
+  }
+}
+
+.wallet{
+  padding-top:115px;
+
+  .container{
+    max-width:1280px;
+    padding: $content-hpadding $content-hpadding;
+    @include breakpoint(lg){
+      padding: $masthead-vpadding $masthead-hpadding;
+    }
+  }
+
+  .header{
+    @include section-header;
+    text-align:left
+  }
+
+  .slider-header{
+    @include row;
+    align-items: center;
+    .title{
+      display:flex;
+      font-size:26px;
+      font-weight: bold;
+      font-family:$header-fontfamily;
+      margin-right:1em;
+    }
+    &:after{
+      content: '';
+      display:inline-block;
+      height:1px;
+      flex:1;
+      background-color:#585858;
+    }
+  }
+
+  a{
+    &.button{ 
+      text-decoration: none;
+      filter:none;
+      color:white;
+      background: $wallet-button-gradient;
+    }
+    &.center{
+      display:block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.wallet-swiper{
+  margin: 30px 0;
+  overflow:visible !important;
+
+  .bg{
+    background: $wallet-button-gradient;//linear-gradient(0deg, rgba(59,59,59,1) 12%, rgba(122,122,122,1) 40%, rgba(16,16,16,1) 100%);
+  }
+  
+  .wallet-swiper-item{
+    @include column;
+    border-radius: 20px;
+    
+    & img{
+      border-radius: 20px 20px 0 0;
+      background:black;
+      height:154px;
+      width:100%;
+      object-fit: cover;
+      @include breakpoint(lg){
+        height:293px;
+      }
+    }
+
+    & .description{
+      @include column;
+      border-radius: 0 0 20px 20px;
+      flex:1;
+      padding:1em 20px;
+      @include breakpoint(lg){
+      }
+      .name{
+        flex:1;
+        font-size: 26px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+
+        &:after{
+          content: '';
+          display:block;
+          margin: .5em 0;
+          height:1px;
+          background: #585858;
+        }
+      }
+    }
+
+    & .expiry{
+      @include row;
+      justify-content: flex-end;
+
+      span{
+        display:inline-block;
+
+        &:first-child{
+          margin-right:1em;
+          font-weight: bold;
+          font-size: 26px;;
+        }
+      }
+    }
   }
 }

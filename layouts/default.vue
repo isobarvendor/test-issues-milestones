@@ -1,6 +1,17 @@
 <template>
-  <Nuxt />
+  <div>
+    <Nuxt />
+    <Header />
+  </div>
 </template>
 
-<style>
+<script>
+import Header from "~/components/Header";
+export default {
+  components: {
+    Header,
+  },
+};
+</script>
+<style lang="scss">
 </style>

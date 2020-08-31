@@ -24,3 +24,11 @@
         @media (min-width: 1400px)  { @content; }
     }
 }
+
+@mixin section-header {
+  font-size:38px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: .5em;
+  font-family: $header-fontfamily;
+}
