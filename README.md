@@ -1,5 +1,13 @@
 # coke-campaign-generator
 
+## Folder Setup
+- Layouts - Default.vue (only one and holding the Header Component)
+- Pages - For all the necessary pages required for the microsite
+- Components - For the parts that makes up the sections in the pages
+- Assets/SCSS - All scss styles are in this folder
+- Static - All media and js files that are necessary are in this folder.
+
+
 ## Build Setup
 
 ```bash
