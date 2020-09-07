@@ -11,3 +11,14 @@ export default {
   name: "WalletSliderHeader",
 };
 </script>
+<style lang="scss">
+.wallet{
+  @media only screen and (max-width: 767px) {
+    .slider-header{
+      .title{
+        font-size: 20px;
+      }
+    }
+  }
+}
+</style>

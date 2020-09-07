@@ -1,79 +1,30 @@
 <template>
-  <div class="wallet-rewards">
-    <SliderHeader>Rewards</SliderHeader>
-    <div class="wallet-desktop" v-if="$mq == 'xl'">
-      <div class="wallet-swiper" v-for="(item, index) in toBeShown" :key="'reward'+index">
+  <div class="rewards-catalogue">
+    <div class="wallet-desktop" >
+      <div class="wallet-swiper" v-for="(item, index) in data.exclusivePrizes" :key="'reward'+index">
         <div class="wallet-swiper-item">
-          <img src="/img/prize-default.svg"
+          <img src="/img/rewards/jersey.png"
           />
         </div>
         <div class="description bg">
             <div class="name">{{item.text}}</div>
             <div class="expiry">
-              <span>365</span>
-              <span>days left</span>
+              <span>50</span>
+              <span>coins </span>
             </div>
           </div>
       </div>
     </div>
-    <swiper class="swiper wallet-swiper" :options="swiperOption"  v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'">
-      <swiper-slide
-        v-for="(item, index) in data.exclusivePrizes"
-        :key="'reward'+index"
-        class="wallet-swiper-item"
-      >
-        <img
-          :src="item.imageMobile ? item.imageMobile.url : '/img/prize-default.svg'"
-        />
-        <div class="description bg">
-          <div class="name">{{item.text}}</div>
-          <div class="expiry">
-            <span>365</span>
-            <span>days left</span>
-          </div>
-        </div>
-      </swiper-slide>
-      <div class="prize-swiper-pagination" slot="pagination"></div>
-    </swiper>
-    <a v-if="$mq == 'xl'" class="button center" @click="nextPage" :disabled="currentPage == totalPages">View all</a>
   </div>
 </template>
 
 <script>
-import SliderHeader from "@/components/WalletSliderHeader";
-import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 export default {
-  name: "WalletRewards",
+  name: "RewardsCatalogue",
   components: {
-    SliderHeader,
-    Swiper,
-    SwiperSlide,
   },
   data() {
     return {
-      swiperOption: {
-        slidesPerView: 2,
-        spaceBetween: 10,
-        breakpoints: {
-          // when window width is >= 320px
-
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          992: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        },
-        freeMode: true,
-        pagination: {
-          el: ".prize-swiper-pagination",
-          clickable: true,
-          bulletClass: "prize-swiper-pagination-bullet",
-          bulletActiveClass: "prize-swiper-pagination-bullet-active",
-        }
-      },
       currentPage: 1
     };
   },
@@ -104,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
-.wallet-rewards{
+.rewards-catalogue{
     margin-bottom: 40px;
     .wallet-desktop{
       display: flex;
@@ -129,7 +80,7 @@ export default {
           display: flex;
           justify-content: flex-end;
           span{
-            font-size:14px;
+            font-size:12px;
           }
           span:first-child{
             margin-right: 0.5em;
@@ -149,7 +100,10 @@ export default {
       background: #ffffff
     }
     @media only screen and (max-width: 1199px) {
-      .swiper.wallet-swiper{
+    .wallet-desktop{
+      .wallet-swiper{
+          width: 43%;
+          margin: 30px 10px;
         .description{
           padding: 1em 10px;
           .name{
@@ -164,6 +118,7 @@ export default {
         }
         
       }
+    }
     }
     
 }

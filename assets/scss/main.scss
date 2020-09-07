@@ -77,7 +77,27 @@ header{
     padding: $masthead-vpadding $masthead-hpadding;
   }
 }
+.header{
+  @include section-header;
+  text-transform: capitalize;
 
+}
+a{
+  &.button{ 
+    text-decoration: none;
+    filter:none;
+    color:white;
+    background: $wallet-button-gradient;
+  }
+  &.center{
+    display:block;
+    margin: 0 auto;
+  }
+}
+
+a.button{
+  width: 230px;
+}
 footer{
   @include column;
   align-items: center;
@@ -120,7 +140,7 @@ footer{
       height:2px;
       border-radius: 5px;
       width:18px;
-      transition: transform .3s, opacity.3s;
+      transition: transform 1s, opacity 1s;
       transform-origin: left center;
 
       &+span{
@@ -527,7 +547,27 @@ form {
     
   }
 }
-
+.wallet, .rewards, .privacy, .tnc, .register, .login, .help{
+  padding-top: 115px;
+}
+.slider-header{
+  @include row;
+  align-items: center;
+  .title{
+    display:flex;
+    font-size:26px;
+    font-weight: bold;
+    font-family:$header-fontfamily;
+    margin-right:1em;
+  }
+  &:after{
+    content: '';
+    display:inline-block;
+    height:1px;
+    flex:1;
+    background-color:#585858;
+  }
+}
 .wallet{
   padding-top:115px;
 
@@ -575,6 +615,12 @@ form {
       margin: 0 auto;
     }
   }
+  //wallet-page -v
+
+  a.button{
+    width: 230px;
+  }
+
 }
 
 .wallet-swiper{

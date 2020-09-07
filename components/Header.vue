@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a class="profile-button" :class="{'dark': isDark}" @click="toggleLog">
+    <a class="profile-button" :class="{'dark': isDark}" @click="toggleLog" v-if="showProfile">
         <img class="profile-image" src="/img/dummy_profile.jpg">
         <div class="profile-content">
             <template v-if="logged">Sign in</template>
@@ -16,7 +16,7 @@
             </template>
         </div>
     </a>
-    <a class="nav-button" @click="toggleMenu">
+    <a class="nav-button" @click="toggleMenu" v-if="showMenu">
       <div>
         <span></span>
         <span></span>
@@ -31,12 +31,31 @@ export default {
     data(){
         return{
             logged:false,
-            isDark:false
+            isDark:false,
+            isReward:false
         }
     },
     watch:{
         $route(n,o){
             console.log(n)
+        }
+    },
+    computed:{
+        showProfile(){
+            if(this.$route.name =='register'||this.$route.name =='login'){
+                return false
+            }
+            else{
+                return true;
+            }
+        },
+        showMenu(){
+            if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'){
+                return false
+            }
+            else{
+                return true;
+            }
         }
     },
     methods:{

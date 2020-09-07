@@ -1,10 +1,8 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="wallet">
+  <div v-if="dataStatus.status == 200" id="main" class="privacy">
     <div class="wrapper">
       <div class="container">
-        <div class="header">Your Wallet</div>
-        <WalletRewards :data="data.exclusivePrizes"/>
-        <WalletTransactions :data="data.exclusivePrizes"/>
+        <PrivacySection :data="data.exclusivePrizes"/>
       </div>
 
     </div>
@@ -17,14 +15,12 @@
 </template>
 
 <script>
-import WalletRewards from '@/components/WalletRewards'
-import WalletTransactions from '@/components/WalletTransactions'
+import PrivacySection from '@/components/PrivacySection'
 export default {
   data(){
     return{
       dataStatus:{},
       data:null,
-      campaignType: 0
     }
   },
   head() {
@@ -67,11 +63,7 @@ export default {
   html, body{
     background: $body-bg-color-wallet;
     @media only screen and (max-width: 767px) {
-      .wallet{
-        .header{
-          font-size: 25px;
-          margin-bottom: 30px;
-        }
+      .privacy{
       }
     }
   }

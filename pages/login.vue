@@ -1,10 +1,9 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="wallet">
+  <div v-if="dataStatus.status == 200" id="main" class="login">
+    <div class="close"><img src="/img/icons/close.png"/></div>
     <div class="wrapper">
       <div class="container">
-        <div class="header">Your Wallet</div>
-        <WalletRewards :data="data.exclusivePrizes"/>
-        <WalletTransactions :data="data.exclusivePrizes"/>
+        <LoginDetails :data="data.exclusivePrizes"/>
       </div>
 
     </div>
@@ -17,14 +16,12 @@
 </template>
 
 <script>
-import WalletRewards from '@/components/WalletRewards'
-import WalletTransactions from '@/components/WalletTransactions'
+import LoginDetails from '@/components/LoginDetails'
 export default {
   data(){
     return{
       dataStatus:{},
       data:null,
-      campaignType: 0
     }
   },
   head() {
@@ -66,13 +63,18 @@ export default {
 @import '~assets/scss/variables.scss';
   html, body{
     background: $body-bg-color-wallet;
-    @media only screen and (max-width: 767px) {
-      .wallet{
-        .header{
-          font-size: 25px;
-          margin-bottom: 30px;
+    .login{
+        position: relative;
+        .close{
+            position: absolute;
+            top: 10px;
+            right:20px;
         }
-      }
+        @media only screen and (max-width: 767px) {
+            .login{
+
+            }
+        }
     }
   }
 </style>
