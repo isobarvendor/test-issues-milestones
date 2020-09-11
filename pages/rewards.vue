@@ -39,7 +39,8 @@
 </template>
 
 <script>
-import RewardsCatalogue from '@/components/RewardsCatalogue'
+import RewardsCatalogue from '@/components/RewardsCatalogue';
+import Vuetify from 'vuetify/lib'
 export default {
   data(){
     return{

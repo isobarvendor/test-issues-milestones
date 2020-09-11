@@ -67,14 +67,19 @@ header{
   @include row;
   justify-content: space-between;
   position: absolute;
-  max-width:1280px;
+  max-width:100%;
   top:0;
   left:0;
   right:0;
   margin: 0 auto;
   padding: $content-hpadding $content-hpadding;
+  padding: 50px 50px;
   @include breakpoint(lg){
-    padding: $masthead-vpadding $masthead-hpadding;
+    /*padding: $masthead-vpadding $masthead-hpadding;*/
+    padding: 50px 50px;
+  }
+  @media only screen and (max-width: 767px) {
+    padding: 50px 10px;
   }
 }
 .header{
@@ -140,7 +145,7 @@ footer{
       height:2px;
       border-radius: 5px;
       width:18px;
-      transition: transform 1s, opacity 1s;
+      transition: transform 0.5s, opacity 0.5s;
       transform-origin: left center;
 
       &+span{
@@ -547,8 +552,15 @@ form {
     
   }
 }
-.wallet, .rewards, .privacy, .tnc, .register, .login, .help{
-  padding-top: 115px;
+.wallet, .rewards, .privacy, .tnc, .register, .login, .help, .account, .coins, .congratulations{
+  padding-top: 150px;
+}
+.button-container{
+  margin-top: 40px;
+  a.button{
+      width: 230px;
+      display: block;
+  }
 }
 .slider-header{
   @include row;

@@ -16,13 +16,56 @@
             </template>
         </div>
     </a>
-    <a class="nav-button" @click="toggleMenu" v-if="showMenu">
-      <div>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </a>
+    <div class="nav-container">
+        <a class="nav-button" @click="toggleMenu" v-if="showMenu">
+        <div>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        </a>
+        <v-expand-transition>
+            <v-card v-show="expand" class="mx-auto">
+            <div class="menu-container">
+                <div class="wallet-desktop" >
+                    <div class="wallet-swiper">
+                        <div class="wallet-swiper-item">
+                        <img src="/img/rewards/jersey.png"
+                        />
+                        </div>
+                        <div class="description bg">
+                            <div class="name">Win a dream premier league experience in England</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-options">
+                    <div class="img-text">
+                        <img src="/img/icons/reward.png"/>
+                        <div class="text">Rewards Catalogue</div>
+                    </div>
+                    <div class="img-text">
+                        <img src="/img/icons/wallet.png"/>
+                        <div class="text">My Wallet</div>
+                    </div>
+                    <div class="img-text">
+                        <img src="/img/icons/account.png"/>
+                        <div class="text">Account Details</div>
+                    </div>
+                    <div class="img-text">
+                        <img src="/img/icons/help.png"/>
+                        <div class="text">Wallet Help & Support</div>
+                    </div>
+                </div>
+                <div class="tnc-container">
+                    <p>Privacy Policy</p>
+                    <p>Terms & Conditions</p>
+                    <p class="logout">Log out</p>
+                </div>
+
+            </div>  
+        </v-card>
+        </v-expand-transition>  
+    </div>
   </header>
 </template>
 
@@ -32,7 +75,8 @@ export default {
         return{
             logged:false,
             isDark:false,
-            isReward:false
+            isReward:false,
+            expand: false
         }
     },
     watch:{
@@ -61,7 +105,8 @@ export default {
     methods:{
         toggleMenu(e){
             e.stopPropagation();
-            e.target.classList.toggle('active')
+            e.target.classList.toggle('active');
+            this.expand = !this.expand;
         },
         toggleLog(e){
             e.stopPropagation();
@@ -74,5 +119,79 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.nav-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    .nav-button{
+        z-index: 9;
+    }
+    .menu-container{
+        width: 400px;
+        height: auto;
+        background: #282828;
+        position: absolute;
+        top:-120px;
+        box-shadow: 0 0 0 1px black;
+        border-radius: 20px;
+        right: -50px;
+        padding-bottom: 40px;
+        color: #ffffff;
+        box-shadow: -7px 4px 12px -1px rgba(0,0,0,0.75);
+        border-radius: 0px 0px 0px 20px !important;
+        .wallet-swiper{
+            margin: 0px 0px;
+            width: 80%;
+            margin:auto;
+            .description{
+                padding: 15px;
+                border-radius: 0px 0px 20px 20px;
+            }
+        }
+        .body-options{
+            width: 80%;
+            margin: auto;
+            margin-top: 25px;
+            margin-bottom: 30px;
+            .img-text{
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                img{
+                    margin-right: 10px;
+                }
+            }
+        }
+        .tnc-container{
+            width: 80%;
+            margin: auto;
+            margin-top: 20px;
+            p{
+                color: #585858;
+                margin-bottom: 15px;
+                text-align: center;
+                text-decoration: underline;
+                &.logout{
+                    color: #ffffff ;
+                }
+            }
+        }
+
+    }
+    @media only screen and (max-width: 767px) {
+        .menu-container{
+            right: -20px;
+            top: 0px;
+            margin-top: 35px;
+            .wallet-swiper{
+                width: 90%;
+                .wallet-swiper-item img{
+                    height: auto;
+                }
+            }
+        }    
+    }
+}
 </style>
