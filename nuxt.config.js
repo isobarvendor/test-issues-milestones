@@ -66,6 +66,8 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast',
     [
       'nuxt-mq',
       {
@@ -80,6 +82,50 @@ export default {
       }
     ]
   ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {url: '/login', method: 'post', propertyName: 'token'},
+          logout: false,
+          user: {url: '/user', method: 'get', propertyName: 'data'},
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer'
+      },
+      facebook: {
+        client_id: '368399970838571',
+        userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email',
+        scope: ['public_profile', 'email']
+      },
+      google: {
+        client_id: '1055325725831-bpa8sn1i3o2l98tes241pjjtecuk5vqc.apps.googleusercontent.com',
+        scope: ['openid', 'profile', 'email']
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: '/logout',
+      user: '/profile',
+      callback:'/'
+    }
+  },
+  router: {
+    // middleware: ['auth']
+  },
+  axios: {
+    // baseURL: 'https://localhost:3000'
+  },
+  toast: {
+    position: 'top-right',
+    duration: 2000
+  },
+  loading: {
+    name: 'chasing-dots',
+    color: '#ff5638',
+    background: 'white',
+    height: '4px'
+ },
   styleResources: {
     scss: [
       '~assets/scss/variables.scss',

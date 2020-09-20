@@ -5,7 +5,10 @@
       <CampaignPeriod :data="data.campaignPeriods"/>
       <Prizes :data="data.exclusivePrizes" :winners="data.luckyWinner"/>
       <HowItWorks :data="data.worksSection"/>
-      <SubmissionMechanics />
+      <SubmissionMechanics v-if="!this.$auth.loggedIn"/>
+      <v-btn @click="check">check auth</v-btn>
+      <br>
+      {{ this.$auth.loggedIn }}
     </div>
     <Footer :data="data.footer"/>
   </div>
@@ -54,17 +57,32 @@ export default {
       css: []
     };
   },
-  
+  props: {
+
+  },
   created(){
     this.fetchData();
   },
   methods:{
     async fetchData(){
-      let result = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaigns/1')
+      let result = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaigns')
       this.dataStatus = {status:result.status, message:result.statusText}
       this.data = result.data
-    }
-  }
+    },
+    check(){
+      console.log(this.$auth.loggedIn)
+    },
+    logout() {
+      this.$toast.show('Logging out...', {icon: "fingerprint"});
+      this.$auth.logout()
+    },
+  },
+  computed: {
+
+  },
+  mounted() {
+    console.log(this.dataStatus)
+  },
 }
 </script>
 

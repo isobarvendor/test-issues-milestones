@@ -59,7 +59,14 @@
                 <div class="tnc-container">
                     <p>Privacy Policy</p>
                     <p>Terms & Conditions</p>
-                    <p class="logout">Log out</p>
+                    <v-btn text @click="this.$auth.logout">Logout</v-btn>
+                    <div v-if="$auth.logggedIn">
+                        
+                    </div>
+                    <div v-else>
+                        <v-btn text to="/login">Login</v-btn>
+                        <v-btn text to="/register">Register</v-btn>
+                    </div>
                 </div>
 
             </div>  
@@ -111,7 +118,11 @@ export default {
         toggleLog(e){
             e.stopPropagation();
             this.logged = !this.logged
-        }
+        },
+        logout() {
+            this.$toast.show('Logging out...', {icon: "fingerprint"});
+            this.$auth.logout()
+        },
     }, 
     mounted(){
         this.isDark = this.$route.name!="index"

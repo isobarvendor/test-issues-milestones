@@ -50,7 +50,7 @@ export default {
   methods: {
     async fetchData() {
       let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns/1"
+        "https://ayo.aircovery.com/cms-api/campaigns"
       );
       this.dataStatus = { status: result.status, message: result.statusText };
       this.data = result.data;
