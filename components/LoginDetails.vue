@@ -1,29 +1,29 @@
 <template>
 <div class="login-details">
-    <div class="title-image"><img src="img/icons/coke.png" />
-        <p>Sign up with us and gain access to our rewards catalogue where you can redeem prizes.</p>
-    </div>
-    <div class="continue" v-if="$mq == 'xl'"> 
-        <p>Continue with</p>
-        <div class="icons"> 
-            <div v-if="line"><a href="#"><img src="img/icons/line.png" /></a></div>
-            <div v-if="facebook"><a href="#"><img src="img/icons/fb.png" /></a></div>
-            <div v-if="google"><a href="#"><img src="img/icons/google.png" /></a></div>
-            <div v-if="email"><a href="#"><img src="img/icons/email.png" /></a></div>
-        </div>
-        <p> or </p>
-    </div>
-    <div class="login-box column center" v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'">
-      <a class="social-button fb" v-if="facebook"><i class="ic ic-fb" /><span>Continue with Facebook</span></a>
-      <a class="social-button line" v-if="line"><i class="ic ic-line" /><span>Continue with LINE</span></a>
-      <a class="social-button google" v-if="google"><i class="ic ic-google" /><span>Continue with Google</span></a>
-      <a class="social-button email" v-if="email" v-on:click="testing()"><i class="ic ic-email" /><span>Continue with email</span></a>
+  <div class="title-image"><img src="img/icons/coke.png" />
+      <p>Sign up with us and gain access to our rewards catalogue where you can redeem prizes.</p>
+  </div>
+  <div class="continue" v-if="$mq == 'xl'"> 
+      <p>Continue with</p>
+      <div class="icons"> 
+          <div><span><img src="img/icons/line.png" /></span></div>
+          <div><span><img src="img/icons/fb.png" /></span></div>
+          <div><span><img src="img/icons/google.png" /></span></div>
+          <div><span><img src="img/icons/email.png" /></span></div>
+      </div>
+      <p> or </p>
+  </div>
+  <div class="login-box column center" v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'">
+    <a class="social-button fb"><i class="ic ic-fb" /><span>Continue with Facebook</span></a>
+    <a class="social-button line"><i class="ic ic-line" /><span>Continue with LINE</span></a>
+    <a class="social-button google"><i class="ic ic-google" /><span>Continue with Google</span></a>
+    <a class="social-button email" v-on:click="testing()"><i class="ic ic-email" /><span>Continue with email</span></a>
   </div> 
   <transition name="fade">
     <div class="details" v-if="show">
         <div class="input-container">
-            <v-text-field label="Email address">   </v-text-field>
-            <v-text-field label="Password" :type="'password'">   </v-text-field>
+            <v-text-field label="Email address" v-model="login.email"></v-text-field>
+            <v-text-field label="Password" :type="'password'" v-model="login.password"></v-text-field>
         </div>
         <div class="button-container">
             <a  class="button">Login</a>
@@ -42,22 +42,22 @@ export default {
   },
   data() {
     return {
-         show:true
+        show:true,
+        login: {
+          email:'',
+          password:''
+        }
     };
   },
   props: {
     data: null,
-    email: {},
-    facebook: {},
-    google: {},
-    line: {}
   },
   computed:{
   },
   methods:{
-      testing(){
+    testing(){
         return this.show = true;
-     }
+    },
   },
   beforeMount() {},
   mounted(){

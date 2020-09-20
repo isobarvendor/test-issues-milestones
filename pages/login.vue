@@ -3,12 +3,7 @@
     <div class="close"><img src="/img/icons/close.png"/></div>
     <div class="wrapper">
       <div class="container">
-        <LoginDetails 
-          :email="dataSocial.email"
-          :facebook="dataSocial.facebook"
-          :google="dataSocial.google"
-          :line="dataSocial.line"
-        />
+        <LoginDetails />
       </div>
     </div>
   </div>
@@ -58,16 +53,7 @@ export default {
       let result = await this.$axios.get(
         "https://ayo.aircovery.com/cms-api/campaigns"
       );
-      let config = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaign-configurations"
-      );
       this.dataStatus = { status: result.status, message: result.statusText };
-      this.dataSocial = { 
-        email: config.data[0].socialMedia.Email, 
-        facebook: config.data[0].socialMedia.Facebook,
-        google: config.data[0].socialMedia.Google,
-        line: config.data[0].socialMedia.Line,
-      };
       this.data = result.data;
     },
   },
