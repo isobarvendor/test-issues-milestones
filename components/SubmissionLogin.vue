@@ -16,37 +16,7 @@ export default {
       social: null
     },
     methods: {
-      loginUser(loginInfo){
-          this.$auth.loginWith('facebook')
-      },
-      async googleLogin(){
-        await this.$auth.loginWith('google').catch(e => {
-          this.$toast.show('Error', {icon: "fingerprint"});
-        })
-      },
-      async facebookLogin(){
-        await this.$auth.loginWith('facebook').catch(e => {
-          this.$toast.show('Error', {icon: "fingerprint"});
-        })
-      },
-      async login() {
-        try {
-          this.$toast.show('Logging in...', {icon: "fingerprint"});
-          await this.$auth.loginWith('local', {
-            data: {
-              "email": this.email,
-              "password": this.password
-            }
-          }).catch(e => {
-            this.$toast.error('Failed Logging In', {icon: "error_outline"});
-          });
-          if (this.$auth.loggedIn) {
-            this.$toast.success('Successfully Logged In', {icon: "done"});
-          }
-        } catch (e) {        
-            this.$toast.error('Username or Password wrong', {icon: "error"});
-        }
-      }
+      
     },
     computed: {
 
