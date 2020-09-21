@@ -2,11 +2,10 @@
   <div v-if="dataStatus.status == 200" id="main">
     <div class="wrapper">
       <Masthead :data="data[0].homepage.mastheadSection"/>
-      <!-- <CampaignPeriod :data="configData[0].campaignPeriod"/> -->
-      <!-- <Prizes :data="configData[0].ExclusivePrizes" :winners="data[0].homepage.luckyWinner"/> -->
-      <!-- <HowItWorks :data="data[0].worksSection"/> -->
+      <CampaignPeriod :data="configData[0].campaignPeriod"/>
+      <Prizes :data="configData[0].ExclusivePrizes" :winners="data[0].homepage.luckyWinner"/>
+      <HowItWorks :data="data[0].worksSection"/>
       <SubmissionMechanics v-if="!this.$auth.loggedIn"/>
-      <v-btn>Auth: {{ this.$auth.loggedIn }}</v-btn>
     </div>
     <Footer :data="data[0].footer"/>
   </div>
@@ -70,14 +69,7 @@ export default {
       
       let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
       this.configData = config.data
-    },
-    check(){
-      console.log(this.$auth.loggedIn)
-    },
-    logout() {
-      this.$toast.show('Logging out...', {icon: "fingerprint"});
-      this.$auth.logout()
-    },
+    }
   },
   computed: {
 

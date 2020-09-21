@@ -125,8 +125,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$refs["coke_masthead_image"])
-    console.log(this.$refs["coke_masthead_image"].attributes)
+    
   },
 };
 </script>
