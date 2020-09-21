@@ -110,20 +110,24 @@ export default {
       if (this.$refs["coke_masthead_image"])
         this.$refs["coke_masthead_image"].setAttribute(
           "xlink:href",
-          this.data.desktopImage.url
+          this.data.desktopImage[0].url
         );
       if (this.$refs["coke_masthead_md_image"])
         this.$refs["coke_masthead_md_image"].setAttribute(
           "xlink:href",
-          this.data.tabletImage.url
+          this.data.tabletImage[0].url
         );
       if (this.$refs["coke_masthead_sm_image"])
         this.$refs["coke_masthead_sm_image"].setAttribute(
           "xlink:href",
-          this.data.mobileImage.url
+          this.data.mobileImage[0].url
         );
     }
-  }
+  },
+  mounted() {
+    console.log(this.$refs["coke_masthead_image"])
+    console.log(this.$refs["coke_masthead_image"].attributes)
+  },
 };
 </script>
 

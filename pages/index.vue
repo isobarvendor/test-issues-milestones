@@ -1,16 +1,14 @@
 <template>
   <div v-if="dataStatus.status == 200" id="main">
     <div class="wrapper">
-      <Masthead :data="data.mastheadSection"/>
-      <CampaignPeriod :data="data.campaignPeriods"/>
-      <Prizes :data="data.exclusivePrizes" :winners="data.luckyWinner"/>
-      <HowItWorks :data="data.worksSection"/>
+      <Masthead :data="data[0].homepage.mastheadSection"/>
+      <!-- <CampaignPeriod :data="configData[0].campaignPeriod"/> -->
+      <!-- <Prizes :data="configData[0].ExclusivePrizes" :winners="data[0].homepage.luckyWinner"/> -->
+      <!-- <HowItWorks :data="data[0].worksSection"/> -->
       <SubmissionMechanics v-if="!this.$auth.loggedIn"/>
-      <v-btn @click="check">check auth</v-btn>
-      <br>
-      {{ this.$auth.loggedIn }}
+      <v-btn>Auth: {{ this.$auth.loggedIn }}</v-btn>
     </div>
-    <Footer :data="data.footer"/>
+    <Footer :data="data[0].footer"/>
   </div>
   <div v-else-if="dataStatus.status >= 500">
     Status: {{dataStatus.status}} <br/>
@@ -34,6 +32,7 @@ export default {
     return{
       dataStatus:{},
       data:null,
+      configData: null,
       campaignType: 0
     }
   },
@@ -68,6 +67,9 @@ export default {
       let result = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaigns')
       this.dataStatus = {status:result.status, message:result.statusText}
       this.data = result.data
+      
+      let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
+      this.configData = config.data
     },
     check(){
       console.log(this.$auth.loggedIn)
@@ -81,7 +83,7 @@ export default {
 
   },
   mounted() {
-    console.log(this.dataStatus)
+    // console.log('data status', dataStatus)
   },
 }
 </script>

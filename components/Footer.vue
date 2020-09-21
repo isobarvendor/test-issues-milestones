@@ -22,7 +22,7 @@ export default {
       }
     },
     mounted(){
-      var text = this.data.footerText;
+      var text = this.data.copyright.copyright;
       this.footerText = text.replace(/The Coca-Cola Company/g, 'The&nbsp;Coca&#8209;Cola&nbsp;Company');
     }
 }

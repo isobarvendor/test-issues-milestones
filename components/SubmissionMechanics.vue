@@ -3,10 +3,7 @@
       <div class="header">Be the lucky one</div>
       <Form />
       <Login 
-        :email="dataSocial.email"
-        :facebook="dataSocial.facebook"
-        :google="dataSocial.google"
-        :line="dataSocial.line"
+        :social="dataSocial"
       />
   </div>
 </template>
