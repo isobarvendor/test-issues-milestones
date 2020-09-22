@@ -1,6 +1,6 @@
 <template>
   <div class="login-box column center">
-      <p>Sign in or register a Coca-Cola <br>account to enter the draw</p>
+      <p class="text-center">Sign in or register a Coca-Cola <br>account to enter the draw</p>
       <a class="social-button fb" v-if="social.facebook"><i class="ic ic-fb" /><span>Continue with Facebook</span></a>
       <a class="social-button line" v-if="social.line" ><i class="ic ic-line" /><span>Continue with LINE</span></a>
       <a class="social-button google" v-if="social.google"><i class="ic ic-google" /><span>Continue with Google</span></a>
@@ -27,6 +27,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .text-center {
+    text-align: center;
+  }
 </style>
