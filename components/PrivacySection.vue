@@ -2,18 +2,11 @@
 <div class="privacy-component">
     <div class="privacy-section">
         <div class="primary-section">  
-            <div class="header">Privacy Policy
-                <p> last updated: 30 July 2020</p>
+            <div class="header">{{data.privacyTop[0].title}}
+                <p>last updated: {{data.updated_at}}</p>
             </div>
             <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Pellentesque scelerisque laoreet sem a tempor. 
-                    Vivamus rhoncus nibh id sagittis vulputate. Nulla sit amet lectus erat. Sed luctus, 
-                    massa dictum sagittis consectetur, diam lorem placerat nibh, quis suscipit diam lorem at libero. 
-                    Aliquam erat volutpat. Etiam ante nisi, consequat aliquam est vitae, pulvinar euismod neque. Nunc ultricies 
-                    egestas odio, nec congue augue fermentum nec. Mauris ac quam quis justo varius faucibus. 
-                    Phasellus laoreet ac dui vitae maximus. Nunc id maximus nisl.
-                </p>
+                <p>{{data.privacyTop[0].description}}</p>
             </div>
         </div>
         <div class="logo">
@@ -22,46 +15,23 @@
     </div>
     <div class="secondary-section">
         <div class="secondary-component">
-            <div class="sub-header">Principles</div>
+            <div class="sub-header">{{data.privacyContent[0].title}}</div>
             <div class="desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Pellentesque scelerisque laoreet sem a tempor. 
-                    Vivamus rhoncus nibh id sagittis vulputate. Nulla sit amet lectus erat. Sed luctus, 
-                    massa dictum sagittis consectetur, diam lorem placerat nibh, quis suscipit diam lorem at libero. 
-                    Aliquam erat volutpat. Etiam ante nisi, consequat aliquam est vitae, pulvinar euismod neque. Nunc ultricies 
-                    egestas odio, nec congue augue fermentum nec. Mauris ac quam quis justo varius faucibus. 
-                    Phasellus laoreet ac dui vitae maximus. Nunc id maximus nisl. <a href="mailto:coke@sg.com"> coke@sg.com</a>
-                </p>
+                <p>{{data.privacyContent[0].description}}</p>
             </div>
         </div>
-         <v-expansion-panels
-        v-model="panel"
-        :disabled="disabled"
-        multiple
-        class="accordions"
-        dark
-      >
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-  
-        <v-expansion-panel>
-          <v-expansion-panel-header>information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-  
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+        <v-expansion-panels
+            multiple
+            class="accordions"
+            dark
+        >
+            <v-expansion-panel v-for="(item, index) in data.privacyBottom" :key="'item-'+index">
+                <v-expansion-panel-header>{{item.title}}</v-expansion-panel-header>
+                <v-expansion-panel-content>
+                    {{item.description}}
+                </v-expansion-panel-content>
+            </v-expansion-panel>
+        </v-expansion-panels>
     </div>
 </div>
 </template>

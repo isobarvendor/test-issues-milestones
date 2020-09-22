@@ -10,10 +10,10 @@
             <v-text-field label="Confirm password" :type="'password'">   </v-text-field>
         </div>
         <div class="radio-container">
-            <v-radio-group v-model="radioGroup">
-                <v-radio 
-                ></v-radio>
-            </v-radio-group>
+            <!-- <v-radio-group v-model="radioGroup">
+                <v-radio></v-radio>
+            </v-radio-group> -->
+            <v-checkbox></v-checkbox>
             <div class="radio-label">I accept the <a href="#">Terms and Conditions</a> & <a href="#">Privacy Policy</a> for sign up.</div>
         </div>
         <div class="button-container">
@@ -43,6 +43,9 @@ export default {
   computed:{
   },
   methods:{
+      radioGroup(){
+
+      }
   },
   beforeMount() {},
   mounted(){

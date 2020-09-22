@@ -1,32 +1,33 @@
 <template>
   <div v-if="dataStatus.status == 200" id="main" class="rewards">
     <div class="wrapper">
+
       <div class="container">
         <div class="header"> <span class="title">Rewards Catalogue</span>
-            <div class="selections">
-             <v-select
-            :items="recent"
-            label="Most recent"
-            item-text ="text"
-            item-value = "value"
-            class="select"
-          ></v-select>
-          <v-select
-            :items="filterby"
-            label="Filter by"
-            item-text ="text"
-            item-value = "value"
-            class="select"
-          ></v-select>
-          <v-text-field
-                label="Search"
-            solo
-                 prepend-inner-icon="mdi-magnify"
-                class="search"
-          ></v-text-field>
+          <div class="selections">
+            <v-select
+              :items="recent"
+              label="Most recent"
+              item-text ="text"
+              item-value = "value"
+              class="select"
+            ></v-select>
+            <v-select
+              :items="filterby"
+              label="Filter by"
+              item-text ="text"
+              item-value = "value"
+              class="select"
+            ></v-select>
+            <v-text-field
+              label="Search"
+              solo
+              prepend-inner-icon="mdi-magnify"
+              class="search"
+            ></v-text-field>
           </div>
         </div>
-        <RewardsCatalogue :data="data.exclusivePrizes"/>
+        <RewardsCatalogue :data="configData[0].ExclusivePrizes"/>
       </div>
 
     </div>
@@ -40,12 +41,13 @@
 
 <script>
 import RewardsCatalogue from '@/components/RewardsCatalogue';
-import Vuetify from 'vuetify/lib'
+// import Vuetify from 'vuetify/lib';
 export default {
   data(){
     return{
       dataStatus:{},
       data:null,
+      configData: null,
       campaignType: 0
     }
   },
@@ -69,7 +71,7 @@ export default {
       css: []
     };
   },
-  computed :{
+  computed: {
     recent(){
         return this.data.exclusivePrizes
     },
@@ -88,6 +90,9 @@ export default {
       );
       this.dataStatus = { status: result.status, message: result.statusText };
       this.data = result.data;
+
+      let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
+      this.configData = config.data
     },
   },
 };

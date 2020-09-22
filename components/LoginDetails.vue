@@ -6,10 +6,10 @@
   <div class="continue" v-if="$mq == 'xl'"> 
       <p>Continue with</p>
       <div class="icons"> 
-          <div><span><img src="img/icons/line.png" /></span></div>
-          <div><span><img src="img/icons/fb.png" /></span></div>
-          <div><span><img src="img/icons/google.png" /></span></div>
-          <div><span><img src="img/icons/email.png" /></span></div>
+          <div v-if="social.line"><span><img src="img/icons/line.png" /></span></div>
+          <div v-if="social.facebook"><span><img src="img/icons/fb.png" /></span></div>
+          <div v-if="social.google"><span><img src="img/icons/google.png" /></span></div>
+          <div v-if="social.email"><span><img src="img/icons/email.png" /></span></div>
       </div>
       <p> or </p>
   </div>
@@ -51,6 +51,7 @@ export default {
   },
   props: {
     data: null,
+    social: null
   },
   computed:{
   },

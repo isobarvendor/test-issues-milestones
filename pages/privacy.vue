@@ -2,7 +2,7 @@
   <div v-if="dataStatus.status == 200" id="main" class="privacy">
     <div class="wrapper">
       <div class="container">
-        <PrivacySection :data="data.exclusivePrizes"/>
+        <PrivacySection :data="data[0].privacy"/>
       </div>
 
     </div>

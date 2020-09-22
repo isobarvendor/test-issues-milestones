@@ -3,8 +3,8 @@
     <div class="wrapper">
       <div class="container">
         <div class="header">Your Wallet</div>
-        <WalletRewards :data="data.exclusivePrizes"/>
-        <WalletTransactions :data="data.exclusivePrizes"/>
+        <WalletRewards :data="configData[0].ExclusivePrizes"/>
+        <WalletTransactions :data="configData[0].ExclusivePrizes"/>
       </div>
 
     </div>
@@ -24,6 +24,7 @@ export default {
     return{
       dataStatus:{},
       data:null,
+      configData: null,
       campaignType: 0
     }
   },
@@ -57,6 +58,9 @@ export default {
       );
       this.dataStatus = { status: result.status, message: result.statusText };
       this.data = result.data;
+
+      let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
+      this.configData = config.data
     },
   },
 };

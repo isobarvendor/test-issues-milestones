@@ -18,11 +18,11 @@
     </a>
     <div class="nav-container">
         <a class="nav-button" @click="toggleMenu" v-if="showMenu">
-        <div>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+            <div>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </a>
         <v-expand-transition>
             <v-card v-show="expand" class="mx-auto">
@@ -41,32 +41,33 @@
                 <div class="body-options">
                     <div class="img-text">
                         <img src="/img/icons/reward.png"/>
-                        <div class="text">Rewards Catalogue</div>
+                        <div>
+                            <a data-nav="rewards" @click="clickNav">Rewards Catalogue</a>
+                        </div>
                     </div>
                     <div class="img-text">
                         <img src="/img/icons/wallet.png"/>
-                        <div class="text">My Wallet</div>
+                        <div>
+                            <a data-nav="wallet" @click="clickNav">My Wallet</a>
+                        </div>
                     </div>
                     <div class="img-text">
                         <img src="/img/icons/account.png"/>
-                        <div class="text">Account Details</div>
+                        <div>
+                            <a data-nav="account" @click="clickNav">Account Details</a>
+                        </div>
                     </div>
                     <div class="img-text">
                         <img src="/img/icons/help.png"/>
-                        <div class="text">Wallet Help & Support</div>
+                        <div>
+                            <a data-nav="help" @click="clickNav">Wallet Help & Support</a>
+                        </div>
                     </div>
                 </div>
                 <div class="tnc-container">
-                    <p>Privacy Policy</p>
-                    <p>Terms & Conditions</p>
-                    <v-btn text @click="this.$auth.logout">Logout</v-btn>
-                    <div v-if="$auth.logggedIn">
-                        
-                    </div>
-                    <div v-else>
-                        <v-btn text to="/login">Login</v-btn>
-                        <v-btn text to="/register">Register</v-btn>
-                    </div>
+                    <p><a @click="clickPrivacy">Privacy Policy</a></p>
+                    <p><a @click="clickTerms">Terms & Conditions</a></p>
+                    <p class="logout">Log out</p>
                 </div>
 
             </div>  
@@ -119,10 +120,21 @@ export default {
             e.stopPropagation();
             this.logged = !this.logged
         },
-        logout() {
-            this.$toast.show('Logging out...', {icon: "fingerprint"});
-            this.$auth.logout()
+        clickNav(e){
+            let el = e.target.getAttribute('data-nav');
+            if(el){
+                $nuxt.$router.push('/'+el)
+            }
+            this.toggleMenu(e)
         },
+        clickPrivacy(e){
+            $nuxt.$router.push('/privacy');
+            this.toggleMenu(e)
+        },
+        clickTerms(e){
+            $nuxt.$router.push('/tnc');
+            this.toggleMenu(e)
+        }
     }, 
     mounted(){
         this.isDark = this.$route.name!="index"
@@ -136,6 +148,7 @@ export default {
     flex-direction: column;
     align-items: flex-end;
     position: relative;
+    z-index: 1;
     .nav-button{
         z-index: 9;
     }

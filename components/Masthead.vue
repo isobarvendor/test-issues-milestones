@@ -22,8 +22,7 @@
         </def>
         <image
           ref="coke_masthead_sm_image"
-          width="100%"
-          height="100%"
+          :href="this.imgMob"
           preserveAspectRatio="xMidYMid slice"
           xlink:href="http://www.w3.org/1999/xlink"
           mask="url(#clipMask)"
@@ -51,8 +50,7 @@
         </def>
         <image
           ref="coke_masthead_md_image"
-          width="100%"
-          height="100%"
+          :href="this.imgTab"
           preserveAspectRatio="xMidYMid slice"
           xlink:href="http://www.w3.org/1999/xlink"
           mask="url(#clipMask)"
@@ -73,15 +71,14 @@
             <path
               id="coke_line"
               data-name="coke_line"
-              fill="white"
+              fill="red"
               d="M0,585.14.05,449.31H0V0H1279.88V192.59h.12l-.12,271.46a634.78,634.78,0,0,0-108.37-9.17c-129.91,0-256,45.19-394.54,114.14-84.84,42.23-197.86,81-348.55,81C292.72,650,137.56,625,0,585.14Z"
             />
           </mask>
         </def>
         <image
           ref="coke_masthead_image"
-          width="100%"
-          height="100%"
+          :href="this.imgDesk"
           preserveAspectRatio="xMidYMid slice"
           xlink:href="http://www.w3.org/1999/xlink"
           mask="url(#clipMask)"
@@ -101,17 +98,24 @@ export default {
   props: {
     data: null
   },
+  data() {
+    return {
+      imgDesk: this.data.desktopImage[0].url,
+      imgTab: this.data.tabletImage[0].url,
+      imgMob: this.data.mobileImage[0].url
+    }
+  },
   mounted() {
-    this.loadMasthead()
-    window.addEventListener('resize', this.loadMasthead)
+    // this.loadMasthead()
+    // window.addEventListener('resize', this.loadMasthead)
   },
   methods: {
     loadMasthead() {
-      if (this.$refs["coke_masthead_image"])
-        this.$refs["coke_masthead_image"].setAttribute(
+      this.$refs["coke_masthead_image"].setAttribute(
           "xlink:href",
           this.data.desktopImage[0].url
         );
+        
       if (this.$refs["coke_masthead_md_image"])
         this.$refs["coke_masthead_md_image"].setAttribute(
           "xlink:href",

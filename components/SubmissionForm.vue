@@ -8,24 +8,28 @@
     </div>
 
     <div class="row top">
-      <div class="checkbox">
-        <label for="form_tnc">
-          <input type="checkbox" name="tnc" id="form_tnc" checked>
-          <span></span>
-        </label>
+      <div class="col d-flex">
+        <div class="checkbox">
+          <label for="form_tnc">
+            <input type="checkbox" name="tnc" id="form_tnc">
+            <span></span>
+          </label>
+        </div>
+        <div>I accept the <a href="">Terms and Conditions</a> of this this redemption.</div>
       </div>
-      <div>I accept the <a href="">Terms and Conditions</a> of this this redemption.</div>
     </div>
     
 
     <div class="row top">
-      <div class="checkbox">
-        <label for="form_pp">
-          <input type="checkbox" name="privacy" id="form_pp" checked>
-          <span></span>
-        </label>
+      <div class="col d-flex">
+        <div class="checkbox">
+          <label for="form_pp">
+            <input type="checkbox" name="privacy" id="form_pp">
+            <span></span>
+          </label>
+        </div>
+        <div>I accept the <a href="">Privacy Policy</a> of this redemption.</div>
       </div>
-      <div>I accept the <a href="">Privacy Policy</a> of this redemption.</div>
     </div>
 
   </form>    
@@ -37,6 +41,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
 </style>

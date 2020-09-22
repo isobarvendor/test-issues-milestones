@@ -2,8 +2,8 @@
   <div v-if="dataStatus.status == 200" id="main" class="help">
     <div class="wrapper">
       <div class="container">
-           <div class="header">Wallet Help</div>
-        <FaqSection :data="data.exclusivePrizes"/>
+           <div class="header">{{data[0].helpSection.title}}</div>
+        <FaqSection :data="data[0].helpSection" :disabled="disabled"/>
       </div>
 
     </div>
@@ -22,6 +22,7 @@ export default {
     return{
       dataStatus:{},
       data:null,
+      disabled: null
     }
   },
   head() {

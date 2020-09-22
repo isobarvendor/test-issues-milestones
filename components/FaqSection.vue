@@ -1,62 +1,24 @@
 <template>
 <div class="faq-section">
-    <SliderHeader>FAQs</SliderHeader>
+    <SliderHeader>{{data.subTitle}}</SliderHeader>
     <div class="">
-         <v-expansion-panels
-        v-model="panel"
-        :disabled="disabled"
+      <v-expansion-panels
         multiple
         class="accordions"
         dark
       >
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
+        <v-expansion-panel v-for="(item, index) in data.helpQuestion" :key="'question-'+index">
+          <v-expansion-panel-header>{{item.questions}}</v-expansion-panel-header>
           <v-expansion-panel-content>
-            Some content
+            {{item.answer}}
           </v-expansion-panel-content>
         </v-expansion-panel>
   
-        <v-expansion-panel>
-          <v-expansion-panel-header>information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-  
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-        <v-expansion-panel>
-          <v-expansion-panel-header> Information we collect</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            Some content
-          </v-expansion-panel-content>
-        </v-expansion-panel>
       </v-expansion-panels>
     </div>
-    <SliderHeader>Contact us</SliderHeader>
-    <div class="contact-section"><p>For any enquires regarding retrieving your code, please email us at  <a href="mailto:coca-cola@coke.com">coca-cola@coke.com</a></p></div>
+    <SliderHeader>{{data.contactLabel}}</SliderHeader>
+    <!-- <div class="contact-section"><p>For any enquires regarding retrieving your code, please email us at <a href="mailto:coca-cola@coke.com">coca-cola@coke.com</a></p></div> -->
+    <div class="contact-section"><p>{{data.contactDescription}}</p></div>
 </div>
 </template>
 
@@ -73,6 +35,7 @@ export default {
   },
   props: {
     data: null,
+    disabled: null
   },
   computed:{
   },

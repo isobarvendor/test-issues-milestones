@@ -3,7 +3,7 @@
     <div class="wrapper">
       <Masthead :data="data[0].homepage.mastheadSection"/>
       <CampaignPeriod :data="configData[0].campaignPeriod"/>
-      <Prizes :data="configData[0].ExclusivePrizes" :winners="data[0].homepage.luckyWinner"/>
+      <Prizes v-if="configData[0].ExclusivePrizes.ExclusivePrizes" :data="configData[0].ExclusivePrizes" :winners="data[0].homepage.luckyWinner"/>
       <HowItWorks :data="data[0].worksSection"/>
       <SubmissionMechanics v-if="!this.$auth.loggedIn"/>
     </div>
