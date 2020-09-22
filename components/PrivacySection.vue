@@ -2,8 +2,9 @@
 <div class="privacy-component">
     <div class="privacy-section">
         <div class="primary-section">  
-            <div class="header">{{data.privacyTop[0].title}}
-                <p>last updated: {{data.updated_at}}</p>
+            <div class="header">
+                {{data.privacyTop[0].title}}
+                <p>last updated: 30 july 2020</p>
             </div>
             <div class="desc">
                 <p>{{data.privacyTop[0].description}}</p>
@@ -55,7 +56,7 @@ export default {
   },
   beforeMount() {},
   mounted(){
-
+      
   }
 };
 </script>
@@ -78,6 +79,7 @@ export default {
             }
             .desc{
                 width: 50%;
+                margin-left: 50px;
                 p{
                     line-height: 24px;
                 }
