@@ -65,6 +65,9 @@ export default {
   components: {
   },
   created(){
+    if(!this.$store.state.token){
+      this.$router.push('/login');
+    }
      this.getAccount();
   },
   data() {
@@ -85,8 +88,9 @@ export default {
   computed:{
   },
   methods:{
-    getAccount(){
-       this.$store.dispatch(GET_ACCOUNT,sessionStorage.token)
+    async getAccount(){
+       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
+       this.login=this.$store.state.login;
     }
   },
   beforeMount() {},

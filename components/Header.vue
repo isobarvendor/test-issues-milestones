@@ -67,12 +67,12 @@
                 <div class="tnc-container">
                     <p><a @click="clickPrivacy">Privacy Policy</a></p>
                     <p><a @click="clickTerms">Terms & Conditions</a></p>
-                    <p class="logout">Log out</p>
+                    <p class="logout" @click="logout">Log out</p>
                 </div>
 
-            </div>  
+            </div>
         </v-card>
-        </v-expand-transition>  
+        </v-expand-transition>
     </div>
   </header>
 </template>
@@ -134,8 +134,12 @@ export default {
         clickTerms(e){
             $nuxt.$router.push('/tnc');
             this.toggleMenu(e)
+        },
+        logout(){
+          sessionStorage.clear();
+          $nuxt.$router.push('/');
         }
-    }, 
+    },
     mounted(){
         this.isDark = this.$route.name!="index"
     }
@@ -215,7 +219,7 @@ export default {
                     height: auto;
                 }
             }
-        }    
+        }
     }
 }
 </style>

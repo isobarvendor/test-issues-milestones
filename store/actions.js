@@ -14,7 +14,7 @@ export default {
         .then(response => {
           commit('SET_TOKEN', response.data.token);
           sessionStorage.token=response.data.token;
-          return resolve(messages);
+          return resolve(response);
         })
         .catch(error => {
 
@@ -33,7 +33,7 @@ export default {
         .then(response => {
 
           commit('SET_LOGIN_ACCOUNT', response.data);
-          return resolve(messages);
+          return resolve(response);
         })
         .catch(error => {
 
@@ -49,9 +49,9 @@ export default {
         return resolve(moduleState.login)
       } else {
         GeneralAPI.signup(data)
-        .then(messages => {
+        .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
-          return resolve(messages);
+          return resolve(response);
         })
         .catch(error => {
           console.error(error);

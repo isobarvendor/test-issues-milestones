@@ -67,7 +67,7 @@ export default {
         return this.show = true;
     },
     redirectTo(source){
-      location.href="/api/oauth2/authorize/"+source+"?redirect_uri=/settoken";
+      location.href="http://localhost:8080/api/oauth2/authorize/"+source+"?redirect_uri=http://localhost:3000/settoken";
     },
     async userLogin() {
        this.$validator.validateAll().then((valid) => {

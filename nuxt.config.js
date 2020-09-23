@@ -49,6 +49,7 @@ export default {
   plugins: [
     "./plugins/vue-awesome-swiper.js",
     './plugins/axios', //axios interceptor
+    { src: '~/plugins/vuex-persist', ssr: false }
   ],
   router: {
     middleware: ['redirect']
