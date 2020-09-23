@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { SIGNUP } from '@/store/action_types';
+import { SIGNUP, LOGIN } from '@/store/action_types';
 export default {
   name: "Registration",
   inject: ['$validator'],
@@ -71,8 +71,15 @@ export default {
               return false;
             }
             this.$store.dispatch(SIGNUP,this.user)
-            .then(function (response) {
-              console.log(response);
+            .then( (response)=> {
+              let login = {
+                email:this.user.email,
+                password:this.user.password
+              }
+               this.$store.dispatch(LOGIN,login)
+                .then(function (response) {
+                    this.$router.push('/account');
+                })
             })
             .catch((error) =>{
               if(error.response.data.status=='401'){

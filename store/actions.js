@@ -11,8 +11,9 @@ export default {
         return resolve(moduleState.login)
       } else {
         GeneralAPI.login(data)
-        .then(messages => {
-
+        .then(response => {
+          commit('SET_TOKEN', response.data.token);
+          sessionStorage.token=response.data.token;
           return resolve(messages);
         })
         .catch(error => {
