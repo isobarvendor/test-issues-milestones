@@ -17,6 +17,7 @@
     "moment": "^2.27.0",
     "nuxt": "^2.13.0",
     "nuxt-mq": "^2.0.1",
+    "nuxt-validate": "^1.0.1",
     "swiper": "^5.4.5",
     "vue-awesome-swiper": "^4.1.1"
   },

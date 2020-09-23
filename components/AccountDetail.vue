@@ -77,6 +77,25 @@ export default {
   computed:{
   },
   methods:{
+    getAccount(){
+      var config = {
+          method: 'get',
+          url: 'localhost:8080/api/account',
+          headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg0NTE3NzA2LCJleHAiOjE1ODUzODE3MDZ9.PpAaXu6R7JQPsHoPMOJKD45kEabyes4oXwSd8uvxwcLASAn7jGesRKZxBmaL-4gyNipjl9_uFHUmQn4xVNveAg'
+          }
+          };
+
+
+          this.$axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+          })
+          .catch(function (error) {
+          console.log(error);
+          });
+    }
   },
   beforeMount() {},
   mounted(){
@@ -111,7 +130,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        
+
         .v-text-field__slot{
             border-bottom: 1px solid #585858;
         }
@@ -124,13 +143,13 @@ export default {
         .details{
             margin-top: 20px;
             width: 50%;
-            
+
         }
         .profile-icon{
-        
+
             width: 235px;
             margin: auto;
-                
+
         }
         .input-container{
             margin-top: 25px;
@@ -154,7 +173,7 @@ export default {
                 display: block;
             }
         }
-        
+
     }
     @media only screen and (max-width: 1199px) {
         .registration-body{
@@ -168,14 +187,14 @@ export default {
             a.button{
                 margin:auto;
             }
-        } 
+        }
         h3{
             text-align: center;
             font-size: 22px;
         }
         .button-container a.button{
             margin: auto;
-        }   
-    }  
+        }
+    }
 }
 </style>

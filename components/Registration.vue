@@ -4,22 +4,27 @@
      <div class="registration-body">
     <div class="details">
         <div class="input-container">
-            <v-text-field label="Name">   </v-text-field>
-            <v-text-field label="Email address">   </v-text-field>
-            <v-text-field label="Password" :type="'password'">   </v-text-field>
-            <v-text-field label="Confirm password" :type="'password'">   </v-text-field>
+            <v-text-field label="Name" name="name" v-model="user.name"  v-validate="'required'">   </v-text-field>
+            <span class="error-message">{{ errors.first('name') }}</span>
+            <v-text-field label="Email address" name="email"  v-model="user.email"  v-validate="'required|email'" >   </v-text-field>
+            <span class="error-message">{{ errors.first('email') }}</span>
+            <v-text-field label="Password" name="password"  :type="'password'" v-model="user.password"  v-validate="'required'" >   </v-text-field>
+            <span class="error-message">{{ errors.first('password') }}</span>
+            <v-text-field label="Confirm password" name="confirm password"  :type="'password'" v-model="cpassword"  v-validate="'required'" >   </v-text-field>
+            <span class="error-message">{{ errors.first('confirm password') }}</span>
         </div>
         <div class="radio-container">
             <!-- <v-radio-group v-model="radioGroup">
                 <v-radio></v-radio>
             </v-radio-group> -->
-            <v-checkbox></v-checkbox>
+            <v-checkbox v-model="terms"></v-checkbox>
             <div class="radio-label">I accept the <a href="#">Terms and Conditions</a> & <a href="#">Privacy Policy</a> for sign up.</div>
         </div>
         <div class="button-container">
-            <a  class="button">Register</a>
+          <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
+            <a  class="button" v-on:click="register()" >Register</a>
         </div>
-        
+
     </div>
     <div class="profile-icon">
             <img src="/img/icons/profile-icon.png"/>
@@ -29,12 +34,22 @@
 </template>
 
 <script>
+import { SIGNUP } from '@/store/action_types';
 export default {
   name: "Registration",
+  inject: ['$validator'],
   components: {
   },
   data() {
     return {
+      terms:false,
+      cpassword:null,
+      user:{
+        name:null,
+        email:null,
+        password:null
+      },
+      errorMessage:null
     };
   },
   props: {
@@ -43,6 +58,33 @@ export default {
   computed:{
   },
   methods:{
+      register(){
+           this.$validator.validateAll().then((valid) => {
+         if(valid){
+             this.errorMessage=null;
+             if(!this.terms){
+              this.errorMessage="Please accept the terms and condition"
+              return false;
+            }
+            if(this.user.password!=this.cpassword){
+              this.errorMessage="Your password and confirm password is different"
+              return false;
+            }
+            this.$store.dispatch(SIGNUP,this.user)
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch((error) =>{
+              if(error.response.data.status=='401'){
+                this.errorMessage='Please enter the correct email/password';
+              }
+               this.errorMessage='Something went wrong please try again';
+
+            })
+         }
+
+       });
+      },
       radioGroup(){
 
       }
@@ -56,6 +98,9 @@ export default {
 
 <style lang="scss">
 .registration{
+    .error-message{
+      color:red;
+    }
     h3{
         font-size: 25px;
         text-transform: none;
@@ -64,7 +109,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        
+
         .v-text-field__slot{
             border-bottom: 1px solid #585858;
         }
@@ -100,7 +145,7 @@ export default {
                 display: block;
             }
         }
-        
+
     }
     @media only screen and (max-width: 1199px) {
         .registration-body{
@@ -114,11 +159,11 @@ export default {
             a.button{
                 margin:auto;
             }
-        } 
+        }
         h3{
             text-align: center;
             font-size: 22px;
-        }   
-    }  
+        }
+    }
 }
 </style>

@@ -47,7 +47,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    "./plugins/vue-awesome-swiper.js"
+    "./plugins/vue-awesome-swiper.js",
+    './plugins/axios', //axios interceptor
   ],
   /*
   ** Auto import components
@@ -66,7 +67,7 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
+    'nuxt-validate',
     [
       'nuxt-mq',
       {

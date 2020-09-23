@@ -54,7 +54,7 @@
           preserveAspectRatio="xMidYMid slice"
           xlink:href="http://www.w3.org/1999/xlink"
           mask="url(#clipMask)"
-          
+
         />
       </svg>
     </mq-layout>
@@ -111,11 +111,11 @@ export default {
   },
   methods: {
     loadMasthead() {
-      if (this.$refs["coke_masthead_image"])
-        this.$refs["coke_masthead_image"].setAttribute(
+      this.$refs["coke_masthead_image"].setAttribute(
           "xlink:href",
           this.data.desktopImage[0].url
         );
+
       if (this.$refs["coke_masthead_md_image"])
         this.$refs["coke_masthead_md_image"].setAttribute(
           "xlink:href",
@@ -129,7 +129,7 @@ export default {
     }
   },
   mounted() {
-    
+
   },
 };
 </script>

@@ -18,8 +18,8 @@ export default {
     data: null
   },
   beforeMount() {
-    this.startdate = moment(this.data.fromDate).format("ll");
-    this.enddate = moment(this.data.toDate).format("ll");
+    this.startdate =  this.data && moment(this.data.fromDate).format("ll");
+    this.enddate = this.data && moment(this.data.toDate).format("ll");
   }
 };
 </script>
