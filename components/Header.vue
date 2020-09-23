@@ -137,7 +137,9 @@ export default {
         },
         logout(){
           sessionStorage.clear();
-          $nuxt.$router.push('/');
+          this.expand = !this.expand;
+          location.href="/";
+
         }
     },
     mounted(){
