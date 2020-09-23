@@ -111,11 +111,11 @@ export default {
   },
   methods: {
     loadMasthead() {
-      this.$refs["coke_masthead_image"].setAttribute(
+      if (this.$refs["coke_masthead_image"])
+        this.$refs["coke_masthead_image"].setAttribute(
           "xlink:href",
           this.data.desktopImage[0].url
         );
-        
       if (this.$refs["coke_masthead_md_image"])
         this.$refs["coke_masthead_md_image"].setAttribute(
           "xlink:href",
