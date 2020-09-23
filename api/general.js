@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-let origin="http://localhost:8080";
+let origin="";
 
 export default {
 
