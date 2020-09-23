@@ -6,7 +6,7 @@
   <div class="continue" v-if="$mq == 'xl'">
       <p>Continue with</p>
       <div class="icons">
-          <div v-on:click="redirectTo('line')" v-if="social.line"><span><img src="img/icons/line.png" /></span></div>
+          <div v-on:click="redirectTo('line')"  v-if="social.line" ><span><img src="img/icons/line.png" /></span></div>
           <div v-on:click="redirectTo('facebook')" v-if="social.facebook" ><span><img src="img/icons/fb.png" /></span></div>
           <div v-on:click="redirectTo('google')"  v-if="social.google"><span><img src="img/icons/google.png" /></span></div>
           <div v-on:click="redirectTo('email')"  v-if="social.email"><span><img src="img/icons/email.png" /></span></div>
@@ -67,7 +67,7 @@ export default {
         return this.show = true;
     },
     redirectTo(source){
-      location.href="http://localhost:8080/api/oauth2/authorize/"+source+"?redirect_uri=http://localhost:3000/settoken";
+      location.href="/api/oauth2/authorize/"+source+"?redirect_uri=/settoken";
     },
     async userLogin() {
        this.$validator.validateAll().then((valid) => {
