@@ -5,16 +5,16 @@
     <div class="details">
         <div class="input-container">
             <v-text-field
-            v-model="names"
+            v-model="login.name"
             label=""
           ></v-text-field>
              <v-text-field
-            v-model="email"
+            v-model="login.email"
           ></v-text-field>
         </div>
      </div>
     <div class="profile-icon">
-        <img src="/img/icons/pic.png"/>
+        <img :src="login.imageUrl"/>
     </div>
     </div>
     <div class="date-container">
@@ -59,15 +59,23 @@
 </template>
 
 <script>
+import { GET_ACCOUNT } from '@/store/action_types';
 export default {
   name: "AccountDetail",
   components: {
   },
+  created(){
+     this.getAccount();
+  },
   data() {
+
     return {
-        names: "Jane",
-        email: "janet@gmail.com",
-        date: new Date().toISOString().substr(0, 10),
+        login: this.$store.state.login ? this.$store.state.login : {
+          name:'',
+          email:'',
+          imageUrl:''
+        },
+         date: new Date().toISOString().substr(0, 10),
         menu: false
     };
   },
@@ -78,23 +86,7 @@ export default {
   },
   methods:{
     getAccount(){
-      var config = {
-          method: 'get',
-          url: 'localhost:8080/api/account',
-          headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg0NTE3NzA2LCJleHAiOjE1ODUzODE3MDZ9.PpAaXu6R7JQPsHoPMOJKD45kEabyes4oXwSd8uvxwcLASAn7jGesRKZxBmaL-4gyNipjl9_uFHUmQn4xVNveAg'
-          }
-          };
-
-
-          this.$axios(config)
-          .then(function (response) {
-            console.log(JSON.stringify(response.data));
-          })
-          .catch(function (error) {
-          console.log(error);
-          });
+       this.$store.dispatch(GET_ACCOUNT,sessionStorage.token)
     }
   },
   beforeMount() {},

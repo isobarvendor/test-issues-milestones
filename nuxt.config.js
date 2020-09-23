@@ -50,6 +50,9 @@ export default {
     "./plugins/vue-awesome-swiper.js",
     './plugins/axios', //axios interceptor
   ],
+  router: {
+    middleware: ['redirect']
+},
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components

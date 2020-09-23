@@ -2,6 +2,7 @@ export default () => ({
     details: {},
     productName: "coke",
     login:null,
+    token:null,
     uploadFiles:{
     }
 

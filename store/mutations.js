@@ -8,4 +8,10 @@ export default {
         state.login = data;
     },
 
+
+  SET_TOKEN:(state, data)=>{
+    state.token = data;
+},
+
+
 };
