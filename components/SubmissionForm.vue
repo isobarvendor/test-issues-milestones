@@ -173,10 +173,12 @@ export default {
 
     },
     async getAccount(){
-       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
+
         if(this.$store.state.login){
           this.form.name=this.$store.state.login.name;
           this.form.email=this.$store.state.login.email;
+        }else{
+           this.$store.state.token && await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
         }
     },
     onFileChange(e) {

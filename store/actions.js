@@ -88,13 +88,13 @@ export default {
   },
 
 
-  [GET_LIST_WALLET]: ({ commit, state, getters }, data, token) => {
+  [GET_LIST_WALLET]: ({ commit, state, getters }, payload) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
       if (moduleState.listWallet) {
         return resolve(moduleState.listWallet)
       } else {
-        NGPSAPI.getListWallet(data)
+        NGPSAPI.getListWallet(payload.request,payload.token)
         .then(response => {
           commit('SET_LIST_WALLET', response.data);
           return resolve(response);

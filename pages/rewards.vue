@@ -108,7 +108,7 @@ export default {
             "priorityOrder": "DESC"
     }
       //commented first after API ready
-   /*
+
       this.$store.dispatch(GET_LIST_PRIZE,request)
             .then((response)=>{
 
@@ -119,7 +119,7 @@ export default {
                 this.errorMessage='Please enter the correct email/password';
               }
             })
-*/
+
       let response = {
         data:{
               "prizeList": [ {

@@ -19,6 +19,7 @@
 <script>
 import WalletRewards from '@/components/WalletRewards'
 import WalletTransactions from '@/components/WalletTransactions'
+import { GET_LIST_WALLET } from '@/store/action_types';
 export default {
   data(){
     return{
@@ -74,8 +75,8 @@ export default {
               "userId": this.$store.login ? this.$store.login.UUID : null
           }
       //commented first after API ready
-   /*
-      this.$store.dispatch(GET_LIST_WALLET,request)
+      let payload={request,token:this.$store.state.token}
+      this.$store.dispatch(GET_LIST_WALLET,payload)
             .then((response)=>{
 
                this.listWallet=response.data;
@@ -85,7 +86,7 @@ export default {
                 this.errorMessage='Please enter the correct email/password';
               }
             })
-*/
+
        this.listWallet={
                 "walletStatus": [
                       {
@@ -115,7 +116,8 @@ export default {
           }
       //commented first after API ready
    /*
-      this.$store.dispatch(GET_LIST_WALLET,request)
+      let payload={request,token:this.$store.state.token}
+      this.$store.dispatch(GET_LIST_WALLET,payload)
             .then((response)=>{
 
                this.listWalletExpired=response.data;
@@ -187,7 +189,8 @@ export default {
 
           //commented first after API ready
             /*
-                this.$store.dispatch(GET_LIST_WALLET,request)
+                 let payload={request,token:this.$store.state.token}
+                 this.$store.dispatch(GET_LIST_WALLET,payload)
                       .then((response)=>{
 
                         this.listWalletTransaction=response.data;
