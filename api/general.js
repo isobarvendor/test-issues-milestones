@@ -12,7 +12,7 @@ export default {
     return axios.post(`${origin}/api/signup`, data)
   },
   getAccount(token) {
-    console.log(token)
+   // console.log(token)
     var config = {
           method: 'get',
           url: `${origin}/api/account`,
