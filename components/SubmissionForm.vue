@@ -1,14 +1,29 @@
 <template>
+  <div  v-if="!submitted">
+   <div class="header">Be the lucky one</div>
   <form>
 
     <div>
-      <input type="text" name="name" placeholder="Name"/>
+      <input type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
+        <span class="error-message">{{ errors.first('name') }}</span>
     </div>
     <div>
-      <input type="email" name="email" placeholder="Email"/>
+      <input type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
+        <span class="error-message">{{ errors.first('email') }}</span>
     </div>
-    <div>
-      <input type="number" name="code" placeholder="10-digit code"/>
+    <div v-if="campaignType=='luckydraw'" >
+      <input v-model="form.code"  v-validate="'required'" type="number" name="code" placeholder="10-digit code"/>
+        <span class="error-message">{{ errors.first('code') }}</span>
+    </div>
+    <div v-if="campaignType!=='luckydraw'">
+      <div v-if="!image">
+       <h2>Upload reciept</h2>
+       <input type="file" @change="onFileChange" value="uploadReceipt">
+      </div>
+      <div v-else>
+        <img :src="image" width="100" />
+        <button @click="removeImage">Remove image</button>
+      </div>
     </div>
 
     <br>
@@ -17,38 +32,189 @@
       <div class="col d-flex">
         <div class="checkbox">
           <label for="form_tnc">
-            <input type="checkbox" name="tnc" id="form_tnc">
+            <input type="checkbox" name="tnc" id="form_tnc" v-model="form.terms">
             <span></span>
           </label>
         </div>
         <div>I accept the <a href="">Terms and Conditions</a> of this this redemption.</div>
       </div>
     </div>
-    
+
     <div class="row top">
       <div class="col d-flex">
         <div class="checkbox">
           <label for="form_pp">
-            <input type="checkbox" name="privacy" id="form_pp">
+            <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
             <span></span>
           </label>
         </div>
         <div>I accept the <a href="">Privacy Policy</a> of this redemption.</div>
       </div>
     </div>
+   <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
+    <v-btn class="get-code"  v-on:click="submit()">Enter Draw</v-btn>
 
-    <v-btn class="get-code">Get code</v-btn>
 
-  </form>    
+  </form>
+  </div>
+  <div v-else>
+    <div class="header">THANK YOU AND GOOD LUCK, </div>
+    <div class="header">{{form.name}}</div>
+    <div>
+        Hang tight as we announce winners weekly and if you win,
+details will be sent to <a href='#'>{{form.email}}</a>
+    </div>
+
+  </div>
 </template>
 
 <script>
+import { SUBMIT, UPLOAD_FILE, GET_ACCOUNT } from '@/store/action_types';
 export default {
-    name:"Form"
+    name:"Form",
+    inject: ['$validator'],
+     props: {
+        data: null,
+      },
+       data(){
+    return{
+        form:{
+          name:null,
+          email:null,
+          code:null,
+          terms:false,
+          privacy:false,
+          uploadFile:null
+        },
+        errorMessage:null,
+        submitted:false,
+        image:'',
+        //login token
+        token:this.$store.state.token,
+        //login data
+        login:this.$store.state.login
+    }
+  },
+  computed:{
+    campaignType(){
+      return this.data ? this.data.campaignTypes : null;
+    }
+  },
+  methods:{
+    async submit() {
+      let request = null;
+      let type ="default";
+
+       this.$validator.validateAll().then( async(valid) => {
+         if(valid){
+           if(!this.form.terms){
+             this.errorMessage="Please accept our terms and conditions";
+             return false;
+           }
+            if(!this.form.privacy){
+             this.errorMessage="Please accept our privacy policies";
+             return false;
+           }
+             this.errorMessage=null;
+            if(this.form.uploadFile){
+               await this.$store.dispatch(UPLOAD_FILE, this.form.uploadFile);
+            }
+
+             if(this.token){
+                //send request if already login
+                // i divide by 3 in case request is different
+                if(this.campaignType=='alwayswin'){
+                  type="always"
+                }
+                else if(this.campaignType=='luckydraw'){
+                  type="luckydraw"
+                }
+                else {
+                  type="default"
+                }
+                request={
+                          "userId": this.$store.state.login.UUID,
+                          "email" : this.form.email
+                      }
+
+              }else{
+                //send request if not login
+                  if(this.campaignType=='alwayswin'){
+                  type="always"
+
+                }
+                else if(this.campaignType=='luckydraw'){
+                  type="luckydraw"
+                }
+                else {
+                  type="default"
+                }
+                    request={
+                        "email" : this.form.email
+                    }
+              }
+        // just for demo
+       this.submitted=true;
+      //my code for submit
+            /*
+            this.$store.dispatch(SUBMIT,{request,type})
+            .then((response)=>{
+                this.submitted=true;
+            })
+            .catch((error) =>{
+              this.submitted=false
+              if(error.response && error.response.data.status=='401'){
+                this.errorMessage='Please enter the correct email/password';
+              }
+            })*/
+         }
+
+       });
+
+    },
+    async getAccount(){
+       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
+        if(this.$store.state.login){
+          this.form.name=this.$store.state.login.name;
+          this.form.email=this.$store.state.login.email;
+        }
+    },
+    onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      this.form.uploadFile = files;
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = '';
+    }
+
+  },
+  beforeMount() {},
+  mounted(){
+  },
+  created(){
+    this.getAccount();
+  }
+
 }
 </script>
 
 <style scoped>
+  .error-message{
+    color:red;
+  }
   .d-flex {
     display: flex;
     align-items: center;

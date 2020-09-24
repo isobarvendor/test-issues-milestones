@@ -5,7 +5,7 @@
       <CampaignPeriod :data="configData ? configData[0].campaignPeriod : null"/>
       <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="configData && configData[0].ExclusivePrizes" :winners="data && data[0].homepage.luckyWinner"/>
       <HowItWorks :data="data &&data[0].worksSection"/>
-      <SubmissionMechanics v-if="!this.$store.state.login"/>
+      <SubmissionMechanics :dataForm="configData ? configData[0].campaignTypes : null" />
     </div>
     <Footer :data="data[0].footer"/>
   </div>
@@ -61,6 +61,7 @@ export default {
   created(){
     this.fetchData();
   },
+
   methods:{
     async fetchData(){
       let result = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaigns')

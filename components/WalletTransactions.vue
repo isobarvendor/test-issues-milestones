@@ -7,12 +7,9 @@
             <div class="name">05 Nov 2019</div>
             <div class="collected">
               <span>Manchester United</span>
-              <span class="negative">-50 points</span>
+              <span class="negative">{{item.walletRollingTotal}} points</span>
             </div>
-            <div class="collected">
-              <span>Coins Collected</span>
-              <span class="positive">+10 points</span>
-            </div>
+
           </div>
       </div>
     </div>
@@ -37,10 +34,10 @@ export default {
   },
   computed:{
   	toBeShown() {
-    	return this.data.exclusivePrizes.slice(0, this.currentPage * 3);
+    	return this.data.transactions.slice(0, this.currentPage * 3);
     },
     totalPages() {
-    	return Math.ceil( this.data.exclusivePrizes.length / 3);
+    	return Math.ceil( this.data.transactions.length / 3);
     }
   },
   methods:{
@@ -100,14 +97,14 @@ export default {
     @media only screen and (max-width: 1199px) {
       .wallet-desktop{
         .wallet-swiper{
-          width: 100%; 
+          width: 100%;
           .bg{
             background: none;
             min-height: 140px;
             padding: 10px;
-          }   
+          }
         }
-      }  
+      }
     }
   }
 </style>

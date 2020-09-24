@@ -1,10 +1,8 @@
 <template>
   <div class="container campaign-section">
-      <div class="header">Be the lucky one</div>
-      <Form />
-      <Login 
-        :social="dataSocial"
-      />
+      <Login :social="dataSocial" v-if="campaignType=='luckydraw'"  />
+      <Form :data="dataForm"  />
+
   </div>
 </template>
 
@@ -16,9 +14,17 @@ export default {
     Login,
     Form
   },
+   props: {
+        dataForm: null,
+      },
   data() {
     return {
       dataSocial: {}
+    }
+  },
+    computed:{
+    campaignType(){
+      return this.data ? this.data.campaignTypes : null;
     }
   },
   created() {
@@ -33,8 +39,8 @@ export default {
         "https://ayo.aircovery.com/cms-api/campaign-configurations"
       );
       this.dataStatus = { status: result.status, message: result.statusText };
-      this.dataSocial = { 
-        email: config.data[0].socialMedia.Email, 
+      this.dataSocial = {
+        email: config.data[0].socialMedia.Email,
         facebook: config.data[0].socialMedia.Facebook,
         google: config.data[0].socialMedia.Google,
         line: config.data[0].socialMedia.Line,

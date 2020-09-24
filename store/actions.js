@@ -1,6 +1,6 @@
 
 import GeneralAPI from '../api/general';
-import NPGSAPI from '../api/npgs';
+import NGPSAPI from '../api/ngps';
 import {
   LOGIN,
   SIGNUP,
@@ -9,8 +9,8 @@ import {
   GET_LIST_WALLET,
   ACCEPT_VOUCHER,
   REJECT_VOUCHER,
-  INSTA_WIN,
-  ALWAYS_WIN
+  SUBMIT,
+  UPLOAD_FILE
 } from './action_types';
 
 export default {
@@ -35,7 +35,10 @@ export default {
       } else {
         GeneralAPI.getAccount(token)
         .then(response => {
-
+          //need to remove if already have UUID
+          if(!response.data.UUID){
+            response.data['UUID']='SAMPLE UUID'
+          }
           commit('SET_LOGIN_ACCOUNT', response.data);
           return resolve(response);
         })
@@ -71,7 +74,7 @@ export default {
       if (moduleState.listPrize) {
         return resolve(moduleState.listPrize)
       } else {
-        NPGSAPI.getListPrize(data)
+        NGPSAPI.getListPrize(data)
         .then(response => {
           commit('SET_LIST_PRIZE', response.data);
           return resolve(response);
@@ -91,7 +94,7 @@ export default {
       if (moduleState.listWallet) {
         return resolve(moduleState.listWallet)
       } else {
-        NPGSAPI.getListWallet(data)
+        NGPSAPI.getListWallet(data)
         .then(response => {
           commit('SET_LIST_WALLET', response.data);
           return resolve(response);
@@ -104,13 +107,22 @@ export default {
     });
   },
 
-  [INSTA_WIN]: ({ commit, state, getters }, data, token) => {
+  [SUBMIT]: ({ commit, state, getters }, payload) => {
+
     return new Promise((resolve, reject) => {
       const moduleState = state;
-      if (moduleState.instaWin) {
-        return resolve(moduleState.instaWin)
+      if (state.token) {
+        NGPSAPI.submitLogin(payload.request,payload.type, state.token)
+        .then(response => {
+          //commit('SET_LOGIN_ACCOUNT', messages);
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
       } else {
-        NPGSAPI.instaWinAPI(data)
+        NGPSAPI.submitNonLogin(payload.request,payload.type)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
           return resolve(response);
@@ -123,32 +135,29 @@ export default {
     });
   },
 
-
-  [ALWAYS_WIN]: ({ commit, state, getters }, data, token) => {
-    return new Promise((resolve, reject) => {
-      const moduleState = state;
-      if (moduleState.alwaysWin) {
-        return resolve(moduleState.alwaysWin)
-      } else {
-        NPGSAPI.alwaysWinAPI(data)
-        .then(response => {
-          //commit('SET_LOGIN_ACCOUNT', messages);
-          return resolve(response);
-        })
-        .catch(error => {
-          console.error(error);
-          return reject(error);
-        });
-      }
-    });
-  },
 
   [ACCEPT_VOUCHER]: ({ commit, state, getters }, data, token) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-        NPGSAPI.acceptVoucher(data)
+        NGPSAPI.uploadFile(data)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
+
+    });
+  },
+
+  [UPLOAD_FILE]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+        NGPSAPI.uploadFile(data)
+        .then(response => {
+          commit('SET_FILE_AMAZON', response.data.file);
           return resolve(response);
         })
         .catch(error => {
@@ -162,7 +171,7 @@ export default {
   [REJECT_VOUCHER]: ({ commit, state, getters }, data, token) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-        NPGSAPI.rejectVoucher(data)
+        NGPSAPI.rejectVoucher(data)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
           return resolve(response);

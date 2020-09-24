@@ -1,16 +1,16 @@
 <template>
   <div class="rewards-catalogue">
     <div class="wallet-desktop" >
-      <div class="wallet-swiper" v-for="(item, index) in data.exclusivePrizes" :key="'reward'+index">
+      <div class="wallet-swiper" v-for="(item, index) in data.prizeList" :key="'reward'+index">
         <div class="wallet-swiper-item">
-          <img src="/img/rewards/jersey.png"
+          <img :src="item.imgUrl"
           />
         </div>
         <div class="description bg">
-            <div class="name">{{item.text}}</div>
-            <div class="expiry">
-              <span>50</span>
-              <span>coins </span>
+            <div class="name">{{item.name}}</div>
+            <div class="expiry" v-for="(item2, index) in item.prizeCost" :key="'cost'+index">
+              <span>{{item2.amount}}</span>
+              <span>{{item2.name}}</span>
             </div>
           </div>
       </div>
@@ -49,7 +49,7 @@ export default {
   },
   beforeMount() {},
   mounted(){
-
+    console.log(this.data)
   }
 };
 </script>
@@ -67,7 +67,7 @@ export default {
       .description{
         padding: 20px;
         border-radius: 0px 0px 20px 20px;
-        
+
         .name:after{
           content: '';
           display: block;
@@ -92,7 +92,7 @@ export default {
     }
     .prize-swiper-pagination > * + *:before{
       background: #585858
-    } 
+    }
     .prize-swiper-pagination .prize-swiper-pagination-bullet{
       background: #585858
     }
@@ -116,10 +116,10 @@ export default {
             }
           }
         }
-        
+
       }
     }
     }
-    
+
 }
 </style>

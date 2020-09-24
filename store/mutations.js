@@ -18,12 +18,10 @@ export default {
   SET_LIST_WALLET:(state, data)=>{
     state.listWallet = data;
   },
-  SET_INSTA_WIN:(state, data)=>{
-    state.instaWin = data;
+  SET_FILE_AMAZON:(state, data)=>{
+    state.fileUploaded = data;
   },
-  SET_ALWAYS_WIN:(state, data)=>{
-    state.alwaysWin = data;
-  },
+
 
 
 

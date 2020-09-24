@@ -27,7 +27,7 @@
             ></v-text-field>
           </div>
         </div>
-        <RewardsCatalogue :data="configData[0].ExclusivePrizes"/>
+        <RewardsCatalogue :data="listPrizes"/>
       </div>
 
     </div>
@@ -41,6 +41,7 @@
 
 <script>
 import RewardsCatalogue from '@/components/RewardsCatalogue';
+import { GET_LIST_PRIZE } from '@/store/action_types';
 // import Vuetify from 'vuetify/lib';
 export default {
   data(){
@@ -48,7 +49,8 @@ export default {
       dataStatus:{},
       data:null,
       configData: null,
-      campaignType: 0
+      campaignType: 0,
+      listPrizes :[]
     }
   },
   head() {
@@ -73,18 +75,20 @@ export default {
   },
   computed: {
     recent(){
-        return this.data.exclusivePrizes
+        return this.data  && this.data.exclusivePrizes
     },
     filterby(){
-        return this.data.exclusivePrizes
+        return this.data && this.data.exclusivePrizes
     }
   },
 
   created() {
     this.fetchData();
+    this.getListPrize();
   },
   methods: {
     async fetchData() {
+
       let result = await this.$axios.get(
         "https://ayo.aircovery.com/cms-api/campaigns"
       );
@@ -93,7 +97,65 @@ export default {
 
       let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
       this.configData = config.data
+
     },
+    async getListPrize(){
+      let request= {
+            "configurationId": "confIdExample123",
+            "flowLabel": "listPrizes",
+            "language": "en-US",
+            "responseType" : "plain",
+            "priorityOrder": "DESC"
+    }
+      //commented first after API ready
+   /*
+      this.$store.dispatch(GET_LIST_PRIZE,request)
+            .then((response)=>{
+
+               this.listPrizes=response.data;
+            })
+            .catch((error) =>{
+              if(error.response && error.response.data.status=='401'){
+                this.errorMessage='Please enter the correct email/password';
+              }
+            })
+*/
+      let response = {
+        data:{
+              "prizeList": [ {
+                        "configurationId": "confIdExample123",
+                        "prizeId": "grandPrize2",
+                        "active": true,
+                        "name": "Coca Cola Grand Prize 2",
+                        "description": "full description",
+                        "shortDescription": "short",
+                        "redeemDescription": "redemption",
+                        "amountAvailable": 50,
+                        "prizeCost": [
+                            {
+                              "name": "coin",
+                              "currencyId": "fl2gr1joh3nces",
+                              "amount": 100
+                            },{
+                                "name": "gem",
+                                "currencyId": "79q3u1oysb",
+                                "amount": 200
+                            }],
+                      "imgUrl": "/img/rewards/jersey.png",
+                      "deliveryType": 1,
+                      "redemptionLink": "https://www.metrob111que.ch/de/",
+                      "barcodeType": 1,
+                      "priority": 1,
+                      "minAge": 23,
+                      "tags": [
+                            "Tag 1", "Tag 2"
+                        ]
+                  } ]
+            }
+
+      }
+       this.listPrizes=response.data;
+    }
   },
 };
 </script>
@@ -130,7 +192,7 @@ export default {
                         color: #ffffff;
                         font-size: 14px;
                     }
-                    
+
                     color: #ffffff;
                 }
                 .v-input::placeholder{
@@ -157,7 +219,7 @@ export default {
                     }
                     .v-input__slot:before{
                         border-color: transparent !important ;
-                        
+
                     }
                     .theme--light.v-label{
                         color: #ffffff;
@@ -193,7 +255,7 @@ export default {
         }
 
         a{
-            &.button{ 
+            &.button{
             text-decoration: none;
             filter:none;
             color:white;

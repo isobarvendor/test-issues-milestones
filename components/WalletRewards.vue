@@ -8,7 +8,7 @@
           />
         </div>
         <div class="description bg">
-            <div class="name">{{item.text}}</div>
+            <div class="name">{{item.currency_name}}</div>
             <div class="expiry">
               <span>365</span>
               <span>days left</span>
@@ -18,7 +18,7 @@
     </div>
     <swiper class="swiper wallet-swiper" :options="swiperOption"  v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'">
       <swiper-slide
-        v-for="(item, index) in data.exclusivePrizes"
+        v-for="(item, index) in data.expirationWallet"
         :key="'reward'+index"
         class="wallet-swiper-item"
       >
@@ -26,9 +26,9 @@
           :src="item.imageMobile ? item.imageMobile.url : '/img/prize-default.svg'"
         />
         <div class="description bg">
-          <div class="name">{{item.text}}</div>
+          <div class="name">{{item.currency_name}}</div>
           <div class="expiry">
-            <span>365</span>
+            <span>{{dayDiff(dates)}}</span>
             <span>days left</span>
           </div>
         </div>
@@ -82,10 +82,10 @@ export default {
   },
   computed:{
   	toBeShown() {
-    	return this.data.exclusivePrizes.slice(0, this.currentPage * 3);
+    	return this.data.expirationWallet.slice(0, this.currentPage * 3);
     },
     totalPages() {
-    	return Math.ceil( this.data.exclusivePrizes.length / 3);
+    	return Math.ceil( this.data.expirationWallet.length / 3);
     }
   },
   methods:{
@@ -94,6 +94,12 @@ export default {
     },
     prevPage(){
     	this.currentPage = this.currentPage - 1 || 1;
+    },
+    dayDiff(dates){
+      let today = new Date();
+      let dates2 = new Date(dates);
+      let dateDiff = today.getDate() - dates2.getDate();
+      return dateDiff
     }
   },
   beforeMount() {},
@@ -116,7 +122,7 @@ export default {
       .description{
         padding: 20px;
         border-radius: 0px 0px 20px 20px;
-        
+
         .name:after{
           content: '';
           display: block;
@@ -141,7 +147,7 @@ export default {
     }
     .prize-swiper-pagination > * + *:before{
       background: #585858
-    } 
+    }
     .prize-swiper-pagination .prize-swiper-pagination-bullet{
       background: #585858
     }
@@ -162,9 +168,9 @@ export default {
             }
           }
         }
-        
+
       }
     }
-    
+
 }
 </style>
