@@ -17,7 +17,7 @@ export default {
     },
     methods: {
       redirectTo(source){
-        location.href="http://localhost:8080/api/oauth2/authorize/"+source+"?redirect_uri=http://localhost:3000/settoken?from=home";
+        location.href="/api/oauth2/authorize/"+source+"?redirect_uri=/settoken?from=home";
       }
     },
     computed: {
