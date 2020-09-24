@@ -94,7 +94,7 @@ export default {
     },
     computed:{
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'){
+            if(this.$route.name =='register'||this.$route.name =='login'|| !this.$store.state.login){
                 return false
             }
             else{
@@ -102,7 +102,7 @@ export default {
             }
         },
         showMenu(){
-            if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'){
+            if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'|| !this.$store.state.login){
                 return false
             }
             else{
