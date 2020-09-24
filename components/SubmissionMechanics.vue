@@ -1,7 +1,7 @@
 <template>
   <div class="container campaign-section">
-      <Login :social="dataSocial" v-if="campaignType=='luckydraw'"  />
-      <Form :data="dataForm"  />
+      <Login :social="dataSocial" v-if="campaignType=='luckydraw'&&!this.$store.state.login"  />
+      <Form :data="dataForm"  v-if="campaignType!='luckydraw'|| this.$store.state.login"  />
 
   </div>
 </template>
