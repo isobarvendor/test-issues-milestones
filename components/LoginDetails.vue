@@ -74,12 +74,12 @@ export default {
          if(valid){
              this.errorMessage=null;
             this.$store.dispatch(LOGIN,this.login)
-            .then(function (response) {
-              console.log(response);
+            .then((response)=>{
+
               this.$router.push('/account');
             })
             .catch((error) =>{
-              if(error.response.data.status=='401'){
+              if(error.response && error.response.data.status=='401'){
                 this.errorMessage='Please enter the correct email/password';
               }
             })

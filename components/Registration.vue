@@ -77,15 +77,17 @@ export default {
                 password:this.user.password
               }
                this.$store.dispatch(LOGIN,login)
-                .then(function (response) {
+                .then((response)=>{
                     this.$router.push('/account');
                 })
             })
             .catch((error) =>{
-              if(error.response.data.status=='401'){
-                this.errorMessage='Please enter the correct email/password';
+              if(error.response && error.response.data.status=='400'&&error.response.data.message=="error.validation"){
+                this.errorMessage='Please use another email';
+              }else{
+                this.errorMessage='Something went wrong please try again';
               }
-               this.errorMessage='Something went wrong please try again';
+
 
             })
          }
