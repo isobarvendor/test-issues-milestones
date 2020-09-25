@@ -17,8 +17,7 @@
       </v-expansion-panels>
     </div>
     <SliderHeader>{{data.contactLabel}}</SliderHeader>
-    <!-- <div class="contact-section"><p>For any enquires regarding retrieving your code, please email us at <a href="mailto:coca-cola@coke.com">coca-cola@coke.com</a></p></div> -->
-    <div class="contact-section"><p>{{data.contactDescription}}</p></div>
+    <div class="contact-section"><p v-html="data.contactDescription"></p></div>
 </div>
 </template>
 

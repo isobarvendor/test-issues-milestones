@@ -18,7 +18,7 @@
         <div class="secondary-component">
             <div class="sub-header">{{data.privacyContent[0].title}}</div>
             <div class="desc">
-                <p>{{data.privacyContent[0].description}}</p>
+                <p v-html="data.privacyContent[0].description"></p>
             </div>
         </div>
         <v-expansion-panels
@@ -29,7 +29,7 @@
             <v-expansion-panel v-for="(item, index) in data.privacyBottom" :key="'item-'+index">
                 <v-expansion-panel-header>{{item.title}}</v-expansion-panel-header>
                 <v-expansion-panel-content>
-                    {{item.description}}
+                    <span v-html="item.description"></span>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
