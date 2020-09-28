@@ -2,7 +2,7 @@
   <div v-if="dataStatus.status == 200" id="main" class="register">
     <div class="wrapper">
       <div class="container">
-        <Registration :data="data.exclusivePrizes"/>
+        <Registration :data="data ? data[0].signUp : null"/>
       </div>
 
     </div>

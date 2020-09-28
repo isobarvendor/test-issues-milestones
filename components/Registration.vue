@@ -1,6 +1,6 @@
 <template>
 <div class="registration">
-    <h3> Register for an account </h3>
+    <h3>{{data.title}}</h3>
      <div class="registration-body">
     <div class="details">
         <div class="input-container">
@@ -18,7 +18,7 @@
                 <v-radio></v-radio>
             </v-radio-group> -->
             <v-checkbox v-model="terms"></v-checkbox>
-            <div class="radio-label">I accept the <a href="#">Terms and Conditions</a> & <a href="#">Privacy Policy</a> for sign up.</div>
+            <div class="radio-label"><span v-html="data.privacyRegister.description"></span></div>
         </div>
         <div class="button-container">
           <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
