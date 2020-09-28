@@ -8,9 +8,9 @@
         </div>
         <div class="description bg">
             <div class="name">{{item.name}}</div>
-            <div class="expiry" v-for="(item2, index) in item.prizeCost" :key="'cost'+index">
-              <span>{{item2.amount}}</span>
-              <span>{{item2.name}}</span>
+            <div class="expiry" :key="'cost'+index">
+              <span>{{item.totalAmount}}</span>
+              <span>Coins</span>
             </div>
           </div>
       </div>

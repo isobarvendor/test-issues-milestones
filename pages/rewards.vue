@@ -100,18 +100,11 @@ export default {
 
     },
     async getListPrize(){
-      let request= {
-            "configurationId": "confIdExample123",
-            "flowLabel": "listPrizes",
-            "language": "en-US",
-            "responseType" : "plain",
-            "priorityOrder": "DESC"
-    }
-      //commented first after API ready
 
-      this.$store.dispatch(GET_LIST_PRIZE,request)
+
+          await  this.$store.dispatch(GET_LIST_PRIZE)
             .then((response)=>{
-
+              console.log(response)
                this.listPrizes=response.data;
             })
             .catch((error) =>{
@@ -120,41 +113,7 @@ export default {
               }
             })
 
-      /*let response = {
-        data:{
-              "prizeList": [ {
-                        "configurationId": "confIdExample123",
-                        "prizeId": "grandPrize2",
-                        "active": true,
-                        "name": "Coca Cola Grand Prize 2",
-                        "description": "full description",
-                        "shortDescription": "short",
-                        "redeemDescription": "redemption",
-                        "amountAvailable": 50,
-                        "prizeCost": [
-                            {
-                              "name": "coin",
-                              "currencyId": "fl2gr1joh3nces",
-                              "amount": 100
-                            },{
-                                "name": "gem",
-                                "currencyId": "79q3u1oysb",
-                                "amount": 200
-                            }],
-                      "imgUrl": "/img/rewards/jersey.png",
-                      "deliveryType": 1,
-                      "redemptionLink": "https://www.metrob111que.ch/de/",
-                      "barcodeType": 1,
-                      "priority": 1,
-                      "minAge": 23,
-                      "tags": [
-                            "Tag 1", "Tag 2"
-                        ]
-                  } ]
-            }
 
-      }
-       this.listPrizes=response.data;*/
     }
   },
 };

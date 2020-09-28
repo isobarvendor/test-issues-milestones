@@ -69,13 +69,11 @@ export default {
     });
   },
 
-  [GET_LIST_PRIZE]: ({ commit, state, getters }, data, token) => {
+  [GET_LIST_PRIZE]: ({ commit, state, getters }) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-      if (moduleState.listPrize) {
-        return resolve(moduleState.listPrize)
-      } else {
-        NGPSAPI.getListPrize(data)
+
+        NGPSAPI.getListPrize()
         .then(response => {
           commit('SET_LIST_PRIZE', response.data);
           return resolve(response);
@@ -84,7 +82,7 @@ export default {
           console.error(error);
           return reject(error);
         });
-      }
+
     });
   },
 
@@ -156,13 +154,13 @@ export default {
   [UPLOAD_FILE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-        NGPSAPI.uploadFile(data)
+        NGPSAPI.uploadFile(data.request,data.type)
         .then(response => {
-          commit('SET_FILE_AMAZON', response.data.filePath);
+        //  commit('SET_FILE_AMAZON', response.data.filePath);
           return resolve(response);
         })
         .catch(error => {
-          console.error(error);
+         // console.error(error);
           return reject(error);
         });
 

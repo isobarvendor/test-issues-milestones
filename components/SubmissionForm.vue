@@ -11,11 +11,11 @@
       <input type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
         <span class="error-message">{{ errors.first('email') }}</span>
     </div>
-    <div v-if="campaignType=='luckydraw'" >
+    <div v-if="submissionType=='with_code_submission'" >
       <input v-model="form.code"  v-validate="'required'" type="number" name="code" placeholder="10-digit code"/>
         <span class="error-message">{{ errors.first('code') }}</span>
     </div>
-    <div v-if="campaignType!=='luckydraw'">
+    <div v-if="submissionType=='with_receipt'">
       <div v-if="!image">
        <h2>Upload reciept</h2>
        <input type="file" @change="onFileChange" value="uploadReceipt">
@@ -97,9 +97,9 @@ export default {
     }
   },
   computed:{
-    campaignType(){
-
-      return this.data ? this.data.mechanicType : null;
+    submissionType(){
+      console.log(this.data)
+      return this.data ? this.data.submissionType : null;
     }
   },
   methods:{
@@ -121,7 +121,11 @@ export default {
             if(this.form.uploadFile){
               var formData = new FormData();
               formData.append("file", this.form.uploadFile);
-               await this.$store.dispatch(UPLOAD_FILE,formData)
+                let upload={
+                request:formData,
+                type:'receipts'
+              }
+               await this.$store.dispatch(UPLOAD_FILE,upload)
                .then((response)=>{
                   console.log(response)
                   this.amazonImage=response.data.filePath;
@@ -182,7 +186,11 @@ export default {
                 this.submitted=true;
             })
             .catch((error) =>{
-              this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,this.$store.state.fileUploaded);
+              let upload={
+                request:this.$store.state.fileUploaded,
+                type:'receipts'
+              }
+              this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);
               this.submitted=false
               if(error.response && error.response.data.status=='401'){
                 this.errorMessage='Please enter the correct email/password';

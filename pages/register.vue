@@ -53,7 +53,8 @@ export default {
       );
       this.dataStatus = { status: result.status, message: result.statusText };
       this.data = result.data;
-    },
+    }
+
   },
 };
 </script>

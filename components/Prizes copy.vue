@@ -1,23 +1,20 @@
 <template>
   <div class="container campaign-section">
-    <div class="header">{{data.cms.title}}</div>
-    <a href>{{data.cms.description}}</a>
+    <div class="header">{{data.title}}</div>
+    <a href>{{data.description}}</a>
     <div class="container">
       <swiper class="swiper prize-swiper" :options="swiperOption">
         <swiper-slide
-          v-for="(item, index) in data.listPrizes ? data.listPrizes.prizeList : null"
+          v-for="(item, index) in data.exclusivePrizes"
           :key="'prize'+index"
           class="prize-item"
         >
           <img
             v-if="$mq == 'sm'"
-           :src="item.imgUrl ?  item.imgUrl : '/img/prize-default.svg'"
+            :src="item.imageMobile ? item.imageMobile.url : '/img/prize-default.svg'"
           />
-          <img v-else :src="item.imgUrl ?  item.imgUrl : '/img/prize-default.svg'" />
-
-             <div class="prize-description">
-              <span>{{item.name}}</span>
-            </div>
+          <img v-else :src="item.imageDesktop ? item.imageDesktop.url : '/img/prize-default.svg'" />
+          <div class="prize-description">{{item.text}}</div>
         </swiper-slide>
         <div class="prize-swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -67,8 +64,5 @@ export default {
     winners: null,
   },
   beforeMount() {},
-  mounted(){
-    console.log(this.data)
-  }
 };
 </script>

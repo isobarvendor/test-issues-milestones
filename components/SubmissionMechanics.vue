@@ -1,7 +1,7 @@
 <template>
   <div class="container campaign-section">
-      <Login :social="dataSocial" v-if="campaignType=='luckydraw'&&!this.$store.state.login"  />
-      <Form :data="dataForm"  v-if="campaignType!='luckydraw'|| this.$store.state.login"  />
+      <Login :social="dataSocial" v-if="campaignType.authentication=='register'&& !this.$store.state.login"  />
+      <Form :data="campaignType"  v-if="campaignType.authentication!='register'|| this.$store.state.login"  />
 
   </div>
 </template>
@@ -19,34 +19,32 @@ export default {
       },
   data() {
     return {
-      dataSocial: {}
+
     }
   },
     computed:{
     campaignType(){
-      return this.data ? this.data.campaignTypes : null;
+      console.log(this.dataForm);
+      return this.dataForm ? this.dataForm.campaignTypes : {
+        authentication: "",
+        campaignTypes: "",
+        id: 1,
+        mechanicType: "",
+        submissionType: "",
+      };
+    },
+    dataSocial() {
+      return {
+        email: this.dataForm .socialMedia.Email,
+        facebook: this.dataForm .socialMedia.Facebook,
+        google: this.dataForm .socialMedia.Google,
+        line: this.dataForm.socialMedia.Line,
+      }
     }
   },
-  created() {
-    this.fetchData();
-  },
+
   methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      let config = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaign-configurations"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.dataSocial = {
-        email: config.data[0].socialMedia.Email,
-        facebook: config.data[0].socialMedia.Facebook,
-        google: config.data[0].socialMedia.Google,
-        line: config.data[0].socialMedia.Line,
-      };
-      this.data = result.data;
-    },
+
   },
 }
 </script>

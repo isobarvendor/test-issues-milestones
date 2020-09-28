@@ -3,10 +3,10 @@
     <div class="wrapper">
       <Masthead :data="data ? data[0].homepage.mastheadSection :  null"/>
       <CampaignPeriod :data="configData ? configData[0].campaignPeriod : null"/>
-      <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="configData && configData[0].ExclusivePrizes" :winners="data && data[0].homepage.luckyWinner"/>
+      <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="configData && ({cms: data[0].homepage.exclusivePrizes, listPrizes })" :winners="data && data[0].homepage.luckyWinner"/>
       <HowItWorks :data="data && data[0].worksSection" />
 
-      <SubmissionMechanics :dataForm="configData ? configData[0].campaignTypes : null" />
+      <SubmissionMechanics :dataForm="configData ? configData[0] : null" />
     </div>
     <Footer :data="data[0].footer"/>
   </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script >
+import { GET_LIST_PRIZE} from '@/store/action_types';
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
 import HowItWorks from '../components/HowItWorks'
@@ -33,7 +34,8 @@ export default {
       dataStatus:{},
       data:null,
       configData: null,
-      campaignType: 0
+      campaignType: 0,
+      listPrizes:null
     }
   },
   head() {
@@ -60,7 +62,8 @@ export default {
 
   },
   created(){
-    this.fetchData();
+
+    this.getListPrize();
   },
 
   methods:{
@@ -72,12 +75,26 @@ export default {
       let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
       this.configData = config.data
 
+    },
+       async getListPrize(){
+
+      this.$store.dispatch(GET_LIST_PRIZE)
+            .then((response)=>{
+               this.listPrizes=response.data;
+
+            })
+            .catch((error) =>{
+              if(error.response && error.response.data.status=='401'){
+                this.errorMessage='Please enter the correct email/password';
+              }
+            })
     }
   },
   computed: {
 
   },
   mounted() {
+     this.fetchData();
     // console.log('data status', dataStatus)
   },
 }

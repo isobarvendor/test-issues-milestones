@@ -28,13 +28,21 @@
     </div>
     <div class="profile-icon">
             <img src="/img/icons/profile-icon.png"/>
-        </div>
+      <div v-if="!image">
+       <h2>Upload reciept</h2>
+       <input type="file" @change="onFileChange" value="uploadReceipt">
+      </div>
+      <div v-else>
+        <img :src="image" width="100" />
+        <button @click="removeImage">Remove image</button>
+      </div>
+    </div>
     </div>
 </div>
 </template>
 
 <script>
-import { SIGNUP, LOGIN } from '@/store/action_types';
+import { SIGNUP, LOGIN, UPLOAD_FILE } from '@/store/action_types';
 export default {
   name: "Registration",
   inject: ['$validator'],
@@ -47,9 +55,12 @@ export default {
       user:{
         name:null,
         email:null,
-        password:null
+        password:null,
       },
-      errorMessage:null
+      errorMessage:null,
+      image:null,
+      uploadFile:null,
+      amazonImage:null
     };
   },
   props: {
@@ -58,8 +69,29 @@ export default {
   computed:{
   },
   methods:{
-      register(){
-           this.$validator.validateAll().then((valid) => {
+    onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      this.uploadFile = files[0];
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = '';
+
+    },
+      async register(){
+           this.$validator.validateAll().then(async(valid) => {
          if(valid){
              this.errorMessage=null;
              if(!this.terms){
@@ -70,6 +102,25 @@ export default {
               this.errorMessage="Your password and confirm password is different"
               return false;
             }
+              if(this.user.uploadFile){
+              var formData = new FormData();
+              formData.append("file", this.uploadFile);
+                let upload={
+                request:formData,
+                type:'profile-picture'
+              }
+               await this.$store.dispatch(UPLOAD_FILE,upload)
+               .then((response)=>{
+                  console.log(response)
+                  this.amazonImage=response.data.url;
+
+                })
+                .catch((error) =>{
+                });
+            }
+             if(this.amazonImage){
+                 this.user.profilePicture=this.amazonImage;
+               }
             this.$store.dispatch(SIGNUP,this.user)
             .then( (response)=> {
               let login = {

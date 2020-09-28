@@ -30,26 +30,24 @@ export default {
     return axios.post(`${origin}/api/campaign/public/${type}`, data)
   },
 
-  async uploadFile(payload) {
+  async uploadFile(payload,type) {
     let config = {
         headers: {
             'Content-Type': 'multipart/form-data',
         }
     };
     let resp;
-        resp = await axios.post(`${origin}/api/receipts`, payload, config)
+        resp = await axios.post(`${origin}/api/${type}`, payload, config)
 
     return resp;
 },
 
-async deleteFile(payload) {
+async deleteFile(payload,type) {
   let config = {
-      headers: {
-          'Content-Type': 'multipart/form-data',
-      }
+
   };
   let resp;
-      resp = await axios.delete(`${origin}/api/receipts`, payload, config)
+      resp = await axios.delete(`${origin}/api/${type}`, payload, config)
 
   return resp;
 },
