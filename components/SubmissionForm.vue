@@ -69,7 +69,7 @@ details will be sent to <a href='#'>{{form.email}}</a>
 </template>
 
 <script>
-import { SUBMIT, UPLOAD_FILE, GET_ACCOUNT } from '@/store/action_types';
+import { SUBMIT_FORM, UPLOAD_FILE, GET_ACCOUNT, DELETE_FILE } from '@/store/action_types';
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -89,6 +89,7 @@ export default {
         errorMessage:null,
         submitted:false,
         image:'',
+        amazonImage:'',
         //login token
         token:this.$store.state.token,
         //login data
@@ -97,7 +98,8 @@ export default {
   },
   computed:{
     campaignType(){
-      return this.data ? this.data.campaignTypes : null;
+
+      return this.data ? this.data.mechanicType : null;
     }
   },
   methods:{
@@ -117,25 +119,37 @@ export default {
            }
              this.errorMessage=null;
             if(this.form.uploadFile){
-               await this.$store.dispatch(UPLOAD_FILE, this.form.uploadFile);
-            }
+              var formData = new FormData();
+              formData.append("file", this.form.uploadFile);
+               await this.$store.dispatch(UPLOAD_FILE,formData)
+               .then((response)=>{
+                  console.log(response)
+                  this.amazonImage=response.data.filePath;
 
+                })
+                .catch((error) =>{
+                });
+            }
              if(this.token){
                 //send request if already login
                 // i divide by 3 in case request is different
-                if(this.campaignType=='alwayswin'){
+                if(this.campaignType=='instant_win'){
                   type="always"
                 }
-                else if(this.campaignType=='luckydraw'){
+                else if(this.campaignType=='luck_draw'){
                   type="luckydraw"
                 }
                 else {
                   type="default"
                 }
                 request={
+
+                          "name"  : this.form.name,
+                          "email" : this.form.email,
                           "userId": this.$store.state.login.UUID,
-                          "email" : this.form.email
-                      }
+
+                    }
+
 
               }else{
                 //send request if not login
@@ -150,23 +164,30 @@ export default {
                   type="default"
                 }
                     request={
-                        "email" : this.form.email
+
+                          "name"  : this.form.name,
+                          "email" : this.form.email
+
                     }
               }
-        // just for demo
-       this.submitted=true;
+
+               if(this.amazonImage){
+                 request.fileurl=this.amazonImage;
+               }
+
       //my code for submit
-            /*
-            this.$store.dispatch(SUBMIT,{request,type})
+
+            this.$store.dispatch(SUBMIT_FORM,{request,type})
             .then((response)=>{
                 this.submitted=true;
             })
             .catch((error) =>{
+              this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,this.$store.state.fileUploaded);
               this.submitted=false
               if(error.response && error.response.data.status=='401'){
                 this.errorMessage='Please enter the correct email/password';
               }
-            })*/
+            })
          }
 
        });
@@ -183,7 +204,7 @@ export default {
     },
     onFileChange(e) {
       var files = e.target.files || e.dataTransfer.files;
-      this.form.uploadFile = files;
+      this.form.uploadFile = files[0];
       if (!files.length)
         return;
       this.createImage(files[0]);
@@ -200,6 +221,7 @@ export default {
     },
     removeImage: function (e) {
       this.image = '';
+
     }
 
   },

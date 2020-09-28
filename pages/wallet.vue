@@ -69,11 +69,15 @@ export default {
       this.configData = config.data
     },
      async getListWallet(){
-      let request= {
+     /* let request= {
               "configurationId": "confIdExample123",
               "flowLabel": "queryWallet",
               "userId": this.$store.state.login ? this.$store.state.login.UUID : null
-          }
+          }*/
+      let request = {
+        name:this.$store.state.login.name,
+        email:this.$store.state.login.email
+      }
       //commented first after API ready
       let payload={request,token:this.$store.state.token}
       this.$store.dispatch(GET_LIST_WALLET,payload)
@@ -87,7 +91,7 @@ export default {
               }
             })
 
-       this.listWallet={
+      /* this.listWallet={
                 "walletStatus": [
                       {
                           "currencyId": "fl2gr1joh3nces",
@@ -105,7 +109,7 @@ export default {
 
                   ]
 
-              }
+              }*/
 
      },
         async getListWalletExpired(){
@@ -115,7 +119,7 @@ export default {
              "userId": this.$store.state.login ? this.$store.state.login.UUID : null
           }
       //commented first after API ready
-   /*
+
       let payload={request,token:this.$store.state.token}
       this.$store.dispatch(GET_LIST_WALLET,payload)
             .then((response)=>{
@@ -127,7 +131,7 @@ export default {
                 this.errorMessage='Please enter the correct email/password';
               }
             })
-*/
+
        this.listWalletExpired={
                 "expirationWallet": [
                     {
@@ -188,7 +192,7 @@ export default {
             }
 
           //commented first after API ready
-            /*
+
                  let payload={request,token:this.$store.state.token}
                  this.$store.dispatch(GET_LIST_WALLET,payload)
                       .then((response)=>{
@@ -200,7 +204,7 @@ export default {
                           this.errorMessage='Please enter the correct email/password';
                         }
                       })
-          */
+
           this.listWalletTransaction ={
               "transactions": [
                   {

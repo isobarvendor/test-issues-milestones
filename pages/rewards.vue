@@ -120,7 +120,7 @@ export default {
               }
             })
 
-      let response = {
+      /*let response = {
         data:{
               "prizeList": [ {
                         "configurationId": "confIdExample123",
@@ -154,7 +154,7 @@ export default {
             }
 
       }
-       this.listPrizes=response.data;
+       this.listPrizes=response.data;*/
     }
   },
 };

@@ -4,7 +4,8 @@
       <Masthead :data="data ? data[0].homepage.mastheadSection :  null"/>
       <CampaignPeriod :data="configData ? configData[0].campaignPeriod : null"/>
       <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="configData && configData[0].ExclusivePrizes" :winners="data && data[0].homepage.luckyWinner"/>
-      <HowItWorks :data="data &&data[0].worksSection"/>
+      <HowItWorks :data="data && data[0].worksSection" />
+
       <SubmissionMechanics :dataForm="configData ? configData[0].campaignTypes : null" />
     </div>
     <Footer :data="data[0].footer"/>

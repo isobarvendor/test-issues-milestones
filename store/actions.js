@@ -9,8 +9,9 @@ import {
   GET_LIST_WALLET,
   ACCEPT_VOUCHER,
   REJECT_VOUCHER,
-  SUBMIT,
-  UPLOAD_FILE
+  SUBMIT_FORM,
+  UPLOAD_FILE,
+  DELETE_FILE
 } from './action_types';
 
 export default {
@@ -107,7 +108,7 @@ export default {
     });
   },
 
-  [SUBMIT]: ({ commit, state, getters }, payload) => {
+  [SUBMIT_FORM]: ({ commit, state, getters }, payload) => {
 
     return new Promise((resolve, reject) => {
       const moduleState = state;
@@ -157,7 +158,23 @@ export default {
       const moduleState = state;
         NGPSAPI.uploadFile(data)
         .then(response => {
-          commit('SET_FILE_AMAZON', response.data.file);
+          commit('SET_FILE_AMAZON', response.data.filePath);
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
+
+    });
+  },
+
+  [DELETE_FILE]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+        NGPSAPI.deleteFile(data)
+        .then(response => {
+          commit('SET_FILE_AMAZON', null);
           return resolve(response);
         })
         .catch(error => {

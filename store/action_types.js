@@ -5,10 +5,12 @@ export const GET_ACCOUNT= `getAccount`;
 //ngps
 export const GET_LIST_PRIZE= `getListPrize`;
 export const GET_LIST_WALLET= `getListWallet`;
-export const SUBMIT= `submit`;
+export const SUBMIT_FORM= `submitForm`;
 
 /* might need to remove */
 export const ACCEPT_VOUCHER= `acceptVoucher`;
 export const REJECT_VOUCHER= `rejectVoucher`;
 
 export const UPLOAD_FILE= `uploadFile`;
+
+export const DELETE_FILE= `deleteFile`;
