@@ -56,11 +56,10 @@
   </form>
   </div>
   <div v-else>
-    <div class="header">THANK YOU AND GOOD LUCK, </div>
+    <div class="header">{{thankyouSubmission.title}} </div>
     <div class="header">{{form.name}}</div>
     <div>
-        Hang tight as we announce winners weekly and if you win,
-details will be sent to <a href='#'>{{form.email}}</a>
+        {{thankyouSubmission.message}} <a href='#'>{{form.email}}</a>
     </div>
 
   </div>
@@ -97,11 +96,14 @@ export default {
   computed:{
     submissionType(){
 
-      return this.data ? this.data.submissionType : null;
+      return this.data ? this.data.campaignTypes.submissionType : null;
     },
      campaignType(){
 
-      return this.data ? this.data.mechanicType : null;
+      return this.data ? this.data.campaignTypes.mechanicType : null;
+    },
+    thankyousubmission(){
+       return this.data ? this.data.thankyousubmission : null;
     }
   },
   methods:{
@@ -185,6 +187,7 @@ export default {
               }
                if(error.response && error.response.data.status=='401'){
                   sessionStorage.clear();
+                  this.$store.commit('SET_LOGIN_ACCOUNT', null);
                   location.reload();
                }
             })

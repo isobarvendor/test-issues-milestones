@@ -1,27 +1,27 @@
 <template>
   <div class="reward-details">
       <div class="back-icon">
-           <img v-if="$mq == 'xl'" src="/img/icons/back.png"/>
+         <img  @click="back()" v-if="$mq == 'xl'" src="/img/icons/back.png" />
            <img v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'" src="/img/icons/close.png"/>
       </div>
      <div class="reward-body">
-         <div class="title"> 
-          <h3>Manchester United 19/20 Official Jersey</h3>
+         <div class="title">
+          <h3>{{data.name}}</h3>
          </div>
-         <p>Get checked out with the latest jersey design for Manchester United FC</p>
-         <div class="redeem-expiry"> 
+         <p v-html="data.description"></p>
+         <div class="redeem-expiry">
              <h4>Expiry Date</h4>
-             <p>31 December 2020</p>
+             <p v-html="data.shortDescription"></p>
          </div>
-         <div class="redeem-expiry"> 
+         <div class="redeem-expiry">
              <h4>How To  Redeem</h4>
-             <p>Head down to an Adidas outlet near you to collect your official jersey.</p>
+             <p v-html="data.redeemDescription"></p>
          </div>
-         <a class="button rewards-bottom"> Redeem (50 coins)</a>
+         <a class="button rewards-bottom"> Redeem ({{data.totalAmount}} coins)</a>
     </div>
-    <div class="image-fluid"> 
-        <img src="/img/rewards/full-jersey.png"/>
-        <a v-if="$mq == 'sm' || $mq == 'md'" class="button center mobile"> Redeem (50 coins)</a>
+    <div class="image-fluid">
+        <img :src="data.imgUrl"/>
+        <a v-if="$mq == 'sm' || $mq == 'md'" class="button center mobile"> Redeem ({{data.totalAmount}}  coins)</a>
     </div>
   </div>
 </template>
@@ -35,12 +35,18 @@ export default {
     return {
     };
   },
-  props: {
-    data: null,
-  },
+
   computed:{
+    data(){
+      let index=this.$route.params.id;
+      console.log("indes",index);
+      return  this.$store.state.listPrize && this.$store.state.listPrize.prizeList[index];
+    }
   },
   methods:{
+    back(){
+      this.$router.replace('/rewards');
+    }
   },
   beforeMount() {},
   mounted(){
@@ -60,7 +66,7 @@ export default {
         margin: 120px 0;
         width:25%;
         justify-content: flex-end;
-    }    
+    }
     .reward-body{
         display: flex;
         flex-direction: column;
@@ -68,7 +74,7 @@ export default {
         margin: 120px 0px;
         padding: 0px 15px;
         .title{
-            font-size: 30px;   
+            font-size: 30px;
             margin-bottom: 40px;
         }
         .redeem-expiry{
@@ -104,7 +110,7 @@ export default {
             margin-top: 45px;
             margin-bottom: 0px;
             .title{
-                font-size: 20px;   
+                font-size: 20px;
                 margin-bottom: 20px;
             }
             .redeem-expiry{

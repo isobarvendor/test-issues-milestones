@@ -23,6 +23,7 @@
               label="Search"
               solo
               prepend-inner-icon="mdi-magnify"
+              v-model="search"
               class="search"
             ></v-text-field>
           </div>
@@ -42,6 +43,7 @@
 <script>
 import RewardsCatalogue from '@/components/RewardsCatalogue';
 import { GET_LIST_PRIZE } from '@/store/action_types';
+import deepClone from 'deep-clone'
 // import Vuetify from 'vuetify/lib';
 export default {
   data(){
@@ -50,7 +52,9 @@ export default {
       data:null,
       configData: null,
       campaignType: 0,
-      listPrizes :[]
+      listPrizes :[],
+      listPrizesData :[],
+      search:null
     }
   },
   head() {
@@ -105,7 +109,8 @@ export default {
           await  this.$store.dispatch(GET_LIST_PRIZE)
             .then((response)=>{
               console.log(response)
-               this.listPrizes=response.data;
+               this.listPrizes=deepClone(response.data);
+               this.listPrizesData=deepClone(response.data);
             })
             .catch((error) =>{
               if(error.response && error.response.data.status=='401'){
@@ -114,8 +119,24 @@ export default {
             })
 
 
-    }
+    },
+
   },
+  watch:{
+    search: function(val){
+      if(val&&val!=''){
+        this.listPrizes.prizeList=this.listPrizes.prizeList.filter((o)=>{
+            let searchVal=val.toUpperCase();
+
+            return o.name.toUpperCase().includes(searchVal) ||o.shortDescription.toUpperCase().includes(searchVal)||o.description.toUpperCase().includes(searchVal);
+        })
+      }
+      else{
+
+        this.listPrizes=deepClone(this.listPrizesData);
+      }
+    }
+  }
 };
 </script>
 

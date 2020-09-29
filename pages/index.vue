@@ -3,7 +3,7 @@
     <div class="wrapper">
       <Masthead :data="data ? data[0].homepage.mastheadSection :  null"/>
       <CampaignPeriod :data="configData ? configData[0].campaignPeriod : null"/>
-      <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="configData && ({cms: data[0].homepage.exclusivePrizes, listPrizes })" :winners="data && data[0].homepage.luckyWinner"/>
+      <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="data && data[0].homepage.exclusivePrizes" :winners="data && data[0].homepage.luckyWinner"/>
       <HowItWorks :data="data && data[0].worksSection" />
 
       <SubmissionMechanics :dataForm="configData ? configData[0] : null" />
@@ -63,7 +63,6 @@ export default {
   },
   created(){
 
-    this.getListPrize();
   },
 
   methods:{
@@ -75,20 +74,8 @@ export default {
       let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
       this.configData = config.data
 
-    },
-       async getListPrize(){
-
-      this.$store.dispatch(GET_LIST_PRIZE)
-            .then((response)=>{
-               this.listPrizes=response.data;
-
-            })
-            .catch((error) =>{
-              if(error.response && error.response.data.status=='401'){
-                this.errorMessage='Please enter the correct email/password';
-              }
-            })
     }
+
   },
   computed: {
 

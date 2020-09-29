@@ -1,7 +1,7 @@
 <template>
   <div class="container campaign-section">
       <Login :social="dataSocial" v-if="campaignType.authentication=='register'&& !this.$store.state.login"  />
-      <Form :data="campaignType"  v-if="campaignType.authentication!='register'|| this.$store.state.login"  />
+      <Form :data="dataForm"  v-if="campaignType.authentication!='register'|| this.$store.state.login"  />
 
   </div>
 </template>

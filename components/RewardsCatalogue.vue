@@ -1,7 +1,7 @@
 <template>
   <div class="rewards-catalogue">
     <div class="wallet-desktop" >
-      <div class="wallet-swiper" v-for="(item, index) in data.prizeList" :key="'reward'+index">
+      <div class="wallet-swiper" v-for="(item, index) in data.prizeList" :key="'reward'+index"  @click="goDetail(index)">
         <div class="wallet-swiper-item">
           <img :src="item.imgUrl"
           />
@@ -9,7 +9,7 @@
         <div class="description bg">
             <div class="name">{{item.name}}</div>
             <div class="expiry" :key="'cost'+index">
-              <span>{{item.totalAmount}}</span>
+              <span>{{item.amountAvailable}}</span>
               <span>Coins</span>
             </div>
           </div>
@@ -45,11 +45,16 @@ export default {
     },
     prevPage(){
     	this.currentPage = this.currentPage - 1 || 1;
+    },
+    goDetail(rewardID){
+      console.log("rewardID",rewardID)
+      console.log(this.$router);
+      this.$router.push({ path: 'rewardsDetail/'+rewardID})
     }
   },
   beforeMount() {},
   mounted(){
-    console.log(this.data)
+
   }
 };
 </script>
