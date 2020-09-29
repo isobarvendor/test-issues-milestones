@@ -10,16 +10,23 @@ import moment from "moment";
 export default {
   data() {
     return {
-      startdate: null,
-      enddate: null
+
     };
   },
+  computed:{
+    startdate (){
+        return this.data && moment(this.data.fromDate).format("ll")
+    },
+    enddate (){
+      return this.data && moment(this.data.toDate).format("ll");
+    }
+  }
+  ,
   props: {
     data: null
   },
   beforeMount() {
-    this.startdate =  this.data && moment(this.data.fromDate).format("ll");
-    this.enddate = this.data && moment(this.data.toDate).format("ll");
+
   }
 };
 </script>
