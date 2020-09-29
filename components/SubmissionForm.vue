@@ -53,8 +53,6 @@
     </div>
    <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
     <v-btn class="get-code"  v-on:click="submit()">Enter Draw</v-btn>
-
-
   </form>
   </div>
   <div v-else>
@@ -98,12 +96,12 @@ export default {
   },
   computed:{
     submissionType(){
-      console.log(this.data)
+
       return this.data ? this.data.submissionType : null;
     },
      campaignType(){
-      console.log(this.data)
-      return this.data ? this.data.mechanicsType : null;
+
+      return this.data ? this.data.mechanicType : null;
     }
   },
   methods:{
@@ -147,12 +145,11 @@ export default {
                   type="always"
                 }
                 else if(this.campaignType=='luck_draw'){
-                  type="luckydraw"
+                  type="lucky"
                 }
                 else {
                   type="default"
                 }
-
                request={
 
                           "name"  : this.form.name,
@@ -182,9 +179,14 @@ export default {
               }
               this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);
               this.submitted=false
+              //console.log(error.response.data);
               if(error.response){
                 this.errorMessage='Oops something went wrong please try again';
               }
+               if(error.response && error.response.data.status=='401'){
+                  sessionStorage.clear();
+                  location.reload();
+               }
             })
          }
 
