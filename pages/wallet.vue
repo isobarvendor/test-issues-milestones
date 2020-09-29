@@ -72,7 +72,7 @@ export default {
      /* let request= {
               "configurationId": "confIdExample123",
               "flowLabel": "queryWallet",
-              "userId": this.$store.state.login ? this.$store.state.login.UUID : null
+              "userId": this.$store.state.login ? this.$store.state.login.uuid : null
           }*/
       let request = {
         name:this.$store.state.login.name,
@@ -116,7 +116,7 @@ export default {
       let request= {
               "configurationId": "confIdExample123",
               "flowLabel": "queryExpirationWalletByUser",
-             "userId": this.$store.state.login ? this.$store.state.login.UUID : null
+             "userId": this.$store.state.login ? this.$store.state.login.uuid : null
           }
       //commented first after API ready
 
@@ -176,7 +176,7 @@ export default {
           let request=    {
                 "configurationId": "1ejw41joh4lm23",
                 "flowLabel": "addTransaction",
-                "userId": this.$store.state.login ? this.$store.state.login.UUID : null,
+                "userId": this.$store.state.login ? this.$store.state.login.uuid : null,
                 "eventCode": "testEventCode",
                 "currencyAllocations":
                     [

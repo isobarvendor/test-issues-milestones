@@ -29,7 +29,7 @@
     <div class="profile-icon">
             <img src="/img/icons/profile-icon.png"/>
       <div v-if="!image">
-       <h2>Upload reciept</h2>
+
        <input type="file" @change="onFileChange" value="uploadReceipt">
       </div>
       <div v-else>
@@ -91,7 +91,11 @@ export default {
 
     },
       async register(){
+
            this.$validator.validateAll().then(async(valid) => {
+         if(this.$store.state.login){
+            sessionStorage.clear();
+          }
          if(valid){
              this.errorMessage=null;
              if(!this.terms){
@@ -102,7 +106,7 @@ export default {
               this.errorMessage="Your password and confirm password is different"
               return false;
             }
-              if(this.user.uploadFile){
+              if(this.uploadFile){
               var formData = new FormData();
               formData.append("file", this.uploadFile);
                 let upload={
@@ -121,18 +125,21 @@ export default {
              if(this.amazonImage){
                  this.user.profilePicture=this.amazonImage;
                }
+               console.log('reach here');
             this.$store.dispatch(SIGNUP,this.user)
             .then( (response)=> {
               let login = {
                 email:this.user.email,
                 password:this.user.password
               }
+               console.log('reach here',response);
                this.$store.dispatch(LOGIN,login)
                 .then((response)=>{
                     this.$router.push('/account');
                 })
             })
             .catch((error) =>{
+                      console.log('reach here', error.response);
               if(error.response && error.response.data.status=='400'&&error.response.data.message=="error.validation"){
                 this.errorMessage='Please use another email';
               }else{

@@ -31,14 +31,12 @@ export default {
   [GET_ACCOUNT]: ({ commit, state, getters }, token) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-      if (moduleState.login) {
-        return resolve(moduleState.login)
-      } else {
+
         GeneralAPI.getAccount(token)
         .then(response => {
           //need to remove if already have UUID in API
-          if(!response.data.UUID){
-            response.data['UUID']='447bde09-2c67-4591-805b-f0f748d41a7d'
+          if(!response.data.uuid){
+            response.data['uuid']='447bde09-2c67-4591-805b-f0f748d41a7d'
           }
           commit('SET_LOGIN_ACCOUNT', response.data);
           return resolve(response);
@@ -47,15 +45,13 @@ export default {
 
           return reject(error);
         });
-      }
+
     });
   },
   [SIGNUP]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-      if (moduleState.login) {
-        return resolve(moduleState.login)
-      } else {
+
         GeneralAPI.signup(data)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
@@ -65,7 +61,7 @@ export default {
           console.error(error);
           return reject(error);
         });
-      }
+
     });
   },
 

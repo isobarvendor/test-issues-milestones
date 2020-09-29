@@ -159,7 +159,7 @@ export default {
 
                     }
                if(this.token){
-                request["userId"]=this.$store.state.login.UUID;
+                request["userId"]=this.$store.state.login.uuid;
                }
                if(this.amazonImage){
                  request['fileurl']=this.amazonImage;
