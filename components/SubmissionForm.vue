@@ -100,6 +100,10 @@ export default {
     submissionType(){
       console.log(this.data)
       return this.data ? this.data.submissionType : null;
+    },
+     campaignType(){
+      console.log(this.data)
+      return this.data ? this.data.mechanicsType : null;
     }
   },
   methods:{
@@ -132,11 +136,13 @@ export default {
 
                 })
                 .catch((error) =>{
+                    if(error){
+                      this.errorMessage="Upload error please try again";
+                      return false;
+                    }
+
                 });
             }
-             if(this.token){
-                //send request if already login
-                // i divide by 3 in case request is different
                 if(this.campaignType=='instant_win'){
                   type="always"
                 }
@@ -146,37 +152,21 @@ export default {
                 else {
                   type="default"
                 }
-                request={
 
-                          "name"  : this.form.name,
-                          "email" : this.form.email,
-                          "userId": this.$store.state.login.UUID,
-
-                    }
-
-
-              }else{
-                //send request if not login
-                  if(this.campaignType=='alwayswin'){
-                  type="always"
-
-                }
-                else if(this.campaignType=='luckydraw'){
-                  type="luckydraw"
-                }
-                else {
-                  type="default"
-                }
-                    request={
+               request={
 
                           "name"  : this.form.name,
                           "email" : this.form.email
 
                     }
-              }
-
+               if(this.token){
+                request["userId"]=this.$store.state.login.UUID;
+               }
                if(this.amazonImage){
-                 request.fileurl=this.amazonImage;
+                 request['fileurl']=this.amazonImage;
+               }
+               if(this.form.code){
+                 request['pin']=this.form.code;
                }
 
       //my code for submit
@@ -192,8 +182,8 @@ export default {
               }
               this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);
               this.submitted=false
-              if(error.response && error.response.data.status=='401'){
-                this.errorMessage='Please enter the correct email/password';
+              if(error.response){
+                this.errorMessage='Oops something went wrong please try again';
               }
             })
          }
