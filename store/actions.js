@@ -34,10 +34,6 @@ export default {
 
         GeneralAPI.getAccount(token)
         .then(response => {
-          //need to remove if already have UUID in API
-          if(!response.data.uuid){
-            response.data['uuid']='447bde09-2c67-4591-805b-f0f748d41a7d'
-          }
           commit('SET_LOGIN_ACCOUNT', response.data);
           return resolve(response);
         })
