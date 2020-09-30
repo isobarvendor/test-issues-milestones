@@ -1,0 +1,245 @@
+<template>
+  <div class="winner-details">
+      
+      <div class="image-fluid"> 
+        <img src="/img/winner/winner.png"/>
+    </div>
+    <div class="close-icon">
+           <img src="/img/icons/close.png"/>
+      </div>
+     <div class="winner-body">
+         <div class="title"> 
+          <h3>WINNER LIST</h3>
+         </div>
+         <div class="first-box"> 
+             <div class="week">
+                 Week 7
+              </div>
+              <div class="date">
+                  13/4/2020 - 19/4/2020
+              </div>
+         </div>
+         <div class="two-container">
+             <div class="second-box"> 
+                 <div class="week">
+                 Week 6
+              </div>
+              <div class="date">
+                  13/3/2020 - 19/3/2020
+              </div>
+             </div>
+             <div class="second-box"> 
+                 <div class="week">
+                 Week 6
+              </div>
+              <div class="date">
+                  13/3/2020 - 19/3/2020
+              </div>
+             </div>
+         </div>
+         <div class="two-container">
+             <div class="second-box"> 
+                 <div class="week">
+                 Week 6
+              </div>
+              <div class="date">
+                  13/3/2020 - 19/3/2020
+              </div>
+             </div>
+             <div class="second-box"> 
+                 <div class="week">
+                 Week 6
+              </div>
+              <div class="date">
+                  13/3/2020 - 19/3/2020
+              </div>
+             </div>
+         </div>
+         <div class="two-container">
+             <div class="second-box"> 
+                 <div class="week">
+                 Week 6
+              </div>
+              <div class="date">
+                  13/3/2020 - 19/3/2020
+              </div>
+             </div>
+             <div class="second-box"> 
+                 <div class="week">
+                 Week 6
+              </div>
+              <div class="date">
+                  13/3/2020 - 19/3/2020
+              </div>
+             </div>
+         </div>
+        <a v-if="$mq == 'sm' || $mq == 'md'" class="button rewards-bottom"> Back to promotion</a>
+    </div>
+    
+  </div>
+</template>
+
+<script>
+export default {
+  name: "RewardDetails",
+  components: {
+  },
+  data() {
+    return {
+    };
+  },
+  props: {
+    data: null,
+  },
+  computed:{
+  },
+  methods:{
+  },
+  beforeMount() {},
+  mounted(){
+
+  }
+};
+</script>
+
+<style lang="scss">
+.winner-details{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .close-icon{
+        position: absolute;
+        top: 5%;
+        right: 5%;
+    }    
+    .winner-body{
+        display: flex;
+        flex-direction: column;
+        width: 55%;
+        margin: 120px 50px;
+        padding: 0px 15px;
+        .title{
+            font-size: 30px;   
+            margin-bottom: 40px;
+        }
+        .redeem-expiry{
+            margin-top: 60px;
+            width: 70%;
+            h4{
+                font-size: 25px;
+                margin-bottom: 30px;
+            }
+            p{
+                padding-bottom: 30px
+            }
+        }
+        .first-box{
+            width: 100%;
+            border: 1px solid #DB1F27;
+            border-radius: 20px;
+            background: #B10017;
+            padding-top: 20px;
+            padding-left: 15px;
+            padding-bottom: 20px;
+            .week{
+                margin-bottom: 5px;
+            }
+            .date{
+                font-size: 20px;
+            }
+        }
+        .two-container{
+            display: flex;
+            margin-top: 25px;
+            justify-content: space-between;
+            .second-box{
+                width: 45%;
+                border: 1px solid #DB1F27;
+                border-radius: 20px;
+                background: #B10017;
+                padding-top: 20px;
+                padding-left: 15px;
+                padding-bottom: 20px;
+                .week{
+                margin-bottom: 5px;
+            }
+                .date{
+                    font-size: 20px;
+                }
+            }
+        }
+
+    }
+    .image-fluid{
+        img{
+            height: 100vh;
+        }
+    }
+    a.button.rewards-bottom{
+        margin-top: 30px;
+    }
+    @media only screen and (max-width: 1199px) {
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+        p{
+            line-height: 24px;
+        }
+        .winner-body{
+            width:100%;
+            margin-top: 45px;
+            margin-bottom: 0px;
+            margin: 50px 0px;
+            .title{
+                font-size: 20px;   
+                margin-bottom: 20px;
+            }
+            .redeem-expiry{
+                margin-top: 40px;
+                border-bottom: 1px solid #585858;
+                width: 100%;
+                h4{
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                }
+                p{
+                    padding-bottom: 20px;
+                    line-height: 24px;
+                }
+            }
+            .two-container{
+                flex-direction: column;
+                margin-top: 0px;
+                .second-box{
+                    margin-top: 25px;
+                    width: 100%;
+                }
+            }
+        }
+        .image-fluid{
+            img{
+                height: auto;
+                width: 100%;
+            }
+        }
+        a.button.rewards-bottom{
+            margin:auto;
+            margin-top:40px;
+            background: white;
+            color: black;
+        }
+        a.button.mobile{
+            margin:auto;
+            margin-top:-80px;
+            position: relative;
+            z-index: 10;
+        }
+        .close-icon{
+            position: absolute;
+            top: 0px;
+            right:0px;
+            margin-top: 10px;
+        }
+    }
+}
+</style>
