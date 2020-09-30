@@ -1,85 +1,51 @@
 <template>
   <div class="winner-details">
-      
-      <div class="image-fluid"> 
+
+      <div class="image-fluid">
         <img src="/img/winner/winner.png"/>
     </div>
     <div class="close-icon">
            <img src="/img/icons/close.png"/>
       </div>
      <div class="winner-body">
-         <div class="title"> 
+         <div class="title">
           <h3>WINNER LIST</h3>
          </div>
-         <div class="first-box"> 
+         <div class="first-box">
              <div class="week">
-                 Week 7
+                {{winnerLists[0].title}}
               </div>
               <div class="date">
-                  13/4/2020 - 19/4/2020
+                {{ formatDate(winnerLists[0].fromDate)}} -  {{formatDate(winnerLists[0].toDate)}}
               </div>
          </div>
-         <div class="two-container">
-             <div class="second-box"> 
+         <div class="two-container"   v-for="(item, index) in winnerLists"
+          :key="'winner'+index" v-if="index!=0&&winnerLists.length-1 != index" >
+             <div class="second-box" >
                  <div class="week">
-                 Week 6
+                {{winnerLists[index].title}}
               </div>
               <div class="date">
-                  13/3/2020 - 19/3/2020
+                {{ formatDate(winnerLists[index].fromDate)}} -  {{formatDate(winnerLists[index].toDate)}}
               </div>
              </div>
-             <div class="second-box"> 
+             <div class="second-box" v-if="winnerLists.length-1 != index">
                  <div class="week">
-                 Week 6
+                {{winnerLists[index+1].title}}
               </div>
               <div class="date">
-                  13/3/2020 - 19/3/2020
-              </div>
-             </div>
-         </div>
-         <div class="two-container">
-             <div class="second-box"> 
-                 <div class="week">
-                 Week 6
-              </div>
-              <div class="date">
-                  13/3/2020 - 19/3/2020
-              </div>
-             </div>
-             <div class="second-box"> 
-                 <div class="week">
-                 Week 6
-              </div>
-              <div class="date">
-                  13/3/2020 - 19/3/2020
-              </div>
-             </div>
-         </div>
-         <div class="two-container">
-             <div class="second-box"> 
-                 <div class="week">
-                 Week 6
-              </div>
-              <div class="date">
-                  13/3/2020 - 19/3/2020
-              </div>
-             </div>
-             <div class="second-box"> 
-                 <div class="week">
-                 Week 6
-              </div>
-              <div class="date">
-                  13/3/2020 - 19/3/2020
+                {{ formatDate(winnerLists[index+1].fromDate)}} -  {{formatDate(winnerLists[index+1].toDate)}}
               </div>
              </div>
          </div>
         <a v-if="$mq == 'sm' || $mq == 'md'" class="button rewards-bottom"> Back to promotion</a>
     </div>
-    
+
   </div>
 </template>
 
 <script>
+import moment from "moment";
 export default {
   name: "RewardDetails",
   components: {
@@ -92,8 +58,14 @@ export default {
     data: null,
   },
   computed:{
+    winnerLists(){
+      return this.data.luckyWinnerSection
+    }
   },
   methods:{
+    formatDate(date){
+      return  moment(date).format("DD/MM/YYYY")
+    }
   },
   beforeMount() {},
   mounted(){
@@ -111,7 +83,7 @@ export default {
         position: absolute;
         top: 5%;
         right: 5%;
-    }    
+    }
     .winner-body{
         display: flex;
         flex-direction: column;
@@ -119,7 +91,7 @@ export default {
         margin: 120px 50px;
         padding: 0px 15px;
         .title{
-            font-size: 30px;   
+            font-size: 30px;
             margin-bottom: 40px;
         }
         .redeem-expiry{
@@ -191,7 +163,7 @@ export default {
             margin-bottom: 0px;
             margin: 50px 0px;
             .title{
-                font-size: 20px;   
+                font-size: 20px;
                 margin-bottom: 20px;
             }
             .redeem-expiry{

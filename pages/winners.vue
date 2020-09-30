@@ -1,7 +1,7 @@
 <template>
   <div v-if="dataStatus.status == 200" id="main" class="winner-detail">
     <div class="wrapper">
-        <WinnerDetails :data="data.exclusivePrizes"/>
+        <WinnerDetails :data="data && data[0].luckyWinner"/>
     </div>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
         }
 
         a{
-            &.button{ 
+            &.button{
             text-decoration: none;
             filter:none;
             color:white;
