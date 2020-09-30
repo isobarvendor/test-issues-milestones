@@ -5,23 +5,23 @@
     <div class="container">
       <swiper class="swiper prize-swiper" :options="swiperOption">
         <swiper-slide
-          v-for="(item, index) in data.exclusivePrizes"
+          v-for="(item, index) in data.exclusizePrizesSection"
           :key="'prize'+index"
           class="prize-item"
         >
           <img
             v-if="$mq == 'sm'"
-            :src="item.imageMobile ? item.imageMobile.url : '/img/prize-default.svg'"
+            :src="item.image ? item.image[0].url : '/img/prize-default.svg'"
           />
-          <img v-else :src="item.imageDesktop ? item.imageDesktop.url : '/img/prize-default.svg'" />
-          <div class="prize-description">{{item.text}}</div>
+          <img v-else :src="item.image? item.image[0].url : '/img/prize-default.svg'" />
+          <div class="prize-description">{{item.title}}</div>
         </swiper-slide>
         <div class="prize-swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
-    <div v-if="winners.luckyWinnerFile">
-      <div class="header">{{winners.downloadLabel}}</div>
-      <a class="button">View winner list</a>
+    <div v-if="winners.luckyWinnerSection">
+      <div class="header">{{winners.title}}</div>
+      <a class="button" href="/winners">View winner list</a>
     </div>
   </div>
 </template>

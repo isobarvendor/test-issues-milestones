@@ -3,7 +3,7 @@
     <div class="wrapper">
       <Masthead :data="data ? data[0].homepage.mastheadSection :  null"/>
       <CampaignPeriod :data="configData ? configData[0].campaignPeriod : null"/>
-      <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="data && data[0].homepage.exclusivePrizes" :winners="data && data[0].homepage.luckyWinner"/>
+      <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="data && data[0].exclusivePrizes" :winners="data && data[0].luckyWinner"/>
       <HowItWorks :data="data && data[0].worksSection" />
 
       <SubmissionMechanics :dataForm="configData ? configData[0] : null" />
