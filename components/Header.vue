@@ -1,9 +1,9 @@
 <template>
   <header>
-    <a class="profile-button" :class="{'dark': isDark}" @click="toggleLog" v-if="showProfile">
+    <a class="profile-button" :class="{'dark': isDark}"  v-if="showProfile">
         <img class="profile-image" src="/img/dummy_profile.jpg">
-        <div class="profile-content">
-            <template v-if="logged">Sign in</template>
+        <div class="profile-content" @click="loginRoute">
+            <template v-if="!logged">Sign in</template>
             <template v-else>
                 <div class="column center">
                     <div class="user-coins">288</div>
@@ -80,8 +80,7 @@
 <script>
 export default {
     data(){
-        return{
-            logged:false,
+        return{ 
             isDark:false,
             isReward:false,
             expand: false
@@ -94,7 +93,7 @@ export default {
     },
     computed:{
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'|| !this.$store.state.login){
+            if(this.$route.name =='register'||this.$route.name =='login'){
                 return false
             }
             else{
@@ -108,6 +107,9 @@ export default {
             else{
                 return true;
             }
+        },
+        logged(){
+           return this.$store.state.login
         }
     },
     methods:{
@@ -134,6 +136,9 @@ export default {
         clickTerms(e){
             $nuxt.$router.push('/tnc');
             this.toggleMenu(e)
+        },
+        loginRoute(){
+            $nuxt.$router.push('/login');  
         },
         logout(){
           sessionStorage.clear();

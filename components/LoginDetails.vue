@@ -19,9 +19,9 @@
         <div v-on:click="redirectTo('google')" v-if="social.google">
           <span><img src="img/icons/google.png" /></span>
         </div>
-        <div v-on:click="redirectTo('email')" v-if="social.email">
+        <!--<div v-on:click="redirectTo('email')" v-if="social.email">
           <span><img src="img/icons/email.png" /></span>
-        </div>
+        </div>-->
       </div>
       <p>or</p>
     </div>
@@ -68,7 +68,7 @@
             v-html="errorMessage"
           ></div>
           <a class="button" v-on:click="userLogin()">Login</a>
-          <p>Forget Password</p>
+         <!-- <p>Forget Password</p>-->
           <p v-on:click="userSignUp()">Sign Up</p>
         </div>
       </div>
@@ -109,6 +109,9 @@ export default {
         window.location.origin +
         "/settoken";
     },
+    close(){
+        location.href="/"
+    },
     async userLogin() {
       this.$validator.validateAll().then((valid) => {
         if (valid) {
@@ -116,7 +119,7 @@ export default {
           this.$store
             .dispatch(LOGIN, this.login)
             .then((response) => {
-              this.$router.push("/account");
+              location.href="/"
             })
             .catch((error) => {
               if (error.response && error.response.data.status == "401") {

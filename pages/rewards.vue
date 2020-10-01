@@ -5,7 +5,7 @@
       <div class="container">
         <div class="header"> <span class="title">Rewards Catalogue</span>
           <div class="selections">
-            <v-select
+           <!-- <v-select
               :items="recent"
               label="Most recent"
               item-text ="text"
@@ -25,7 +25,7 @@
               prepend-inner-icon="mdi-magnify"
               v-model="search"
               class="search"
-            ></v-text-field>
+            ></v-text-field> -->
           </div>
         </div>
         <RewardsCatalogue :data="listPrizes"/>

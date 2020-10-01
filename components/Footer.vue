@@ -3,8 +3,8 @@
       <div class="container">
         <p v-html="footerText"></p>
         <p>
-          <a href="">Privacy Policy</a>
-          <a href="">Terms and conditions</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/tnc">Terms and conditions</a>
         </p>
       </div>
     </footer>
