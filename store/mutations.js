@@ -11,7 +11,9 @@ export default {
   SET_TOKEN:(state, data)=>{
       state.token = data;
   },
-
+  SET_ERROR:(state, data)=>{
+    state.errorLogin = data;
+},
   SET_LIST_PRIZE:(state, data)=>{
     state.listPrize = data;
   },

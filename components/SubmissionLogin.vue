@@ -5,7 +5,11 @@
       <a class="social-button line"  v-on:click="redirectTo('line')" v-if="social.line" ><i class="ic ic-line" /><span>Continue with LINE</span></a>
       <a class="social-button google"  v-on:click="redirectTo('google')" v-if="social.google"><i class="ic ic-google" /><span>Continue with Google</span></a>
       <a class="social-button email" href="/login" v-if="social.email"><i class="ic ic-email" /><span>Continue with email</span></a>
+     <div v-if="errorMessage" class="error">
+      {{errorMessage}}
   </div>
+  </div>
+
 </template>
 
 <script>
@@ -23,7 +27,9 @@ export default {
       }
     },
     computed: {
-
+      errorMessage(){
+        return this.$store.state.errorLogin;
+      }
     },
     mounted() {
 
@@ -35,5 +41,9 @@ export default {
 <style scoped>
   .text-center {
     text-align: center;
+  }
+  .error{
+    color:red;
+    margin-top: 30px;
   }
 </style>
