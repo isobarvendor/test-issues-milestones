@@ -19,9 +19,9 @@
         <div class="prize-swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
-    <div v-if="winners.luckyWinnerSection">
+    <div v-if="winners.luckyWinnerSection" class="winners-section">
       <div class="header">{{winners.title}}</div>
-      <a class="button" href="/winners">View winner list</a>
+      <a class="button" href="/winners">View winners list</a>
     </div>
   </div>
 </template>
@@ -67,5 +67,25 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.swiper-slide { }
+.campaign-section{
+.winners-section{
+  .button{
+    color: #333333;
+    background: #ffffff;
+    font-size: 14px;
+    width: 370px;
+    margin:auto;
+    display: table;
+    margin-top: 35px;
+    padding: 20px 90px;
+  }
+}
+@media only screen and (max-width: 1199px) {
+  .winners-section{
+    .button{
+      width:315px;
+    }
+  }
+}
+}
 </style>
