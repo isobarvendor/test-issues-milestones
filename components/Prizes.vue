@@ -1,7 +1,7 @@
 <template>
   <div class="container campaign-section">
     <div class="header">{{data.title}}</div>
-    <a href>{{data.description}}</a>
+    <div v-html="data.description"></div>
     <div class="container">
       <swiper class="swiper prize-swiper" :options="swiperOption">
         <swiper-slide
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         spaceBetween: 10,
         breakpoints: {
           // when window width is >= 320px
@@ -66,3 +66,6 @@ export default {
   beforeMount() {},
 };
 </script>
+<style scoped lang="scss">
+.swiper-slide { }
+</style>

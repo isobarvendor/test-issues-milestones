@@ -4,7 +4,7 @@
       <div class="image-fluid">
         <img src="/img/winner/winner.png"/>
     </div>
-    <div class="close-icon">
+    <div class="close-icon" @click="close">
            <img src="/img/icons/close.png"/>
       </div>
      <div class="winner-body">
@@ -65,6 +65,9 @@ export default {
   methods:{
     formatDate(date){
       return  moment(date).format("DD/MM/YYYY")
+    },
+    close(){
+        location.href="/"
     }
   },
   beforeMount() {},
@@ -83,6 +86,7 @@ export default {
         position: absolute;
         top: 5%;
         right: 5%;
+        z-index: 1;
     }
     .winner-body{
         display: flex;

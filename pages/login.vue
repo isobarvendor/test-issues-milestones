@@ -1,6 +1,6 @@
 <template>
   <div v-if="dataStatus.status == 200" id="main" class="login">
-    <div class="close"><img src="/img/icons/close.png"/></div>
+    <div class="close" @click="close"><img src="/img/icons/close.png"/></div>
     <div class="wrapper">
       <div class="container">
         <LoginDetails :social="dataSocial" />
@@ -67,6 +67,9 @@ export default {
         line: config.data[0].socialMedia.Line,
       };
     },
+    close(){
+        location.href="/"
+    }
   },
 };
 </script>
@@ -81,6 +84,7 @@ export default {
             position: absolute;
             top: 10px;
             right:20px;
+            z-index: 1;
         }
         @media only screen and (max-width: 767px) {
             .login{
