@@ -529,6 +529,9 @@ form {
     color:white;
     padding: .5em 0;
   }
+  input:focus {
+    outline: none;
+  }
   .top{
     justify-content: flex-start;
   }
