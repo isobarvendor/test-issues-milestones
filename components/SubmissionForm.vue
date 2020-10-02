@@ -1,7 +1,7 @@
 <template>
   <div  v-if="!submitted">
    <div class="header">Be the lucky one</div>
-  <form class="mechanics">
+  <form class="mechanics" autocomplete="off">
 
     <div class="details">
       <input type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
