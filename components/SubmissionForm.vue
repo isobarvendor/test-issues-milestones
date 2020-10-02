@@ -165,7 +165,7 @@ export default {
                 request["userId"]=this.$store.state.login.uuid;
                }
                if(this.amazonImage){
-                 request['fileurl']=this.amazonImage;
+                 request['imageurl']=this.amazonImage;
                }
                if(this.form.code){
                  request['pin']=this.form.code;
