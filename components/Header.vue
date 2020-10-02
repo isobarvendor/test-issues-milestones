@@ -125,8 +125,9 @@ export default {
         clickNav(e){
             let el = e.target.getAttribute('data-nav');
             if(el){
-                $nuxt.$router.push('/'+el)
-            }
+                //$nuxt.$router.push('/'+el)
+                location.href="/" + el            
+                }
             this.toggleMenu(e)
         },
         clickPrivacy(e){

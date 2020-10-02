@@ -26,7 +26,7 @@
         </div>
 
     </div>
-    <div class="profile-icon">
+   <!-- <div class="profile-icon">
             <img src="/img/icons/profile-icon.png"/>
       <div v-if="!image">
 
@@ -36,7 +36,7 @@
         <img :src="image" width="100" />
         <button @click="removeImage">Remove image</button>
       </div>
-    </div>
+    </div>-->
     </div>
 </div>
 </template>
