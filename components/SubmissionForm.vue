@@ -105,8 +105,8 @@ export default {
 
       return this.data ? this.data.campaignTypes.mechanicType : null;
     },
-    thankyousubmission(){
-       return this.data ? this.data.thankyousubmission : null;
+    thankyouSubmission(){
+       return this.data ? this.data.thankyouSubmission : null;
     }
   },
   methods:{
@@ -161,7 +161,7 @@ export default {
                           "email" : this.form.email
 
                     }
-               if(this.token){
+               if(this.$store.state.login){
                 request["userId"]=this.$store.state.login.uuid;
                }
                if(this.amazonImage){
