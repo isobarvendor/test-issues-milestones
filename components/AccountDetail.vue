@@ -17,7 +17,7 @@
         <img :src="login.imageUrl"/>
     </div>
     </div>
-    <div class="date-container">
+    <!--<div class="date-container">
         <p>Date of birth</p>
           <v-app>
               <v-row>
@@ -53,7 +53,7 @@
         </div>
         <div class="button-container">
             <a  class="button">Save</a>
-        </div>
+        </div>-->
 
 </div>
 </template>
@@ -103,6 +103,7 @@ export default {
 <style lang="scss">
 .account-detail{
     margin-top: 40px;
+    
     .theme--light.v-application{
         background: none !important;
     }
@@ -126,7 +127,13 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+        .profile-icon{
+            img{
+                width:235px;
+                height: 235px;
+                border-radius: 120px;
+            }
+        }
         .v-text-field__slot{
             border-bottom: 1px solid #585858;
         }

@@ -1,24 +1,27 @@
 <template>
   <div  v-if="!submitted">
    <div class="header">Be the lucky one</div>
-  <form>
+  <form class="mechanics">
 
-    <div>
+    <div class="details">
       <input type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
         <span class="error-message">{{ errors.first('name') }}</span>
     </div>
-    <div>
+    <div class="details">
       <input type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
         <span class="error-message">{{ errors.first('email') }}</span>
     </div>
-    <div v-if="submissionType=='with_code_submission'" >
+    <div v-if="submissionType=='with_code_submission'"  class="details">
       <input v-model="form.code"  v-validate="'required'" type="number" name="code" placeholder="10-digit code"/>
         <span class="error-message">{{ errors.first('code') }}</span>
     </div>
-    <div v-if="submissionType=='with_receipt'">
+    <div v-if="submissionType=='with_receipt'" class="details receipt">
       <div v-if="!image">
-       <h2>Upload reciept</h2>
-       <input type="file" @change="onFileChange" value="uploadReceipt">
+       <!--<h2>Upload reciept</h2>-->
+       <label for="file-upload" class="custom-file-upload">
+       <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload receipt</span>
+      </label>
+       <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
       </div>
       <div v-else>
         <img :src="image" width="100" />
@@ -29,26 +32,26 @@
     <br>
 
     <div class="row top">
-      <div class="col d-flex">
+      <div class="col d-flex consent">
         <div class="checkbox">
           <label for="form_tnc">
             <input type="checkbox" name="tnc" id="form_tnc" v-model="form.terms">
             <span></span>
           </label>
         </div>
-        <div>I accept the <a href="">Terms and Conditions</a> of this this redemption.</div>
+        <div class="terms">I accept the <a href="">Terms and Conditions</a> of this this redemption.</div>
       </div>
     </div>
 
     <div class="row top">
-      <div class="col d-flex">
+      <div class="col d-flex consent">
         <div class="checkbox">
           <label for="form_pp">
             <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
             <span></span>
           </label>
         </div>
-        <div>I accept the <a href="">Privacy Policy</a> of this redemption.</div>
+        <div class="terms">I accept the <a href="">Privacy Policy</a> of this redemption.</div>
       </div>
     </div>
    <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
@@ -250,4 +253,24 @@ export default {
     width: 100%;
     margin: 25px 0;
   }
+  input[type="file"] {
+    display: none;
+  }
+  .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 12px 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+}
+.custom-file-upload span{
+  padding-left: 20px;
+}
+button.get-code{
+  height: 60px !important;
+}
+form.mechanics{
+  margin: 0 1em;
+}
 </style>

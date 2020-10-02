@@ -506,13 +506,26 @@ form {
   max-width: 340px;
   width:100%;
   margin: 0 2em;
+  margin-top: 40px;
+  .details{
+    margin-bottom:30px;
+    &.receipt{
+      margin-top: 40px;
+    }
+  }
+  .consent{
+    .terms{
+      line-height: 28px;
+    }
+  }
+  
   input{
     width:100%;
     background:none;
     border:0;
     border-bottom:1px solid white;
     width:100%;
-    font-size: 20px;
+    font-size: 16px;
     color:white;
     padding: .5em 0;
   }
