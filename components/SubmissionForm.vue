@@ -58,7 +58,7 @@
     <v-btn class="get-code"  v-on:click="submit()">Enter Draw</v-btn>
   </form>
   </div>
-  <div v-else>
+  <div v-else class="thanks">
     <div class="header">{{thankyouSubmission.title}} </div>
     <div class="header">{{form.name}}</div>
     <div>
@@ -272,5 +272,8 @@ button.get-code{
 }
 form.mechanics{
   margin: 0 1em;
+}
+.thanks{
+  text-align: center;
 }
 </style>
