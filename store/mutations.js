@@ -23,8 +23,8 @@ export default {
   SET_FILE_AMAZON:(state, data)=>{
     state.fileUploaded = data;
   },
-  SET_AUTHENTICATION:(state,data)=>{
-    state.authentication = data
+  SET_CONFIG:(state,data)=>{
+    state.config = data
   }
 
 

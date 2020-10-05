@@ -73,7 +73,7 @@ export default {
 
       let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
       this.configData = config.data
-      this.configData.length>0 && this.$store.commit('SET_AUTHENTICATION',this.configData[0].campaignTypes.authentication)
+      this.configData.length>0 && this.$store.commit('SET_CONFIG',this.configData[0])
 
     }
 
