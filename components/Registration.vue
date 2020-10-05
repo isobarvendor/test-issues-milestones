@@ -115,7 +115,7 @@ export default {
               }
                await this.$store.dispatch(UPLOAD_FILE,upload)
                .then((response)=>{
-                  console.log(response)
+
                   this.amazonImage=response.data.url;
 
                 })
@@ -125,21 +125,21 @@ export default {
              if(this.amazonImage){
                  this.user.profilePicture=this.amazonImage;
                }
-               console.log('reach here');
+
             this.$store.dispatch(SIGNUP,this.user)
             .then( (response)=> {
               let login = {
                 email:this.user.email,
                 password:this.user.password
               }
-               console.log('reach here',response);
+
                this.$store.dispatch(LOGIN,login)
                 .then((response)=>{
                     this.$router.push('/account');
                 })
             })
             .catch((error) =>{
-                      console.log('reach here', error.response);
+
               if(error.response && error.response.data.status=='400'&&error.response.data.message=="error.validation"){
                 this.errorMessage='Please use another email';
               }else{

@@ -68,7 +68,7 @@ export default {
   },
   beforeMount() {},
   mounted(){
-    console.log(this.data)
+
   }
 };
 </script>

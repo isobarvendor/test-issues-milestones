@@ -34,12 +34,12 @@ export default {
         }
       ],
       noscript: [],
-      script: [
+      /*script: [
         {
           hid: "anime",
           src: "/js/anime.min.js"
         }
-      ],
+      ],*/
       css: []
     };
   },
@@ -69,8 +69,8 @@ export default {
         }
     }
     @media only screen and (max-width: 767px) {
-      
+
     }
   }
-  
+
 </style>

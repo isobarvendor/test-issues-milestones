@@ -68,12 +68,12 @@ export default {
         }
       ],
       noscript: [],
-      script: [
+      /*script: [
         {
           hid: "anime",
           src: "/js/anime.min.js"
         }
-      ],
+      ],*/
       css: []
     };
   },
@@ -108,7 +108,6 @@ export default {
 
           await  this.$store.dispatch(GET_LIST_PRIZE)
             .then((response)=>{
-              console.log(response)
                this.listPrizes=deepClone(response.data);
                this.listPrizesData=deepClone(response.data);
             })

@@ -24,7 +24,7 @@ export default {
   },
     computed:{
     campaignType(){
-      console.log(this.dataForm);
+
       return this.dataForm ? this.dataForm.campaignTypes : {
         authentication: "",
         campaignTypes: "",
