@@ -40,12 +40,12 @@
                 </div>
                 <div class="body-options">
                     <div class="img-text">
-                        <img src="/img/icons/reward.png"/>
+                        <img src="/img/icons/reward.png"  v-if="config ? config.Reward.Reward : true"/>
                         <div>
                             <a data-nav="rewards" @click="clickNav">Rewards Catalogue</a>
                         </div>
                     </div>
-                    <div class="img-text">
+                    <div class="img-text" v-if="config ? config.Wallet.Wallet : true">
                         <img src="/img/icons/wallet.png"/>
                         <div>
                             <a data-nav="wallet" @click="clickNav">My Wallet</a>
@@ -92,8 +92,11 @@ export default {
         }
     },
     computed:{
+      config(){
+        return  this.$store.state.config
+      },
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'||this.$store.state.authentication !='register'){
+            if(this.$route.name =='register'||this.$route.name =='login'||this.$store.state.config && this.$store.state.config.campaignTypes.authentication !='register'){
                 return false
             }
             else{
