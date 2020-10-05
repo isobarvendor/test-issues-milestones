@@ -11,7 +11,7 @@
          <div class="title">
           <h3>WINNER LIST</h3>
          </div>
-         <div class="first-box">
+         <div class="first-box" @click="winnerLists[0].pdfFile ?  openPDF(winnerLists[0].pdfFile.url ) : false">
              <div class="week">
                 {{winnerLists[0].title}}
               </div>
@@ -21,7 +21,7 @@
          </div>
          <div class="two-container"   v-for="(item, index) in winnerLists"
           :key="'winner'+index" v-if="index!=0&&winnerLists.length-1 != index" >
-             <div class="second-box" >
+             <div class="second-box" @click="winnerLists[index].pdfFile ?  openPDF(winnerLists[index].pdfFile.url ) : false" >
                  <div class="week">
                 {{winnerLists[index].title}}
               </div>
@@ -29,7 +29,7 @@
                 {{ formatDate(winnerLists[index].fromDate)}} -  {{formatDate(winnerLists[index].toDate)}}
               </div>
              </div>
-             <div class="second-box" v-if="winnerLists.length-1 != index">
+             <div class="second-box" v-if="winnerLists.length-1 != index" @click="winnerLists[index].pdfFile ?  openPDF(winnerLists[index].pdfFile.url ) : false">
                  <div class="week">
                 {{winnerLists[index+1].title}}
               </div>
@@ -68,6 +68,12 @@ export default {
     },
     close(){
         location.href="/"
+    },
+    openPDF(link){
+      window.open(
+        link,
+        '_blank'
+      );
     }
   },
   beforeMount() {},

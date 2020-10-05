@@ -17,7 +17,7 @@
         </div>
     </a>
     <div class="nav-container">
-        <a class="nav-button" @click="toggleMenu" v-if="showMenu">
+        <a class="nav-button" @click="toggleMenu" >
             <div>
                 <span></span>
                 <span></span>
@@ -51,7 +51,7 @@
                             <a data-nav="wallet" @click="clickNav">My Wallet</a>
                         </div>
                     </div>
-                    <div class="img-text">
+                    <div class="img-text" v-if="logged">
                         <img src="/img/icons/account.png"/>
                         <div>
                             <a data-nav="account" @click="clickNav">Account Details</a>
@@ -67,7 +67,7 @@
                 <div class="tnc-container">
                     <p><a @click="clickPrivacy">Privacy Policy</a></p>
                     <p><a @click="clickTerms">Terms & Conditions</a></p>
-                    <p class="logout" @click="logout">Log out</p>
+                    <p v-if="logged"  class="logout" @click="logout">Log out</p>
                 </div>
 
             </div>
