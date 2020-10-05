@@ -111,7 +111,7 @@ export default {
         logged(){
            return this.$store.state.login
         }
-        
+
     },
     methods:{
         toggleMenu(e){
@@ -132,15 +132,15 @@ export default {
             this.toggleMenu(e)
         },
         clickPrivacy(e){
-            $nuxt.$router.push('/privacy');
+            location.href='/privacy';
             this.toggleMenu(e)
         },
         clickTerms(e){
-            $nuxt.$router.push('/tnc');
+            location.href='/tnc';
             this.toggleMenu(e)
         },
         loginRoute(){
-            $nuxt.$router.push('/login');
+            location.href='/login';
         },
         logout(){
           sessionStorage.clear();

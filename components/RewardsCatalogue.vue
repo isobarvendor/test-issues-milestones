@@ -47,7 +47,7 @@ export default {
     	this.currentPage = this.currentPage - 1 || 1;
     },
     goDetail(rewardID){
-      this.$router.push({ path: 'rewardsDetail/'+rewardID})
+       location.href= 'rewardsDetail/'+rewardID;
     }
   },
   beforeMount() {},

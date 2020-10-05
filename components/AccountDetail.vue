@@ -68,7 +68,7 @@ export default {
   },
   created(){
     if(!this.$store.state.token){
-      this.$router.push('/login');
+      location.href='/login';
     }
      this.getAccount();
   },
@@ -105,7 +105,7 @@ export default {
 <style lang="scss">
 .account-detail{
     margin-top: 40px;
-    
+
     .theme--light.v-application{
         background: none !important;
     }

@@ -127,7 +127,7 @@ export default {
       });
     },
     userSignUp() {
-      this.$router.push("/register");
+      location.href="/register";
     },
   },
   beforeMount() {},

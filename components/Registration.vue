@@ -135,7 +135,7 @@ export default {
 
                this.$store.dispatch(LOGIN,login)
                 .then((response)=>{
-                    this.$router.push('/account');
+                    location.href='/account';
                 })
             })
             .catch((error) =>{
