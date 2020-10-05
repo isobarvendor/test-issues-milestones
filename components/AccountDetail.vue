@@ -7,9 +7,11 @@
             <v-text-field
             v-model="login.name"
             label=""
+            disabled
           ></v-text-field>
              <v-text-field
             v-model="login.email"
+            disabled
           ></v-text-field>
         </div>
      </div>
