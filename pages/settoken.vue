@@ -20,9 +20,9 @@ export default {
     }
 
     if(this.$route.query.from=="home"){
-       this.$router.push('/');
+       location.href="/";
     }else{
-        this.$router.push('/account');
+        location.href="/account";
     }
 
     },
