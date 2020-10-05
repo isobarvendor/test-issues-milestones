@@ -56,7 +56,7 @@ export default {
             margin-left: auto;
         }
         .v-expansion-panel{
-            background: transparent;
+            background: transparent !important;
             color: #ffffff;
             border-bottom: 1px solid #585858;
         }
