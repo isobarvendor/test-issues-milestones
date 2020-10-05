@@ -1,6 +1,7 @@
 <template>
   <header>
-    <a class="profile-button" :class="{'dark': isDark}"  v-if="showProfile">
+    <client-only>
+    <a class="profile-button" :class="[{'dark': isDark, invisible:!showProfile }]"  >
         <img class="profile-image" src="/img/dummy_profile.jpg">
         <div class="profile-content" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
@@ -38,9 +39,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="body-options">
-                    <div class="img-text">
-                        <img src="/img/icons/reward.png"  v-if="config ? config.Reward.Reward : true"/>
+                <div class="body-options" >
+                    <div class="img-text" v-if="config ? config.Reward.Reward : true">
+                        <img src="/img/icons/reward.png"  />
                         <div>
                             <a data-nav="rewards" @click="clickNav">Rewards Catalogue</a>
                         </div>
@@ -73,7 +74,9 @@
             </div>
         </v-card>
         </v-expand-transition>
+
     </div>
+    </client-only>
   </header>
 </template>
 
@@ -96,7 +99,7 @@ export default {
         return  this.$store.state.config
       },
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'||this.$store.state.config && this.$store.state.config.campaignTypes.authentication !='register'){
+            if(this.$route.name =='register'||this.$route.name =='login'||(this.$store.state.config && this.$store.state.config.campaignTypes.authentication !='register')){
                 return false
             }
             else{
@@ -159,6 +162,9 @@ export default {
 </script>
 
 <style lang="scss">
+.invisible{
+  opacity: 0;
+}
 .nav-container{
     display: flex;
     flex-direction: column;
