@@ -38,11 +38,7 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div class="body-options" >
-=======
                 <div class="body-options">
->>>>>>> 455b15cf86a923fb400e68445a07acf4961b1cf5
                     <div class="img-text" v-if="config ? config.Reward.Reward : true">
                         <img src="/img/icons/reward.png"  />
                         <div>
@@ -173,15 +169,10 @@ export default {
 </script>
 
 <style lang="scss">
-<<<<<<< HEAD
-.invisible{
-  opacity: 0;
-=======
 .profile-button{
     &.invisible{
         opacity:0;
     }
->>>>>>> 455b15cf86a923fb400e68445a07acf4961b1cf5
 }
 .nav-container{
     display: flex;
