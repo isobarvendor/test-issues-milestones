@@ -134,7 +134,6 @@ export default {
               }
                await this.$store.dispatch(UPLOAD_FILE,upload)
                .then((response)=>{
-                  console.log(response)
                   this.amazonImage=response.data.filePath;
 
                 })
@@ -184,7 +183,7 @@ export default {
               }
               this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);
               this.submitted=false
-              //console.log(error.response.data);
+
               if(error.response){
                 this.errorMessage='Oops something went wrong please try again';
               }

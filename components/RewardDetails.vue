@@ -39,7 +39,6 @@ export default {
   computed:{
     data(){
       let index=this.$route.params.id;
-      console.log("indes",index);
       return  this.$store.state.listPrize && this.$store.state.listPrize.prizeList[index];
     }
   },

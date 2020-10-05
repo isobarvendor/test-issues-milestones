@@ -82,7 +82,6 @@ export default {
   },
   mounted() {
      this.fetchData();
-    // console.log('data status', dataStatus)
   },
 }
 </script>

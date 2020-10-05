@@ -80,7 +80,7 @@
 <script>
 export default {
     data(){
-        return{ 
+        return{
             isDark:false,
             isReward:false,
             expand: false
@@ -88,7 +88,7 @@ export default {
     },
     watch:{
         $route(n,o){
-            console.log(n)
+
         }
     },
     computed:{
@@ -126,7 +126,7 @@ export default {
             let el = e.target.getAttribute('data-nav');
             if(el){
                 //$nuxt.$router.push('/'+el)
-                location.href="/" + el            
+                location.href="/" + el
                 }
             this.toggleMenu(e)
         },
@@ -139,7 +139,7 @@ export default {
             this.toggleMenu(e)
         },
         loginRoute(){
-            $nuxt.$router.push('/login');  
+            $nuxt.$router.push('/login');
         },
         logout(){
           sessionStorage.clear();

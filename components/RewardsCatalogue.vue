@@ -47,8 +47,6 @@ export default {
     	this.currentPage = this.currentPage - 1 || 1;
     },
     goDetail(rewardID){
-      console.log("rewardID",rewardID)
-      console.log(this.$router);
       this.$router.push({ path: 'rewardsDetail/'+rewardID})
     }
   },
