@@ -34,12 +34,12 @@ export default {
         }
       ],
       noscript: [],
-      script: [
+     /*script: [
         {
           hid: "anime",
           src: "/js/anime.min.js"
         }
-      ],
+      ],*/
       css: []
     };
   },

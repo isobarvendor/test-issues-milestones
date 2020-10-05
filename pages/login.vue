@@ -7,9 +7,9 @@
       </div>
     </div>
   </div>
-  
+
   <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}} 
+    Status: {{dataStatus.status}}
     <br />
     {{dataStatus.message}}
   </div>
@@ -36,12 +36,12 @@ export default {
         }
       ],
       noscript: [],
-      script: [
+      /*script: [
         {
           hid: "anime",
           src: "/js/anime.min.js"
         }
-      ],
+      ],*/
       css: []
     };
   },
@@ -60,8 +60,8 @@ export default {
         "https://ayo.aircovery.com/cms-api/campaign-configurations"
       );
       this.dataStatus = { status: result.status, message: result.statusText };
-      this.dataSocial = { 
-        email: config.data[0].socialMedia.Email, 
+      this.dataSocial = {
+        email: config.data[0].socialMedia.Email,
         facebook: config.data[0].socialMedia.Facebook,
         google: config.data[0].socialMedia.Google,
         line: config.data[0].socialMedia.Line,
