@@ -5,7 +5,8 @@ export default () => ({
     token:null,
     fileUploaded:null,
     listPrize:null,
-    errorLogin:null
+    errorLogin:null,
+    authentication:null
 
     /** TO-DO make error dialog as a component instead of residing in app.vue */
    // globalErrorDialog: false

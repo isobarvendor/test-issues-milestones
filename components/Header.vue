@@ -93,7 +93,7 @@ export default {
     },
     computed:{
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'){
+            if(this.$route.name =='register'||this.$route.name =='login'||this.$store.state.authentication !='register'){
                 return false
             }
             else{
@@ -111,6 +111,7 @@ export default {
         logged(){
            return this.$store.state.login
         }
+        
     },
     methods:{
         toggleMenu(e){

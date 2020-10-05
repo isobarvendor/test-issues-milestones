@@ -38,12 +38,9 @@
       <a class="social-button google" v-on:click="redirectTo('google')"
         ><i class="ic ic-google" /><span>Continue with Google</span></a
       >
-      <a class="social-button email" v-on:click="redirectTo('email')"
-        ><i class="ic ic-email" /><span>Continue with email</span></a
-      >
     </div>
     <transition name="fade">
-      <div class="details" v-if="show">
+      <div class="details">
         <div class="input-container">
           <v-text-field
             label="Email address"
