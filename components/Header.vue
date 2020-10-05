@@ -1,5 +1,6 @@
 <template>
   <header>
+    <client-only>
     <a class="profile-button" :class="[{'dark': isDark},{'invisible':!showProfile}]">
         <img class="profile-image" src="/img/dummy_profile.jpg">
         <div class="profile-content" @click="loginRoute">
