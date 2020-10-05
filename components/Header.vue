@@ -1,7 +1,6 @@
 <template>
   <header>
-    <client-only>
-    <a class="profile-button" :class="[{'dark': isDark, invisible:!showProfile }]"  >
+    <a class="profile-button" :class="[{'dark': isDark},{'invisible':!showProfile}]">
         <img class="profile-image" src="/img/dummy_profile.jpg">
         <div class="profile-content" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
@@ -18,7 +17,7 @@
         </div>
     </a>
     <div class="nav-container">
-        <a class="nav-button" @click="toggleMenu" >
+        <a class="nav-button" @click="toggleMenu" v-if="showMenu">
             <div>
                 <span></span>
                 <span></span>
@@ -39,7 +38,11 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="body-options" >
+=======
+                <div class="body-options">
+>>>>>>> 455b15cf86a923fb400e68445a07acf4961b1cf5
                     <div class="img-text" v-if="config ? config.Reward.Reward : true">
                         <img src="/img/icons/reward.png"  />
                         <div>
@@ -106,8 +109,16 @@ export default {
                 return true;
             }
         },
+        ifRegister(){
+            if (this.$store.state.authentication =='register'){
+                return true;
+            }
+            else{
+                return false;
+            }
+        },
         showMenu(){
-            if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'|| !this.$store.state.login){
+            if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'||this.$route.name =='winners'){
                 return false
             }
             else{
@@ -162,8 +173,15 @@ export default {
 </script>
 
 <style lang="scss">
+<<<<<<< HEAD
 .invisible{
   opacity: 0;
+=======
+.profile-button{
+    &.invisible{
+        opacity:0;
+    }
+>>>>>>> 455b15cf86a923fb400e68445a07acf4961b1cf5
 }
 .nav-container{
     display: flex;
