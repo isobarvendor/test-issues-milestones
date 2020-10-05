@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a class="profile-button" :class="{'dark': isDark}"  v-if="showProfile">
+    <a class="profile-button" :class="[{'dark': isDark},{'invisible':!ifRegister}]">
         <img class="profile-image" src="/img/dummy_profile.jpg">
         <div class="profile-content" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
@@ -17,7 +17,7 @@
         </div>
     </a>
     <div class="nav-container">
-        <a class="nav-button" @click="toggleMenu" >
+        <a class="nav-button" @click="toggleMenu" v-if="showMenu">
             <div>
                 <span></span>
                 <span></span>
@@ -93,15 +93,23 @@ export default {
     },
     computed:{
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'||this.$store.state.authentication !='register'){
+            if(this.$route.name =='register'||this.$route.name =='login'){
                 return false
             }
             else{
                 return true;
             }
         },
+        ifRegister(){
+            if (this.$store.state.authentication =='register'){
+                return true;
+            }
+            else{
+                return false;
+            }
+        },
         showMenu(){
-            if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'|| !this.$store.state.login){
+            if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'){
                 return false
             }
             else{
@@ -156,6 +164,11 @@ export default {
 </script>
 
 <style lang="scss">
+.profile-button{
+    &.invisible{
+        opacity:0;
+    }
+}
 .nav-container{
     display: flex;
     flex-direction: column;
