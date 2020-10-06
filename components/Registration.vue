@@ -26,17 +26,17 @@
         </div>
 
     </div>
-   <!-- <div class="profile-icon">
-            <img src="/img/icons/profile-icon.png"/>
-      <div v-if="!image">
+    <div class="profile-icon">
+            <img src="/img/icons/profile-icon.png"  v-if="!image"/>
+      <div v-if="!image" class="input-area">
 
        <input type="file" @change="onFileChange" value="uploadReceipt">
       </div>
-      <div v-else>
-        <img :src="image" width="100" />
+      <div v-else-if="image" class="input-area">
+        <img :src="image" width="100%" /><BR/>
         <button @click="removeImage">Remove image</button>
       </div>
-    </div>-->
+    </div>
     </div>
 </div>
 </template>
@@ -165,6 +165,26 @@ export default {
 
 <style lang="scss">
 .registration{
+  .profile-icon{
+    position: relative;
+     input{
+      width: 250px;
+      height: 250px;
+      position: absolute;
+      opacity: 0;
+      top:0px;
+
+    }
+    .input-area{
+        img{
+                width:235px;
+                height: 235px;
+                border-radius: 120px;
+            }
+    }
+
+  }
+
     .error-message{
       color:red;
     }
