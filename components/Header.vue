@@ -2,7 +2,8 @@
   <header>
     <client-only>
     <a class="profile-button" :class="[{'dark': isDark},{'invisible':!showProfile}]">
-        <img class="profile-image" src="/img/dummy_profile.jpg">
+        <img class="profile-image" :src="logged.imageUrl" v-if="logged&& logged.imageUrl">
+        <img class="profile-image" src="/img/dummy_profile.jpg" v-else>
         <div class="profile-content" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
             <template v-else>
@@ -31,7 +32,7 @@
                 <div class="wallet-desktop" >
                     <div class="wallet-swiper">
                         <div class="wallet-swiper-item">
-                        <img src="/img/rewards/jersey.png"
+                        <img src="/img/winner/winner.png"
                         />
                         </div>
                         <div class="description bg">
@@ -40,6 +41,12 @@
                     </div>
                 </div>
                 <div class="body-options">
+                    <div class="img-text">
+                        <img src="/img/icons/reward.png"  />
+                        <div>
+                            <a href="/">Home</a>
+                        </div>
+                    </div>
                     <div class="img-text" v-if="config ? config.Reward.Reward : true">
                         <img src="/img/icons/reward.png"  />
                         <div>
