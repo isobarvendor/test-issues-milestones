@@ -1,26 +1,24 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="help">
+<client-only>
+  <div v-if="CMSContent" id="main" class="help">
     <div class="wrapper">
       <div class="container">
-           <div class="header">{{data[0].helpSection.title}}</div>
-        <FaqSection :data="data[0].helpSection" :disabled="disabled"/>
+           <div class="header">{{ CMSContent[0].helpSection.title}}</div>
+        <FaqSection :data="CMSContent[0].helpSection" :disabled="disabled"/>
       </div>
 
     </div>
   </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
-  </div>
+</client-only>
 </template>
 
 <script>
+
 import FaqSection from '@/components/FaqSection'
+import deepClone from 'deep-clone'
 export default {
   data(){
     return{
-      dataStatus:{},
       data:null,
       disabled: null
     }
@@ -45,18 +43,15 @@ export default {
       css: []
     };
   },
-  created() {
-    this.fetchData();
+  computed: {
+       CMSContent(){
+      return deepClone(this.$store.state.CMSContent)
+     },
+     configData(){
+       return deepClone(this.$store.state.config)
+     }
   },
-  methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-    },
-  },
+
 };
 </script>
 

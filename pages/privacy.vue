@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="privacy">
+  <div  v-if="data" id="main" class="privacy">
     <div class="wrapper">
       <div class="container">
         <PrivacySection :data="data[0].privacy"/>
@@ -7,15 +7,11 @@
 
     </div>
   </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
-  </div>
 </template>
 
 <script>
 import PrivacySection from '@/components/PrivacySection'
+import deepClone from 'deep-clone'
 export default {
   data(){
     return{
@@ -44,17 +40,19 @@ export default {
     };
   },
   created() {
-    this.fetchData();
+
   },
   methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-    },
+
   },
+  computed: {
+    data(){
+    return deepClone(this.$store.state.CMSContent)
+    },
+    configData(){
+      return deepClone(this.$store.state.config)
+    }
+},
 };
 </script>
 

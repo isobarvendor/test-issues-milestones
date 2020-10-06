@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="wallet">
+  <div v-if="data" id="main" class="wallet">
     <div class="wrapper">
       <div class="container">
         <div class="header">Your Wallet</div>
@@ -9,11 +9,7 @@
 
     </div>
   </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
-  </div>
+
 </template>
 
 <script>
@@ -30,6 +26,14 @@ export default {
       listWallet:[],
       listWalletExpired:[]
     }
+  },
+  computed:{
+      data(){
+      return deepClone(this.$store.state.CMSContent)
+     },
+     configData(){
+       return deepClone(this.$store.state.config)
+     }
   },
   head() {
     return {
@@ -52,22 +56,13 @@ export default {
     };
   },
   created() {
-    this.fetchData();
+
     this.getListWallet();
     this.getListWalletExpired();
     this.getListWalletTransaction();
   },
   methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
 
-      let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
-      this.configData = config.data
-    },
      async getListWallet(){
      /* let request= {
               "configurationId": "confIdExample123",

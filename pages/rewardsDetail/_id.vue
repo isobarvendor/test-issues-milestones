@@ -1,7 +1,7 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="reward-detail">
+  <div id="main" class="reward-detail">
     <div class="wrapper">
-        <RewardDetails :data="data.exclusivePrizes"/>
+        <RewardDetails />
     </div>
   </div>
 </template>
@@ -36,21 +36,8 @@ export default {
       css: []
     };
   },
-  computed :{
-  },
+  computed :{}
 
-  created() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-    },
-  },
 };
 </script>
 

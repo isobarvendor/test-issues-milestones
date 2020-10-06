@@ -14,3 +14,5 @@ export const REJECT_VOUCHER= `rejectVoucher`;
 export const UPLOAD_FILE= `uploadFile`;
 
 export const DELETE_FILE= `deleteFile`;
+
+export const FETCH_CMS_DATA= `fethCMSData`;

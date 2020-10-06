@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="winner-detail">
+  <div v-if="data" id="main" class="winner-detail">
     <div class="wrapper">
         <WinnerDetails :data="data && data[0].luckyWinner"/>
     </div>
@@ -37,20 +37,17 @@ export default {
     };
   },
   computed :{
+      data(){
+      return deepClone(this.$store.state.CMSContent)
+     },
+     configData(){
+       return deepClone(this.$store.state.config)
+     }
   },
 
   created() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-    },
-  },
+
+  }
 };
 </script>
 

@@ -25,6 +25,9 @@ export default {
   },
   SET_CONFIG:(state,data)=>{
     state.config = data
+  },
+  SET_CMS_CONTENT:(state,data)=>{
+    state.CMSContent = data
   }
 
 

@@ -1,28 +1,27 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main">
-    <div class="wrapper">
-      <Masthead :data="data ? data[0].homepage.mastheadSection :  null"/>
-      <CampaignPeriod :data="configData ? configData[0].campaignPeriod : null"/>
-      <Prizes v-if="configData && configData[0].ExclusivePrizes.ExclusivePrizes" :data="data && data[0].exclusivePrizes" :winners="data && data[0].luckyWinner"/>
-      <HowItWorks :data="data && data[0].worksSection" />
+  <div id="main" >
+    <client-only>
+    <div class="wrapper" v-if="CMSContent">
+      <Masthead :data="CMSContent ? CMSContent[0].homepage.mastheadSection :  null"/>
+      <CampaignPeriod :data="configData ? configData.campaignPeriod : null"/>
+      <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent && CMSContent[0].exclusivePrizes" :winners="CMSContent && CMSContent[0].luckyWinner"/>
+      <HowItWorks :data="CMSContent && CMSContent[0].worksSection" />
 
       <SubmissionMechanics :dataForm="configData ? configData[0] : null" />
     </div>
-    <Footer :data="data[0].footer"/>
-  </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}} <br/>
-    {{dataStatus.message}}
+    <Footer :data="CMSContent && CMSContent[0].footer"/>
+    </client-only>
   </div>
 </template>
 
 <script >
-import { GET_LIST_PRIZE} from '@/store/action_types';
+
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
 import HowItWorks from '../components/HowItWorks'
 import SubmissionMechanics from '../components/SubmissionMechanics'
 import Footer from '../components/Footer'
+import deepClone from 'deep-clone'
 
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
@@ -31,11 +30,7 @@ import Footer from '../components/Footer'
 export default {
   data(){
     return{
-      dataStatus:{},
-      data:null,
-      configData: null,
-      campaignType: 0,
-      listPrizes:null
+
     }
   },
   head() {
@@ -66,24 +61,18 @@ export default {
   },
 
   methods:{
-    async fetchData(){
-      let result = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaigns')
-      this.dataStatus = {status:result.status, message:result.statusText}
-      this.data = result.data
 
-      let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
-      this.configData = config.data
-      this.configData.length>0 && this.$store.commit('SET_CONFIG',this.configData[0])
-
-    }
 
   },
   computed: {
+      CMSContent(){
+      return deepClone(this.$store.state.CMSContent)
+     },
+     configData(){
+       return deepClone(this.$store.state.config)
+     }
+  },
 
-  },
-  mounted() {
-     this.fetchData();
-  },
 }
 </script>
 

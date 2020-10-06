@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="tnc">
+  <div v-if="data" id="main" class="tnc">
     <div class="wrapper">
       <div class="container">
         <TncSection :data="data.exclusivePrizes"/>
@@ -7,11 +7,7 @@
 
     </div>
   </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
-  </div>
+
 </template>
 
 <script>
@@ -20,7 +16,7 @@ export default {
   data(){
     return{
       dataStatus:{},
-      data:null,
+
     }
   },
   head() {
@@ -43,18 +39,15 @@ export default {
       css: []
     };
   },
-  created() {
-    this.fetchData();
+ computed: {
+       data(){
+      return deepClone(this.$store.state.CMSContent)
+     },
+     configData(){
+       return deepClone(this.$store.state.config)
+     }
   },
-  methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-    },
-  },
+
 };
 </script>
 

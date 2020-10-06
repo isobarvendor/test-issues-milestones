@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="login">
+  <div id="main" class="login">
     <div class="close" @click="close"><img src="/img/icons/close.png"/></div>
     <div class="wrapper">
       <div class="container">
@@ -7,16 +7,11 @@
       </div>
     </div>
   </div>
-
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
-  </div>
 </template>
 
 <script>
 import LoginDetails from '@/components/LoginDetails'
+import deepClone from 'deep-clone'
 export default {
   data(){
     return{
@@ -45,28 +40,22 @@ export default {
       css: []
     };
   },
-  created() {
-    this.fetchData();
+   computed: {
+       CMSContent(){
+       let config= deepClone(this.$store.state.CMSContent)
+          this.dataSocial =config ? {
+              email: config.data[0].socialMedia.Email,
+              facebook: config.data[0].socialMedia.Facebook,
+              google: config.data[0].socialMedia.Google,
+              line: config.data[0].socialMedia.Line,
+      } : null;
+        return config;
+     },
+     configData(){
+       return deepClone(this.$store.state.config)
+     }
   },
   methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-
-      let config = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaign-configurations"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.dataSocial = {
-        email: config.data[0].socialMedia.Email,
-        facebook: config.data[0].socialMedia.Facebook,
-        google: config.data[0].socialMedia.Google,
-        line: config.data[0].socialMedia.Line,
-      };
-    },
     close(){
         location.href="/"
     }

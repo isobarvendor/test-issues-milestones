@@ -1,6 +1,7 @@
 
 import GeneralAPI from '../api/general';
 import NGPSAPI from '../api/ngps';
+import CMSAPI from '../api/cms';
 import {
   LOGIN,
   SIGNUP,
@@ -11,7 +12,8 @@ import {
   REJECT_VOUCHER,
   SUBMIT_FORM,
   UPLOAD_FILE,
-  DELETE_FILE
+  DELETE_FILE,
+  FETCH_CMS_DATA
 } from './action_types';
 
 export default {
@@ -31,7 +33,6 @@ export default {
   [GET_ACCOUNT]: ({ commit, state, getters }, token) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-
         GeneralAPI.getAccount(token)
         .then(response => {
           commit('SET_LOGIN_ACCOUNT', response.data);
@@ -187,6 +188,25 @@ export default {
           console.error(error);
           return reject(error);
         });
+    });
+  },
+  [FETCH_CMS_DATA]: ({ commit, state, getters }) => {
+    return new Promise( async(resolve, reject) =>{
+      const moduleState = state;
+      let result = await CMSAPI.getCMSContent();
+      let dataStatus = {status:result.status, message:result.statusText}
+      result.data && commit('SET_CMS_CONTENT',result.data)
+      let config = await CMSAPI.getCMSConfig();
+
+      config.data && commit('SET_CONFIG',config.data[0])
+
+      if(dataStatus.status == 200){
+        resolve(result)
+      }else{
+        reject(dataStatus);
+      }
+
+
     });
   },
 

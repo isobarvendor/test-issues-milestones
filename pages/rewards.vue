@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="rewards">
+  <div v-if="data" id="main" class="rewards">
     <div class="wrapper">
 
       <div class="container">
@@ -33,11 +33,7 @@
 
     </div>
   </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
-  </div>
+
 </template>
 
 <script>
@@ -78,33 +74,25 @@ export default {
     };
   },
   computed: {
+      data(){
+    return deepClone(this.$store.state.CMSContent)
+    },
+    configData(){
+      return deepClone(this.$store.state.config)
+    },
     recent(){
-        return this.data  && this.data.exclusivePrizes
+        return this.data  && this.$store.state.CMSContent.exclusivePrizes
     },
     filterby(){
-        return this.data && this.data.exclusivePrizes
+        return this.data && tthis.$store.state.CMSContent.exclusivePrizes
     }
   },
 
   created() {
-    this.fetchData();
     this.getListPrize();
   },
-  methods: {
-    async fetchData() {
-
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-
-      let config = await this.$axios.get('https://ayo.aircovery.com/cms-api/campaign-configurations')
-      this.configData = config.data
-
-    },
+  methods:{
     async getListPrize(){
-
 
           await  this.$store.dispatch(GET_LIST_PRIZE)
             .then((response)=>{

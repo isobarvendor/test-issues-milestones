@@ -1,16 +1,11 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="register">
+  <div v-if="data" id="main" class="register">
     <div class="wrapper">
       <div class="container">
         <Registration :data="data ? data[0].signUp : null"/>
       </div>
 
     </div>
-  </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
   </div>
 </template>
 
@@ -46,16 +41,14 @@ export default {
   created() {
     this.fetchData();
   },
-  methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
+  computed: {
+    data(){
+    return deepClone(this.$store.state.CMSContent)
+    },
+    configData(){
+      return deepClone(this.$store.state.config)
     }
-
-  },
+    },
 };
 </script>
 
