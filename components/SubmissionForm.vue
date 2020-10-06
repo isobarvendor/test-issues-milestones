@@ -188,7 +188,7 @@ export default {
                 this.errorMessage='Oops something went wrong please try again';
               }
                if(error.response && error.response.data.status=='401'){
-                  sessionStorage.clear();
+                  localStorage.clear();
                   this.$store.commit('SET_LOGIN_ACCOUNT', null);
                   location.reload();
                }

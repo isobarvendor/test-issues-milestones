@@ -94,7 +94,7 @@ export default {
 
            this.$validator.validateAll().then(async(valid) => {
          if(this.$store.state.login){
-            sessionStorage.clear();
+            localStorage.clear();
           }
          if(valid){
              this.errorMessage=null;

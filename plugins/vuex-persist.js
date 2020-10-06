@@ -17,7 +17,7 @@ export default ({ store }) => { new VuexPersistence({
   storage: {
     getItem: () => {
       // Get the store from local storage.
-      const store = window.sessionStorage.getItem(storageKey);
+      const store = window.localStorage.getItem(storageKey);
 
       if (store) {
         try {
@@ -28,7 +28,7 @@ export default ({ store }) => { new VuexPersistence({
           return JSON.parse(bytes.toString(Crypto.enc.Utf8));
         } catch (e) {
           // The store will be reset if decryption fails.
-          window.sessionStorage.removeItem(storageKey);
+          window.localStorage.removeItem(storageKey);
         }
       }
 
@@ -39,9 +39,9 @@ export default ({ store }) => { new VuexPersistence({
       const store = Crypto.AES.encrypt(value, encryptionToken).toString();
 
       // Save the encrypted store in local storage.
-      return window.sessionStorage.setItem(storageKey, store);
+      return window.localStorage.setItem(storageKey, store);
     },
-    removeItem: () => window.sessionStorage.removeItem(storageKey),
+    removeItem: () => window.localStorage.removeItem(storageKey),
   },
 
 }).plugin(store);

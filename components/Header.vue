@@ -157,7 +157,7 @@ export default {
             location.href='/login';
         },
         logout(){
-          sessionStorage.clear();
+          localStorage.clear();
           this.expand = !this.expand;
           location.href="/";
 
