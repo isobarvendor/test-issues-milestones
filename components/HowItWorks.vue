@@ -21,4 +21,7 @@ export default {
 </script>
 
 <style>
+.howitworks{
+  text-align: center;
+}
 </style>

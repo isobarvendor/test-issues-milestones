@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-let origin="";
+let origin="https://ayotest.coke.com";
 
 export default {
 

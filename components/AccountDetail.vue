@@ -16,7 +16,8 @@
         </div>
      </div>
     <div class="profile-icon">
-        <img :src="login.imageUrl"/>
+        <img :src="login.imageUrl" v-if="login.imageUrl"/>
+        <img src="/img/icons/pro.png" v-else/>
     </div>
     </div>
     <!--<div class="date-container">
@@ -93,6 +94,9 @@ export default {
     async getAccount(){
        await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
        this.login=this.$store.state.login;
+    },
+    close(){
+        location.href="/"
     }
   },
   beforeMount() {},
@@ -129,6 +133,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 85%;
         .profile-icon{
             img{
                 width:235px;
@@ -183,6 +188,7 @@ export default {
     @media only screen and (max-width: 1199px) {
         .registration-body{
             flex-direction: column-reverse;
+            width: 100%;
             .details{
                 width: 100%;
             }

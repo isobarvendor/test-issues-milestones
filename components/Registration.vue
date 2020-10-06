@@ -176,6 +176,7 @@ export default {
 
     }
     .input-area{
+      text-align: center;
         img{
                 width:235px;
                 height: 235px;
@@ -196,7 +197,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+        width: 85%;
         .v-text-field__slot{
             border-bottom: 1px solid #585858;
         }
@@ -237,6 +238,7 @@ export default {
     @media only screen and (max-width: 1199px) {
         .registration-body{
             flex-direction: column-reverse;
+            width: 100%;
             .details{
                 width: 100%;
             }
