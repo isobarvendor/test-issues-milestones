@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="login">
+  <div id="main" class="login" v-if="configData">
     <div class="close" @click="close"><img src="/img/icons/close.png"/></div>
     <div class="wrapper">
       <div class="container">
@@ -15,9 +15,7 @@ import deepClone from 'deep-clone'
 export default {
   data(){
     return{
-      dataStatus:{},
-      dataSocial:{},
-      data:null,
+
     }
   },
   head() {
@@ -42,17 +40,19 @@ export default {
   },
    computed: {
        CMSContent(){
-       let config= deepClone(this.$store.state.CMSContent)
-          this.dataSocial =config ? {
-              email: config.data[0].socialMedia.Email,
-              facebook: config.data[0].socialMedia.Facebook,
-              google: config.data[0].socialMedia.Google,
-              line: config.data[0].socialMedia.Line,
-      } : null;
-        return config;
+        return deepClone(this.$store.state.CMSContent)
      },
      configData(){
        return deepClone(this.$store.state.config)
+     },
+     dataSocial(){
+      let config =deepClone(this.$store.state.config);
+      return  config ? {
+              email: config.socialMedia.Email,
+              facebook: config.socialMedia.Facebook,
+              google: config.socialMedia.Google,
+              line: config.socialMedia.Line,
+      } : null
      }
   },
   methods: {
@@ -60,6 +60,9 @@ export default {
         location.href="/"
     }
   },
+  mounted(){
+
+  }
 };
 </script>
 

@@ -191,20 +191,20 @@ export default {
     });
   },
   [FETCH_CMS_DATA]: ({ commit, state, getters }) => {
-    return new Promise( async(resolve, reject) =>{
+    return new Promise((resolve, reject) =>{
       const moduleState = state;
-      let result = await CMSAPI.getCMSContent();
-      let dataStatus = {status:result.status, message:result.statusText}
-      result.data && commit('SET_CMS_CONTENT',result.data)
-      let config = await CMSAPI.getCMSConfig();
-
-      config.data && commit('SET_CONFIG',config.data[0])
-
-      if(dataStatus.status == 200){
-        resolve(result)
-      }else{
-        reject(dataStatus);
-      }
+      CMSAPI.getCMSContent().then((result) => {
+        commit('SET_CMS_CONTENT',result.data)
+         CMSAPI.getCMSConfig().then((config) => {
+            commit('SET_CONFIG',config.data[0])
+            resolve(result)
+         }).catch(error => {
+          return reject(error);
+        });
+      })
+      .catch(error => {
+        return reject(error);
+      });
 
 
     });

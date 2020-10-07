@@ -55,7 +55,15 @@
       </div>
     </div>
    <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
-    <v-btn class="get-code"  v-on:click="submit()">Enter Draw</v-btn>
+    <div class="btn-area">
+      <v-progress-circular
+        :width="2"
+        color="white"
+        indeterminate
+        v-if="loading"
+      ></v-progress-circular>
+      <v-btn class="get-code" v-else  v-on:click="submit()">Enter Draw</v-btn>
+    </div>
   </form>
   </div>
   <div v-else class="thanks">
@@ -90,6 +98,7 @@ export default {
         submitted:false,
         image:'',
         amazonImage:'',
+        loading:false,
         //login token
         token:this.$store.state.token,
         //login data
@@ -113,14 +122,16 @@ export default {
     async submit() {
       let request = null;
       let type ="default";
-
+      this.loading=true;
        this.$validator.validateAll().then( async(valid) => {
          if(valid){
            if(!this.form.terms){
+             this.loading=false;
              this.errorMessage="Please accept our terms and conditions";
              return false;
            }
             if(!this.form.privacy){
+              this.loading=false;
              this.errorMessage="Please accept our privacy policies";
              return false;
            }
@@ -132,6 +143,7 @@ export default {
                 request:formData,
                 type:'receipts'
               }
+
                await this.$store.dispatch(UPLOAD_FILE,upload)
                .then((response)=>{
                   this.amazonImage=response.data.filePath;
@@ -175,6 +187,7 @@ export default {
             this.$store.dispatch(SUBMIT_FORM,{request,type})
             .then((response)=>{
                 this.submitted=true;
+                this.loading=false;
             })
             .catch((error) =>{
               let upload={
@@ -183,10 +196,10 @@ export default {
               }
               this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);
               this.submitted=false
-
-              if(error.response){
+              this.loading=false;
+             // if(error.response){
                 this.errorMessage='Oops something went wrong please try again';
-              }
+              //}
                if(error.response && error.response.data.status=='401'){
                   localStorage.clear();
                   this.$store.commit('SET_LOGIN_ACCOUNT', null);
@@ -199,7 +212,6 @@ export default {
 
     },
     async getAccount(){
-        this.$store.state.token && await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
          if(this.$store.state.login){
           this.form.name=this.$store.state.login.name;
           this.form.email=this.$store.state.login.email;
@@ -265,6 +277,9 @@ export default {
 }
 .custom-file-upload span{
   padding-left: 20px;
+}
+.btn-area{
+  text-align: center;
 }
 button.get-code{
   height: 60px !important;

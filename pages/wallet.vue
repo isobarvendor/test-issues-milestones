@@ -9,19 +9,16 @@
 
     </div>
   </div>
-
 </template>
 
 <script>
 import WalletRewards from '@/components/WalletRewards'
 import WalletTransactions from '@/components/WalletTransactions'
 import { GET_LIST_WALLET } from '@/store/action_types';
+import deepClone from 'deep-clone'
 export default {
   data(){
     return{
-      dataStatus:{},
-      data:null,
-      configData: null,
       campaignType: 0,
       listWallet:[],
       listWalletExpired:[]

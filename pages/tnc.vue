@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import deepClone from 'deep-clone'
 import TncSection from '@/components/TncSection'
 export default {
   data(){

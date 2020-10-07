@@ -43,6 +43,10 @@ export default ({ store }) => { new VuexPersistence({
     },
     removeItem: () => window.localStorage.removeItem(storageKey),
   },
+  reducer: (state) => ({
+    login:state.login,
+    token:state.token
+  })
 
 }).plugin(store);
 

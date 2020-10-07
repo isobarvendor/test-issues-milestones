@@ -1,5 +1,4 @@
 <template>
-<client-only>
   <div v-if="CMSContent" id="main" class="help">
     <div class="wrapper">
       <div class="container">
@@ -9,7 +8,6 @@
 
     </div>
   </div>
-</client-only>
 </template>
 
 <script>

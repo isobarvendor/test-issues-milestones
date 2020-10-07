@@ -64,7 +64,15 @@
             v-if="errorMessage"
             v-html="errorMessage"
           ></div>
-          <a class="button" v-on:click="userLogin()">Login</a>
+          <div class="btn-area">
+               <v-progress-circular
+                  :width="2"
+                  color="white"
+                  indeterminate
+                  v-if="loading"
+                ></v-progress-circular>
+              <a class="button" v-on:click="userLogin()" v-else>Login</a>
+          </div>
          <!-- <p>Forget Password</p>-->
           <p v-on:click="userSignUp()">Sign Up</p>
         </div>
@@ -87,6 +95,7 @@ export default {
         password: "",
       },
       errorMessage: null,
+      loading:false
     };
   },
   props: {
@@ -112,13 +121,16 @@ export default {
     async userLogin() {
       this.$validator.validateAll().then((valid) => {
         if (valid) {
+          this.loading =true;
           this.errorMessage = null;
           this.$store
             .dispatch(LOGIN, this.login)
             .then((response) => {
+              this.loading=false;
               location.href="/"
             })
             .catch((error) => {
+              this.loading=false;
               if (error.response && error.response.data.status == "401") {
                 this.errorMessage = "Please enter the correct email/password";
               }
@@ -146,6 +158,9 @@ export default {
   align-items: center;
   .error-message {
     color: red;
+  }
+  .btn-area{
+    text-align: center;
   }
   .title-image {
     img {

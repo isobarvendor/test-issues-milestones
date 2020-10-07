@@ -22,7 +22,15 @@
         </div>
         <div class="button-container">
           <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
-            <a  class="button" v-on:click="register()" >Register</a>
+          <div class="btn-area">
+               <v-progress-circular
+                  :width="2"
+                  color="white"
+                  indeterminate
+                  v-if="loading"
+                ></v-progress-circular>
+            <a  class="button" v-on:click="register()" v-else >Register</a>
+          </div>
         </div>
 
     </div>
@@ -60,7 +68,8 @@ export default {
       errorMessage:null,
       image:null,
       uploadFile:null,
-      amazonImage:null
+      amazonImage:null,
+      loading:false
     };
   },
   props: {
@@ -93,16 +102,20 @@ export default {
       async register(){
 
            this.$validator.validateAll().then(async(valid) => {
+
          if(this.$store.state.login){
             localStorage.clear();
           }
          if(valid){
+            this.loading=true;
              this.errorMessage=null;
              if(!this.terms){
+               this.loading=false;
               this.errorMessage="Please accept the terms and condition"
               return false;
             }
             if(this.user.password!=this.cpassword){
+              this.loading=false;
               this.errorMessage="Your password and confirm password is different"
               return false;
             }
@@ -113,6 +126,7 @@ export default {
                 request:formData,
                 type:'profile-picture'
               }
+
                await this.$store.dispatch(UPLOAD_FILE,upload)
                .then((response)=>{
 
@@ -135,18 +149,23 @@ export default {
 
                this.$store.dispatch(LOGIN,login)
                 .then((response)=>{
+                    this.loading=false;
                     location.href='/account';
                 })
+                 .catch((error) =>{
+                  this.loading=false;
+                  if(error.response){
+                    this.errorMessage='Something went wrong please try again';
+                  }
+            })
             })
             .catch((error) =>{
-
+              this.loading=false;
               if(error.response && error.response.data.status=='400'&&error.response.data.message=="error.validation"){
                 this.errorMessage='Please use another email';
               }else{
                 this.errorMessage='Something went wrong please try again';
               }
-
-
             })
          }
 
@@ -165,6 +184,7 @@ export default {
 
 <style lang="scss">
 .registration{
+
   .profile-icon{
     position: relative;
      input{
@@ -227,6 +247,9 @@ export default {
             }
         }
         .button-container{
+            .btn-area{
+              text-align: center;
+            }
             margin-top: 40px;
             a.button{
                 width: 230px;

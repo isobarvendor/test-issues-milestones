@@ -1,6 +1,5 @@
 <template>
   <div class="winner-details">
-
       <div class="image-fluid">
         <img src="/img/winner/winner.png"/>
     </div>

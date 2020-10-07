@@ -3,11 +3,11 @@
     <client-only>
     <div class="wrapper" v-if="CMSContent">
       <Masthead :data="CMSContent ? CMSContent[0].homepage.mastheadSection :  null"/>
-      <CampaignPeriod :data="configData ? configData.campaignPeriod : null"/>
+      <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>
       <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent && CMSContent[0].exclusivePrizes" :winners="CMSContent && CMSContent[0].luckyWinner"/>
       <HowItWorks :data="CMSContent && CMSContent[0].worksSection" />
 
-      <SubmissionMechanics :dataForm="configData ? configData[0] : null" />
+      <SubmissionMechanics :dataForm="configData ? configData : null" />
     </div>
     <Footer :data="CMSContent && CMSContent[0].footer"/>
     </client-only>
@@ -22,6 +22,7 @@ import HowItWorks from '../components/HowItWorks'
 import SubmissionMechanics from '../components/SubmissionMechanics'
 import Footer from '../components/Footer'
 import deepClone from 'deep-clone'
+import { GET_ACCOUNT } from '@/store/action_types';
 
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
@@ -57,11 +58,13 @@ export default {
 
   },
   created(){
-
+    this.getAccount();
   },
 
   methods:{
-
+    async getAccount(){
+       await this.$store.state.token && this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
+    },
 
   },
   computed: {

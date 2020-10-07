@@ -33,7 +33,6 @@
 
     </div>
   </div>
-
 </template>
 
 <script>
@@ -44,10 +43,7 @@ import deepClone from 'deep-clone'
 export default {
   data(){
     return{
-      dataStatus:{},
-      data:null,
-      configData: null,
-      campaignType: 0,
+
       listPrizes :[],
       listPrizesData :[],
       search:null

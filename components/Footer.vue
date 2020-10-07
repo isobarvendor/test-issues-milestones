@@ -18,12 +18,19 @@ export default {
     },
     data(){
       return {
-        footerText:''
+      }
+    },
+    computed:{
+      footerText(){
+        if(this.data){
+          var text = this.data.copyright.copyright;
+          return text.replace(/The Coca-Cola Company/g, 'The&nbsp;Coca&#8209;Cola&nbsp;Company');
+        }
+
       }
     },
     mounted(){
-      var text = this.data.copyright.copyright;
-      this.footerText = text.replace(/The Coca-Cola Company/g, 'The&nbsp;Coca&#8209;Cola&nbsp;Company');
+
     }
 }
 </script>

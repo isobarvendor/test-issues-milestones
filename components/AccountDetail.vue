@@ -62,25 +62,16 @@
 </template>
 
 <script>
-import { GET_ACCOUNT } from '@/store/action_types';
+import deepClone from 'deep-clone'
 export default {
   name: "AccountDetail",
   components: {
   },
-  created(){
-    if(!this.$store.state.token){
-      location.href='/login';
-    }
-     this.getAccount();
-  },
+
   data() {
 
     return {
-        login: this.$store.state.login ? this.$store.state.login : {
-          name:'',
-          email:'',
-          imageUrl:''
-        },
+
          date: new Date().toISOString().substr(0, 10),
         menu: false
     };
@@ -89,16 +80,20 @@ export default {
     data: null,
   },
   computed:{
+    login(){
+      return deepClone(this.$store.state.login ? this.$store.state.login : {
+          name:'',
+          email:'',
+          imageUrl:''
+        });
+    }
   },
-  methods:{
-    async getAccount(){
-       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
-       this.login=this.$store.state.login;
-    },
-    close(){
+  method:{
+     close(){
         location.href="/"
     }
   },
+
   beforeMount() {},
   mounted(){
 

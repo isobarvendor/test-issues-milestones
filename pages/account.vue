@@ -12,7 +12,7 @@
 <script>
 
 import AccountDetail from '@/components/AccountDetail'
-
+import { GET_ACCOUNT } from '@/store/action_types';
 export default {
   data(){
     return{
@@ -39,6 +39,18 @@ export default {
       ],*/
       css: []
     };
+  },
+  methods:{
+    async getAccount(){
+       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
+    },
+
+  },
+    mounted(){
+    if(!this.$store.state.token){
+      this.$router.push('/login');
+    }
+     this.getAccount();
   },
 
 };

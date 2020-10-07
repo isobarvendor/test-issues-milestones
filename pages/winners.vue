@@ -7,13 +7,11 @@
 </template>
 
 <script>
+import deepClone from 'deep-clone'
 import WinnerDetails from '@/components/WinnerDetails'
 export default {
   data(){
     return{
-      dataStatus:{},
-      data:null,
-      campaignType: 0
     }
   },
   head() {

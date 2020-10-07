@@ -1,10 +1,10 @@
 <template>
-  <div class="reward-details">
+  <div class="reward-details" v-if="data">
       <div class="back-icon">
          <img  @click="back()" v-if="$mq == 'xl'" src="/img/icons/back.png" />
            <img v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'" src="/img/icons/close.png"/>
       </div>
-     <div class="reward-body">
+     <div class="reward-body" >
          <div class="title">
           <h3>{{data.name}}</h3>
          </div>
@@ -17,11 +17,11 @@
              <h4>How To  Redeem</h4>
              <p v-html="data.redeemDescription"></p>
          </div>
-         <a class="button rewards-bottom"> Redeem ({{data.totalAmount}} coins)</a>
+         <a class="button rewards-bottom"> Redeem ({{data.amountAvailable}} coins)</a>
     </div>
     <div class="image-fluid">
         <img :src="data.imgUrl"/>
-        <a v-if="$mq == 'sm' || $mq == 'md'" class="button center mobile"> Redeem ({{data.totalAmount}}  coins)</a>
+        <a v-if="$mq == 'sm' || $mq == 'md'" class="button center mobile"> Redeem ({{data.amountAvailable}}  coins)</a>
     </div>
   </div>
 </template>

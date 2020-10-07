@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { GET_LIST_PRIZE } from '@/store/action_types';
 import RewardDetails from '@/components/RewardDetails'
 export default {
   data(){
@@ -36,7 +37,27 @@ export default {
       css: []
     };
   },
-  computed :{}
+  computed :{},
+  created() {
+    this.getListPrize();
+  },
+  methods:{
+    async getListPrize(){
+
+          await  this.$store.dispatch(GET_LIST_PRIZE)
+            .then((response)=>{
+
+            })
+            .catch((error) =>{
+              if(error.response && error.response.data.status=='401'){
+                this.errorMessage='Please enter the correct email/password';
+              }
+            })
+
+
+    },
+
+  },
 
 };
 </script>

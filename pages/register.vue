@@ -10,12 +10,12 @@
 </template>
 
 <script>
+import deepClone from 'deep-clone'
 import Registration from '@/components/Registration'
 export default {
   data(){
     return{
-      dataStatus:{},
-      data:null,
+
     }
   },
   head() {
@@ -37,9 +37,6 @@ export default {
       ],*/
       css: []
     };
-  },
-  created() {
-    this.fetchData();
   },
   computed: {
     data(){

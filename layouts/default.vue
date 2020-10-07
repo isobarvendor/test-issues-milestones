@@ -1,7 +1,18 @@
 <template>
   <div>
-    <Nuxt />
-    <Header />
+      <v-progress-circular
+      :width="5"
+      color="white"
+      indeterminate
+        class="center-screen"
+      v-if="loading"
+    ></v-progress-circular>
+    <Nuxt v-if="!errorMessage&&!loading" />
+     <div class="center-text" v-else-if="!loading">
+        <h1>{{errorMessage}}</h1>
+        <p>Please try again</p>
+      </div>
+    <Header  v-if="!loading" />
   </div>
 </template>
 
@@ -12,17 +23,44 @@ export default {
   components: {
     Header,
   },
-
-  methods:{
-    async fetchData(){
-      let result = await this.$store.dispatch(FETCH_CMS_DATA);
+  data(){
+    return {
+      errorMessage:null,
+      loading:false
     }
   },
-   async created() {
+  methods:{
+    async fetchData(){
+      this.loading=true;
+      this.$store.dispatch(FETCH_CMS_DATA).then(response=>{
+        this.loading=false;
+      }).catch(error=>{
+        if(error){
+            this.loading=false;
+           this.errorMessage = "Oops something went wrong"
+        }
+
+      })
+    }
+  },
+  created() {
      this.fetchData();
   },
 
 };
 </script>
 <style lang="scss">
+  .center-screen{
+     margin: auto;
+    position: absolute;
+    left:0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+  }
+  .center-text{
+    text-align: center;
+    margin-top: 200px;
+  }
 </style>

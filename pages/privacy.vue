@@ -15,8 +15,6 @@ import deepClone from 'deep-clone'
 export default {
   data(){
     return{
-      dataStatus:{},
-      data:null,
     }
   },
   head() {
