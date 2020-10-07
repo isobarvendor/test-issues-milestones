@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-let origin="https://ayo.aircovery.com";
+let origin="";
 
 export default {
 

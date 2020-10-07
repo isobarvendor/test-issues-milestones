@@ -161,7 +161,12 @@ export default {
             this.toggleMenu(e)
         },
         loginRoute(){
-            location.href='/login';
+            if(!this.logged){
+              location.href='/login';
+            }else{
+              location.href='/wallet';
+            }
+
         },
         logout(){
           localStorage.clear();
