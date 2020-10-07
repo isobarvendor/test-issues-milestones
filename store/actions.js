@@ -8,8 +8,6 @@ import {
   GET_ACCOUNT,
   GET_LIST_PRIZE,
   GET_LIST_WALLET,
-  ACCEPT_VOUCHER,
-  REJECT_VOUCHER,
   SUBMIT_FORM,
   UPLOAD_FILE,
   DELETE_FILE,
@@ -127,23 +125,6 @@ export default {
     });
   },
 
-
-  [ACCEPT_VOUCHER]: ({ commit, state, getters }, data, token) => {
-    return new Promise((resolve, reject) => {
-      const moduleState = state;
-        NGPSAPI.uploadFile(data)
-        .then(response => {
-          //commit('SET_LOGIN_ACCOUNT', messages);
-          return resolve(response);
-        })
-        .catch(error => {
-          console.error(error);
-          return reject(error);
-        });
-
-    });
-  },
-
   [UPLOAD_FILE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
@@ -176,20 +157,6 @@ export default {
     });
   },
 
-  [REJECT_VOUCHER]: ({ commit, state, getters }, data, token) => {
-    return new Promise((resolve, reject) => {
-      const moduleState = state;
-        NGPSAPI.rejectVoucher(data)
-        .then(response => {
-          //commit('SET_LOGIN_ACCOUNT', messages);
-          return resolve(response);
-        })
-        .catch(error => {
-          console.error(error);
-          return reject(error);
-        });
-    });
-  },
   [FETCH_CMS_DATA]: ({ commit, state, getters }) => {
     return new Promise((resolve, reject) =>{
       const moduleState = state;

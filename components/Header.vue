@@ -113,14 +113,6 @@ export default {
                 return true;
             }
         },
-        ifRegister(){
-            if (this.$store.state.authentication =='register'){
-                return true;
-            }
-            else{
-                return false;
-            }
-        },
         showMenu(){
             if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'||this.$route.name =='winners'){
                 return false

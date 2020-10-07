@@ -52,15 +52,6 @@ async deleteFile(payload,type) {
   return resp;
 },
 
-  /* might need to remove */
-  acceptVoucher(data,token) {
-    return axios.post(`${origin}/api/accept`, data, setHeader(token))
-  },
-  rejectVoucher(data,token) {
-    return axios.post(`${origin}/api/reject`, data, setHeader(token))
-  },
-
-
 
 
 }
