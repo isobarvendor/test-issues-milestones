@@ -1,16 +1,14 @@
 <template>
-  <div id="main" >
-    <client-only>
-    <div class="wrapper" v-if="CMSContent">
-      <Masthead :data="CMSContent ? CMSContent[0].homepage.mastheadSection :  null"/>
+  <div id="main" v-if="CMSContent" >
+    <div class="wrapper" >
+      <Masthead :data="CMSContent[0].homepage.mastheadSection"/>
       <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>
-      <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent && CMSContent[0].exclusivePrizes" :winners="CMSContent && CMSContent[0].luckyWinner"/>
-      <HowItWorks :data="CMSContent && CMSContent[0].worksSection" />
+      <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
+      <HowItWorks :data="CMSContent[0].worksSection" />
 
-      <SubmissionMechanics :dataForm="configData ? configData : null" />
+      <SubmissionMechanics :dataForm="configData" />
     </div>
-    <Footer :data="CMSContent && CMSContent[0].footer"/>
-    </client-only>
+    <Footer :data="CMSContent[0].footer"  />
   </div>
 </template>
 

@@ -38,7 +38,7 @@ export default {
     };
   },
   computed :{},
-  created() {
+  mounted() {
     this.getListPrize();
   },
   methods:{

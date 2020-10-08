@@ -31,16 +31,16 @@ export default {
   [GET_ACCOUNT]: ({ commit, state, getters }, token) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
+      if ( !state.login) {
         GeneralAPI.getAccount(token)
         .then(response => {
           commit('SET_LOGIN_ACCOUNT', response.data);
           return resolve(response);
         })
         .catch(error => {
-
           return reject(error);
         });
-
+      }
     });
   },
   [SIGNUP]: ({ commit, state, getters }, data) => {
@@ -130,7 +130,6 @@ export default {
       const moduleState = state;
         NGPSAPI.uploadFile(data.request,data.type)
         .then(response => {
-        //  commit('SET_FILE_AMAZON', response.data.filePath);
           return resolve(response);
         })
         .catch(error => {
@@ -146,7 +145,6 @@ export default {
       const moduleState = state;
         NGPSAPI.deleteFile(data)
         .then(response => {
-          commit('SET_FILE_AMAZON', null);
           return resolve(response);
         })
         .catch(error => {

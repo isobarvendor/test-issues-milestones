@@ -111,7 +111,6 @@ export default {
       return this.data ? this.data.campaignTypes.submissionType : null;
     },
      campaignType(){
-
       return this.data ? this.data.campaignTypes.mechanicType : null;
     },
     thankyouSubmission(){
@@ -157,6 +156,7 @@ export default {
 
                 });
             }
+
                 if(this.campaignType=='instant_win'){
                   type="always"
                 }
@@ -243,11 +243,8 @@ export default {
   },
   beforeMount() {},
   mounted(){
-  },
-  created(){
     this.getAccount();
-  }
-
+  },
 }
 </script>
 

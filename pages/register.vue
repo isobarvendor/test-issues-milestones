@@ -2,7 +2,7 @@
   <div v-if="data" id="main" class="register">
     <div class="wrapper">
       <div class="container">
-        <Registration :data="data ? data[0].signUp : null"/>
+        <Registration :data="data[0].signUp"/>
       </div>
 
     </div>
