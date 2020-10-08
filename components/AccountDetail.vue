@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import deepClone from 'deep-clone'
 export default {
   name: "AccountDetail",
   components: {
@@ -81,11 +80,7 @@ export default {
   },
   computed:{
     login(){
-      return deepClone(this.$store.state.login ? this.$store.state.login : {
-          name:'',
-          email:'',
-          imageUrl:''
-        });
+      return this.data;
     }
   },
   method:{

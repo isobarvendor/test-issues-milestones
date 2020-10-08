@@ -66,12 +66,12 @@ export default {
 
   },
   computed: {
-      CMSContent(){
-      return deepClone(this.$store.state.CMSContent)
+    CMSContent(){
+        return this.$store.getters.getCMSContent;
      },
      configData(){
-       return deepClone(this.$store.state.config)
-     }
+       return this.$store.getters.getCMSConfig;
+     },
   },
 
 }

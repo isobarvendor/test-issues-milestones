@@ -24,14 +24,7 @@ export default {
   },
     computed:{
     campaignType(){
-
-      return this.dataForm ? this.dataForm.campaignTypes : {
-        authentication: "",
-        campaignTypes: "",
-        id: 1,
-        mechanicType: "",
-        submissionType: "",
-      };
+      return this.dataForm;
     },
     dataSocial() {
       return {

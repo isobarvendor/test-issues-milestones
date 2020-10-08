@@ -76,6 +76,9 @@ export default {
     data: null,
   },
   computed:{
+    loginInfo(){
+      return this.$store.getters.getLoginAccount;
+    }
   },
   methods:{
     onFileChange(e) {
@@ -103,7 +106,7 @@ export default {
 
            this.$validator.validateAll().then(async(valid) => {
 
-         if(this.$store.state.login){
+         if(this.loginInfo){
             localStorage.clear();
           }
          if(valid){

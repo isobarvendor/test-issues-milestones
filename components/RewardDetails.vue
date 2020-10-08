@@ -31,16 +31,15 @@ export default {
   name: "RewardDetails",
   components: {
   },
+   props: {
+    data: null,
+  },
   data() {
     return {
     };
   },
 
   computed:{
-    data(){
-      let index=this.$route.params.id;
-      return  this.$store.state.listPrize && this.$store.state.listPrize.prizeList[index];
-    }
   },
   methods:{
     back(){

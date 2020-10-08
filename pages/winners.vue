@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import deepClone from 'deep-clone'
 import WinnerDetails from '@/components/WinnerDetails'
 export default {
   data(){
@@ -35,11 +34,11 @@ export default {
     };
   },
   computed :{
-      data(){
-      return deepClone(this.$store.state.CMSContent)
+     data(){
+        return this.$store.getters.getCMSContent;
      },
      configData(){
-       return deepClone(this.$store.state.config)
+       return this.$store.getters.getCMSConfig;
      }
   },
 

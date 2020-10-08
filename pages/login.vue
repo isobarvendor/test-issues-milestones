@@ -11,7 +11,6 @@
 
 <script>
 import LoginDetails from '@/components/LoginDetails'
-import deepClone from 'deep-clone'
 export default {
   data(){
     return{
@@ -39,14 +38,11 @@ export default {
     };
   },
    computed: {
-       CMSContent(){
-        return deepClone(this.$store.state.CMSContent)
-     },
      configData(){
-       return deepClone(this.$store.state.config)
+       return this.$store.getters.getCMSConfig;
      },
      dataSocial(){
-      let config =deepClone(this.$store.state.config);
+      let config = this.$store.getters.getCMSConfig;
       return  config ? {
               email: config.socialMedia.Email,
               facebook: config.socialMedia.Facebook,

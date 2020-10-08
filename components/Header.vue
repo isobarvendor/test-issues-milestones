@@ -93,7 +93,8 @@ export default {
         return{
             isDark:false,
             isReward:false,
-            expand: false
+            expand: false,
+            config:this.$store.getters.getCMSConfig
         }
     },
     watch:{
@@ -102,11 +103,9 @@ export default {
         }
     },
     computed:{
-      config(){
-        return  this.$store.state.config
-      },
+
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'||(this.$store.state.config && this.$store.state.config.campaignTypes.authentication !='register')){
+            if(this.$route.name =='register'||this.$route.name =='login'||(this.$store.getters.getCMSConfig && this.$store.getters.getCMSConfig !='register')){
                 return false
             }
             else{
@@ -122,7 +121,7 @@ export default {
             }
         },
         logged(){
-           return this.$store.state.login
+           return this.$store.getters.getLoginAccount
         }
 
     },

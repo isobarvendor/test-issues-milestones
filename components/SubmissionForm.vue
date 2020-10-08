@@ -99,22 +99,22 @@ export default {
         image:'',
         amazonImage:'',
         loading:false,
-        //login token
-        token:this.$store.state.token,
-        //login data
-        login:this.$store.state.login
+
     }
   },
   computed:{
     submissionType(){
 
-      return this.data ? this.data.campaignTypes.submissionType : null;
+      return this.data.campaignTypes.submissionType;
     },
      campaignType(){
-      return this.data ? this.data.campaignTypes.mechanicType : null;
+      return this.data.campaignTypes.mechanicType;
     },
     thankyouSubmission(){
-       return this.data ? this.data.thankyouSubmission : null;
+       return this.data.thankyouSubmission;
+    },
+    loginInfo(){
+      return this.$store.getters.getLoginAccount;
     }
   },
   methods:{
@@ -167,13 +167,11 @@ export default {
                   type="default"
                 }
                request={
-
                           "name"  : this.form.name,
                           "email" : this.form.email
-
                     }
-               if(this.$store.state.login){
-                request["userId"]=this.$store.state.login.uuid;
+               if(this.loginInfo){
+                request["userId"]=this.loginInfo.uuid;
                }
                if(this.amazonImage){
                  request['imageurl']=this.amazonImage;
@@ -211,10 +209,10 @@ export default {
        });
 
     },
-    async getAccount(){
-         if(this.$store.state.login){
-          this.form.name=this.$store.state.login.name;
-          this.form.email=this.$store.state.login.email;
+       getAccount(){
+        if(this.loginInfo){
+          this.form.name=this.loginInfo.name;
+          this.form.email=this.loginInfo.email;
         }
 
     },

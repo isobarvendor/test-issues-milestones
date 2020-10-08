@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import deepClone from 'deep-clone'
 import Registration from '@/components/Registration'
 export default {
   data(){
@@ -40,11 +39,8 @@ export default {
   },
   computed: {
     data(){
-    return deepClone(this.$store.state.CMSContent)
-    },
-    configData(){
-      return deepClone(this.$store.state.config)
-    }
+        return this.$store.getters.getCMSContent;
+     }
     },
 };
 </script>

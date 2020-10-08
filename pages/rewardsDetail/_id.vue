@@ -1,7 +1,7 @@
 <template>
   <div id="main" class="reward-detail">
     <div class="wrapper">
-        <RewardDetails />
+        <RewardDetails :data="rewardDetail" />
     </div>
   </div>
 </template>
@@ -37,7 +37,12 @@ export default {
       css: []
     };
   },
-  computed :{},
+  computed :{
+    rewardDetail(){
+        let index=this.$route.params.id;
+        return  this.$store.getters.getListPrize && this.$store.getters.getListPrize.prizeList[index];
+    }
+  },
   mounted() {
     this.getListPrize();
   },

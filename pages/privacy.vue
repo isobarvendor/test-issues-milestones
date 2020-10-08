@@ -11,7 +11,6 @@
 
 <script>
 import PrivacySection from '@/components/PrivacySection'
-import deepClone from 'deep-clone'
 export default {
   data(){
     return{
@@ -45,11 +44,8 @@ export default {
   },
   computed: {
     data(){
-    return deepClone(this.$store.state.CMSContent)
-    },
-    configData(){
-      return deepClone(this.$store.state.config)
-    }
+        return this.$store.getters.getCMSContent;
+     }
 },
 };
 </script>

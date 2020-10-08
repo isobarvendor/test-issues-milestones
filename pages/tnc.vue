@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import deepClone from 'deep-clone'
 import TncSection from '@/components/TncSection'
 export default {
   data(){
@@ -41,11 +40,8 @@ export default {
     };
   },
  computed: {
-       data(){
-      return deepClone(this.$store.state.CMSContent)
-     },
-     configData(){
-       return deepClone(this.$store.state.config)
+    data(){
+        return this.$store.getters.getCMSContent;
      }
   },
 

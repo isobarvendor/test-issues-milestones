@@ -1,11 +1,12 @@
 <template>
   <div id="main" class="account">
-    <div class="wrapper">
+    <client-only>
+    <div class="wrapper"  v-if="loginAccount" >
       <div class="container">
-        <AccountDetail />
+        <AccountDetail :data="loginAccount"/>
       </div>
-
     </div>
+    </client-only>
   </div>
 </template>
 
@@ -44,7 +45,11 @@ export default {
     async getAccount(){
        await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
     },
-
+  },
+  computed:{
+    loginAccount(){
+      return this.$store.getters.getLoginAccount;
+    }
   },
     mounted(){
     if(!this.$store.state.token){

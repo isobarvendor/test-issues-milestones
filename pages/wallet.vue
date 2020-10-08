@@ -15,7 +15,6 @@
 import WalletRewards from '@/components/WalletRewards'
 import WalletTransactions from '@/components/WalletTransactions'
 import { GET_LIST_WALLET } from '@/store/action_types';
-import deepClone from 'deep-clone'
 export default {
   data(){
     return{
@@ -26,11 +25,11 @@ export default {
   },
   computed:{
       data(){
-      return deepClone(this.$store.state.CMSContent)
+        return this.$store.getters.getCMSContent;
      },
      configData(){
-       return deepClone(this.$store.state.config)
-     }
+       return this.$store.getters.getCMSConfig;
+     },
   },
   head() {
     return {

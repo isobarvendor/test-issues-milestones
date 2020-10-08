@@ -43,9 +43,7 @@ import deepClone from 'deep-clone'
 export default {
   data(){
     return{
-
       listPrizes :[],
-      listPrizesData :[],
       search:null
     }
   },
@@ -70,17 +68,20 @@ export default {
     };
   },
   computed: {
-      data(){
-    return deepClone(this.$store.state.CMSContent)
-    },
-    configData(){
-      return deepClone(this.$store.state.config)
-    },
+    data(){
+        return this.$store.getters.getCMSContent;
+     },
+     configData(){
+       return this.$store.getters.getCMSConfig;
+     },
     recent(){
-        return this.data  && this.$store.state.CMSContent.exclusivePrizes
+        return this.$store.getters.getCMSContent && this.$store.getters.getCMSContent.exclusivePrizes
     },
     filterby(){
-        return this.data && tthis.$store.state.CMSContent.exclusivePrizes
+      return this.$store.getters.getCMSContent && this.$store.getters.getCMSContent.exclusivePrizes
+    },
+    listPrizesData(){
+      return this.$store.getters.getListPrize
     }
   },
 
@@ -92,13 +93,10 @@ export default {
 
           await  this.$store.dispatch(GET_LIST_PRIZE)
             .then((response)=>{
-               this.listPrizes=deepClone(response.data);
-               this.listPrizesData=deepClone(response.data);
+               this.listPrizes=deepClone(this.listPrizesData);
             })
             .catch((error) =>{
-              if(error.response && error.response.data.status=='401'){
-                this.errorMessage='Please enter the correct email/password';
-              }
+
             })
 
 
@@ -115,8 +113,7 @@ export default {
         })
       }
       else{
-
-        this.listPrizes=deepClone(this.listPrizesData);
+          this.listPrizes=deepClone(this.listPrizesData);
       }
     }
   }
