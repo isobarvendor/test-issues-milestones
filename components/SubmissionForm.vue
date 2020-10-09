@@ -67,10 +67,22 @@
   </form>
   </div>
   <div v-else class="thanks">
-    <div class="header">{{thankyouSubmission.title}} </div>
-    <div class="header">{{form.name}}</div>
-    <div>
-        {{thankyouSubmission.message}} <a href='#'>{{form.email}}</a>
+    <div v-if="prizeWin">
+        <div class="header">Congratulations!! You win!!</div>
+        <div class="header">{{prizeWin.name}} </div>
+        <div>
+            <img :src="prizeWin.imgUrl" width="250" />
+        </div>
+        <div>
+            {{prizeWin.shortDescription}}
+        </div>
+    </div>
+    <div v-else>
+      <div class="header">{{thankyouSubmission.title}} </div>
+      <div class="header">{{form.name}}</div>
+      <div>
+          {{thankyouSubmission.message}} <a href='#'>{{form.email}}</a>
+      </div>
     </div>
 
   </div>
@@ -99,6 +111,7 @@ export default {
         image:'',
         amazonImage:'',
         loading:false,
+        prizeWin:null
 
     }
   },
@@ -186,6 +199,10 @@ export default {
             .then((response)=>{
                 this.submitted=true;
                 this.loading=false;
+                let result=response.data;
+                if( result && result.instantWinResult && result.instantWinResult.redeemedPrize.status=='claimed'){
+                  this.prizeWin = result.instantWinResult.redeemedPrize;
+                }
             })
             .catch((error) =>{
               let upload={
@@ -201,6 +218,7 @@ export default {
                if(error.response && error.response.data.status=='401'){
                   localStorage.clear();
                   this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                  this.$store.commit('SET_TOKEN', null);
                   location.reload();
                }
             })

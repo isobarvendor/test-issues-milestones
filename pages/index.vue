@@ -60,8 +60,14 @@ export default {
   },
 
   methods:{
-    async getAccount(){
-       await this.$store.state.token && this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
+      getAccount(){
+       this.$store.dispatch(GET_ACCOUNT,this.$store.state.token).then({
+
+       }).catch(error=>{
+         if(error.response && error.response.data.status=="401"){
+           localStorage.clear();
+         }
+       })
     },
 
   },
