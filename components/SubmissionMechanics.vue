@@ -1,7 +1,7 @@
 <template>
   <div class="container campaign-section">
-      <Login :social="dataSocial" v-if="campaignType.authentication=='register'&& !this.$store.state.login"  />
-      <Form :data="dataForm"  v-if="campaignType.authentication!='register'|| this.$store.state.login"  />
+      <Login :social="dataSocial" v-if="campaignType.campaignTypes.authentication=='register'&& !this.$store.state.login"  />
+      <Form :data="dataForm"  v-if="campaignType.campaignTypes.authentication!='register'|| this.$store.state.login"  />
 
   </div>
 </template>
@@ -24,6 +24,7 @@ export default {
   },
     computed:{
     campaignType(){
+      console.log(this.dataForm)
       return this.dataForm;
     },
     dataSocial() {

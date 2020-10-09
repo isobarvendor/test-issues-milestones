@@ -3,10 +3,10 @@
     <client-only>
     <a class="profile-button" :class="[{'dark': isDark},{'invisible':!showProfile}]">
         <img class="profile-image" :src="logged.imageUrl" v-if="logged&& logged.imageUrl">
-        <img class="profile-image" src="/img/dummy_profile.jpg" v-else>
+        <img class="profile-image" src="/img/dummy_profile.jpg" v-else-if="logged">
         <div class="profile-content" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
-            <template v-else>
+            <template v-else-if="config ? config.Wallet.Wallet&&logged : logged">
                 <div class="column center">
                     <div class="user-coins">288</div>
                     <div>coins</div>
@@ -105,7 +105,7 @@ export default {
     computed:{
 
         showProfile(){
-            if(this.$route.name =='register'||this.$route.name =='login'||(this.$store.getters.getCMSConfig && this.$store.getters.getCMSConfig !='register')){
+            if(this.$route.name =='register'||this.$route.name =='login'||(this.$store.getters.getCMSConfig && this.$store.getters.getCMSConfig.campaignTypes.authentication !='register')){
                 return false
             }
             else{
