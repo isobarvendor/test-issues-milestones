@@ -12,7 +12,7 @@
         <span class="error-message">{{ errors.first('email') }}</span>
     </div>
     <div v-if="submissionType=='with_code_submission'"  class="details">
-      <input v-model="form.code"  v-validate="'required'" type="number" name="code" placeholder="10-digit code"/>
+      <input v-model="form.code"  v-validate="'required'" type="text" name="code" placeholder="10-digit code"/>
         <span class="error-message">{{ errors.first('code') }}</span>
     </div>
     <div v-if="submissionType=='with_receipt'" class="details receipt">
