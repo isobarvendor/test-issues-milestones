@@ -53,7 +53,7 @@
                             <a data-nav="rewards" @click="clickNav">Rewards Catalogue</a>
                         </div>
                     </div>
-                    <div class="img-text" v-if="config ? config.Wallet.Wallet : true">
+                    <div class="img-text" v-if="config ? config.Wallet.Wallet&&logged : logged">
                         <img src="/img/icons/wallet.png"/>
                         <div>
                             <a data-nav="wallet" @click="clickNav">My Wallet</a>
