@@ -13,6 +13,7 @@ import {
   DELETE_FILE,
   FETCH_CMS_DATA
 } from './action_types';
+import { EffectCoverflow } from 'swiper/js/swiper.esm';
 
 export default {
   [LOGIN]: ({ commit, state, getters }, data) => {
@@ -97,12 +98,12 @@ export default {
     });
   },
 
-  [SUBMIT_FORM]: ({ commit, state, getters }, payload) => {
+  [SUBMIT_FORM]: ({ commit, state, getters }, request) => {
 
     return new Promise((resolve, reject) => {
       const moduleState = state;
       if (state.token) {
-        NGPSAPI.submitLogin(payload.request,payload.type, state.token)
+        NGPSAPI.submitLogin(request, state.token)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
           return resolve(response);
@@ -112,7 +113,7 @@ export default {
           return reject(error);
         });
       } else {
-        NGPSAPI.submitNonLogin(payload.request,payload.type)
+        NGPSAPI.submitNonLogin(request)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
           return resolve(response);

@@ -133,7 +133,6 @@ export default {
   methods:{
     async submit() {
       let request = null;
-      let type ="default";
       this.loading=true;
        this.$validator.validateAll().then( async(valid) => {
          if(valid){
@@ -170,15 +169,6 @@ export default {
                 });
             }
 
-                if(this.campaignType=='instant_win'){
-                  type="always"
-                }
-                else if(this.campaignType=='luck_draw'){
-                  type="lucky"
-                }
-                else {
-                  type="default"
-                }
                request={
                           "name"  : this.form.name,
                           "email" : this.form.email
@@ -195,7 +185,7 @@ export default {
 
       //my code for submit
 
-            this.$store.dispatch(SUBMIT_FORM,{request,type})
+            this.$store.dispatch(SUBMIT_FORM,request)
             .then((response)=>{
                 this.submitted=true;
                 this.loading=false;

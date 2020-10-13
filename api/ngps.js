@@ -20,14 +20,11 @@ export default {
   getListWallet(data,token) {
     return axios.post(`${origin}/api/campaign/auth/listwallet`, data, setHeader(token))
   },
-  submitLogin(data, type, token) {
-    // there is 3 type : always, default, and luckydraw
-
-    return axios.post(`${origin}/api/campaign/auth/${type}`, data, setHeader(token))
+  submitLogin(data, token) {
+    return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
   },
-  submitNonLogin(data, type) {
-    // there is 3 type : always, default, and luckydraw
-    return axios.post(`${origin}/api/campaign/public/${type}`, data)
+  submitNonLogin(data) {
+    return axios.post(`${origin}/api/campaign/public/submission`, data)
   },
 
   async uploadFile(payload,type) {
