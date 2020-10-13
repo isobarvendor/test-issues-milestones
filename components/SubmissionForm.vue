@@ -68,7 +68,7 @@
   </div>
   <div v-else class="thanks">
     <div v-if="prizeWin">
-        <div class="header">Congratulations!! You win!!</div>
+        <div class="header">{{thankyouPage.title}}</div>
         <div class="header">{{prizeWin.name}} </div>
         <div>
             <img :src="prizeWin.imgUrl" width="250" />
@@ -125,6 +125,9 @@ export default {
     },
     thankyouSubmission(){
        return this.data.thankyouSubmission;
+    },
+     thankyouPage(){
+       return this.data.thankyouPage;
     },
     loginInfo(){
       return this.$store.getters.getLoginAccount;
