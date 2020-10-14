@@ -19,6 +19,8 @@
         </div>
     </a>
     <div class="nav-container">
+        <div style="display:inline;"> <a href='#' @click="changeLanguage('en')">English</a> | <a href='#' @click="changeLanguage('id')">Indonesia</a>
+        </div>
         <a class="nav-button" @click="toggleMenu" v-if="showMenu">
             <div>
                 <span></span>
@@ -84,6 +86,8 @@
 
     </div>
     </client-only>
+
+
   </header>
 </template>
 
@@ -164,6 +168,10 @@ export default {
           this.expand = !this.expand;
           location.href="/";
 
+        },
+        changeLanguage(language){
+          this.$store.commit('SET_LANGUAGE',language);
+          location.reload();
         }
     },
     mounted(){

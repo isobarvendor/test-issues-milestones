@@ -7,7 +7,8 @@ export default () => ({
     listPrize:null,
     errorLogin:null,
     config:null,
-    CMSContent:null
+    CMSContent:null,
+    language:"en"
 
     /** TO-DO make error dialog as a component instead of residing in app.vue */
    // globalErrorDialog: false

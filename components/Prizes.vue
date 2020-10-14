@@ -1,5 +1,5 @@
 <template>
-  <div class="container campaign-section">
+  <div class="container campaign-section" v-if="data">
     <div class="header">{{data.title}}</div>
     <div v-html="data.description"></div>
     <div class="container">

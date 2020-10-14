@@ -156,11 +156,14 @@ export default {
     });
   },
 
-  [FETCH_CMS_DATA]: ({ commit, state, getters }) => {
+  [FETCH_CMS_DATA]: ({ commit, state, getters },language) => {
     return new Promise((resolve, reject) =>{
       const moduleState = state;
       CMSAPI.getCMSContent().then((result) => {
-        commit('SET_CMS_CONTENT',result.data)
+        let content=result.data.filter((o)=>{
+            return o.Language.Language==language
+        })
+        commit('SET_CMS_CONTENT',content)
          CMSAPI.getCMSConfig().then((config) => {
             commit('SET_CONFIG',config.data[0])
             resolve(result)

@@ -28,8 +28,10 @@ export default {
   },
   SET_CMS_CONTENT:(state,data)=>{
     state.CMSContent = data
+  },
+  SET_LANGUAGE:(state,data)=>{
+    state.language = data
   }
-
 
 
 };
