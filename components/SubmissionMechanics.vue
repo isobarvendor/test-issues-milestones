@@ -24,7 +24,6 @@ export default {
   },
     computed:{
     campaignType(){
-      console.log(this.dataForm)
       return this.dataForm;
     },
     dataSocial() {
