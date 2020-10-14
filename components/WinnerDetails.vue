@@ -1,7 +1,7 @@
 <template>
   <div class="winner-details">
       <div class="image-fluid">
-        <img src="/img/winner/winner.png"/>
+        <img :src="this.data.image[0].url" v-if="this.data.image.length>0" />
     </div>
     <div class="close-icon" @click="close">
            <img src="/img/icons/close.png"/>

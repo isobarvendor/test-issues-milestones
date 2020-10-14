@@ -127,7 +127,7 @@ export default {
        return this.data.thankyouSubmission;
     },
      thankyouPage(){
-       return this.data.thankyouPage;
+       return this.data.ThankYouPage;
     },
     loginInfo(){
       return this.$store.getters.getLoginAccount;
@@ -227,12 +227,24 @@ export default {
         }
 
     },
-    onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      this.form.uploadFile = files[0];
+     onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
+      let FileSize = files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+           this.errorMessage ="Please upload file not more than 2 MB"
+           return;
+        }
+      let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
+      let filePath = e.target.value;
+      if(!allowedExtensions.exec(filePath)){
+         this.errorMessage ="Please upload image or file"
+           return;
+      }
+      this.form.uploadFile = files[0];
       this.createImage(files[0]);
+       this.errorMessage = null;
     },
     createImage(file) {
       var image = new Image();

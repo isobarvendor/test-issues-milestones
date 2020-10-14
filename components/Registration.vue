@@ -82,11 +82,23 @@ export default {
   },
   methods:{
     onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      this.uploadFile = files[0];
+      let files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
+      let FileSize = files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+           this.errorMessage ="Please upload file not more than 2 MB"
+           return;
+        }
+      let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+      let filePath = e.target.value;
+      if(!allowedExtensions.exec(filePath)){
+         this.errorMessage ="Please upload image file"
+           return;
+      }
+      this.uploadFile = files[0];
       this.createImage(files[0]);
+       this.errorMessage = null;
     },
     createImage(file) {
       var image = new Image();

@@ -55,8 +55,10 @@ export default {
   props: {
 
   },
-  created(){
-    this.getAccount();
+  mounted(){
+    if(this.$store.state.token){
+         this.getAccount();
+    }
   },
 
   methods:{
