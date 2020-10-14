@@ -68,7 +68,7 @@
   </div>
   <div v-else class="thanks">
     <div v-if="prizeWin">
-        <div class="header">{{thankyouPage.title}}</div>
+        <div class="header">{{thankyouPage.Title}}</div>
         <div class="header">{{prizeWin.name}} </div>
         <div>
             <img :src="prizeWin.imgUrl" width="250" />
