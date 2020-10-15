@@ -32,45 +32,44 @@
             <v-card v-show="expand" class="mx-auto">
             <div class="menu-container">
                 <div class="wallet-desktop" >
-                    <div class="wallet-swiper">
+                    <div class="wallet-swiper" v-if="CMSContent && CMSContent[0].SectionMenu" >
                         <div class="wallet-swiper-item">
-                        <img src="/img/winner/winner.png"
-                        />
+                        <img :src="CMSContent[0].SectionMenu.Image[0].url" />
                         </div>
                         <div class="description bg">
-                            <div class="name">Win a dream premier league experience in England</div>
+                            <div class="name">{{CMSContent[0].SectionMenu.Description}}</div>
                         </div>
                     </div>
                 </div>
-                <div class="body-options">
+                <div class="body-options" v-if="CMSContent && CMSContent[0].SectionMenu&& CMSContent[0].SectionMenu.Menu">
                     <div class="img-text">
                         <img src="/img/icons/reward.png"  />
                         <div>
-                            <a href="/">Home</a>
+                            <a href="/">{{CMSContent[0].SectionMenu.Menu[0].Link}}</a>
                         </div>
                     </div>
                     <div class="img-text" v-if="config ? config.Reward.Reward : true">
                         <img src="/img/icons/reward.png"  />
                         <div>
-                            <a data-nav="rewards" @click="clickNav">Rewards Catalogue</a>
+                            <a data-nav="rewards" @click="clickNav">{{CMSContent[0].SectionMenu.Menu[1].Link}}</a>
                         </div>
                     </div>
                     <div class="img-text" v-if="config ? config.Wallet.Wallet&&logged : logged">
                         <img src="/img/icons/wallet.png"/>
                         <div>
-                            <a data-nav="wallet" @click="clickNav">My Wallet</a>
+                            <a data-nav="wallet" @click="clickNav">{{CMSContent[0].SectionMenu.Menu[2].Link}}</a>
                         </div>
                     </div>
                     <div class="img-text" v-if="logged">
                         <img src="/img/icons/account.png"/>
                         <div>
-                            <a data-nav="account" @click="clickNav">Account Details</a>
+                            <a data-nav="account" @click="clickNav">{{CMSContent[0].SectionMenu.Menu[3].Link}}</a>
                         </div>
                     </div>
                     <div class="img-text">
                         <img src="/img/icons/help.png"/>
                         <div>
-                            <a data-nav="help" @click="clickNav">Wallet Help & Support</a>
+                            <a data-nav="help" @click="clickNav">{{CMSContent[0].SectionMenu.Menu[4].Link}}</a>
                         </div>
                     </div>
                 </div>
@@ -126,6 +125,9 @@ export default {
         },
         logged(){
            return this.$store.getters.getLoginAccount
+        },
+         CMSContent(){
+           return this.$store.getters.getCMSContent
         }
 
     },
