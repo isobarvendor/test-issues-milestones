@@ -1,6 +1,6 @@
 <template>
 <div class="account-detail">
-    <h3> Account Details </h3>
+    <h3> {{cmsData.Account.Title}}</h3>
      <div class="registration-body">
     <div class="details">
         <div class="input-container">
@@ -77,6 +77,7 @@ export default {
   },
   props: {
     data: null,
+    cmsData: null,
   },
   computed:{
     login(){

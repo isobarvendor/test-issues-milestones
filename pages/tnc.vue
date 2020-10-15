@@ -2,7 +2,7 @@
   <div v-if="data" id="main" class="tnc">
     <div class="wrapper">
       <div class="container">
-        <TncSection :data="data.exclusivePrizes"/>
+        <TncSection :data="data[0].Tnc"/>
       </div>
 
     </div>

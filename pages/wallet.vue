@@ -2,8 +2,8 @@
   <div v-if="data" id="main" class="wallet">
     <div class="wrapper">
       <div class="container">
-        <div class="header">Your Wallet</div>
-        <WalletRewards :data="listWalletExpired"/>
+        <div class="header">{{data[0].Wallets.WalletsTitle}}</div>
+        <WalletRewards :data="listWalletExpired" :cmsData="data[0]"/>
         <WalletTransactions :data="listWalletTransaction"/>
       </div>
 
@@ -65,7 +65,7 @@ export default {
               "flowLabel": "queryWallet",
               "userId": this.$store.state.login ? this.$store.state.login.uuid : null
           }*/
-      let request = {
+      /*let request = {
         name:this.$store.state.login.name,
         email:this.$store.state.login.email
       }
@@ -81,7 +81,7 @@ export default {
                 this.errorMessage='Please enter the correct email/password';
               }
             })
-
+*/
       /* this.listWallet={
                 "walletStatus": [
                       {
@@ -112,7 +112,7 @@ export default {
       //commented first after API ready
 
       let payload={request,token:this.$store.state.token}
-      this.$store.dispatch(GET_LIST_WALLET,payload)
+     /* this.$store.dispatch(GET_LIST_WALLET,payload)
             .then((response)=>{
 
                this.listWalletExpired=response.data;
@@ -122,7 +122,7 @@ export default {
                 this.errorMessage='Please enter the correct email/password';
               }
             })
-
+*/
        this.listWalletExpired={
                 "expirationWallet": [
                     {
@@ -185,7 +185,7 @@ export default {
           //commented first after API ready
 
                  let payload={request,token:this.$store.state.token}
-                 this.$store.dispatch(GET_LIST_WALLET,payload)
+               /*  this.$store.dispatch(GET_LIST_WALLET,payload)
                       .then((response)=>{
 
                         this.listWalletTransaction=response.data;
@@ -194,7 +194,7 @@ export default {
                         if(error.response && error.response.data.status=='401'){
                           this.errorMessage='Please enter the correct email/password';
                         }
-                      })
+                      })*/
 
           this.listWalletTransaction ={
               "transactions": [

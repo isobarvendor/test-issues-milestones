@@ -24,7 +24,7 @@ export default {
       footerText(){
         if(this.data){
           var text = this.data.copyright.copyright;
-          return text.replace(/The Coca-Cola Company/g, 'The&nbsp;Coca&#8209;Cola&nbsp;Company');
+          return text;
         }
 
       }

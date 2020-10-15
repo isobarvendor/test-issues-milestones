@@ -1,6 +1,6 @@
 <template>
   <div class="container campaign-section">
-    <p>Participation Period</p>
+    <p>{{this.data.Title}}</p>
     <p class="campaign-period">{{startdate}} – {{enddate}}</p>
   </div>
 </template>

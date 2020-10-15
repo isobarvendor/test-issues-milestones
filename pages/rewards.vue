@@ -3,7 +3,7 @@
     <div class="wrapper">
 
       <div class="container">
-        <div class="header"> <span class="title">Rewards Catalogue</span>
+        <div class="header"> <span class="title">{{data[0].Rewards.Title}}</span>
           <div class="selections">
            <!-- <v-select
               :items="recent"

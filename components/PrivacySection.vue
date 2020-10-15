@@ -1,10 +1,10 @@
 <template>
 <div class="privacy-component">
     <div class="privacy-section">
-        <div class="primary-section">  
+        <div class="primary-section">
             <div class="header">
                 {{data.privacyTop[0].title}}
-                <p>last updated: 30 july 2020</p>
+                <p>{{data.privacyTop[0].LastUpdated}}</p>
             </div>
             <div class="desc">
                 <p>{{data.privacyTop[0].description}}</p>
@@ -56,7 +56,7 @@ export default {
   },
   beforeMount() {},
   mounted(){
-      
+
   }
 };
 </script>
@@ -89,7 +89,7 @@ export default {
             align-self: flex-end;
             margin-left: 35px;
         }
-          
+
     }
 
     .secondary-section{
@@ -99,14 +99,14 @@ export default {
             .sub-header{
                 font-size: 25px;
                 width: 26%;
-            } 
+            }
             .desc{
                 width: 50%;
                 margin-left: 50px;
                 p{
                     line-height: 24px;
                 }
-            } 
+            }
         }
         .accordions{
             margin: 40px 0px;
@@ -164,6 +164,6 @@ export default {
                 width: 100%;
             }
         }
-    }  
+    }
 }
 </style>

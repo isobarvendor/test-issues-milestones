@@ -1,6 +1,6 @@
 <template>
-  <div class="wallet-rewards">
-    <SliderHeader>Rewards</SliderHeader>
+  <div class="wallet-rewards" >
+    <SliderHeader>{{cmsData.Wallets.RewardsTitle}}</SliderHeader>
     <div class="wallet-desktop" v-if="$mq == 'xl'">
       <div class="wallet-swiper" v-for="(item, index) in toBeShown" :key="'reward'+index">
         <div class="wallet-swiper-item">
@@ -79,6 +79,7 @@ export default {
   },
   props: {
     data: null,
+    cmsData:null
   },
   computed:{
   	toBeShown() {

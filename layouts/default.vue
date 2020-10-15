@@ -7,12 +7,12 @@
         class="center-screen"
       v-if="loading"
     ></v-progress-circular>
-    <Nuxt v-if="!errorMessage&&!loading" />
-     <div class="center-text" v-else-if="!loading">
+    <Nuxt v-if="!errorMessage&&!loading&&!hideAll" />
+     <div class="center-text" v-else-if="!loading&&!hideAll">
         <h1>{{errorMessage}}</h1>
         <p>Please try again</p>
       </div>
-    <Header  v-if="!loading" />
+    <Header  v-if="!loading" @toggleMenu="toggleMenu" />
   </div>
 </template>
 
@@ -26,7 +26,8 @@ export default {
   data(){
     return {
       errorMessage:null,
-      loading:false
+      loading:false,
+      hideAll:false
     }
   },
   methods:{
@@ -42,6 +43,11 @@ export default {
         }
 
       })
+    },
+    toggleMenu(expand){
+      if(this.$vuetify.breakpoint.name=='xs'){
+        this.hideAll=expand;
+      }
     }
   },
   mounted() {

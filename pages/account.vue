@@ -1,9 +1,9 @@
 <template>
   <div id="main" class="account">
     <client-only>
-    <div class="wrapper"  v-if="loginAccount" >
+    <div class="wrapper"  v-if="loginAccount&&CMSContent" >
       <div class="container">
-        <AccountDetail :data="loginAccount"/>
+        <AccountDetail :data="loginAccount" :cmsData="CMSContent[0]"/>
       </div>
     </div>
     </client-only>
@@ -49,6 +49,9 @@ export default {
   computed:{
     loginAccount(){
       return this.$store.getters.getLoginAccount;
+    },
+     CMSContent(){
+      return this.$store.getters.getCMSContent;
     }
   },
     mounted(){

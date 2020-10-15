@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 10,
         breakpoints: {
           // when window width is >= 320px

@@ -79,7 +79,7 @@ header{
     padding: 50px 50px;
   }
   @media only screen and (max-width: 767px) {
-    padding: 50px 10px;
+    padding: 20px 10px;
   }
 }
 .header{
@@ -88,7 +88,7 @@ header{
 
 }
 a{
-  &.button{ 
+  &.button{
     text-decoration: none;
     filter:none;
     color:white;
@@ -183,7 +183,7 @@ footer{
     background:black;
     filter: $shadow;
     transition: background 0.3s;
-
+    z-index: 12;
     @include breakpoint(lg){
       height:65px;
     }
@@ -212,7 +212,7 @@ footer{
     align-items: center;
     height:100%;
     padding:0 2em;
-    
+
     >*{
       position: relative;
       font-size:0.75rem;
@@ -319,11 +319,18 @@ footer{
   font-size:26px;
   font-weight: bold;
   margin-top:.5em;
+  @media only screen and (max-width: 767px) {
+    font-size:20px;
+  }
 }
 
 .campaign-section{
   .header{
     @include section-header;
+    @media only screen and (max-width: 767px) {
+      font-size:22px;
+      text-align: center;
+    }
   }
 }
 
@@ -341,7 +348,7 @@ footer{
   }
 
   & .prize-description{
-    font-size:1rem;
+    font-size:$mobile-body-font-size;
     height:calc(251px - 154px);
     padding:1em 20px;
     border-top:2px solid $secondary-color;
@@ -388,7 +395,7 @@ footer{
           background:$secondary-color;
       }
     }
-    
+
   }
 }
 
@@ -407,7 +414,7 @@ footer{
       padding: 1em;
       width:33%;
     }
-  
+
     & img{
       margin:1.5em 0;
       flex:1;
@@ -466,7 +473,7 @@ footer{
       flex:1;
       text-align: center;
       margin-right:.5em;
-      
+
     }
   }
   .ic{
@@ -491,7 +498,7 @@ footer{
         right:-1em;
         border-right:2px solid #00B300;
       }
-      
+
     }
     &-google{
       background-image: url('/img/ic-google.svg');
@@ -518,7 +525,7 @@ form {
       line-height: 28px;
     }
   }
-  
+
   input{
     width:100%;
     background:none;
@@ -565,7 +572,7 @@ form {
         transform: translate(-50%, -50%);
       }
     }
-    
+
   }
 }
 .wallet, .rewards, .privacy, .tnc, .register, .login, .help, .account, .coins, .congratulations{
@@ -587,6 +594,10 @@ form {
     font-weight: bold;
     font-family:$header-fontfamily;
     margin-right:1em;
+    @media only screen and (max-width: 767px) {
+      font-size:22px;
+    }
+
   }
   &:after{
     content: '';
@@ -632,7 +643,7 @@ form {
   }
 
   a{
-    &.button{ 
+    &.button{
       text-decoration: none;
       filter:none;
       color:white;
@@ -658,11 +669,11 @@ form {
   .bg{
     background: $wallet-button-gradient;//linear-gradient(0deg, rgba(59,59,59,1) 12%, rgba(122,122,122,1) 40%, rgba(16,16,16,1) 100%);
   }
-  
+
   .wallet-swiper-item{
     @include column;
     border-radius: 20px;
-    
+
     & img{
       border-radius: 20px 20px 0 0;
       background:black;

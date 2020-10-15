@@ -1,6 +1,6 @@
 <template>
   <div  v-if="!submitted">
-   <div class="header">Be the lucky one</div>
+   <div class="header">{{campaignTitle}}</div>
   <form class="mechanics" autocomplete="off">
 
     <div class="details">
@@ -62,7 +62,7 @@
         indeterminate
         v-if="loading"
       ></v-progress-circular>
-      <v-btn class="get-code" v-else  v-on:click="submit()">Enter Draw</v-btn>
+      <v-btn class="get-code" v-else  v-on:click="submit()">Submit</v-btn>
     </div>
   </form>
   </div>
@@ -122,6 +122,9 @@ export default {
     },
      campaignType(){
       return this.data.campaignTypes.mechanicType;
+    },
+     campaignTitle(){
+      return this.data.campaignTypes.Title;
     },
     thankyouSubmission(){
        return this.data.thankyouSubmission;
@@ -213,6 +216,9 @@ export default {
                   this.$store.commit('SET_LOGIN_ACCOUNT', null);
                   this.$store.commit('SET_TOKEN', null);
                   location.reload();
+               }
+               if(error.response && error.response.data.status=='500'&&error.response.data.errorCode=='5'){
+                this.errorMessage='Oops your pin code already redeemed';
                }
             })
          }

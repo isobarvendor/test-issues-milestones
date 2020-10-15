@@ -3,7 +3,7 @@
     <div class="close" @click="close"><img src="/img/icons/close.png"/></div>
     <div class="wrapper">
       <div class="container">
-        <LoginDetails :social="dataSocial" />
+        <LoginDetails :social="dataSocial" :data="CMSContent[0].Login" />
       </div>
     </div>
   </div>
@@ -40,6 +40,9 @@ export default {
    computed: {
      configData(){
        return this.$store.getters.getCMSConfig;
+     },
+     CMSContent(){
+       return this.$store.getters.getCMSContent;
      },
      dataSocial(){
       let config = this.$store.getters.getCMSConfig;

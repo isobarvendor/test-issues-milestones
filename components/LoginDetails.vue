@@ -3,12 +3,11 @@
     <div class="title-image">
       <img src="img/icons/coke.png" />
       <p>
-        Sign up with us and gain access to our rewards catalogue where you can
-        redeem prizes.
+        {{data.Title}}
       </p>
     </div>
     <div class="continue" v-if="$mq == 'xl'">
-      <p>Continue with</p>
+      <p>{{data.SubTitle}}</p>
       <div class="icons">
         <div v-on:click="redirectTo('line')" v-if="social.line">
           <span><img src="img/icons/line.png" /></span>

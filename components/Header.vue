@@ -19,8 +19,6 @@
         </div>
     </a>
     <div class="nav-container">
-        <div style="display:inline;"> <a href='#' @click="changeLanguage('en')">English</a> | <a href='#' @click="changeLanguage('id')">Indonesia</a>
-        </div>
         <a class="nav-button" @click="toggleMenu" v-if="showMenu">
             <div>
                 <span></span>
@@ -29,10 +27,10 @@
             </div>
         </a>
         <v-expand-transition>
-            <v-card v-show="expand" class="mx-auto">
+            <v-card v-show="expand" class="mx-auto" v-if="CMSContent && CMSContent[0].SectionMenu&& CMSContent[0].SectionMenu.Menu">
             <div class="menu-container">
                 <div class="wallet-desktop" >
-                    <div class="wallet-swiper" v-if="CMSContent && CMSContent[0].SectionMenu" >
+                    <div class="wallet-swiper"  >
                         <div class="wallet-swiper-item">
                         <img :src="CMSContent[0].SectionMenu.Image[0].url" />
                         </div>
@@ -41,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="body-options" v-if="CMSContent && CMSContent[0].SectionMenu&& CMSContent[0].SectionMenu.Menu">
+                <div class="body-options" >
                     <div class="img-text">
                         <img src="/img/icons/reward.png"  />
                         <div>
@@ -74,9 +72,9 @@
                     </div>
                 </div>
                 <div class="tnc-container">
-                    <p><a @click="clickPrivacy">Privacy Policy</a></p>
-                    <p><a @click="clickTerms">Terms & Conditions</a></p>
-                    <p v-if="logged"  class="logout" @click="logout">Log out</p>
+                    <p><a @click="clickPrivacy" v-if="CMSContent"> {{CMSContent[0].SectionMenu.Menu[5].Link}} </a></p>
+                    <p><a @click="clickTerms" v-if="CMSContent"> {{ CMSContent[0].SectionMenu.Menu[6].Link}}</a></p>
+                    <p v-if="logged&&CMSContent"  class="logout" @click="logout" >{{CMSContent[0].SectionMenu.Menu[7].Link}}</p>
                 </div>
 
             </div>
@@ -136,6 +134,7 @@ export default {
             e.stopPropagation();
             e.target.classList.toggle('active');
             this.expand = !this.expand;
+            this.$emit('toggleMenu',this.expand);
         },
         toggleLog(e){
             e.stopPropagation();
@@ -195,7 +194,7 @@ export default {
     position: relative;
     z-index: 1;
     .nav-button{
-        z-index: 9;
+        z-index:12;
     }
     .menu-container{
         width: 400px;
@@ -210,6 +209,7 @@ export default {
         color: #ffffff;
         box-shadow: -7px 4px 12px -1px rgba(0,0,0,0.75);
         border-radius: 0px 0px 0px 20px !important;
+          z-index: 11;
         .wallet-swiper{
             margin: 0px 0px;
             width: 80%;
@@ -249,11 +249,12 @@ export default {
         }
 
     }
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 700px) {
         .menu-container{
             right: -20px;
-            top: 0px;
-            margin-top: 35px;
+            top: -150px;
+            margin-top: 20px;
+            padding-top:150px;
             .wallet-swiper{
                 width: 90%;
                 .wallet-swiper-item img{
