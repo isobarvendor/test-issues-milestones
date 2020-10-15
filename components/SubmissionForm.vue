@@ -217,7 +217,7 @@ export default {
                   this.$store.commit('SET_TOKEN', null);
                   location.reload();
                }
-               if(error.response && error.response.data.status=='500'&&error.response.data.errorCode=='5'){
+               if(error.response&&error.response.data.errorCode=='5'){
                 this.errorMessage='Oops your pin code already redeemed';
                }
             })
