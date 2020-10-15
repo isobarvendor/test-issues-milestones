@@ -219,7 +219,7 @@ export default {
                   location.reload();
                }
                if(error.response&&error.response.data.errorCode=='5'){
-                this.errorMessage='Oops your pin code already redeemed';
+                this.errorMessage='Oops your pin code invalid or already redeemed';
                }
             })
          }
