@@ -1,7 +1,7 @@
 <template>
-  <div class="container campaign-section">
+  <div class="container campaign-section" v-if="cmsData">
       <Login :social="dataSocial" v-if="campaignType.campaignTypes.authentication=='register'&& !this.$store.state.login"  />
-      <Form :data="dataForm"  v-if="campaignType.campaignTypes.authentication!='register'|| this.$store.state.login"  />
+      <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="campaignType.campaignTypes.authentication!='register'|| this.$store.state.login"  />
 
   </div>
 </template>
@@ -25,6 +25,9 @@ export default {
     computed:{
     campaignType(){
       return this.dataForm;
+    },
+    cmsData(){
+      return this.$store.getters.getCMSContent;
     },
     dataSocial() {
       return {

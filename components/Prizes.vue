@@ -21,7 +21,7 @@
     </div>
     <div v-if="winners.luckyWinnerSection" class="winners-section">
       <div class="header">{{winners.title}}</div>
-      <a class="button" href="/winners">View winners list</a>
+      <a class="button" href="/winners">{{winners.ButtonTitle}}</a>
     </div>
   </div>
 </template>

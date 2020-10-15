@@ -78,7 +78,7 @@
         </div>
     </div>
     <div v-else>
-      <div class="header">{{thankyouSubmission.title}} </div>
+      <div class="header">{{thankyouSubmission.Ttitle}} </div>
       <div class="header">{{form.name}}</div>
       <div>
           {{thankyouSubmission.message}} <a href='#'>{{form.email}}</a>
@@ -95,6 +95,7 @@ export default {
     inject: ['$validator'],
      props: {
         data: null,
+        cmsData: null,
       },
        data(){
     return{
@@ -127,10 +128,10 @@ export default {
       return this.data.campaignTypes.Title;
     },
     thankyouSubmission(){
-       return this.data.thankyouSubmission;
+       return this.cmsData.ThankYouSubmission;
     },
      thankyouPage(){
-       return this.data.ThankYouPage;
+       return this.cmsData.ThanksYouPage;
     },
     loginInfo(){
       return this.$store.getters.getLoginAccount;
