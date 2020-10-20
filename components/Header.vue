@@ -3,7 +3,9 @@
     <client-only>
     <a class="profile-button" :class="[{'dark': isDark},{'invisible':!showProfile}]">
         <img class="profile-image" :src="logged.imageUrl" v-if="logged&& logged.imageUrl">
-        <img class="profile-image" src="/img/dummy_profile.jpg" v-else-if="logged">
+        <img class="profile-image" src="/img/dummy_profile.jpg" v-else-if="logged&&contentClass=='coke'">
+        <img class="profile-image" src="/img/profile-sprite.png" v-else-if="logged&&contentClass=='sprite'">
+        <img class="profile-image" src="/img/profile-fanta.png" v-else-if="logged&&contentClass=='fanta'">
         <div class="profile-content" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
             <template v-else-if="config ? config.Wallet.Wallet&&logged : logged">
@@ -137,7 +139,20 @@ export default {
         },
          isIndo(){
            return this.$store.state.language=="id";
-        }
+        },
+         contentClass(){
+            let cmsContent=this.$store.getters.getCMSContent;
+              if(cmsContent){
+                if(cmsContent[0].Theme.Theme=='Coke'){
+                  return "coke"
+                }else if(cmsContent[0].Theme.Theme=='Spirit'){
+                  return "sprite"
+                }else if(cmsContent[0].Theme.Theme=='Fanta'){
+                  return "fanta"
+                }
+              }
+              return "coke"
+          },
 
     },
     methods:{
@@ -184,7 +199,8 @@ export default {
         changeLanguage(language){
           this.$store.commit('SET_LANGUAGE',language);
           location.reload();
-        }
+        },
+
     },
     mounted(){
         this.isDark = this.$route.name!="index"
