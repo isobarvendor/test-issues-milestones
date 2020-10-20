@@ -51,8 +51,7 @@ export default {
 <style lang="scss">
 @import '~assets/scss/variables.scss';
 @import '~assets/scss/mixins.scss';
-  html, body{
-    background: #BE0000;
+
     .winner-detail{
         padding-top:0px;
         .container{
@@ -66,7 +65,6 @@ export default {
             text-decoration: none;
             filter:none;
             color:white;
-            background: $wallet-button-gradient;
             }
             &.center{
             display:block;
@@ -99,5 +97,5 @@ export default {
         }
       }
     }
-  }
+
 </style>

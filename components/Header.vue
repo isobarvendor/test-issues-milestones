@@ -19,6 +19,7 @@
         </div>
     </a>
     <div class="nav-container">
+
         <a class="nav-button" @click="toggleMenu" v-if="showMenu">
             <div>
                 <span></span>
@@ -38,10 +39,14 @@
                             <div class="name">{{CMSContent[0].SectionMenu.Description}}</div>
                         </div>
                     </div>
+
                 </div>
+
                 <div class="body-options" >
+                      <div class="language-container"> <a href='#' :class="{ active : isEnglish}" @click="changeLanguage('en')">English</a> | <a :class="{ active : isIndo }" href='#' @click="changeLanguage('id')">Indonesia</a>
+        </div>
                     <div class="img-text">
-                        <img src="/img/icons/reward.png"  />
+                        <img src="/img/icons/home-icon.png"  />
                         <div>
                             <a href="/">{{CMSContent[0].SectionMenu.Menu[0].Link}}</a>
                         </div>
@@ -126,6 +131,12 @@ export default {
         },
          CMSContent(){
            return this.$store.getters.getCMSContent
+        },
+         isEnglish(){
+           return this.$store.state.language=="en";
+        },
+         isIndo(){
+           return this.$store.state.language=="id";
         }
 
     },
@@ -193,6 +204,16 @@ export default {
     align-items: flex-end;
     position: relative;
     z-index: 1;
+    a{
+      text-decoration: none;
+      &.active{
+        text-decoration: underline;
+      }
+    }
+    .language-container{
+      padding-left: 25%;
+      padding-bottom: 30px;
+    }
     .nav-button{
         z-index:12;
     }
@@ -255,6 +276,7 @@ export default {
             top: -150px;
             margin-top: 20px;
             padding-top:150px;
+            height: 100%;
             .wallet-swiper{
                 width: 90%;
                 .wallet-swiper-item img{

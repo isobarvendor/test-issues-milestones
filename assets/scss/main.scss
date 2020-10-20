@@ -14,13 +14,16 @@ html,body{
     padding:0;
     min-height: 100vh;
     color:$body-font-color;
-    background:$body-bg-color;
+    background:$body-bg-color-wallet;
     font-size:$mobile-body-font-size;
     font-family: $body-fontfamily;
-    transition: background .3s;
+
     @include breakpoint(md){
       font-size:$body-font-size;
     }
+}
+.main-container{
+  transition: background .3s;
 }
 
 #main{
@@ -77,9 +80,13 @@ header{
   @include breakpoint(lg){
     /*padding: $masthead-vpadding $masthead-hpadding;*/
     padding: 50px 50px;
+
   }
   @media only screen and (max-width: 767px) {
     padding: 20px 10px;
+  }
+  @media only screen and (min-width: 1280px) {
+    max-width: 1280px;
   }
 }
 .header{
@@ -378,7 +385,7 @@ footer{
       display: inline-block;
       border-radius: 100%;
       &-active{
-        background:white;
+        background:white !important;
       }
     }
     & > *+*{
@@ -721,6 +728,121 @@ form {
           font-size: 26px;;
         }
       }
+    }
+  }
+}
+
+
+
+//theming
+
+.coke{
+  #main.home, #main.winner-detail{
+    background-color:$coke-primary-color;
+    .campaign-period, .header, .title{
+      color:$coke-font-heading-color;
+    }
+    footer{
+      background-color:$coke-secondary-color;
+      color:$coke-font-footer-color;
+      a{
+        color:$coke-font-footer-color;
+      }
+    }
+    .box{
+      background-color:$coke-secondary-color;
+      color:$coke-font-footer-color;
+      border-color: $coke-border-color;
+    }
+    .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined),a.button  {
+      background:$coke-button-background-color !important;
+      color:$coke-button-font-color !important;
+    }
+    .campaign-section + .campaign-section:before{
+      background-color:$coke-border-color;
+    }
+    .prize-item {
+      border-color:$coke-prize-border-color;
+      .prize-description{
+        border-color:$coke-prize-border-color;
+      }
+    }
+    .prize-swiper-pagination .prize-swiper-pagination-bullet,.prize-swiper-pagination > * + *:before {
+      background :$coke-prize-pagination-color;
+    }
+  }
+}
+ .sprite{
+  #main.home, #main.winner-detail{
+    background-color:$sprite-primary-color;
+    .campaign-period, .header, .title{
+      color:$sprite-font-heading-color;
+    }
+    footer{
+      background-color:$sprite-secondary-color;
+      color:$sprite-font-footer-color;
+      a{
+          color:$sprite-font-footer-color;
+      }
+    }
+    .box{
+      background-color:$sprite-secondary-color;
+      color:$sprite-font-footer-color;
+      border-color: $sprite-border-color;
+    }
+    .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) , a.button {
+      background:$sprite-button-background-color !important;
+      color:$sprite-button-font-color !important;
+    }
+    .campaign-section + .campaign-section:before{
+      background-color:$sprite-border-color;
+    }
+    .prize-item {
+      border-color:$sprite-prize-border-color;
+      .prize-description{
+        border-color:$sprite-prize-border-color;
+      }
+    }
+    .prize-swiper-pagination .prize-swiper-pagination-bullet,.prize-swiper-pagination > * + *:before {
+      background :$sprite-prize-pagination-color;
+    }
+  }
+}
+
+ .fanta{
+  #main.home, #main.winner-detail{
+    background-color:$fanta-primary-color;
+    .campaign-period, .header, .title {
+      color:$fanta-font-heading-color;
+    }
+
+    footer{
+      background-color:$fanta-secondary-color;
+      color:$fanta-font-footer-color;
+        a{
+          color:$fanta-font-footer-color;
+      }
+    }
+    .box{
+      background-color:$fanta-secondary-color;
+      color:$fanta-font-footer-color;
+      border-color: $fanta-border-color;
+    }
+    .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined), a.button {
+      background:$fanta-button-background-color !important;
+      color:$fanta-button-font-color !important;
+    }
+    .campaign-section + .campaign-section:before{
+      background-color:$fanta-border-color;
+    }
+    .prize-item {
+      border-color:$fanta-prize-border-color;
+      .prize-description{
+        border-color:$fanta-prize-border-color;
+      }
+    }
+    .prize-swiper-pagination .prize-swiper-pagination-bullet,.prize-swiper-pagination > * + *:before {
+      background :$fanta-prize-pagination-color;
     }
   }
 }

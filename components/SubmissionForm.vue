@@ -222,6 +222,8 @@ export default {
                 this.errorMessage='Oops your pin code invalid or already redeemed';
                }
             })
+         }else{
+            this.loading=false;
          }
 
        });

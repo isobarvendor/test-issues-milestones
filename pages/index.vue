@@ -1,5 +1,5 @@
 <template>
-  <div id="main" v-if="CMSContent" >
+  <div id="main" class="home" v-if="CMSContent" >
     <div class="wrapper" >
       <Masthead :data="CMSContent[0].homepage.mastheadSection"/>
       <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>

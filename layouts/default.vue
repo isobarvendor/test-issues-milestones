@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  :class="contentClass"  >
       <v-progress-circular
       :width="5"
       color="white"
@@ -30,6 +30,21 @@ export default {
       hideAll:false
     }
   },
+  computed:{
+     contentClass(){
+       let cmsContent=this.$store.getters.getCMSContent;
+        if(cmsContent){
+          if(cmsContent[0].Theme.Theme=='Coke'){
+            return "coke"
+          }else if(cmsContent[0].Theme.Theme=='Spirit'){
+            return "sprite"
+          }else if(cmsContent[0].Theme.Theme=='Fanta'){
+            return "fanta"
+          }
+        }
+        return "coke"
+     },
+  },
   methods:{
     async fetchData(){
       this.loading=true;
@@ -55,8 +70,10 @@ export default {
   },
 
 };
+
 </script>
 <style lang="scss">
+@import 'assets/scss/variables.scss';
   .center-screen{
      margin: auto;
     position: absolute;
@@ -70,4 +87,5 @@ export default {
     text-align: center;
     margin-top: 200px;
   }
+
 </style>

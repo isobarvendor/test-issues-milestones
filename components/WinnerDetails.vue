@@ -10,7 +10,7 @@
          <div class="title">
           <h3>WINNER LIST</h3>
          </div>
-         <div class="first-box" @click="winnerLists[0].pdfFile ?  openPDF(winnerLists[0].pdfFile.url ) : false">
+         <div class="first-box box" @click="winnerLists[0].pdfFile ?  openPDF(winnerLists[0].pdfFile.url ) : false">
              <div class="week">
                 {{winnerLists[0].title}}
               </div>
@@ -20,7 +20,7 @@
          </div>
          <div class="two-container"   v-for="(item, index) in winnerLists"
           :key="'winner'+index" v-if="index!=0&&winnerLists.length-1 != index" >
-             <div class="second-box" @click="winnerLists[index].pdfFile ?  openPDF(winnerLists[index].pdfFile.url ) : false" >
+             <div class="second-box box" @click="winnerLists[index].pdfFile ?  openPDF(winnerLists[index].pdfFile.url ) : false" >
                  <div class="week">
                 {{winnerLists[index].title}}
               </div>
@@ -28,7 +28,7 @@
                 {{ formatDate(winnerLists[index].fromDate)}} -  {{formatDate(winnerLists[index].toDate)}}
               </div>
              </div>
-             <div class="second-box" v-if="winnerLists.length-1 != index" @click="winnerLists[index].pdfFile ?  openPDF(winnerLists[index].pdfFile.url ) : false">
+             <div class="second-box box" v-if="winnerLists.length-1 != index" @click="winnerLists[index].pdfFile ?  openPDF(winnerLists[index].pdfFile.url ) : false">
                  <div class="week">
                 {{winnerLists[index+1].title}}
               </div>
@@ -37,7 +37,7 @@
               </div>
              </div>
          </div>
-        <a v-if="$mq == 'sm' || $mq == 'md'" class="button rewards-bottom"> Back to promotion</a>
+        <a v-if="$mq == 'sm' || $mq == 'md'" class="button rewards-bottom"  @click="close"> Back to promotion</a>
     </div>
 
   </div>
@@ -114,14 +114,18 @@ export default {
                 padding-bottom: 30px
             }
         }
+        .box{
+          border: 1px solid #DB1F27;
+          background: #B10017;
+          border: 1px solid #DB1F27;
+          border-radius: 20px;
+          background: #B10017;
+          padding-top: 20px;
+          padding-left: 15px;
+          padding-bottom: 20px;
+        }
         .first-box{
             width: 100%;
-            border: 1px solid #DB1F27;
-            border-radius: 20px;
-            background: #B10017;
-            padding-top: 20px;
-            padding-left: 15px;
-            padding-bottom: 20px;
             .week{
                 margin-bottom: 5px;
             }
@@ -135,12 +139,6 @@ export default {
             justify-content: space-between;
             .second-box{
                 width: 45%;
-                border: 1px solid #DB1F27;
-                border-radius: 20px;
-                background: #B10017;
-                padding-top: 20px;
-                padding-left: 15px;
-                padding-bottom: 20px;
                 .week{
                 margin-bottom: 5px;
             }
@@ -206,8 +204,6 @@ export default {
         a.button.rewards-bottom{
             margin:auto;
             margin-top:40px;
-            background: white;
-            color: black;
         }
         a.button.mobile{
             margin:auto;
