@@ -6,7 +6,7 @@
         <img class="profile-image" src="/img/dummy_profile.jpg" v-else-if="logged&&contentClass=='coke'">
         <img class="profile-image" src="/img/profile-sprite.png" v-else-if="logged&&contentClass=='sprite'">
         <img class="profile-image" src="/img/profile-fanta.png" v-else-if="logged&&contentClass=='fanta'">
-        <div class="profile-content" @click="loginRoute">
+        <div :class="{'profile-content' : config ? config.Wallet.Wallet : true }" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
             <template v-else-if="config ? config.Wallet.Wallet&&logged : logged">
                 <div class="column center">
