@@ -79,7 +79,9 @@ export default {
             }
             .desc{
                 width: 50%;
-                margin-left: 50px;
+                  @media only screen and (min-width: 780px) {
+                    margin-left: 50px;
+                 }
                 p{
                     line-height: 24px;
                 }
@@ -102,7 +104,9 @@ export default {
             }
             .desc{
                 width: 50%;
-                margin-left: 50px;
+                 @media only screen and (min-width: 780px) {
+                    margin-left: 50px;
+                 }
                 p{
                     line-height: 24px;
                 }

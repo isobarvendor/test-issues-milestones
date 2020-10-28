@@ -33,7 +33,7 @@ export default {
   computed:{
      contentClass(){
        let cmsContent=this.$store.getters.getCMSContent;
-        if(cmsContent){
+        if(cmsContent&&cmsContent[0].Theme){
           if(cmsContent[0].Theme.Theme=='Coke'){
             return "coke"
           }else if(cmsContent[0].Theme.Theme=='Spirit'){

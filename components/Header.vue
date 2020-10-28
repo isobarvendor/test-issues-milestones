@@ -6,7 +6,7 @@
         <img class="profile-image" src="/img/dummy_profile.jpg" v-else-if="logged&&contentClass=='coke'">
         <img class="profile-image" src="/img/profile-sprite.png" v-else-if="logged&&contentClass=='sprite'">
         <img class="profile-image" src="/img/profile-fanta.png" v-else-if="logged&&contentClass=='fanta'">
-        <div :class="{'profile-content' : config ? config.Wallet.Wallet : true }" @click="loginRoute">
+        <div :class="{'profile-content' : config&&config.Wallet ? config.Wallet.Wallet : true }" @click="loginRoute">
             <template v-if="!logged">Sign in</template>
             <template v-else-if="config ? config.Wallet.Wallet&&logged : logged">
                 <div class="column center">
@@ -53,13 +53,13 @@
                             <a href="/">{{CMSContent[0].SectionMenu.Menu[0].Link}}</a>
                         </div>
                     </div>
-                    <div class="img-text" v-if="config ? config.Reward.Reward : true">
+                    <div class="img-text" v-if="config&&config.Reward ? config.Reward.Reward : true">
                         <img src="/img/icons/reward.png"  />
                         <div>
                             <a data-nav="rewards" @click="clickNav">{{CMSContent[0].SectionMenu.Menu[1].Link}}</a>
                         </div>
                     </div>
-                    <div class="img-text" v-if="config ? config.Wallet.Wallet&&logged : logged">
+                    <div class="img-text" v-if="config&&config.Wallet ? config.Wallet.Wallet&&logged : logged">
                         <img src="/img/icons/wallet.png"/>
                         <div>
                             <a data-nav="wallet" @click="clickNav">{{CMSContent[0].SectionMenu.Menu[2].Link}}</a>
@@ -142,7 +142,7 @@ export default {
         },
          contentClass(){
             let cmsContent=this.$store.getters.getCMSContent;
-              if(cmsContent){
+              if(cmsContent && cmsContent[0].Theme){
                 if(cmsContent[0].Theme.Theme=='Coke'){
                   return "coke"
                 }else if(cmsContent[0].Theme.Theme=='Spirit'){
