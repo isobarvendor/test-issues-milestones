@@ -15,7 +15,7 @@ const setHeader = (token)=>{
 export default {
 
   getListPrize(data) {
-    return axios.get(`${origin}/api/campaign/public/listprize`)
+    return axios.get(`${origin}/api/campaign/public/list-prize`)
   },
   getListWallet(token) {
     return axios.get(`${origin}/api/campaign/auth/list-wallet`, setHeader(token))
