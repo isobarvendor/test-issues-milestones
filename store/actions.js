@@ -11,7 +11,8 @@ import {
   SUBMIT_FORM,
   UPLOAD_FILE,
   DELETE_FILE,
-  FETCH_CMS_DATA
+  FETCH_CMS_DATA,
+  REDEEM_PRIZE
 } from './action_types';
 import { EffectCoverflow } from 'swiper/js/swiper.esm';
 
@@ -22,6 +23,18 @@ export default {
         GeneralAPI.login(data)
         .then(response => {
           commit('SET_TOKEN', response.data.accessToken);
+          return resolve(response);
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    });
+  },
+  [REDEEM_PRIZE]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+       NGPSAPI.redeemPrize(data, state.token)
+        .then(response => {
           return resolve(response);
         })
         .catch(error => {
@@ -50,7 +63,6 @@ export default {
 
         GeneralAPI.signup(data)
         .then(response => {
-          //commit('SET_LOGIN_ACCOUNT', messages);
           return resolve(response);
         })
         .catch(error => {
@@ -79,13 +91,11 @@ export default {
   },
 
 
-  [GET_LIST_WALLET]: ({ commit, state, getters }, payload) => {
+  [GET_LIST_WALLET]: ({ commit, state, getters }) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-      if (moduleState.listWallet) {
-        return resolve(moduleState.listWallet)
-      } else {
-        NGPSAPI.getListWallet(payload.request,payload.token)
+
+        NGPSAPI.getListWallet(state.token)
         .then(response => {
           commit('SET_LIST_WALLET', response.data);
           return resolve(response);
@@ -94,7 +104,6 @@ export default {
           console.error(error);
           return reject(error);
         });
-      }
     });
   },
 

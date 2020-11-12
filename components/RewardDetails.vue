@@ -17,16 +17,20 @@
              <h4>How To  Redeem</h4>
              <p v-html="data.redeemDescription"></p>
          </div>
-         <a class="button rewards-bottom"> Redeem ({{data.amountAvailable}} coins)</a>
+         <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
+         <a class="button rewards-bottom" @click="redeemPrize(data.prizeId)"> Redeem ({{data.amountAvailable}} coins)</a>
+
     </div>
     <div class="image-fluid">
         <img :src="data.imgUrl"/>
-        <a v-if="$mq == 'sm' || $mq == 'md'" class="button center mobile"> Redeem ({{data.amountAvailable}}  coins)</a>
+        <a v-if="$mq == 'sm' || $mq == 'md'" class="button center mobile" @click="redeemPrize(data.prizeId)"> Redeem ({{data.amountAvailable}}  coins)</a>
     </div>
+
   </div>
 </template>
 
 <script>
+import {REDEEM_PRIZE} from '@/store/action_types';
 export default {
   name: "RewardDetails",
   components: {
@@ -36,6 +40,7 @@ export default {
   },
   data() {
     return {
+      errorMessage:null
     };
   },
 
@@ -44,7 +49,20 @@ export default {
   methods:{
     back(){
       this.$router.replace('/rewards');
+    },
+    redeemPrize(prizeId){
+      let request = {"prizeId":prizeId};
+      this.$store.dispatch(REDEEM_PRIZE,request).then((response)=>{
+         this.errorMessage=null;
+       }).catch(error=>{
+         if(error.response && error.response.data.status=="401"){
+           localStorage.clear();
+         }else{
+            this.errorMessage="Sorry you can not redeem this prize";
+         }
+       })
     }
+
   },
   beforeMount() {},
   mounted(){
@@ -58,6 +76,10 @@ export default {
     display: flex;
     flex-direction: row;
     width: 100%;
+    .error-message{
+      color:red;
+      margin-top: 30px;
+    }
     .back-icon{
         display: flex;
         align-self: flex-start;

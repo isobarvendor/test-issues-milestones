@@ -10,7 +10,7 @@
             <template v-if="!logged">Sign in</template>
             <template v-else-if="config ? config.Wallet.Wallet&&logged : logged">
                 <div class="column center">
-                    <div class="user-coins">288</div>
+                    <div class="user-coins">{{listWallet ? listWallet.walletStatus[0].amount : 0 }}</div>
                     <div>coins</div>
                 </div>
                 <div class="column center">
@@ -139,6 +139,9 @@ export default {
         },
          isIndo(){
            return this.$store.state.language=="id";
+        },
+         listWallet(){
+           return this.$store.state.listWallet;
         },
          contentClass(){
             let cmsContent=this.$store.getters.getCMSContent;
