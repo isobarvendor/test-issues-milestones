@@ -18,6 +18,7 @@
              <p v-html="data.redeemDescription"></p>
          </div>
          <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
+         <div class="success-message" v-if="successMessage" v-html="successMessage"></div>
          <a class="button rewards-bottom" @click="redeemPrize(data.prizeId)"> Redeem ({{data.amountAvailable}} coins)</a>
 
     </div>
@@ -40,7 +41,8 @@ export default {
   },
   data() {
     return {
-      errorMessage:null
+      errorMessage:null,
+      successMessage:null
     };
   },
 
@@ -54,6 +56,7 @@ export default {
       let request = {"prizeId":prizeId};
       this.$store.dispatch(REDEEM_PRIZE,request).then((response)=>{
          this.errorMessage=null;
+         this.successMessage="Congratulations you already redeemed this prize";
        }).catch(error=>{
          if(error.response && error.response.data.status=="401"){
            localStorage.clear();
@@ -78,6 +81,10 @@ export default {
     width: 100%;
     .error-message{
       color:red;
+      margin-top: 30px;
+    }
+    .success-message{
+      color:green;
       margin-top: 30px;
     }
     .back-icon{
