@@ -18,22 +18,14 @@
                 {{ formatDate(winnerLists[0].fromDate)}} -  {{formatDate(winnerLists[0].toDate)}}
               </div>
          </div>
-         <div class="two-container"   v-for="(item, index) in winnerLists"
-          :key="'winner'+index" v-if="index!=0&&winnerLists.length-1 != index" >
-             <div class="second-box box" @click="winnerLists[index].winnerFile ?  openPDF(winnerLists[index].winnerFile.url ) : false" >
+         <div class="two-container"   v-for="(item, index) in winnerListsSecond"
+          :key="'winner'+index"   >
+             <div class="second-box box"  v-for="(item2, index) in item"  :key="'winners'+index2"   @click="item2.winnerFile ?  openPDF(item2.winnerFile.url ) : false" >
                  <div class="week">
-                {{winnerLists[index].title}}
+                {{item2.title}}
               </div>
               <div class="date">
-                {{ formatDate(winnerLists[index].fromDate)}} -  {{formatDate(winnerLists[index].toDate)}}
-              </div>
-             </div>
-             <div class="second-box box" v-if="winnerLists.length-1 != index" @click="winnerLists[index].winnerFile ?  openPDF(winnerLists[index].winnerFile.url ) : false">
-                 <div class="week">
-                {{winnerLists[index+1].title}}
-              </div>
-              <div class="date">
-                {{ formatDate(winnerLists[index+1].fromDate)}} -  {{formatDate(winnerLists[index+1].toDate)}}
+                {{ formatDate(item2.fromDate)}} -  {{formatDate(item2.toDate)}}
               </div>
              </div>
          </div>
@@ -45,6 +37,8 @@
 
 <script>
 import moment from "moment";
+import * as _ from 'lodash';
+import deepClone from 'deep-clone'
 export default {
   name: "RewardDetails",
   components: {
@@ -59,7 +53,15 @@ export default {
   computed:{
     winnerLists(){
       return this.data.luckyWinnerSection
+    },
+    winnerListsSecond(){
+      let secondRow=deepClone(this.data.luckyWinnerSection);
+
+      let secondRowResult=secondRow.splice(1, secondRow.length-1);
+     //
+      return _.chunk(secondRowResult, 2);
     }
+
   },
   methods:{
     formatDate(date){

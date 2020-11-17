@@ -73,6 +73,13 @@
             {{thankyouPage.Message}}
         </div>
     </div>
+     <div v-if="campaignType=='luck_draw'&&prizeWin.participationInserted">
+           <div class="header" >{{thankyouSubmission.Ttitle}} </div>
+        <!--div class="header">{{form.name}}</div-->
+        <div>
+            {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
+        </div>
+    </div>
     <div v-else-if="prizeWin.instantWinResult.redeemedPrize.status=='claimed'">
         <div class="header">{{thankyouPage.Title}}</div>
         <div class="header">{{prizeWin.instantWinResult.redeemedPrize.name}} </div>
