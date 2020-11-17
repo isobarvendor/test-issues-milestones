@@ -18,12 +18,12 @@
              <p v-html="data.redeemDescription"></p>
          </div>
          <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
-         <a class="button rewards-bottom" @click="redeemPrize(data.prizeId)"> Redeem ({{data.amountAvailable}} coins)</a>
+         <a class="button rewards-bottom" @click="redeemPrize(data.prizeId)" v-if="canRedeem(data.prizeCost)"> Redeem ({{data.prizeCost[0].amount}} coins)</a>
 
     </div>
     <div class="image-fluid">
         <img :src="data.imgUrl"/>
-        <a v-if="$mq == 'sm' || $mq == 'md'" class="button center mobile" @click="redeemPrize(data.prizeId)"> Redeem ({{data.amountAvailable}}  coins)</a>
+        <a v-if="($mq == 'sm' || $mq == 'md')&&canRedeem(data.prizeCost)" class="button center mobile" @click="redeemPrize(data.prizeId)"> Redeem ({{data.prizeCost[0].amount}}  coins)</a>
     </div>
 
   </div>
@@ -46,6 +46,10 @@ export default {
   },
 
   computed:{
+      listWallet(){
+           return this.$store.state.listWallet;
+        },
+
   },
   methods:{
     back(){
@@ -63,6 +67,14 @@ export default {
             this.errorMessage="Sorry you can not redeem this prize";
          }
        })
+    },
+    canRedeem(prizeCost){
+      if(prizeCost){
+          if(this.listWallet){
+             return listWallet.walletStatus[0].amount > prizeCost[0].amount
+          }
+      }
+      return false;
     }
 
   },

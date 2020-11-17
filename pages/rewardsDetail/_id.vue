@@ -41,7 +41,10 @@ export default {
     rewardDetail(){
         let index=this.$route.params.id;
         return  this.$store.getters.getListPrize && this.$store.getters.getListPrize.prizeList[index];
-    }
+    },
+       listWallet(){
+           return this.$store.state.listWallet;
+        },
   },
   mounted() {
     this.getListPrize();

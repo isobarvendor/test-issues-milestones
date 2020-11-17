@@ -67,21 +67,27 @@
   </form>
   </div>
   <div v-else class="thanks">
-    <div v-if="prizeWin.status=='claimed'">
+    <div v-if="campaignType=='collect_to_redeem'">
         <div class="header">{{thankyouPage.Title}}</div>
-        <div class="header">{{prizeWin.name}} </div>
+        <div>{{ !prizeWin.instantWinResult ? prizeWin.allocationArray[0].amount : ""}}&nbsp;
+            {{thankyouPage.Message}}
+        </div>
+    </div>
+    <div v-else-if="prizeWin.instantWinResult.redeemedPrize.status=='claimed'">
+        <div class="header">{{thankyouPage.Title}}</div>
+        <div class="header">{{prizeWin.instantWinResult.redeemedPrize.name}} </div>
         <div>
             <img :src="prizeWin.imgUrl" width="250" />
         </div>
         <div>
-            {{prizeWin.shortDescription}}
+            {{prizeWin.instantWinResult.redeemedPrize.shortDescription}}
         </div>
     </div>
     <div v-else>
       <div class="header" >{{thankyouSubmission.Ttitle}} </div>
       <!--div class="header">{{form.name}}</div-->
        <div>
-          {{prizeWin.redeemDescription}}
+          {{prizeWin.instantWinResult.redeemedPrize.redeemDescription}}
        </div>
       <div>
           {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
@@ -203,8 +209,8 @@ export default {
                 this.submitted=true;
                 this.loading=false;
                 let result=response.data;
-                if( result && result.instantWinResult){
-                  this.prizeWin = result.instantWinResult.redeemedPrize;
+                if( result) {
+                  this.prizeWin = result;
                 }
             })
             .catch((error) =>{
