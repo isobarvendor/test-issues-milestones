@@ -35,6 +35,7 @@ export default {
       const moduleState = state;
        NGPSAPI.redeemPrize(data, state.token)
         .then(response => {
+          commit('SET_REDEEM_PRIZE', response.data);
           return resolve(response);
         })
         .catch(error => {

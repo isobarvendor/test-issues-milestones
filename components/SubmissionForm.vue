@@ -3,11 +3,11 @@
    <div class="header">{{campaignTitle}}</div>
   <form class="mechanics" autocomplete="off">
 
-    <div class="details">
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
         <span class="error-message">{{ errors.first('name') }}</span>
     </div>
-    <div class="details">
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
         <span class="error-message">{{ errors.first('email') }}</span>
     </div>
@@ -67,7 +67,7 @@
   </form>
   </div>
   <div v-else class="thanks">
-    <div v-if="prizeWin">
+    <div v-if="prizeWin.status=='claimed'">
         <div class="header">{{thankyouPage.Title}}</div>
         <div class="header">{{prizeWin.name}} </div>
         <div>
@@ -78,10 +78,13 @@
         </div>
     </div>
     <div v-else>
-      <div class="header">{{thankyouSubmission.Ttitle}} </div>
-      <div class="header">{{form.name}}</div>
+      <div class="header" >{{thankyouSubmission.Ttitle}} </div>
+      <!--div class="header">{{form.name}}</div-->
+       <div>
+          {{prizeWin.redeemDescription}}
+       </div>
       <div>
-          {{thankyouSubmission.message}} <a href='#'>{{form.email}}</a>
+          {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
       </div>
     </div>
 
@@ -120,6 +123,9 @@ export default {
     submissionType(){
 
       return this.data.campaignTypes.submissionType;
+    },
+    submissionFormFields(){
+      return this.data.submissionFormFields;
     },
      campaignType(){
       return this.data.campaignTypes.mechanicType;
@@ -197,7 +203,7 @@ export default {
                 this.submitted=true;
                 this.loading=false;
                 let result=response.data;
-                if( result && result.instantWinResult && result.instantWinResult.redeemedPrize.status=='claimed'){
+                if( result && result.instantWinResult){
                   this.prizeWin = result.instantWinResult.redeemedPrize;
                 }
             })

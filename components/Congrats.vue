@@ -1,17 +1,14 @@
 <template>
-    <div class="congrats">
+    <div class="congrats" v-if="redeemPrize">
         <h3> Congratulations! </h3>
             <div class="input-container">
-                <div class="value"> 
-                    5 <span>coins</span>
-                </div>
+                <img :src="redeemPrize.imgUrl" />
             </div>
             <div class="desc">
-                <p>have been added to your wallet</p>
-                <p class="code">Enter another code </p>
+                <p>Reward has been successfully redeemed<br/>and added to your wallet!</p>
             </div>
             <div class="button-container">
-                <a  class="button">Close</a>
+                <a  class="button" href="#" onclick="window.history.back()">back to reward list</a>
             </div>
     </div>
 </template>
@@ -29,12 +26,18 @@ export default {
     data: null,
   },
   computed:{
+     redeemPrize(){
+      return this.$store.state.redeemPrize.redeemedPrize;
+    }
   },
   methods:{
   },
   beforeMount() {},
   mounted(){
 
+  },
+  beforeDestroy(){
+    this.$store.commit('SET_REDEEM_PRIZE',null);
   }
 };
 </script>
@@ -63,7 +66,7 @@ export default {
         }
 
     }
-    
+
     .theme--light.v-input input{
         color: white;
         text-align: center;
@@ -76,10 +79,7 @@ export default {
     }
     .input-container{
         margin-top: 30px;
-        width: 160px;
-        height: 160px;
-        border-radius: 80px;
-        background: #FFC529;
+        max-width: 250px;
         justify-content: center;
         align-items: center;
         display:flex;
@@ -89,6 +89,9 @@ export default {
                 font-size: 13px;
                 display: block;
             }
+        }
+        img{
+          width: 100%;
         }
     }
     .desc{
@@ -100,10 +103,10 @@ export default {
                 font-size: 14px;
             }
         }
-        
+
     }
     @media only screen and (max-width: 1199px) {
-          
-    }  
+
+    }
 }
 </style>

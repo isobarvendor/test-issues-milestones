@@ -48,7 +48,8 @@ export default ({ store }) => { new VuexPersistence({
     token:state.token,
     listWallet:state.listWallet,
     errorLogin:state.errorLogin,
-    language:state.language
+    language:state.language,
+    redeemPrize:state.redeemPrize
   })
 
 }).plugin(store);
