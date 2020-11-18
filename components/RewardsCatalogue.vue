@@ -8,8 +8,8 @@
         </div>
         <div class="description bg">
             <div class="name">{{item.name}}</div>
-            <div class="expiry" :key="'cost'+index">
-              <span>{{item.amountAvailable}}</span>
+            <div class="expiry" :key="'cost'+index" v-if="item.prizeCost">
+              <span>{{item.prizeCost[0].amount}}</span>
               <span>Coins</span>
             </div>
           </div>

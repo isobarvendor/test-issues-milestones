@@ -58,7 +58,7 @@ export default {
   mounted(){
     if(this.$store.state.token){
          this.getAccount();
-         this.getListWallet();
+         this.campaignType=='collect_to_redeem' && this.getListWallet();
     }
   },
 
@@ -95,6 +95,9 @@ export default {
      configData(){
        return this.$store.getters.getCMSConfig;
      },
+    campaignType(){
+      return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
+    },
   },
 
 }

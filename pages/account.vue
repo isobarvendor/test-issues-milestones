@@ -65,14 +65,17 @@ export default {
     },
      CMSContent(){
       return this.$store.getters.getCMSContent;
-    }
+    },
+      campaignType(){
+      return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
+    },
   },
     mounted(){
     if(!this.$store.state.token){
       this.$router.push('/login');
     }
      this.getAccount();
-     this.getListWallet();
+     this.campaignType=='collect_to_redeem' && this.getListWallet();
   },
 
 };

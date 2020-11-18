@@ -1,5 +1,7 @@
 <template>
+  <client-only>
     <div class="congrats" v-if="redeemPrize">
+
         <h3> Congratulations! </h3>
             <div class="input-container">
                 <img :src="redeemPrize.imgUrl" />
@@ -11,6 +13,7 @@
                 <a  class="button" href="#" onclick="window.history.back()">back to reward list</a>
             </div>
     </div>
+</client-only>
 </template>
 
 <script>
@@ -27,17 +30,19 @@ export default {
   },
   computed:{
      redeemPrize(){
-      return this.$store.state.redeemPrize.redeemedPrize;
+      return this.$store.state.redeemPrize ? this.$store.state.redeemPrize.redeemedPrize : null;
     }
   },
   methods:{
   },
   beforeMount() {},
   mounted(){
-
+    if(!this.$store.state.redeemPrize){
+      location.href="/";
+    }
   },
   beforeDestroy(){
-    this.$store.commit('SET_REDEEM_PRIZE',null);
+    //this.$store.commit('SET_REDEEM_PRIZE',null);
   }
 };
 </script>

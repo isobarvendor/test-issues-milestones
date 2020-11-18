@@ -1,16 +1,11 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="congratulations">
+  <div  class="congratulations">
     <div class="wrapper">
       <div class="container">
         <Congrats />
       </div>
 
     </div>
-  </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
   </div>
 </template>
 

@@ -218,7 +218,7 @@ export default {
                 let result=response.data;
                 if( result) {
                   this.prizeWin = result;
-                  this.getListWallet();
+                  this.campaignType=='collect_to_redeem' && this.getListWallet();
                 }
             })
             .catch((error) =>{

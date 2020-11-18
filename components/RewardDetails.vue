@@ -57,6 +57,7 @@ export default {
     },
     redeemPrize(prizeId){
       let request = {"prizeId":prizeId};
+      this.$store.commit('SET_REDEEM_PRIZE',null);
       this.$store.dispatch(REDEEM_PRIZE,request).then((response)=>{
          this.errorMessage=null;
          location.href="/congratulations";
@@ -71,7 +72,7 @@ export default {
     canRedeem(prizeCost){
       if(prizeCost){
           if(this.listWallet){
-             return this.listWallet.walletStatus[0].amount > prizeCost[0].amount
+             return this.listWallet.walletStatus[0].amount >= prizeCost[0].amount
           }
       }
       return false;

@@ -13,10 +13,10 @@
                     <div class="user-coins">{{listWallet ? listWallet.walletStatus[0].amount : 0 }}</div>
                     <div>coins</div>
                 </div>
-                <div class="column center">
+                <!--div class="column center">
                     <div><img src="/img/ic-coin.svg"></div>
                     <div>Get coins</div>
-                </div>
+                </div-->
             </template>
         </div>
     </a>
