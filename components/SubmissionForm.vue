@@ -67,20 +67,20 @@
   </form>
   </div>
   <div v-else class="thanks">
-    <div v-if="campaignType=='collect_to_redeem'">
+    <div v-if="prizeWin.allocationArray">
         <div class="header">{{thankyouPage.Title}}</div>
-        <div>{{ !prizeWin.instantWinResult ? prizeWin.allocationArray[0].amount : ""}}&nbsp;
+        <div>{{  prizeWin.allocationArray[0].amount }}&nbsp;
             {{thankyouPage.Message}}
         </div>
     </div>
-     <div v-if="campaignType=='luck_draw'&&prizeWin.participationInserted">
+     <div v-if="prizeWin.participationInserted">
            <div class="header" >{{thankyouSubmission.Ttitle}} </div>
         <!--div class="header">{{form.name}}</div-->
         <div>
             {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
         </div>
     </div>
-    <div v-else-if="prizeWin.instantWinResult.redeemedPrize.status=='claimed'">
+    <div v-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status=='claimed'">
         <div class="header">{{thankyouPage.Title}}</div>
         <div class="header">{{prizeWin.instantWinResult.redeemedPrize.name}} </div>
         <div>
@@ -90,7 +90,7 @@
             {{prizeWin.instantWinResult.redeemedPrize.shortDescription}}
         </div>
     </div>
-    <div v-else>
+    <div v-else-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status!='claimed'">
       <div class="header" >{{thankyouSubmission.Ttitle}} </div>
       <!--div class="header">{{form.name}}</div-->
        <div>
@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, GET_ACCOUNT, DELETE_FILE } from '@/store/action_types';
+import { SUBMIT_FORM, UPLOAD_FILE, GET_ACCOUNT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -218,6 +218,7 @@ export default {
                 let result=response.data;
                 if( result) {
                   this.prizeWin = result;
+                  this.getListWallet();
                 }
             })
             .catch((error) =>{
@@ -254,6 +255,7 @@ export default {
           this.form.email=this.loginInfo.email;
         }
 
+
     },
      onFileChange(e) {
       let files = e.target.files || e.dataTransfer.files;
@@ -287,7 +289,19 @@ export default {
     removeImage: function (e) {
       this.image = '';
 
-    }
+    },
+        getListWallet(){
+          this.$store.dispatch(GET_LIST_WALLET)
+                .then((response)=>{
+                })
+                .catch((error) =>{
+                  if(error.response && error.response.data.status=='401'){
+                    localStorage.clear();
+                  }
+                })
+
+
+     }
 
   },
   beforeMount() {},

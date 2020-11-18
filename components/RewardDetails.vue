@@ -71,7 +71,7 @@ export default {
     canRedeem(prizeCost){
       if(prizeCost){
           if(this.listWallet){
-             return listWallet.walletStatus[0].amount > prizeCost[0].amount
+             return this.listWallet.walletStatus[0].amount > prizeCost[0].amount
           }
       }
       return false;
