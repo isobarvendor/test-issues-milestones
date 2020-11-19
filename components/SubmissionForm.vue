@@ -84,7 +84,7 @@
         <div class="header">{{thankyouPage.Title}}</div>
         <div class="header">{{prizeWin.instantWinResult.redeemedPrize.name}} </div>
         <div>
-            <img :src="prizeWin.imgUrl" width="250" />
+            <img :src="prizeWin.instantWinResult.redeemedPrize.imgUrl" width="250" />
         </div>
         <div>
             {{prizeWin.instantWinResult.redeemedPrize.shortDescription}}
@@ -218,7 +218,7 @@ export default {
                 let result=response.data;
                 if( result) {
                   this.prizeWin = result;
-                  this.campaignType=='collect_to_redeem' && this.getListWallet();
+                  this.campaignType=='collect_to_redeem' && this.$store.state.token && this.getListWallet();
                 }
             })
             .catch((error) =>{
