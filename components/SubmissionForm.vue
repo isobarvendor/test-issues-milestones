@@ -3,11 +3,11 @@
    <div class="header">{{campaignTitle}}</div>
   <form class="mechanics" autocomplete="off">
 
-    <div class="details">
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
         <span class="error-message">{{ errors.first('name') }}</span>
     </div>
-    <div class="details">
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
         <span class="error-message">{{ errors.first('email') }}</span>
     </div>
@@ -67,21 +67,37 @@
   </form>
   </div>
   <div v-else class="thanks">
-    <div v-if="prizeWin">
+    <div v-if="prizeWin.allocationArray">
         <div class="header">{{thankyouPage.Title}}</div>
-        <div class="header">{{prizeWin.name}} </div>
-        <div>
-            <img :src="prizeWin.imgUrl" width="250" />
-        </div>
-        <div>
-            {{prizeWin.shortDescription}}
+        <div>{{  prizeWin.allocationArray[0].amount }}&nbsp;
+            {{thankyouPage.Message}}
         </div>
     </div>
-    <div v-else>
-      <div class="header">{{thankyouSubmission.Ttitle}} </div>
-      <div class="header">{{form.name}}</div>
+     <div v-if="prizeWin.participationInserted">
+           <div class="header" >{{thankyouSubmission.Ttitle}} </div>
+        <!--div class="header">{{form.name}}</div-->
+        <div>
+            {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
+        </div>
+    </div>
+    <div v-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status=='claimed'">
+        <div class="header">{{thankyouPage.Title}}</div>
+        <div class="header">{{prizeWin.instantWinResult.redeemedPrize.name}} </div>
+        <div>
+            <img :src="prizeWin.instantWinResult.redeemedPrize.imgUrl" width="250" />
+        </div>
+        <div>
+            {{prizeWin.instantWinResult.redeemedPrize.shortDescription}}
+        </div>
+    </div>
+    <div v-else-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status!='claimed'">
+      <div class="header" >{{thankyouSubmission.Ttitle}} </div>
+      <!--div class="header">{{form.name}}</div-->
+       <div>
+          {{prizeWin.instantWinResult.redeemedPrize.redeemDescription}}
+       </div>
       <div>
-          {{thankyouSubmission.message}} <a href='#'>{{form.email}}</a>
+          {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
       </div>
     </div>
 
@@ -89,7 +105,7 @@
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, GET_ACCOUNT, DELETE_FILE } from '@/store/action_types';
+import { SUBMIT_FORM, UPLOAD_FILE, GET_ACCOUNT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -120,6 +136,9 @@ export default {
     submissionType(){
 
       return this.data.campaignTypes.submissionType;
+    },
+    submissionFormFields(){
+      return this.data.submissionFormFields;
     },
      campaignType(){
       return this.data.campaignTypes.mechanicType;
@@ -197,8 +216,9 @@ export default {
                 this.submitted=true;
                 this.loading=false;
                 let result=response.data;
-                if( result && result.instantWinResult && result.instantWinResult.redeemedPrize.status=='claimed'){
-                  this.prizeWin = result.instantWinResult.redeemedPrize;
+                if( result) {
+                  this.prizeWin = result;
+                  this.campaignType=='collect_to_redeem' && this.$store.state.token && this.getListWallet();
                 }
             })
             .catch((error) =>{
@@ -235,6 +255,7 @@ export default {
           this.form.email=this.loginInfo.email;
         }
 
+
     },
      onFileChange(e) {
       let files = e.target.files || e.dataTransfer.files;
@@ -268,7 +289,19 @@ export default {
     removeImage: function (e) {
       this.image = '';
 
-    }
+    },
+        getListWallet(){
+          this.$store.dispatch(GET_LIST_WALLET)
+                .then((response)=>{
+                })
+                .catch((error) =>{
+                  if(error.response && error.response.data.status=='401'){
+                    localStorage.clear();
+                  }
+                })
+
+
+     }
 
   },
   beforeMount() {},

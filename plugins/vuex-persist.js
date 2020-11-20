@@ -46,8 +46,10 @@ export default ({ store }) => { new VuexPersistence({
   reducer: (state) => ({
     login:state.login,
     token:state.token,
+    listWallet:state.listWallet,
     errorLogin:state.errorLogin,
-    language:state.language
+    language:state.language,
+    redeemPrize:state.redeemPrize
   })
 
 }).plugin(store);

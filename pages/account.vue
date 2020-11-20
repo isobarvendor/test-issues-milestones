@@ -13,7 +13,7 @@
 <script>
 
 import AccountDetail from '@/components/AccountDetail'
-import { GET_ACCOUNT } from '@/store/action_types';
+import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
 export default {
   data(){
     return{
@@ -45,6 +45,19 @@ export default {
     async getAccount(){
        await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
     },
+    async getListWallet(){
+
+         await this.$store.dispatch(GET_LIST_WALLET)
+                .then((response)=>{
+                })
+                .catch((error) =>{
+                  if(error.response && error.response.data.status=='401'){
+                    this.errorMessage='Please enter the correct email/password';
+                  }
+                })
+
+
+     }
   },
   computed:{
     loginAccount(){
@@ -52,13 +65,17 @@ export default {
     },
      CMSContent(){
       return this.$store.getters.getCMSContent;
-    }
+    },
+      campaignType(){
+      return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
+    },
   },
     mounted(){
     if(!this.$store.state.token){
       this.$router.push('/login');
     }
      this.getAccount();
+     this.campaignType=='collect_to_redeem' && this.getListWallet();
   },
 
 };

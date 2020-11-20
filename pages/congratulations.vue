@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="congratulations">
+  <div  class="congratulations">
     <div class="wrapper">
       <div class="container">
         <Congrats />
@@ -7,15 +7,11 @@
 
     </div>
   </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
-  </div>
 </template>
 
 <script>
 import Congrats from '@/components/Congrats'
+import { GET_LIST_WALLET} from '@/store/action_types';
 export default {
   data(){
     return{
@@ -43,18 +39,23 @@ export default {
       css: []
     };
   },
-  created() {
-    this.fetchData();
-  },
   methods: {
-    async fetchData() {
-      let result = await this.$axios.get(
-        "https://ayo.aircovery.com/cms-api/campaigns"
-      );
-      this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
-    },
+     getListWallet(){
+          this.$store.dispatch(GET_LIST_WALLET)
+                .then((response)=>{
+                })
+                .catch((error) =>{
+                  if(error.response && error.response.data.status=='401'){
+                    localStorage.clear();
+                  }
+                })
+
+
+     }
   },
+  mounted(){
+     this.getListWallet();
+  }
 };
 </script>
 

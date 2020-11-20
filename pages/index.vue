@@ -20,7 +20,7 @@ import HowItWorks from '../components/HowItWorks'
 import SubmissionMechanics from '../components/SubmissionMechanics'
 import Footer from '../components/Footer'
 import deepClone from 'deep-clone'
-import { GET_ACCOUNT } from '@/store/action_types';
+import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
 
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
@@ -58,6 +58,7 @@ export default {
   mounted(){
     if(this.$store.state.token){
          this.getAccount();
+         this.campaignType=='collect_to_redeem' && this.getListWallet();
     }
   },
 
@@ -72,6 +73,20 @@ export default {
        })
     },
 
+     getListWallet(){
+          this.$store.dispatch(GET_LIST_WALLET)
+                .then((response)=>{
+                })
+                .catch((error) =>{
+                  if(error.response && error.response.data.status=='401'){
+                    localStorage.clear();
+                  }
+                })
+
+
+     }
+
+
   },
   computed: {
     CMSContent(){
@@ -80,6 +95,9 @@ export default {
      configData(){
        return this.$store.getters.getCMSConfig;
      },
+    campaignType(){
+      return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
+    },
   },
 
 }

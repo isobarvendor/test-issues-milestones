@@ -31,6 +31,9 @@ export default {
   },
   SET_LANGUAGE:(state,data)=>{
     state.language = data
+  },
+  SET_REDEEM_PRIZE:(state,data)=>{
+    state.redeemPrize= data
   }
 
 

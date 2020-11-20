@@ -8,7 +8,8 @@ export default () => ({
     errorLogin:null,
     config:null,
     CMSContent:null,
-    language:"en"
+    language:"en",
+    redeemPrize:null
 
     /** TO-DO make error dialog as a component instead of residing in app.vue */
    // globalErrorDialog: false

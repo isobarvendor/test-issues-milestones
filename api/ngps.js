@@ -15,10 +15,13 @@ const setHeader = (token)=>{
 export default {
 
   getListPrize(data) {
-    return axios.get(`${origin}/api/campaign/public/listprize`)
+    return axios.get(`${origin}/api/campaign/public/list-prize`)
   },
-  getListWallet(data,token) {
-    return axios.post(`${origin}/api/campaign/auth/listwallet`, data, setHeader(token))
+  getListWallet(token) {
+    return axios.get(`${origin}/api/campaign/auth/list-wallet`, setHeader(token))
+  },
+  redeemPrize(data, token) {
+    return axios.post(`${origin}/api/campaign/auth/redeem-prize`, data, setHeader(token))
   },
   submitLogin(data, token) {
     return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
