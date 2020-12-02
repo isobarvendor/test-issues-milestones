@@ -15,7 +15,7 @@
                Week {{winnerLists[0].week}}
               </div>
               <div class="date">
-                {{ formatDate(winnerLists[0].fromDate)}} -  {{formatDate(winnerLists[0].toDate)}}
+                {{ winnerLists[0].fromDate}} -  {{winnerLists[0].toDate}}
               </div>
          </div>
          <div class="two-container"   v-for="(item, index) in winnerListsSecond"
@@ -25,7 +25,7 @@
                Week {{item2.week}}
               </div>
               <div class="date">
-                {{ formatDate(item2.fromDate)}} -  {{formatDate(item2.toDate)}}
+                {{ item2.fromDate}} -  {{item2.toDate}}
               </div>
              </div>
          </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="winner-body" v-else>
          <div class="title">
-          <h3>Week {{winnerWeek}} Winners <small>({{ formatDate(winnerWeekDetail[0].fromDate)}} -  {{formatDate(winnerWeekDetail[0].toDate)}})</small></h3>
+          <h3>Week {{winnerWeek}} Winners <small>({{ winnerWeekDetail[0].fromDate}} -  {{winnerWeekDetail[0].toDate}})</small></h3>
          </div>
           <v-container class="week-winner ">
             <v-row class="mb-6" >
@@ -86,11 +86,10 @@ export default {
   },
   computed:{
     winnerLists(){
-      return _.uniqBy(_.orderBy(this.winners, ['week'], ['desc']),'week');
+      return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.week!=0&&o.fromDate!=""&&o.toDate!="" }),'week');
     },
     winnerListsSecond(){
       let secondRow=deepClone(this.winnerLists);
-
       let secondRowResult=secondRow.splice(1, secondRow.length-1);
      //
       return _.chunk(secondRowResult, 2);
