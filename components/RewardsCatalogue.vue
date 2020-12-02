@@ -8,13 +8,13 @@
         </div>
         <div class="description bg">
             <div class="name">{{item.name}}</div>
-            <div :class="[{'desc-area':canRedeem(data.prizeCost)}]"  >
-              <div :class="[{expiry:true,'left':canRedeem(data.prizeCost)}]"    :key="'cost'+index" v-if="item.prizeCost">
+            <div :class="[{'desc-area':canRedeem(item.prizeCost)}]"  >
+              <div :class="[{expiry:true,'left':canRedeem(item.prizeCost)}]"    :key="'cost'+index" v-if="item.prizeCost">
                 <span>{{item.prizeCost[0].amount}}</span>
                 <span>Coins</span>
               </div>
               <div class="btn-area">
-                <a class="button rewards-right" @click="redeemPrize(item.prizeId)" v-if="canRedeem(data.prizeCost)" >Redeem now</a>
+                <a class="button rewards-right" @click="redeemPrize(item.prizeId)" v-if="canRedeem(item.prizeCost)" >Redeem now</a>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@ export default {
     .btn-area{
 
         justify-content: flex-end;
-        flex:0.8;
+        flex:1;
         .button{
           max-width: 190px;
           padding-top: 15px;
@@ -151,7 +151,12 @@ export default {
     .prize-swiper-pagination .prize-swiper-pagination-bullet-active{
       background: #ffffff
     }
+    @media only screen and (min-width: 1300px) {
+        .btn-area{
+          flex:0.8;
+        }
 
+    }
     @media only screen and (max-width: 1199px) {
 
     .wallet-desktop{
@@ -177,8 +182,15 @@ export default {
       }
     }
     }
-
-      @media only screen and (max-width: 480px) {
+       @media only screen and (max-width: 750px) {
+           .btn-area{
+          flex:1.2;
+        }
+       }
+      @media only screen and (max-width: 650px) {
+           .btn-area{
+          flex:1;
+        }
          .wallet-desktop{
       .wallet-swiper{
           width: 100%;
