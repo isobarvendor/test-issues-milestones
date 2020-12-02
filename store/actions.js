@@ -12,7 +12,8 @@ import {
   UPLOAD_FILE,
   DELETE_FILE,
   FETCH_CMS_DATA,
-  REDEEM_PRIZE
+  REDEEM_PRIZE,
+  GET_LIST_WINNERS
 } from './action_types';
 import { EffectCoverflow } from 'swiper/js/swiper.esm';
 
@@ -99,6 +100,33 @@ export default {
         NGPSAPI.getListWallet(state.token)
         .then(response => {
           commit('SET_LIST_WALLET', response.data);
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
+    });
+  },
+  [GET_LIST_WINNERS]: ({ commit, state, getters }) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+      let data=[
+        {"id":49,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":1},
+        {"id":29,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":2},
+        {"id":29,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":2},
+        {"id":29,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":2},
+        {"id":29,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":3},
+        {"id":29,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":4},
+        {"id":29,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":2},
+        {"id":29,"name":"Vishnu Madhu","email":"vishnumadhu1@gmail.com","fromDate":"2020-12-01T03:25:09.000Z","toDate":"2020-12-01T03:25:09.000Z","week":5}
+      ]
+      commit('SET_LIST_WINNERS', data);
+      return resolve(data);
+
+        CMSAPI.getWinners()
+        .then(response => {
+          commit('SET_LIST_WINNERS', response.data);
           return resolve(response);
         })
         .catch(error => {

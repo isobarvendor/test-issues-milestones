@@ -1,13 +1,14 @@
 <template>
   <div v-if="data" id="main" class="winner-detail">
     <div class="wrapper">
-        <WinnerDetails :data="data && data[0].luckyWinner"/>
+        <WinnerDetails :data="data ? data[0].luckyWinner : null" :winners="winners" />
     </div>
   </div>
 </template>
 
 <script>
 import WinnerDetails from '@/components/WinnerDetails'
+import { GET_LIST_WINNERS } from '@/store/action_types';
 export default {
   data(){
     return{
@@ -37,13 +38,20 @@ export default {
      data(){
         return this.$store.getters.getCMSContent;
      },
+     winners(){
+       return this.$store.getters.getListWinners;
+     },
      configData(){
        return this.$store.getters.getCMSConfig;
      }
   },
-
-  created() {
-
+  methods:{
+      async getListWinners(){
+          await  this.$store.dispatch(GET_LIST_WINNERS);
+    },
+  },
+  mounted() {
+    this.getListWinners();
   }
 };
 </script>

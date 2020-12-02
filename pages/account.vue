@@ -66,9 +66,7 @@ export default {
      CMSContent(){
       return this.$store.getters.getCMSContent;
     },
-      campaignType(){
-      return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
-    },
+
   },
     mounted(){
     if(!this.$store.state.token){
