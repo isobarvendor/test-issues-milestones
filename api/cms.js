@@ -11,6 +11,9 @@ export default {
   async getCMSConfig() {
     return await axios.get(`${origin}/cms-api/campaign-configurations`)
   },
+  async getWinners() {
+    return await axios.get(`${origin}/cms-api/winners`)
+  },
 
 
 }
