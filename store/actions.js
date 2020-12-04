@@ -12,7 +12,8 @@ import {
   UPLOAD_FILE,
   DELETE_FILE,
   FETCH_CMS_DATA,
-  REDEEM_PRIZE
+  REDEEM_PRIZE,
+  GET_LIST_WINNERS
 } from './action_types';
 import { EffectCoverflow } from 'swiper/js/swiper.esm';
 
@@ -99,6 +100,20 @@ export default {
         NGPSAPI.getListWallet(state.token)
         .then(response => {
           commit('SET_LIST_WALLET', response.data);
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
+    });
+  },
+  [GET_LIST_WINNERS]: ({ commit, state, getters }) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+        CMSAPI.getWinners()
+        .then(response => {
+          commit('SET_LIST_WINNERS', response.data);
           return resolve(response);
         })
         .catch(error => {

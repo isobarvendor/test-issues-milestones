@@ -20,6 +20,9 @@ export default {
   SET_LIST_WALLET:(state, data)=>{
     state.listWallet = data;
   },
+  SET_LIST_WINNERS:(state, data)=>{
+    state.listWinners = data;
+  },
   SET_FILE_AMAZON:(state, data)=>{
     state.fileUploaded = data;
   },

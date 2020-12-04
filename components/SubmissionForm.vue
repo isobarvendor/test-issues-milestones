@@ -72,6 +72,9 @@
         <div>{{  prizeWin.allocationArray[0].amount }}&nbsp;
             {{thankyouPage.Message}}
         </div>
+        <div>
+          <v-btn class="get-code" v-on:click="goToRewards()">View Rewards</v-btn>
+        </div>
     </div>
      <div v-if="prizeWin.participationInserted">
            <div class="header" >{{thankyouSubmission.Ttitle}} </div>
@@ -197,7 +200,8 @@ export default {
 
                request={
                           "name"  : this.form.name,
-                          "email" : this.form.email
+                          "email" : this.form.email,
+                          "mechanic" : this.campaignType
                     }
                if(this.loginInfo){
                 request["userId"]=this.loginInfo.uuid;
@@ -301,6 +305,9 @@ export default {
                 })
 
 
+     },
+     goToRewards(){
+       location.href='/rewards';
      }
 
   },

@@ -12,5 +12,8 @@ export default {
     },
     getListPrize(state) {
       return deepClone(state.listPrize);
+    },
+    getListWinners(state) {
+      return deepClone(state.listWinners);
     }
 }

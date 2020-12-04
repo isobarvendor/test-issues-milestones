@@ -23,7 +23,7 @@ export default {
       redirectTo(source){
         location.href="/api/oauth2/authorize/"+source+"?redirect_uri=" +
         window.location.origin +
-        "/settoken?from=home";
+        "/settoken";
       }
     },
     computed: {

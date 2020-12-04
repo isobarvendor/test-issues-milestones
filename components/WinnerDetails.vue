@@ -1,36 +1,67 @@
 <template>
   <div class="winner-details">
       <div class="image-fluid">
-        <img :src="this.data.image[0].url" v-if="this.data.image.length>0" />
+        <img :src="this.data.image[0].url" v-if="this.data.image" />
     </div>
     <div class="close-icon" @click="close">
            <img src="/img/icons/close.png"/>
       </div>
-     <div class="winner-body">
+     <div class="winner-body" v-if="!showWinnerDetail">
          <div class="title">
           <h3>WINNER LIST</h3>
          </div>
-         <div class="first-box box" @click="winnerLists[0].winnerFile ?  openPDF(winnerLists[0].winnerFile.url ) : false">
+         <div class="first-box box"  @click="showWinners(winnerLists[0].week)">
              <div class="week">
-                {{winnerLists[0].title}}
+               Week {{winnerLists[0].week}}
               </div>
               <div class="date">
-                {{ formatDate(winnerLists[0].fromDate)}} -  {{formatDate(winnerLists[0].toDate)}}
+                {{ winnerLists[0].fromDate}} -  {{winnerLists[0].toDate}}
               </div>
          </div>
          <div class="two-container"   v-for="(item, index) in winnerListsSecond"
           :key="'winner'+index"   >
-             <div class="second-box box"  v-for="(item2, index) in item"  :key="'winners'+index2"   @click="item2.winnerFile ?  openPDF(item2.winnerFile.url ) : false" >
+             <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
                  <div class="week">
-                {{item2.title}}
+               Week {{item2.week}}
               </div>
               <div class="date">
-                {{ formatDate(item2.fromDate)}} -  {{formatDate(item2.toDate)}}
+                {{ item2.fromDate}} -  {{item2.toDate}}
               </div>
              </div>
          </div>
         <a v-if="$mq == 'sm' || $mq == 'md'" class="button rewards-bottom"  @click="close"> Back to promotion</a>
     </div>
+    <div class="winner-body" v-else>
+         <div class="title">
+          <h3>Week {{winnerWeek}} Winners <small>({{ winnerWeekDetail[0].fromDate}} -  {{winnerWeekDetail[0].toDate}})</small></h3>
+         </div>
+          <v-container class="week-winner ">
+            <v-row class="mb-6" >
+              <v-col sm="1" >
+                <strong>No.</strong>
+              </v-col>
+              <v-col  sm="4" >
+                <strong>Name</strong>
+              </v-col>
+              <v-col  sm="4" >
+                <strong>Email</strong>
+              </v-col>
+            </v-row>
+            <v-row class="mb-6" v-for="(item, index) in winnerWeekDetail"  :key="'winnerDetail'+index" >
+              <v-col  sm="1" >
+                {{index+1}}.
+              </v-col>
+              <v-col  sm="4" >
+                {{item.name}}
+              </v-col>
+              <v-col  sm="4" >
+                {{maskEmail(item.email)}}
+              </v-col>
+            </v-row>
+
+
+          </v-container>
+      </div>
 
   </div>
 </template>
@@ -45,36 +76,57 @@ export default {
   },
   data() {
     return {
+      showWinnerDetail:false,
+      winnerWeek:null
     };
   },
   props: {
     data: null,
+    winners: null,
   },
   computed:{
     winnerLists(){
-      return this.data.luckyWinnerSection
+      return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.week!=0&&o.fromDate!=""&&o.toDate!="" }),'week');
     },
     winnerListsSecond(){
-      let secondRow=deepClone(this.data.luckyWinnerSection);
-
+      let secondRow=deepClone(this.winnerLists);
       let secondRowResult=secondRow.splice(1, secondRow.length-1);
      //
       return _.chunk(secondRowResult, 2);
+    },
+    winnerWeekDetail(){
+      return _.filter(this.winners,(o)=>{ return o.week == this.winnerWeek});
     }
 
   },
   methods:{
+    replace_String(string, numberofchar,chartoreplace) {
+
+     return string.substring(0, numberofchar).split("").map(ele => ele = chartoreplace).join("").concat(string.substring(numberofchar, string.length))
+
+    },
     formatDate(date){
       return  moment(date).format("DD/MM/YYYY")
     },
     close(){
-        location.href="/"
+       if(this.showWinnerDetail){
+         location.href="/winners"
+       }else{
+         location.href="/"
+       }
     },
     openPDF(link){
       window.open(
         link,
         '_blank'
       );
+    },
+    showWinners(week){
+      this.showWinnerDetail=true;
+      this.winnerWeek=week;
+    },
+    maskEmail(email){
+      return this.replace_String(email,5,"*");
     }
   },
   beforeMount() {},
@@ -86,6 +138,14 @@ export default {
 
 <style lang="scss">
 .winner-details{
+    h3{
+      small{
+        font-size: 16px;
+      }
+    }
+    .row > .col, .row > [class*=col-] {
+          padding: 10px;
+    }
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -159,7 +219,19 @@ export default {
     a.button.rewards-bottom{
         margin-top: 30px;
     }
+    .container.week-winner{
+      padding-left: 50px;
+      padding-top: 30px;
+    }
     @media only screen and (max-width: 1199px) {
+        .container.week-winner{
+          padding-left: 0px;
+          padding-top: 20px;
+        }
+        .col-sm-1.col{
+          width: 20px !important;
+          flex-grow: 0.2 !important;
+        }
         flex-direction: column;
         width: 100%;
         position: relative;

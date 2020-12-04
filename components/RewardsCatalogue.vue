@@ -1,16 +1,21 @@
 <template>
   <div class="rewards-catalogue">
     <div class="wallet-desktop" >
-      <div class="wallet-swiper" v-for="(item, index) in data.prizeList" :key="'reward'+index"  @click="goDetail(index)">
-        <div class="wallet-swiper-item">
+      <div class="wallet-swiper" v-for="(item, index) in data.prizeList" :key="'reward'+index"  >
+        <div class="wallet-swiper-item" @click="goDetail(index)">
           <img :src="item.imgUrl"
           />
         </div>
         <div class="description bg">
             <div class="name">{{item.name}}</div>
-            <div class="expiry" :key="'cost'+index" v-if="item.prizeCost">
-              <span>{{item.prizeCost[0].amount}}</span>
-              <span>Coins</span>
+            <div :class="[{'desc-area':canRedeem(item.prizeCost)}]"  >
+              <div :class="[{expiry:true,'left':canRedeem(item.prizeCost)}]"    :key="'cost'+index" v-if="item.prizeCost">
+                <span>{{item.prizeCost[0].amount}}</span>
+                <span>Coins</span>
+              </div>
+              <div class="btn-area">
+                <a class="button rewards-right" @click="redeemPrize(item.prizeId)" v-if="canRedeem(item.prizeCost)" >Redeem now</a>
+              </div>
             </div>
           </div>
       </div>
@@ -19,6 +24,7 @@
 </template>
 
 <script>
+import {REDEEM_PRIZE} from '@/store/action_types';
 export default {
   name: "RewardsCatalogue",
   components: {
@@ -32,6 +38,9 @@ export default {
     data: null,
   },
   computed:{
+       listWallet(){
+           return this.$store.state.listWallet;
+        },
   	toBeShown() {
     	return this.data.exclusivePrizes.slice(0, this.currentPage * 3);
     },
@@ -48,6 +57,28 @@ export default {
     },
     goDetail(rewardID){
        location.href= 'rewardsDetail/'+rewardID;
+    },
+      redeemPrize(prizeId){
+      let request = {"prizeId":prizeId};
+      this.$store.commit('SET_REDEEM_PRIZE',null);
+      this.$store.dispatch(REDEEM_PRIZE,request).then((response)=>{
+         this.errorMessage=null;
+         location.href="/congratulations";
+       }).catch(error=>{
+         if(error.response && error.response.data.status=="401"){
+           localStorage.clear();
+         }else{
+            this.errorMessage="Sorry you can not redeem this prize";
+         }
+       })
+    },
+    canRedeem(prizeCost){
+      if(prizeCost){
+          if(this.listWallet){
+             return this.listWallet.walletStatus[0].amount >= prizeCost[0].amount
+          }
+      }
+      return false;
     }
   },
   beforeMount() {},
@@ -60,6 +91,19 @@ export default {
 <style lang="scss">
 .rewards-catalogue{
     margin-bottom: 40px;
+    .desc-area{
+      display: flex;
+      padding-top: 20px;
+    }
+    .btn-area{
+
+        justify-content: flex-end;
+        flex:1;
+        .button{
+          max-width: 190px;
+          padding-top: 15px;
+        }
+    }
     .wallet-desktop{
       display: flex;
       flex-wrap: wrap;
@@ -81,7 +125,12 @@ export default {
         }
         .expiry{
           display: flex;
+
           justify-content: flex-end;
+          &.left{
+            flex:1;
+            justify-content: flex-start;
+          }
           span{
             font-size:12px;
           }
@@ -102,7 +151,14 @@ export default {
     .prize-swiper-pagination .prize-swiper-pagination-bullet-active{
       background: #ffffff
     }
+    @media only screen and (min-width: 1300px) {
+        .btn-area{
+          flex:0.8;
+        }
+
+    }
     @media only screen and (max-width: 1199px) {
+
     .wallet-desktop{
       .wallet-swiper{
           width: 43%;
@@ -119,10 +175,33 @@ export default {
             }
           }
         }
+        .desc-area{
+             padding: 20px 10px;
+          }
 
       }
     }
     }
+       @media only screen and (max-width: 750px) {
+           .btn-area{
+          flex:1.2;
+        }
+       }
+      @media only screen and (max-width: 650px) {
+           .btn-area{
+          flex:1;
+        }
+         .wallet-desktop{
+      .wallet-swiper{
+          width: 100%;
+          margin-bottom: 0px;
+          .desc-area{
+             padding: 20px 10px;
+          }
+      }
+         }
+
+      }
 
 }
 </style>

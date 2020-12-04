@@ -18,13 +18,7 @@ export default {
       this.$store.commit('SET_ERROR',null)
        this.$store.commit('SET_TOKEN',this.$route.query.token)
     }
-
-    if(this.$route.query.from=="home"){
        location.href="/";
-    }else{
-        location.href="/account";
-    }
-
     },
   },
 };

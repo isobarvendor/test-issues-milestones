@@ -12,3 +12,4 @@ export const REDEEM_PRIZE=`redeemPrize`;
 
 //cms
 export const FETCH_CMS_DATA= `fethCMSData`;
+export const GET_LIST_WINNERS =`getListWinners`;
