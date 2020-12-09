@@ -1,4 +1,4 @@
-# coke-campaign-generator
+# coke-campaign-generator-frontend
 
 ## Folder Setup
 - Layouts - Default.vue (only one and holding the Header Component)
