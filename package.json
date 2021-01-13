@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt --port",
+    "dev": "nuxt --port 5000",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "nuxt start --port 5000",
     "export": "nuxt export",
     "serve": "nuxt serve"
   },
