@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CampaignPeriod renders properly 1`] = `
+<div class="container campaign-section">
+  <p></p>
+  <p class="campaign-period">Nov 1, 2020 – Nov 11, 2020</p>
+</div>
+`;

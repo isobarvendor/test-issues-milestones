@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders properly 1`] = `
+<header>
+  <client-only><a class="profile-button invisible">
+      <!---->
+      <div class="profile-content">Sign in</div>
+    </a>
+    <div class="nav-container">
+      <!---->
+      <v-expand-transition>
+        <!---->
+      </v-expand-transition>
+    </div>
+  </client-only>
+</header>
+`;

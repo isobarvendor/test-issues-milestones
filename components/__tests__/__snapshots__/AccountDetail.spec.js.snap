@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountDetail renders properly 1`] = `
+<div class="account-detail">
+  <h3> Account</h3>
+  <div class="registration-body">
+    <div class="details">
+      <div class="input-container">
+        <v-text-field label="" disabled=""></v-text-field>
+        <v-text-field disabled=""></v-text-field>
+      </div>
+    </div>
+    <div class="profile-icon"><img src="image"></div>
+  </div>
+</div>
+`;
