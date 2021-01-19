@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Prizes renders properly 1`] = `
-<div class="container campaign-section" winnners="[object Object]">
+<div class="container campaign-section">
   <div class="header">title</div>
   <div>description</div>
   <div class="container">
@@ -12,6 +12,8 @@ exports[`Prizes renders properly 1`] = `
       <div class="prize-swiper-pagination"></div>
     </swiper-stub>
   </div>
-  <!---->
+  <div class="winners-section">
+    <div class="header">title</div> <a href="/winners" class="button">Button</a>
+  </div>
 </div>
 `;

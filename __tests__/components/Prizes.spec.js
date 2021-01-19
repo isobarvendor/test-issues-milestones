@@ -19,7 +19,7 @@ const factory = () => {
         title:"title",
         description:"description"
       },
-      winnners:{
+      winners:{
         luckyWinnerSection:[{
           lucky:"tes"
         }],
