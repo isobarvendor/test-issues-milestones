@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Registration renders properly 1`] = `
+<div class="registration">
+  <h3>title</h3>
+  <div class="registration-body">
+    <div class="details">
+      <div class="input-container">
+        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" label="Name" loaderheight="2" clearicon="$clear" type="text" name="name"></v-text-field-stub> <span class="error-message"></span>
+        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" label="Email address" loaderheight="2" clearicon="$clear" type="text" name="email"></v-text-field-stub> <span class="error-message"></span>
+        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" label="Password" loaderheight="2" clearicon="$clear" type="password" name="password"></v-text-field-stub> <span class="error-message"></span>
+        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" label="Confirm password" loaderheight="2" clearicon="$clear" type="password" name="confirm password"></v-text-field-stub> <span class="error-message"></span>
+      </div>
+      <div class="radio-container">
+        <v-checkbox-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" ripple="true" valuecomparator="function deepEqual(a, b) {
+  if (a === b) return true;
+
+  if (a instanceof Date &amp;&amp; b instanceof Date) {
+    // If the values are Date, they were convert to timestamp with getTime and compare it
+    if (a.getTime() !== b.getTime()) return false;
+  }
+
+  if (a !== Object(a) || b !== Object(b)) {
+    // If the values aren't objects, they were already checked for equality
+    return false;
+  }
+
+  var props = Object.keys(a);
+
+  if (props.length !== Object.keys(b).length) {
+    // Different number of props, don't bother to check
+    return false;
+  }
+
+  return props.every(function (p) {
+    return deepEqual(a[p], b[p]);
+  });
+}" indeterminateicon="$checkboxIndeterminate" officon="$checkboxOff" onicon="$checkboxOn"></v-checkbox-stub>
+        <div class="radio-label"><span></span></div>
+      </div>
+      <div class="button-container">
+        <!---->
+        <div class="btn-area"><a class="button">Register</a></div>
+      </div>
+    </div>
+    <div class="profile-icon"><img src="/img/icons/profile-icon.png">
+      <div class="input-area"><input type="file" value="uploadReceipt"></div>
+    </div>
+  </div>
+</div>
+`;
