@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginDetails renders properly 1`] = `
+<div class="login-details">
+  <div class="title-image"><img src="img/icons/coke.png">
+    <p>
+      Login
+    </p>
+  </div>
+  <!---->
+  <!---->
+  <transition-stub name="fade">
+    <div class="details">
+      <div class="input-container">
+        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Email address" loaderheight="2" clearicon="$clear" type="text" name="email"></v-text-field-stub> <span class="error-message"></span>
+        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Password" loaderheight="2" clearicon="$clear" type="password" name="password"></v-text-field-stub> <span class="error-message"></span>
+      </div>
+      <div class="button-container">
+        <!---->
+        <div class="btn-area"><a class="button">Login</a></div>
+        <p>Sign Up</p>
+      </div>
+    </div>
+  </transition-stub>
+</div>
+`;
