@@ -1,11 +1,11 @@
 
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 import FaqSection from "../FaqSection";
 
 
 const factory = () => {
-  return mount(FaqSection, {
+  return shallowMount(FaqSection, {
 
     propsData: {
       data :{

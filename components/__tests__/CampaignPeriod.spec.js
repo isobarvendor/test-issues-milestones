@@ -1,11 +1,11 @@
 
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 import CampaignPeriod from "../CampaignPeriod";
 
 
 const factory = () => {
-  return mount(CampaignPeriod, {
+  return shallowMount(CampaignPeriod, {
 
     propsData: {
       data :{

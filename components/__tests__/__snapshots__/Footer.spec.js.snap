@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders properly 1`] = `
+<footer>
+  <div class="container">
+    <p>tes</p>
+    <p><a href="/privacy">Privacy Policy</a> <a href="/tnc">Terms and conditions</a></p>
+  </div>
+</footer>
+`;

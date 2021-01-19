@@ -1,11 +1,11 @@
 
-import { mount } from '@vue/test-utils'
+import {shallowMount  } from '@vue/test-utils'
 
 import Footer from "../Footer";
 
 
 const factory = () => {
-  return mount(Footer, {
+  return shallowMount(Footer, {
 
     propsData: {
       data :{

@@ -1,5 +1,5 @@
 
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 import AccountDetail from "../AccountDetail";
 
@@ -10,7 +10,7 @@ const $route = {
 
 
 const factory = () => {
-  return mount(AccountDetail, {
+  return shallowMount(AccountDetail, {
 
     propsData: {
       cmsData:{

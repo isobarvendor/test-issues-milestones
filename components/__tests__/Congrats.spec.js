@@ -1,5 +1,5 @@
 
-import { mount,createLocalVue, shallowMount } from '@vue/test-utils'
+import {createLocalVue, shallowMount } from '@vue/test-utils'
 
 import Congrats from "../Congrats";
 import Vuex from 'vuex';
@@ -22,7 +22,7 @@ let localVue, store;
   });
 
 const factory = () => {
-  return mount(Congrats, {
+  return shallowMount(Congrats, {
     localVue, store
   });
 };

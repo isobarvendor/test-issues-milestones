@@ -1,12 +1,12 @@
 module.exports = {
   // tell Jest to handle `*.vue` files
-  globalSetup: "<rootDir>/jest.setup.js",
   moduleFileExtensions: ["js", "json", "vue"],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   watchman: false,
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^~/(.*)$': '<rootDir>/$1',
-    '^vue$': 'vue/dist/vue.common.js'
+    '^vue$': 'vue/dist/vue.common.js',
   },
   transform: {
     // process js with `babel-jest`

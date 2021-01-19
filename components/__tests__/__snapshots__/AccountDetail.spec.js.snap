@@ -6,8 +6,8 @@ exports[`AccountDetail renders properly 1`] = `
   <div class="registration-body">
     <div class="details">
       <div class="input-container">
-        <v-text-field label="" disabled=""></v-text-field>
-        <v-text-field disabled=""></v-text-field>
+        <v-text-field-stub disabled="true" errorcount="1" errormessages="" messages="" rules="" successmessages="" value="Ron" backgroundcolor="" label="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+        <v-text-field-stub disabled="true" errorcount="1" errormessages="" messages="" rules="" successmessages="" value="Rs" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
       </div>
     </div>
     <div class="profile-icon"><img src="image"></div>

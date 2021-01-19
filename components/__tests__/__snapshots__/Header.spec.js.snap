@@ -2,16 +2,16 @@
 
 exports[`Header renders properly 1`] = `
 <header>
-  <client-only><a class="profile-button invisible">
+  <div><a class="profile-button invisible">
       <!---->
       <div class="profile-content">Sign in</div>
     </a>
     <div class="nav-container">
       <!---->
-      <v-expand-transition>
+      <v-expand-transition-stub mode="in-out">
         <!---->
-      </v-expand-transition>
+      </v-expand-transition-stub>
     </div>
-  </client-only>
+  </div>
 </header>
 `;

@@ -1,6 +1,6 @@
 
-import { mount,createLocalVue, shallowMount } from '@vue/test-utils'
-
+import { createLocalVue, shallowMount } from '@vue/test-utils'
+import Vuetify from 'vuetify';
 import Header from "../Header";
 import Vuex from 'vuex';
 
@@ -13,6 +13,7 @@ let localVue, store;
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(Vuex);
+    let vuetify = new Vuetify()
     store = new Vuex.Store({
       getters: {
         getCMSContent() {
@@ -35,7 +36,7 @@ let localVue, store;
   });
 
 const factory = () => {
-  return mount(Header, {
+  return shallowMount(Header, {
     mocks: {
       $route
     },
