@@ -14,3 +14,4 @@ config.stubs['nuxt-link'] = {template : '<a><slot /></a>'}
 config.stubs['no-ssr'] = {template : '<span><slot /></span>' }
 
 config.stubs['client-only'] = {template: '<div><slot /></div>' } ;
+config.stubs['mq-layout'] = {template: '<div><slot /></div>' } ;

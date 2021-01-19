@@ -1,7 +1,7 @@
 
 import {createLocalVue, shallowMount } from '@vue/test-utils'
 
-import Congrats from "../Congrats";
+import Congrats from "@/components/Congrats";
 import Vuex from 'vuex';
 
 

@@ -1,22 +1,28 @@
 
 import { shallowMount } from '@vue/test-utils'
 
-import CampaignPeriod from "../CampaignPeriod";
+import HowitWorks from "@/components/HowitWorks";
 
 
 const factory = () => {
-  return shallowMount(CampaignPeriod, {
+  return shallowMount(HowitWorks, {
 
     propsData: {
       data :{
-        fromDate:'2020-11-01',
-        toDate:'2020-11-11'
+        slides:
+          [
+            {
+              mobileImage:[{url:"mobile image"}],
+              desktopImage:[{url:"desktop image"}],
+              description:"tes"
+            }
+        ]
       }
     }
   });
 };
 
-describe("CampaignPeriod", () => {
+describe("HowitWorks", () => {
 
 
   test("mounts properly", () => {

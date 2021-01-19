@@ -1,7 +1,7 @@
 
 import { shallowMount } from '@vue/test-utils'
 
-import FaqSection from "../FaqSection";
+import FaqSection from "@/components/FaqSection";
 
 
 const factory = () => {

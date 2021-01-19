@@ -1,28 +1,27 @@
 
 import { shallowMount } from '@vue/test-utils'
 
-import HowitWorks from "../HowitWorks";
+import LoginDetails from "@/components/LoginDetails";
 
 
 const factory = () => {
-  return shallowMount(HowitWorks, {
+  return shallowMount(LoginDetails, {
 
     propsData: {
       data :{
-        slides:
-          [
-            {
-              mobileImage:[{url:"mobile image"}],
-              desktopImage:[{url:"desktop image"}],
-              description:"tes"
-            }
-        ]
+       Title : "Login",
+       SubTitle: "Login"
+      },
+      social:{
+        line:true,
+        facebook:true,
+        google:true,
       }
     }
   });
 };
 
-describe("HowitWorks", () => {
+describe("LoginDetails", () => {
 
 
   test("mounts properly", () => {

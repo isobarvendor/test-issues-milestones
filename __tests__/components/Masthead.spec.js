@@ -1,27 +1,23 @@
 
 import { shallowMount } from '@vue/test-utils'
 
-import LoginDetails from "../LoginDetails";
+import Masthead from "@/components/Masthead";
 
 
 const factory = () => {
-  return shallowMount(LoginDetails, {
+  return shallowMount(Masthead, {
 
     propsData: {
       data :{
-       Title : "Login",
-       SubTitle: "Login"
-      },
-      social:{
-        line:true,
-        facebook:true,
-        google:true,
-      }
+              mobileImage:[{url:"mobile image"}],
+              desktopImage:[{url:"desktop image"}],
+              tabletImage:[{url:"tablet image"}],
+            }
     }
   });
 };
 
-describe("LoginDetails", () => {
+describe("Masthead", () => {
 
 
   test("mounts properly", () => {

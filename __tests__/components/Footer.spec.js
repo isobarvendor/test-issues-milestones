@@ -1,7 +1,7 @@
 
 import {shallowMount  } from '@vue/test-utils'
 
-import Footer from "../Footer";
+import Footer from "@/components/Footer";
 
 
 const factory = () => {

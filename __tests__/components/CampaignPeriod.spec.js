@@ -1,33 +1,22 @@
 
 import { shallowMount } from '@vue/test-utils'
 
-import AccountDetail from "../AccountDetail";
-
-
-const $route = {
-  name: "register"
-}
+import CampaignPeriod from "@/components/CampaignPeriod";
 
 
 const factory = () => {
-  return shallowMount(AccountDetail, {
+  return shallowMount(CampaignPeriod, {
 
     propsData: {
-      cmsData:{
-        Account:{
-          Title :"Account"
-        }
-      },
       data :{
-        name:"Ron",
-        email:"Rs",
-        imageUrl:"image"
+        fromDate:'2020-11-01',
+        toDate:'2020-11-11'
       }
     }
   });
 };
 
-describe("AccountDetail", () => {
+describe("CampaignPeriod", () => {
 
 
   test("mounts properly", () => {
