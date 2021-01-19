@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WalletRewards renders properly 1`] = `
+<div class="wallet-rewards">
+  <sliderheader-stub>test</sliderheader-stub>
+  <!---->
+  <!---->
+  <!---->
+</div>
+`;
