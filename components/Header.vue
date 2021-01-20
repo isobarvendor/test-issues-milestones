@@ -165,10 +165,7 @@ export default {
             this.expand = !this.expand;
             this.$emit('toggleMenu',this.expand);
         },
-        toggleLog(e){
-            e.stopPropagation();
-            this.logged = !this.logged
-        },
+
         clickNav(e){
             let el = e.target.getAttribute('data-nav');
             if(el){
