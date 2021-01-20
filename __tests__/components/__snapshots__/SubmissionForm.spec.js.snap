@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmissionForm renders properly 1`] = `
+<div>
+  <div class="header">Lucky draw</div>
+  <form autocomplete="off" class="mechanics">
+    <div class="details"><input type="text" name="name" placeholder="Name" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
+    <div class="details"><input type="email" name="email" placeholder="Email" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
+    <div class="details"><input type="text" name="code" placeholder="10-digit code" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
+    <!----> <br>
+    <div class="row top">
+      <div class="col d-flex consent">
+        <div class="checkbox"><label for="form_tnc"><input type="checkbox" name="tnc" id="form_tnc"> <span></span></label></div>
+        <div class="terms">I accept the <a href="">Terms and Conditions</a> of this this redemption.</div>
+      </div>
+    </div>
+    <div class="row top">
+      <div class="col d-flex consent">
+        <div class="checkbox"><label for="form_pp"><input type="checkbox" name="privacy" id="form_pp"> <span></span></label></div>
+        <div class="terms">I accept the <a href="">Privacy Policy</a> of this redemption.</div>
+      </div>
+    </div>
+    <!---->
+    <div class="btn-area">
+      <v-btn-stub tag="button" activeclass="" type="button" class="get-code">Submit</v-btn-stub>
+    </div>
+  </form>
+</div>
+`;

@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmissionMechanics renders properly 1`] = `
+<div class="container campaign-section">
+  <!---->
+  <form-stub data="[object Object]" cmsdata="[object Object]"></form-stub>
+</div>
+`;
