@@ -165,11 +165,323 @@ describe("Header", () => {
     expect(wrapper.vm.CMSContent).toBe(store.getters.getCMSContent);
   });
 
-  test("have content class", () => {
+  test("content class coke", () => {
+    beforeEach(() => {
+      localVue = createLocalVue();
+      localVue.use(Vuex);
+      store = new Vuex.Store({
+        getters: {
+          getCMSContent() {
+            return [
+              {Theme : {
+                Theme : "Coke"
+              },
+              SectionMenu:{
+                Menu:[
+                  {
+                    Link:"Home"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  }
+                ],
+                Image:[
+                  {url :'image'}
+                ],
+                Description:"test description"
+
+              }
+            }
+        ];
+          },
+          getLoginAccount(){
+            return {
+              name:"ron",
+              email:"ron@dsw.com",
+              imageUrl:"tes"
+            }
+          },
+          getCMSConfig(){
+            return {
+              Wallet:{
+                Wallet:true
+             },
+             campaignTypes:{
+              authentication:"register"
+             }
+            }
+          }
+        },
+        state:{
+          language: "id",
+          listWallet:{
+            walletStatus:[
+              {amount :30}
+            ]
+          }
+        }
+      });
+    });
 
     const wrapper = factory($route,store);
     expect(wrapper.vm.contentClass).toBe("coke");
   });
+
+  test("content class fanta", () => {
+
+      store = new Vuex.Store({
+        getters: {
+          getCMSContent() {
+            return [
+              {Theme : {
+                Theme : "Fanta"
+              },
+              SectionMenu:{
+                Menu:[
+                  {
+                    Link:"Home"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  },
+                  {
+                    Link:"Wallet"
+                  }
+                ],
+                Image:[
+                  {url :'image'}
+                ],
+                Description:"test description"
+
+              }
+            }
+        ];
+          },
+          getLoginAccount(){
+            return {
+              name:"ron",
+              email:"ron@dsw.com",
+              imageUrl:"tes"
+            }
+          },
+          getCMSConfig(){
+            return {
+              Wallet:{
+                Wallet:true
+             },
+             campaignTypes:{
+              authentication:"register"
+             }
+            }
+          }
+        },
+        state:{
+          language: "id",
+          listWallet:{
+            walletStatus:[
+              {amount :30}
+            ]
+          }
+        }
+      });
+
+
+    const wrapper = factory($route,store);
+    expect(wrapper.vm.contentClass).toBe("fanta");
+  });
+
+  test("content class sprite", () => {
+
+    store = new Vuex.Store({
+      getters: {
+        getCMSContent() {
+          return [
+            {Theme : {
+              Theme : "Spirit"
+            },
+            SectionMenu:{
+              Menu:[
+                {
+                  Link:"Home"
+                },
+                {
+                  Link:"Wallet"
+                },
+                {
+                  Link:"Wallet"
+                },
+                {
+                  Link:"Wallet"
+                },
+                {
+                  Link:"Wallet"
+                },
+                {
+                  Link:"Wallet"
+                },
+                {
+                  Link:"Wallet"
+                },
+                {
+                  Link:"Wallet"
+                }
+              ],
+              Image:[
+                {url :'image'}
+              ],
+              Description:"test description"
+
+            }
+          }
+      ];
+        },
+        getLoginAccount(){
+          return {
+            name:"ron",
+            email:"ron@dsw.com",
+            imageUrl:"tes"
+          }
+        },
+        getCMSConfig(){
+          return {
+            Wallet:{
+              Wallet:true
+           },
+           campaignTypes:{
+            authentication:"register"
+           }
+          }
+        }
+      },
+      state:{
+        language: "id",
+        listWallet:{
+          walletStatus:[
+            {amount :30}
+          ]
+        }
+      }
+    });
+
+
+  const wrapper = factory($route,store);
+  expect(wrapper.vm.contentClass).toBe("sprite");
+});
+
+
+test("content class not coke", () => {
+
+  store = new Vuex.Store({
+    getters: {
+      getCMSContent() {
+        return [
+          {Theme : {
+            Theme : "NonCoke"
+          },
+          SectionMenu:{
+            Menu:[
+              {
+                Link:"Home"
+              },
+              {
+                Link:"Wallet"
+              },
+              {
+                Link:"Wallet"
+              },
+              {
+                Link:"Wallet"
+              },
+              {
+                Link:"Wallet"
+              },
+              {
+                Link:"Wallet"
+              },
+              {
+                Link:"Wallet"
+              },
+              {
+                Link:"Wallet"
+              }
+            ],
+            Image:[
+              {url :'image'}
+            ],
+            Description:"test description"
+
+          }
+        }
+    ];
+      },
+      getLoginAccount(){
+        return {
+          name:"ron",
+          email:"ron@dsw.com",
+          imageUrl:"tes"
+        }
+      },
+      getCMSConfig(){
+        return {
+          Wallet:{
+            Wallet:true
+         },
+         campaignTypes:{
+          authentication:"register"
+         }
+        }
+      }
+    },
+    state:{
+      language: "id",
+      listWallet:{
+        walletStatus:[
+          {amount :30}
+        ]
+      }
+    }
+  });
+
+
+const wrapper = factory($route,store);
+expect(wrapper.vm.contentClass).toBe("coke");
+});
+
+
+
 
   test("menu click and show menu", () => {
     const $route = {
