@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CoinDetail renders properly 1`] = `
+<div class="coin-detail">
+  <h3> Enter Code </h3>
+  <div class="input-container">
+    <v-app-stub id="inspire">
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+      <v-text-field-stub color="white" errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" loaderheight="2" clearicon="$clear" type="text"></v-text-field-stub>
+    </v-app-stub>
+  </div>
+  <div class="button-container"><a class="button">Collect</a></div>
+</div>
+`;
