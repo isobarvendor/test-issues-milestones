@@ -5,8 +5,10 @@ import VeeValidate from 'vee-validate'
 import { config } from '@vue/test-utils';
 
 
+
 Vue.use(VeeValidate)
 Vue.use(Vuetify)
+
 
 // Mock Nuxt components
 config.stubs['nuxt'] = { template : '<div />' }

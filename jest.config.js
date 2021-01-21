@@ -2,6 +2,7 @@ module.exports = {
   // tell Jest to handle `*.vue` files
   moduleFileExtensions: ["js", "json", "vue"],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  globalSetup: "<rootDir>/jest-nuxt.setup.js", // this line is the only change here
   watchman: false,
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
@@ -20,11 +21,14 @@ module.exports = {
   },
   transformIgnorePatterns: [
     'node_modules/(?!(vee-validate/dist/rules))',
+    '<roodDir>/plugins/vee-validate.js'
   ],
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
   collectCoverage: true,
   collectCoverageFrom: [
     "<rootDir>/components/**/*.vue",
-    "<rootDir>/pages/*.vue"
+    "<rootDir>/pages/*.vue",
+    "<rootDir>/api/*.js",
+    "<rootDir>/stores/*.js"
   ]
 };
