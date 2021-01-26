@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`help renders properly 1`] = `
+<div id="main" class="help">
+  <div class="wrapper">
+    <div class="container">
+      <div class="header">Wallet Help</div>
+      <div class="faq-section">
+        <div class="slider-header">
+          <div class="title">FAQs </div>
+        </div>
+        <div>
+          <div class="accordions v-item-group theme--dark v-expansion-panels">
+            <div aria-expanded="false" class="v-expansion-panel"><button type="button" class="v-expansion-panel-header">Question 1 <transition-stub name="fade-transition">
+                  <div class="v-expansion-panel-header__icon"><i aria-hidden="true" class="v-icon notranslate material-icons theme--dark">$expand</i></div>
+                </transition-stub></button>
+              <transition-stub name="expand-transition">
+                <!---->
+              </transition-stub>
+            </div>
+            <div aria-expanded="false" class="v-expansion-panel"><button type="button" class="v-expansion-panel-header">Questions 2<transition-stub name="fade-transition">
+                  <div class="v-expansion-panel-header__icon"><i aria-hidden="true" class="v-icon notranslate material-icons theme--dark">$expand</i></div>
+                </transition-stub></button>
+              <transition-stub name="expand-transition">
+                <!---->
+              </transition-stub>
+            </div>
+            <div aria-expanded="false" class="v-expansion-panel"><button type="button" class="v-expansion-panel-header">Question 3<transition-stub name="fade-transition">
+                  <div class="v-expansion-panel-header__icon"><i aria-hidden="true" class="v-icon notranslate material-icons theme--dark">$expand</i></div>
+                </transition-stub></button>
+              <transition-stub name="expand-transition">
+                <!---->
+              </transition-stub>
+            </div>
+          </div>
+        </div>
+        <div class="slider-header">
+          <div class="title">Contact us</div>
+        </div>
+        <div class="contact-section">
+          <p>For any enquires regarding retrieving your code, please email us at <a href="mailto:coca-cola@coke.com">coca-cola@coke.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

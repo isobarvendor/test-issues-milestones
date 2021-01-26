@@ -11,6 +11,8 @@ import Masthead from '@/components/Masthead'
 
 import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
+import actions from '@/store/actions';
+import mutations from '@/store/mutations';
 
 
 const $route = {
@@ -40,7 +42,7 @@ let localVue, store;
         }
       },
       state:{
-        token:"",
+        token:"32432432",
         language: "en",
         listWallet:{
           walletStatus:[
@@ -48,7 +50,9 @@ let localVue, store;
           ]
         },
 
-      }
+      },
+      actions,
+      mutations
     });
   });
 

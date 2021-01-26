@@ -1,22 +1,21 @@
 <template>
-  <div v-if="dataStatus.status == 200" id="main" class="coins">
+  <div id="main" class="coins">
     <div class="wrapper">
       <div class="container">
-        <CoinDetail :data="data.exclusivePrizes"/>
+        <CoinDetail/>
       </div>
 
     </div>
-  </div>
-  <div v-else-if="dataStatus.status >= 500">
-    Status: {{dataStatus.status}}
-    <br />
-    {{dataStatus.message}}
   </div>
 </template>
 
 <script>
 import CoinDetail from '@/components/CoinDetail'
 export default {
+  name:"coins",
+  components:{
+    CoinDetail
+  },
   data(){
     return{
       dataStatus:{},
@@ -48,11 +47,11 @@ export default {
   },
   methods: {
     async fetchData() {
-      let result = await this.$axios.get(
+      /*let result = await this.$axios.get(
         "https://ayo.aircovery.com/cms-api/campaigns"
       );
       this.dataStatus = { status: result.status, message: result.statusText };
-      this.data = result.data;
+      this.data = result.data;*/
     },
   },
 };

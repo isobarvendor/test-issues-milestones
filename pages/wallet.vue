@@ -16,6 +16,10 @@ import WalletRewards from '@/components/WalletRewards'
 import WalletTransactions from '@/components/WalletTransactions'
 import { GET_LIST_WALLET } from '@/store/action_types';
 export default {
+  name:"wallet",
+  components:{
+    WalletRewards,WalletTransactions
+  },
   data(){
     return{
       campaignType: 0,

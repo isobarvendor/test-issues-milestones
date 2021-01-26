@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-let origin="";
+import origin from "@/constants";
 
 const setHeader = (token)=>{
     return {

@@ -12,6 +12,10 @@
 <script>
 import Registration from '@/components/Registration'
 export default {
+  name:"register",
+  components:{
+    Registration
+  },
   data(){
     return{
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import API from '@/api/general';
 
-let origin ="";
+import origin from "@/constants";
 jest.mock('axios');
 
 describe('post login data', () => {

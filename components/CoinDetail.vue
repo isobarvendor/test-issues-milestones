@@ -2,7 +2,7 @@
     <div class="coin-detail">
         <h3> Enter Code </h3>
             <div class="input-container">
-                <v-app id="inspire" style="">
+                <div id="inspire" style="">
                     <v-text-field color="white"></v-text-field>
                     <v-text-field color="white"></v-text-field>
                     <v-text-field color="white"></v-text-field>
@@ -11,7 +11,7 @@
                     <v-text-field color="white"></v-text-field>
                     <v-text-field color="white"></v-text-field>
                     <v-text-field color="white"></v-text-field>
-                </v-app>
+                </div>
             </div>
             <div class="button-container">
                 <a  class="button">Collect</a>
@@ -66,7 +66,7 @@ export default {
         }
 
     }
-    
+
     .theme--light.v-input input{
         color: white;
         text-align: center;
@@ -81,7 +81,7 @@ export default {
         margin-top: 40px
     }
     @media only screen and (max-width: 1199px) {
-          
-    }  
+
+    }
 }
 </style>

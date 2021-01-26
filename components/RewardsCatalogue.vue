@@ -27,8 +27,6 @@
 import {REDEEM_PRIZE} from '@/store/action_types';
 export default {
   name: "RewardsCatalogue",
-  components: {
-  },
   data() {
     return {
       currentPage: 1

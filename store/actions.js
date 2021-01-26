@@ -29,7 +29,7 @@ export default {
         .catch(error => {
           return reject(error);
         });
-    }).then(Promise.resolve());
+    })
   },
   [REDEEM_PRIZE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ export default {
           return resolve(response);
         })
         .catch(error => {
-          console.error(error);
+        //  console.error(error);
           return reject(error);
         });
 
@@ -87,7 +87,7 @@ export default {
           return resolve(response);
         })
         .catch(error => {
-          console.error(error);
+         // console.error(error);
           return reject(error);
         });
 

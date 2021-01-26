@@ -14,6 +14,10 @@
 
 import FaqSection from '@/components/FaqSection'
 export default {
+  name:"help",
+  components:{
+    FaqSection
+  },
   data(){
     return{
       data:null,

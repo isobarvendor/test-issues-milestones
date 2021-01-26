@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import CMSAPI from '@/api/cms';
 
-let origin ="";
+import origin from "@/constants";
+
 jest.mock('axios');
 
 describe('getCMSContent fetch data', () => {

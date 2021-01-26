@@ -39,8 +39,12 @@
 import RewardsCatalogue from '@/components/RewardsCatalogue';
 import { GET_LIST_PRIZE } from '@/store/action_types';
 import deepClone from 'deep-clone'
-// import Vuetify from 'vuetify/lib';
+
 export default {
+  name:"Rewards",
+  components:{
+    RewardsCatalogue
+  },
   data(){
     return{
       listPrizes :[],
