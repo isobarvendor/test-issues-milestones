@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-import origin from "@/constants";
+import {origin}  from "@/constants/index";
 
 export default {
 

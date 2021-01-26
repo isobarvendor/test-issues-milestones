@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import CMSAPI from '@/api/cms';
 
-import origin from "@/constants";
+import {origin}  from "@/constants/index";
 
 jest.mock('axios');
 
