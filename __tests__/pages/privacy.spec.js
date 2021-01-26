@@ -7,7 +7,7 @@ import privacy from '@/pages/privacy.vue';
 import PrivacySection from '@/components/PrivacySection'
 
 
-import {mockCMSConfig,mockCMSContent} from "../../__mock__/mock";
+import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
 
 

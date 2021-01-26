@@ -15,7 +15,7 @@ import {
   REDEEM_PRIZE,
   GET_LIST_WINNERS
 } from './action_types';
-import { EffectCoverflow } from 'swiper/js/swiper.esm';
+
 
 export default {
   [LOGIN]: ({ commit, state, getters }, data) => {
@@ -29,7 +29,7 @@ export default {
         .catch(error => {
           return reject(error);
         });
-    });
+    }).then(Promise.resolve());
   },
   [REDEEM_PRIZE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
@@ -56,8 +56,10 @@ export default {
         .catch(error => {
           return reject(error);
         });
+      }else{
+        return reject("not login");
       }
-    });
+    })
   },
   [SIGNUP]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {

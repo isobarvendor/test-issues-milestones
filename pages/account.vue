@@ -47,7 +47,9 @@ export default {
   },
   methods:{
     async getAccount(){
-       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token)
+       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token).then((response)=>{
+                })
+                .catch((error) =>{})
     },
     async getListWallet(){
 
@@ -74,7 +76,7 @@ export default {
   },
     mounted(){
     if(!this.$store.state.token){
-      this.$router.push('/login');
+      this.$router.push('/login', () => {});
     }
      this.getAccount();
      this.campaignType=='collect_to_redeem' && this.getListWallet();

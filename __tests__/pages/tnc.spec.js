@@ -7,7 +7,7 @@ import tnc from '@/pages/tnc.vue';
 import TncSection from '@/components/TncSection'
 
 
-import {mockCMSConfig,mockCMSContent} from "../../__mock__/mock";
+import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
 
 

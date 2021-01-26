@@ -9,7 +9,7 @@ import SubmissionMechanics from '@/components/SubmissionMechanics'
 import Footer from '@/components/Footer'
 import Masthead from '@/components/Masthead'
 
-import {mockCMSConfig,mockCMSContent} from "../../__mock__/mock";
+import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
 
 

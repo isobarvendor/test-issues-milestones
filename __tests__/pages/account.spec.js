@@ -2,15 +2,16 @@ import { mount,  createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router'
 
-import account from '@/pages/account.vue';
+import account from '@/pages/account';
 
 import AccountDetail from '@/components/AccountDetail'
 
 
-import {mockCMSConfig,mockCMSContent} from "../../__mock__/mock";
+import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
 
-
+import actions from '@/store/actions';
+import mutations from '@/store/mutations';
 
 
 let localVue, store,router;
@@ -46,7 +47,9 @@ let localVue, store,router;
           ]
         },
 
-      }
+      },
+      actions,
+      mutations
     });
   });
 

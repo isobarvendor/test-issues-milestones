@@ -6,7 +6,7 @@ import Login from '@/pages/login.vue';
 import LoginDetails from '@/components/LoginDetails'
 
 
-import {mockCMSConfig,mockCMSContent} from "../../__mock__/mock";
+import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
 
 
