@@ -12,6 +12,10 @@
 <script>
 import LoginDetails from '@/components/LoginDetails'
 export default {
+  name:"login",
+  components:{
+    LoginDetails
+  },
   data(){
     return{
 

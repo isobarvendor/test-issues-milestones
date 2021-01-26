@@ -14,7 +14,7 @@ import {mockCMSConfig,mockCMSContent} from "../../__mock__/mock";
 
 
 const $route = {
-  name: "register"
+  name: "index"
 }
 
 let localVue, store;

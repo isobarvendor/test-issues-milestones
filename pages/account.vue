@@ -15,6 +15,10 @@
 import AccountDetail from '@/components/AccountDetail'
 import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
 export default {
+  name:"Account",
+  components:{
+    AccountDetail
+  },
   data(){
     return{
       dataStatus:{},
