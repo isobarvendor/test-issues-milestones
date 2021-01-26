@@ -8,6 +8,7 @@
 <script>
 import moment from "moment";
 export default {
+   name: "CampaignPeriod",
   data() {
     return {
 

@@ -32,6 +32,14 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'img/icons/favicon.png' }
+    ],
+    script: [
+      {
+        src: 'https://widget.flowxo.com/embed.js',
+        "data-fxo-widget":'eyJ0aGVtZSI6IiM2N2MxOGUiLCJ3ZWIiOnsiYm90SWQiOiI2MDBlNzJjMjdiOGY2ZTAwMWEwMjk5ZjAiLCJ0aGVtZSI6IiM2N2MxOGUifX0=',
+        async:true,
+        defer:true
+      }
     ]
   },
   /*

@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index renders properly 1`] = `
+<div id="main" class="home">
+  <div class="wrapper">
+    <div id="masthead" class="container">
+      <div mq="sm"><svg id="coke_masthead_sm" data-name="coke_masthead" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 459">
+          <def>
+            <mask id="clipMask">
+              <path id="coke_line" data-name="coke_line" fill="white" d="M0,440.7l0-59V0H360v321.8h0l0,84.9c-10.1-1.7-20.3-2.6-30.5-2.6c-36.5,0-72,12.7-111,32.1
+			c-23.9,11.9-55.6,22.8-98,22.8C82.3,459,38.7,452,0,440.7z"></path>
+            </mask>
+          </def>
+          <image href="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/dummy_masthead_sm_0808a876c7_9f7402fae7.jpeg" preserveAspectRatio="xMidYMid slice" xlink:href="http://www.w3.org/1999/xlink" mask="url(#clipMask)"></image>
+        </svg></div>
+      <div mq="md,lg"><svg id="coke_masthead_md" data-name="coke_masthead" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 834 895">
+          <def>
+            <mask id="clipMask">
+              <path id="coke_line" data-name="coke_line" fill="white" d="M0,852.73,0,716.29V0H833.88V577.19H834l-.08,196.63a412.51,412.51,0,0,0-70.61-6c-84.65,0-166.8,29.44-257.07,74.38C451,869.75,377.33,895,279.15,895,190.73,895,89.63,878.72,0,852.73Z"></path>
+            </mask>
+          </def>
+          <image href="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/dummy_masthead_md_55bf2e6985_c5c36c18de.jpeg" preserveAspectRatio="xMidYMid slice" xlink:href="http://www.w3.org/1999/xlink" mask="url(#clipMask)"></image>
+        </svg></div>
+      <div mq="xl"><svg id="coke_masthead" data-name="coke_masthead" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 650">
+          <def>
+            <mask id="clipMask">
+              <path id="coke_line" data-name="coke_line" fill="red" d="M0,585.14.05,449.31H0V0H1279.88V192.59h.12l-.12,271.46a634.78,634.78,0,0,0-108.37-9.17c-129.91,0-256,45.19-394.54,114.14-84.84,42.23-197.86,81-348.55,81C292.72,650,137.56,625,0,585.14Z"></path>
+            </mask>
+          </def>
+          <image href="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/sprite_d_masthead_30c1f074ac.jpeg" preserveAspectRatio="xMidYMid slice" xlink:href="http://www.w3.org/1999/xlink" mask="url(#clipMask)"></image>
+        </svg></div>
+      <div class="masthead-content">
+        <h1></h1>
+        <p></p>
+      </div>
+    </div>
+    <div class="container campaign-section">
+      <p>Participation period</p>
+      <p class="campaign-period">Nov 1, 2020 – Nov 30, 2020</p>
+    </div>
+    <div class="container campaign-section">
+      <div class="header">Exclusive Prizes</div>
+      <div><a href="#">Lucky Draw Terms &amp; Condition</a></div>
+      <div class="container">
+        <div class="swiper-container swiper prize-swiper swiper-container-initialized swiper-container-horizontal swiper-container-free-mode">
+          <div class="swiper-wrapper" style="webkit-transition-duration: 0ms; transition-duration: 0ms; webkit-transform: translate3d(NaNpx, 0px, 0px); transform: translate3d(NaNpx, 0px, 0px);">
+            <div class="prize-item swiper-slide"><img src="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/image_1_032c59149f.jpeg">
+              <div class="prize-description">6 month voucher for Spotify Premium</div>
+            </div>
+            <div class="prize-item swiper-slide"><img src="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/prize_default_98bd155817.svg">
+              <div class="prize-description">Premier League Experience Live In England</div>
+            </div>
+            <div class="prize-item swiper-slide"><img src="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/c1_ebbb085e60.png">
+              <div class="prize-description">65-inch 4K HDR OLED TV</div>
+            </div>
+            <div class="prize-item swiper-slide"><img src="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/c1_ebbb085e60.png">
+              <div class="prize-description">65-inch 4K HDR OLED TV</div>
+            </div>
+          </div>
+          <div class="prize-swiper-pagination"></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+        </div>
+      </div>
+      <div class="winners-section">
+        <div class="header">COULD YOU BE A LUCKY WINNER?</div> <a href="/winners" class="button">Check winner</a>
+      </div>
+    </div>
+    <div class="container campaign-section">
+      <div class="header">How it Works?</div>
+      <div class="howitworks">
+        <div class="howitworks-item">
+          <div class="howitworks-number">1</div> <img src="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/c1_ebbb085e60.png">
+          <div>Buy $20 worth of coca cola</div>
+        </div>
+        <div class="howitworks-item">
+          <div class="howitworks-number">2</div> <img src="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/c2_4896b9b39f.png">
+          <div>Take a photo of your receipt of the purchased Coca Cola</div>
+        </div>
+        <div class="howitworks-item">
+          <div class="howitworks-number">3</div> <img src="https://test-015665-java-cloudfronts3content-d25392n5j4ow.s3.ap-southeast-1.amazonaws.com/c3_8eeb8b1d5d.png">
+          <div>Enter your details &amp; upload the receipt in the form below</div>
+        </div>
+      </div>
+    </div>
+    <div class="container campaign-section">
+      <div class="login-box column center">
+        <p class="text-center">Sign in or register a Coca-Cola <br>account to enter the draw</p> <a class="social-button fb"><i class="ic ic-fb"></i><span>Continue with Facebook</span></a>
+        <!----> <a class="social-button google"><i class="ic ic-google"></i><span>Continue with Google</span></a>
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <p>© 2020 The Coca Cola Company. "COCA COLA" and contour bottle design are trademarks of The Coca Cola Company.</p>
+      <p><a href="/privacy">Privacy Policy</a> <a href="/tnc">Terms and conditions</a></p>
+    </div>
+  </footer>
+</div>
+`;

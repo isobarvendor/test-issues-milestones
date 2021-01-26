@@ -29,6 +29,7 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 export default {
+   name: "Prizes",
   components: {
     Swiper,
     SwiperSlide,

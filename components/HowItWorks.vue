@@ -14,6 +14,7 @@
 
 <script>
 export default {
+   name: "HowItWorks",
   props: {
     data: Object,
   },

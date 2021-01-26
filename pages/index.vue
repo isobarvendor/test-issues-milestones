@@ -13,7 +13,7 @@
 </template>
 
 <script >
-
+import Masthead from '../components/Masthead'
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
 import HowItWorks from '../components/HowItWorks'
@@ -27,6 +27,10 @@ import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
 //const campaign
 
 export default {
+  name:"index",
+  components:{
+    Masthead,CampaignPeriod, Prizes,HowItWorks,SubmissionMechanics, Footer
+  },
   data(){
     return{
 

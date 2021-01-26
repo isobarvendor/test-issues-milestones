@@ -10,6 +10,7 @@
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
 export default {
+  name: "SubmissionMechanics",
   components:{
     Login,
     Form
