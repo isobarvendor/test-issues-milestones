@@ -13,6 +13,10 @@
 import Congrats from '@/components/Congrats'
 import { GET_LIST_WALLET} from '@/store/action_types';
 export default {
+  name:"congratulations",
+  components:{
+    Congrats
+  },
   data(){
     return{
       dataStatus:{},

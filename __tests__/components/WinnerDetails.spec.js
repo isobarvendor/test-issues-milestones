@@ -1,6 +1,6 @@
 
 import { shallowMount } from '@vue/test-utils'
-
+import {mockListWinners} from "@/__mock__/mock";
 import WinnerDetails from "@/components/WinnerDetails";
 
 
@@ -19,30 +19,7 @@ const factory = () => {
         title:"title",
         description:"description"
       },
-      winners:[{
-        week:0,
-        name:"Ron",
-        email:"ron@sdadsa.com",
-        fromDate:"2020-12-01",
-        toDate:"2020-12-15"
-      },
-      {
-        week:1,
-        name:"Ron",
-        email:"ron@sdadsa.com",
-        fromDate:"2020-12-01",
-        toDate:"2020-12-15"
-      },
-      {
-        week:2,
-        name:"Ron",
-        email:"ron@sdadsa.com",
-        fromDate:"2020-12-01",
-        toDate:"2020-12-15"
-      },
-
-
-    ],
+      winners:mockListWinners
     },
   });
 };

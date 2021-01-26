@@ -10,6 +10,10 @@
 import WinnerDetails from '@/components/WinnerDetails'
 import { GET_LIST_WINNERS } from '@/store/action_types';
 export default {
+  name:"winners",
+  components:{
+    WinnerDetails
+  },
   data(){
     return{
     }
