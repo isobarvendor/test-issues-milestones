@@ -13,6 +13,10 @@
 <script>
 import TncSection from '@/components/TncSection'
 export default {
+  name:"Tnc",
+  components:{
+    TncSection
+  },
   data(){
     return{
       dataStatus:{},

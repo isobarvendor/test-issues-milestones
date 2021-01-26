@@ -12,6 +12,10 @@
 <script>
 import PrivacySection from '@/components/PrivacySection'
 export default {
+  name:"privacy",
+  components:{
+    PrivacySection
+  },
   data(){
     return{
     }

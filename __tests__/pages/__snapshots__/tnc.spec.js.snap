@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tnc renders properly 1`] = `
+<div id="main" class="tnc">
+  <div class="wrapper">
+    <div class="container">
+      <div class="tnc-component">
+        <div class="tnc-section">
+          <div class="primary-section">
+            <div class="header">Terms and Conditions
+              <p> Last update :10 july 2020</p>
+            </div>
+            <div class="desc">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque scelerisque laoreet sem a tempor.
+                Vivamus rhoncus nibh id sagittis vulputate. Nulla sit amet lectus erat. Sed luctus,
+                massa dictum sagittis consectetur, diam lorem placerat nibh, quis suscipit diam lorem at libero.
+                Aliquam erat volutpat. Etiam ante nisi, consequat aliquam est vitae, pulvinar euismod neque. Nunc ultricies
+                egestas odio, nec congue augue fermentum nec. Mauris ac quam quis justo varius faucibus.
+                Phasellus laoreet ac dui vitae maximus. Nunc id maximus nisl.
+
+              </p>
+              <div class="links">
+                <p><a href="#">Header1</a></p>
+                <p><a href="#">Header2</a></p>
+                <p><a href="#">Header 3</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="logo"><img src="/img/icons/coke.png"></div>
+        </div>
+        <div class="secondary-section">
+          <div class="secondary-component">
+            <div class="sub-header">Header1</div>
+            <div class="desc">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque scelerisque laoreet sem a tempor.
+                Vivamus rhoncus nibh id sagittis vulputate. Nulla sit amet lectus erat. Sed luctus,
+                massa dictum sagittis consectetur, diam lorem placerat nibh, quis suscipit diam lorem at libero.
+                Aliquam erat volutpat. Etiam ante nisi, consequat aliquam est vitae, pulvinar euismod neque. Nunc ultricies
+                egestas odio, nec congue augue fermentum nec. Mauris ac quam quis justo varius faucibus.
+                Phasellus laoreet ac dui vitae maximus. Nunc id maximus nisl.
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="secondary-section">
+          <div class="secondary-component">
+            <div class="sub-header">Header2</div>
+            <div class="desc">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque scelerisque laoreet sem a tempor.
+                Vivamus rhoncus nibh id sagittis vulputate. Nulla sit amet lectus erat. Sed luctus,
+                massa dictum sagittis consectetur, diam lorem placerat nibh, quis suscipit diam lorem at libero.
+                Aliquam erat volutpat. Etiam ante nisi, consequat aliquam est vitae, pulvinar euismod neque. Nunc ultricies
+                egestas odio, nec congue augue fermentum nec. Mauris ac quam quis justo varius faucibus.
+                Phasellus laoreet ac dui vitae maximus. Nunc id maximus nisl.
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="secondary-section">
+          <div class="secondary-component">
+            <div class="sub-header">Header 3</div>
+            <div class="desc">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque scelerisque laoreet sem a tempor.
+                Vivamus rhoncus nibh id sagittis vulputate. Nulla sit amet lectus erat. Sed luctus,
+                massa dictum sagittis consectetur, diam lorem placerat nibh, quis suscipit diam lorem at libero.
+                Aliquam erat volutpat. Etiam ante nisi, consequat aliquam est vitae, pulvinar euismod neque. Nunc ultricies
+                egestas odio, nec congue augue fermentum nec. Mauris ac quam quis justo varius faucibus.
+                Phasellus laoreet ac dui vitae maximus. Nunc id maximus nisl.
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

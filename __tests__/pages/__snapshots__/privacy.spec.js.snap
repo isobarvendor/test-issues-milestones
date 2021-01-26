@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`privacy renders properly 1`] = `
+<div id="main" class="privacy">
+  <div class="wrapper">
+    <div class="container">
+      <div class="privacy-component">
+        <div class="privacy-section">
+          <div class="primary-section">
+            <div class="header">
+              Privacy Policy
+              <p></p>
+            </div>
+            <div class="desc">
+              <p>We, The Coca-Cola Company and its affiliates, take our consumers’ privacy seriously. Our mission is to refresh the world and we can’t do that without your trust. This Privacy Policy explains what information we collect about you, why we collect the information, as well as how we collect and use the information so that we can deliver the best, most refreshing experience that we can.
+
+                This Privacy Policy is intended for individuals in the United States. If you live outside of the United States and choose to use the Sites connected with this Privacy Policy, you do so at your own risk and understand that your information will be sent to and stored in the United States. By using any of our websites and mobile applications in the United States that contain a link to this Privacy Policy (collectively, “Sites”) or otherwise providing Personal Information to us, you agree to this Privacy Policy. Note that there may be other websites that reference the Coca-Cola brand but are subject to a different privacy policy.</p>
+            </div>
+          </div>
+          <div class="logo"><img src="/img/icons/coke.png"></div>
+        </div>
+        <div class="secondary-section">
+          <div class="secondary-component">
+            <div class="sub-header">PERSONAL INFORMATION</div>
+            <div class="desc">
+              <p>We may use Personal Information as permitted by law, for the following business purposes:
+
+                - to respond to your inquiries and fulfill your requests
+                - to communicate with you about and to process orders, purchases, returns, services, donations, promotions, campaigns, programs, contests, sweepstakes, rewards and accounts
+                - to inform you about our brands, products, promotions, events or other promotional purposes
+                - to re-contact you if we have not heard from you in a while
+                - to send you advertising/promotional material from any of our affiliates, and on behalf of our promotional and strategic partners
+                - to improve your experience with our products and services, such as by personalizing your experience with us
+                - to allow you to participate in polls, sweepstakes, promotions, contests and other promotions and to administer these activities
+                - to deliver gift cards or gifts to others in accordance with your instructions
+                - to permit you to participate in social sharing, including live social media feeds
+                - to perform analytics, quality control, market research, and determine the effectiveness of our websites, mobile applications, promotional campaigns, and develop new products and services
+              </p>
+            </div>
+          </div>
+          <div class="accordions v-item-group theme--dark v-expansion-panels">
+            <div aria-expanded="false" class="v-expansion-panel"><button type="button" class="v-expansion-panel-header">How Personal Information May Be Disclosed<transition-stub name="fade-transition">
+                  <div class="v-expansion-panel-header__icon"><i aria-hidden="true" class="v-icon notranslate material-icons theme--dark">$expand</i></div>
+                </transition-stub></button>
+              <transition-stub name="expand-transition">
+                <!---->
+              </transition-stub>
+            </div>
+            <div aria-expanded="false" class="v-expansion-panel"><button type="button" class="v-expansion-panel-header">THIRD PARTY SITES<transition-stub name="fade-transition">
+                  <div class="v-expansion-panel-header__icon"><i aria-hidden="true" class="v-icon notranslate material-icons theme--dark">$expand</i></div>
+                </transition-stub></button>
+              <transition-stub name="expand-transition">
+                <!---->
+              </transition-stub>
+            </div>
+            <div aria-expanded="false" class="v-expansion-panel"><button type="button" class="v-expansion-panel-header">How you can access or delete your Personal Information<transition-stub name="fade-transition">
+                  <div class="v-expansion-panel-header__icon"><i aria-hidden="true" class="v-icon notranslate material-icons theme--dark">$expand</i></div>
+                </transition-stub></button>
+              <transition-stub name="expand-transition">
+                <!---->
+              </transition-stub>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
