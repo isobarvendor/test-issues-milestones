@@ -78,12 +78,12 @@ export default {
      configData(){
        return this.$store.getters.getCMSConfig;
      },
-    recent(){
+   /* recent(){
         return this.$store.getters.getCMSContent && this.$store.getters.getCMSContent.exclusivePrizes
     },
     filterby(){
       return this.$store.getters.getCMSContent && this.$store.getters.getCMSContent.exclusivePrizes
-    },
+    },*/
     listPrizesData(){
       return this.$store.getters.getListPrize
     }
