@@ -56,8 +56,6 @@ export default {
         .catch(error => {
           return reject(error);
         });
-      }else{
-        return reject("not login");
       }
     })
   },
