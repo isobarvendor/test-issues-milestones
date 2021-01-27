@@ -70,6 +70,7 @@ describe('login', () => {
   });
 
 
+
   test("mounts properly", () => {
     const wrapper = factory($route);
     expect(wrapper.vm).toBeTruthy();

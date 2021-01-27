@@ -17,8 +17,8 @@ exports[`LoginDetails renders properly 1`] = `
       </div>
       <div class="button-container">
         <!---->
-        <div class="btn-area"><a class="button">Login</a></div>
-        <p>Sign Up</p>
+        <div class="btn-area"><a class="button login">Login</a></div>
+        <p class="signUp">Sign Up</p>
       </div>
     </div>
   </transition-stub>

@@ -9,13 +9,13 @@
     <div class="continue" v-if="$mq == 'xl'">
       <p>{{data.SubTitle}}</p>
       <div class="icons">
-        <div v-on:click="redirectTo('line')" v-if="social.line">
+        <div v-on:click="redirectTo('line')" v-if="social.line" class="line">
           <span><img src="img/icons/line.png" /></span>
         </div>
-        <div v-on:click="redirectTo('facebook')" v-if="social.facebook">
+        <div v-on:click="redirectTo('facebook')" v-if="social.facebook" class="fb">
           <span><img src="img/icons/fb.png" /></span>
         </div>
-        <div v-on:click="redirectTo('google')" v-if="social.google">
+        <div v-on:click="redirectTo('google')" v-if="social.google" class="google">
           <span><img src="img/icons/google.png" /></span>
         </div>
         <!--<div v-on:click="redirectTo('email')" v-if="social.email">
@@ -70,10 +70,10 @@
                   indeterminate
                   v-if="loading"
                 ></v-progress-circular>
-              <a class="button" v-on:click="userLogin()" v-else>Login</a>
+              <a class="button login" v-on:click="userLogin()" v-else>Login</a>
           </div>
          <!-- <p>Forget Password</p>-->
-          <p v-on:click="userSignUp()">Sign Up</p>
+          <p v-on:click="userSignUp()" class="signUp">Sign Up</p>
         </div>
       </div>
     </transition>
@@ -103,19 +103,13 @@ export default {
   },
   computed: {},
   methods: {
-    testing() {
-      return (this.show = true);
-    },
     redirectTo(source) {
-      location.href =
+      window.location.assign(
         "/api/oauth2/authorize/" +
         source +
         "?redirect_uri=" +
         window.location.origin +
-        "/settoken";
-    },
-    close(){
-        location.href="/"
+        "/settoken");
     },
     async userLogin() {
       this.$validator.validateAll().then((valid) => {
@@ -126,7 +120,7 @@ export default {
             .dispatch(LOGIN, this.login)
             .then((response) => {
               this.loading=false;
-              location.href="/"
+               window.location.assign("/");
             })
             .catch((error) => {
               this.loading=false;
@@ -138,7 +132,7 @@ export default {
       });
     },
     userSignUp() {
-      location.href="/register";
+      window.location.assign("/register");
     },
   },
   beforeMount() {},
