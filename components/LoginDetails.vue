@@ -42,6 +42,7 @@
       <div class="details">
         <div class="input-container">
           <v-text-field
+            id="email"
             label="Email address"
             v-validate="'required|email'"
             name="email"
@@ -49,6 +50,7 @@
           ></v-text-field>
           <span class="error-message">{{ errors.first("email") }}</span>
           <v-text-field
+            id="password"
             label="Password"
             v-validate="'required'"
             name="password"

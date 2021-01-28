@@ -19,7 +19,7 @@ exports[`login renders properly 1`] = `
               <div class="v-input theme--light v-text-field">
                 <div class="v-input__control">
                   <div class="v-input__slot">
-                    <div class="v-text-field__slot"><label for="input-31" class="v-label theme--light" style="right: 0px; position: absolute;">Email address</label><input name="email" id="input-31" type="text"></div>
+                    <div class="v-text-field__slot"><label for="email" class="v-label theme--light" style="right: 0px; position: absolute;">Email address</label><input name="email" id="email" type="text"></div>
                   </div>
                   <div class="v-text-field__details">
                     <div class="v-messages theme--light">
@@ -31,7 +31,7 @@ exports[`login renders properly 1`] = `
               <div class="v-input theme--light v-text-field">
                 <div class="v-input__control">
                   <div class="v-input__slot">
-                    <div class="v-text-field__slot"><label for="input-34" class="v-label theme--light" style="right: 0px; position: absolute;">Password</label><input name="password" id="input-34" type="password"></div>
+                    <div class="v-text-field__slot"><label for="password" class="v-label theme--light" style="right: 0px; position: absolute;">Password</label><input name="password" id="password" type="password"></div>
                   </div>
                   <div class="v-text-field__details">
                     <div class="v-messages theme--light">

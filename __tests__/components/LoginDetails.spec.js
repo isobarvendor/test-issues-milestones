@@ -1,7 +1,21 @@
 
-import { shallowMount } from '@vue/test-utils'
+import { mount,createLocalVue } from '@vue/test-utils'
+
+import Vuetify from 'vuetify'
+
+import Vuex from 'vuex'
 
 import LoginDetails from "@/components/LoginDetails";
+
+import { LOGIN } from "@/store/action_types";
+
+
+
+
+import actions from '@/store/actions';
+import mutations from '@/store/mutations';
+
+
 
 Object.defineProperty(window, 'location', {
   writable: true,
@@ -17,8 +31,23 @@ const redirectTo=(source)=>{
 }
 
 let $mq ="md";
+let vuetify;
+let localVue, store;
+
+
+beforeEach(() => {
+  vuetify = new Vuetify();
+  localVue = createLocalVue()
+  localVue.use(Vuex)
+  store = new Vuex.Store({
+    actions,
+    mutations
+  })
+})
+
+
 const factory = ($mq) => {
-  return shallowMount(LoginDetails, {
+  return mount(LoginDetails, {
     mocks: {
       $mq:$mq
     },
@@ -32,7 +61,8 @@ const factory = ($mq) => {
         facebook:true,
         google:true,
       }
-    }
+    },
+    vuetify, localVue,store
   });
 };
 
@@ -123,14 +153,30 @@ describe("LoginDetails", () => {
     expect(window.location.assign).toHaveBeenCalledWith("/register");
   })
 
-  /*test("user login", async() => {
+  test("user type login and click login", async() => {
     const wrapper = factory();
-    await wrapper.find('[name="email"]');
-    await wrapper.find('[name="password"]');
-    window.location.assign= jest.fn() // Create a spy
+    const email = 'ronald.pranata@isobar.com';
+    const password = 'password';
+    const commit = jest.fn()
+    const dispatch = jest.fn()
+
+    wrapper.find('#email').setValue(email);
+    wrapper.find('#password').setValue(password);
+
+    expect(wrapper.vm.login.email).toBe(email);
+    expect(wrapper.vm.login.password).toBe(password);
+
     await wrapper.find('.login').trigger('click');
-    expect(window.location.assign).toHaveBeenCalledWith("/");
-  });*/
+    wrapper.vm.$validator.validate();
+    expect(wrapper.vm.$validator.errors.any()).toBe(false);
+
+
+   // const result = actions[LOGIN]({ commit, dispatch });
+
+    //expect(dispatch).toHaveBeenCalled();
+
+
+  });
 
   test("mounts properly", () => {
     const wrapper = factory();

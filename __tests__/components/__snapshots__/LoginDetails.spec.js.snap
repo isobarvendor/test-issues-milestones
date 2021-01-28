@@ -12,8 +12,30 @@ exports[`LoginDetails renders properly 1`] = `
   <transition-stub name="fade">
     <div class="details">
       <div class="input-container">
-        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Email address" loaderheight="2" clearicon="$clear" type="text" name="email"></v-text-field-stub> <span class="error-message"></span>
-        <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Password" loaderheight="2" clearicon="$clear" type="password" name="password"></v-text-field-stub> <span class="error-message"></span>
+        <div class="v-input theme--light v-text-field">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-text-field__slot"><label for="email" class="v-label theme--light" style="left: 0px; position: absolute;">Email address</label><input name="email" id="email" type="text"></div>
+            </div>
+            <div class="v-text-field__details">
+              <div class="v-messages theme--light">
+                <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+              </div>
+            </div>
+          </div>
+        </div> <span class="error-message"></span>
+        <div class="v-input theme--light v-text-field">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-text-field__slot"><label for="password" class="v-label theme--light" style="left: 0px; position: absolute;">Password</label><input name="password" id="password" type="password"></div>
+            </div>
+            <div class="v-text-field__details">
+              <div class="v-messages theme--light">
+                <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+              </div>
+            </div>
+          </div>
+        </div> <span class="error-message"></span>
       </div>
       <div class="button-container">
         <!---->
