@@ -4,20 +4,20 @@
      <div class="registration-body">
     <div class="details">
         <div class="input-container">
-            <v-text-field label="Name" name="name" v-model="user.name"  v-validate="'required'">   </v-text-field>
+            <v-text-field id="name" label="Name" name="name" v-model="user.name"  v-validate="'required'">   </v-text-field>
             <span class="error-message">{{ errors.first('name') }}</span>
-            <v-text-field label="Email address" name="email"  v-model="user.email"  v-validate="'required|email'" >   </v-text-field>
+            <v-text-field id="email" label="Email address" name="email"  v-model="user.email"  v-validate="'required|email'" >   </v-text-field>
             <span class="error-message">{{ errors.first('email') }}</span>
-            <v-text-field label="Password" name="password"  :type="'password'" v-model="user.password"  v-validate="'required'" >   </v-text-field>
+            <v-text-field id="password" label="Password" name="password"  :type="'password'" v-model="user.password"  v-validate="'required'" >   </v-text-field>
             <span class="error-message">{{ errors.first('password') }}</span>
-            <v-text-field label="Confirm password" name="confirm password"  :type="'password'" v-model="cpassword"  v-validate="'required'" >   </v-text-field>
+            <v-text-field id="cpassword" label="Confirm password" name="confirm password"  :type="'password'" v-model="cpassword"  v-validate="'required'" >   </v-text-field>
             <span class="error-message">{{ errors.first('confirm password') }}</span>
         </div>
         <div class="radio-container">
             <!-- <v-radio-group v-model="radioGroup">
                 <v-radio></v-radio>
             </v-radio-group> -->
-            <v-checkbox v-model="terms"></v-checkbox>
+            <v-checkbox id="terms" v-model="terms"></v-checkbox>
             <div class="radio-label"><span v-html="data.privacyRegister.description"></span></div>
         </div>
         <div class="button-container">
@@ -29,7 +29,7 @@
                   indeterminate
                   v-if="loading"
                 ></v-progress-circular>
-            <a  class="button" v-on:click="register()" v-else >Register</a>
+            <a class="button register" v-on:click="register()" v-else >Register</a>
           </div>
         </div>
 

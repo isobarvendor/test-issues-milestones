@@ -12,7 +12,7 @@ exports[`register renders properly 1`] = `
               <div class="v-input theme--light v-text-field">
                 <div class="v-input__control">
                   <div class="v-input__slot">
-                    <div class="v-text-field__slot"><label for="input-48" class="v-label theme--light" style="right: 0px; position: absolute;">Name</label><input name="name" id="input-48" type="text"></div>
+                    <div class="v-text-field__slot"><label for="name" class="v-label theme--light" style="right: 0px; position: absolute;">Name</label><input name="name" id="name" type="text"></div>
                   </div>
                   <div class="v-text-field__details">
                     <div class="v-messages theme--light">
@@ -24,7 +24,7 @@ exports[`register renders properly 1`] = `
               <div class="v-input theme--light v-text-field">
                 <div class="v-input__control">
                   <div class="v-input__slot">
-                    <div class="v-text-field__slot"><label for="input-51" class="v-label theme--light" style="right: 0px; position: absolute;">Email address</label><input name="email" id="input-51" type="text"></div>
+                    <div class="v-text-field__slot"><label for="email" class="v-label theme--light" style="right: 0px; position: absolute;">Email address</label><input name="email" id="email" type="text"></div>
                   </div>
                   <div class="v-text-field__details">
                     <div class="v-messages theme--light">
@@ -36,7 +36,7 @@ exports[`register renders properly 1`] = `
               <div class="v-input theme--light v-text-field">
                 <div class="v-input__control">
                   <div class="v-input__slot">
-                    <div class="v-text-field__slot"><label for="input-54" class="v-label theme--light" style="right: 0px; position: absolute;">Password</label><input name="password" id="input-54" type="password"></div>
+                    <div class="v-text-field__slot"><label for="password" class="v-label theme--light" style="right: 0px; position: absolute;">Password</label><input name="password" id="password" type="password"></div>
                   </div>
                   <div class="v-text-field__details">
                     <div class="v-messages theme--light">
@@ -48,7 +48,7 @@ exports[`register renders properly 1`] = `
               <div class="v-input theme--light v-text-field">
                 <div class="v-input__control">
                   <div class="v-input__slot">
-                    <div class="v-text-field__slot"><label for="input-57" class="v-label theme--light" style="right: 0px; position: absolute;">Confirm password</label><input name="confirm password" id="input-57" type="password"></div>
+                    <div class="v-text-field__slot"><label for="cpassword" class="v-label theme--light" style="right: 0px; position: absolute;">Confirm password</label><input name="confirm password" id="cpassword" type="password"></div>
                   </div>
                   <div class="v-text-field__details">
                     <div class="v-messages theme--light">
@@ -62,7 +62,7 @@ exports[`register renders properly 1`] = `
               <div class="v-input theme--light v-input--selection-controls v-input--checkbox">
                 <div class="v-input__control">
                   <div class="v-input__slot">
-                    <div class="v-input--selection-controls__input"><i aria-hidden="true" class="v-icon notranslate material-icons theme--light">$checkboxOff</i><input aria-checked="false" id="input-60" role="checkbox" type="checkbox" value="">
+                    <div class="v-input--selection-controls__input"><i aria-hidden="true" class="v-icon notranslate material-icons theme--light">$checkboxOff</i><input aria-checked="false" id="terms" role="checkbox" type="checkbox" value="">
                       <div class="v-input--selection-controls__ripple"></div>
                     </div>
                   </div>
@@ -75,7 +75,7 @@ exports[`register renders properly 1`] = `
             </div>
             <div class="button-container">
               <!---->
-              <div class="btn-area"><a class="button">Register</a></div>
+              <div class="btn-area"><a class="button register">Register</a></div>
             </div>
           </div>
           <div class="profile-icon"><img src="/img/icons/profile-icon.png">
