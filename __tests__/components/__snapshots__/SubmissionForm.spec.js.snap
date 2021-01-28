@@ -2,11 +2,11 @@
 
 exports[`SubmissionForm renders properly 1`] = `
 <div>
-  <div class="header">Lucky draw</div>
+  <div class="header">Be the lucky one</div>
   <form autocomplete="off" class="mechanics">
-    <div class="details"><input type="text" name="name" placeholder="Name" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
-    <div class="details"><input type="email" name="email" placeholder="Email" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
-    <div class="details"><input type="text" name="code" placeholder="10-digit code" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
+    <div class="details"><input id="name" type="text" name="name" placeholder="Name" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
+    <div class="details"><input id="email" type="email" name="email" placeholder="Email" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
+    <div class="details"><input id="code" type="text" name="code" placeholder="10-digit code" aria-required="true" aria-invalid="false"> <span class="error-message"></span></div>
     <!----> <br>
     <div class="row top">
       <div class="col d-flex consent">

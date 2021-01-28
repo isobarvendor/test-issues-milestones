@@ -88,9 +88,9 @@ describe("Registration", () => {
     expect(wrapper.vm.terms).toBe(terms);
 
     await wrapper.find('.register').trigger('click');
-    wrapper.vm.$validator.validate();
+    wrapper.vm.$validator.validate().then(()=>{
     expect(wrapper.vm.$validator.errors.any()).toBe(false);
-
+    });
 
   });
 
@@ -120,7 +120,10 @@ describe("Registration", () => {
       expect(wrapper.vm.loading).toBe(true);
       expect(wrapper.vm.errorMessage).toBe("Your password and confirm password is different");
       expect(wrapper.vm.loading).toBe(false);
+    }).catch(()=>{
+
     });
+
 
   });
 
@@ -150,6 +153,8 @@ describe("Registration", () => {
       expect(wrapper.vm.loading).toBe(true);
       expect(wrapper.vm.errorMessage).toBe("Please accept the terms and condition");
       expect(wrapper.vm.loading).toBe(false);
+    }).catch(()=>{
+
     });
 
   });
@@ -182,6 +187,12 @@ describe("Registration", () => {
 
 
 
+  })
+
+  test('delete image', async() => {
+    const wrapper = factory();
+    await wrapper.vm.removeImage();
+    expect(wrapper.vm.image).toBe("");
   })
 
   test("mounts properly", () => {
