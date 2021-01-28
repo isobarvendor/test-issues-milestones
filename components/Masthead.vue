@@ -1,5 +1,5 @@
 <template>
-  <div id="masthead" class="container" @resize="loadMasthead()">
+  <div id="masthead" class="container" >
     <mq-layout :mq="['sm']">
       <svg
         ref="coke_masthead_sm"
@@ -24,7 +24,6 @@
           ref="coke_masthead_sm_image"
           :href="this.imgMob"
           preserveAspectRatio="xMidYMid slice"
-          xlink:href="http://www.w3.org/1999/xlink"
           mask="url(#clipMask)"
         />
       </svg>
@@ -52,7 +51,6 @@
           ref="coke_masthead_md_image"
           :href="this.imgTab"
           preserveAspectRatio="xMidYMid slice"
-          xlink:href="http://www.w3.org/1999/xlink"
           mask="url(#clipMask)"
 
         />
@@ -80,7 +78,6 @@
           ref="coke_masthead_image"
           :href="this.imgDesk"
           preserveAspectRatio="xMidYMid slice"
-          xlink:href="http://www.w3.org/1999/xlink"
           mask="url(#clipMask)"
         />
       </svg>
@@ -110,7 +107,7 @@ export default {
     // window.addEventListener('resize', this.loadMasthead)
   },
   methods: {
-    loadMasthead() {
+    /*loadMasthead() {
       this.$refs["coke_masthead_image"].setAttribute(
           "xlink:href",
           this.data.desktopImage[0].url
@@ -126,7 +123,7 @@ export default {
           "xlink:href",
           this.data.mobileImage[0].url
         );
-    }
+    }*/
   },
   mounted() {
 
