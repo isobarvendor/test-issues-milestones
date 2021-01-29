@@ -110,9 +110,9 @@ export default {
     },
     close(){
        if(this.showWinnerDetail){
-         location.href="/winners"
+         window.location.assign("/winners");
        }else{
-         location.href="/"
+         window.location.assign("/");
        }
     },
     openPDF(link){
