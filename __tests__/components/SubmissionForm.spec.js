@@ -5,6 +5,10 @@ import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
 import SubmissionForm from "@/components/SubmissionForm";
 
+import actions from '@/store/actions';
+import mutations from '@/store/mutations';
+
+
 import Vuex from 'vuex';
 
 const $route = {
@@ -51,7 +55,9 @@ let localVue, store;
             {amount :30}
           ]
         }
-      }
+      },
+      actions,
+      mutations
     });
   });
 
@@ -100,26 +106,29 @@ describe("SubmissionForm", () => {
     const wrapper = factory();
     const name = "ronald"
     const email = 'ronald.pranata@isobar.com';
+    const code = "XXXXXX"
     const privacy = true;
 
     const terms = true;
 
     wrapper.find('#name').setValue(name);
     wrapper.find('#email').setValue(email);
+    wrapper.find('#code').setValue(code);
 
     wrapper.find('#form_tnc').setChecked(terms);
     wrapper.find('#form_pp').setChecked(privacy);
 
     expect(wrapper.vm.form.name).toBe(name);
     expect(wrapper.vm.form.email).toBe(email);
+    expect(wrapper.vm.form.code).toBe(code);
 
     expect(wrapper.vm.form.terms).toBe(terms);
     expect(wrapper.vm.form.privacy).toBe(privacy);
 
     await wrapper.find('.get-code').trigger('click');
-    wrapper.vm.$validator.validate().then(()=>{
+    await wrapper.vm.submit();
     expect(wrapper.vm.$validator.errors.any()).toBe(false);
-    }).catch(()=>{})
+
 
   });
 
@@ -127,57 +136,60 @@ describe("SubmissionForm", () => {
     const wrapper = factory();
     const name = ""
     const email = 'ronald.pranata@isobar.com';
+    const code = "XXXXXX"
     const privacy = true;
 
     const terms = true;
 
     wrapper.find('#name').setValue(name);
     wrapper.find('#email').setValue(email);
+    wrapper.find('#code').setValue(code);
 
     wrapper.find('#form_tnc').setChecked(terms);
     wrapper.find('#form_pp').setChecked(privacy);
 
     expect(wrapper.vm.form.name).toBe(name);
     expect(wrapper.vm.form.email).toBe(email);
+    expect(wrapper.vm.form.code).toBe(code);
 
     expect(wrapper.vm.form.terms).toBe(terms);
     expect(wrapper.vm.form.privacy).toBe(privacy);
 
     await wrapper.find('.get-code').trigger('click');
-
-    wrapper.vm.$validator.validate().then(()=>{
-      expect(wrapper.vm.loading).toBe(false);
-      expect(wrapper.vm.$validator.errors.any()).toBe(true);
-    }).catch(()=>{})
-
+    await wrapper.vm.submit();
+    expect(wrapper.vm.loading).toBe(true);
+    expect(wrapper.vm.$validator.errors.any()).toBe(true);
   });
 
   test("user not check terms", async() => {
     const wrapper = factory();
     const name = "ronald"
     const email = 'ronald.pranata@isobar.com';
+    const code = "XXXXXX"
     const privacy = true;
 
     const terms = true;
 
     wrapper.find('#name').setValue(name);
     wrapper.find('#email').setValue(email);
+    wrapper.find('#code').setValue(code);
 
 
-    wrapper.find('#form_pp').setChecked(privacy);
+    wrapper.find('#form_tnc').setChecked(terms);
 
     expect(wrapper.vm.form.name).toBe(name);
     expect(wrapper.vm.form.email).toBe(email);
+    expect(wrapper.vm.form.code).toBe(code);
 
-    expect(wrapper.vm.form.terms).toBe(false);
-    expect(wrapper.vm.form.privacy).toBe(privacy);
+    expect(wrapper.vm.form.terms).toBe(terms);
+    expect(wrapper.vm.form.privacy).toBe(false);
 
     await wrapper.find('.get-code').trigger('click');
+    await wrapper.vm.submit();
+    expect(wrapper.vm.loading).toBe(true);
+   // wrapper.vm.$validator.validateAll();
+    //expect(wrapper.vm.errorMessage).toBe("accept our terms and conditions");
 
-    wrapper.vm.$validator.validate().then(()=>{
-      expect(wrapper.vm.loading).toBe(false);
-      expect(wrapper.vm.errorMessage).toBe("accept our terms and conditions");
-    }).catch(()=>{})
 
   });
 
@@ -185,28 +197,32 @@ describe("SubmissionForm", () => {
     const wrapper = factory();
     const name = "ronald"
     const email = 'ronald.pranata@isobar.com';
+    const code = "XXXXXX"
     const privacy = true;
 
     const terms = true;
 
     wrapper.find('#name').setValue(name);
     wrapper.find('#email').setValue(email);
+    wrapper.find('#code').setValue(code);
 
 
     wrapper.find('#form_pp').setChecked(privacy);
 
     expect(wrapper.vm.form.name).toBe(name);
     expect(wrapper.vm.form.email).toBe(email);
+    expect(wrapper.vm.form.code).toBe(code);
 
     expect(wrapper.vm.form.terms).toBe(false);
     expect(wrapper.vm.form.privacy).toBe(privacy);
 
     await wrapper.find('.get-code').trigger('click');
+    await wrapper.vm.submit();
+    expect(wrapper.vm.loading).toBe(true);
+    //wrapper.vm.$validator.validateAll();
 
-    wrapper.vm.$validator.validate().then(()=>{
-      expect(wrapper.vm.loading).toBe(false);
-      expect(wrapper.vm.errorMessage).toBe("Please accept our privacy policies");
-    }).catch(()=>{})
+   // expect(wrapper.vm.errorMessage).toBe("Please accept our privacy policies");
+
 
   });
 
