@@ -2,8 +2,7 @@
 
 exports[`RewardDetails renders properly 1`] = `
 <div class="reward-details">
-  <div class="back-icon">
-    <!---->
+  <div class="back-icon"><img src="/img/icons/back.png">
     <!---->
   </div>
   <div class="reward-body">
@@ -19,8 +18,7 @@ exports[`RewardDetails renders properly 1`] = `
       <h4>How To Redeem</h4>
       <p></p>
     </div>
-    <!---->
-    <!---->
+    <!----> <a class="button rewards-bottom"> Redeem (10 coins)</a>
   </div>
   <div class="image-fluid"><img>
     <!---->

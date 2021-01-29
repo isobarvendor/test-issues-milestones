@@ -2,7 +2,7 @@
   <div class="reward-details" v-if="data">
       <div class="back-icon">
          <img  @click="back()" v-if="$mq == 'xl'" src="/img/icons/back.png" />
-           <img v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'" src="/img/icons/close.png"/>
+           <img @click="back()" v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'" src="/img/icons/close.png"/>
       </div>
      <div class="reward-body" >
          <div class="title">
@@ -60,7 +60,7 @@ export default {
       this.$store.commit('SET_REDEEM_PRIZE',null);
       this.$store.dispatch(REDEEM_PRIZE,request).then((response)=>{
          this.errorMessage=null;
-         location.href="/congratulations";
+         window.location.assign("/congratulations");
        }).catch(error=>{
          if(error.response && error.response.data.status=="401"){
            localStorage.clear();

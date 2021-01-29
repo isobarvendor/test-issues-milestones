@@ -1,11 +1,23 @@
 
-import { shallowMount,createLocalVue } from '@vue/test-utils'
+import { mount,createLocalVue } from '@vue/test-utils'
 
 import RewardDetails from "@/components/RewardDetails";
+
+
+import mutations from '@/store/mutations';
+
+
+
 import Vuex from 'vuex';
 
+import {REDEEM_PRIZE} from '@/store/action_types';
 
-let localVue, store;
+let localVue, store,actions;
+let $mq ="xl";
+
+actions = {
+  [REDEEM_PRIZE]: jest.fn()
+}
 
   beforeEach(() => {
     localVue = createLocalVue();
@@ -15,23 +27,32 @@ let localVue, store;
         language: "id",
         listWallet:{
           walletStatus:[
-            {amount :30}
+            {amount :130}
           ]
         }
-      }
+      },
+      actions,
+      mutations
     });
   });
 
-const factory = () => {
-  return shallowMount(RewardDetails, {
+  const mockRouter = {
+    replace: jest.fn()
+  }
 
+const factory = () => {
+  return mount(RewardDetails, {
+    mocks: {
+      $mq:$mq,
+      $router: mockRouter
+    },
     propsData: {
       data :{
        name:"Reward1",
        shortDescription:"shortdescription",
        redeeemDescription:"shortdescription",
        prizeId:"prizeid",
-       prizeCost:[{ammount :100}],
+       prizeCost:[{amount :10}],
       }
     },
     localVue, store
@@ -39,6 +60,39 @@ const factory = () => {
 };
 
 describe("RewardDetails", () => {
+
+  test("test all computed value", () => {
+    const wrapper = factory();
+    expect(wrapper.vm.listWallet).toBe(store.state.listWallet);
+  });
+
+  test("test back button", async() => {
+
+    const wrapper = factory();
+    wrapper.find('.back-icon').find('img').trigger('click');
+    await expect(mockRouter.replace).toHaveBeenCalledWith('/rewards');
+
+  });
+
+  test("test can redeem function", async() => {
+
+    const wrapper = factory();
+    wrapper.vm.canRedeem(wrapper.vm.data.prizeCost);
+    expect(wrapper.text().includes('coins')).toBe(true);
+
+  });
+
+  test("test redeem function", async() => {
+
+    const wrapper = factory();
+    wrapper.find('.button').trigger('click');
+    expect(store.state.redeemPrize).toBe(null);
+    await expect(actions[REDEEM_PRIZE]).toHaveBeenCalled();
+
+
+  });
+
+
 
 
   test("mounts properly", () => {
