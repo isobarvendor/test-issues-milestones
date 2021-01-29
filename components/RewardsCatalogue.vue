@@ -2,7 +2,7 @@
   <div class="rewards-catalogue">
     <div class="wallet-desktop" >
       <div class="wallet-swiper" v-for="(item, index) in data.prizeList" :key="'reward'+index"  >
-        <div class="wallet-swiper-item" @click="goDetail(index)">
+        <div class="wallet-swiper-item" :id="index" @click="goDetail(index)">
           <img :src="item.imgUrl"
           />
         </div>
@@ -54,14 +54,14 @@ export default {
     	this.currentPage = this.currentPage - 1 || 1;
     },
     goDetail(rewardID){
-       location.href= 'rewardsDetail/'+rewardID;
+       window.location.assign('rewardsDetail/'+rewardID);
     },
       redeemPrize(prizeId){
       let request = {"prizeId":prizeId};
       this.$store.commit('SET_REDEEM_PRIZE',null);
       this.$store.dispatch(REDEEM_PRIZE,request).then((response)=>{
          this.errorMessage=null;
-         location.href="/congratulations";
+         window.location.assign("/congratulations");
        }).catch(error=>{
          if(error.response && error.response.data.status=="401"){
            localStorage.clear();

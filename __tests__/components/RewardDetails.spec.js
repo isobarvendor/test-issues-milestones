@@ -12,6 +12,12 @@ import Vuex from 'vuex';
 
 import {REDEEM_PRIZE} from '@/store/action_types';
 
+
+Object.defineProperty(window, 'location', {
+  writable: true,
+  value: { assign: jest.fn() }
+});
+
 let localVue, store,actions;
 let $mq ="xl";
 
@@ -83,11 +89,14 @@ describe("RewardDetails", () => {
   });
 
   test("test redeem function", async() => {
+    window.location.assign= jest.fn() // Create a spy
 
     const wrapper = factory();
     wrapper.find('.button').trigger('click');
     expect(store.state.redeemPrize).toBe(null);
-    await expect(actions[REDEEM_PRIZE]).toHaveBeenCalled();
+    expect(actions[REDEEM_PRIZE]).toHaveBeenCalled();
+
+   // expect(window.location.assign).toHaveBeenCalledWith("/congratulations");
 
 
   });

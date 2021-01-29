@@ -4,26 +4,12 @@ exports[`RewardsCatalogue renders properly 1`] = `
 <div class="rewards-catalogue">
   <div class="wallet-desktop">
     <div class="wallet-swiper">
-      <div class="wallet-swiper-item"><img></div>
+      <div id="0" class="wallet-swiper-item"><img></div>
       <div class="description bg">
         <div class="name">Reward1</div>
-        <div class="">
-          <div class="expiry"><span></span> <span>Coins</span></div>
-          <div class="btn-area">
-            <!---->
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="wallet-swiper">
-      <div class="wallet-swiper-item"><img></div>
-      <div class="description bg">
-        <div class="name">Reward2</div>
-        <div class="">
-          <div class="expiry"><span></span> <span>Coins</span></div>
-          <div class="btn-area">
-            <!---->
-          </div>
+        <div class="desc-area">
+          <div class="expiry left"><span>10</span> <span>Coins</span></div>
+          <div class="btn-area"><a class="button rewards-right">Redeem now</a></div>
         </div>
       </div>
     </div>
