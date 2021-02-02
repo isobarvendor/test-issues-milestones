@@ -25,7 +25,9 @@
     "nuxt-validate": "^1.0.1",
     "swiper": "^5.4.5",
     "uuid": "^8.3.0",
+    "vue-awesome-countdown": "^1.1.4",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-responsive-video-background-player": "^1.2.2",
     "vuex-persist": "^3.1.0"
   },
   "devDependencies": {

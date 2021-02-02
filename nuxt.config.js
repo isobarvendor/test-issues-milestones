@@ -57,7 +57,15 @@ export default {
   plugins: [
     "./plugins/vue-awesome-swiper.js",
     './plugins/axios', //axios interceptor
-    { src: '~/plugins/vuex-persist', ssr: false }
+    { src: '~/plugins/vuex-persist', ssr: false },
+    {
+      src: '~/plugins/vue-video-background',
+      ssr: false
+    },
+    {
+      src: '~/plugins/vue-countdown',
+      ssr: false
+    }
   ],
   router: {
     middleware: ['redirect']

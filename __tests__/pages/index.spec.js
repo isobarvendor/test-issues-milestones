@@ -7,7 +7,7 @@ import Prizes from '@/components/Prizes'
 import HowItWorks from '@/components/HowItWorks'
 import SubmissionMechanics from '@/components/SubmissionMechanics'
 import Footer from '@/components/Footer'
-import Masthead from '@/components/Masthead'
+import MastheadVideo from '@/components/MastheadVideo'
 
 import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
 
@@ -71,7 +71,7 @@ describe('index', () => {
 
   test('renders a Masthead', () => {
     const wrapper = factory($route);
-    const component= wrapper.findComponent(Masthead);
+    const component= wrapper.findComponent(MastheadVideo);
     expect(component.exists()).toBeTruthy();
   });
   test('renders a CampaignPeriod', () => {

@@ -1,7 +1,8 @@
 <template>
   <div id="main" class="home" v-if="CMSContent" >
     <div class="wrapper" >
-      <Masthead :data="CMSContent[0].homepage.mastheadSection"/>
+      <!--Masthead :data="CMSContent[0].homepage.mastheadSection"/-->
+      <MastheadVideo :data="CMSContent[0].homepage.mastheadSection"/>
       <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>
       <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
       <HowItWorks :data="CMSContent[0].worksSection" />
@@ -14,6 +15,7 @@
 
 <script >
 import Masthead from '../components/Masthead'
+import MastheadVideo from '../components/MastheadVideo'
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
 import HowItWorks from '../components/HowItWorks'
@@ -29,7 +31,7 @@ import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
 export default {
   name:"index",
   components:{
-    Masthead,CampaignPeriod, Prizes,HowItWorks,SubmissionMechanics, Footer
+    Masthead,MastheadVideo,CampaignPeriod, Prizes,HowItWorks,SubmissionMechanics, Footer
   },
   data(){
     return{

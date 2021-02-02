@@ -3,8 +3,9 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VeeValidate from 'vee-validate'
 import { config } from '@vue/test-utils';
+import { Plugin } from 'vue-responsive-video-background-player'
 
-
+Vue.use(Plugin)
 
 Vue.use(VeeValidate)
 Vue.use(Vuetify)
