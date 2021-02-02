@@ -16,12 +16,6 @@
       <div class="masthead-content">
       <h1>{{data.title}} testing</h1>
       <p>{{data.description}} hello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hello</p>
-    <vac :end-time="new Date().getTime() + 60000" @finish="finishCall">
-    <span
-      slot="process"
-      slot-scope="{ timeObj }">{{ `Lefttime: ${timeObj.m}:${timeObj.s}` }}</span>
-    <span slot="finish">Done!</span>
-  </vac>
     </div>
 </video-background>
 
@@ -48,9 +42,7 @@ export default {
 
   },
   methods: {
-    finishCall(){
-      alert('tes')
-    }
+
   },
   mounted() {
 

@@ -45,6 +45,7 @@ export default ({ store }) => { new VuexPersistence({
   },
   reducer: (state) => ({
     login:state.login,
+    isCampaignStarted:state.isCampaignStarted,
     token:state.token,
     listWallet:state.listWallet,
     errorLogin:state.errorLogin,

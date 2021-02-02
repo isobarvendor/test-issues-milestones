@@ -37,6 +37,9 @@ export default {
   },
   SET_REDEEM_PRIZE:(state,data)=>{
     state.redeemPrize= data
+  },
+  SET_CAMPAIGN_STARTED:(state,data)=>{
+    state.isCampaignStarted= data
   }
 
 

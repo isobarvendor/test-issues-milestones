@@ -11,6 +11,7 @@ export default () => ({
     language:"en",
     redeemPrize:null,
     listWinners:null,
-    listWallet:null
+    listWallet:null,
+    isCampaignStarted:false
 
 });

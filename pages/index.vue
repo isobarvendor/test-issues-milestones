@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="home" v-if="CMSContent" >
+  <div id="main" class="home" v-if="CMSContent&&notCountDown" >
     <div class="wrapper" >
       <!--Masthead :data="CMSContent[0].homepage.mastheadSection"/-->
       <MastheadVideo :data="CMSContent[0].homepage.mastheadSection"/>
@@ -11,10 +11,14 @@
     </div>
     <Footer :data="CMSContent[0].footer"  />
   </div>
+  <div id="main" class="home" v-else-if="CMSContent">
+    <MastheadCountDown :data="CMSContent[0].homepage.mastheadSection"/>
+  </div>
 </template>
 
 <script >
 import Masthead from '../components/Masthead'
+import MastheadCountDown from '../components/MastheadCountDown'
 import MastheadVideo from '../components/MastheadVideo'
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
@@ -31,11 +35,11 @@ import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
 export default {
   name:"index",
   components:{
-    Masthead,MastheadVideo,CampaignPeriod, Prizes,HowItWorks,SubmissionMechanics, Footer
+    Masthead,MastheadVideo,MastheadCountDown,CampaignPeriod, Prizes,HowItWorks,SubmissionMechanics, Footer
   },
   data(){
     return{
-
+      notCountDown:this.$store.state.isCampaignStarted
     }
   },
   head() {
