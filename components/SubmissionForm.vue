@@ -56,6 +56,14 @@
     </div>
    <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
+
+      <div class="info-btn">
+          <div class="btn-text">Enter unique Code </div>
+          <div class="info-icon">
+            <img src="/img/landing/info-btn.png" width="60"  />
+          </div>
+      </div>
+      
       <v-progress-circular
         :width="2"
         color="white"
@@ -356,5 +364,23 @@ form.mechanics{
 }
 .thanks{
   text-align: center;
+}
+.info-btn{
+  background: #fff;
+  padding: 30px;
+  border-radius:10px;
+  cursor: pointer;
+  position: relative;
+}
+.btn-text{
+  color:#000;
+  text-decoration: #000;
+}
+.info-icon{
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  width: 60px;
+  height: 60px;
 }
 </style>

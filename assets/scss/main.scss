@@ -296,6 +296,7 @@ footer{
   @include column;
   position: relative;
   max-width: $content-max-width !important;
+  overflow: hidden;
   width:100%;
   padding: 0 $content-hpadding;
   @include breakpoint(md){
@@ -305,6 +306,7 @@ footer{
 
 .campaign-section{
   align-items: center;
+  
 }
 
 .campaign-section:nth-child(2) {
@@ -314,13 +316,6 @@ footer{
   margin-bottom: 3em;
 }
 
-.campaign-section + .campaign-section:before{
-  content:'';
-  width:100%;
-  height:2px;
-  background: $secondary-color;
-  margin:2em 0;
-}
 
 .campaign-period{
   font-size:26px;
@@ -340,10 +335,33 @@ footer{
     }
   }
 }
+.prize-swiper-container{
+  z-index: 1;
+  max-width: 1100px !important;
+}
 
 .prize-item{
-  border: 2px solid $secondary-color;
-  border-radius: 20px;
+  position: relative;
+  border: 10px solid $secondary-color;
+  .this-week-prize{
+    position: absolute;
+    left: calc(50% - 100px);
+    @media only screen and (max-width: 767px) {
+      left: calc(50% - 80px);
+    }
+    right: 0px;
+    top:-25px;
+    p{
+      background-color:$secondary-color;
+      padding: 10px;
+      width: 180px;
+      @media only screen and (max-width: 767px) {
+        width: 140px;
+        font-size: 12px;
+      }
+    }
+    
+  }
 
   & img{
     height:154px;
@@ -357,8 +375,9 @@ footer{
   & .prize-description{
     font-size:$mobile-body-font-size;
     height:calc(251px - 154px);
-    padding:1em 20px;
-    border-top:2px solid $secondary-color;
+    padding:10px;
+    background: $secondary-color;
+
     @include breakpoint(lg){
       font-size:20px;
       height:calc(414px - 280px);
@@ -542,6 +561,9 @@ form {
     font-size: 16px;
     color:white;
     padding: .5em 0;
+  }
+  input::placeholder {
+    color:white;
   }
   input:focus {
     outline: none;
@@ -848,10 +870,15 @@ form {
 }
 
 //new landing page
+//campaign period
 
-.campaign-period-section{
+.redbox-withwhiteborder{
   background-color: $coke-secondary-color;
   border: solid 20px #ffffff;
+}
+
+.campaign-period-section{
+ 
   padding-bottom: 80px !important;
   .tagline{
     font-size: 94px;
@@ -873,7 +900,6 @@ form {
       text-align: center;
     }
     .period-desc-container{
-      font-size: 14px;
       margin-top: 30px;
       margin-bottom: 20px;
     }
@@ -882,7 +908,7 @@ form {
        justify-content: center;
        text-align: center;
        padding: 20px;
-       margin-bottom: 20px;
+       margin-bottom: 0px;
        .participate-image{
          max-height: 150px;
        }
@@ -890,7 +916,7 @@ form {
     .participate-text-container{
       justify-content: center;
        text-align: center;
-        font-size: 14px;
+
         margin-bottom: 20px;
         h1{
           font-size: 30px;
@@ -902,9 +928,13 @@ form {
 }
 
   @media only screen and (max-width: 600px) {
-    .campaign-period-section{
+    .redbox-withwhiteborder{
       border: solid 10px #ffffff;
       padding-top: 40px !important;
+    }
+    
+    .campaign-period-section{
+    
       padding-bottom: 20px !important;
       .tagline{
         font-size: 50px;
@@ -922,6 +952,7 @@ form {
       }
       .desc-container{
         .participate-image-container{
+          margin-bottom: 20px;
           .participate-image{
             max-height: 80px;
           }
@@ -943,3 +974,48 @@ form {
     align-items: center;
     
   }
+
+  //prize-section
+
+.prize-section{
+  background-color: #1d1d1b;
+  position: relative;
+  .background-image{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    img{
+      width: 100%;
+    }
+  
+}
+  .joox-container{
+    z-index: 1;
+    text-align: center;
+    .joox-image{
+      background:#de0a1c;
+      padding: 20px;
+      @media only screen and (max-width: 600px) {
+        padding: 10px;
+      }
+      
+      margin-top: 30px;
+      margin-bottom: 40px;
+      img{
+        width: 100%;
+        max-width: 700px;
+      }
+    }
+  }
+}
+.submission-section{
+  padding: 0px !important;
+  .divider{
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+}
+
+

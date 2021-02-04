@@ -6,7 +6,7 @@
   
       <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>
       <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
-      <HowItWorks :data="CMSContent[0].worksSection" />
+      <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
       <SubmissionMechanics :dataForm="configData" />
     </div>

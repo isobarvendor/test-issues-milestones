@@ -1,5 +1,5 @@
 <template>
-  <div class="container campaign-period-section ">
+  <div class="container campaign-period-section redbox-withwhiteborder ">
     <v-row no-gutters>
       
       <v-col
@@ -36,7 +36,7 @@
       >
           <div class="periode-container">
             <p>{{this.data.Title}}</p>
-            <p class="campaign-period">{{startdate}} – {{enddate}}</p>
+            <p class="campaign-period" v-html="startdate+' – '+enddate"></p>
           </div>
           <div class="period-desc-container">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
@@ -135,6 +135,17 @@
 
 <script>
 import moment from "moment";
+moment.locale('en', {
+    ordinal: num => {
+        const b = num % 10;
+        const output = (~~(num % 100 / 10) === 1) ? 'th' :
+            (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                    (b === 3) ? 'rd' : 'th';
+        return num + '<sup>' + output + '</sup>';
+    },
+});
+
 export default {
    name: "CampaignPeriod",
   data() {
@@ -144,10 +155,10 @@ export default {
   },
   computed:{
     startdate (){
-        return this.data && moment(this.data.fromDate).format("ll")
+        return this.data && moment(this.data.fromDate).format("Do MMMM YYYY")
     },
     enddate (){
-      return this.data && moment(this.data.toDate).format("ll");
+      return this.data && moment(this.data.toDate).format("Do MMMM YYYY");
     }
   }
   ,
