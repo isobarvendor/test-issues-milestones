@@ -295,7 +295,7 @@ footer{
 .container {
   @include column;
   position: relative;
-  max-width: $content-max-width;
+  max-width: $content-max-width !important;
   width:100%;
   padding: 0 $content-hpadding;
   @include breakpoint(md){
@@ -325,7 +325,7 @@ footer{
 .campaign-period{
   font-size:26px;
   font-weight: bold;
-  margin-top:.5em;
+
   @media only screen and (max-width: 767px) {
     font-size:20px;
   }
@@ -846,3 +846,100 @@ form {
     }
   }
 }
+
+//new landing page
+
+.campaign-period-section{
+  background-color: $coke-secondary-color;
+  border: solid 20px #ffffff;
+  padding-bottom: 80px !important;
+  .tagline{
+    font-size: 94px;
+    font-family: $tagline-fontfamily;
+    font-weight: bold;
+    line-height: 90px;
+  }
+  .logo-title{
+    padding:20px;
+  }
+  .logo{
+    width: 150px;
+  }
+  
+  .desc-container{
+    padding-top: 20px !important;
+    padding-right: 20px !important;
+    .periode-container{
+      text-align: center;
+    }
+    .period-desc-container{
+      font-size: 14px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .participate-image-container{
+       border: solid 1px #ffffff;
+       justify-content: center;
+       text-align: center;
+       padding: 20px;
+       margin-bottom: 20px;
+       .participate-image{
+         max-height: 150px;
+       }
+    }
+    .participate-text-container{
+      justify-content: center;
+       text-align: center;
+        font-size: 14px;
+        margin-bottom: 20px;
+        h1{
+          font-size: 30px;
+          margin-bottom: 20px;
+        }
+    }
+  }
+ 
+}
+
+  @media only screen and (max-width: 600px) {
+    .campaign-period-section{
+      border: solid 10px #ffffff;
+      padding-top: 40px !important;
+      padding-bottom: 20px !important;
+      .tagline{
+        font-size: 50px;
+        line-height: 50px;
+      }
+      .logo-title{
+        padding:0px;
+        padding-left: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+      .logo{
+        width: 90px;
+
+      }
+      .desc-container{
+        .participate-image-container{
+          .participate-image{
+            max-height: 80px;
+          }
+        }
+        .participate-text-container{
+            padding-left: 20px;
+            text-align: left;
+            h1{
+              font-size: 20px;
+              margin-bottom: 0px;
+            }
+        }
+      }
+    }
+   
+  }
+  .center-layout{
+    justify-content: center;
+    align-items: center;
+    
+  }

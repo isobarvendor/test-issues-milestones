@@ -93,3 +93,20 @@
     -moz-osx-font-smoothing: grayscale;
     font-weight: normal;
 }
+
+
+@font-face {
+    font-family: 'Unity Condensed';
+    src:url('/fonts/TCCC-UnityCondensed-Bold.ttf') format('truetype');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Unity Condensed';
+    src:url('/fonts/TCCC-UnityCondensed-Medium.ttf') format('truetype');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 300;
+}

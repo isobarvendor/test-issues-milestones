@@ -51,9 +51,16 @@ export default {
 </script>
 
 <style>
+ #masthead{
+      background:#de0a1c;
+      padding: 20px;
+    }
   @media only screen and (max-width: 600px) {
     .videoBackground{
       max-height: 400px !important;
+    }
+     #masthead{
+      padding: 10px;
     }
   }
     @media only screen and (max-width: 1099px) {
@@ -65,5 +72,6 @@ export default {
     .videoBackground{
       max-height: 600px;
     }
+
   }
 </style>

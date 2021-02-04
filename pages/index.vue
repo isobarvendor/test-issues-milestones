@@ -1,8 +1,9 @@
 <template>
   <div id="main" class="home" v-if="CMSContent&&notCountDown" >
     <div class="wrapper" >
-      <!--Masthead :data="CMSContent[0].homepage.mastheadSection"/-->
-      <MastheadVideo :data="CMSContent[0].homepage.mastheadSection"/>
+      <MastheadVideo :data="CMSContent[0].homepage.mastheadSection" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
+      <Masthead :data="CMSContent[0].homepage.mastheadSection" v-else/>
+  
       <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>
       <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
       <HowItWorks :data="CMSContent[0].worksSection" />
@@ -82,7 +83,9 @@ export default {
          }
        })
     },
-
+    isVideo(data){
+      return data && data.desktopImage[0].url.includes("mp4");
+    },
      getListWallet(){
           this.$store.dispatch(GET_LIST_WALLET)
                 .then((response)=>{

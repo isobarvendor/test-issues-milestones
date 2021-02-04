@@ -7,7 +7,7 @@
         data-name="coke_masthead"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 360 459"
+        viewBox="0 0 360 429"
       >
         <def>
           <mask id="clipMask">
@@ -35,7 +35,7 @@
         data-name="coke_masthead"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 834 895"
+        viewBox="0 0 834 685"
       >
         <def>
           <mask id="clipMask">
@@ -97,9 +97,12 @@ export default {
   },
   data() {
     return {
-      imgDesk: this.data.desktopImage[0].url,
-      imgTab: this.data.tabletImage[0].url,
-      imgMob: this.data.mobileImage[0].url
+      //imgDesk: this.data.desktopImage[0].url, 
+      //imgTab: this.data.tabletImage[0].url,
+      //imgMob: this.data.mobileImage[0].url
+      imgDesk: "/img/landing/Hero Banner.png",
+      imgTab: "/img/landing/Hero Banner.png",
+      imgMob: "/img/landing/banner_mobile.png",
     }
   },
   mounted() {
@@ -132,4 +135,18 @@ export default {
 </script>
 
 <style>
+ #masthead{
+      background:#de0a1c;
+      padding: 20px;
+    }
+  @media only screen and (max-width: 600px) {
+     #masthead{
+      padding: 10px;
+    }
+  }
+    @media only screen and (max-width: 1099px) {
+     #masthead{
+      padding: 10px;
+    }
+  }
 </style>
