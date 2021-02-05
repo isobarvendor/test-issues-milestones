@@ -1,7 +1,8 @@
 <template>
   <footer>
       <div class="container">
-        <p v-html="footerText"></p>
+        
+        <p v-html="footerText" class="footer-text"></p>
         <p>
           <a href="/privacy">Privacy Policy</a>
           <a href="/tnc">Terms and conditions</a>
@@ -30,6 +31,7 @@ export default {
       }
     },
     mounted(){
+
 
     }
 }

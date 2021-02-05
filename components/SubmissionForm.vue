@@ -1,19 +1,19 @@
 <template>
+  <div>
   <div  v-if="!submitted">
+    <div class="img-footer" >
+            <img src="/img/landing/instruments.png" width="100%" />
+    </div>
    <div class="header">{{campaignTitle}}</div>
   <form class="mechanics" autocomplete="off">
 
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
-        <span class="error-message">{{ errors.first('name') }}</span>
+        <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
-        <span class="error-message">{{ errors.first('email') }}</span>
-    </div>
-    <div v-if="submissionType=='with_code_submission'"  class="details">
-      <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" placeholder="10-digit code"/>
-        <span class="error-message">{{ errors.first('code') }}</span>
+        <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
     <div v-if="submissionType=='with_receipt'" class="details receipt">
       <div v-if="!image">
@@ -57,23 +57,29 @@
    <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
-      <div class="info-btn">
-          <div class="btn-text">Enter unique Code </div>
-          <div class="info-icon">
-            <img src="/img/landing/info-btn.png" width="60"  />
+      <div class="info-btn" v-if="submissionType=='with_code_submission'" >
+          <div class="btn-text"> 
+          <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" placeholder="Enter Unique Code"/>
+             <span class="error-message">{{ errors.first('code') }}</span>
+          </div>
+          <div class="info-icon tooltip">
+            <img src="/img/landing/info-button.png" width="25"  />
+            <span class="tooltiptext">Enter the code found under the cap/tab of your Coca Cola purchase here</span>
           </div>
       </div>
-      
+     
       <v-progress-circular
         :width="2"
         color="white"
         indeterminate
         v-if="loading"
       ></v-progress-circular>
-      <v-btn class="get-code" v-else  v-on:click="submit()">Submit</v-btn>
+      <v-btn class="get-code"  dark v-else  v-on:click="submit()">Collect your prize</v-btn>
     </div>
   </form>
+  
   </div>
+  
   <div v-else class="thanks">
     <div v-if="prizeWin.allocationArray">
         <div class="header">{{thankyouPage.Title}}</div>
@@ -111,7 +117,8 @@
           {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
       </div>
     </div>
-
+  </div>
+  
   </div>
 </template>
 
@@ -355,10 +362,13 @@ export default {
 }
 .btn-area{
   text-align: center;
+  margin-top: 30px;
 }
 button.get-code{
   height: 60px !important;
+  border-radius: 15px;
 }
+
 form.mechanics{
   margin: 0 1em;
 }
@@ -367,8 +377,8 @@ form.mechanics{
 }
 .info-btn{
   background: #fff;
-  padding: 30px;
-  border-radius:10px;
+  padding: 20px;
+  border-radius:15px;
   cursor: pointer;
   position: relative;
 }
@@ -378,9 +388,81 @@ form.mechanics{
 }
 .info-icon{
   position: absolute;
-  right: 20px;
-  top: 0px;
-  width: 60px;
-  height: 60px;
+  right: 10px;
+  top: 34%;
+
 }
+ form input#code::placeholder{
+   color: #1d1d1b;
+ }
+ form input#code{
+   color: #1d1d1b;
+   text-align: center;
+   text-decoration: underline;
+ }
+.tooltip {
+ 
+  display: inline-block;
+  
+}
+@media only screen and (min-width: 769px) {
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 280px;
+    background-color: #1d1d1b;
+    color: #fff;
+    border-radius: 6px;
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    left: 150%;
+    text-align: left;
+  }
+
+
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #1d1d1b  transparent transparent;
+  }
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+@media only screen and (max-width: 768px) {
+ 
+.tooltip .tooltiptext {
+  visibility: hidden;
+   width: 280px;
+  background-color: #1d1d1b;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 15px;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: -720%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 90%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #1d1d1b transparent;
+}
+
+}
+
 </style>

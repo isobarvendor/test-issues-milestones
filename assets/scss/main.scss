@@ -111,12 +111,19 @@ a.button{
   width: 230px;
 }
 footer{
+  position: relative;
   @include column;
   align-items: center;
   background:$footer-bg-color;
   text-align: center;
   width:100%;
   padding:1em;
+  justify-content: center;
+  align-items: center;
+  .footer-text{
+    max-width: 400px;
+    margin: auto;
+  }
 
   & a+a:before{
     content: '|';
@@ -126,6 +133,19 @@ footer{
   & p+p{
     margin-top:1em;
   }
+
+
+}
+.img-footer{
+  position: absolute;
+  bottom: -30px;
+  left: 0px;
+  right: 0px;
+  overflow: visible;
+  @media only screen and (max-width: 767px) {
+    bottom: -15px;
+  }
+ 
 }
 
 .nav{
@@ -312,9 +332,17 @@ footer{
 .campaign-section:nth-child(2) {
   margin-top: 2em;
 }
+
 .campaign-section:last-child {
-  margin-bottom: 3em;
+  padding-bottom: 280px !important;
+  @media only screen and (max-width: 767px) {
+    padding-bottom: 200px !important;
+  }
+  @media only screen and (max-width: 480px) {
+    padding-bottom: 100px !important;
+  }
 }
+
 
 
 .campaign-period{
@@ -537,6 +565,9 @@ footer{
 
 form {
   max-width: 340px;
+  @media only screen and (max-width: 767px) {
+    max-width: 300px;
+  }
   width:100%;
   margin: 0 2em;
   margin-top: 40px;
@@ -765,7 +796,7 @@ form {
       color:$coke-font-heading-color;
     }
     footer{
-      background-color:$coke-secondary-color;
+      background-color:$coke-footer-background-color;
       color:$coke-font-footer-color;
       a{
         color:$coke-font-footer-color;
@@ -780,6 +811,7 @@ form {
       background:$coke-button-background-color !important;
       color:$coke-button-font-color !important;
     }
+   
     .campaign-section + .campaign-section:before{
       background-color:$coke-border-color;
     }
@@ -875,6 +907,7 @@ form {
 .redbox-withwhiteborder{
   background-color: $coke-secondary-color;
   border: solid 20px #ffffff;
+  overflow: visible;
 }
 
 .campaign-period-section{
@@ -1017,5 +1050,4 @@ form {
     padding-bottom: 20px;
   }
 }
-
 
