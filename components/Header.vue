@@ -1,13 +1,13 @@
 <template>
   <header>
     <client-only>
-    <a class="profile-button" :class="[{'dark': isDark},{'invisible':!showProfile}]">
+    <a class="profile-button" :class="[{'invisible':!showProfile}]" v-if="!logged">
         <img class="profile-image" :src="logged.imageUrl" v-if="logged&& logged.imageUrl">
         <img class="profile-image" src="/img/dummy_profile.jpg" v-else-if="logged&&contentClass=='coke'">
         <img class="profile-image" src="/img/profile-sprite.png" v-else-if="logged&&contentClass=='sprite'">
         <img class="profile-image" src="/img/profile-fanta.png" v-else-if="logged&&contentClass=='fanta'">
         <div :class="{'profile-content' : config&&config.Wallet ? config.Wallet.Wallet : true }" @click="loginRoute">
-            <template v-if="!logged">Sign in</template>
+            <template v-if="!logged"><div >SIGN IN <BR/><small>to win prizes</small></div></template>
             <template v-else-if="config ? config.Wallet.Wallet&&logged : logged">
                 <div class="column center">
                     <div class="user-coins">{{listWallet ? listWallet.walletStatus[0].amount : 0 }}</div>
@@ -20,6 +20,7 @@
             </template>
         </div>
     </a>
+    <div></div>
     <div class="nav-container">
 
         <a class="nav-button" @click="toggleMenu" v-if="showMenu">
@@ -213,6 +214,9 @@ export default {
     &.invisible{
         opacity:0;
     }
+ position: fixed;
+ background: #2c2c2c;
+ text-align: center;
 }
 .nav-container{
     display: flex;

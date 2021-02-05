@@ -7,13 +7,14 @@
         sm="12"
         md="4"
       >
- 
+        
           <v-row no-gutters class="logo-title">
                <v-col
                   cols="4"
                   md="12"
                   sm="4"
                 >
+                
                   <img src="/img/landing/COKE STUDIO.png" class="logo"  />
                 </v-col>
 
@@ -23,7 +24,7 @@
                   sm="8"
                   class="participate-text-container"
                 >
-                 <div class="tagline">TURN UP YOUR RYTHM</div> 
+                 <div class="tagline">TURN UP YOUR RHYTHM</div> 
                 </v-col>
           </v-row>
       

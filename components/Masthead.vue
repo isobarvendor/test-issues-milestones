@@ -85,15 +85,22 @@
     <div class="masthead-content">
       <h1>{{data.title}}</h1>
       <p>{{data.description}}</p>
+      
     </div>
+    <MastheadCountDown v-if="isCountDown" />
   </div>
 </template>
 
 <script>
+import MastheadCountDown from '../components/MastheadCountDown'
 export default {
   name: "Masthead",
   props: {
-    data: null
+    data: null,
+    isCountDown:null
+  },
+  components:{
+    MastheadCountDown
   },
   data() {
     return {
@@ -103,6 +110,7 @@ export default {
       imgDesk: "/img/landing/Hero Banner.png",
       imgTab: "/img/landing/Hero Banner.png",
       imgMob: "/img/landing/banner_mobile.png",
+   
     }
   },
   mounted() {

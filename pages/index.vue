@@ -1,25 +1,23 @@
 <template>
-  <div id="main" class="home" v-if="CMSContent&&notCountDown" >
+  <div id="main" class="home" v-if="CMSContent" >
     <div class="wrapper" >
-      <MastheadVideo :data="CMSContent[0].homepage.mastheadSection" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
-      <Masthead :data="CMSContent[0].homepage.mastheadSection" v-else/>
+      <MastheadVideo :data="CMSContent[0].homepage.mastheadSection" :isCountDown="!notCountDown" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
+      <Masthead :data="CMSContent[0].homepage.mastheadSection" :isCountDown="!notCountDown" v-else/>
   
       <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>
-      <Prizes v-if="configData && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
+      <Prizes v-if="configData && notCountDown && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
-      <SubmissionMechanics :dataForm="configData" />
+      <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
     </div>
     <Footer :data="CMSContent[0].footer"  />
   </div>
-  <div id="main" class="home" v-else-if="CMSContent">
-    <MastheadCountDown :data="CMSContent[0].homepage.mastheadSection"/>
-  </div>
+
 </template>
 
 <script >
 import Masthead from '../components/Masthead'
-import MastheadCountDown from '../components/MastheadCountDown'
+
 import MastheadVideo from '../components/MastheadVideo'
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
@@ -36,7 +34,7 @@ import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
 export default {
   name:"index",
   components:{
-    Masthead,MastheadVideo,MastheadCountDown,CampaignPeriod, Prizes,HowItWorks,SubmissionMechanics, Footer
+    Masthead,MastheadVideo,CampaignPeriod, Prizes,HowItWorks,SubmissionMechanics, Footer
   },
   data(){
     return{

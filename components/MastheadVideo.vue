@@ -14,19 +14,26 @@
     overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)"
 >
       <div class="masthead-content">
-      <h1>{{data.title}} testing</h1>
-      <p>{{data.description}} hello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hello</p>
+      <h1>{{data.title}}</h1>
+      <p>{{data.description}}</p>
+      
     </div>
+    <MastheadCountDown v-if="isCountDown" />
 </video-background>
 
   </div>
 </template>
 
 <script>
+import MastheadCountDown from '../components/MastheadCountDown'
 export default {
   name: "MastheadVideo",
   props: {
-    data: null
+    data: null,
+    isCountDown:null
+  },
+   components:{
+    MastheadCountDown
   },
   data() {
     return {
@@ -66,6 +73,9 @@ export default {
     @media only screen and (max-width: 1099px) {
     .videoBackground{
       max-height: 500px;
+    }
+     #masthead{
+      padding: 10px;
     }
   }
       @media only screen and (min-width: 1100px) {
