@@ -4,7 +4,7 @@
       <MastheadVideo :data="CMSContent[0].homepage.mastheadSection" :isCountDown="!notCountDown" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
       <Masthead :data="CMSContent[0].homepage.mastheadSection" :isCountDown="!notCountDown" v-else/>
   
-      <CampaignPeriod :data="configData.campaignPeriod" v-if="configData"/>
+      <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
       <Prizes v-if="configData && notCountDown && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 

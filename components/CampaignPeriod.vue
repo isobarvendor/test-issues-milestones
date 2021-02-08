@@ -42,11 +42,13 @@
           <div class="period-desc-container">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
           </div>
-           <v-row no-gutters >
+        
+           <v-row no-gutters   >
                <v-col
                   cols="12"
                   md="4"
                   sm="12"
+                   v-for="(item, idx) in howData.slides" :key="'steps'+idx"
                 >
                     <v-row no-gutters  class="center-layout" >
                       <v-col
@@ -55,7 +57,8 @@
                           sm="5"
                           class="participate-image-container"
                         >
-                          <img src="/img/landing/drink.png" class="participate-image"  />
+                          <img v-if="$mq == 'sm'" :src="item.mobileImage[0].url" class="participate-image" />
+                          <img v-else :src="item.desktopImage[0].url" class="participate-image" />
                         </v-col>
 
                         <v-col
@@ -64,67 +67,12 @@
                           sm="7"
                           class="participate-text-container"
                         >
-                        <h1>Drink</h1>
-                        <p>Buy a Coca-Cola product and drink it!</p> 
+                         <span v-html="item.description" />
+                
                         </v-col>
                   </v-row>
       
                 </v-col>
-                 <v-col
-                  cols="12"
-                  md="4"
-                  sm="12"
-                >
-                    <v-row no-gutters class="center-layout">
-                      <v-col
-                          cols="5"
-                          md="12"
-                          sm="5"
-                          class="participate-image-container"
-                        >
-                          <img src="/img/landing/scan.png" class="participate-image"   />
-                        </v-col>
-
-                        <v-col
-                          cols="7"
-                          md="12"
-                          sm="7"
-                          class="participate-text-container"
-                        >
-                          <h1>Scan</h1>
-                          <p>Scan the QR code on the pack</p> 
-                        </v-col>
-                  </v-row>
-      
-                </v-col>
-                 <v-col
-                  cols="12"
-                  md="4"
-                  sm="12"
-                >
-                    <v-row no-gutters class="center-layout" >
-                      <v-col
-                          cols="5"
-                          md="12"
-                          sm="5"
-                          class="participate-image-container"
-                        >
-                          <img src="/img/landing/listen.png" class="participate-image"   />
-                        </v-col>
-
-                        <v-col
-                          cols="7"
-                          md="12"
-                          sm="7"
-                          class="participate-text-container"
-                        >
-                          <h1>Listen</h1>
-                          <p>Enter the unique code from your pack in the form bellow, and win Joox VIP and other prizes</p> 
-                        </v-col>
-                  </v-row>
-      
-                </v-col>
-
                 
           </v-row>
          
@@ -164,7 +112,8 @@ export default {
   }
   ,
   props: {
-    data: null
+    data: null,
+    howData:{}
   },
   beforeMount() {
 
