@@ -1,6 +1,6 @@
 <template>
   <div id="masthead-countdown">
-      <vac :end-time="new Date().getTime() + 910000000" @finish="finishCall">
+      <vac :end-time="endDate" @finish="finishCall" class="center">
         <span class="coundown-text"
           slot="process"
           slot-scope="{ timeObj }">
@@ -19,6 +19,27 @@
               </v-col>
               <v-col  cols="3">
                 <span v-html="addNumberClass(timeObj.m)" />
+              </v-col>
+            </v-row>
+         </span>
+          <span class="coundown-text"
+          slot="finish"
+          >
+           <v-row no-gutters class="number-area">
+              <v-col  cols="3">
+                <span v-html="addNumberClass('0')" />
+              </v-col>
+               <v-col  cols="1">
+                :
+              </v-col>
+              <v-col  cols="3">
+                <span v-html="addNumberClass('00')" />
+              </v-col>
+               <v-col  cols="1">
+                :
+              </v-col>
+              <v-col  cols="3">
+                <span v-html="addNumberClass('00  ')" />
               </v-col>
             </v-row>
          </span>
@@ -54,6 +75,11 @@ export default {
     // this.loadMasthead()
     // window.addEventListener('resize', this.loadMasthead)
   },
+  computed:{
+    endDate(){
+      return this.data ? new Date(this.data).getTime() : new Date().getTime() + 3600 ;
+    }
+  },
   methods: {
    finishCall(){
      window.location.reload();
@@ -63,6 +89,9 @@ export default {
      let arrayText = text.split("");
      let newtext="";
      for(let a=0;a<arrayText.length;a++ ){
+       if(arrayText.length<2){
+        newtext+="<span class='countdown-number'>0</span>";
+       }
        newtext+="<span class='countdown-number'>"+arrayText[a]+"</span>";
      }
      return newtext;
@@ -77,16 +106,17 @@ export default {
 
 <style>
 #masthead-countdown{
-  width:330px;
-  height:120px;
+  width:365px;
+  height:135px;
   background-image: url("/img/landing/countdown box.png");
+  background-repeat: no-repeat;
   margin: auto;
   position: absolute;
   bottom: 60px;
   left: 0px;
   right: 0px;
-  padding: 5px;
-  padding-left: 20px;
+  padding: 0px;
+  padding-left: 0px;
   text-align: center;
 }
 .coundown-text{
@@ -94,8 +124,12 @@ export default {
 }
 .number-area{
   margin-top: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+
+  
 }
 .countdown-number{
   background: #303030;
@@ -105,5 +139,7 @@ export default {
    -moz-box-shadow:    inset 0 0 10px #000000;
    -webkit-box-shadow: inset 0 0 10px #000000;
    box-shadow:         inset 0 0 10px #000000;
+     min-width: 50px; 
+
 }
 </style>

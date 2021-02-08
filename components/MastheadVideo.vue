@@ -18,7 +18,7 @@
       <p>{{data.description}}</p>
       
     </div>
-    <MastheadCountDown v-if="isCountDown" />
+    <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
 </video-background>
 
   </div>
@@ -37,9 +37,9 @@ export default {
   },
   data() {
     return {
-      imgDesk: this.data.desktopImage[0].url,
-      imgTab: this.data.tabletImage[0].url,
-      imgMob: this.data.mobileImage[0].url,
+      imgDesk: this.data.homepage.mastheadSection.desktopImage[0].url,
+      imgTab: this.data.homepage.mastheadSection.tabletImage[0].url,
+      imgMob: this.data.homepage.mastheadSection.mobileImage[0].url,
       videoDesk: "/img/background.mp4",
       videoTab:  "/img/background.mp4",
       videoMob:  "/img/background.mp4",

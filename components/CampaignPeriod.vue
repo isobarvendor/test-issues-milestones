@@ -57,8 +57,9 @@
                           sm="5"
                           class="participate-image-container"
                         >
-                          <img v-if="$mq == 'sm'" :src="item.mobileImage[0].url" class="participate-image" />
-                          <img v-else :src="item.desktopImage[0].url" class="participate-image" />
+                          <img v-if="$mq == 'sm'&&item.mobileImage.length>0" :src="item.mobileImage[0].url" class="participate-image" />
+                          <img v-else-if="item.desktopImage.length>0&&$mq !== 'sm'" :src="item.desktopImage[0].url" class="participate-image" />
+                          <img v-else :src="'/img/landing/drink.png'" />
                         </v-col>
 
                         <v-col

@@ -1,11 +1,11 @@
 <template>
   <div id="main" class="home" v-if="CMSContent" >
     <div class="wrapper" >
-      <MastheadVideo :data="CMSContent[0].homepage.mastheadSection" :isCountDown="!notCountDown" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
-      <Masthead :data="CMSContent[0].homepage.mastheadSection" :isCountDown="!notCountDown" v-else/>
+      <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
+      <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
   
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
-      <Prizes v-if="configData && notCountDown && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
+      <Prizes v-if="configData && notCountDown && configData.ExclusivePrizes && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
       <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
@@ -82,7 +82,7 @@ export default {
        })
     },
     isVideo(data){
-      return data && data.desktopImage[0].url.includes("mp4");
+      return (data && data.desktopImage.length>0)  ?  data.desktopImage[0].url.includes("mp4") : false;
     },
      getListWallet(){
           this.$store.dispatch(GET_LIST_WALLET)

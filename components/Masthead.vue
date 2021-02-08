@@ -87,7 +87,7 @@
       <p>{{data.description}}</p>
       
     </div>
-    <MastheadCountDown v-if="isCountDown" />
+    <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
   </div>
 </template>
 
@@ -104,13 +104,9 @@ export default {
   },
   data() {
     return {
-      //imgDesk: this.data.desktopImage[0].url, 
-      //imgTab: this.data.tabletImage[0].url,
-      //imgMob: this.data.mobileImage[0].url
-      imgDesk: "/img/landing/Hero Banner.png",
-      imgTab: "/img/landing/Hero Banner.png",
-      imgMob: "/img/landing/banner_mobile.png",
-   
+      imgDesk: this.data.homepage.mastheadSection.desktopImage.length>0 ? this.data.homepage.mastheadSection.desktopImage[0].url : "/img/landing/Hero Banner.png", 
+      imgTab: this.data.homepage.mastheadSection.tabletImage.length>0 ? this.data.homepage.mastheadSection.tabletImage[0].url: "/img/landing/Hero Banner.png", 
+      imgMob: this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url :"/img/landing/banner_mobile.png",
     }
   },
   mounted() {

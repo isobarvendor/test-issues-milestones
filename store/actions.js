@@ -190,7 +190,7 @@ export default {
         })
         commit('SET_CMS_CONTENT',content)
          CMSAPI.getCMSConfig().then((config) => {
-            commit('SET_CONFIG',config.data[0])
+            commit('SET_CONFIG',config.data)
             resolve(result)
          }).catch(error => {
           return reject(error);
