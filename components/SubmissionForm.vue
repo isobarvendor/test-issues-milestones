@@ -6,15 +6,19 @@
     </div>
    <div class="header">{{campaignTitle}}</div>
   <form class="mechanics" autocomplete="off">
-
-    <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
-      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
-        <!--span class="error-message">{{ errors.first('name') }}</span-->
-    </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
+      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"  v-validate="'required'" placeholder="Phone number"/>
+        <span class="error-message">{{ errors.first('phoneNumber') }}</span>
+    </div>
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
+        <!--span class="error-message">{{ errors.first('name') }}</span-->
+    </div>
+    
     <div v-if="submissionType=='with_receipt'" class="details receipt">
       <div v-if="!image">
        <!--<h2>Upload reciept</h2>-->
@@ -220,6 +224,9 @@ export default {
                     }
                if(this.loginInfo){
                 request["userId"]=this.loginInfo.uuid;
+               }
+               if(this.form.phoneNumber){
+                request["phoneNumber"]=this.form.phoneNumber;
                }
                if(this.amazonImage){
                  request['imageurl']=this.amazonImage;

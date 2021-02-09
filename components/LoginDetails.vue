@@ -1,13 +1,13 @@
 <template>
-  <div class="login-details">
+  <div class="login-details" >
     <div class="title-image">
       <img src="img/icons/coke.png" />
-      <p>
+      <p v-if="data">
         {{data.Title}}
       </p>
     </div>
     <div class="continue" v-if="$mq == 'xl'">
-      <p>{{data.SubTitle}}</p>
+      <p v-if="data">{{data.SubTitle}}</p>
       <div class="icons">
         <div v-on:click="redirectTo('line')" v-if="social.line" class="line">
           <span><img src="img/icons/line.png" /></span>

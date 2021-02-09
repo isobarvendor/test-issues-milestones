@@ -24,7 +24,7 @@
                   sm="8"
                   class="participate-text-container"
                 >
-                 <div class="tagline">TURN UP YOUR RHYTHM</div> 
+                 <div class="tagline">{{howData.title}}</div> 
                 </v-col>
           </v-row>
       

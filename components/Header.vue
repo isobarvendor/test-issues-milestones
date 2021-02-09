@@ -1,7 +1,7 @@
 <template>
   <header>
     <client-only>
-    <a class="profile-button" :class="[{'invisible':!showProfile}]" v-if="!logged">
+    <!--a class="profile-button" :class="[{'invisible':!showProfile}]" v-if="!logged">
         <img class="profile-image" :src="logged.imageUrl" v-if="logged&& logged.imageUrl">
         <img class="profile-image" src="/img/dummy_profile.jpg" v-else-if="logged&&contentClass=='coke'">
         <img class="profile-image" src="/img/profile-sprite.png" v-else-if="logged&&contentClass=='sprite'">
@@ -13,11 +13,14 @@
                     <div class="user-coins">{{listWallet ? listWallet.walletStatus[0].amount : 0 }}</div>
                     <div>coins</div>
                 </div>
-                <!--div class="column center">
-                    <div><img src="/img/ic-coin.svg"></div>
-                    <div>Get coins</div>
-                </div-->
+          
             </template>
+        </div>
+    </a-->
+
+        <a class="profile-button" v-if="!logged">
+        <div class="profile-content" @click="loginRoute">
+            <template ><div >SIGN IN <BR/><small>to win prizes</small></div></template>
         </div>
     </a>
     <div></div>
