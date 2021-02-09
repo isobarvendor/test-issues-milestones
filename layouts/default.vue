@@ -82,6 +82,7 @@ export default {
         return this.form_dirty && !this.confirmLeave()
       },
        beforeWindowUnload(e) {
+         console.log(test)
         if (this.confirmStayInDirtyForm()) {
           // Cancel the event
           e.preventDefault()
@@ -94,14 +95,16 @@ export default {
   },
   mounted() {
      this.fetchData();
-     window.addEventListener('beforeunload', this.beforeWindowUnload)
+    
     
   },
+  created(){
+     if (process.client) {
+      window.addEventListener('beforeunload', this.beforeWindowUnload)
+     }
+  }
   
-      beforeDestroy() {
-      window.removeEventListener('beforeunload', this.beforeWindowUnload)
-    }
-
+    
 
 };
 

@@ -18,7 +18,7 @@
         </div>
     </a-->
 
-        <a class="profile-button" v-if="!logged">
+        <a class="profile-button" v-if="!logged&&notCountDown">
         <div class="profile-content" @click="loginRoute">
             <template ><div >SIGN IN <BR/><small>to win prizes</small></div></template>
         </div>
@@ -106,7 +106,8 @@ export default {
             isDark:false,
             isReward:false,
             expand: false,
-            config:this.$store.getters.getCMSConfig
+            config:this.$store.getters.getCMSConfig,
+            notCountDown:this.$store.state.isCampaignStarted
         }
     },
     watch:{
