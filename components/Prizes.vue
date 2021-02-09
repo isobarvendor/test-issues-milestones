@@ -23,16 +23,18 @@
           :key="'prize'+index"
           class="prize-item"
         >
-          <div class="this-week-prize" v-if="index==0"><p>THIS WEEK'S PRIZE</p></div>
-          <img
-            v-if="$mq == 'sm'"
-            :src="item.image ? item.image[0].url : '/img/prize-default.svg'"
-          />
-          <img v-else :src="item.image? item.image[0].url : '/img/prize-default.svg'" />
-          <div class="prize-description">
-            <h3>Week {{index+1}}</h3>
-            {{item.title}}
-            
+          <div class="prize-item-content">
+            <div class="this-week-prize" v-if="index==0"><p>THIS WEEK'S PRIZE</p></div>
+            <img
+              v-if="$mq == 'sm'"
+              :src="item.image.length>0 ? item.image[0].url : '/img/landing/week 1 prize.png'"
+            />
+            <img v-else :src="item.image.length>0? item.image[0].url : '/img/landing/week 1 prize.png'" />
+            <div class="prize-description">
+              <h3>Week {{index+1}}</h3>
+              {{item.title}}
+              
+            </div>
           </div>
         </swiper-slide>
         <div class="prize-swiper-pagination" slot="pagination"></div>

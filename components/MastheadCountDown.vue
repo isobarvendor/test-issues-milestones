@@ -77,7 +77,7 @@ export default {
   },
   computed:{
     endDate(){
-      return this.data ? new Date(this.data).getTime() : new Date().getTime() + 3600 ;
+      return this.data ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ;
     }
   },
   methods: {
