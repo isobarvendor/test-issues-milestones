@@ -8,7 +8,7 @@
         <div class="header">{{prize.title}}</div>
         <p>{{prize.subTitle}}</p>
         <div class="joox-image">
-          <img src="/img/landing/joox image.png" />
+          <img :src="imageUpload ? imageUpload : '/img/landing/joox image.png'" />
         </div>
 
 

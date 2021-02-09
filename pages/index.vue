@@ -5,7 +5,7 @@
       <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
   
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
-      <Prizes v-if="configData && notCountDown && configData.ExclusivePrizes && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
+      <Prizes v-if="configData && configData.ExclusivePrizes && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
       <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
