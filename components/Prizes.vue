@@ -3,10 +3,10 @@
     <div class="background-image">
       <img src="/img/landing/back-dots.png" />
     </div>
-    <div class="joox-container">
+    <div class="joox-container" v-if="prize&&prize.status">
 
-        <div class="header">WIN FREE <BR/> JOOX VIP ACCESS</div>
-        <p>*Only for first time redemption</p>
+        <div class="header">{{prize.title}}</div>
+        <p>{{prize.subTitle}}</p>
         <div class="joox-image">
           <img src="/img/landing/joox image.png" />
         </div>
@@ -82,6 +82,7 @@ export default {
   props: {
     data: null,
     winners: null,
+    prize:null
   },
   beforeMount() {},
 };
