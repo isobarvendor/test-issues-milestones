@@ -13,7 +13,8 @@ import {
   DELETE_FILE,
   FETCH_CMS_DATA,
   REDEEM_PRIZE,
-  GET_LIST_WINNERS
+  GET_LIST_WINNERS,
+  CHECK_ATTEMPT
 } from './action_types';
 
 
@@ -127,7 +128,7 @@ export default {
 
     return new Promise((resolve, reject) => {
       const moduleState = state;
-      if (state.token) {
+      //if (state.token) {
         NGPSAPI.submitLogin(request, state.token)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
@@ -137,7 +138,7 @@ export default {
           console.error(error);
           return reject(error);
         });
-      } else {
+      /*} else {
         NGPSAPI.submitNonLogin(request)
         .then(response => {
           //commit('SET_LOGIN_ACCOUNT', messages);
@@ -147,9 +148,27 @@ export default {
           console.error(error);
           return reject(error);
         });
-      }
+      }*/
     });
   },
+
+  [CHECK_ATTEMPT]: ({ commit, state, getters }) => {
+
+    return new Promise((resolve, reject) => {
+
+        NGPSAPI.checkUserAttempt( state.token)
+        .then(response => {
+
+          return resolve(response);
+        })
+        .catch(error => {
+  
+          return reject(error);
+        });
+
+    });
+  },
+
 
   [UPLOAD_FILE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {

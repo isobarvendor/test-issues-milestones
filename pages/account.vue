@@ -79,7 +79,7 @@ export default {
       this.$router.push('/login', () => {});
     }
      this.getAccount();
-     this.campaignType=='collect_to_redeem' && this.getListWallet();
+    // this.campaignType=='Experience' && this.getListWallet();
   },
 
 };

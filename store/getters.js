@@ -1,4 +1,6 @@
 import deepClone from 'deep-clone';
+import * as _ from 'lodash';
+
 
 export default {
     getLoginAccount(state) {

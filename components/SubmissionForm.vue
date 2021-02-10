@@ -1,27 +1,27 @@
 <template>
   <div>
-  <div  v-if="!submitted">
+  <div >
     <div class="img-footer" >
             <img src="/img/landing/instruments.png" width="100%" />
     </div>
-   <div class="header">{{campaignTitle}}</div>
+   <div class="header"></div>
   <form class="mechanics" autocomplete="off">
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
-      <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email"/>
+      <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email" readonly/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
-    <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"  v-validate="'required'" placeholder="Phone number"/>
-        <span class="error-message">{{ errors.first('phoneNumber') }}</span>
-    </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
-      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name"/>
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name" readonly/>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
+      <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
+      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"   placeholder="Phone number"/>
+        <span class="error-message">{{ errors.first('phoneNumber') }}</span>
+    </div>
     
-    <div v-if="submissionType=='with_receipt'" class="details receipt">
+    <!--div v-if="submissionType=='with_receipt'" class="details receipt">
       <div v-if="!image">
-       <!--<h2>Upload reciept</h2>-->
+    
        <label for="file-upload" class="custom-file-upload">
        <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload receipt</span>
       </label>
@@ -31,7 +31,7 @@
         <img :src="image" width="100" />
         <button @click="removeImage">Remove image</button>
       </div>
-    </div>
+    </div-->
 
     <br>
 
@@ -58,10 +58,10 @@
         <div class="terms">I accept the <a href="">Privacy Policy</a> of this redemption.</div>
       </div>
     </div>
-   <div class="error-message" v-if="errorMessage" v-html="errorMessage"></div>
+   <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
-      <div class="info-btn" v-if="submissionType=='with_code_submission'" >
+      <div class="info-btn"  >
           <div class="btn-text"> 
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" placeholder="Enter Unique Code"/>
              <span class="error-message">{{ errors.first('code') }}</span>
@@ -84,8 +84,9 @@
   
   </div>
   
-  <div v-else class="thanks">
-    <div v-if="prizeWin.allocationArray">
+  <!--div v-else class="thanks"-->
+
+    <!--div v-if="prizeWin.allocationArray">
         <div class="header">{{thankyouPage.Title}}</div>
         <div>{{  prizeWin.allocationArray[0].amount }}&nbsp;
             {{thankyouPage.Message}}
@@ -96,7 +97,7 @@
     </div>
      <div v-if="prizeWin.participationInserted">
            <div class="header" >{{thankyouSubmission.Ttitle}} </div>
-        <!--div class="header">{{form.name}}</div-->
+      
         <div>
             {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
         </div>
@@ -113,7 +114,7 @@
     </div>
     <div v-else-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status!='claimed'">
       <div class="header" >{{thankyouSubmission.Ttitle}} </div>
-      <!--div class="header">{{form.name}}</div-->
+    
        <div>
           {{prizeWin.instantWinResult.redeemedPrize.redeemDescription}}
        </div>
@@ -121,13 +122,13 @@
           {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
       </div>
     </div>
-  </div>
+  </div-->
   
   </div>
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, GET_ACCOUNT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -146,27 +147,34 @@ export default {
           uploadFile:null
         },
         errorMessage:null,
-        submitted:false,
+        submitted:true,
         image:'',
         amazonImage:'',
         loading:false,
-        prizeWin:null
+        prizeWin:null,
+     
 
     }
   },
   computed:{
-    submissionType(){
+   /* submissionType(){
 
       return this.data.campaignTypes.submissionType;
-    },
+    },*/
     submissionFormFields(){
       return this.data.submissionFormFields;
     },
      campaignType(){
-      return this.data.campaignTypes.mechanicType;
+      return "";
+      //return this.data.campaignTypes.mechanicType;
     },
-     campaignTitle(){
+
+    
+     /*campaignTitle(){
       return this.data.campaignTypes.Title;
+    },*/
+    campaignTitle(){
+       return "Enter your code now";
     },
     thankyouSubmission(){
        return this.cmsData.ThankYouSubmission;
@@ -176,14 +184,114 @@ export default {
     },
     loginInfo(){
       return this.$store.getters.getLoginAccount;
+    },
+    getAttempt(){
+      return this.data.attempts;
     }
   },
   methods:{
+    generateRequest(currentAttempt){
+      if(currentAttempt>=this.getAttempt.length){
+        currentAttempt=this.getAttempt.length-1;
+      }
+
+      let mixcode=this.getAttempt[currentAttempt].mixCode;
+      let ngps=this.getAttempt[currentAttempt].NPGS;
+
+      let request;
+        request={
+                    "name"  : this.form.name,
+                    "email" : this.form.email,
+                    "mechanic" : this.getAttempt[currentAttempt].campaignType,
+                    "programmeId": mixcode[0].ProgrammeID,
+                    "configurationId": ngps[0].configID,
+                    "flowLabel": ngps[0].flowLabel
+        }
+        if(this.loginInfo){
+          //request["userId"]=this.loginInfo.uuid;
+        }
+        if(this.form.phoneNumber){
+         // request["phoneNumber"]=this.form.phoneNumber;
+        }
+        if(this.amazonImage){
+          request['imageurl']=this.amazonImage;
+        }
+        if(this.form.code){
+          request['pin']=this.form.code;
+        }
+        return request;
+    },
+    async uploadFile(){
+      if(this.form.uploadFile){
+                  var formData = new FormData();
+          formData.append("file", this.form.uploadFile);
+            let upload={
+            request:formData,
+            type:'receipts'
+          }
+
+          await this.$store.dispatch(UPLOAD_FILE,upload)
+          .then((response)=>{
+              this.amazonImage=response.data.filePath;
+            })
+            .catch((error) =>{
+                if(error){
+                  this.errorMessage="Upload error please try again";
+                  return false;
+                }
+            });
+        }
+    },
+    async checkcurrentAttempt(){
+      await this.$store.dispatch(CHECK_ATTEMPT)
+      .then((response)=>{
+        this.currentAttempt=response.data.currentAttemptNumber;
+      })
+      .catch((error) =>{
+        if(error){
+          this.currentAttempt=9999999;
+        }
+      });
+    },
+
     async submit() {
       let request = null;
       this.loading=true;
+      let index =0;
+     
+       let result={
+    "burnResult": [
+        {
+            "pincode": "0J6TC2VP5",
+            "programId": "453269",
+            "lotId": "445580",
+            "burned": true
+        }
+    ],
+    "participationId": "1ylazdy9kkxmpa53",
+    "instantWinResult": {
+        "winner": true,
+       "redeemedPrize": {
+            "prizeId": "kkqhy9so",
+            "voucherCode": "Voucher891",
+            "status": "claimed",
+            "expiryDate": 1620018590000,
+            "name": "JOOX VIP PASS",
+            "shortDescription": "http://google.com",
+            "redeemDescription": "http://abcd",
+            "imgUrl": "/img/landing/week 1 prize.png",
+            "barcodeType": 1,
+            "emailSent": false,
+            "emailMessage": "Email could not be sent"
+        }
+    }
+}
+   
+
+
        this.$validator.validateAll().then( async(valid) => {
          if(valid){
+           let currentattempt=0;
            if(!this.form.terms){
              this.loading=false;
              this.errorMessage="Please accept our terms and conditions";
@@ -195,79 +303,57 @@ export default {
              return false;
            }
              this.errorMessage=null;
-            if(this.form.uploadFile){
-              var formData = new FormData();
-              formData.append("file", this.form.uploadFile);
-                let upload={
-                request:formData,
-                type:'receipts'
-              }
-
-               await this.$store.dispatch(UPLOAD_FILE,upload)
-               .then((response)=>{
-                  this.amazonImage=response.data.filePath;
-
-                })
-                .catch((error) =>{
-                    if(error){
-                      this.errorMessage="Upload error please try again";
-                      return false;
+             await this.checkcurrentAttempt();
+             
+            if(this.getAttempt)
+            {
+                await this.uploadFile();
+            //my code for submit
+                request = this.generateRequest(this.currentAttempt);
+               // this.$store.dispatch(SUBMIT_FORM,request)
+                //.then((response)=>{
+                   // this.submitted=true;
+                    this.loading=false;
+                    //let result=response.data;
+                    if( result) {
+                      this.prizeWin = result;
+                       if(this.currentAttempt>=this.getAttempt.length){
+            
+                              index=this.getAttempt.length-1;
+                        }
+                      let attemptData=this.getAttempt[index];
+                      let data={
+                        attemptData,response:result
+                      }
+                        this.$emit('submit',data);
+                      //this.getListWallet();
                     }
-
-                });
-            }
-
-               request={
-                          "name"  : this.form.name,
-                          "email" : this.form.email,
-                          "mechanic" : this.campaignType
-                    }
-               if(this.loginInfo){
-                request["userId"]=this.loginInfo.uuid;
+              //  })
+              //  .catch((error) =>{
+                 /* let upload={
+                    request:this.$store.state.fileUploaded,
+                    type:'receipts'
+                  }
+                  this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);*/
+                 // this.submitted=false
+                  //this.loading=false;
+                // if(error.response){
+                  //  this.errorMessage='Oops something went wrong please try again';
+                  //}
+                /*  if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
+                  if(error.response&&error.response.data.errorCode=='5'){
+                    this.errorMessage='Oops your pin code invalid or already redeemed';
+                  }
+                })*/
+               }else{
+                 this.loading=false;
+                 this.errorMessage='Oops your pin code invalid or already redeemed';
                }
-               if(this.form.phoneNumber){
-                request["phoneNumber"]=this.form.phoneNumber;
-               }
-               if(this.amazonImage){
-                 request['imageurl']=this.amazonImage;
-               }
-               if(this.form.code){
-                 request['pin']=this.form.code;
-               }
-
-      //my code for submit
-
-            this.$store.dispatch(SUBMIT_FORM,request)
-            .then((response)=>{
-                this.submitted=true;
-                this.loading=false;
-                let result=response.data;
-                if( result) {
-                  this.prizeWin = result;
-                  this.campaignType=='collect_to_redeem' && this.$store.state.token && this.getListWallet();
-                }
-            })
-            .catch((error) =>{
-              let upload={
-                request:this.$store.state.fileUploaded,
-                type:'receipts'
-              }
-              this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);
-              this.submitted=false
-              this.loading=false;
-             // if(error.response){
-                this.errorMessage='Oops something went wrong please try again';
-              //}
-               if(error.response && error.response.data.status=='401'){
-                  localStorage.clear();
-                  this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                  this.$store.commit('SET_TOKEN', null);
-                  location.reload();
-               }
-               if(error.response&&error.response.data.errorCode=='5'){
-                this.errorMessage='Oops your pin code invalid or already redeemed';
-               }
-            })
          }else{
             this.loading=false;
          }
@@ -343,6 +429,9 @@ export default {
 <style scoped>
   .error-message{
     color:red;
+  }
+  .error-message-black{
+    color:#000;
   }
   .d-flex {
     display: flex;

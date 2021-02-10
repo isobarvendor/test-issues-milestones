@@ -815,8 +815,8 @@ form {
       border-color: $coke-border-color;
     }
     .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined),a.button  {
-      background:$coke-button-background-color !important;
-      color:$coke-button-font-color !important;
+      background:$coke-button-background-color ;
+      color:$coke-button-font-color;
     }
    
     .campaign-section + .campaign-section:before{
@@ -1116,7 +1116,7 @@ form {
 
 .prize-chance{
   overflow-x: hidden;
-  min-height: 100vh;
+  min-height: 80vh;
   .wrapper{
     margin-top: auto;
     margin-bottom: auto;
@@ -1216,4 +1216,9 @@ form {
 
   }
 
+}
+
+.coke #main.home .prize-chance .wrapper .prize-inner-wrapper .theme--light.v-btn.v-btn--has-bg{
+  background-color: red;
+        color:#fff;
 }

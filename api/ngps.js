@@ -20,6 +20,9 @@ export default {
   getListWallet(token) {
     return axios.get(`${origin}/api/campaign/auth/list-wallet`, setHeader(token))
   },
+  checkUserAttempt(token) {
+    return axios.get(`${origin}/api/user-participators/current-attempt-number`, setHeader(token))
+  },
   redeemPrize(data, token) {
     return axios.post(`${origin}/api/campaign/auth/redeem-prize`, data, setHeader(token))
   },

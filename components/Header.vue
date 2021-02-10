@@ -39,7 +39,7 @@
                 <div class="wallet-desktop" >
                     <div class="wallet-swiper"  >
                         <div class="wallet-swiper-item">
-                        <img :src="CMSContent[0].SectionMenu.Image[0].url" />
+                        <img :src="CMSContent[0].SectionMenu.Image.length>0 ? CMSContent[0].SectionMenu.Image[0].url:'/img/landing/banner_mobile.png'" />
                         </div>
                         <div class="description bg">
                             <div class="name">{{CMSContent[0].SectionMenu.Description}}</div>
@@ -49,9 +49,9 @@
                 </div>
 
                 <div class="body-options" >
-                      <div class="language-container"> <a href='#' :class="{ active : isEnglish}" @click="changeLanguage('en')">English</a> | <a :class="{ active : isIndo }" href='#' @click="changeLanguage('id')">Indonesia</a>
-        </div>
-                    <div class="img-text">
+                      <!--div class="language-container"> <a href='#' :class="{ active : isEnglish}" @click="changeLanguage('en')">English</a> | <a :class="{ active : isIndo }" href='#' @click="changeLanguage('id')">Indonesia</a>
+        </div-->
+                    <!--div class="img-text">
                         <img src="/img/icons/home-icon.png"  />
                         <div>
                             <a href="/">{{CMSContent[0].SectionMenu.Menu[0].Link}}</a>
@@ -80,12 +80,29 @@
                         <div>
                             <a data-nav="help" @click="clickNav">{{CMSContent[0].SectionMenu.Menu[4].Link}}</a>
                         </div>
+                    </div-->
+                    <div class="img-text">
+                        <img src="/img/icons/home-icon.png"  />
+                        <div>
+                            <a href="/">Home</a>
+                        </div>
+                    </div>
+                       <div class="img-text">
+                        <img src="/img/icons/help.png"/>
+                        <div>
+                            <a data-nav="help" @click="clickNav">FAQ</a>
+                        </div>
                     </div>
                 </div>
-                <div class="tnc-container">
+                <!--div class="tnc-container">
                     <p><a @click="clickPrivacy" v-if="CMSContent"> {{CMSContent[0].SectionMenu.Menu[5].Link}} </a></p>
                     <p><a @click="clickTerms" v-if="CMSContent"> {{ CMSContent[0].SectionMenu.Menu[6].Link}}</a></p>
                     <p v-if="logged&&CMSContent"  class="logout" @click="logout" >{{CMSContent[0].SectionMenu.Menu[7].Link}}</p>
+                </div-->
+                <div class="tnc-container">
+                    <p><a @click="clickPrivacy" v-if="CMSContent"> Privacy</a></p>
+                    <p><a @click="clickTerms" v-if="CMSContent"> Terms</a></p>
+                    <p v-if="logged&&CMSContent"  class="logout" @click="logout" >logout</p>
                 </div>
 
             </div>
@@ -117,14 +134,14 @@ export default {
     },
     computed:{
 
-        showProfile(){
+        /*showProfile(){
             if(this.$route.name =='register'||this.$route.name =='login'||(this.$store.getters.getCMSConfig && this.$store.getters.getCMSConfig.campaignTypes.authentication !='register')){
                 return false
             }
             else{
                 return true;
             }
-        },
+        },*/
         showMenu(){
             if(this.$route.name =='register'||this.$route.name =='rewardDetail'||this.$route.name =='login'||this.$route.name =='winners'){
                 return false

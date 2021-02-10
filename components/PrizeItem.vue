@@ -9,7 +9,9 @@
    <div class="prize-content">
        <v-row no-gutters v-if="prize.name">
            <v-col cols="4">
-                <img :src="prize.image" width="100%" />
+                <div class="image-placeholder">
+                    <img :src="prize.image" width="100%"   />
+                </div>
            </v-col>
            <v-col cols="8" class="prize-desc-wrapper">
                <div class="prize-background">
@@ -26,7 +28,9 @@
        </v-row>
          <v-row no-gutters v-if="!prize.name&&themes==2">
            <v-col cols="12">
-                <img :src="prize.image" width="200px" />
+                
+                    <img :src="prize.image" width="200px" />
+              
            </v-col>
            
        </v-row>
@@ -36,9 +40,10 @@
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
    <div class="prize-button-area center">
-       <v-btn v-for="(btn,index) in prize.button" :key="index" v-html="btn.text"> 
-            
-       </v-btn>
+       <a :href="btn.link" target="_blank"  v-for="(btn,index) in prize.button" :key="index" >
+        <v-btn  v-html="btn.text"> 
+        </v-btn>
+       </a>
    </div>
  </div>
 </template>
@@ -65,5 +70,17 @@ export default {
 </script>
 
 <style>
+.prize-button-area a{
+    text-decoration: none;
+}
+.image-placeholder{
+    min-height: 300px;
+}
+     @media only screen and (max-width: 600px) {
+    
+         .image-placeholder{
+    min-height: 100px;
+}
+     }
 
 </style>
