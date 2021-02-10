@@ -336,7 +336,7 @@ footer{
   margin-top: 2em;
 }
 
-.campaign-section:last-child {
+.campaign-section.submission-section{
   padding-bottom: 280px !important;
   @media only screen and (max-width: 767px) {
     padding-bottom: 200px !important;

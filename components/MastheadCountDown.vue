@@ -123,8 +123,8 @@ export default {
   font-size:49px;
 }
 .number-area{
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
   padding-right: 10px;
   padding-left: 10px;
   padding-top: 5px;
