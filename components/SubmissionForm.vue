@@ -195,52 +195,37 @@ export default {
         currentAttempt=this.getAttempt.length-1;
       }
 
-      let mixcode=this.getAttempt[currentAttempt].mixCode;
+      let mixCode=this.getAttempt[currentAttempt].mixCode;
       let ngps=this.getAttempt[currentAttempt].NPGS;
-
+      let programId=null;
+      for (let a=0;a<mixCode.length;a++) {
+       // mixCode
+       if(mixCode[a].characterLimit==this.form.code.length&&mixCode[a].codeInitial==this.form.code.charAt(0)){
+          programId=mixCode[a].ProgrammeID;
+        }
+      }
+      if(!programId){
+        return false;
+      }
       let request;
         request={
                     "name"  : this.form.name,
                     "email" : this.form.email,
                     "mechanic" : this.getAttempt[currentAttempt].campaignType,
-                    "programmeId": mixcode[0].ProgrammeID,
+                    "programmeId": programId,
                     "configurationId": ngps[0].configID,
                     "flowLabel": ngps[0].flowLabel
         }
         if(this.loginInfo){
-          //request["userId"]=this.loginInfo.uuid;
+          request["userId"]=this.loginInfo.uuid;
         }
         if(this.form.phoneNumber){
-         // request["phoneNumber"]=this.form.phoneNumber;
-        }
-        if(this.amazonImage){
-          request['imageurl']=this.amazonImage;
+          request["phone"]=this.form.phoneNumber;
         }
         if(this.form.code){
           request['pin']=this.form.code;
         }
         return request;
-    },
-    async uploadFile(){
-      if(this.form.uploadFile){
-                  var formData = new FormData();
-          formData.append("file", this.form.uploadFile);
-            let upload={
-            request:formData,
-            type:'receipts'
-          }
-
-          await this.$store.dispatch(UPLOAD_FILE,upload)
-          .then((response)=>{
-              this.amazonImage=response.data.filePath;
-            })
-            .catch((error) =>{
-                if(error){
-                  this.errorMessage="Upload error please try again";
-                  return false;
-                }
-            });
-        }
     },
     async checkcurrentAttempt(){
       await this.$store.dispatch(CHECK_ATTEMPT)
@@ -259,7 +244,7 @@ export default {
       this.loading=true;
       let index =0;
      
-       let result={
+       /*let result={
     "burnResult": [
         {
             "pincode": "0J6TC2VP5",
@@ -285,7 +270,7 @@ export default {
             "emailMessage": "Email could not be sent"
         }
     }
-}
+}*/
    
 
 
@@ -307,14 +292,19 @@ export default {
              
             if(this.getAttempt)
             {
-                await this.uploadFile();
+                //await this.uploadFile();
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
-               // this.$store.dispatch(SUBMIT_FORM,request)
-                //.then((response)=>{
+                if(!request){
+                  this.loading=false;
+                  this.errorMessage='Oops your pin code invalid or already redeemed';
+                  return false;
+                }
+                this.$store.dispatch(SUBMIT_FORM,request)
+                .then((response)=>{
                    // this.submitted=true;
                     this.loading=false;
-                    //let result=response.data;
+                    let result=response.data;
                     if( result) {
                       this.prizeWin = result;
                        if(this.currentAttempt>=this.getAttempt.length){
@@ -326,21 +316,15 @@ export default {
                         attemptData,response:result
                       }
                         this.$emit('submit',data);
-                      //this.getListWallet();
+                   
                     }
-              //  })
-              //  .catch((error) =>{
-                 /* let upload={
-                    request:this.$store.state.fileUploaded,
-                    type:'receipts'
+                })
+                .catch((error) =>{
+                  this.loading=false;
+                  if(error.response){
+                    this.errorMessage='Oops something went wrong please try again';
                   }
-                  this.$store.state.fileUploaded && this.$store.dispatch(DELETE_FILE,upload);*/
-                 // this.submitted=false
-                  //this.loading=false;
-                // if(error.response){
-                  //  this.errorMessage='Oops something went wrong please try again';
-                  //}
-                /*  if(error.response && error.response.data.status=='401'){
+                 if(error.response && error.response.data.status=='401'){
                       localStorage.clear();
                       this.$store.commit('SET_LOGIN_ACCOUNT', null);
                       this.$store.commit('SET_TOKEN', null);
@@ -349,7 +333,7 @@ export default {
                   if(error.response&&error.response.data.errorCode=='5'){
                     this.errorMessage='Oops your pin code invalid or already redeemed';
                   }
-                })*/
+                })
                }else{
                  this.loading=false;
                  this.errorMessage='Oops your pin code invalid or already redeemed';
@@ -369,39 +353,7 @@ export default {
 
 
     },
-     onFileChange(e) {
-      let files = e.target.files || e.dataTransfer.files;
-      if (!files.length)
-        return;
-      let FileSize = files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 2) {
-           this.errorMessage ="Please upload file not more than 2 MB"
-           return;
-        }
-      let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
-      let filePath = e.target.value;
-      if(!allowedExtensions.exec(filePath)){
-         this.errorMessage ="Please upload image or file"
-           return;
-      }
-      this.form.uploadFile = files[0];
-      this.createImage(files[0]);
-       this.errorMessage = null;
-    },
-    createImage(file) {
-      var image = new Image();
-      var reader = new FileReader();
-      var vm = this;
 
-      reader.onload = (e) => {
-        vm.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    },
-    removeImage: function (e) {
-      this.image = '';
-
-    },
         getListWallet(){
           this.$store.dispatch(GET_LIST_WALLET)
                 .then((response)=>{

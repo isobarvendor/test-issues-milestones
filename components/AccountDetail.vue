@@ -15,10 +15,10 @@
           ></v-text-field>
         </div>
      </div>
-    <div class="profile-icon">
+    <!--div class="profile-icon">
         <img :src="login.imageUrl" v-if="login.imageUrl"/>
         <img src="/img/icons/pro.png" v-else/>
-    </div>
+    </div-->
     </div>
     <!--<div class="date-container">
         <p>Date of birth</p>
