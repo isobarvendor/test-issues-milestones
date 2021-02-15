@@ -4,7 +4,7 @@
                    <img src="/img/landing/Dots.png" width="110%"/>
                </div>
    <div class="prize-title" v-html="prize.text">
-     
+
    </div>
    <div class="prize-content">
        <v-row no-gutters v-if="prize.name">
@@ -28,11 +28,11 @@
        </v-row>
          <v-row no-gutters v-if="!prize.name&&themes==2">
            <v-col cols="12">
-                
+
                     <img :src="prize.image" width="200px" />
-              
+
            </v-col>
-           
+
        </v-row>
    </div>
    <div class="prize-note" v-html="prize.note" v-if="themes==1">
@@ -41,10 +41,13 @@
    </div>
    <div class="prize-button-area center">
        <a :href="btn.link" target="_blank"  v-for="(btn,index) in prize.button" :key="index" >
-        <v-btn  v-html="btn.text"> 
+        <v-btn  v-html="btn.text">
         </v-btn>
        </a>
    </div>
+    <div class="prize-button-area center" style="margin-top:40px;">
+          <v-btn @click="playAgain">Play again</v-btn>
+    </div>
  </div>
 </template>
 
@@ -60,11 +63,17 @@ export default {
       }
     },
     computed:{
-      
+
     },
     mounted(){
 
 
+    },
+    methods:{
+      playAgain(){
+        console.log('tesplay');
+        this.$emit("playAgain");
+      }
     }
 }
 </script>
@@ -77,7 +86,7 @@ export default {
     min-height: 300px;
 }
      @media only screen and (max-width: 600px) {
-    
+
          .image-placeholder{
     min-height: 100px;
 }

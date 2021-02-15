@@ -13,7 +13,7 @@
   <div  v-else >
   <div class="container  prize-chance black-red-border">
       <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" />
+      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"  />
       </div>
     </div>
     <div class="container prize-chance black-background joox-section" v-if="prize[0].havejoox"  >
@@ -45,11 +45,11 @@ export default {
       },
   data() {
     return {
-         prize:null,
+        prize:null,
         submitted:false,
         listenNowLink:''
     }
-  
+
   },
     computed:{
     campaignType(){
@@ -69,6 +69,9 @@ export default {
   },
 
   methods: {
+    playAgain(){
+      this.submitted=false;
+    },
     submit(data){
       this.submitted=true;
       let prizewin=data.response;
@@ -93,7 +96,7 @@ export default {
       this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
 
 
-      
+
     }
   },
 }
