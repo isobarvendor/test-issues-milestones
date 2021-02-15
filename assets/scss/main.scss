@@ -148,7 +148,7 @@ footer{
   @media only screen and (max-width: 767px) {
     bottom: -15px;
   }
- 
+
 }
 
 .nav{
@@ -329,7 +329,7 @@ footer{
 
 .campaign-section{
   align-items: center;
-  
+
 }
 
 .campaign-section:nth-child(2) {
@@ -376,8 +376,8 @@ footer{
   .prize-item-content{
     padding: 10px;
     background-color:$secondary-color;
-  } 
- 
+  }
+
   .this-week-prize{
     position: absolute;
     left: calc(50% - 100px);
@@ -395,7 +395,7 @@ footer{
         font-size: 12px;
       }
     }
-    
+
   }
 
   & img{
@@ -818,7 +818,7 @@ form {
       background:$coke-button-background-color ;
       color:$coke-button-font-color;
     }
-   
+
     .campaign-section + .campaign-section:before{
       background-color:$coke-border-color;
     }
@@ -918,7 +918,7 @@ form {
 }
 
 .campaign-period-section{
- 
+
   padding-bottom: 80px !important;
   .tagline{
     font-size: 94px;
@@ -932,7 +932,7 @@ form {
   .logo{
     width: 150px;
   }
-  
+
   .desc-container{
     padding-top: 20px !important;
     padding-right: 20px !important;
@@ -969,7 +969,7 @@ form {
         }
     }
   }
- 
+
 }
 
   @media only screen and (max-width: 600px) {
@@ -977,9 +977,9 @@ form {
       border: solid 10px #ffffff;
       padding-top: 40px !important;
     }
-    
+
     .campaign-period-section{
-    
+
       padding-bottom: 20px !important;
       .tagline{
         font-size: 50px;
@@ -1013,16 +1013,16 @@ form {
               padding-right: 0px;
               padding-left: 0px;
             }
-          
+
         }
       }
     }
-   
+
   }
   .center-layout{
     justify-content: center;
     align-items: center;
-    
+
   }
 
   //prize-section
@@ -1039,7 +1039,7 @@ form {
     img{
       width: 100%;
     }
-  
+
 }
   .joox-container{
     z-index: 1;
@@ -1050,7 +1050,7 @@ form {
       @media only screen and (max-width: 600px) {
         padding: 10px;
       }
-      
+
       margin-top: 30px;
       margin-bottom: 40px;
       img{
@@ -1077,13 +1077,13 @@ form {
 
 .black-background{
   background-color: #1d1d1b;
- 
+
 }
 
 .myrewards{
   .wrapper{
     width: 100%;
-    max-width:500px ;
+    max-width:600px ;
 
     margin-left: auto;
     margin-right:auto;
@@ -1099,7 +1099,7 @@ form {
       font-size: 16px;
     }
      z-index: 1;
-     
+
      text-align: center;
  }
   .background-image{
@@ -1110,7 +1110,8 @@ form {
   .rewards-area{
     justify-content: center;
     align-items: center;
-    max-width: 400px;
+    width: 100%;
+    max-width: 300px;
 }
 }
 
@@ -1152,17 +1153,17 @@ form {
         padding-bottom: 30px;
 
       }
-      
+
       .prize-content{
         min-height:100px;
         margin-top: 30px;
         overflow: visible;
         z-index: 1;
         position: relative;
-       
+
         .prize-desc-wrapper{
           justify-content: center;
-          align-items: center; 
+          align-items: center;
           margin: auto;
           .prize-background{
             position: absolute;
@@ -1177,7 +1178,7 @@ form {
             margin: auto;
             z-index: 1;
             .desc-text{
-             
+
               margin-right: 40px;
               @media only screen and (max-width: 700px) {
                 margin-right: 10px;
@@ -1193,11 +1194,11 @@ form {
                 font-weight: bold;
               }
             }
-        
+
           }
-         
+
         }
-        
+
       }
       .prize-note{
         margin-top: 30px;
@@ -1211,14 +1212,15 @@ form {
       }
 
     }
-   
-  
+
+
 
   }
 
 }
 
-.coke #main.home .prize-chance .wrapper .prize-inner-wrapper .theme--light.v-btn.v-btn--has-bg{
-  background-color: red;
-        color:#fff;
+.coke #main.home .prize-chance .wrapper .prize-inner-wrapper .prize-button-area .theme--light.v-btn{
+  background-color: red !important;
+        color:#fff !important;
+        padding: 30px;
 }

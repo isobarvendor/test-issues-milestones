@@ -12,6 +12,6 @@ export default () => ({
     redeemPrize:null,
     listWinners:null,
     listWallet:null,
-    isCampaignStarted:true
+    isCampaignStarted:false
 
 });

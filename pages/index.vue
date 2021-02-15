@@ -3,9 +3,9 @@
     <div class="wrapper" >
       <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
       <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
-    
+
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
-      <Prizes v-if="configData && configData.ExclusivePrizes && configData.ExclusivePrizes.ExclusivePrizes" :data="CMSContent[0].exclusivePrizes" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
+      <Prizes v-if="configData && listPrizesData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
       <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
@@ -16,7 +16,7 @@
 </template>
 
 <script >
-import Masthead from '../components/Masthead' 
+import Masthead from '../components/Masthead'
 
 import MastheadVideo from '../components/MastheadVideo'
 import CampaignPeriod from '../components/CampaignPeriod'
@@ -25,7 +25,7 @@ import HowItWorks from '../components/HowItWorks'
 import SubmissionMechanics from '../components/SubmissionMechanics'
 import Footer from '../components/Footer'
 import deepClone from 'deep-clone'
-import { GET_ACCOUNT,GET_LIST_WALLET } from '@/store/action_types';
+import { GET_ACCOUNT,GET_LIST_WALLET, GET_LIST_PRIZE} from '@/store/action_types';
 
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
@@ -65,6 +65,7 @@ export default {
 
   },
   mounted(){
+    this.getListPrize();
     if(this.$store.state.token){
          this.getAccount();
         // this.campaignType=='Experience' && this.getListWallet();
@@ -96,7 +97,17 @@ export default {
 
 
      },
-     
+        getListPrize(){
+          this.$store.dispatch(GET_LIST_PRIZE)
+                .then((response)=>{
+                })
+                .catch((error) =>{
+
+                })
+
+
+     },
+
 
 
   },
@@ -110,6 +121,9 @@ export default {
     campaignType(){
       return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
     },
+      listPrizesData(){
+      return this.$store.getters.getListPrize
+    }
   },
 
 }

@@ -13,7 +13,7 @@
                     <div class="user-coins">{{listWallet ? listWallet.walletStatus[0].amount : 0 }}</div>
                     <div>coins</div>
                 </div>
-          
+
             </template>
         </div>
     </a-->
@@ -85,6 +85,12 @@
                         <img src="/img/icons/home-icon.png"  />
                         <div>
                             <a href="/">Home</a>
+                        </div>
+                    </div>
+                       <div class="img-text" v-if="logged">
+                        <img src="/img/icons/wallet.png"/>
+                        <div>
+                            <a data-nav="myrewards" @click="clickNav">My Rewards</a>
                         </div>
                     </div>
                        <div class="img-text">

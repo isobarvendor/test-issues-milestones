@@ -20,8 +20,9 @@
 
 <script >
 import MyRewardItem from '../components/MyRewardItem'
-
-
+import * as _ from 'lodash';
+import moment from "moment";
+import {  GET_MY_PRIZE} from '@/store/action_types';
 
 export default {
   name:"myrewards",
@@ -31,9 +32,7 @@ export default {
   data(){
     return{
         rewards:[
-            {id: 1 , image:"/img/landing/week 1 prize.png", title:"prize 1", audio : null, date:'02/02/2021 - 16:02' },
-             {id: 2 , image:"/img/landing/week 2 prize.png", title:"prize 2", audio : null, date:'02/02/2021 - 16:02' },
-              {id: 3 , image:"/img/landing/week 3 prize.png", title:"prize 3", audio :"/img/sample.mp3", date:'02/02/2021 - 16:02' },
+
         ]
     }
   },
@@ -61,12 +60,61 @@ export default {
 
   },
   mounted(){
-  
+    this.getMyPrize();
   },
 
   methods:{
- 
+    getMyPrize(){
+     /* let prize = [{ "prizeId": "4064541k75yopnc",
 
+            "voucher": "testVoucher12",
+
+            "name": "League of Legends RP",
+
+            "shortDescription": "<p>100 Riot Point hediye kazandın!</p>",
+
+            "redeemDescription": "<p>Test-Kapak altındaki kodu Daha Daha’ya girerek League of Legends kodunu al, almış olduğun kodu League of Legends oyununda gir, hediyeni kazan! League of Legends 100RP hediyesi, Türkiye server’larında geçerlidir ve bir günde en fazla 3 kod girilebilmektedir.</p>",
+
+            "redemptionLink": "https://www.dahadaha.com",
+
+            "imgUrl": "/img/landing/week 1 prize.png",
+
+            "barcodeType": 0,
+
+            "voucherStatus": "claimed",
+
+            "prizeName": "League of Legends RP",
+
+            "description": "<p>League of Legends 100RP hediye kodunu hemen kullanabilirsin!</p>",
+
+            "claimTimestamp": 1584015897380,
+
+            "expiryDate": 1584264846000
+    }]*/
+
+          this.$store.dispatch(GET_MY_PRIZE)
+          .then((response)=>{
+
+             // console.log(response);
+
+            this.rewards = _.map(response.data.prizeList,(o,index)=>{
+                return {
+                  id:index,
+                  title:o.name,
+                  date:moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
+                  link:o.redeemDescription,
+                  image:o.imgUrl,
+                  code:o.voucherCode,
+                }
+            })
+         })
+       .catch((error) =>{
+         console.log(error)
+         localStorage.clear();
+         location.assign("/")
+      })
+
+    }
 
   },
   computed: {
@@ -76,7 +124,7 @@ export default {
 }
 </script>
 <style scoped>
- 
 
-    
+
+
 </style>

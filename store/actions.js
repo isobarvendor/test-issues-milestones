@@ -14,7 +14,8 @@ import {
   FETCH_CMS_DATA,
   REDEEM_PRIZE,
   GET_LIST_WINNERS,
-  CHECK_ATTEMPT
+  CHECK_ATTEMPT,
+  GET_MY_PRIZE
 } from './action_types';
 
 
@@ -109,6 +110,21 @@ export default {
         });
     });
   },
+  [GET_MY_PRIZE]: ({ commit, state, getters }) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+
+        NGPSAPI.getMyPrize(state.token)
+        .then(response => {
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
+    });
+  },
+
   [GET_LIST_WINNERS]: ({ commit, state, getters }) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
@@ -162,7 +178,7 @@ export default {
           return resolve(response);
         })
         .catch(error => {
-  
+
           return reject(error);
         });
 

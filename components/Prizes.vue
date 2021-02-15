@@ -19,21 +19,15 @@
     <div class="container prize-swiper-container">
       <swiper class="swiper prize-swiper" :options="swiperOption">
         <swiper-slide
-          v-for="(item, index) in data.exclusizePrizesSection"
+           v-for="(item, index) in ngpsPrize.prizeList"
           :key="'prize'+index"
           class="prize-item"
         >
           <div class="prize-item-content">
-            <div class="this-week-prize" v-if="index==0"><p>THIS WEEK'S PRIZE</p></div>
-            <img
-              v-if="$mq == 'sm'"
-              :src="item.image.length>0 ? item.image[0].url : '/img/landing/week 1 prize.png'"
-            />
-            <img v-else :src="item.image.length>0? item.image[0].url : '/img/landing/week 1 prize.png'" />
+            <img :src="item.imgUrl ? item.imgUrl : '/img/landing/week 1 prize.png'" />
             <div class="prize-description">
-              <h3>Week {{index+1}}</h3>
-              {{item.title}}
-              
+              <h3 v-html="item.shortDescription"></h3>
+              {{item.name}}
             </div>
           </div>
         </swiper-slide>
@@ -84,7 +78,8 @@ export default {
   props: {
     data: null,
     winners: null,
-    prize:null
+    prize:null,
+    ngpsPrize:null
   },
   beforeMount() {},
 };
