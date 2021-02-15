@@ -18,10 +18,10 @@
       <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"   placeholder="Phone number"/>
         <span class="error-message">{{ errors.first('phoneNumber') }}</span>
     </div>
-    
+
     <!--div v-if="submissionType=='with_receipt'" class="details receipt">
       <div v-if="!image">
-    
+
        <label for="file-upload" class="custom-file-upload">
        <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload receipt</span>
       </label>
@@ -62,7 +62,7 @@
     <div class="btn-area">
 
       <div class="info-btn"  >
-          <div class="btn-text"> 
+          <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" placeholder="Enter Unique Code"/>
              <span class="error-message">{{ errors.first('code') }}</span>
           </div>
@@ -71,7 +71,7 @@
             <span class="tooltiptext">Enter the code found under the cap/tab of your Coca Cola purchase here</span>
           </div>
       </div>
-     
+
       <v-progress-circular
         :width="2"
         color="white"
@@ -81,9 +81,9 @@
       <v-btn class="get-code"  dark v-else  v-on:click="submit()">Collect your prize</v-btn>
     </div>
   </form>
-  
+
   </div>
-  
+
   <!--div v-else class="thanks"-->
 
     <!--div v-if="prizeWin.allocationArray">
@@ -97,7 +97,7 @@
     </div>
      <div v-if="prizeWin.participationInserted">
            <div class="header" >{{thankyouSubmission.Ttitle}} </div>
-      
+
         <div>
             {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
         </div>
@@ -114,7 +114,7 @@
     </div>
     <div v-else-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status!='claimed'">
       <div class="header" >{{thankyouSubmission.Ttitle}} </div>
-    
+
        <div>
           {{prizeWin.instantWinResult.redeemedPrize.redeemDescription}}
        </div>
@@ -123,7 +123,7 @@
       </div>
     </div>
   </div-->
-  
+
   </div>
 </template>
 
@@ -152,7 +152,7 @@ export default {
         amazonImage:'',
         loading:false,
         prizeWin:null,
-     
+
 
     }
   },
@@ -169,7 +169,7 @@ export default {
       //return this.data.campaignTypes.mechanicType;
     },
 
-    
+
      /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
@@ -217,7 +217,7 @@ export default {
                     "flowLabel": ngps[0].flowLabel
         }
         if(this.loginInfo){
-          request["userId"]=this.loginInfo.uuid;
+          //request["userId"]=this.loginInfo.uuid;
         }
         if(this.form.phoneNumber){
           request["phone"]=this.form.phoneNumber;
@@ -243,7 +243,7 @@ export default {
       let request = null;
       this.loading=true;
       let index =0;
-     
+
        /*let result={
     "burnResult": [
         {
@@ -271,7 +271,7 @@ export default {
         }
     }
 }*/
-   
+
 
 
        this.$validator.validateAll().then( async(valid) => {
@@ -289,10 +289,10 @@ export default {
            }
              this.errorMessage=null;
              await this.checkcurrentAttempt();
-             
+
             if(this.getAttempt)
             {
-                //await this.uploadFile();
+
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
                 if(!request){
@@ -308,7 +308,7 @@ export default {
                     if( result) {
                       this.prizeWin = result;
                        if(this.currentAttempt>=this.getAttempt.length){
-            
+
                               index=this.getAttempt.length-1;
                         }
                       let attemptData=this.getAttempt[index];
@@ -316,14 +316,18 @@ export default {
                         attemptData,response:result
                       }
                         this.$emit('submit',data);
-                   
+
                     }
                 })
                 .catch((error) =>{
                   this.loading=false;
-                  if(error.response){
+                    if(error.response){
                     this.errorMessage='Oops something went wrong please try again';
                   }
+                   if(error.response && error.response.data.detail){
+                     this.errorMessage='Oops your pin code invalid or already redeemed';
+                   }
+
                  if(error.response && error.response.data.status=='401'){
                       localStorage.clear();
                       this.$store.commit('SET_LOGIN_ACCOUNT', null);
@@ -449,9 +453,9 @@ form.mechanics{
    text-decoration: underline;
  }
 .tooltip {
- 
+
   display: inline-block;
-  
+
 }
 @media only screen and (min-width: 769px) {
   .tooltip .tooltiptext {
@@ -484,7 +488,7 @@ form.mechanics{
   visibility: visible;
 }
 @media only screen and (max-width: 768px) {
- 
+
 .tooltip .tooltiptext {
   visibility: hidden;
    width: 280px;
