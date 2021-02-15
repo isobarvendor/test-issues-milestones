@@ -1,8 +1,8 @@
 <template>
   <div id="main" class="home" v-if="CMSContent" >
     <div class="wrapper" >
-      <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
-      <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
+      <MastheadVideo :data="CMSContent[0]" :isCountDown="true" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
+      <Masthead :data="CMSContent[0]" :isCountDown="true" v-else/>
 
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
       <Prizes v-if="configData && listPrizesData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
