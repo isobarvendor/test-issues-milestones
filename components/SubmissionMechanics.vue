@@ -16,7 +16,7 @@
       <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize"  />
       </div>
     </div>
-    <div class="container prize-chance black-background joox-section" v-if="prize[0].havejoox"  >
+    <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize[0].havejoox"  >
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
     </div>
@@ -165,7 +165,7 @@ export default {
       let attemptData =data.attemptData;
       this.submitNumber=3;
       if(this.lotID!==453275&&this.lotID!==453273){
-        this.themes=2;
+        //this.themes=2;
       }
       let prize =[
           {
