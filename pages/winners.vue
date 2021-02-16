@@ -1,7 +1,44 @@
 <template>
   <div v-if="data" id="main" class="winner-detail">
     <div class="wrapper">
-        <WinnerDetails :data="data ? data[0].luckyWinner : null" :winners="winners" />
+         <v-row no-gutters>
+
+      <v-col
+        cols="12"
+        sm="12"
+        md="4"
+      >
+
+          <v-row no-gutters class="logo-title">
+               <v-col
+                  cols="4"
+                  md="12"
+                  sm="4"
+                >
+
+                  <img src="/img/landing/COKE STUDIO.png" class="logo"  />
+                </v-col>
+
+                <v-col
+                  cols="8"
+                  md="12"
+                  sm="8"
+                  class="participate-text-container"
+                >
+                 <div class="tagline">{{howData.title}}</div>
+                </v-col>
+          </v-row>
+
+      </v-col>
+      <v-col
+        cols="12"
+        sm="12"
+        md="8"
+        class="desc-container"
+      >
+
+      </v-col>
+    </v-row>
     </div>
   </div>
 </template>
