@@ -200,7 +200,7 @@ export default {
       let programId=null;
       for (let a=0;a<mixCode.length;a++) {
        // mixCode
-       if(mixCode[a].characterLimit==this.form.code.length&&mixCode[a].codeInitial==this.form.code.charAt(0)){
+       if(mixCode[a].characterLimit==this.form.code.length&&(mixCode[a].codeInitial==""||mixCode[a].codeInitial==null||mixCode[a].codeInitial==undefined||mixCode[a].codeInitial==this.form.code.charAt(0))){
           programId=mixCode[a].ProgrammeID;
         }
       }

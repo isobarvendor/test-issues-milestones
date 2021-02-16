@@ -1,1 +1,1 @@
-export const origin = "https://th-uplift.aircovery.com";
+export const origin = "";
