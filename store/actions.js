@@ -15,7 +15,8 @@ import {
   REDEEM_PRIZE,
   GET_LIST_WINNERS,
   CHECK_ATTEMPT,
-  GET_MY_PRIZE
+  GET_MY_PRIZE,
+  CHECK_MIXCODE
 } from './action_types';
 
 
@@ -115,6 +116,20 @@ export default {
       const moduleState = state;
 
         NGPSAPI.getMyPrize(state.token)
+        .then(response => {
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
+    });
+  },
+  [CHECK_MIXCODE]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+
+        NGPSAPI.checkMixCode(state.token,data)
         .then(response => {
           return resolve(response);
         })

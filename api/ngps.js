@@ -26,6 +26,10 @@ export default {
   checkUserAttempt(token) {
     return axios.get(`${origin}/api/user-participators/current-attempt-number`, setHeader(token))
   },
+  checkMixCode(token,data) {
+    return axios.get(`${origin}/api/mix-codes/verify/${data.programmeId}/${data.pin}`, setHeader(token))
+  },
+
   redeemPrize(data, token) {
     return axios.post(`${origin}/api/campaign/auth/redeem-prize`, data, setHeader(token))
   },

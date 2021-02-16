@@ -13,7 +13,7 @@
   <div  v-else >
   <div class="container  prize-chance black-red-border">
       <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"  />
+      <PrizeItem :prize="prize[0]" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize"  />
       </div>
     </div>
     <div class="container prize-chance black-background joox-section" v-if="prize[0].havejoox"  >
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import {SUBMIT_FORM } from '@/store/action_types';
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
 export default {
@@ -47,7 +48,12 @@ export default {
     return {
         prize:null,
         submitted:false,
-        listenNowLink:''
+        submitNumber:0,
+        listenNowLink:'',
+        request:{},
+        attemptData:null,
+        lotID:null,
+        themes:1
     }
 
   },
@@ -72,10 +78,65 @@ export default {
     playAgain(){
       this.submitted=false;
     },
-    submit(data){
+    submitPrize(){
+      let request= this.request;
+      let data = {
+        attemptData:this.attemptData,
+        request:this.request
+      }
+      if(this.submitNumber==1){
+
+      }
+       this.$store.dispatch(SUBMIT_FORM,request)
+      .then((response)=>{
+         if(this.submitNumber==1){
+           data.response=response.data
+           this.submitOne(data);
+         }
+          if(this.submitNumber==2){
+           data.response=response.data
+           this.submitTwo(data);
+         }
+
+      }).catch((err)=>{
+
+      })
+
+    },
+     submit(data){
+      // console.log(data);
+      this.submitted=true;
+      let response=data.response;
+      let lotID=response.lot.lotId;
+      this.attemptData =data.attemptData;
+      this.submitNumber=1;
+      this.lotID=lotID;
+      this.request=data.request;
+      let prize = [
+         {
+            text : "<h2>You have entered the Entry Code from Coca-Cola 300ml PET bottle and Coca Cola 235 ml can, you will have 2 lucky draw opportunities</h2>"
+            ,name:null
+            ,note:null
+            ,image:null
+            ,havejoox:false
+            ,button:[{
+                text:"Start redeeming",
+                type:"submission"
+            }],
+            code:null,
+            subName:null,
+            isPlayAgain:false
+           },
+      ];
+      this.prize=prize;
+
+
+    },
+    submitOne(data){
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
+      this.submitNumber=2;
       let prize =[
           {
               text : attemptData.FormHeading.thankYouMessage,
@@ -84,7 +145,7 @@ export default {
               note : null
               ,button:attemptData.campaignType == 'InstantWin' ? [{
                   text:"Redeem Prize",
-                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?a="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
               }]:[]
               ,havejoox:attemptData.FormHeading.Prize,
               code: attemptData.campaignType == 'InstantWin' ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
@@ -96,6 +157,34 @@ export default {
       this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
 
 
+
+    },
+     submitTwo(data){
+      this.submitted=true;
+      let prizewin=data.response;
+      let attemptData =data.attemptData;
+      this.submitNumber=3;
+      if(this.lotID!==453275&&this.lotID!==453273){
+        this.themes=2;
+      }
+      let prize =[
+          {
+              text : attemptData.FormHeading.thankYouMessage,
+              name : prizewin.instantWinResult.redeemedPrize.name,
+              image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
+              note : null
+              ,button:attemptData.campaignType == 'InstantWin' ? [{
+                  text:"Redeem Prize",
+                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
+              }]:[]
+              ,havejoox:false,
+              code: attemptData.campaignType == 'InstantWin' ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
+            subName:attemptData.campaignType == 'InstantWin' ? null : prizewin.instantWinResult.redeemedPrize.emailMessage
+          }
+      ];
+      this.prize=prize;
+
+      this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
 
     }
   },

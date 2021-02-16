@@ -40,12 +40,12 @@
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
    <div class="prize-button-area center">
-       <a :href="btn.link" target="_blank"  v-for="(btn,index) in prize.button" :key="index" >
+       <a :href="btn.link ?btn.link : '#'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  v-for="(btn,index) in prize.button" :key="index" >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>
    </div>
-    <div class="prize-button-area center" style="margin-top:40px;">
+    <div class="prize-button-area center" style="margin-top:40px;" v-if="prize.isPlayAgain">
           <v-btn @click="playAgain">Play again</v-btn>
     </div>
  </div>
@@ -73,6 +73,13 @@ export default {
       playAgain(){
         console.log('tesplay');
         this.$emit("playAgain");
+      },
+      submitPrize(type){
+        if(type=='submission'){
+          this.$emit('submitPrize');
+        }else{
+          return false
+        }
       }
     }
 }

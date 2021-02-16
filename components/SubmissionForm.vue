@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import {CHECK_MIXCODE, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -300,21 +300,23 @@ export default {
                   this.errorMessage='Oops your pin code invalid or already redeemed';
                   return false;
                 }
-                this.$store.dispatch(SUBMIT_FORM,request)
+                this.$store.dispatch(CHECK_MIXCODE,request)
                 .then((response)=>{
                    // this.submitted=true;
+                   console.log(response);
                     this.loading=false;
                     let result=response.data;
                     if( result) {
-                      this.prizeWin = result;
+
                        if(this.currentAttempt>=this.getAttempt.length){
 
                               index=this.getAttempt.length-1;
                         }
                       let attemptData=this.getAttempt[index];
                       let data={
-                        attemptData,response:result
+                        attemptData,response:result,request
                       }
+                      console.log(data);
                         this.$emit('submit',data);
 
                     }
