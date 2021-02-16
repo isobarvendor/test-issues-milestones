@@ -1,14 +1,14 @@
 <template>
-        <!--v-row  @click="toggleSound(reward.id,reward.audio)" class="mb-4 toggle-sound paused center list-reward" -->
-        <v-row  @click="redeemLink(reward.link,reward.code)" class="toggle-sound paused center list-reward" >
-              <!--audio
+        <v-row  @click="reward.audio ? toggleSound(reward.id,reward.audio) : redeemLink(reward.link,reward.code)" class=" mb-4 toggle-sound paused center list-reward" >
+              <audio
+                v-if="reward.audio"
                 :ref="'audio'+reward.id"
                 :src="reward.audio"
                 preload
                 loop
                 id="audio"
                 muted
-                ></audio-->
+                ></audio>
             <v-col cols="3" >
                 <img :src="reward.image" width="100%" />
             </v-col>
@@ -33,7 +33,7 @@ export default {
 
     },
     methods:{
-       /* toggleSound(rewardId,sound) {
+        toggleSound(rewardId,sound) {
             if(!sound) return false;
             let audio = this.$refs['audio'+rewardId];
             if (
@@ -46,7 +46,7 @@ export default {
             audio.pause();
             document.querySelector(".toggle-sound").classList.add("paused");
             }
-      }*/
+      },
       redeemLink(link,voucherCode){
         if(link){
           location.assign(link+"?c="+voucherCode);
