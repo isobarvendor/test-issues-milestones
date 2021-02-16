@@ -12,8 +12,8 @@
   </div>
   <div  v-else >
   <div class="container  prize-chance black-red-border">
-      <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize"  />
+      <div class="wrapper"  v-for="(item, idx) in prize" :key="idx" >
+      <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize"  />
       </div>
     </div>
     <div class="container prize-chance black-background joox-section" v-if="prize[0].havejoox"  >
@@ -145,7 +145,7 @@ export default {
               note : null
               ,button:attemptData.campaignType == 'InstantWin' ? [{
                   text:"Redeem Prize",
-                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                  type:"submission"
               }]:[]
               ,havejoox:attemptData.FormHeading.Prize,
               code: attemptData.campaignType == 'InstantWin' ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
