@@ -48,7 +48,12 @@ export default {
             }
       }*/
       redeemLink(link,voucherCode){
-        location.assign(link+"?a="+voucherCode);
+        if(link){
+          location.assign(link+"?c="+voucherCode);
+        }else{
+          return false;
+        }
+
       }
     },
     mounted(){

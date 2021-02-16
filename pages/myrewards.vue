@@ -102,15 +102,15 @@ export default {
                   id:index,
                   title:o.name,
                   date:moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
-                  link:o.redeemDescription,
+                  link:o.redemptionLink,
                   image:o.imgUrl,
-                  code:o.voucherCode,
+                  code:o.voucher,
                 }
             })
          })
        .catch((error) =>{
-         console.log(error)
          localStorage.clear();
+         sessionStorage.clear();
          location.assign("/")
       })
 
