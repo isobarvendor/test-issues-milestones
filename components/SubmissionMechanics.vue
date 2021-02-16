@@ -84,7 +84,7 @@ export default {
               note : null
               ,button:attemptData.campaignType == 'InstantWin' ? [{
                   text:"Redeem Prize",
-                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?a="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
               }]:[]
               ,havejoox:attemptData.FormHeading.Prize,
               code: attemptData.campaignType == 'InstantWin' ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
