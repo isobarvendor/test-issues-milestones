@@ -48,7 +48,7 @@ export default {
             }
       }*/
       redeemLink(link,voucherCode){
-        location.assign(link+"?a="+voucherCode);
+        location.assign(link+"?c="+voucherCode);
       }
     },
     mounted(){
