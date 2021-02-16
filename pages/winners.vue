@@ -1,8 +1,6 @@
 <template>
   <div v-if="data" id="main" class="winner-detail">
-    <div class="wrapper">
-        <WinnerDetails :data="data ? data[0].luckyWinner : null" :winners="winners" />
-    </div>
+        <WinnerDetails :data="data ? data[0].luckyWinner : null" :winners="winners" :howData="data ? data[0].worksSection : null" />
   </div>
 </template>
 
@@ -43,7 +41,30 @@ export default {
         return this.$store.getters.getCMSContent;
      },
      winners(){
-       return this.$store.getters.getListWinners;
+       //return this.$store.getters.getListWinners;
+       return [
+        {
+          week:1,
+          fromDate:"10 Jan",
+          toDate:"10 Jan",
+          name:"Ronald",
+          email:"ronald.pranata@isobar.com"
+       },
+          {
+          week:2,
+          fromDate:"10 Jan",
+          toDate:"10 Jan",
+          name:"Ronald",
+          email:"ronald.pranata@isobar.com"
+       },
+          {
+          week:3,
+          fromDate:"10 Jan",
+          toDate:"10 Jan",
+          name:"Ronald",
+          email:"ronald.pranata@isobar.com"
+       }
+       ]
      },
      configData(){
        return this.$store.getters.getCMSConfig;
@@ -66,11 +87,6 @@ export default {
 
     .winner-detail{
         padding-top:0px;
-        .container{
-            max-width:1280px;
-            margin-right: 0px;
-            padding: 0px;
-        }
 
         a{
             &.button{

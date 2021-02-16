@@ -13,7 +13,7 @@
 
 
     </div>
-
+    <div v-if="exclusivePrizes">
     <div class="header">{{data.title}}</div>
     <!--div v-html="data.description"></div-->
     <div class="container prize-swiper-container">
@@ -38,6 +38,7 @@
       <div class="header">{{winners.title}}</div>
       <a class="button" href="/winners">{{winners.ButtonTitle}}</a>
     </div-->
+    </div>
   </div>
 </template>
 
@@ -79,7 +80,8 @@ export default {
     data: null,
     winners: null,
     prize:null,
-    ngpsPrize:null
+    ngpsPrize:null,
+    exclusivePrizes:null
   },
   beforeMount() {},
 };
