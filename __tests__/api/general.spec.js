@@ -2,7 +2,9 @@ import axios from 'axios';
 
 import API from '@/api/general';
 
-import {origin}  from "@/constants/index";
+import {envs}  from "@/constants/index";
+
+const origin = envs.origin;
 jest.mock('axios');
 
 describe('post login data', () => {

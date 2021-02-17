@@ -1,7 +1,9 @@
 
 import axios from 'axios';
 
-import {origin}  from "@/constants/index";
+import {envs}  from "@/constants/index";
+
+const origin = envs.origin;
 
 export default {
 
