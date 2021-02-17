@@ -20,7 +20,7 @@ export default {
     return axios.get(`${origin}/api/campaign/list-prize/${campaign}/listPrizes`)
   },
   getMyPrize(token,campaign='13qiq88kkqbov6j') {
-    return axios.get(`${origin}/api/campaign/my-list-prize/${campaign}/listPrizes`,setHeader(token))
+    return axios.get(`${origin}/api/campaign/my-list-prize/${campaign}/queryVouchers`,setHeader(token))
   },
   getListWallet(token) {
     return axios.get(`${origin}/api/campaign/auth/list-wallet`, setHeader(token))
