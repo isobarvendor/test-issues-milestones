@@ -15,7 +15,7 @@
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"   placeholder="Phone number"/>
+      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"   placeholder="Phone number" />
         <span class="error-message">{{ errors.first('phoneNumber') }}</span>
     </div>
 
@@ -43,7 +43,7 @@
             <span></span>
           </label>
         </div>
-        <div class="terms">I accept the <a href="">Terms and Conditions</a> of this this redemption.</div>
+        <div class="terms">I accept the <a href="/tnc">Terms and Conditions</a> of this this redemption.</div>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
             <span></span>
           </label>
         </div>
-        <div class="terms">I accept the <a href="">Privacy Policy</a> of this redemption.</div>
+        <div class="terms">I accept the <a href="/privacy">Privacy Policy</a> of this redemption.</div>
       </div>
     </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
@@ -129,6 +129,7 @@
 
 <script>
 import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import {envs} from '@/constants/index';
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -144,7 +145,8 @@ export default {
           code:null,
           terms:false,
           privacy:false,
-          uploadFile:null
+          uploadFile:null,
+          phoneNumber:null
         },
         errorMessage:null,
         submitted:true,
@@ -275,7 +277,7 @@ export default {
 
 
        this.$validator.validateAll().then( async(valid) => {
-         if(valid){
+         if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
            if(!this.form.terms){
              this.loading=false;
@@ -379,6 +381,23 @@ export default {
   mounted(){
     this.getAccount();
   },
+  watch:{
+     "form.phoneNumber": function (val) {
+       if(val.length==1){
+         this.form.phoneNumber=envs.phoneCode+val;
+       }
+       if((val.length-envs.phoneCode.length)>envs.maxPhoneNumber){
+         this.errors.clear();
+         this.$validator.errors.add({
+          field: 'phoneNumber',
+          msg: 'You reach maximum phone number length'
+        });
+       }else{
+            this.errors.clear()
+       }
+    },
+  }
+
 }
 </script>
 

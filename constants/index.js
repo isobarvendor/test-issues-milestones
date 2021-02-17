@@ -1,12 +1,18 @@
-let env = {};
+let env = {
+  phoneCode:"+66",
+  maxPhoneNumber:10
+};
+
 
 if(process.env.NODE_ENV=="development"){
     env = {
-      origin:"https://th-uplift.aircovery.com"
+      ...env,
+      origin:"https://th-uplift.aircovery.com",
     }
 }else{
   env = {
-    origin:""
+    ...env,
+    origin:"",
   }
 
 }
