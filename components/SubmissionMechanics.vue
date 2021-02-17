@@ -8,12 +8,11 @@
       <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="this.$store.state.login" @submit="submit"  />
       <!--Login :social="dataSocial" v-if="false"   />
       <Form :data="dataForm" :cmsData="cmsData[0]" /-->
-
   </div>
   <div  v-else >
   <div class="container  prize-chance black-red-border">
       <div class="wrapper"  v-for="(item, idx) in prize" :key="idx" >
-      <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize"  />
+        <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize"  />
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize[0].havejoox"  >
@@ -35,6 +34,9 @@
 import {SUBMIT_FORM } from '@/store/action_types';
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
+import {envs}  from "@/constants/index";
+
+const config = envs.config;
 export default {
   name: "SubmissionMechanics",
   components:{
@@ -103,6 +105,35 @@ export default {
       })
 
     },
+
+     submitPrizeDouble(){
+      let request= this.request;
+      request.configurationId=config.configID[0];
+      let data = {
+        attemptData:this.attemptData,
+        request:request
+      }
+      if(this.submitNumber==1){
+
+      }
+       this.$store.dispatch(SUBMIT_FORM,request)
+      .then((response)=>{
+           data.response=response.data
+           this.submitOne(data);
+           request.configurationId=config.configID[1];
+             this.$store.dispatch(SUBMIT_FORM,request)
+             .then((response2)=>{
+                data.response=response2.data
+               this.submitTwo(data);
+             }).catch((err)=>{
+            })
+      }).catch((err)=>{
+
+      })
+
+    },
+
+
      submit(data){
       // console.log(data);
       this.submitted=true;
@@ -112,23 +143,28 @@ export default {
       this.submitNumber=1;
       this.lotID=lotID;
       this.request=data.request;
-      let prize = [
-         {
-            text : "<h2>You have entered the Entry Code from Coca-Cola 300ml PET bottle and Coca Cola 235 ml can, you will have 2 lucky draw opportunities</h2>"
-            ,name:null
-            ,note:null
-            ,image:null
-            ,havejoox:false
-            ,button:[{
-                text:"Start redeeming",
-                type:"submission"
-            }],
-            code:null,
-            subName:null,
-            isPlayAgain:false
-           },
-      ];
-      this.prize=prize;
+      if(!config.lotID.includes(lotID)){
+        this.submitPrizeDouble();
+      }else{
+
+          let prize = [
+            {
+                text : "<h2>You have entered the Entry Code from Coca-Cola 300ml PET bottle and Coca Cola 235 ml can, you will have 2 lucky draw opportunities</h2>"
+                ,name:null
+                ,note:null
+                ,image:null
+                ,havejoox:false
+                ,button:[{
+                    text:"Start redeeming",
+                    type:"submission"
+                }],
+                code:null,
+                subName:null,
+                isPlayAgain:false
+              },
+          ];
+          this.prize=prize;
+       }
 
 
     },
@@ -164,9 +200,7 @@ export default {
       let prizewin=data.response;
       let attemptData =data.attemptData;
       this.submitNumber=3;
-      if(this.lotID!==453275&&this.lotID!==453273){
-        //this.themes=2;
-      }
+
       let prize =[
           {
               text : attemptData.FormHeading.thankYouMessage,
@@ -182,7 +216,7 @@ export default {
             subName:attemptData.campaignType == 'InstantWin' ? null : prizewin.instantWinResult.redeemedPrize.emailMessage
           }
       ];
-      this.prize=prize;
+      this.prize.append(prize);
 
       this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
 
