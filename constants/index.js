@@ -1,5 +1,5 @@
 let env = {
-  phoneCode:"+66",
+  phoneCode:"+84",
   maxPhoneNumber:10,
 };
 
