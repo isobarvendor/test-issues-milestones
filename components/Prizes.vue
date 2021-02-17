@@ -3,12 +3,12 @@
     <div class="background-image">
       <img src="/img/landing/back-dots.png" />
     </div>
-    <div class="joox-container" v-if="prize&&prize.status">
+    <div class="joox-container"  v-for="(item, index) in prize" v-if="prize.length>0 &&item.status">
 
-        <div class="header">{{prize.title}}</div>
-        <p>{{prize.subTitle}}</p>
+        <div class="header">{{item.title}}</div>
+        <p>{{item.subTitle}}</p>
         <div class="joox-image">
-          <img :src="imageUpload ? imageUpload : '/img/landing/joox image.png'" />
+          <img :src="item.imageUpload ? item.imageUpload.url : '/img/landing/joox image.png'" />
         </div>
 
 
