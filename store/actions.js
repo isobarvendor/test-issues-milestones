@@ -2,6 +2,7 @@
 import GeneralAPI from '../api/general';
 import NGPSAPI from '../api/ngps';
 import CMSAPI from '../api/cms';
+import {envs} from '@/constants/index';
 import {
   LOGIN,
   SIGNUP,
@@ -111,11 +112,11 @@ export default {
         });
     });
   },
-  [GET_MY_PRIZE]: ({ commit, state, getters }) => {
+  [GET_MY_PRIZE]: ({ commit, state, getters },campaign) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
 
-        NGPSAPI.getMyPrize(state.token)
+        NGPSAPI.getMyPrize(state.token,campaign)
         .then(response => {
           return resolve(response);
         })
@@ -156,6 +157,16 @@ export default {
   },
 
   [SUBMIT_FORM]: ({ commit, state, getters }, request) => {
+
+      var cdsTrackingClientId = envs.cdsTrackingClientId;
+      var data = {
+      event_sub_type: "Page",
+      channel: "App",
+      email: request.email,
+      event_type: "IMPRESSION"
+      };
+     // console.log(data);
+      cds_pixel(cdsTrackingClientId, data);
 
     return new Promise((resolve, reject) => {
       const moduleState = state;

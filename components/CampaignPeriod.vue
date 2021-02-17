@@ -1,20 +1,20 @@
 <template>
   <div class="container campaign-period-section redbox-withwhiteborder ">
     <v-row no-gutters>
-      
+
       <v-col
         cols="12"
         sm="12"
         md="4"
       >
-        
+
           <v-row no-gutters class="logo-title">
                <v-col
                   cols="4"
                   md="12"
                   sm="4"
                 >
-                
+
                   <img src="/img/landing/COKE STUDIO.png" class="logo"  />
                 </v-col>
 
@@ -24,10 +24,10 @@
                   sm="8"
                   class="participate-text-container"
                 >
-                 <div class="tagline">{{howData.title}}</div> 
+                 <div class="tagline">{{howData.title}}</div>
                 </v-col>
           </v-row>
-      
+
       </v-col>
       <v-col
         cols="12"
@@ -40,9 +40,9 @@
             <p class="campaign-period" v-html="startdate+' – '+enddate"></p>
           </div>
           <div class="period-desc-container">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+
           </div>
-        
+
            <v-row no-gutters   >
                <v-col
                   cols="12"
@@ -69,17 +69,17 @@
                           class="participate-text-container"
                         >
                          <span v-html="item.description" />
-                
+
                         </v-col>
                   </v-row>
-      
+
                 </v-col>
-                
+
           </v-row>
-         
+
       </v-col>
     </v-row>
-    
+
   </div>
 </template>
 

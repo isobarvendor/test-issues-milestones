@@ -50,6 +50,7 @@ export default {
     "./plugins/vue-awesome-swiper.js",
     './plugins/axios', //axios interceptor
     { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/pixel',  ssr : false  },
     {
       src: '~/plugins/vue-video-background',
       ssr: false
