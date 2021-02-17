@@ -129,7 +129,6 @@
 
 <script>
 import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
-import {envs} from '@/constants/index';
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -383,6 +382,7 @@ export default {
   },
   watch:{
      "form.phoneNumber": function (val) {
+       let envs=this.$config;
        if(val.length==1){
          this.form.phoneNumber=envs.phoneCode+val;
        }
