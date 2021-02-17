@@ -88,25 +88,26 @@ export default {
           e.preventDefault()
           // Chrome requires returnValue to be set
           e.returnValue = ''
-        }   
+        }
       },
 
-     
+
   },
   mounted() {
      this.fetchData();
-    
-    
+
+
   },
   created(){
      if (process.client) {
       window.addEventListener('beforeunload', this.beforeWindowUnload)
      }
   }
-  
-    
+
+
 
 };
+
 
 </script>
 <style lang="scss">

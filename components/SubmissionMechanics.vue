@@ -1,6 +1,6 @@
 <template>
  <div style="width:100%">
-  <div class="container campaign-section redbox-withwhiteborder submission-section" v-if="cmsData&&!submitted">
+  <div class="container campaign-section redbox-withwhiteborder submission-section" id="submission-section" v-if="cmsData&&!submitted">
       <div class="divider">
         <img src="/img/landing/coke line divider.png" width="100%" />
       </div>
@@ -13,10 +13,15 @@
   <div  v-else >
   <div class="container  prize-chance black-red-border">
       <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"  />
+      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
+      <div v-else style="text-align:center">
+
+            <span v-html="thankYouMessage"></span>
+
+      </div>
       </div>
     </div>
-    <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize[0].havejoox"  >
+    <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize.length>0 && prize[0].havejoox"  >
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
     </div>
@@ -45,9 +50,13 @@ export default {
       },
   data() {
     return {
-        prize:null,
+        prize:[],
         submitted:false,
-        listenNowLink:''
+        listenNowLink:'',
+        thankYouMessage:"",
+        request:{
+          email:''
+        }
     }
 
   },
@@ -57,6 +66,10 @@ export default {
     },
     cmsData(){
       return this.$store.getters.getCMSContent;
+    },
+
+    email(){
+      return this.request.email;
     },
     dataSocial() {
       return {
@@ -76,25 +89,30 @@ export default {
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
-      let prize =[
-          {
-              text : attemptData.FormHeading.thankYouMessage,
-              name : prizewin.instantWinResult.redeemedPrize.name,
-              image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-              note : null
-              ,button:attemptData.campaignType == 'InstantWin' ? [{
-                  text:"Redeem Prize",
-                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
-              }]:[]
-              ,havejoox:attemptData.FormHeading.Prize,
-              code: attemptData.campaignType == 'InstantWin' ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
-            subName:attemptData.campaignType == 'InstantWin' ? null : prizewin.instantWinResult.redeemedPrize.emailMessage
-          }
-      ];
-      this.prize=prize;
+      this.request=data.request;
+      if(attemptData.campaignType == 'InstantWin'){
+          let prize =[
+              {
+                  text : attemptData.FormHeading.thankYouMessage,
+                  name : prizewin.instantWinResult.redeemedPrize.name,
+                  image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
+                  note : null
+                  ,button:[{
+                      text:"Redeem Prize",
+                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                  }]
+                  ,havejoox:attemptData.FormHeading.Prize,
+                  code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
+                subName:prizewin.instantWinResult.redeemedPrize.emailMessage
+              }
+          ];
+          this.prize=prize;
 
-      this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
-
+          this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
+      }
+      else{
+        this.thankYouMessage=attemptData.FormHeading.thankYouMessage;
+      }
 
 
     }
