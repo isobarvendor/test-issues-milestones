@@ -13,7 +13,7 @@
   <div  v-else >
   <div class="container  prize-chance black-red-border">
       <div class="wrapper">
-      <!--PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"  /-->
+      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"  />
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize[0].havejoox"  >

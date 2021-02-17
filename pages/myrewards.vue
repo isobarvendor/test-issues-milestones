@@ -97,14 +97,15 @@ export default {
 
              // console.log(response);
 
-            this.rewards = _.map(response.data.prizeList,(o,index)=>{
+            this.rewards = _.map(response.data.vouchers,(o,index)=>{
                 return {
                   id:index,
                   title:o.name,
                   date:moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
-                  link:o.redemptionLink,
+                  link:o.redeemDescription,
                   image:o.imgUrl,
                   code:o.voucher,
+                  audio:null
                 }
             })
          })
