@@ -15,7 +15,7 @@
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"   placeholder="Phone number" />
+      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   placeholder="Phone number" />
         <span class="error-message">{{ errors.first('phoneNumber') }}</span>
     </div>
 
