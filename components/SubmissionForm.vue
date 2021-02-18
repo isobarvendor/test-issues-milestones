@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import { CHECK_MIXCODE, CHECK_ATTEMPT, GET_LIST_WALLET } from '@/store/action_types';
 export default {
     name:"Form",
     inject: ['$validator'],

@@ -33,6 +33,7 @@
   </div>
   </div>
  </div>
+ </div>
 </template>
 
 <script>
@@ -40,7 +41,7 @@ import {SUBMIT_FORM } from '@/store/action_types';
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
 
-let configID=this.$config.configID.split(",");
+let configID=process.env.configID.split(",");
 
 export default {
   name: "SubmissionMechanics",
