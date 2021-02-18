@@ -110,9 +110,9 @@ export default {
       request.configurationId=configID[this.submitNumber-1];
 
 
-     /* this.$store.dispatch(SUBMIT_FORM,request)
-      .then((response)=>{*/
-       let result={
+      this.$store.dispatch(SUBMIT_FORM,request)
+      .then((response)=>{
+      /* let result={
             "burnResult": [
                 {
                     "pincode": "0J6TC2VP5",
@@ -140,7 +140,7 @@ export default {
             }
         }
         response.data=result;
-
+*/
          if(this.submitNumber==1){
            data.response=response.data
            this.submitOne(data);
@@ -150,14 +150,14 @@ export default {
            this.submitTwo(data);
          }
 
-    /*  }).catch((err)=>{
+      }).catch((err)=>{
         if(err.response){
           this.errorMessage="Oops something went wrong"
         }
         if(err.response && err.response.data&& err.response.data.errorCode=="1"){
           this.errorMessage="Not enough prizes in prize catalogue"
         }
-      })*/
+      })
 
     },
 
@@ -169,7 +169,7 @@ export default {
         request:request
       }
 
-      let response={};
+     /* let response={};
       let response2={};
        let result={
             "burnResult": [
@@ -198,26 +198,26 @@ export default {
                 }
             }
         }
-        response.data=result;
-     //  this.$store.dispatch(SUBMIT_FORM,request)
-      //.then((response)=>{
+        response.data=result;*/
+       this.$store.dispatch(SUBMIT_FORM,request)
+      .then((response)=>{
            data.response=response.data
            this.submitOne(data,false);
            request.configurationId=configID[1];
-           /*  this.$store.dispatch(SUBMIT_FORM,request)
-            .then((response2)=>{*/
+             this.$store.dispatch(SUBMIT_FORM,request)
+            .then((response2)=>{
               response2.data=result;
                 data.response=response2.data
                this.submitTwo(data);
-            /* }).catch((err)=>{
+             }).catch((err)=>{
                if(err.response){
                   this.errorMessage="Oops something went wrong"
                 }
                 if(err.response && err.response.data&& err.response.data.errorCode=="1"){
                   this.errorMessage="Not enough prizes in prize catalogue"
                 }
-            })*/
-   /*  }).catch((err)=>{
+            })
+     }).catch((err)=>{
            if(err.response){
           this.errorMessage="Oops something went wrong"
         }
@@ -225,7 +225,7 @@ export default {
           this.errorMessage="Not enough prizes in prize catalogue"
         }
 
-      })*/
+      })
 
     },
 

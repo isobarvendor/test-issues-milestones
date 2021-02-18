@@ -247,36 +247,6 @@ export default {
       let index =0;
       let response = {};
 
-       /*let result={
-    "burnResult": [
-        {
-            "pincode": "0J6TC2VP5",
-            "programId": "453269",
-            "lotId": "445580",
-            "burned": true
-        }
-    ],
-    "participationId": "1ylazdy9kkxmpa53",
-    "instantWinResult": {
-        "winner": true,
-       "redeemedPrize": {
-            "prizeId": "kkqhy9so",
-            "voucherCode": "Voucher891",
-            "status": "claimed",
-            "expiryDate": 1620018590000,
-            "name": "JOOX VIP PASS",
-            "shortDescription": "http://google.com",
-            "redeemDescription": "http://abcd",
-            "imgUrl": "/img/landing/week 1 prize.png",
-            "barcodeType": 1,
-            "emailSent": false,
-            "emailMessage": "Email could not be sent"
-        }
-    }
-}*/
-
-
-
        this.$validator.validateAll().then( async(valid) => {
          if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
@@ -303,11 +273,11 @@ export default {
                   this.errorMessage='Oops your pin code invalid or already redeemed';
                   return false;
                 }
-               // this.$store.dispatch(CHECK_MIXCODE,request)
-                //.then((response)=>{
+                this.$store.dispatch(CHECK_MIXCODE,request)
+                .then((response)=>{
                    // this.submitted=true;
                    //console.log(response);
-                    response.data={
+                   /* response.data={
                       "programId": 453269,
                       "code": "3WTD90GE5",
                       "lot": {
@@ -343,7 +313,7 @@ export default {
                       "redeemed": false,
                       "actualCode": "3WTD90GE5"
                     };
-
+*/
 
                     this.loading=false;
                     let result=response.data;
@@ -357,8 +327,8 @@ export default {
                         this.$emit('submit',data);
 
                     }
-               // })
-                /*.catch((error) =>{
+                })
+                .catch((error) =>{
                   this.loading=false;
                     if(error.response){
                     this.errorMessage='Oops something went wrong please try again';
@@ -376,7 +346,7 @@ export default {
                   if(error.response&&error.response.data.errorCode=='5'){
                     this.errorMessage='Oops your pin code invalid or already redeemed';
                   }
-                })*/
+                })
                }else{
                  this.loading=false;
                  this.errorMessage='Oops your pin code invalid or already redeemed';
