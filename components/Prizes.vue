@@ -13,7 +13,7 @@
 
 
     </div>
-    <div v-if="exclusivePrizes">
+    <div v-if="exclusivePrizes" >
     <div class="header">{{data.title}}</div>
     <!--div v-html="data.description"></div-->
     <div class="container prize-swiper-container">
@@ -27,10 +27,12 @@
             <img :src="item.imgUrl ? item.imgUrl : '/img/landing/week 1 prize.png'" />
             <div class="prize-description">
               <h3 v-html="item.shortDescription"></h3>
-              {{item.name}}
+              {{item.name}} <BR/>
+              Total : {{item.totalAmount}}
             </div>
           </div>
         </swiper-slide>
+
         <div class="prize-swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
@@ -58,11 +60,11 @@ export default {
         breakpoints: {
           // when window width is >= 320px
           768: {
-            slidesPerView: 3,
+            slidesPerView: this.ngpsPrize.prizeList.length>2 ? 3 : 2,
             spaceBetween: 10,
           },
           992: {
-            slidesPerView: 3,
+            slidesPerView: this.ngpsPrize.prizeList.length>2 ? 3 : 2,
             spaceBetween: 20,
           },
         },

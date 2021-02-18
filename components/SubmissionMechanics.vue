@@ -20,6 +20,9 @@
       </div>
       <div v-if="prize.length==0" style="text-align:center">
             <span v-html="thankYouMessage"></span>
+             <div class="prize-button-area center" style="margin-top:40px;">
+                  <v-btn @click="playAgain">Play again</v-btn>
+            </div>
       </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize.length>0 && prize[0].havejoox"  >
       <div class="background-image-joox">
@@ -95,6 +98,7 @@ export default {
   methods: {
     playAgain(){
       this.submitted=false;
+      this.prize=[];
     },
     submitPrize(){
       let request= this.request;

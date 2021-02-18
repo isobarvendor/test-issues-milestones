@@ -199,6 +199,7 @@ export default {
       let mixCode=this.getAttempt[currentAttempt].mixCode;
       let ngps=this.getAttempt[currentAttempt].NPGS;
       let programId=null;
+      this.attemptData=this.getAttempt[currentAttempt];
       for (let a=0;a<mixCode.length;a++) {
        // mixCode
        if(mixCode[a].characterLimit==this.form.code.length&&(mixCode[a].codeInitial==""||mixCode[a].codeInitial==null||mixCode[a].codeInitial==undefined||mixCode[a].codeInitial==this.form.code.charAt(0))){
@@ -347,12 +348,8 @@ export default {
                     this.loading=false;
                     let result=response.data;
                     if( result) {
-
-                       if(this.currentAttempt>=this.getAttempt.length){
-
-                              index=this.getAttempt.length-1;
-                        }
-                      let attemptData=this.getAttempt[index];
+                      this.prizeWin = result;
+                      let attemptData=this.attemptData
                       let data={
                         attemptData,response:result,request
                       }
