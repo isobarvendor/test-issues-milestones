@@ -49,7 +49,7 @@ export default {
       },
       redeemLink(link,voucherCode){
         if(link){
-          location.assign(link+"?c="+voucherCode);
+          window.open(link+"?"+this.$config.voucherParameter+"="+voucherCode,"_blank");
         }else{
           return false;
         }

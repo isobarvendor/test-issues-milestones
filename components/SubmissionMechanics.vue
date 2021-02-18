@@ -39,9 +39,9 @@
 import {SUBMIT_FORM } from '@/store/action_types';
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
-import {envs}  from "@/constants/index";
 
-const config = envs.config;
+let configID=this.$config.configID.split(",");
+
 export default {
   name: "SubmissionMechanics",
   components:{
@@ -99,9 +99,8 @@ export default {
         attemptData:this.attemptData,
         request:this.request
       }
-      if(this.submitNumber==1){
+      request.configurationId=configID[this.submitNumber-1];
 
-      }
        this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
          if(this.submitNumber==1){
@@ -121,7 +120,7 @@ export default {
 
      submitPrizeDouble(){
       let request= this.request;
-      request.configurationId=config.configID[0];
+      request.configurationId=configID[0];
       let data = {
         attemptData:this.attemptData,
         request:request
@@ -133,7 +132,7 @@ export default {
       .then((response)=>{
            data.response=response.data
            this.submitOne(data);
-           request.configurationId=config.configID[1];
+           request.configurationId=configID[1];
              this.$store.dispatch(SUBMIT_FORM,request)
              .then((response2)=>{
                 data.response=response2.data
@@ -156,7 +155,7 @@ export default {
       this.submitNumber=1;
       this.lotID=lotID;
       this.request=data.request;
-      if(!config.lotID.includes(lotID)){
+      if(!this.$config.lotID.includes(lotID)){
         this.submitPrizeDouble();
       }else{
 
@@ -195,8 +194,8 @@ export default {
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:[{
-                      text:"Redeem Prize",
-                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                      text:"Redeem Next Prize",
+                     type:"submission"
                   }]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
@@ -220,21 +219,21 @@ export default {
       this.submitNumber=3;
 
       let prize =[
-          {
-              text : attemptData.FormHeading.thankYouMessage,
-              name : prizewin.instantWinResult.redeemedPrize.name,
-              image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-              note : null
-              ,button:attemptData.campaignType == 'InstantWin' ? [{
-                  text:"Redeem Prize",
-                  link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
-              }]:[]
-              ,havejoox:false,
-              code: attemptData.campaignType == 'InstantWin' ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
-            subName:attemptData.campaignType == 'InstantWin' ? null : prizewin.instantWinResult.redeemedPrize.emailMessage
-          }
-      ];
-      this.prize.append(prize);
+              {
+                  text : attemptData.FormHeading.thankYouMessage,
+                  name : prizewin.instantWinResult.redeemedPrize.name,
+                  image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
+                  note : null
+                  ,button:[{
+                      text:"Redeem Prize",
+                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                  }]
+                  ,havejoox:attemptData.FormHeading.Prize,
+                  code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
+                subName:prizewin.instantWinResult.redeemedPrize.emailMessage
+              }
+          ];
+      this.prize=[...this.prize,...prize]
 
       this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
 

@@ -2,9 +2,8 @@ import axios from 'axios';
 
 import CMSAPI from '@/api/cms';
 
-import {envs}  from "@/constants/index";
 
-const origin = envs.origin;
+const origin = process.env.origin;
 
 jest.mock('axios');
 

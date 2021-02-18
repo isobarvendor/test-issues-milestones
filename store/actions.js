@@ -2,7 +2,7 @@
 import GeneralAPI from '../api/general';
 import NGPSAPI from '../api/ngps';
 import CMSAPI from '../api/cms';
-import {envs} from '@/constants/index';
+
 import {
   LOGIN,
   SIGNUP,
@@ -156,9 +156,9 @@ export default {
     });
   },
 
-  [SUBMIT_FORM]: ({ commit, state, getters }, request) => {
+  [SUBMIT_FORM]: ({ commit, state, getters}, request) => {
 
-      var cdsTrackingClientId = envs.cdsTrackingClientId;
+      var cdsTrackingClientId = process.env.cdsTrackingClientId;
       var data = {
       event_sub_type: "Page",
       channel: "App",

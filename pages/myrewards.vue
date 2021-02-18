@@ -65,16 +65,11 @@ export default {
 
   methods:{
      getMyPrize(){
-      if(this.configData){
-
-            let attempt=_.uniqBy(_.filter(this.configData.attempts,(o)=>{
-                return o.campaignType=='InstantWin';
-            }), function (e) {
-              return e.NPGS[0].configID;
-            });
+      let configID=this.$config.configID.split(",");
+      if(configID.length>0){
             let array=[];
-            for(let a=0;a<attempt.length;a++){
-                this.$store.dispatch(GET_MY_PRIZE,attempt[a].NPGS[0].configID)
+            for(let a=0;a<configID.length;a++){
+                this.$store.dispatch(GET_MY_PRIZE,configID[a])
                   .then((response)=>{
 
                     let res = _.map(response.data.vouchers,(o,index)=>{
@@ -85,17 +80,16 @@ export default {
                           link:o.redeemDescription,
                           image:o.imgUrl,
                           code:o.voucher,
-                          audio:null
+                          audio:o.prizeName.includes(".") ? o.prizeName : null
                         }
                     });
                    this.rewards=[...this.rewards,...[...array, ...res]];
                 })
               .catch((error) =>{
-                  console.log(error);
-                  //localStorage.clear();
-                  //this.$store.commit('SET_TOKEN', null);
-                  //this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                  //location.assign("/")
+                  localStorage.clear();
+                  this.$store.commit('SET_TOKEN', null);
+                  this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                  location.assign("/")
                 })
 
             }

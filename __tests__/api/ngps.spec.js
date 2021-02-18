@@ -2,9 +2,7 @@ import axios from 'axios';
 
 import API from '@/api/ngps';
 
-import {envs}  from "@/constants/index";
-
-const origin = envs.origin;
+const origin = process.env.origin;
 jest.mock('axios');
 
 const setHeader = (token)=>{

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/dotenv": "^1.4.1",
     "crypto-js": "^4.0.0",
     "deep-clone": "^3.0.3",
     "js-cookie": "^2.2.1",
@@ -42,7 +43,7 @@
     "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "vue-jest": "^3.0.7",
-    "supertest": "^6.0.1"
+    "supertest": "^6.0.1",
+    "vue-jest": "^3.0.7"
   }
 }

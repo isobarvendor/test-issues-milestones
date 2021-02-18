@@ -1,8 +1,6 @@
 
 import axios from 'axios';
-import {envs}  from "@/constants/index";
-
-const origin = envs.origin;
+const origin = process.env.origin;
 
 export default {
 
