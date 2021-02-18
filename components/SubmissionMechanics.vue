@@ -17,6 +17,9 @@
       <div v-else style="text-align:center">
 
             <span v-html="thankYouMessage"></span>
+             <div class="prize-button-area center" style="margin-top:40px;">
+                  <v-btn @click="playAgain">Play again</v-btn>
+            </div>
 
       </div>
       </div>
@@ -84,6 +87,7 @@ export default {
   methods: {
     playAgain(){
       this.submitted=false;
+      this.prize=[];
     },
     submit(data){
       this.submitted=true;
