@@ -58,11 +58,11 @@ export default {
         breakpoints: {
           // when window width is >= 320px
           768: {
-            slidesPerView: 3,
+            slidesPerView: this.ngpsPrize.prizeList.length>2 ? 3 : 2,
             spaceBetween: 10,
           },
           992: {
-            slidesPerView: 3,
+            slidesPerView: this.ngpsPrize.prizeList.length>2 ? 3 : 2,
             spaceBetween: 20,
           },
         },
