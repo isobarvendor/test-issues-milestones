@@ -40,7 +40,7 @@
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
    <div class="prize-button-area center">
-       <a :href="btn.link ?btn.link : '#'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  v-for="(btn,index) in prize.button" :key="index" >
+       <a :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  v-for="(btn,index) in prize.button" :key="index" >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>

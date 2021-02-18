@@ -10,16 +10,17 @@
       <Form :data="dataForm" :cmsData="cmsData[0]" /-->
   </div>
   <div  v-else >
-  <div class="container  prize-chance black-red-border">
-      <div  v-if="prize.length>0">
-        <div class="wrapper"  v-for="(item, idx) in prize" :key="idx" >
-          <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize"  />
+  <div class="container  prize-chance black-red-border" id="prize-chance">
+
+        <div class="wrapper"  v-for="(item, idx) in prize" :key="idx"  >
+          <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize" v-if="prize.length>0"  />
+          <div class="error-message" v-if="idx==prize.length-1">{{errorMessage}}</div>
         </div>
+        <div class="error-message" v-if="prize.length==0">{{errorMessage}}</div>
       </div>
-      <div v-else style="text-align:center">
+      <div v-if="prize.length==0" style="text-align:center">
             <span v-html="thankYouMessage"></span>
       </div>
-
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize.length>0 && prize[0].havejoox"  >
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
@@ -31,7 +32,7 @@
         </div>
     </div>
   </div>
-  </div>
+
  </div>
  </div>
 </template>
@@ -65,7 +66,8 @@ export default {
         thankYouMessage:"",
         request:{
           email:''
-        }
+        },
+        errorMessage:null
     }
 
   },
@@ -96,26 +98,62 @@ export default {
     },
     submitPrize(){
       let request= this.request;
+      let response = {};
       let data = {
         attemptData:this.attemptData,
         request:this.request
       }
       request.configurationId=configID[this.submitNumber-1];
 
-       this.$store.dispatch(SUBMIT_FORM,request)
-      .then((response)=>{
+
+     /* this.$store.dispatch(SUBMIT_FORM,request)
+      .then((response)=>{*/
+       let result={
+            "burnResult": [
+                {
+                    "pincode": "0J6TC2VP5",
+                    "programId": "453269",
+                    "lotId": "445580",
+                    "burned": true
+                }
+            ],
+            "participationId": "1ylazdy9kkxmpa53",
+            "instantWinResult": {
+                "winner": true,
+              "redeemedPrize": {
+                    "prizeId": "kkqhy9so",
+                    "voucherCode": "Voucher891",
+                    "status": "claimed",
+                    "expiryDate": 1620018590000,
+                    "name": "JOOX VIP PASS",
+                    "shortDescription": "http://google.com",
+                    "redeemDescription": "http://abcd",
+                    "imgUrl": "/img/landing/week 1 prize.png",
+                    "barcodeType": 1,
+                    "emailSent": false,
+                    "emailMessage": "Email could not be sent"
+                }
+            }
+        }
+        response.data=result;
+
          if(this.submitNumber==1){
            data.response=response.data
            this.submitOne(data);
          }
-          if(this.submitNumber==2){
+         else if(this.submitNumber==2){
            data.response=response.data
            this.submitTwo(data);
          }
 
-      }).catch((err)=>{
-
-      })
+    /*  }).catch((err)=>{
+        if(err.response){
+          this.errorMessage="Oops something went wrong"
+        }
+        if(err.response && err.response.data&& err.response.data.errorCode=="1"){
+          this.errorMessage="Not enough prizes in prize catalogue"
+        }
+      })*/
 
     },
 
@@ -126,23 +164,64 @@ export default {
         attemptData:this.attemptData,
         request:request
       }
-      if(this.submitNumber==1){
 
-      }
-       this.$store.dispatch(SUBMIT_FORM,request)
-      .then((response)=>{
+      let response={};
+      let response2={};
+       let result={
+            "burnResult": [
+                {
+                    "pincode": "0J6TC2VP5",
+                    "programId": "453269",
+                    "lotId": "445580",
+                    "burned": true
+                }
+            ],
+            "participationId": "1ylazdy9kkxmpa53",
+            "instantWinResult": {
+                "winner": true,
+              "redeemedPrize": {
+                    "prizeId": "kkqhy9so",
+                    "voucherCode": "Voucher891",
+                    "status": "claimed",
+                    "expiryDate": 1620018590000,
+                    "name": "JOOX VIP PASS",
+                    "shortDescription": "http://google.com",
+                    "redeemDescription": "http://abcd",
+                    "imgUrl": "/img/landing/week 1 prize.png",
+                    "barcodeType": 1,
+                    "emailSent": false,
+                    "emailMessage": "Email could not be sent"
+                }
+            }
+        }
+        response.data=result;
+     //  this.$store.dispatch(SUBMIT_FORM,request)
+      //.then((response)=>{
            data.response=response.data
-           this.submitOne(data);
+           this.submitOne(data,false);
            request.configurationId=configID[1];
-             this.$store.dispatch(SUBMIT_FORM,request)
-             .then((response2)=>{
+           /*  this.$store.dispatch(SUBMIT_FORM,request)
+            .then((response2)=>{*/
+              response2.data=result;
                 data.response=response2.data
                this.submitTwo(data);
-             }).catch((err)=>{
-            })
-      }).catch((err)=>{
+            /* }).catch((err)=>{
+               if(err.response){
+                  this.errorMessage="Oops something went wrong"
+                }
+                if(err.response && err.response.data&& err.response.data.errorCode=="1"){
+                  this.errorMessage="Not enough prizes in prize catalogue"
+                }
+            })*/
+   /*  }).catch((err)=>{
+           if(err.response){
+          this.errorMessage="Oops something went wrong"
+        }
+        if(err.response && err.response.data&& err.response.data.errorCode=="1"){
+          this.errorMessage="Not enough prizes in prize catalogue"
+        }
 
-      })
+      })*/
 
     },
 
@@ -181,35 +260,31 @@ export default {
 
 
     },
-    submitOne(data){
+    submitOne(data,button=true){
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
       this.submitNumber=2;
       this.request=data.request;
-      if(attemptData.campaignType == 'InstantWin'){
+
           let prize =[
               {
                   text : attemptData.FormHeading.thankYouMessage,
                   name : prizewin.instantWinResult.redeemedPrize.name,
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-                  note : null
-                  ,button:[{
+                  note : "Please call ...."
+                  ,button:button ? [{
                       text:"Redeem Next Prize",
                      type:"submission"
-                  }]
-                  ,havejoox:attemptData.FormHeading.Prize,
-                  code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
+                  }]:[]
+                  ,havejoox:false,
+                  code: null,
                 subName:prizewin.instantWinResult.redeemedPrize.emailMessage
               }
           ];
           this.prize=prize;
 
           this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
-      }
-      else{
-        this.thankYouMessage=attemptData.FormHeading.thankYouMessage;
-      }
 
 
     },
@@ -221,7 +296,7 @@ export default {
 
       let prize =[
               {
-                  text : attemptData.FormHeading.thankYouMessage,
+                  text :null,
                   name : prizewin.instantWinResult.redeemedPrize.name,
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
@@ -229,14 +304,18 @@ export default {
                       text:"Redeem Prize",
                       link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
                   }]
-                  ,havejoox:attemptData.FormHeading.Prize,
+                  ,havejoox:false,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
-                subName:prizewin.instantWinResult.redeemedPrize.emailMessage
+                subName:prizewin.instantWinResult.redeemedPrize.emailMessage,
+                isPlayAgain:false
               }
           ];
+      if(this.prize.length>0){
+        this.prize[0].button=[];
+      }
       this.prize=[...this.prize,...prize]
 
-      this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
+     // this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
 
     }
   },
@@ -245,7 +324,11 @@ export default {
 
 <style>
 
-
+  .error-message{
+    padding-top: 20px;
+    color:red;
+    text-align: center;
+  }
  .prize-chance.joox-section{
      padding-top: 80px;
      text-align: center;
@@ -259,6 +342,10 @@ export default {
 }
 .prize-chance .background-image-joox img{
     width:100%;
+}
+.prize-chance .wrapper{
+  padding-bottom: 50px;
+  padding-top: 30px;
 }
 .desc-joox{
     z-index: 1;

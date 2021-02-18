@@ -244,6 +244,7 @@ export default {
       let request = null;
       this.loading=true;
       let index =0;
+      let response = {};
 
        /*let result={
     "burnResult": [
@@ -301,10 +302,48 @@ export default {
                   this.errorMessage='Oops your pin code invalid or already redeemed';
                   return false;
                 }
-                this.$store.dispatch(CHECK_MIXCODE,request)
-                .then((response)=>{
+               // this.$store.dispatch(CHECK_MIXCODE,request)
+                //.then((response)=>{
                    // this.submitted=true;
                    //console.log(response);
+                    response.data={
+                      "programId": 453269,
+                      "code": "3WTD90GE5",
+                      "lot": {
+                        "lotId": 445586,
+                        "lotName": "Coke 500ml PET",
+                        "activateDate": 1611208800000,
+                        "inactivateDate": 1627603200000,
+                        "active": true,
+                        "expired": false,
+                        "bevProdPkg": {
+                          "trademarkCd": "05",
+                          "trademarkName": "Coca-Cola",
+                          "brandCd": "001",
+                          "brandName": "Coca-Cola",
+                          "bevProdCd": "0001",
+                          "bevProdName": "Coca-Cola",
+                          "caffeinated": true,
+                          "carbonated": true,
+                          "calorieCategory": {
+                            "code": 1,
+                            "description": "Regular"
+                          }
+                        },
+                        "releaseId": 494494,
+                        "releaseName": "Coke PET",
+                        "organizationId": 157168,
+                        "organizationName": "Harish",
+                        "realtimeCode": false,
+                        "testRelease": false,
+                        "pointValue": 0,
+                        "bevProdOptions": []
+                      },
+                      "redeemed": false,
+                      "actualCode": "3WTD90GE5"
+                    };
+
+
                     this.loading=false;
                     let result=response.data;
                     if( result) {
@@ -317,12 +356,12 @@ export default {
                       let data={
                         attemptData,response:result,request
                       }
-                      console.log(data);
+                      //console.log(data);
                         this.$emit('submit',data);
 
                     }
-                })
-                .catch((error) =>{
+               // })
+                /*.catch((error) =>{
                   this.loading=false;
                     if(error.response){
                     this.errorMessage='Oops something went wrong please try again';
@@ -340,7 +379,7 @@ export default {
                   if(error.response&&error.response.data.errorCode=='5'){
                     this.errorMessage='Oops your pin code invalid or already redeemed';
                   }
-                })
+                })*/
                }else{
                  this.loading=false;
                  this.errorMessage='Oops your pin code invalid or already redeemed';
