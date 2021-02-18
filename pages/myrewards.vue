@@ -85,17 +85,16 @@ export default {
                           link:o.redeemDescription,
                           image:o.imgUrl,
                           code:o.voucher,
-                          audio:null
+                          audio:o.prizeName.includes(".") ? o.prizeName : null
                         }
                     });
                    this.rewards=[...this.rewards,...[...array, ...res]];
                 })
               .catch((error) =>{
-                  console.log(error);
-                  //localStorage.clear();
-                  //this.$store.commit('SET_TOKEN', null);
-                  //this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                  //location.assign("/")
+                  localStorage.clear();
+                  this.$store.commit('SET_TOKEN', null);
+                  this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                  location.assign("/")
                 })
 
             }

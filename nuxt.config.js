@@ -18,7 +18,8 @@ export default {
     pixelUrl:process.env.pixelUrl,
     cdsTrackingClientId:process.env.cdsTrackingClientId,
     phoneCode:process.env.phoneCode,
-    maxPhoneNumber:process.env.maxPhoneNumber
+    maxPhoneNumber:process.env.maxPhoneNumber,
+    voucherParameter:process.env.voucherParameter
   },
   privateRuntimeConfig: {
     //apiSecret: process.env.API_SECRET

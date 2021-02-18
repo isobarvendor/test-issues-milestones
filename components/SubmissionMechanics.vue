@@ -99,7 +99,7 @@ export default {
                   note : null
                   ,button:[{
                       text:"Redeem Prize",
-                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?c="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
                   }]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
