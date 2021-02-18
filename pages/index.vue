@@ -26,6 +26,8 @@ import SubmissionMechanics from '../components/SubmissionMechanics'
 import Footer from '../components/Footer'
 import deepClone from 'deep-clone'
 import { GET_ACCOUNT,GET_LIST_WALLET, GET_LIST_PRIZE} from '@/store/action_types';
+import  VueScrollTo from 'vue-scrollto';
+
 
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
@@ -43,7 +45,7 @@ export default {
   },
   head() {
     return {
-      title: "Coke Campaign Title",
+      title: "Coke Campaign",
       meta: [
         {
           hid: "description",
@@ -69,6 +71,29 @@ export default {
     if(this.$store.state.token){
          this.getAccount();
         // this.campaignType=='Experience' && this.getListWallet();
+
+            var options = {
+                container: 'body',
+                easing: 'ease-in',
+                lazy: false,
+                offset: -60,
+                force: true,
+                cancelable: true,
+                onStart: function(element) {
+                  // scrolling started
+                },
+                onDone: function(element) {
+                  // scrolling is done
+                },
+                onCancel: function() {
+                  // scrolling has been interrupted
+                },
+                x: false,
+                y: true
+            }
+
+             this.$scrollTo('#submission-section', 60, options)
+
     }
   },
 

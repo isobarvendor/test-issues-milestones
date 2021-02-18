@@ -71,13 +71,14 @@
             <span class="tooltiptext">Enter the code found under the cap/tab of your Coca Cola purchase here</span>
           </div>
       </div>
-
+      <div style="padding:20px"  v-if="loading">
       <v-progress-circular
         :width="2"
         color="white"
         indeterminate
-        v-if="loading"
+
       ></v-progress-circular>
+      </div>
       <v-btn class="get-code"  dark v-else  v-on:click="submit()">Collect your prize</v-btn>
     </div>
   </form>
@@ -299,7 +300,7 @@ export default {
                 request = this.generateRequest(this.currentAttempt);
                 if(!request){
                   this.loading=false;
-                  this.errorMessage='Oops your pin code invalid or already redeemed';
+                  this.errorMessage='Oops your pin code is invalid or already redeemed';
                   return false;
                 }
                 this.$store.dispatch(SUBMIT_FORM,request)
@@ -323,7 +324,7 @@ export default {
                     this.errorMessage='Oops something went wrong please try again';
                   }
                    if(error.response && error.response.data.detail){
-                     this.errorMessage='Oops your pin code invalid or already redeemed';
+                     this.errorMessage='Oops your pin code is invalid or already redeemed';
                    }
 
                  if(error.response && error.response.data.status=='401'){
@@ -333,12 +334,12 @@ export default {
                       location.reload();
                   }
                   if(error.response&&error.response.data.errorCode=='5'){
-                    this.errorMessage='Oops your pin code invalid or already redeemed';
+                    this.errorMessage='Oops your pin code is invalid or already redeemed';
                   }
                 })
                }else{
                  this.loading=false;
-                 this.errorMessage='Oops your pin code invalid or already redeemed';
+                 this.errorMessage='Oops your pin code is invalid or already redeemed';
                }
          }else{
             this.loading=false;
