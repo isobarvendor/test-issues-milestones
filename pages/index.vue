@@ -38,7 +38,8 @@ export default {
   },
   data(){
     return{
-      notCountDown:this.$store.state.isCampaignStarted
+      notCountDown:this.$store.state.isCampaignStarted,
+      listPrizesData:[]
     }
   },
   head() {
@@ -98,13 +99,19 @@ export default {
 
      },
         getListPrize(){
-          this.$store.dispatch(GET_LIST_PRIZE)
-                .then((response)=>{
-                })
-                .catch((error) =>{
+              let configID=this.$config.configID.split(",");
+              if(configID.length>0){
+              let array=[];
+              for(let a=0;a<configID.length;a++){
+                  this.$store.dispatch(GET_LIST_PRIZE,configID[a])
+                  .then((response)=>{
+                    this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.data.prizeList]];
+                  })
+                  .catch((error) =>{
 
-                })
-
+                  })
+            }
+          }
 
      },
 
@@ -121,9 +128,7 @@ export default {
     campaignType(){
       return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
     },
-      listPrizesData(){
-      return this.$store.getters.getListPrize
-    }
+
   },
 
 }
