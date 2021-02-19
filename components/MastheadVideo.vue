@@ -16,7 +16,7 @@
       <div class="masthead-content">
       <h1>{{data.title}}</h1>
       <p>{{data.description}}</p>
-      
+
     </div>
     <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
 </video-background>
@@ -38,11 +38,11 @@ export default {
   data() {
     return {
       imgDesk: this.data.homepage.mastheadSection.desktopImage[0].url,
-      imgTab: this.data.homepage.mastheadSection.tabletImage[0].url,
-      imgMob: this.data.homepage.mastheadSection.mobileImage[0].url,
-      videoDesk: "/img/background.mp4",
-      videoTab:  "/img/background.mp4",
-      videoMob:  "/img/background.mp4",
+      imgTab: this.data.homepage.mastheadSection.tabletImage.length>0 ? this.data.homepage.mastheadSection.tabletImage[0].url : this.data.homepage.mastheadSection.desktopImage[0].url,
+      imgMob: this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url : this.data.homepage.mastheadSection.desktopImage[0].url,
+      videoDesk: this.data.homepage.mastheadSection.video.url,
+      videoTab:  this.data.homepage.mastheadSection.video.url,
+      videoMob:  this.data.homepage.mastheadSection.video.url,
     }
   },
   mounted() {
