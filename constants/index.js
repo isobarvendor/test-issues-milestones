@@ -33,7 +33,8 @@ export const translation ={
     errorAPI:"Oops something went wrong please try again",
     errorMaxPhone:"You reach maximum phone number length",
     participateAgain:"Participate again",
-    listenNow:"Listen now"
+    listenNow:"Listen now",
+    redeemPrize:"Redeem Prize"
   },
   winnerText:{
     header:"WINNER LIST"
