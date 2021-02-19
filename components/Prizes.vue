@@ -19,7 +19,7 @@
     <div class="container prize-swiper-container">
       <swiper class="swiper prize-swiper" :options="swiperOption">
         <swiper-slide
-           v-for="(item, index) in ngpsPrize.prizeList"
+           v-for="(item, index) in ngpsPrize"
           :key="'prize'+index"
           class="prize-item"
         >
@@ -58,11 +58,11 @@ export default {
         breakpoints: {
           // when window width is >= 320px
           768: {
-            slidesPerView: this.ngpsPrize.prizeList.length>2 ? 3 : 2,
+            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
             spaceBetween: 10,
           },
           992: {
-            slidesPerView: this.ngpsPrize.prizeList.length>2 ? 3 : 2,
+            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
             spaceBetween: 20,
           },
         },
@@ -80,7 +80,7 @@ export default {
     data: null,
     winners: null,
     prize:null,
-    ngpsPrize:null,
+    ngpsPrize:{},
     exclusivePrizes:null
   },
   beforeMount() {},
