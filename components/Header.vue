@@ -18,8 +18,8 @@
         </div>
     </a-->
 
-        <a class="profile-button" v-if="!logged&&notCountDown" v-scroll-to="'#submission-section'"  style="text-decoration:none">
-        <div class="profile-content">
+        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" v-if="!logged&&notCountDown" v-scroll-to="'#submission-section'"  style="text-decoration:none">
+        <div class="profile-content" >
             <template ><div v-html="siginButton"></div></template>
         </div>
     </a>
@@ -322,6 +322,7 @@ export default {
             margin-top: 20px;
             padding-top:150px;
             height: 100%;
+            min-height: 900px;
             .wallet-swiper{
                 width: 90%;
                 .wallet-swiper-item img{
@@ -331,4 +332,9 @@ export default {
         }
     }
 }
+    @media only screen and (max-width: 700px) {
+        .hide-mobile{
+          display: none !important;
+        }
+    }
 </style>
