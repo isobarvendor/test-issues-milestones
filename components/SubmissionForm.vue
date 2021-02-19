@@ -4,18 +4,18 @@
     <div class="img-footer" >
             <img src="/img/landing/instruments.png" width="100%" />
     </div>
-   <div class="header"></div>
+   <div class="header">{{submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
-      <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" placeholder="Email" readonly/>
+      <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
-      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" placeholder="Name" readonly/>
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   placeholder="Phone number" />
+      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" />
         <span class="error-message">{{ errors.first('phoneNumber') }}</span>
     </div>
 
@@ -43,7 +43,7 @@
             <span></span>
           </label>
         </div>
-        <div class="terms">I accept the <a href="/tnc">Terms and Conditions</a> of this this redemption.</div>
+        <div class="terms" v-html="submissionText.acceptTerm"></div>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
             <span></span>
           </label>
         </div>
-        <div class="terms">I accept the <a href="/privacy">Privacy Policy</a> of this redemption.</div>
+        <div class="terms" v-html="submissionText.acceptPrivacy"></div>
       </div>
     </div>
         <div class="row top">
@@ -66,7 +66,7 @@
             <span></span>
           </label>
         </div>
-        <div class="terms">I declare that I am above 13  years old.</div>
+        <div class="terms" v-html="submissionText.declareAge"></div>
       </div>
     </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
@@ -74,12 +74,12 @@
 
       <div class="info-btn"  >
           <div class="btn-text">
-          <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" placeholder="Enter Unique Code"/>
+          <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
              <span class="error-message">{{ errors.first('code') }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
-            <span class="tooltiptext">Enter the code found under the cap/tab of your Coca Cola purchase here</span>
+            <span class="tooltiptext">{{submissionText.tooltipText}}</span>
           </div>
       </div>
       <div style="padding:20px"  v-if="loading">
@@ -90,7 +90,7 @@
 
       ></v-progress-circular>
       </div>
-      <v-btn class="get-code"  dark v-else  v-on:click="submit()">Collect your prize</v-btn>
+      <v-btn class="get-code"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
     </div>
   </form>
 
@@ -141,6 +141,7 @@
 
 <script>
 import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import {translation} from "@/constants/index"
 export default {
     name:"Form",
     inject: ['$validator'],
@@ -165,6 +166,7 @@ export default {
         amazonImage:'',
         loading:false,
         prizeWin:null,
+        submissionText:translation.submissionText
 
 
     }
@@ -186,9 +188,7 @@ export default {
      /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
-    campaignTitle(){
-       return "Enter your code now";
-    },
+
     thankyouSubmission(){
        return this.cmsData.ThankYouSubmission;
     },
@@ -293,17 +293,17 @@ export default {
            let currentattempt=0;
            if(!this.form.terms){
              this.loading=false;
-             this.errorMessage="Please accept our terms and conditions";
+             this.errorMessage=this.submissionText.errorTerm;
              return false;
            }
             if(!this.form.privacy){
               this.loading=false;
-             this.errorMessage="Please accept our privacy policies";
+             this.errorMessage=this.submissionText.errorPolicy;
              return false;
            }
             if(!this.form.ageConsent){
               this.loading=false;
-             this.errorMessage="Please declare that you are above 13  years old";
+             this.errorMessage=this.submissionText.errorDeclare;
              return false;
            }
              this.errorMessage=null;
@@ -316,7 +316,7 @@ export default {
                 request = this.generateRequest(this.currentAttempt);
                 if(!request){
                   this.loading=false;
-                  this.errorMessage='Oops your pin code is invalid or already redeemed';
+                  this.errorMessage=this.submissionText.errorPinCode;
                   return false;
                 }
                 this.$store.dispatch(SUBMIT_FORM,request)
@@ -337,10 +337,10 @@ export default {
                 .catch((error) =>{
                   this.loading=false;
                     if(error.response){
-                    this.errorMessage='Oops something went wrong please try again';
+                    this.errorMessage=this.submissionText.errorAPI;
                   }
                    if(error.response && error.response.data.detail){
-                     this.errorMessage='Oops your pin code is invalid or already redeemed';
+                     this.errorMessage=this.submissionText.errorPinCode;
                    }
 
                  if(error.response && error.response.data.status=='401'){
@@ -350,12 +350,12 @@ export default {
                       location.reload();
                   }
                   if(error.response&&error.response.data.errorCode=='5'){
-                    this.errorMessage='Oops your pin code is invalid or already redeemed';
+                    this.errorMessage=this.submissionText.errorPinCode;
                   }
                 })
                }else{
                  this.loading=false;
-                 this.errorMessage='Oops your pin code is invalid or already redeemed';
+                 this.errorMessage=this.submissionText.errorPinCode;
                }
          }else{
             this.loading=false;

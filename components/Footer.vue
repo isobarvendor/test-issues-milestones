@@ -1,17 +1,18 @@
 <template>
   <footer>
       <div class="container">
-        
+
         <p v-html="footerText" class="footer-text"></p>
         <p>
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/tnc">Terms and conditions</a>
+          <a href="/privacy">{{footer.privacy}}</a>
+          <a href="/tnc">{{footer.terms}}</a>
         </p>
       </div>
     </footer>
 </template>
 
 <script>
+import {translation} from "@/constants/index"
 export default {
     name:"Footer",
     props:{
@@ -19,6 +20,7 @@ export default {
     },
     data(){
       return {
+        footer:translation.footer,
       }
     },
     computed:{

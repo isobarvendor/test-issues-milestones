@@ -18,7 +18,7 @@
 
             <span v-html="thankYouMessage"></span>
              <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain">Play again</v-btn>
+                  <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
             </div>
 
       </div>
@@ -31,7 +31,7 @@
     <div class="desc-joox" >
         <span v-html="prize[0].havejoox"></span>
         <div class="joox-listen">
-            <a :href="listenNowLink" target="_blank"><v-btn >Listen now</v-btn></a>
+            <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
         </div>
     </div>
   </div>
@@ -42,6 +42,7 @@
 <script>
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
+import {translation} from "@/constants/index"
 export default {
   name: "SubmissionMechanics",
   components:{
@@ -50,6 +51,7 @@ export default {
   },
    props: {
         dataForm: null,
+
       },
   data() {
     return {
@@ -59,7 +61,8 @@ export default {
         thankYouMessage:"",
         request:{
           email:''
-        }
+        },
+        submissionText:translation.submissionText
     }
 
   },

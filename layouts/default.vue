@@ -10,7 +10,7 @@
     <Nuxt v-if="!errorMessage&&!loading&&!hideAll" />
      <div class="center-text" v-else-if="!loading&&!hideAll">
         <h1>{{errorMessage}}</h1>
-        <p>Please try again</p>
+        <p>{{globalError.tryagain}}</p>
       </div>
     <Header  v-if="!loading" @toggleMenu="toggleMenu" />
   </div>
@@ -18,6 +18,7 @@
 
 <script>
 import { FETCH_CMS_DATA} from '@/store/action_types';
+import {translation} from "@/constants/index"
 import Header from "~/components/Header";
 export default {
   components: {
@@ -27,7 +28,8 @@ export default {
     return {
       errorMessage:null,
       loading:false,
-      hideAll:false
+      hideAll:false,
+      globalError:translation.globalError
     }
   },
   computed:{
@@ -54,7 +56,7 @@ export default {
       }).catch(error=>{
         if(error){
             this.loading=false;
-           this.errorMessage = "Oops something went wrong"
+           this.errorMessage =this.globalError.errorAPI
         }
 
       })
