@@ -6,7 +6,7 @@
                 <p> {{tnc.TncTop[0].LastUpdate}}</p>
             </div>
             <div class="desc">
-                <p>{{tnc.TncTop[0].Description}}
+                <p v-html="tnc.TncTop[0].Description">
                 </p>
                 <div class="links">
                     <p v-for="(item,index) in tnc.TncBottom"><a href="#">{{item.Title}}</a></p>
@@ -21,7 +21,7 @@
         <div class="secondary-component">
             <div class="sub-header">{{item.Title}}</div>
             <div class="desc">
-                <p>{{item.Description}}
+                <p v-html="item.Description">
                 </p>
             </div>
         </div>
