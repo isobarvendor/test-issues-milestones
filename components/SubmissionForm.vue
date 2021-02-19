@@ -479,11 +479,11 @@ form.mechanics{
 }
  form input#code::placeholder{
    color: #1d1d1b;
+   text-decoration: underline;
  }
  form input#code{
    color: #1d1d1b;
    text-align: center;
-   text-decoration: underline;
  }
 .tooltip {
 
