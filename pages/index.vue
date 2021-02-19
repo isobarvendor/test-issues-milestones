@@ -5,7 +5,7 @@
       <Masthead :data="CMSContent[0]" :isCountDown="true" v-else/>
 
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
-      <Prizes v-if="configData && listPrizesData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
+      <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData.prizeList : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
       <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
@@ -68,7 +68,7 @@ export default {
 
   },
   mounted(){
-    this.getListPrize();
+    this.configData && this.configData.ExclusivePrizes&&this.configData.ExclusivePrizes.ExclusivePrizes && this.getListPrize();
     if(this.$store.state.token){
          this.getAccount();
         // this.campaignType=='Experience' && this.getListWallet();

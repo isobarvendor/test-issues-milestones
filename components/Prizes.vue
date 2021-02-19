@@ -82,7 +82,7 @@ export default {
     data: null,
     winners: null,
     prize:null,
-    ngpsPrize:null,
+    ngpsPrize:{},
     exclusivePrizes:null
   },
   beforeMount() {},
