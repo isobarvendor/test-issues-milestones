@@ -397,7 +397,7 @@ export default {
   watch:{
      "form.phoneNumber": function (val) {
        let envs=this.$config;
-       if(val.length==1){
+       if(val.length==1||!val.includes(envs.phoneCode)){
          this.form.phoneNumber=envs.phoneCode+val;
        }
        if((val.length-envs.phoneCode.length)>envs.maxPhoneNumber){
