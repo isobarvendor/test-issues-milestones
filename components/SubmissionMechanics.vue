@@ -110,7 +110,7 @@ export default {
                   }]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
-                subName:prizewin.instantWinResult.redeemedPrize.emailMessage
+                subName:null
               }
           ];
           this.prize=prize;
