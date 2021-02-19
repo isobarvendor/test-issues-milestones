@@ -40,7 +40,7 @@
             <p class="campaign-period" v-html="startdate+' – '+enddate"></p>
           </div>
           <div class="period-desc-container">
-
+              {{periodDescription}}
           </div>
 
            <v-row no-gutters   >
@@ -85,6 +85,7 @@
 
 <script>
 import moment from "moment";
+import {translation} from "@/constants/index"
 moment.locale('en', {
     ordinal: num => {
         const b = num % 10;
@@ -100,7 +101,7 @@ export default {
    name: "CampaignPeriod",
   data() {
     return {
-
+      periodDescription:translation.periodDescription
     };
   },
   computed:{

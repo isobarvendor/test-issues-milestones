@@ -20,7 +20,7 @@
 
         <a class="profile-button" v-if="!logged&&notCountDown" v-scroll-to="'#submission-section'"  style="text-decoration:none">
         <div class="profile-content">
-            <template ><div >SIGN IN <BR/><small>to win prizes</small></div></template>
+            <template ><div v-html="siginButton"></div></template>
         </div>
     </a>
     <div></div>
@@ -84,13 +84,13 @@
                     <div class="img-text">
                         <img src="/img/icons/home-icon.png"  />
                         <div>
-                            <a href="/">Home</a>
+                            <a href="/">{{menu.home}}</a>
                         </div>
                     </div>
                        <div class="img-text" v-if="logged">
                         <img src="/img/icons/wallet.png"/>
                         <div>
-                            <a data-nav="myrewards" @click="clickNav">My Rewards</a>
+                            <a data-nav="myrewards" @click="clickNav">{{menu.myRewards}}</a>
                         </div>
                     </div>
 
@@ -101,9 +101,9 @@
                     <p v-if="logged&&CMSContent"  class="logout" @click="logout" >{{CMSContent[0].SectionMenu.Menu[7].Link}}</p>
                 </div-->
                 <div class="tnc-container">
-                    <p><a @click="clickPrivacy" v-if="CMSContent"> Privacy</a></p>
-                    <p><a @click="clickTerms" v-if="CMSContent"> Terms</a></p>
-                    <p v-if="logged&&CMSContent"  class="logout" @click="logout" >logout</p>
+                    <p><a @click="clickPrivacy" v-if="CMSContent">{{menu.privacy}}</a></p>
+                    <p><a @click="clickTerms" v-if="CMSContent">{{menu.terms}}</a></p>
+                    <p v-if="logged&&CMSContent"  class="logout" @click="logout" >{{menu.logout}}</p>
                 </div>
 
             </div>
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import {translation} from "@/constants/index"
 export default {
     data(){
         return{
@@ -125,7 +126,9 @@ export default {
             isReward:false,
             expand: false,
             config:this.$store.getters.getCMSConfig,
-            notCountDown:this.$store.state.isCampaignStarted
+            notCountDown:this.$store.state.isCampaignStarted,
+            siginButton:translation.signInButton,
+            menu:translation.menu
         }
     },
     watch:{

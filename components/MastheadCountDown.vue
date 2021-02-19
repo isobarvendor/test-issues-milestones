@@ -46,24 +46,25 @@
       </vac>
       <v-row no-gutters>
         <v-col  cols="3">
-          DAYS
+          {{countdownText.days}}
         </v-col>
 
         <v-col  cols="3">
-          HRS
+          {{countdownText.hrs}}
         </v-col>
 
         <v-col  cols="3">
-          MINS
+          {{countdownText.mins}}
         </v-col>
          <v-col  cols="3">
-          SECS
+          {{countdownText.secs}}
         </v-col>
       </v-row>
   </div>
 </template>
 
 <script>
+import {translation} from "@/constants/index"
 export default {
   name: "MastheadCountdown",
   props: {
@@ -71,7 +72,7 @@ export default {
   },
   data() {
     return {
-
+       countdownText:translation.countdown,
     }
   },
   mounted() {

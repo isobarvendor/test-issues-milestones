@@ -1,6 +1,6 @@
 <template>
   <div class="login-box column center">
-      <p class="text-center">Sign in or register a Coca-Cola <br>account to enter the draw</p>
+      <p class="text-center" v-html="submissionText.siginHeader"></p>
       <a class="social-button fb"  v-on:click="redirectTo('facebook')" v-if="social.facebook"><i class="ic ic-fb" /><span>Continue with Facebook</span></a>
       <a class="social-button line"  v-on:click="redirectTo('line')" v-if="social.line" ><i class="ic ic-line" /><span>Continue with LINE</span></a>
       <a class="social-button google"  v-on:click="redirectTo('google')" v-if="social.google"><i class="ic ic-google" /><span>Continue with Google</span></a>
@@ -13,11 +13,17 @@
 </template>
 
 <script>
+import {translation} from "@/constants/index"
 export default {
     name:"Login",
     props: {
       data: null,
       social: null
+    },
+    data(){
+      return {
+        submissionText:translation.submissionText
+      }
     },
     methods: {
       redirectTo(source){

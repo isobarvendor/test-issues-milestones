@@ -21,7 +21,7 @@
       <div v-if="prize.length==0" style="text-align:center">
             <span v-html="thankYouMessage"></span>
              <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain">Play again</v-btn>
+                  <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
             </div>
       </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize.length>0 && prize[0].havejoox"  >
@@ -31,7 +31,7 @@
     <div class="desc-joox" >
         <span v-html="prize[0].havejoox"></span>
         <div class="joox-listen">
-            <a :href="listenNowLink" target="_blank"><v-btn >Listen now</v-btn></a>
+            <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
         </div>
     </div>
   </div>
@@ -44,9 +44,9 @@
 import {SUBMIT_FORM } from '@/store/action_types';
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
+import {translation} from "@/constants/index"
 
 let configID=process.env.configID.split(",");
-
 export default {
   name: "SubmissionMechanics",
   components:{
@@ -55,6 +55,7 @@ export default {
   },
    props: {
         dataForm: null,
+
       },
   data() {
     return {
@@ -70,7 +71,8 @@ export default {
         request:{
           email:''
         },
-        errorMessage:null
+        errorMessage:null,
+        submissionText:translation.submissionText
     }
 
   },
