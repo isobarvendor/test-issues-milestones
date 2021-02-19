@@ -6,19 +6,19 @@
           slot-scope="{ timeObj }">
            <v-row no-gutters class="number-area">
               <v-col  cols="3">
-                <span v-html="addNumberClass(timeObj.d)" />
+                <span v-html="addNumberClass(timeObj.d)" /><span class="dot">:</span>
               </v-col>
-               <v-col  cols="1">
-                :
-              </v-col>
+
               <v-col  cols="3">
-                <span v-html="addNumberClass(timeObj.h)" />
+                <span v-html="addNumberClass(timeObj.h)" /><span class="dot">:</span>
               </v-col>
-               <v-col  cols="1">
-                :
-              </v-col>
+
               <v-col  cols="3">
-                <span v-html="addNumberClass(timeObj.m)" />
+                <span v-html="addNumberClass(timeObj.m)" /><span class="dot">:</span>
+              </v-col>
+
+              <v-col  cols="3">
+                <span v-html="addNumberClass(timeObj.s)" />
               </v-col>
             </v-row>
          </span>
@@ -27,17 +27,17 @@
           >
            <v-row no-gutters class="number-area">
               <v-col  cols="3">
-                <span v-html="addNumberClass('0')" />
+                <span v-html="addNumberClass('0')" /><span class="dot">:</span>
               </v-col>
-               <v-col  cols="1">
-                :
-              </v-col>
+
               <v-col  cols="3">
-                <span v-html="addNumberClass('00')" />
+                <span v-html="addNumberClass('00')" /><span class="dot">:</span>
               </v-col>
-               <v-col  cols="1">
-                :
+
+              <v-col  cols="3">
+                <span v-html="addNumberClass('00  ')" /><span class="dot">:</span>
               </v-col>
+
               <v-col  cols="3">
                 <span v-html="addNumberClass('00  ')" />
               </v-col>
@@ -48,13 +48,16 @@
         <v-col  cols="3">
           DAYS
         </v-col>
-        <v-col  cols="1"></v-col>
+
         <v-col  cols="3">
           HRS
         </v-col>
-        <v-col  cols="1"></v-col>
+
         <v-col  cols="3">
           MINS
+        </v-col>
+         <v-col  cols="3">
+          SCCS
         </v-col>
       </v-row>
   </div>
@@ -68,7 +71,7 @@ export default {
   },
   data() {
     return {
-      
+
     }
   },
   mounted() {
@@ -120,7 +123,7 @@ export default {
   text-align: center;
 }
 .coundown-text{
-  font-size:49px;
+  font-size:43px;
 }
 .number-area{
   margin-top: 15px !important;
@@ -129,7 +132,7 @@ export default {
   padding-left: 10px;
   padding-top: 5px;
 
-  
+
 }
 .countdown-number{
   background: #303030;
@@ -139,7 +142,11 @@ export default {
    -moz-box-shadow:    inset 0 0 10px #000000;
    -webkit-box-shadow: inset 0 0 10px #000000;
    box-shadow:         inset 0 0 10px #000000;
-     min-width: 50px; 
+     max-width: 30px;
 
+}
+.dot{
+  padding-left: 2px;
+  padding-right: 2px;
 }
 </style>

@@ -58,6 +58,17 @@
         <div class="terms">I accept the <a href="/privacy">Privacy Policy</a> of this redemption.</div>
       </div>
     </div>
+        <div class="row top">
+      <div class="col d-flex consent">
+        <div class="checkbox">
+          <label for="form_age">
+            <input type="checkbox" name="ageConsent" id="form_age" v-model="form.ageConsent">
+            <span></span>
+          </label>
+        </div>
+        <div class="terms">I declare that I am above 13  years old.</div>
+      </div>
+    </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
@@ -288,6 +299,11 @@ export default {
             if(!this.form.privacy){
               this.loading=false;
              this.errorMessage="Please accept our privacy policies";
+             return false;
+           }
+            if(!this.form.ageConsent){
+              this.loading=false;
+             this.errorMessage="Please declare that you are above 13  years old";
              return false;
            }
              this.errorMessage=null;
