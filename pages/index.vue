@@ -1,7 +1,7 @@
 <template>
   <div id="main" class="home" v-if="CMSContent" >
     <div class="wrapper" >
-      <MastheadVideo :data="CMSContent[0]" :isCountDown="true" v-if="isVideo(CMSContent[0].homepage.mastheadSection)"/>
+      <MastheadVideo :data="CMSContent[0]" :isCountDown="true" v-if="CMSContent[0].homepage.mastheadSection.video"/>
       <Masthead :data="CMSContent[0]" :isCountDown="true" v-else/>
 
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
