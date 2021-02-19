@@ -18,7 +18,7 @@
         </div>
     </a-->
 
-        <a class="profile-button" v-if="!logged&&notCountDown" href="/#submission-section" style="text-decoration:none">
+        <a class="profile-button" v-if="!logged&&notCountDown" v-scroll-to="'#submission-section'"  style="text-decoration:none">
         <div class="profile-content">
             <template ><div >SIGN IN <BR/><small>to win prizes</small></div></template>
         </div>

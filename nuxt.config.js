@@ -80,7 +80,8 @@ export default {
   */
  buildModules: [
     // Simple usage
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    'vue-scrollto/nuxt',
   ],
   /*
   ** Nuxt.js modules

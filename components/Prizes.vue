@@ -28,7 +28,7 @@
             <div class="prize-description">
               <h3 v-html="item.shortDescription"></h3>
               {{item.name}} <BR/>
-              Total : {{item.totalAmount}}
+              Total : {{item.amountAvailable}}
             </div>
           </div>
         </swiper-slide>

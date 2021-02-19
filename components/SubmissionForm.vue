@@ -15,7 +15,7 @@
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber"   placeholder="Phone number" />
+      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   placeholder="Phone number" />
         <span class="error-message">{{ errors.first('phoneNumber') }}</span>
     </div>
 
@@ -58,6 +58,17 @@
         <div class="terms">I accept the <a href="/privacy">Privacy Policy</a> of this redemption.</div>
       </div>
     </div>
+        <div class="row top">
+      <div class="col d-flex consent">
+        <div class="checkbox">
+          <label for="form_age">
+            <input type="checkbox" name="ageConsent" id="form_age" v-model="form.ageConsent">
+            <span></span>
+          </label>
+        </div>
+        <div class="terms">I declare that I am above 13  years old.</div>
+      </div>
+    </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
@@ -71,13 +82,14 @@
             <span class="tooltiptext">Enter the code found under the cap/tab of your Coca Cola purchase here</span>
           </div>
       </div>
-
+      <div style="padding:20px"  v-if="loading">
       <v-progress-circular
         :width="2"
         color="white"
         indeterminate
-        v-if="loading"
+
       ></v-progress-circular>
+      </div>
       <v-btn class="get-code"  dark v-else  v-on:click="submit()">Collect your prize</v-btn>
     </div>
   </form>
@@ -260,6 +272,11 @@ export default {
              this.errorMessage="Please accept our privacy policies";
              return false;
            }
+            if(!this.form.ageConsent){
+              this.loading=false;
+             this.errorMessage="Please declare that you are above 13  years old";
+             return false;
+           }
              this.errorMessage=null;
              await this.checkcurrentAttempt();
 
@@ -270,7 +287,7 @@ export default {
                 request = this.generateRequest(this.currentAttempt);
                 if(!request){
                   this.loading=false;
-                  this.errorMessage='Oops your pin code invalid or already redeemed';
+                  this.errorMessage='Oops your pin code is invalid or already redeemed';
                   return false;
                 }
                 this.$store.dispatch(CHECK_MIXCODE,request)
@@ -334,7 +351,7 @@ export default {
                     this.errorMessage='Oops something went wrong please try again';
                   }
                    if(error.response && error.response.data.detail){
-                     this.errorMessage='Oops your pin code invalid or already redeemed';
+                     this.errorMessage='Oops your pin code is invalid or already redeemed';
                    }
 
                  if(error.response && error.response.data.status=='401'){
@@ -344,12 +361,12 @@ export default {
                       location.reload();
                   }
                   if(error.response&&error.response.data.errorCode=='5'){
-                    this.errorMessage='Oops your pin code invalid or already redeemed';
+                    this.errorMessage='Oops your pin code is invalid or already redeemed';
                   }
                 })
                }else{
                  this.loading=false;
-                 this.errorMessage='Oops your pin code invalid or already redeemed';
+                 this.errorMessage='Oops your pin code is invalid or already redeemed';
                }
          }else{
             this.loading=false;
