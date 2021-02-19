@@ -285,7 +285,7 @@ export default {
                   }]:[]
                   ,havejoox:false,
                   code: null,
-                subName:prizewin.instantWinResult.redeemedPrize.emailMessage
+                subName:null,
               }
           ];
           this.prize=prize;
@@ -307,12 +307,12 @@ export default {
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:[{
-                      text:"Redeem Prize",
+                      text:this.submissionText.redeemPrize,
                       link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
                   }]
                   ,havejoox:false,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
-                subName:prizewin.instantWinResult.redeemedPrize.emailMessage,
+                subName:null,
                 isPlayAgain:false
               }
           ];

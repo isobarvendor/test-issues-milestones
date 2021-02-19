@@ -1,10 +1,10 @@
 <template>
   <div class="login-box column center">
       <p class="text-center" v-html="submissionText.siginHeader"></p>
-      <a class="social-button fb"  v-on:click="redirectTo('facebook')" v-if="social.facebook"><i class="ic ic-fb" /><span>Continue with Facebook</span></a>
-      <a class="social-button line"  v-on:click="redirectTo('line')" v-if="social.line" ><i class="ic ic-line" /><span>Continue with LINE</span></a>
-      <a class="social-button google"  v-on:click="redirectTo('google')" v-if="social.google"><i class="ic ic-google" /><span>Continue with Google</span></a>
-      <a class="social-button email" href="/login" v-if="social.email"><i class="ic ic-email" /><span>Continue with email</span></a>
+      <a class="social-button fb"  v-on:click="redirectTo('facebook')" v-if="social.facebook"><i class="ic ic-fb" /><span>{{submissionText.continue}} Facebook</span></a>
+      <a class="social-button line"  v-on:click="redirectTo('line')" v-if="social.line" ><i class="ic ic-line" /><span>{{submissionText.continue}} LINE</span></a>
+      <a class="social-button google"  v-on:click="redirectTo('google')" v-if="social.google"><i class="ic ic-google" /><span>{{submissionText.continue}} Google</span></a>
+      <a class="social-button email" href="/login" v-if="social.email"><i class="ic ic-email" /><span>{{submissionText.continue}} email</span></a>
      <div v-if="errorMessage" class="error">
       {{errorMessage}}
   </div>
