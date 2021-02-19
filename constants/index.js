@@ -40,7 +40,8 @@ let language =
       errorMaxPhone:"You reach maximum phone number length",
       participateAgain:"Participate again",
       listenNow:"Listen now",
-      redeemPrize:"Redeem Prize"
+      redeemPrize:"Redeem Prize",
+      continue:"Continue with"
     },
     winnerText:{
       header:"WINNER LIST"
@@ -94,7 +95,8 @@ let language =
         errorMaxPhone:"You reach maximum phone number length",
         participateAgain:"Participate again",
         listenNow:"Listen now",
-        redeemPrize:"กดเพื่อรับรางวัลของคุณทันที"
+        redeemPrize:"กดเพื่อรับรางวัลของคุณทันที",
+        continue:"ล็อกอินผ่าน"
       },
       winnerText:{
         header:"WINNER LIST"
