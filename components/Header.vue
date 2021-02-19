@@ -93,12 +93,7 @@
                             <a data-nav="myrewards" @click="clickNav">My Rewards</a>
                         </div>
                     </div>
-                       <div class="img-text">
-                        <img src="/img/icons/help.png"/>
-                        <div>
-                            <a data-nav="help" @click="clickNav">FAQ</a>
-                        </div>
-                    </div>
+
                 </div>
                 <!--div class="tnc-container">
                     <p><a @click="clickPrivacy" v-if="CMSContent"> {{CMSContent[0].SectionMenu.Menu[5].Link}} </a></p>

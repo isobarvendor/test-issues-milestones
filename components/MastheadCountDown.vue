@@ -57,7 +57,7 @@
           MINS
         </v-col>
          <v-col  cols="3">
-          SCCS
+          SECS
         </v-col>
       </v-row>
   </div>
