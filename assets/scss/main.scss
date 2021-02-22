@@ -1223,3 +1223,7 @@ form {
         color:#fff !important;
         padding: 30px;
 }
+
+input:focus::placeholder {
+  color: transparent !important;
+}

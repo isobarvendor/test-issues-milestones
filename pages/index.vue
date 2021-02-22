@@ -73,28 +73,20 @@ export default {
          this.getAccount();
         // this.campaignType=='Experience' && this.getListWallet();
 
-            var options = {
+    }
+    if(this.$store.state.token||this.$store.state.goToSignin){
+          var options = {
                 container: 'body',
                 easing: 'ease-in',
                 lazy: false,
                 offset: -60,
                 force: true,
                 cancelable: true,
-                onStart: function(element) {
-                  // scrolling started
-                },
-                onDone: function(element) {
-                  // scrolling is done
-                },
-                onCancel: function() {
-                  // scrolling has been interrupted
-                },
                 x: false,
                 y: true
             }
 
              this.$scrollTo('#submission-section', 60, options)
-
     }
   },
 

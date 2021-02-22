@@ -40,7 +40,10 @@ export default {
   },
   SET_CAMPAIGN_STARTED:(state,data)=>{
     state.isCampaignStarted= data
-  }
+  },
+  SET_GO_TO_SIGNIN:(state,data)=>{
+    state.goToSignin= data
+  },
 
 
 };
