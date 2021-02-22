@@ -423,7 +423,7 @@ export default {
 
 <style scoped>
   .error-message{
-    color:red;
+    color:#000;
   }
   .error-message-black{
     color:#000;

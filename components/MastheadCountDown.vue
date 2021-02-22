@@ -6,17 +6,23 @@
           slot-scope="{ timeObj }">
            <v-row no-gutters class="number-area">
               <v-col  cols="3">
-                <span v-html="addNumberClass(timeObj.d)" /><span class="dot">:</span>
+                <span v-html="addNumberClass(timeObj.d)" />
               </v-col>
-
+              <v-col  cols="1" class="dot">
+                <span >:</span>
+              </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass(timeObj.h)" /><span class="dot">:</span>
+                <span v-html="addNumberClass(timeObj.h)" />
               </v-col>
-
+              <v-col  cols="1" class="dot">
+                <span >:</span>
+              </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass(timeObj.m)" /><span class="dot">:</span>
+                <span v-html="addNumberClass(timeObj.m)" />
               </v-col>
-
+               <v-col  cols="1" class="dot">
+                <span >:</span>
+              </v-col>
               <v-col  cols="3">
                 <span v-html="addNumberClass(timeObj.s)" />
               </v-col>
@@ -27,17 +33,23 @@
           >
            <v-row no-gutters class="number-area">
               <v-col  cols="3">
-                <span v-html="addNumberClass('0')" /><span class="dot">:</span>
+                <span v-html="addNumberClass('0')" />
               </v-col>
-
+               <v-col  cols="1" class="dot">
+                <span>:</span>
+              </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass('00')" /><span class="dot">:</span>
+                <span v-html="addNumberClass('00')" />
               </v-col>
-
+               <v-col  cols="1" class="dot">
+                <span >:</span>
+              </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass('00  ')" /><span class="dot">:</span>
+                <span v-html="addNumberClass('00  ')" />
               </v-col>
-
+               <v-col  cols="1" class="dot">
+                <span>:</span>
+              </v-col>
               <v-col  cols="3">
                 <span v-html="addNumberClass('00  ')" />
               </v-col>
@@ -124,10 +136,10 @@ export default {
   text-align: center;
 }
 .coundown-text{
-  font-size:43px;
+  font-size:39px;
 }
 .number-area{
-  margin-top: 15px !important;
+  margin-top: 20px !important;
   margin-bottom: 15px !important;
   padding-right: 10px;
   padding-left: 10px;
@@ -147,7 +159,11 @@ export default {
 
 }
 .dot{
-  padding-left: 2px;
-  padding-right: 2px;
+  flex: 0 0 2%;
+    max-width: 2%;
+}
+.number-area .col-3 {
+  flex: 0 0 23%;
+    max-width: 23%;
 }
 </style>
