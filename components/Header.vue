@@ -18,7 +18,7 @@
         </div>
     </a-->
 
-        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" v-if="!logged&&notCountDown" v-scroll-to="'#submission-section'"  style="text-decoration:none">
+        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" v-if="!logged&&notCountDown"  v-scroll-to="'#submission-section'" @click="goToSignIn" href="#" style="text-decoration:none">
         <div class="profile-content" >
             <template ><div v-html="siginButton"></div></template>
         </div>
@@ -185,6 +185,11 @@ export default {
 
     },
     methods:{
+      goToSignIn(){
+        this.$store.commit('SET_GO_TO_SIGNIN',true);
+        this.$router.push('/');
+
+      },
         toggleMenu(e){
             e.stopPropagation();
             e.target.classList.toggle('active');
