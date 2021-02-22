@@ -45,13 +45,13 @@
                 <span >:</span>
               </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass('00  ')" />
+                <span v-html="addNumberClass('00')" />
               </v-col>
                <v-col  cols="1" class="dot">
                 <span>:</span>
               </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass('00  ')" />
+                <span v-html="addNumberClass('00')" />
               </v-col>
             </v-row>
          </span>
