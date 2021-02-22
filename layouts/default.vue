@@ -84,7 +84,6 @@ export default {
         return this.form_dirty && !this.confirmLeave()
       },
        beforeWindowUnload(e) {
-         console.log(test)
         if (this.confirmStayInDirtyForm()) {
           // Cancel the event
           e.preventDefault()
