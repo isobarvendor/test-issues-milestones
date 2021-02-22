@@ -98,8 +98,9 @@ export default {
   },
   methods: {
    finishCall(){
-     window.location.reload();
      this.$store.commit('SET_CAMPAIGN_STARTED',true);
+     window.location.reload();
+
    },
    addNumberClass(text){
      let arrayText = text.split("");
