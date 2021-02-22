@@ -349,13 +349,13 @@ export default {
                       this.$store.commit('SET_TOKEN', null);
                       location.reload();
                   }
-                  if(error.response&&error.response.data.errorCode=='1'){
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
                     this.errorMessage=this.submissionText.errorPinCode1;
                   }
-                  if(error.response&&error.response.data.errorCode=='4'){
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                     this.errorMessage=this.submissionText.errorPinCode2;
                   }
-                   if(error.response&&error.response.data.errorCode=='6'){
+                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
                     this.errorMessage=this.submissionText.errorPinCode3;
                   }
                 })
