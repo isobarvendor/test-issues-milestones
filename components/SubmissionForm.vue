@@ -6,13 +6,13 @@
     </div>
    <div class="header">{{submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
+     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
+        <!--span class="error-message">{{ errors.first('name') }}</span-->
+    </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
-    </div>
-    <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
-      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
-        <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" />

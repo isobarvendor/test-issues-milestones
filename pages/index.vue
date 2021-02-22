@@ -32,7 +32,7 @@ import  VueScrollTo from 'vue-scrollto';
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
 //const campaign
-
+import {translation} from "@/constants/index"
 export default {
   name:"index",
   components:{
@@ -40,19 +40,15 @@ export default {
   },
   data(){
     return{
-      notCountDown:this.$store.state.isCampaignStarted
+      notCountDown:this.$store.state.isCampaignStarted,
+      browserTitle:translation.browserTitle,
+      metaData:translation.meta
     }
   },
   head() {
     return {
-      title: "Coke Campaign",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "Home page description"
-        }
-      ],
+      title: this.browserTitle,
+      meta:this.metaData,
       noscript: [],
       /*script: [
         {

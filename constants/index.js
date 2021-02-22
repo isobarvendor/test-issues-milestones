@@ -2,6 +2,14 @@
 let language =
 {
   en:{
+    browserTitle:"Turn Up Your Rhythm",
+    meta: [
+      {
+        hid: "Turn Up Your Rhythm",
+        name: "Turn Up Your Rhythm",
+        content: "Home page Coke - Turn Up Your Rhythm"
+      }
+    ],
     periodDescription:"",
     signInButton:"SIGN IN <BR/><small>to win prizes</small>",
     menu:{
@@ -57,6 +65,14 @@ let language =
 
   },
   th:{
+      browserTitle:"Turn Up Your Rhythm",
+      meta: [
+        {
+          hid: "Turn Up Your Rhythm",
+          name: "Turn Up Your Rhythm",
+          content: "Home page Coke - Turn Up Your Rhythm"
+        }
+      ],
       periodDescription:"ตั้งแต่วันนี้ถึง 31 พฤษภาคม 2564 เพียงแค่ซื้อผลิตภัณฑ์โค้กที่ร่วมรายการแล้วนำโค้ดใต้ฝาสีทองมากรอก ก็รับไปเลยทันที Joox VIP 1 สัปดาห์ (สิทธิ์มีจำนวนจำกัด 1 คน ต่อ 1 สิทธิ์) และลุ้นรับรางวัลสุดซ่าอื่นๆจากการจับรางวัลทุกสัปดาห์ เพียงแค่ทำตามขั้นตอนด้านล่างๆ",
       signInButton:"SIGN IN <BR/><small>to win prizes</small>",
       menu:{
