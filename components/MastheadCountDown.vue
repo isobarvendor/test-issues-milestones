@@ -155,7 +155,8 @@ export default {
    -moz-box-shadow:    inset 0 0 10px #000000;
    -webkit-box-shadow: inset 0 0 10px #000000;
    box-shadow:         inset 0 0 10px #000000;
-     max-width: 30px;
+    width: 32px;
+     display: inline-block;
 
 }
 .dot{

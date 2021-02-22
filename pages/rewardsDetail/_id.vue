@@ -9,32 +9,22 @@
 <script>
 import { GET_LIST_PRIZE } from '@/store/action_types';
 import RewardDetails from '@/components/RewardDetails'
+import {translation} from "@/constants/index"
 export default {
   data(){
     return{
       dataStatus:{},
       data:null,
-      campaignType: 0
+      campaignType: 0,
+      browserTitle:translation.browserTitle,
+      metaData:translation.meta
+
     }
   },
   head() {
     return {
-      title: "Coke Campaign Title",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "Home page description"
-        }
-      ],
-      noscript: [],
-      /*script: [
-        {
-          hid: "anime",
-          src: "/js/anime.min.js"
-        }
-      ],*/
-      css: []
+      title: this.browserTitle,
+      meta:this.metaData,
     };
   },
   computed :{

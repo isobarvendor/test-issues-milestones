@@ -49,14 +49,6 @@ export default {
     return {
       title: this.browserTitle,
       meta:this.metaData,
-      noscript: [],
-      /*script: [
-        {
-          hid: "anime",
-          src: "/js/anime.min.js"
-        }
-      ],*/
-      css: []
     };
   },
   props: {
