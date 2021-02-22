@@ -7,6 +7,7 @@
 <script>
 import WinnerDetails from '@/components/WinnerDetails'
 import { GET_LIST_WINNERS } from '@/store/action_types';
+import {translation} from "@/constants/index"
 export default {
   name:"winners",
   components:{
@@ -14,26 +15,14 @@ export default {
   },
   data(){
     return{
+       browserTitle:translation.browserTitle,
+        metaData:translation.meta
     }
   },
   head() {
     return {
-      title: "Coke Campaign Title",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "Home page description"
-        }
-      ],
-      noscript: [],
-      /*script: [
-        {
-          hid: "anime",
-          src: "/js/anime.min.js"
-        }
-      ],*/
-      css: []
+      title: this.browserTitle,
+      meta:this.metaData,
     };
   },
   computed :{

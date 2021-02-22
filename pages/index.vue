@@ -1,8 +1,8 @@
 <template>
   <div id="main" class="home" v-if="CMSContent" >
     <div class="wrapper" >
-      <MastheadVideo :data="CMSContent[0]" :isCountDown="true" v-if="CMSContent[0].homepage.mastheadSection.video"/>
-      <Masthead :data="CMSContent[0]" :isCountDown="true" v-else/>
+      <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
+      <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
 
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
       <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
@@ -32,7 +32,7 @@ import  VueScrollTo from 'vue-scrollto';
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
 //const campaign
-
+import {translation} from "@/constants/index"
 export default {
   name:"index",
   components:{
@@ -41,27 +41,15 @@ export default {
   data(){
     return{
       notCountDown:this.$store.state.isCampaignStarted,
-      listPrizesData:[]
+      listPrizesData:[],
+      browserTitle:translation.browserTitle,
+      metaData:translation.meta
     }
   },
   head() {
     return {
-      title: "Coke Campaign",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "Home page description"
-        }
-      ],
-      noscript: [],
-      /*script: [
-        {
-          hid: "anime",
-          src: "/js/anime.min.js"
-        }
-      ],*/
-      css: []
+      title: this.browserTitle,
+      meta:this.metaData,
     };
   },
   props: {
@@ -87,6 +75,11 @@ export default {
             }
 
              this.$scrollTo('#submission-section', 60, options)
+    }
+
+    if(this.CMSContent && new Date(this.CMSContent[0].endDate).getTime()>new Date().getTime()){
+       this.$store.commit('SET_CAMPAIGN_STARTED',false);
+       localStorage.clear();
     }
   },
 

@@ -23,7 +23,7 @@ import MyRewardItem from '../components/MyRewardItem'
 import * as _ from 'lodash';
 import moment from "moment";
 import {  GET_MY_PRIZE} from '@/store/action_types';
-
+import {translation} from "@/constants/index"
 export default {
   name:"myrewards",
   components:{
@@ -33,27 +33,16 @@ export default {
     return{
         rewards:[
 
-        ]
+        ],
+        browserTitle:translation.browserTitle,
+        metaData:translation.meta
+
     }
   },
   head() {
     return {
-      title: "Coke Campaign Title",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "Home page description"
-        }
-      ],
-      noscript: [],
-      /*script: [
-        {
-          hid: "anime",
-          src: "/js/anime.min.js"
-        }
-      ],*/
-      css: []
+      title: this.browserTitle,
+      meta:this.metaData,
     };
   },
   props: {

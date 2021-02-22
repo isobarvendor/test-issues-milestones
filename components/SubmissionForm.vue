@@ -6,13 +6,13 @@
     </div>
    <div class="header">{{submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
+     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
+        <!--span class="error-message">{{ errors.first('name') }}</span-->
+    </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
-    </div>
-    <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
-      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
-        <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" />
@@ -75,7 +75,7 @@
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message">{{ errors.first('code') }}</span>
+             <span class="error-message-red">{{ errors.first('code') }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -279,7 +279,6 @@ export default {
            }
              this.errorMessage=null;
              await this.checkcurrentAttempt();
-
             if(this.getAttempt)
             {
 
@@ -350,7 +349,7 @@ export default {
                     if(error.response){
                     this.errorMessage=this.submissionText.errorAPI;
                   }
-                   if(error.response && error.response.data.detail){
+                   if(error.response && error.response.data.status=='400'){
                      this.errorMessage=this.submissionText.errorPinCode;
                    }
 
@@ -360,15 +359,7 @@ export default {
                       this.$store.commit('SET_TOKEN', null);
                       location.reload();
                   }
-                  if(error.response&&error.response.data.errorCode=='1'){
-                    this.errorMessage=this.submissionText.errorPinCode1;
-                  }
-                  if(error.response&&error.response.data.errorCode=='4'){
-                    this.errorMessage=this.submissionText.errorPinCode2;
-                  }
-                   if(error.response&&error.response.data.errorCode=='6'){
-                    this.errorMessage=this.submissionText.errorPinCode3;
-                  }
+
                 })
                }else{
                  this.loading=false;
@@ -433,8 +424,11 @@ export default {
 </script>
 
 <style scoped>
-  .error-message{
+  .error-message-red{
     color:red;
+  }
+  .error-message{
+    color:#000;
   }
   .error-message-black{
     color:#000;

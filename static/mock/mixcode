@@ -1,0 +1,36 @@
+{
+                      "programId": 453269,
+                      "code": "3WTD90GE5",
+                      "lot": {
+                        "lotId": 4455843436,
+                        "lotName": "Coke 500ml PET",
+                        "activateDate": 1611208800000,
+                        "inactivateDate": 1627603200000,
+                        "active": true,
+                        "expired": false,
+                        "bevProdPkg": {
+                          "trademarkCd": "05",
+                          "trademarkName": "Coca-Cola",
+                          "brandCd": "001",
+                          "brandName": "Coca-Cola",
+                          "bevProdCd": "0001",
+                          "bevProdName": "Coca-Cola",
+                          "caffeinated": true,
+                          "carbonated": true,
+                          "calorieCategory": {
+                            "code": 1,
+                            "description": "Regular"
+                          }
+                        },
+                        "releaseId": 494494,
+                        "releaseName": "Coke PET",
+                        "organizationId": 157168,
+                        "organizationName": "Harish",
+                        "realtimeCode": false,
+                        "testRelease": false,
+                        "pointValue": 0,
+                        "bevProdOptions": []
+                      },
+                      "redeemed": false,
+                      "actualCode": "3WTD90GE5"
+                    }

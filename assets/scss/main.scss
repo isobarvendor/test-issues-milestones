@@ -589,7 +589,14 @@ form {
       line-height: 28px;
     }
   }
-
+  .theme--light.v-input .v-text-field__slot {
+    input,label {
+      color:white;
+    }
+    label{
+      left:-10px !important;
+    }
+  }
   input{
     width:100%;
     background:none;
@@ -1226,4 +1233,8 @@ form {
 
 input:focus::placeholder {
   color: transparent !important;
+}
+
+.profile-content{
+  font-weight: bold;
 }

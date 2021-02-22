@@ -315,6 +315,8 @@ export default {
                 text-decoration: underline;
                 &.logout{
                     color: #ffffff ;
+                    margin-top:40px;
+                    cursor: pointer;
                 }
             }
         }

@@ -49,7 +49,7 @@ export default {
     text-align: center;
   }
   .error{
-    color:red;
+    color:#000;
     margin-top: 30px;
   }
 </style>

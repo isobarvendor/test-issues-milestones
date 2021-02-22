@@ -153,12 +153,18 @@ export default {
          }
 
       }).catch((err)=>{
-        if(err.response){
-          this.errorMessage="Oops something went wrong"
+            if(err.response){
+          this.errorMessage=this.submissionText.errorAPI;
         }
-        if(err.response && err.response.data&& err.response.data.errorCode=="1"){
-          this.errorMessage="Not enough prizes in prize catalogue"
-        }
+         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                this.errorMessage=this.submissionText.errorPinCode1;
+              }
+              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                this.errorMessage=this.submissionText.errorPinCode2;
+              }
+                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                this.errorMessage=this.submissionText.errorPinCode3;
+              }
       })
 
     },
@@ -208,24 +214,35 @@ export default {
            request.configurationId=configID[1];
              this.$store.dispatch(SUBMIT_FORM,request)
             .then((response2)=>{
-              response2.data=result;
                 data.response=response2.data
                this.submitTwo(data);
              }).catch((err)=>{
                if(err.response){
-                  this.errorMessage="Oops something went wrong"
+                  this.errorMessage=this.submissionText.errorAPI;
                 }
-                if(err.response && err.response.data&& err.response.data.errorCode=="1"){
-                  this.errorMessage="Not enough prizes in prize catalogue"
-                }
+                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                this.errorMessage=this.submissionText.errorPinCode1;
+              }
+              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                this.errorMessage=this.submissionText.errorPinCode2;
+              }
+                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                this.errorMessage=this.submissionText.errorPinCode3;
+              }
             })
      }).catch((err)=>{
            if(err.response){
-          this.errorMessage="Oops something went wrong"
+          this.errorMessage=this.submissionText.errorAPI;
         }
-        if(err.response && err.response.data&& err.response.data.errorCode=="1"){
-          this.errorMessage="Not enough prizes in prize catalogue"
-        }
+         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                this.errorMessage=this.submissionText.errorPinCode1;
+              }
+              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                this.errorMessage=this.submissionText.errorPinCode2;
+              }
+                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                this.errorMessage=this.submissionText.errorPinCode3;
+              }
 
       })
 
@@ -278,7 +295,7 @@ export default {
                   text : attemptData.FormHeading.thankYouMessage,
                   name : prizewin.instantWinResult.redeemedPrize.name,
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-                  note : "Please call ...."
+                  note : null
                   ,button:button ? [{
                       text:"Redeem Next Prize",
                      type:"submission"
@@ -316,9 +333,8 @@ export default {
                 isPlayAgain:false
               }
           ];
-      if(this.prize.length>0){
-        this.prize[0].button=[];
-      }
+
+
       this.prize=[...this.prize,...prize]
 
      // this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
