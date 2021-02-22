@@ -75,7 +75,7 @@
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message">{{ errors.first('code') }}</span>
+             <span class="error-message-red">{{ errors.first('code') }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -422,6 +422,9 @@ export default {
 </script>
 
 <style scoped>
+  .error-message-red{
+    color:red;
+  }
   .error-message{
     color:#000;
   }
