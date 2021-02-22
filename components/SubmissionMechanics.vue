@@ -115,7 +115,7 @@ export default {
           ];
           this.prize=prize;
 
-          this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
+          this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
       }
       else{
         this.thankYouMessage=attemptData.FormHeading.thankYouMessage;
