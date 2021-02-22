@@ -5,8 +5,8 @@
     </div>
     <div class="joox-container"  v-for="(item, index) in prize" v-if="prize.length>0 &&item.status">
 
-        <div class="header">{{item.title}}</div>
-        <p>{{item.subTitle}}</p>
+        <div class="header" v-html="item.title"></div>
+        <p v-html="item.subTitle"></p>
         <div class="joox-image">
           <img :src="item.imageUpload ? item.imageUpload.url : '/img/landing/joox image.png'" />
         </div>
