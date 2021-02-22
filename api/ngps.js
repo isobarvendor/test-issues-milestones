@@ -27,6 +27,7 @@ export default {
   },
   checkMixCode(token,data) {
     return axios.get(`${origin}/api/mix-codes/verify/${data.programmeId}/${data.pin}`, setHeader(token))
+    //return axios.get(`/mock/mixcode`, setHeader(token))
   },
 
   redeemPrize(data, token) {
@@ -34,6 +35,7 @@ export default {
   },
   submitLogin(data, token) {
     return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
+   // return axios.get(`/mock/submission`, setHeader(token))
   },
   submitNonLogin(data) {
     return axios.post(`${origin}/api/campaign/public/submission`, data)
