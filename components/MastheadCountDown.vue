@@ -45,13 +45,13 @@
                 <span >:</span>
               </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass('00  ')" />
+                <span v-html="addNumberClass('00')" />
               </v-col>
                <v-col  cols="1" class="dot">
                 <span>:</span>
               </v-col>
               <v-col  cols="3">
-                <span v-html="addNumberClass('00  ')" />
+                <span v-html="addNumberClass('00')" />
               </v-col>
             </v-row>
          </span>
@@ -160,12 +160,12 @@ export default {
      display: inline-block;
 
 }
-.dot{
-  flex: 0 0 2%;
-    max-width: 2%;
+.number-area .dot{
+  flex: 0 0 2% !important;
+    max-width: 2% !important;
 }
 .number-area .col-3 {
-  flex: 0 0 23%;
-    max-width: 23%;
+  flex: 0 0 23% !important;
+    max-width: 23% !important;
 }
 </style>

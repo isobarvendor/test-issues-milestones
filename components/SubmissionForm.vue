@@ -15,7 +15,7 @@
         <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" />
+      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
         <span class="error-message">{{ errors.first('phoneNumber') }}</span>
     </div>
 
@@ -291,46 +291,8 @@ export default {
                 }
                 this.$store.dispatch(CHECK_MIXCODE,request)
                 .then((response)=>{
-                   // this.submitted=true;
-                   //console.log(response);
-                   /* response.data={
-                      "programId": 453269,
-                      "code": "3WTD90GE5",
-                      "lot": {
-                        "lotId": 445586,
-                        "lotName": "Coke 500ml PET",
-                        "activateDate": 1611208800000,
-                        "inactivateDate": 1627603200000,
-                        "active": true,
-                        "expired": false,
-                        "bevProdPkg": {
-                          "trademarkCd": "05",
-                          "trademarkName": "Coca-Cola",
-                          "brandCd": "001",
-                          "brandName": "Coca-Cola",
-                          "bevProdCd": "0001",
-                          "bevProdName": "Coca-Cola",
-                          "caffeinated": true,
-                          "carbonated": true,
-                          "calorieCategory": {
-                            "code": 1,
-                            "description": "Regular"
-                          }
-                        },
-                        "releaseId": 494494,
-                        "releaseName": "Coke PET",
-                        "organizationId": 157168,
-                        "organizationName": "Harish",
-                        "realtimeCode": false,
-                        "testRelease": false,
-                        "pointValue": 0,
-                        "bevProdOptions": []
-                      },
-                      "redeemed": false,
-                      "actualCode": "3WTD90GE5"
-                    };
-*/
-
+                   let loginData={...this.$store.state.login, phone : this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
                     let result=response.data;
                     if( result) {
@@ -359,7 +321,6 @@ export default {
                       this.$store.commit('SET_TOKEN', null);
                       location.reload();
                   }
-
                 })
                }else{
                  this.loading=false;
@@ -376,6 +337,12 @@ export default {
         if(this.loginInfo){
           this.form.name=this.loginInfo.name;
           this.form.email=this.loginInfo.email;
+           if(this.loginInfo.phone){
+             this.form.phoneNumber=this.loginInfo.phone;
+           }
+           this.form.terms=this.loginInfo.terms;
+           this.form.privacy=this.loginInfo.privacy;
+           this.form.ageConsent=this.loginInfo.ageConsent;
         }
 
 
