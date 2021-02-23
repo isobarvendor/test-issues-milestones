@@ -245,7 +245,7 @@ export default {
         opacity:0;
     }
  position: fixed;
- background: #2c2c2c;
+background-color: #b10017;
  text-align: center;
 }
 .nav-container{

@@ -77,11 +77,11 @@ let language =
       periodDescription:"ตั้งแต่วันนี้ถึง 31 พฤษภาคม 2564 เพียงแค่ซื้อผลิตภัณฑ์โค้กที่ร่วมรายการแล้วนำโค้ดใต้ฝาสีทองมากรอก ก็รับไปเลยทันที Joox VIP 1 สัปดาห์ (สิทธิ์มีจำนวนจำกัด 1 คน ต่อ 1 สิทธิ์) และลุ้นรับรางวัลสุดซ่าอื่นๆจากการจับรางวัลทุกสัปดาห์ เพียงแค่ทำตามขั้นตอนด้านล่างๆ",
       signInButton:"SIGN IN <BR/><small>to win prizes</small>",
       menu:{
-        home:"Home",
-        privacy:"Privacy",
-        terms:"Terms",
-        logout:"Logout",
-        myRewards:"My Rewards"
+        home:"หน้าหลัก",
+        privacy:"นโยบายข้อมูลส่วนบุคคล",
+        terms:"งื่อนไขการเข้าร่วมกิจกรรม",
+        logout:"ออกจากระบบ",
+        myRewards:"รางวัลของฉัน"
       },
       countdown:{
         days:"DAYS",
@@ -90,17 +90,17 @@ let language =
         secs:"SECS",
       },
       submissionText:{
-        header:"ใส่รหัส 9 หลักใต้ฝาโค้ก",
+        header:"",
         siginHeader:'ลงทะเบียนกับ "โค้ก" เพื่อร่วมกิจกรรม เปิดจังหวะซ่าในตัวคุณ',
         name:"ชื่อ นามสกุล",
         email:"อีเมลล์",
         phoneNumber:"เบอร์โทรศัพท์",
-        acceptTerm:'ข้าพเจ้ายอมรับ<a href="/tnc">ข้อกำหนดและเ</a>งื่อนไขของกิจกรรมส่งเสริมการขายนี้',
-        acceptPrivacy:'ข้าพเจ้าย<a href="/privacy">อมรับน</a>โยบายความเป็นส่วนตัว',
-        declareAge:'ข้าพเจ้ายืนยันว่ามีอายุไม่ต่ำกว่า 13 ปี ในขณะเข้าร่วมกิจกรรมและได้รับความยินยอมจากผู้ปกครองตามฏกหมายในการเข้าร่วมกิจกกรม (กรณีมีอายุต่ำกว่า 20 ปี)',
+        acceptTerm:'ข้าพเจ้ายอมรับ<a href="/tnc" target="_blank">ข้อกำหนดและเงื่อนไข</a>ของกิจกรรมส่งเสริมการขายนี้​',
+        acceptPrivacy:'ข้าพเจ้ารับทราบ<a href="/privacy" target="_blank">นโยบายความเป็นส่วนตัว</a> และยินยอมให้ใช้ข้อมูลส่วนบุคคลของข้าพเจ้าที่ได้ลงทะเบียนในการเข้าร่วมกิจกรรมส่งเสริมการขายนี้​',
+        declareAge:'ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลของข้าพเจ้าเพื่อวัตถุประสงค์เกี่ยวกับการรับข้อมูลข่าวสารการตลาดและการโฆษณาประชาสัมพันธ์จากโคคา-โคล่า​',
         enterCode:'ใส่รหัส 9 หลักใต้ฝาโค้ก',
         tooltipText:'ใส่รหัส 9 หลักใต้ฝาโค้ก ที่นี่',
-        buttonText:'รับรางวัลที่นี้',
+        buttonText:'กดส่งรหัสใต้ฝา',
         errorTerm:'Please accept our terms and conditions',
         errorPolicy:"Please accept our privacy policies",
         errorDeclare:"Please declare that you are above 13  years old",
@@ -111,7 +111,7 @@ let language =
         errorPinCode4:"ขออภัยครับ รหัสของคุณไม่ถูกต้อง โปรดใส่รหัส 9 หลักใต้ฝาโค้กใหม่อีกครั้ง หรือติดต่อทีมงานเราเพื่อขอความช่วยเหลือได้ที่ www.facebook.com/cocacolaTH",
         errorAPI:"Oops something went wrong please try again",
         errorMaxPhone:"You reach maximum phone number length",
-        participateAgain:"Participate again",
+        participateAgain:"ส่งรหัสใต้ฝาเพื่อลุ้นรางวัลรายสัปดาห์",
         listenNow:"Listen now",
         redeemPrize:"กดเพื่อรับรางวัลของคุณทันที",
         continue:"ล็อกอินผ่าน"

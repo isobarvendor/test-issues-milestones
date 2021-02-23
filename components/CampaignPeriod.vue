@@ -24,7 +24,7 @@
                   sm="8"
                   class="participate-text-container"
                 >
-                 <div class="tagline">{{howData.title}}</div>
+                 <div class="tagline" v-html="howData.title"></div>
                 </v-col>
           </v-row>
 
