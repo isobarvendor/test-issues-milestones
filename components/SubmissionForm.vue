@@ -355,6 +355,9 @@ export default {
                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
                     this.errorMessage=this.submissionText.errorPinCode1;
                   }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+                    this.errorMessage=this.submissionText.errorPinCode4;
+                  }
                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                     this.errorMessage=this.submissionText.errorPinCode2;
                   }
