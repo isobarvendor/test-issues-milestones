@@ -111,49 +111,14 @@ export default {
       }
       request.configurationId=configID[this.submitNumber-1];
 
-
+    if(this.submitNumber==1){
       this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
-      /* let result={
-            "burnResult": [
-                {
-                    "pincode": "0J6TC2VP5",
-                    "programId": "453269",
-                    "lotId": "445580",
-                    "burned": true
-                }
-            ],
-            "participationId": "1ylazdy9kkxmpa53",
-            "instantWinResult": {
-                "winner": true,
-              "redeemedPrize": {
-                    "prizeId": "kkqhy9so",
-                    "voucherCode": "Voucher891",
-                    "status": "claimed",
-                    "expiryDate": 1620018590000,
-                    "name": "JOOX VIP PASS",
-                    "shortDescription": "http://google.com",
-                    "redeemDescription": "http://abcd",
-                    "imgUrl": "/img/landing/week 1 prize.png",
-                    "barcodeType": 1,
-                    "emailSent": false,
-                    "emailMessage": "Email could not be sent"
-                }
-            }
-        }
-        response.data=result;
-*/
-         if(this.submitNumber==1){
            data.response=response.data
            this.submitOne(data);
-         }
-         else if(this.submitNumber==2){
-           data.response=response.data
-           this.submitTwo(data);
-         }
 
-      }).catch((err)=>{
-       if(err.response){
+      }).catch((error)=>{
+       if(error.response){
           this.errorMessage=this.submissionText.errorAPI;
         }
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
@@ -170,6 +135,9 @@ export default {
           this.errorMessage=this.submissionText.errorPinCode3;
         }
       })
+    }else{
+        this.submitPrizeDouble();
+    }
 
     },
 
@@ -220,8 +188,8 @@ export default {
             .then((response2)=>{
                 data.response=response2.data
                this.submitTwo(data);
-             }).catch((err)=>{
-               if(err.response){
+             }).catch((error)=>{
+               if(error.response){
                   this.errorMessage=this.submissionText.errorAPI;
                 }
                 if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
@@ -237,8 +205,8 @@ export default {
                 this.errorMessage=this.submissionText.errorPinCode3;
               }
             })
-     }).catch((err)=>{
-           if(err.response){
+     }).catch((error)=>{
+           if(error.response){
           this.errorMessage=this.submissionText.errorAPI;
         }
          if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
@@ -299,7 +267,7 @@ export default {
       let attemptData =data.attemptData;
       this.submitNumber=2;
       this.request=data.request;
-
+       // console.log(data)
           let prize =[
               {
                   text : attemptData.FormHeading.thankYouMessage,
@@ -316,12 +284,13 @@ export default {
               }
           ];
           this.prize=prize;
-
-          this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
+         // console.log(prize);
+         //  this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
 
 
     },
      submitTwo(data){
+       // console.log(data)
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
@@ -344,7 +313,7 @@ export default {
               }
           ];
 
-
+     //console.log(prize)
       this.prize=[...this.prize,...prize]
 
      // this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
