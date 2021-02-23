@@ -153,18 +153,22 @@ export default {
          }
 
       }).catch((err)=>{
-            if(err.response){
+       if(err.response){
           this.errorMessage=this.submissionText.errorAPI;
         }
-         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                this.errorMessage=this.submissionText.errorPinCode1;
-              }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                this.errorMessage=this.submissionText.errorPinCode2;
-              }
-                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                this.errorMessage=this.submissionText.errorPinCode3;
-              }
+        if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+              this.errorMessage=this.submissionText.errorPinCode1;
+            }
+        if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+          this.errorMessage=this.submissionText.errorPinCode4;
+        }
+
+        if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+          this.errorMessage=this.submissionText.errorPinCode2;
+        }
+          if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+          this.errorMessage=this.submissionText.errorPinCode3;
+        }
       })
 
     },
@@ -223,6 +227,9 @@ export default {
                 if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
                 this.errorMessage=this.submissionText.errorPinCode1;
               }
+              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+          this.errorMessage=this.submissionText.errorPinCode4;
+        }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                 this.errorMessage=this.submissionText.errorPinCode2;
               }
@@ -237,6 +244,9 @@ export default {
          if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
                 this.errorMessage=this.submissionText.errorPinCode1;
               }
+              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+          this.errorMessage=this.submissionText.errorPinCode4;
+        }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                 this.errorMessage=this.submissionText.errorPinCode2;
               }
