@@ -112,12 +112,5 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
-  build: {
-    babel: {
-      presets({ isServer }) {
-        const targets = isServer ? { node: "current" } : { ie: 11 };
-        return [[require.resolve("@babel/preset-env"), { targets }]];
-      },
-    },
-  },
+  build: {},
 };
