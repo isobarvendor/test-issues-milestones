@@ -322,6 +322,9 @@ export default {
                 this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response)=>{
                    // this.submitted=true;
+                   let loginData={...this.$store.state.login, phone : this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+
+                   this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
                     let result=response.data;
                     if( result) {
@@ -374,6 +377,12 @@ export default {
         if(this.loginInfo){
           this.form.name=this.loginInfo.name;
           this.form.email=this.loginInfo.email;
+           if(this.loginInfo.phone){
+             this.form.phoneNumber=this.loginInfo.phone;
+           }
+           this.form.terms=this.loginInfo.terms;
+           this.form.privacy=this.loginInfo.privacy;
+           this.form.ageConsent=this.loginInfo.ageConsent;
         }
 
 
