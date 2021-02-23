@@ -125,7 +125,7 @@ export default {
               this.errorMessage=this.submissionText.errorPinCode1;
             }
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=this.submissionText.errorPinCode4;
+          this.errorMessage=error.response.data.trace.message;
         }
 
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
@@ -196,7 +196,7 @@ export default {
                 this.errorMessage=this.submissionText.errorPinCode1;
               }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=this.submissionText.errorPinCode4;
+          this.errorMessage=error.response.data.trace.message;
         }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                 this.errorMessage=this.submissionText.errorPinCode2;
@@ -213,7 +213,7 @@ export default {
                 this.errorMessage=this.submissionText.errorPinCode1;
               }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=this.submissionText.errorPinCode4;
+          this.errorMessage=error.response.data.trace.message;
         }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                 this.errorMessage=this.submissionText.errorPinCode2;
@@ -327,7 +327,7 @@ export default {
 
   .error-message{
     padding-top: 20px;
-    color:red;
+    color:#fff;
     text-align: center;
   }
  .prize-chance.joox-section{
