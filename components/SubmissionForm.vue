@@ -141,6 +141,7 @@
 
 <script>
 import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import * as _ from 'lodash';
 import {translation} from "@/constants/index"
 export default {
     name:"Form",
@@ -212,12 +213,24 @@ export default {
       let ngps=this.getAttempt[currentAttempt].NPGS;
       let programId=null;
       this.attemptData=this.getAttempt[currentAttempt];
-      for (let a=0;a<mixCode.length;a++) {
-       // mixCode
-       if(mixCode[a].characterLimit==this.form.code.length&&(mixCode[a].codeInitial==""||mixCode[a].codeInitial==null||mixCode[a].codeInitial==undefined||mixCode[a].codeInitial==this.form.code.charAt(0))){
-          programId=mixCode[a].ProgrammeID;
+
+       if(mixCode.length>0){
+         // console.log(mixCode);
+          let programs=_.filter(mixCode,(a)=>{
+          return a.codeInitial==this.form.code.charAt(0)&&a.characterLimit==this.form.code.length;
+        })
+        //console.log(programs);
+        let programsNull=_.filter(mixCode,(a)=>{
+          return (a.codeInitial==null||a.codeInitial=="")&&a.characterLimit==this.form.code.length;
+        })
+        if(programs.length>0){
+          programId=programs[0].ProgrammeID;
+        }else{
+          programId=programsNull.length>0 ? programsNull[0].ProgrammeID : null;
         }
       }
+
+
       if(!programId){
         return false;
       }
