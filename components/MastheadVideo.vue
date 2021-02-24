@@ -81,6 +81,12 @@ export default {
      #masthead{
       padding: 10px;
     }
+    .mutedIcon{
+
+      bottom: 5px;
+      left: 5px;
+
+    }
   }
     @media only screen and (max-width: 1099px) {
     .videoBackground{
