@@ -10,6 +10,9 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
   target: 'server',
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+  },
   /*
   ** ENVs
   */
@@ -19,7 +22,10 @@ export default {
     cdsTrackingClientId:process.env.cdsTrackingClientId,
     phoneCode:process.env.phoneCode,
     maxPhoneNumber:process.env.maxPhoneNumber,
-    voucherParameter:process.env.voucherParameter
+    voucherParameter:process.env.voucherParameter,
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
   },
   privateRuntimeConfig: {
     //apiSecret: process.env.API_SECRET
@@ -33,6 +39,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'robots', content: 'noindex, nofollow' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
@@ -80,6 +87,7 @@ export default {
     // Simple usage
     '@nuxtjs/vuetify',
     'vue-scrollto/nuxt',
+    '@nuxtjs/google-analytics'
   ],
   /*
   ** Nuxt.js modules
