@@ -1,5 +1,5 @@
 <template>
-  <div id="masthead" class="container" >
+  <div id="masthead" class="container" @click="play" >
 
  <video-background
     :src="videoDesk"
@@ -11,6 +11,10 @@
     ]"
     class="videoBackground"
     style="height: 100vh;"
+    ref="videobackground"
+    :muted="muted"
+
+
 >
       <div class="masthead-content">
       <h1>{{data.title}}</h1>
@@ -29,7 +33,8 @@ export default {
   name: "MastheadVideo",
   props: {
     data: null,
-    isCountDown:null
+    isCountDown:null,
+
   },
    components:{
     MastheadCountDown
@@ -42,17 +47,18 @@ export default {
       videoDesk: this.data.homepage.mastheadSection.video.url,
       videoTab:  this.data.homepage.mastheadSection.video.url,
       videoMob:  this.data.homepage.mastheadSection.video.url,
+      muted:true
     }
   },
   mounted() {
 
   },
   methods: {
-
+    play(){
+      this.muted=!this.muted;
+    }
   },
-  mounted() {
 
-  },
 };
 </script>
 
