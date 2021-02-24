@@ -1,5 +1,5 @@
 <template>
-  <div id="masthead" class="container" @click="play" >
+  <div id="masthead" class="container" >
 
  <video-background
     :src="videoDesk"
@@ -22,6 +22,7 @@
 
     </div>
     <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
+    <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
 </video-background>
 
   </div>
@@ -66,6 +67,12 @@ export default {
  #masthead{
       background:#de0a1c;
       padding: 20px;
+    }
+    .mutedIcon{
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      cursor: pointer;
     }
   @media only screen and (max-width: 600px) {
     .videoBackground{

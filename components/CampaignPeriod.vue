@@ -76,7 +76,7 @@
                 </v-col>
 
           </v-row>
-            <div v-if="loginInfo" v-html="howData.description" style="text-align:center"></div>
+            <div v-if="loginInfo" v-html="howData.description" class="description"></div>
 
       </v-col>
     </v-row>
@@ -132,5 +132,7 @@ export default {
 </script>
 
 <style>
-
+.campaign-period-section .description{
+  text-align: center;
+}
 </style>
