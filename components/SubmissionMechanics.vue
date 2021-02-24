@@ -30,9 +30,9 @@
     </div>
     <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
-        <div class="joox-listen">
+        <!--div class="joox-listen">
             <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
-        </div>
+        </div-->
     </div>
   </div>
 
@@ -251,13 +251,13 @@ export default {
 
           let prize = [
             {
-                text : "<h2>You have entered the Entry Code from Coca-Cola 300ml PET bottle and Coca Cola 235 ml can, you will have 2 lucky draw opportunities</h2>"
+                text : "<h2>"+this.submissionText.textPage+"/h2>"
                 ,name:null
                 ,note:null
                 ,image:null
                 ,havejoox:false
                 ,button:[{
-                    text:"Start redeeming",
+                    text:this.submissionText.startRedeeming,
                     type:"submission",
                     id:1
                 }],
@@ -285,7 +285,7 @@ export default {
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:button ? [{
-                      text:"Redeem Next Prize",
+                      text:this.submissionText.redeemNextPrize,
                      type:"submission",
                      id:page
                   }]:[]

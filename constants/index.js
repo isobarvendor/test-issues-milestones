@@ -50,7 +50,11 @@ let language =
       participateAgain:"Participate again",
       listenNow:"Listen now",
       redeemPrize:"Redeem Prize",
-      continue:"Continue with"
+      continue:"Continue with",
+      note:"Please call 1800 555 584 (VND 1500/min, from 9:00 to 17:00, weekdays) to reveive redemption instructions",
+      startRedeeming:"Start Redeeming",
+      redeemNextPrize:"Redeem next prize",
+      textPage:"You have entered the Entry Code from Coca-Cola 300ml PET bottle or Coca-Cola 235ml can, you will have 2 lucky draw opportunities"
     },
     winnerText:{
       header:"WINNER LIST"
@@ -65,7 +69,7 @@ let language =
     }
 
   },
-  th:{
+  vn:{
       browserTitle:"Turn Up Your Rhythm",
       meta: [
         {
@@ -74,14 +78,14 @@ let language =
           content: "Home page Coke - Turn Up Your Rhythm"
         }
       ],
-      periodDescription:"ตั้งแต่วันนี้ถึง 31 พฤษภาคม 2564 เพียงแค่ซื้อผลิตภัณฑ์โค้กที่ร่วมรายการแล้วนำโค้ดใต้ฝาสีทองมากรอก ก็รับไปเลยทันที Joox VIP 1 สัปดาห์ (สิทธิ์มีจำนวนจำกัด 1 คน ต่อ 1 สิทธิ์) และลุ้นรับรางวัลสุดซ่าอื่นๆจากการจับรางวัลทุกสัปดาห์ เพียงแค่ทำตามขั้นตอนด้านล่างๆ",
+      periodDescription:"Từ hôm nay đến 23/05/2021, mỗi sản phẩm Coca-Cola có khuyến mãi sẽ cho bạn cơ hội nhận ngay Tài khoản VIP Zingmp3 và nhiều quà tặng hấp dẫn khác. Thực hiện ngay các bước hướng dẫn bên dưới để bắt đầu tham gia và trúng thưởng.",
       signInButton:"SIGN IN <BR/><small>to win prizes</small>",
       menu:{
-        home:"หน้าหลัก",
-        privacy:"นโยบายข้อมูลส่วนบุคคล",
-        terms:"งื่อนไขการเข้าร่วมกิจกรรม",
-        logout:"ออกจากระบบ",
-        myRewards:"รางวัลของฉัน"
+        home:"Trang Chủ",
+        privacy:"Điều khoản bảo mật",
+        terms:"Điều kiện & Điều khoản áp dụng",
+        logout:"đăng xuất",
+        myRewards:"Giải thưởng của bạn"
       },
       countdown:{
         days:"DAYS",
@@ -91,30 +95,34 @@ let language =
       },
       submissionText:{
         header:"",
-        siginHeader:'ลงทะเบียนกับ "โค้ก" เพื่อร่วมกิจกรรม เปิดจังหวะซ่าในตัวคุณ',
-        name:"ชื่อ นามสกุล",
-        email:"อีเมลล์",
-        phoneNumber:"เบอร์โทรศัพท์",
-        acceptTerm:'ข้าพเจ้ายอมรับ<a href="/tnc" target="_blank">ข้อกำหนดและเงื่อนไข</a>ของกิจกรรมส่งเสริมการขายนี้​',
-        acceptPrivacy:'ข้าพเจ้ารับทราบ<a href="/privacy" target="_blank">นโยบายความเป็นส่วนตัว</a> และยินยอมให้ใช้ข้อมูลส่วนบุคคลของข้าพเจ้าที่ได้ลงทะเบียนในการเข้าร่วมกิจกรรมส่งเสริมการขายนี้​',
-        declareAge:'ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลของข้าพเจ้าเพื่อวัตถุประสงค์เกี่ยวกับการรับข้อมูลข่าวสารการตลาดและการโฆษณาประชาสัมพันธ์จากโคคา-โคล่า​',
-        enterCode:'ใส่รหัส 9 หลักใต้ฝาโค้ก',
-        tooltipText:'ใส่รหัส 9 หลักใต้ฝาโค้ก ที่นี่',
-        buttonText:'กดส่งรหัสใต้ฝา',
-        errorTerm:'Please accept our terms and conditions',
-        errorPolicy:"Please accept our privacy policies",
-        errorDeclare:"Please declare that you are above 13  years old",
-        errorPinCode:"ขออภัยครับ รหัสของคุณไม่ถูกต้อง โปรดใส่รหัส 9 หลักใต้ฝาโค้กใหม่อีกครั้ง หรือติดต่อทีมงานเราเพื่อขอความช่วยเหลือได้ที่ www.facebook.com/cocacolaTH",
-        errorPinCode1:"ขออภัยครับ รหัสของคุณไม่ถูกต้อง โปรดใส่รหัส 9 หลักใต้ฝาโค้กใหม่อีกครั้ง หรือติดต่อทีมงานเราเพื่อขอความช่วยเหลือได้ที่ www.facebook.com/cocacolaTH",
-        errorPinCode2:"ขออภัยครับ รหัสของคุณไม่ถูกต้อง โปรดใส่รหัส 9 หลักใต้ฝาโค้กใหม่อีกครั้ง หรือติดต่อทีมงานเราเพื่อขอความช่วยเหลือได้ที่ www.facebook.com/cocacolaTH",
-        errorPinCode3:"ขออภัยครับ รหัสของคุณไม่ถูกต้อง โปรดใส่รหัส 9 หลักใต้ฝาโค้กใหม่อีกครั้ง หรือติดต่อทีมงานเราเพื่อขอความช่วยเหลือได้ที่ www.facebook.com/cocacolaTH",
-        errorPinCode4:"ขออภัยครับ รหัสของคุณไม่ถูกต้อง โปรดใส่รหัส 9 หลักใต้ฝาโค้กใหม่อีกครั้ง หรือติดต่อทีมงานเราเพื่อขอความช่วยเหลือได้ที่ www.facebook.com/cocacolaTH",
-        errorAPI:"Oops something went wrong please try again",
-        errorMaxPhone:"You reach maximum phone number length",
-        participateAgain:"ส่งรหัสใต้ฝาเพื่อลุ้นรางวัลรายสัปดาห์",
-        listenNow:"Listen now",
-        redeemPrize:"กดเพื่อรับรางวัลของคุณทันที",
-        continue:"ล็อกอินผ่าน"
+        siginHeader:'Đăng kí và bắt đầu tham gia chương trình rút thăm trúng thưởng',
+        name:"Họ & Tên",
+        email:"Email",
+        phoneNumber:"Số điện thoại",
+        acceptTerm:'Tôi đồng ý với <a href="/tnc" target="_blank">Điều kiện và Điều khoản được áp dụng</a> cho chương trình khuyến mãi',
+        acceptPrivacy:'Tôi đồng ý với <a href="/privacy" target="_blank">Điều khoản Bảo mật</a> của chương trình khuyến mãi',
+        declareAge:'Tôi cam đoan đã đủ hoặc trên 12 tuổi',
+        enterCode:'Nhập mã ngay',
+        tooltipText:'Nhập mã dự thưởng bên dưới nắp khoen hay nắp chai của sản phẩm Coca-Cola có khuyến mãi',
+        buttonText:'Nhận quà thưởng',
+        errorTerm:'Vui lòng chấp nhận các điều khoản và điều kiện của chúng tôi',
+        errorPolicy:"Vui lòng chấp nhận chính sách bảo mật của chúng tôi",
+        errorDeclare:"Vui lòng tuyên bố rằng bạn trên 12 tuổi",
+        errorPinCode:"Xin lỗi Mã Tham Dự này không đúng. Vui lòng kiểm tra lại.",
+        errorPinCode1:"Xin lỗi Mã Tham Dự này không đúng. Vui lòng kiểm tra lại.",
+        errorPinCode2:"Xin lỗi Mã Tham Dự này đã được sử dụng. Vui lòng kiểm tra lại.",
+        errorPinCode3:"Xin lỗi Mã Tham Dự này không đúng. Vui lòng kiểm tra lại.",
+        errorPinCode4:"Xin lỗi Mã Tham Dự này không đúng. Vui lòng kiểm tra lại.",
+        errorAPI:"Rất tiếc. Đã xảy ra lỗi. Vui lòng thử lại",
+        errorMaxPhone:"Bạn đạt đến độ dài số điện thoại tối đa",
+        participateAgain:"Participate again",
+        listenNow:"Nghe nhạc ngay",
+        redeemPrize:"Chuộc lại giải thưởng",
+        continue:"Tiếp tục với",
+        note:"Vui lòng gọi hotline 1900555584 (1500VND/ phút từ 9:00 đến 17:00, ngày hành chính) để nhận hướng dẫn thủ tục nhận giải thưởng.",
+        startRedeeming:"Bắt đầu rút thăm",
+        redeemNextPrize:"Tiếp tục đổi giải",
+        textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 330ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng"
       },
       winnerText:{
         header:"WINNER LIST"
@@ -124,8 +132,8 @@ let language =
         tryagain:"Please try again"
       },
       footer:{
-        privacy:"Privacy Policy",
-        terms:"Terms and conditions"
+        privacy:"Điều khoản bảo mật",
+        terms:"Điều kiện & Điều khoản áp dụng"
       }
 
     }
