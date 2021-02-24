@@ -30,9 +30,9 @@
     </div>
     <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
-        <div class="joox-listen">
+        <!--div class="joox-listen">
             <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
-        </div>
+        </div-->
     </div>
   </div>
 
