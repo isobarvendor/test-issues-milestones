@@ -1,5 +1,5 @@
 <template>
-  <div class="container campaign-section prize-section" v-if="data">
+  <div class="container campaign-section prize-section">
     <div class="background-image">
       <img src="/img/landing/back-dots.png" />
     </div>
