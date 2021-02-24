@@ -11,7 +11,6 @@
     ]"
     class="videoBackground"
     style="height: 100vh;"
-    overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)"
 >
       <div class="masthead-content">
       <h1>{{data.title}}</h1>

@@ -46,12 +46,13 @@
        </a>
    </div>
     <div class="prize-button-area center" style="margin-top:40px;">
-          <v-btn @click="playAgain">Play again</v-btn>
+          <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
     </div>
  </div>
 </template>
 
 <script>
+import {translation} from "@/constants/index"
 export default {
     name:"PrizeItem",
     props:{
@@ -60,6 +61,7 @@ export default {
     },
     data(){
       return {
+        submissionText:translation.submissionText
       }
     },
     computed:{

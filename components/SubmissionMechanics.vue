@@ -24,12 +24,12 @@
       </div>
       </div>
     </div>
-    <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize.length>0 && prize[0].havejoox"  >
+    <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
     </div>
     <div class="desc-joox" >
-        <span v-html="prize[0].havejoox"></span>
+        <span v-html="jooxMessage"></span>
         <div class="joox-listen">
             <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
         </div>
@@ -116,9 +116,12 @@ export default {
           this.prize=prize;
 
           this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
+          this.jooxMessage=attemptData.FormHeading.Prize;
       }
       else{
         this.thankYouMessage=attemptData.FormHeading.thankYouMessage;
+        this.listenNowLink="";
+        this.jooxMessage=attemptData.FormHeading.Prize;
       }
 
 

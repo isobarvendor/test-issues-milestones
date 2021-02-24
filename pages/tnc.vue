@@ -12,6 +12,7 @@
 
 <script>
 import TncSection from '@/components/TncSection'
+import {translation} from "@/constants/index"
 export default {
   name:"Tnc",
   components:{
@@ -20,27 +21,14 @@ export default {
   data(){
     return{
       dataStatus:{},
-
+      browserTitle:translation.browserTitle,
+      metaData:translation.meta
     }
   },
   head() {
     return {
-      title: "Coke Campaign Title",
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: "Home page description"
-        }
-      ],
-      noscript: [],
-      /*script: [
-        {
-          hid: "anime",
-          src: "/js/anime.min.js"
-        }
-      ],*/
-      css: []
+      title: this.browserTitle,
+      meta:this.metaData,
     };
   },
  computed: {
