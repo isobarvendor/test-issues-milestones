@@ -283,7 +283,7 @@ export default {
                   text : attemptData.FormHeading.thankYouMessage,
                   name : prizewin.instantWinResult.redeemedPrize.name,
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-                  note : null
+                  note : this.submissionText.note
                   ,button:button ? [{
                       text:this.submissionText.redeemNextPrize,
                      type:"submission",
