@@ -11,6 +11,10 @@
     ]"
     class="videoBackground"
     style="height: 100vh;"
+    ref="videobackground"
+    :muted="muted"
+
+
 >
       <div class="masthead-content">
       <h1>{{data.title}}</h1>
@@ -18,6 +22,7 @@
 
     </div>
     <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
+    <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
 </video-background>
 
   </div>
@@ -29,7 +34,8 @@ export default {
   name: "MastheadVideo",
   props: {
     data: null,
-    isCountDown:null
+    isCountDown:null,
+
   },
    components:{
     MastheadCountDown
@@ -42,17 +48,18 @@ export default {
       videoDesk: this.data.homepage.mastheadSection.video.url,
       videoTab:  this.data.homepage.mastheadSection.video.url,
       videoMob:  this.data.homepage.mastheadSection.video.url,
+      muted:true
     }
   },
   mounted() {
 
   },
   methods: {
-
+    play(){
+      this.muted=!this.muted;
+    }
   },
-  mounted() {
 
-  },
 };
 </script>
 
@@ -60,6 +67,12 @@ export default {
  #masthead{
       background:#de0a1c;
       padding: 20px;
+    }
+    .mutedIcon{
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      cursor: pointer;
     }
   @media only screen and (max-width: 600px) {
     .videoBackground{
