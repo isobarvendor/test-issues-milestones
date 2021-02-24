@@ -13,7 +13,7 @@
   <div class="container  prize-chance black-red-border" id="prize-chance">
 
         <div class="wrapper"  v-for="(item, idx) in prize" :key="idx"  >
-          <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize" v-if="prize.length>0"  />
+          <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize" v-if="prize.length>0" :loading="loading"  />
           <div class="error-message" v-if="idx==prize.length-1">{{errorMessage}}</div>
         </div>
         <div class="error-message" v-if="prize.length==0">{{errorMessage}}</div>
@@ -29,7 +29,7 @@
       <img src="/img/landing/back-dots.png" />
     </div>
     <div class="desc-joox" >
-        <span v-html="prize[0].havejoox"></span>
+        <span v-html="jooxMessage"></span>
         <div class="joox-listen">
             <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
         </div>
@@ -72,7 +72,8 @@ export default {
           email:''
         },
         errorMessage:null,
-        submissionText:translation.submissionText
+        submissionText:translation.submissionText,
+        loading:false
     }
 
   },
@@ -112,10 +113,12 @@ export default {
       request.configurationId=configID[this.submitNumber-1];
 
     if(this.submitNumber==1){
+      this.loading=true;
       this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
            data.response=response.data
-           this.submitOne(data);
+           this.submitOne(data,true,2);
+             this.loading=false;
 
       }).catch((error)=>{
        if(error.response){
@@ -134,14 +137,16 @@ export default {
           if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
           this.errorMessage=this.submissionText.errorPinCode3;
         }
+          this.loading=false;
       })
     }else{
-        this.submitPrizeDouble();
+        this.submitPrizeDouble(3);
     }
 
     },
 
-     submitPrizeDouble(){
+     submitPrizeDouble(page=1){
+       this.loading=true;
       let request= this.request;
       request.configurationId=configID[0];
       let data = {
@@ -182,12 +187,14 @@ export default {
        this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
            data.response=response.data
-           this.submitOne(data,false);
+           this.submitOne(data,false,page);
            request.configurationId=configID[1];
+
              this.$store.dispatch(SUBMIT_FORM,request)
             .then((response2)=>{
                 data.response=response2.data
-               this.submitTwo(data);
+               this.submitTwo(data,page);
+                 this.loading=false;
              }).catch((error)=>{
                if(error.response){
                   this.errorMessage=this.submissionText.errorAPI;
@@ -204,6 +211,7 @@ export default {
                 if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
                 this.errorMessage=this.submissionText.errorPinCode3;
               }
+                this.loading=false;
             })
      }).catch((error)=>{
            if(error.response){
@@ -221,6 +229,7 @@ export default {
                 if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
                 this.errorMessage=this.submissionText.errorPinCode3;
               }
+            this.loading=false;
 
       })
 
@@ -249,7 +258,8 @@ export default {
                 ,havejoox:false
                 ,button:[{
                     text:"Start redeeming",
-                    type:"submission"
+                    type:"submission",
+                    id:1
                 }],
                 code:null,
                 subName:null,
@@ -261,7 +271,7 @@ export default {
 
 
     },
-    submitOne(data,button=true){
+    submitOne(data,button=true,page=1){
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
@@ -276,7 +286,8 @@ export default {
                   note : null
                   ,button:button ? [{
                       text:"Redeem Next Prize",
-                     type:"submission"
+                     type:"submission",
+                     id:page
                   }]:[]
                   ,havejoox:false,
                   code: null,
@@ -289,7 +300,7 @@ export default {
 
 
     },
-     submitTwo(data){
+     submitTwo(data,page=1){
        // console.log(data)
       this.submitted=true;
       let prizewin=data.response;
@@ -304,7 +315,8 @@ export default {
                   note : null
                   ,button:[{
                       text:this.submissionText.redeemPrize,
-                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
+                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      id:page
                   }]
                   ,havejoox:false,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
