@@ -173,7 +173,7 @@ export default {
                     this.errorMessage=this.submissionText.errorPinCode1;
                   }
                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-              this.errorMessage=this.submissionText.errorZaloPrize;
+              //this.errorMessage=this.submissionText.errorZaloPrize;
             }
                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                     this.errorMessage=this.submissionText.errorPinCode2;
