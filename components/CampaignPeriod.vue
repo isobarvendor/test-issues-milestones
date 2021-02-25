@@ -132,7 +132,10 @@ export default {
 </script>
 
 <style>
-.campaign-period-section .description{
-  text-align: center;
-}
+  @media only screen and (min-width: 700px) {
+    .campaign-period-section .description{
+      text-align: center;
+      padding-top: 50px;
+    }
+  }
 </style>
