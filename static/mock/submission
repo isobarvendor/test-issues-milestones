@@ -9,7 +9,7 @@
             ],
             "participationId": "1ylazdy9kkxmpa53",
             "instantWinResult": {
-                "winner": true,
+                "winner": false,
               "redeemedPrize": {
                     "prizeId": "kkqhy9so",
                     "voucherCode": "Voucher891",

@@ -56,7 +56,10 @@ let language =
       note:"Please call 1800 555 584 (VND 1500/min, from 9:00 to 17:00, weekdays) to reveive redemption instructions",
       startRedeeming:"Start Redeeming",
       redeemNextPrize:"Redeem next prize",
-      textPage:"You have entered the Entry Code from Coca-Cola 300ml PET bottle or Coca-Cola 235ml can, you will have 2 lucky draw opportunities"
+      textPage:"You have entered the Entry Code from Coca-Cola 300ml PET bottle or Coca-Cola 235ml can, you will have 2 lucky draw opportunities",
+      hardLuckHeader:"Sorry",
+      hardLuckTitle:"Hard Luck",
+      hardLuckImage:"/img/landing/week 4 prize.png"
     },
     winnerText:{
       header:"WINNER LIST"
@@ -126,7 +129,10 @@ let language =
         note:"Vui lòng gọi hotline 1900555584 (1500VND/ phút từ 9:00 đến 17:00, ngày hành chính) để nhận hướng dẫn thủ tục nhận giải thưởng.",
         startRedeeming:"Bắt đầu rút thăm",
         redeemNextPrize:"Tiếp tục đổi giải",
-        textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 330ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng"
+        textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 330ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng",
+        hardLuckHeader:"Sorry",
+        hardLuckTitle:"Hard Luck",
+        hardLuckImage:"/img/landing/week 4 prize.png"
       },
       winnerText:{
         header:"WINNER LIST"
