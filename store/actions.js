@@ -16,7 +16,8 @@ import {
   REDEEM_PRIZE,
   GET_LIST_WINNERS,
   CHECK_ATTEMPT,
-  GET_MY_PRIZE
+  GET_MY_PRIZE,
+  GET_PHONE
 } from './action_types';
 
 
@@ -195,6 +196,29 @@ export default {
 
     });
   },
+
+  [GET_PHONE]: ({ commit, state, getters }) => {
+
+    return new Promise((resolve, reject) => {
+
+        NGPSAPI.getUserPhone(state.token)
+        .then(response => {
+          let phone = response.data.phoneNumber;
+          let loginAccount=state.login;
+          //console.log(loginAccount);
+          loginAccount = {...state.login, phone : phone};
+         // console.log(loginAccount);
+          commit('SET_LOGIN_ACCOUNT', loginAccount);
+          return resolve(response);
+        })
+        .catch(error => {
+
+          return reject(error);
+        });
+
+    });
+  },
+
 
 
   [UPLOAD_FILE]: ({ commit, state, getters }, data) => {
