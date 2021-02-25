@@ -251,7 +251,7 @@ export default {
 
           let prize = [
             {
-                text : "<h2>"+this.submissionText.textPage+"/h2>"
+                text : "<h2>"+this.submissionText.textPage+"</h2>"
                 ,name:null
                 ,note:null
                 ,image:null
@@ -280,21 +280,42 @@ export default {
        // console.log(data)
           let prize =[
               {
-                  text : attemptData.FormHeading.thankYouMessage,
+                  text : prizewin.instantWinResult.redeemedPrize.description,
                   name : prizewin.instantWinResult.redeemedPrize.name,
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-                  note : this.submissionText.note
-                  ,button:button ? [{
+                  note : !prizewin.instantWinResult.redeemedPrize.redeemDescription ? this.submissionText.note :null
+                  ,button:button ? (prizewin.instantWinResult.redeemedPrize.redeemDescription ? [
+                    {
+                      text:this.submissionText.redeemPrize,
+                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      id:page
+                    },
+                    {
                       text:this.submissionText.redeemNextPrize,
                      type:"submission",
                      id:page
-                  }]:[]
+                  }]
+                  :
+                  [
+                    {
+                      text:this.submissionText.redeemNextPrize,
+                     type:"submission",
+                     id:page
+                  }])
+                  :(prizewin.instantWinResult.redeemedPrize.redeemDescription ? [{
+                      text:this.submissionText.redeemPrize,
+                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      id:page
+                    }]:[])
                   ,havejoox:false,
                   code: null,
                 subName:null,
               }
+
           ];
+
           this.prize=prize;
+
          // console.log(prize);
          //  this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
 
