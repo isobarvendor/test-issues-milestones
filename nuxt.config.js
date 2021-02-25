@@ -10,9 +10,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-target
   */
   target: 'server',
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+  gtm: {
+    enabled: true,
+    id: process.env.GTM, // Used as fallback if no runtime config is provided
   },
+
   /*
   ** ENVs
   */
@@ -23,8 +25,8 @@ export default {
     phoneCode:process.env.phoneCode,
     maxPhoneNumber:process.env.maxPhoneNumber,
     voucherParameter:process.env.voucherParameter,
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID
+    gtm: {
+      id: process.env.GTM
     }
   },
   privateRuntimeConfig: {
@@ -87,7 +89,7 @@ export default {
     // Simple usage
     '@nuxtjs/vuetify',
     'vue-scrollto/nuxt',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/gtm',
   ],
   /*
   ** Nuxt.js modules
