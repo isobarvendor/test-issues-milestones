@@ -1,6 +1,7 @@
 export const LOGIN= `login`;
 export const SIGNUP= `signup`;
 export const GET_ACCOUNT= `getAccount`;
+export const GET_CLIENT_INFO=`getClient`;
 
 //ngps
 export const GET_LIST_PRIZE= `getListPrize`;

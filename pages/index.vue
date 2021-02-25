@@ -81,6 +81,7 @@ export default {
        this.$store.commit('SET_CAMPAIGN_STARTED',false);
        localStorage.clear();
     }
+
   },
 
   methods:{

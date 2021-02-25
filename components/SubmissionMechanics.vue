@@ -128,7 +128,7 @@ export default {
               this.errorMessage=this.submissionText.errorPinCode1;
             }
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=error.response.data.trace.message;
+          this.errorMessage=this.submissionText.errorNormalPrize;
         }
 
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
@@ -154,36 +154,6 @@ export default {
         request:request
       }
 
-     /* let response={};
-      let response2={};
-       let result={
-            "burnResult": [
-                {
-                    "pincode": "0J6TC2VP5",
-                    "programId": "453269",
-                    "lotId": "445580",
-                    "burned": true
-                }
-            ],
-            "participationId": "1ylazdy9kkxmpa53",
-            "instantWinResult": {
-                "winner": true,
-              "redeemedPrize": {
-                    "prizeId": "kkqhy9so",
-                    "voucherCode": "Voucher891",
-                    "status": "claimed",
-                    "expiryDate": 1620018590000,
-                    "name": "JOOX VIP PASS",
-                    "shortDescription": "http://google.com",
-                    "redeemDescription": "http://abcd",
-                    "imgUrl": "/img/landing/week 1 prize.png",
-                    "barcodeType": 1,
-                    "emailSent": false,
-                    "emailMessage": "Email could not be sent"
-                }
-            }
-        }
-        response.data=result;*/
        this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
            data.response=response.data
@@ -203,7 +173,7 @@ export default {
                 this.errorMessage=this.submissionText.errorPinCode1;
               }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=error.response.data.trace.message;
+          this.errorMessage=this.submissionText.errorZaloPrize;
         }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                 this.errorMessage=this.submissionText.errorPinCode2;
@@ -221,7 +191,7 @@ export default {
                 this.errorMessage=this.submissionText.errorPinCode1;
               }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=error.response.data.trace.message;
+          this.errorMessage=this.submissionText.errorNormalPrize;
         }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                 this.errorMessage=this.submissionText.errorPinCode2;
@@ -280,14 +250,14 @@ export default {
        // console.log(data)
           let prize =[
               {
-                  text : prizewin.instantWinResult.redeemedPrize.description,
+                  text : prizewin.instantWinResult.redeemedPrize.redeemDescription,
                   name : prizewin.instantWinResult.redeemedPrize.name,
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-                  note : !prizewin.instantWinResult.redeemedPrize.redeemDescription ? this.submissionText.note :null
-                  ,button:button ? (prizewin.instantWinResult.redeemedPrize.redeemDescription ? [
+                  note : null
+                  ,button:button ? (prizewin.instantWinResult.redeemedPrize.redemptionLink ? [
                     {
                       text:this.submissionText.redeemPrize,
-                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
                       id:page
                     },
                     {
@@ -302,9 +272,9 @@ export default {
                      type:"submission",
                      id:page
                   }])
-                  :(prizewin.instantWinResult.redeemedPrize.redeemDescription ? [{
+                  :(prizewin.instantWinResult.redeemedPrize.redemptionLink ? [{
                       text:this.submissionText.redeemPrize,
-                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
                       id:page
                     }]:[])
                   ,havejoox:false,
@@ -336,7 +306,7 @@ export default {
                   note : null
                   ,button:[{
                       text:this.submissionText.redeemPrize,
-                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
                       id:page
                   }]
                   ,havejoox:false,

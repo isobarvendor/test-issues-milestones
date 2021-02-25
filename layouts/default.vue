@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { FETCH_CMS_DATA} from '@/store/action_types';
+import { FETCH_CMS_DATA , GET_CLIENT_INFO} from '@/store/action_types';
 import {translation} from "@/constants/index"
 import Header from "~/components/Header";
 export default {
@@ -97,6 +97,11 @@ export default {
   mounted() {
      this.fetchData();
 
+      this.$store.dispatch(GET_CLIENT_INFO).then(response =>{
+         // console.log(response.ip);
+       }).catch(error=>{
+
+       })
 
   },
   created(){

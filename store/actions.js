@@ -17,7 +17,8 @@ import {
   GET_LIST_WINNERS,
   CHECK_ATTEMPT,
   GET_MY_PRIZE,
-  CHECK_MIXCODE
+  CHECK_MIXCODE,
+  GET_CLIENT_INFO
 } from './action_types';
 
 
@@ -29,6 +30,21 @@ export default {
         .then(response => {
           commit('SET_TOKEN', response.data.accessToken);
           return resolve(response);
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    })
+  },
+  [GET_CLIENT_INFO]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+        GeneralAPI.getClientInfo()
+        .then(response => {
+          var data = response.data.replace(/[\r\n]+/g, '","').replace(/\=+/g, '":"');
+              data = '{"' + data.slice(0, data.lastIndexOf('","')) + '"}';
+          var jsondata = JSON.parse(data);
+          resolve(jsondata);
         })
         .catch(error => {
           return reject(error);

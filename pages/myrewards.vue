@@ -66,10 +66,11 @@ export default {
                           id:index,
                           title:o.name,
                           date:moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
-                          link:o.redeemDescription,
+                          link:o.redemptionLink,
                           image:o.imgUrl,
                           code:o.voucher,
-                          audio:o.prizeName.includes(".") ? o.prizeName : null
+                          audio:o.prizeName.includes(".") ? o.prizeName : null,
+                          description:o.redeemDescription
                         }
                     });
                    this.rewards=[...this.rewards,...[...array, ...res]];
