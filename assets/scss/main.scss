@@ -369,6 +369,13 @@ footer{
 .prize-swiper-container{
   z-index: 1;
   max-width: 1100px !important;
+  @media only screen and (max-width: 768px) {
+    max-width: 800px !important;
+  }
+  @media only screen and (max-width: 500px) {
+    max-width: 400px !important;
+  }
+
 }
 
 .prize-item{
@@ -409,7 +416,8 @@ footer{
 
   & .prize-description{
     font-size:$mobile-body-font-size;
-    height:calc(251px - 154px);
+    min-height:calc(300px - 154px);
+    height: auto;
     padding:10px;
     background: $secondary-color;
 
