@@ -13,6 +13,7 @@ export const DELETE_FILE= `deleteFile`;
 export const REDEEM_PRIZE=`redeemPrize`;
 export const GET_MY_PRIZE=`getMyPrize`;
 export const CHECK_MIXCODE=`checkMixCode`;
+export const GET_PHONE=`getPhone`;
 
 //cms
 export const FETCH_CMS_DATA= `fethCMSData`;

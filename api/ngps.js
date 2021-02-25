@@ -29,7 +29,9 @@ export default {
     return axios.get(`${origin}/api/mix-codes/verify/${data.programmeId}/${data.pin}`, setHeader(token))
     //return axios.get(`/mock/mixcode`, setHeader(token))
   },
-
+  getUserPhone(token) {
+    return axios.get(`${origin}/api/user-participators/get-phone-number`, setHeader(token))
+  },
   redeemPrize(data, token) {
     return axios.post(`${origin}/api/campaign/auth/redeem-prize`, data, setHeader(token))
   },
