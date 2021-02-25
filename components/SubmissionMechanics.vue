@@ -159,30 +159,33 @@ export default {
            data.response=response.data
            this.submitOne(data,false,page);
            request.configurationId=configID[1];
-
-             this.$store.dispatch(SUBMIT_FORM,request)
-            .then((response2)=>{
-                data.response=response2.data
-               this.submitTwo(data,page);
-                 this.loading=false;
-             }).catch((error)=>{
-               if(error.response){
-                  this.errorMessage=this.submissionText.errorAPI;
-                }
-                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                this.errorMessage=this.submissionText.errorPinCode1;
-              }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=this.submissionText.errorZaloPrize;
-        }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                this.errorMessage=this.submissionText.errorPinCode2;
-              }
-                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                this.errorMessage=this.submissionText.errorPinCode3;
-              }
-                this.loading=false;
-            })
+            if(!this.$store.state.fromBanCity){
+                this.$store.dispatch(SUBMIT_FORM,request)
+                .then((response2)=>{
+                    data.response=response2.data
+                  this.submitTwo(data,page);
+                    this.loading=false;
+                }).catch((error)=>{
+                  if(error.response){
+                      this.errorMessage=this.submissionText.errorAPI;
+                    }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                    this.errorMessage=this.submissionText.errorPinCode1;
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+              this.errorMessage=this.submissionText.errorZaloPrize;
+            }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                    this.errorMessage=this.submissionText.errorPinCode2;
+                  }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                    this.errorMessage=this.submissionText.errorPinCode3;
+                  }
+                    this.loading=false;
+                })
+          }else{
+             this.loading=false;
+          }
      }).catch((error)=>{
            if(error.response){
           this.errorMessage=this.submissionText.errorAPI;

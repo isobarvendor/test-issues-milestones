@@ -91,13 +91,33 @@ export default {
           e.returnValue = ''
         }
       },
-
+     IPtoNum(ip){
+        return Number(
+          ip.split(".")
+            .map(d => ("000"+d).substr(-3) )
+            .join("")
+        );
+      }
 
   },
   mounted() {
      this.fetchData();
 
       this.$store.dispatch(GET_CLIENT_INFO).then(response =>{
+        const ranges = [
+            ["49.213.64.0", "49.213.127.255"],
+            ["42.1.64.0","42.1.127.255"],
+            ["27.3.106.0","27.3.143.255"],
+            ["61.28.224.0","61.28.255.255"],
+            ["27.2.112.0","27.2.143.255"],
+          ];
+
+         // const ip = "49.213.127.200";
+          const ip = response.ip;
+          const inRange = ranges.some(
+            ([min,max]) => this.IPtoNum(min) < this.IPtoNum(ip) &&   this.IPtoNum(max) > this.IPtoNum(ip)
+          );
+          this.$store.commit("SET_BAN_CITY",inRange);
          // console.log(response.ip);
        }).catch(error=>{
 

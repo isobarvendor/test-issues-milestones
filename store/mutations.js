@@ -44,6 +44,10 @@ export default {
   SET_GO_TO_SIGNIN:(state,data)=>{
     state.goToSignin= data
   },
+  SET_BAN_CITY:(state,data)=>{
+    state.fromBanCity= data
+  },
+
 
 
 };
