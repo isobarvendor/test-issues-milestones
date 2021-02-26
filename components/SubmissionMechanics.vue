@@ -165,7 +165,7 @@ export default {
 
     },
 
-     submitPrizeDouble(page=1){
+   async submitPrizeDouble(page=1){
        this.loading=true;
       let request= this.request;
       request.configurationId=configID[0];
@@ -174,7 +174,7 @@ export default {
         request:request
       }
 
-       this.$store.dispatch(SUBMIT_FORM,request)
+      await this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
            data.response=response.data
            this.submitOne(data,false,page);
@@ -215,7 +215,7 @@ export default {
 
             request.configurationId=configID[1];
             if(!this.$store.state.fromBanCity){
-                this.$store.dispatch(SUBMIT_FORM,request)
+              await this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response2)=>{
                     data.response=response2.data
                   this.submitTwo(data,page);
