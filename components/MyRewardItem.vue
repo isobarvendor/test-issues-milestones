@@ -15,6 +15,7 @@
             </v-col>
             <v-col cols="9">
                 <h3>{{reward.title}}</h3>
+                <p v-if="reward.code">Voucher Code : {{reward.code}}</p>
                 <p>{{reward.date}}</p>
             </v-col>
         </v-row>
