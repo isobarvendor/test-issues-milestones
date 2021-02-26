@@ -13,7 +13,7 @@
   <div class="container  prize-chance black-red-border" id="prize-chance">
 
         <div class="wrapper"  v-for="(item, idx) in prize" :key="idx"  >
-          <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize" v-if="prize.length>0"  />
+          <PrizeItem :prize="item" :themes="themes" @playAgain="playAgain" @submitPrize="submitPrize" v-if="prize.length>0" :loading="loading"  />
           <div class="error-message" v-if="idx==prize.length-1">{{errorMessage}}</div>
         </div>
         <div class="error-message" v-if="prize.length==0">{{errorMessage}}</div>
@@ -29,10 +29,10 @@
       <img src="/img/landing/back-dots.png" />
     </div>
     <div class="desc-joox" >
-        <span v-html="prize[0].havejoox"></span>
-        <div class="joox-listen">
+        <span v-html="jooxMessage"></span>
+        <!--div class="joox-listen">
             <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
-        </div>
+        </div-->
     </div>
   </div>
 
@@ -72,7 +72,8 @@ export default {
           email:''
         },
         errorMessage:null,
-        submissionText:translation.submissionText
+        submissionText:translation.submissionText,
+        loading:false,
     }
 
   },
@@ -111,56 +112,43 @@ export default {
       }
       request.configurationId=configID[this.submitNumber-1];
 
-
+    if(this.submitNumber==1){
+      this.loading=true;
       this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
-      /* let result={
-            "burnResult": [
-                {
-                    "pincode": "0J6TC2VP5",
-                    "programId": "453269",
-                    "lotId": "445580",
-                    "burned": true
-                }
-            ],
-            "participationId": "1ylazdy9kkxmpa53",
-            "instantWinResult": {
-                "winner": true,
-              "redeemedPrize": {
-                    "prizeId": "kkqhy9so",
-                    "voucherCode": "Voucher891",
-                    "status": "claimed",
-                    "expiryDate": 1620018590000,
-                    "name": "JOOX VIP PASS",
-                    "shortDescription": "http://google.com",
-                    "redeemDescription": "http://abcd",
-                    "imgUrl": "/img/landing/week 1 prize.png",
-                    "barcodeType": 1,
-                    "emailSent": false,
-                    "emailMessage": "Email could not be sent"
-                }
-            }
-        }
-        response.data=result;
-*/
-         if(this.submitNumber==1){
            data.response=response.data
-           this.submitOne(data);
-         }
-         else if(this.submitNumber==2){
-           data.response=response.data
-           this.submitTwo(data);
-         }
+           this.submitOne(data,true,2);
+             this.loading=false;
 
-      }).catch((err)=>{
-       if(err.response){
+      }).catch((error)=>{
+       if(error.response){
           this.errorMessage=this.submissionText.errorAPI;
         }
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
               this.errorMessage=this.submissionText.errorPinCode1;
             }
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=this.submissionText.errorPinCode4;
+          //this.errorMessage=this.submissionText.errorNormalPrize;
+          let  prize =[
+            {
+                text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
+                ,name:this.submissionText.hardLuckTitle
+                ,note:null
+                 ,image:this.submissionText.hardLuckImage
+                ,havejoox:false
+                ,button:[{
+                    text:this.submissionText.startRedeeming,
+                    type:"submission",
+                    id:1
+                }],
+                code:null,
+                subName:null,
+                isPlayAgain:false
+              },
+          ]
+            this.prize=prize;
+            this.submitNumber=2;
+            this.errorMessage="";
         }
 
         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
@@ -169,11 +157,16 @@ export default {
           if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
           this.errorMessage=this.submissionText.errorPinCode3;
         }
+          this.loading=false;
       })
+    }else{
+        this.submitPrizeDouble(3);
+    }
 
     },
 
-     submitPrizeDouble(){
+   async submitPrizeDouble(page=1){
+       this.loading=true;
       let request= this.request;
       request.configurationId=configID[0];
       let data = {
@@ -181,71 +174,34 @@ export default {
         request:request
       }
 
-     /* let response={};
-      let response2={};
-       let result={
-            "burnResult": [
-                {
-                    "pincode": "0J6TC2VP5",
-                    "programId": "453269",
-                    "lotId": "445580",
-                    "burned": true
-                }
-            ],
-            "participationId": "1ylazdy9kkxmpa53",
-            "instantWinResult": {
-                "winner": true,
-              "redeemedPrize": {
-                    "prizeId": "kkqhy9so",
-                    "voucherCode": "Voucher891",
-                    "status": "claimed",
-                    "expiryDate": 1620018590000,
-                    "name": "JOOX VIP PASS",
-                    "shortDescription": "http://google.com",
-                    "redeemDescription": "http://abcd",
-                    "imgUrl": "/img/landing/week 1 prize.png",
-                    "barcodeType": 1,
-                    "emailSent": false,
-                    "emailMessage": "Email could not be sent"
-                }
-            }
-        }
-        response.data=result;*/
-       this.$store.dispatch(SUBMIT_FORM,request)
+      await this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
            data.response=response.data
-           this.submitOne(data,false);
-           request.configurationId=configID[1];
-             this.$store.dispatch(SUBMIT_FORM,request)
-            .then((response2)=>{
-                data.response=response2.data
-               this.submitTwo(data);
-             }).catch((err)=>{
-               if(err.response){
-                  this.errorMessage=this.submissionText.errorAPI;
-                }
-                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                this.errorMessage=this.submissionText.errorPinCode1;
-              }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=this.submissionText.errorPinCode4;
-        }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                this.errorMessage=this.submissionText.errorPinCode2;
-              }
-                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                this.errorMessage=this.submissionText.errorPinCode3;
-              }
-            })
-     }).catch((err)=>{
-           if(err.response){
+           this.submitOne(data,false,page);
+     }).catch((error)=>{
+           if(error.response){
           this.errorMessage=this.submissionText.errorAPI;
         }
          if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
                 this.errorMessage=this.submissionText.errorPinCode1;
               }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          this.errorMessage=this.submissionText.errorPinCode4;
+          //this.errorMessage=this.submissionText.errorNormalPrize;
+                  this.errorMessage="";
+                  let  prize =[
+                    {
+                        text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
+                        ,name:this.submissionText.hardLuckTitle
+                        ,note:null
+                        ,image:this.submissionText.hardLuckImage
+                        ,havejoox:false
+                        ,button:[],
+                        code:null,
+                        subName:null,
+                        isPlayAgain:false
+                      },
+                  ]
+                    this.prize=prize;
         }
               if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
                 this.errorMessage=this.submissionText.errorPinCode2;
@@ -253,12 +209,50 @@ export default {
                 if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
                 this.errorMessage=this.submissionText.errorPinCode3;
               }
+            this.loading=false;
 
       })
 
+            request.configurationId=configID[1];
+            if(!this.$store.state.fromBanCity){
+              await this.$store.dispatch(SUBMIT_FORM,request)
+                .then((response2)=>{
+                    data.response=response2.data
+                  this.submitTwo(data,page);
+                    this.loading=false;
+                }).catch((error)=>{
+                  if(error.response){
+                      this.errorMessage=this.submissionText.errorAPI;
+                    }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                    this.errorMessage=this.submissionText.errorPinCode1;
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+                    //this.errorMessage=this.submissionText.errorZaloPrize;
+                    this.errorMessage="";
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                    this.errorMessage=this.submissionText.errorPinCode2;
+                  }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                    this.errorMessage=this.submissionText.errorPinCode3;
+                  }
+                    this.loading=false;
+                })
+          }else{
+             this.loading=false;
+          }
+
+
     },
-
-
+     addGTMSuccess(){
+          this.$gtm.push({
+            'event' : 'event_form_submit',
+            'category' : 'form submit',
+            'action' : 'success',
+            'label' : 'rhythm sign up'
+      });
+     },
      submit(data){
       // console.log(data);
       this.submitted=true;
@@ -274,14 +268,15 @@ export default {
 
           let prize = [
             {
-                text : "<h2>You have entered the Entry Code from Coca-Cola 300ml PET bottle and Coca Cola 235 ml can, you will have 2 lucky draw opportunities</h2>"
+                text : "<h2>"+this.submissionText.textPage+"</h2>"
                 ,name:null
                 ,note:null
                 ,image:null
                 ,havejoox:false
                 ,button:[{
-                    text:"Start redeeming",
-                    type:"submission"
+                    text:this.submissionText.startRedeeming,
+                    type:"submission",
+                    id:1
                 }],
                 code:null,
                 subName:null,
@@ -293,58 +288,122 @@ export default {
 
 
     },
-    submitOne(data,button=true){
+    submitOne(data,button=true,page=1){
+      this.addGTMSuccess();
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
       this.submitNumber=2;
       this.request=data.request;
-
-          let prize =[
+       // console.log(data)
+      let prize =[];
+       if(prizewin.instantWinResult.winner)
+       {
+          prize =[
               {
-                  text : attemptData.FormHeading.thankYouMessage,
+                  text : prizewin.instantWinResult.redeemedPrize.redeemDescription,
                   name : prizewin.instantWinResult.redeemedPrize.name,
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
-                  ,button:button ? [{
-                      text:"Redeem Next Prize",
-                     type:"submission"
-                  }]:[]
+                  ,button:button ? (prizewin.instantWinResult.redeemedPrize.redemptionLink ? [
+                    {
+                      text:this.submissionText.redeemPrize,
+                      link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      id:page
+                    },
+                    {
+                      text:this.submissionText.redeemNextPrize,
+                     type:"submission",
+                     id:page
+                  }]
+                  :
+                  [
+                    {
+                      text:this.submissionText.redeemNextPrize,
+                     type:"submission",
+                     id:page
+                  }])
+                  :(prizewin.instantWinResult.redeemedPrize.redemptionLink ? [{
+                      text:this.submissionText.redeemPrize,
+                      link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      id:page
+                    }]:[])
                   ,havejoox:false,
                   code: null,
                 subName:null,
               }
+
           ];
+       }else{
+         prize =[
+            {
+                text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
+                ,name:this.submissionText.hardLuckTitle
+                ,note:null
+                ,image:this.submissionText.hardLuckImage
+                ,havejoox:false
+                ,button:button ?[{
+                    text:this.submissionText.startRedeeming,
+                    type:"submission",
+                    id:1
+                }] :[],
+                code:null,
+                subName:null,
+                isPlayAgain:false
+              },
+          ]
+       }
           this.prize=prize;
 
-          this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
+         // console.log(prize);
+         //  this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
 
 
     },
-     submitTwo(data){
+     submitTwo(data,page=1){
+       // console.log(data)
+      this.addGTMSuccess();
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
       this.submitNumber=3;
-
-      let prize =[
-              {
-                  text :null,
-                  name : prizewin.instantWinResult.redeemedPrize.name,
-                  image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-                  note : null
-                  ,button:[{
-                      text:this.submissionText.redeemPrize,
-                      link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
-                  }]
-                  ,havejoox:false,
-                  code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
+      let prize =[];
+       if(prizewin.instantWinResult.winner)
+       {
+        prize =[
+                {
+                    text :null,
+                    name : prizewin.instantWinResult.redeemedPrize.name,
+                    image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
+                    note : null
+                    ,button:[{
+                        text:this.submissionText.redeemPrize,
+                        link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                        id:page
+                    }]
+                    ,havejoox:false,
+                    code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
+                  subName:null,
+                  isPlayAgain:false
+                }
+            ];
+       }else{
+           prize =[
+            {
+                text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
+                ,name:this.submissionText.hardLuckTitle
+                ,note:null
+                 ,image:this.submissionText.hardLuckImage
+                ,havejoox:false
+                ,button:[],
+                code:null,
                 subName:null,
                 isPlayAgain:false
-              }
-          ];
+              },
+          ]
+       }
 
-
+     //console.log(prize)
       this.prize=[...this.prize,...prize]
 
      // this.listenNowLink=prizewin.instantWinResult.redeemedPrize.shortDescription;
@@ -358,7 +417,7 @@ export default {
 
   .error-message{
     padding-top: 20px;
-    color:red;
+    color:#fff;
     text-align: center;
   }
  .prize-chance.joox-section{

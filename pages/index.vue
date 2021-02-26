@@ -25,7 +25,7 @@ import HowItWorks from '../components/HowItWorks'
 import SubmissionMechanics from '../components/SubmissionMechanics'
 import Footer from '../components/Footer'
 import deepClone from 'deep-clone'
-import { GET_ACCOUNT,GET_LIST_WALLET, GET_LIST_PRIZE} from '@/store/action_types';
+import { GET_ACCOUNT,GET_LIST_WALLET, GET_LIST_PRIZE, GET_PHONE} from '@/store/action_types';
 import  VueScrollTo from 'vue-scrollto';
 
 
@@ -81,17 +81,28 @@ export default {
        this.$store.commit('SET_CAMPAIGN_STARTED',false);
        localStorage.clear();
     }
+
   },
 
   methods:{
       getAccount(){
-       this.$store.dispatch(GET_ACCOUNT,this.$store.state.token).then({
+       this.$store.dispatch(GET_ACCOUNT,this.$store.state.token).then((response)=>{
+            this.$store.dispatch(GET_PHONE).then((response2)=>{
+
+            }).catch(error=>{
+              if(error.response && error.response.data.status=="401"){
+                localStorage.clear();
+              }
+            })
 
        }).catch(error=>{
          if(error.response && error.response.data.status=="401"){
            localStorage.clear();
          }
        })
+
+
+
     },
     isVideo(data){
       return (data && data.desktopImage.length>0)  ?  data.desktopImage[0].url.includes("mp4") : false;

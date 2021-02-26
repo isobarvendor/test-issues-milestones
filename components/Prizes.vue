@@ -1,5 +1,5 @@
 <template>
-  <div class="container campaign-section prize-section" v-if="data">
+  <div class="container campaign-section prize-section">
     <div class="background-image">
       <img src="/img/landing/back-dots.png" />
     </div>
@@ -55,16 +55,19 @@ export default {
   data() {
     return {
       swiperOption: {
+        autoplay: {
+          delay: 5000,
+        },
         slidesPerView: 2,
         spaceBetween: 10,
         breakpoints: {
           // when window width is >= 320px
           768: {
-            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
+            slidesPerView: 3,
             spaceBetween: 10,
           },
           992: {
-            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
+            slidesPerView: 3,
             spaceBetween: 20,
           },
         },

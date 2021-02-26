@@ -11,7 +11,10 @@
     ]"
     class="videoBackground"
     style="height: 100vh;"
-    overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)"
+    ref="videobackground"
+    :muted="muted"
+
+
 >
       <div class="masthead-content">
       <h1>{{data.title}}</h1>
@@ -19,6 +22,7 @@
 
     </div>
     <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
+    <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
 </video-background>
 
   </div>
@@ -30,7 +34,8 @@ export default {
   name: "MastheadVideo",
   props: {
     data: null,
-    isCountDown:null
+    isCountDown:null,
+
   },
    components:{
     MastheadCountDown
@@ -38,22 +43,21 @@ export default {
   data() {
     return {
       imgDesk: this.data.homepage.mastheadSection.desktopImage[0].url,
-      imgTab: this.data.homepage.mastheadSection.tabletImage.length>0 ? this.data.homepage.mastheadSection.tabletImage[0].url : this.data.homepage.mastheadSection.desktopImage[0].url,
-      imgMob: this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url : this.data.homepage.mastheadSection.desktopImage[0].url,
       videoDesk: this.data.homepage.mastheadSection.video.url,
       videoTab:  this.data.homepage.mastheadSection.video.url,
-      videoMob:  this.data.homepage.mastheadSection.video.url,
+      videoMob:  this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url : this.data.homepage.mastheadSection.video.url,
+      muted:true
     }
   },
   mounted() {
 
   },
   methods: {
-
+    play(){
+      this.muted=!this.muted;
+    }
   },
-  mounted() {
 
-  },
 };
 </script>
 
@@ -62,12 +66,24 @@ export default {
       background:#de0a1c;
       padding: 20px;
     }
+    .mutedIcon{
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      cursor: pointer;
+    }
   @media only screen and (max-width: 600px) {
     .videoBackground{
       max-height: 400px !important;
     }
      #masthead{
       padding: 10px;
+    }
+    .mutedIcon{
+
+      bottom: 5px;
+      left: 5px;
+
     }
   }
     @media only screen and (max-width: 1099px) {

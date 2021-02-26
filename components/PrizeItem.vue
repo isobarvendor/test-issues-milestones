@@ -40,26 +40,38 @@
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
    <div class="prize-button-area center">
-       <a :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  v-for="(btn,index) in prize.button" :key="index" >
+        <v-progress-circular
+        :width="2"
+        color="white"
+        indeterminate
+        v-if="loading"
+      ></v-progress-circular>
+      <div v-else style="margin-bottom:40px;"  v-for="(btn,index) in prize.button" :key="index" >
+       <a  :id="'page'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
         <v-btn  v-html="btn.text">
         </v-btn>
+
        </a>
+      </div>
    </div>
-    <div class="prize-button-area center" style="margin-top:40px;" v-if="prize.isPlayAgain">
-          <v-btn @click="playAgain">Play again</v-btn>
+    <div class="prize-button-area center" v-if="prize.isPlayAgain">
+          <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
     </div>
  </div>
 </template>
 
 <script>
+import {translation} from "@/constants/index"
 export default {
     name:"PrizeItem",
     props:{
       prize:{},
-      themes:null
+      themes:null,
+      loading: false
     },
     data(){
       return {
+        submissionText:translation.submissionText
       }
     },
     computed:{

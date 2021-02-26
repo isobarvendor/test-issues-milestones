@@ -9,13 +9,14 @@
             ],
             "participationId": "1ylazdy9kkxmpa53",
             "instantWinResult": {
-                "winner": true,
+                "winner": false,
               "redeemedPrize": {
                     "prizeId": "kkqhy9so",
                     "voucherCode": "Voucher891",
                     "status": "claimed",
                     "expiryDate": 1620018590000,
                     "name": "JOOX VIP PASS",
+                    "description":"Conglratulations",
                     "shortDescription": "http://google.com",
                     "redeemDescription": "http://abcd",
                     "imgUrl": "/img/landing/week 1 prize.png",

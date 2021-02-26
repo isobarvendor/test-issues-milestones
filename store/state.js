@@ -13,6 +13,7 @@ export default () => ({
     listWinners:null,
     listWallet:null,
     isCampaignStarted:false,
-    goToSignin:false
+    goToSignin:false,
+    fromBanCity:false,
 
 });

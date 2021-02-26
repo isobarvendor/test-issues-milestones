@@ -76,9 +76,12 @@
                 </v-col>
 
           </v-row>
+            <div v-if="loginInfo" v-html="howData.description" class="description"></div>
 
       </v-col>
     </v-row>
+
+
 
   </div>
 </template>
@@ -110,7 +113,12 @@ export default {
     },
     enddate (){
       return this.data && moment(this.data.toDate).format("Do MMMM YYYY");
+    },
+    loginInfo(){
+       return this.$store.state.login;
     }
+
+
   }
   ,
   props: {
@@ -124,5 +132,10 @@ export default {
 </script>
 
 <style>
-
+  @media only screen and (min-width: 700px) {
+    .campaign-period-section .description{
+      text-align: center;
+      padding-top: 50px;
+    }
+  }
 </style>
