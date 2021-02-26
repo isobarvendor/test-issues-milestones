@@ -1,4 +1,5 @@
 <template>
+      <div>
         <v-row  @click="reward.audio ? toggleSound(reward.id,reward.audio) : redeemLink(reward.link,reward.code)" class=" mb-4 toggle-sound paused center list-reward" >
               <audio
                 v-if="reward.audio"
@@ -17,6 +18,8 @@
                 <p>{{reward.date}}</p>
             </v-col>
         </v-row>
+        <div v-html="reward.description" v-if="reward.description" class="description"/>
+      </div>
 </template>
 
 <script>

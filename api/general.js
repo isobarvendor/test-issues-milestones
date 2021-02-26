@@ -25,7 +25,11 @@ export default {
       return axios(config)
 
 
+  },
+  async getClientInfo(){
+    return axios.get(`https://www.cloudflare.com/cdn-cgi/trace`)
   }
+
 
 
 }

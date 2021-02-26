@@ -45,6 +45,8 @@ let language =
       errorPinCode2:"Oops your pin code is invalid or already redeemed",
       errorPinCode3:"Oops your pin code is invalid or already redeemed",
       errorPinCode4:"Oops your pin code is invalid or already redeemed",
+      errorZaloPrize:"Redemption Limit for zalo prize has been reached",
+      errorNormalPrize:"Redemption Limit for normal prize has been reached",
       errorAPI:"Oops something went wrong please try again",
       errorMaxPhone:"You reach maximum phone number length",
       participateAgain:"Participate again",
@@ -54,7 +56,10 @@ let language =
       note:"Please call 1800 555 584 (VND 1500/min, from 9:00 to 17:00, weekdays) to reveive redemption instructions",
       startRedeeming:"Start Redeeming",
       redeemNextPrize:"Redeem next prize",
-      textPage:"You have entered the Entry Code from Coca-Cola 300ml PET bottle or Coca-Cola 235ml can, you will have 2 lucky draw opportunities"
+      textPage:"You have entered the Entry Code from Coca-Cola 300ml PET bottle or Coca-Cola 235ml can, you will have 2 lucky draw opportunities",
+      hardLuckHeader:"Sorry",
+      hardLuckTitle:"Hard Luck",
+      hardLuckImage:"/img/landing/week 4 prize.png"
     },
     winnerText:{
       header:"WINNER LIST"
@@ -113,6 +118,8 @@ let language =
         errorPinCode2:"Xin lỗi Mã Tham Dự này đã được sử dụng. Vui lòng kiểm tra lại.",
         errorPinCode3:"Xin lỗi Mã Tham Dự này không đúng. Vui lòng kiểm tra lại.",
         errorPinCode4:"Xin lỗi Mã Tham Dự này không đúng. Vui lòng kiểm tra lại.",
+        errorZaloPrize:"Redemption Limit for zalo prize has been reached",
+        errorNormalPrize:"Redemption Limit for normal prize has been reached",
         errorAPI:"Rất tiếc. Đã xảy ra lỗi. Vui lòng thử lại",
         errorMaxPhone:"Bạn đạt đến độ dài số điện thoại tối đa",
         participateAgain:"Participate again",
@@ -122,7 +129,10 @@ let language =
         note:"Vui lòng gọi hotline 1900555584 (1500VND/ phút từ 9:00 đến 17:00, ngày hành chính) để nhận hướng dẫn thủ tục nhận giải thưởng.",
         startRedeeming:"Bắt đầu rút thăm",
         redeemNextPrize:"Tiếp tục đổi giải",
-        textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 330ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng"
+        textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 330ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng",
+        hardLuckHeader:"Sorry",
+        hardLuckTitle:"Hard Luck",
+        hardLuckImage:"/img/landing/week 4 prize.png"
       },
       winnerText:{
         header:"WINNER LIST"

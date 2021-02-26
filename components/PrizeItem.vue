@@ -46,12 +46,15 @@
         indeterminate
         v-if="loading"
       ></v-progress-circular>
-       <a v-else :id="'page'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  v-for="(btn,index) in prize.button" :key="index" >
+      <div v-else style="margin-bottom:40px;"  v-for="(btn,index) in prize.button" :key="index" >
+       <a  :id="'page'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
         <v-btn  v-html="btn.text">
         </v-btn>
+
        </a>
+      </div>
    </div>
-    <div class="prize-button-area center" style="margin-top:40px;" v-if="prize.isPlayAgain">
+    <div class="prize-button-area center" v-if="prize.isPlayAgain">
           <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
     </div>
  </div>

@@ -43,11 +43,9 @@ export default {
   data() {
     return {
       imgDesk: this.data.homepage.mastheadSection.desktopImage[0].url,
-      imgTab: this.data.homepage.mastheadSection.tabletImage.length>0 ? this.data.homepage.mastheadSection.tabletImage[0].url : this.data.homepage.mastheadSection.desktopImage[0].url,
-      imgMob: this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url : this.data.homepage.mastheadSection.desktopImage[0].url,
       videoDesk: this.data.homepage.mastheadSection.video.url,
       videoTab:  this.data.homepage.mastheadSection.video.url,
-      videoMob:  this.data.homepage.mastheadSection.video.url,
+      videoMob:  this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url : this.data.homepage.mastheadSection.video.url,
       muted:true
     }
   },
