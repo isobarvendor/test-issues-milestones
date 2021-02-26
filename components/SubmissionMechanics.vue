@@ -289,7 +289,7 @@ export default {
 
     },
     submitOne(data,button=true,page=1){
-      addGTMSuccess();
+      this.addGTMSuccess();
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
@@ -362,7 +362,7 @@ export default {
     },
      submitTwo(data,page=1){
        // console.log(data)
-      addGTMSuccess();
+      this.addGTMSuccess();
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
