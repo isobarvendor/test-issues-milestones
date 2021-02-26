@@ -16,7 +16,7 @@
     </div>
       <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
-        <span class="error-message">{{ errors.first('phoneNumber') }}</span>
+        <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
     </div>
 
     <!--div v-if="submissionType=='with_receipt'" class="details receipt">
@@ -320,7 +320,7 @@ export default {
              return false;
            }
              this.errorMessage=null;
-             await this.checkcurrentAttempt();
+             //await this.checkcurrentAttempt();
 
             if(this.getAttempt)
             {
@@ -391,7 +391,7 @@ export default {
        });
 
     },
-       getAccount(){
+       async getAccount(){
         if(this.loginInfo){
           this.form.name=this.loginInfo.name;
           this.form.email=this.loginInfo.email;
@@ -402,8 +402,12 @@ export default {
            this.form.privacy=this.loginInfo.privacy;
            this.form.ageConsent=this.loginInfo.ageConsent;
         }
-
-
+        await this.checkcurrentAttempt();
+        if(this.currentAttempt>1){
+           this.form.terms=true;
+           this.form.privacy=true;
+           this.form.ageConsent=true;
+        }
     },
 
         getListWallet(){
