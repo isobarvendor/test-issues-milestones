@@ -136,18 +136,30 @@ export default {
   padding-left: 0px;
   text-align: center;
 }
-.coundown-text{
-  font-size:39px;
-}
 .number-area{
   margin-top: 20px !important;
   margin-bottom: 15px !important;
   padding-right: 10px;
   padding-left: 10px;
   padding-top: 5px;
-
-
 }
+ @media only screen and (max-width: 1199px) {
+    #masthead-countdown{
+      width:330px;
+      height:135px;
+      background-size: 100%;
+   }
+   .coundown-text{
+      font-size:35px;
+    }
+    .number-area{
+      margin-top: 15px !important;
+    }
+ }
+.coundown-text{
+  font-size:39px;
+}
+
 .countdown-number{
   background: #303030;
   border:solid 1px #000;
