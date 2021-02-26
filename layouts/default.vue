@@ -103,7 +103,7 @@ export default {
   mounted() {
      this.fetchData();
 
-      this.$store.dispatch(GET_CLIENT_INFO).then(response =>{
+      /*this.$store.dispatch(GET_CLIENT_INFO).then(response =>{
         const ranges = [
             ["49.213.64.0", "49.213.127.255"],
             ["42.1.64.0","42.1.127.255"],
@@ -121,7 +121,7 @@ export default {
          // console.log(response.ip);
        }).catch(error=>{
 
-       })
+       })*/
 
   },
   created(){

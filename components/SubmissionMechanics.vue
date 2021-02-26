@@ -168,81 +168,65 @@ export default {
    async submitPrizeDouble(page=1){
        this.loading=true;
       let request= this.request;
-      request.configurationId=configID[0];
+
       let data = {
         attemptData:this.attemptData,
         request:request
       }
+    for(let a=0; a<configID.length; a++){
+      request.configurationId=configID[a];
 
-      await this.$store.dispatch(SUBMIT_FORM,request)
-      .then((response)=>{
-           data.response=response.data
-           this.submitOne(data,false,page);
-     }).catch((error)=>{
-           if(error.response){
-          this.errorMessage=this.submissionText.errorAPI;
-        }
-         if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                this.errorMessage=this.submissionText.errorPinCode1;
+        await this.$store.dispatch(SUBMIT_FORM,request)
+          .then((response)=>{
+              data.response=response.data
+              if(a==0){
+                this.submitOne(data,false,page);
+                if(configID.length==1)
+                {
+                  this.loading=false;
+                }
+              }else{
+                this.submitTwo(data,page);
+                this.loading=false;
               }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-          //this.errorMessage=this.submissionText.errorNormalPrize;
-                  this.errorMessage="";
-                  let  prize =[
-                    {
-                        text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
-                        ,name:this.submissionText.hardLuckTitle
-                        ,note:null
-                        ,image:this.submissionText.hardLuckImage
-                        ,havejoox:false
-                        ,button:[],
-                        code:null,
-                        subName:null,
-                        isPlayAgain:false
-                      },
-                  ]
-                    this.prize=prize;
-        }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                this.errorMessage=this.submissionText.errorPinCode2;
-              }
-                if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                this.errorMessage=this.submissionText.errorPinCode3;
-              }
-            this.loading=false;
 
-      })
-
-            request.configurationId=configID[1];
-            if(!this.$store.state.fromBanCity){
-              await this.$store.dispatch(SUBMIT_FORM,request)
-                .then((response2)=>{
-                    data.response=response2.data
-                  this.submitTwo(data,page);
-                    this.loading=false;
-                }).catch((error)=>{
-                  if(error.response){
-                      this.errorMessage=this.submissionText.errorAPI;
+      }).catch((error)=>{
+              if(error.response){
+                this.errorMessage=this.submissionText.errorAPI;
+                }
+              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                      this.errorMessage=this.submissionText.errorPinCode1;
                     }
-                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                    this.errorMessage=this.submissionText.errorPinCode1;
-                  }
-                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-                    //this.errorMessage=this.submissionText.errorZaloPrize;
-                    this.errorMessage="";
-                  }
-                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                    this.errorMessage=this.submissionText.errorPinCode2;
-                  }
-                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                    this.errorMessage=this.submissionText.errorPinCode3;
-                  }
-                    this.loading=false;
-                })
-          }else{
-             this.loading=false;
-          }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+                //this.errorMessage=this.submissionText.errorNormalPrize;
+                        this.errorMessage="";
+                          if(a==0){
+                              let  prize =[
+                                {
+                                    text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
+                                    ,name:this.submissionText.hardLuckTitle
+                                    ,note:null
+                                    ,image:this.submissionText.hardLuckImage
+                                    ,havejoox:false
+                                    ,button:[],
+                                    code:null,
+                                    subName:null,
+                                    isPlayAgain:false
+                                  },
+                              ]
+                                this.prize=prize;
+                       }
+              }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                      this.errorMessage=this.submissionText.errorPinCode2;
+                    }
+                      if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                      this.errorMessage=this.submissionText.errorPinCode3;
+                    }
+                  this.loading=false;
 
+            })
+      }
 
     },
      addGTMSuccess(){
