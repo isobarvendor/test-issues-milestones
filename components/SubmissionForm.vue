@@ -291,7 +291,8 @@ export default {
              return false;
            }
              this.errorMessage=null;
-             await this.checkcurrentAttempt();
+             //await this.checkcurrentAttempt();
+
             if(this.getAttempt)
             {
 
@@ -347,7 +348,7 @@ export default {
        });
 
     },
-       getAccount(){
+       async getAccount(){
         if(this.loginInfo){
           this.form.name=this.loginInfo.name;
           this.form.email=this.loginInfo.email;
@@ -358,8 +359,12 @@ export default {
            this.form.privacy=this.loginInfo.privacy;
            this.form.ageConsent=this.loginInfo.ageConsent;
         }
-
-
+        await this.checkcurrentAttempt();
+        if(this.currentAttempt>1){
+           this.form.terms=true;
+           this.form.privacy=true;
+           this.form.ageConsent=true;
+        }
     },
 
         getListWallet(){
