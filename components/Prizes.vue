@@ -28,7 +28,7 @@
             <div class="prize-description">
               <h3 v-html="item.shortDescription"></h3>
               {{item.name}} <BR/>
-              <div  v-if="item.configurationId==zaloPayConfig"><span v-html="item.description"> </span><BR/></div>
+              <!--div  v-if="item.configurationId==zaloPayConfig"><span v-html="item.description"> </span><BR/></div-->
               Total : {{item.amountAvailable}}
             </div>
           </div>
@@ -54,7 +54,7 @@ export default {
     SwiperSlide,
   },
   data() {
-    let configID=this.$config.configID.split(",");
+   // let configID=this.$config.configID.split(",");
     return {
       swiperOption: {
         autoplay: {
@@ -81,7 +81,7 @@ export default {
           bulletActiveClass: "prize-swiper-pagination-bullet-active",
         },
       },
-      zaloPayConfig:configID[1]
+     // zaloPayConfig:configID[1]
     };
   },
   props: {
