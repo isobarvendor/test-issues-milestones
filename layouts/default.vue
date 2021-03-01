@@ -48,6 +48,7 @@ export default {
      },
   },
   methods:{
+
     async fetchData(){
       this.loading=true;
       let language = this.$store.state.language;
@@ -102,8 +103,16 @@ export default {
   created(){
      if (process.client) {
       window.addEventListener('beforeunload', this.beforeWindowUnload)
+      let serverhost= window.location.href;
+          let correctURL=serverhost.replace('www.','')
+          if(serverhost.match(/www/g)){
+            location.assign(correctURL);
+          }
+
      }
   }
+
+
 
 
 
