@@ -2,14 +2,14 @@
 <div class="tnc-component">
     <div class="tnc-section" >
         <div class="primary-section">
-            <div class="header">{{tnc.TncTop[0].Title}}
-                <p> {{tnc.TncTop[0].LastUpdate}}</p>
+            <div class="header"><span v-html="tnc.TncTop[0].Title"></span>
+                <p v-html="tnc.TncTop[0].LastUpdate"></p>
             </div>
             <div class="desc">
                 <p v-html="tnc.TncTop[0].Description">
                 </p>
                 <div class="links">
-                    <p v-for="(item,index) in tnc.TncBottom"><a href="#">{{item.Title}}</a></p>
+                    <p v-for="(item,index) in tnc.TncBottom"><a href="#" v-html="item.Title"></a></p>
                 </div>
             </div>
         </div>
