@@ -3,11 +3,11 @@
     <div class="privacy-section">
         <div class="primary-section">
             <div class="header">
-                {{data.privacyTop[0].title}}
-                <p>{{data.privacyTop[0].LastUpdated}}</p>
+                <span v-html="data.privacyTop[0].title"></span>
+                <p v-html="data.privacyTop[0].LastUpdated"></p>
             </div>
             <div class="desc">
-                <p>{{data.privacyTop[0].description}}</p>
+                <p v-html="data.privacyTop[0].description"></p>
             </div>
         </div>
         <div class="logo">
@@ -16,7 +16,7 @@
     </div>
     <div class="secondary-section">
         <div class="secondary-component">
-            <div class="sub-header">{{data.privacyContent[0].title}}</div>
+            <div class="sub-header" v-html="data.privacyContent[0].title"></div>
             <div class="desc">
                 <p v-html="data.privacyContent[0].description"></p>
             </div>
