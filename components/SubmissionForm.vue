@@ -320,7 +320,7 @@ export default {
              return false;
            }
              this.errorMessage=null;
-             await this.checkcurrentAttempt();
+          //   await this.checkcurrentAttempt();
 
             if(this.getAttempt)
             {
