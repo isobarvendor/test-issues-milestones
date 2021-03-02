@@ -30,30 +30,7 @@ export default {
         return this.$store.getters.getCMSContent;
      },
      winners(){
-       //return this.$store.getters.getListWinners;
-       return [
-        {
-          week:1,
-          fromDate:"10 Jan",
-          toDate:"10 Jan",
-          name:"Ronald",
-          email:"ronald.pranata@isobar.com"
-       },
-          {
-          week:2,
-          fromDate:"10 Jan",
-          toDate:"10 Jan",
-          name:"Ronald",
-          email:"ronald.pranata@isobar.com"
-       },
-          {
-          week:3,
-          fromDate:"10 Jan",
-          toDate:"10 Jan",
-          name:"Ronald",
-          email:"ronald.pranata@isobar.com"
-       }
-       ]
+       return this.$store.getters.getListWinners;
      },
      configData(){
        return this.$store.getters.getCMSConfig;
