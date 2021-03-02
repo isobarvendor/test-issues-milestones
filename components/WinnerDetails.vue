@@ -24,7 +24,7 @@
                   sm="8"
                   class="participate-text-container"
                 >
-                 <div class="tagline">{{howData.title}}</div>
+                 <div class="tagline" v-html="howData.title"></div>
                  <BR/>
                  <BR/>
 
@@ -167,7 +167,7 @@ export default {
   },
   computed:{
     winnerLists(){
-      return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.week!=0&&o.fromDate!=""&&o.toDate!="" }),'week');
+      return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.fromDate!=""&&o.toDate!="" }),'week');
     },
     winnerListsSecond(){
       let secondRow=deepClone(this.winnerLists);

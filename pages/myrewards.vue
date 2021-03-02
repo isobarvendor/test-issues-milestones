@@ -80,10 +80,12 @@ export default {
                    this.rewards=[...this.rewards,...[...array, ...res]];
                 })
               .catch((error) =>{
-                  localStorage.clear();
-                  this.$store.commit('SET_TOKEN', null);
-                  this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                  location.assign("/")
+                  if (error.response && error.response.data.status == "401") {
+                    localStorage.clear();
+                    this.$store.commit('SET_TOKEN', null);
+                    this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                    location.assign("/")
+                  }
                 })
 
             }
