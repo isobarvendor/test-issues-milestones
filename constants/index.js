@@ -63,7 +63,8 @@ let language =
       hardLuckImage:"/img/landing/hardluck.png"
     },
     winnerText:{
-      header:"WINNER LIST"
+      header:"WINNER LIST",
+      nowinner:"Coming soon"
     },
     globalError:{
       errorAPI:"Oops something went wrong",
@@ -137,7 +138,8 @@ let language =
         hardLuckImage:"/img/landing/hardluck.png"
       },
       winnerText:{
-        header:"WINNER LIST"
+        header:"WINNER LIST",
+        nowinner:"Coming soon"
       },
       globalError:{
         errorAPI:"Oops something went wrong",
