@@ -30,11 +30,7 @@
 
                 </v-col>
           </v-row>
-          <v-row no-gutters class="logo-title">
-                    <h1>WINNER LIST</h1><BR/><BR/><BR/>
-                    <h2 v-if="!showWinnerDetail">WEEKLY & MONTHLY <BR/> LUCKY DRAW PRIZES</h2>
-                    <h2 v-else>WEEK {{winnerWeek}} LUCKY DRAW</h2>
-            </v-row>
+
 
       </v-col>
       <v-col
@@ -44,96 +40,38 @@
         class="desc-container"
       >
               <div class="close-icon" @click="close">
-           <img src="/img/icons/close.png"/>
-      </div>
-     <div class="winner-body" v-if="!showWinnerDetail">
-         <div class="first-box box"  @click="weekly=!weekly">
-             <div class="week">
-                Weekly winners
+                  <img src="/img/icons/close.png"/>
               </div>
-              <div class="date">
-                  10 Jan-23 Jan
-              </div>
-              <div class="button-carousel">
-                  <span v-if="!weekly">+</span>
-                  <span v-else>-</span>
-              </div>
-         </div>
-        <transition name="slide">
-          <div v-if="weekly" >
-         <div class="two-container weekly"   v-for="(item, index) in winnerListsSecond"
-          :key="'winner'+index"   >
-             <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
-                 <div class="week">
-               Week {{item2.week}}
-              </div>
-              <div class="date">
-                {{ item2.fromDate}} -  {{item2.toDate}}
-              </div>
-             </div>
-         </div>
-          </div>
-        </transition>
-         <div class="next-draw">
-           <h2>NEXT DRAW ON 7TH MARCH</h2>
-         </div>
-            <div class="first-box box"   @click="monthly=!monthly">
-            <v-row no-gutters>
-              <v-col cols="6" >
-                <div class="week">
-                    Monthly winners
-                  </div>
-                  <div class="date">
-                      10 Jan-23 Jan
-                  </div>
-              </v-col>
-              <v-col cols="6" >
-                  <h3>ANNOUNCE ON <BR/> 31TH MARCH 2021</h3>
-              </v-col>
+        <v-row no-gutters class="logo-title">
+                    <h1>{{winnerText.header}}</h1><BR/><BR/><BR/>
             </v-row>
-            <div class="button-carousel">
-                  <span v-if="!monthly">+</span>
-                  <span v-else>-</span>
-              </div>
-         </div>
-         <transition name="slide">
-          <div v-if="monthly" >
-          <div class="two-container monthly"   v-for="(item, index) in winnerListsSecond"
-            :key="'winner'+index"   >
-              <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
-                  <div class="week">
-                Week {{item2.week}}
-                </div>
-                <div class="date">
-                  {{ item2.fromDate}} -  {{item2.toDate}}
-                </div>
-              </div>
-          </div>
-        </div>
-         </transition>
-        <!--a v-if="$mq == 'sm' || $mq == 'md'" class="button rewards-bottom"  @click="close"> Back to promotion</a-->
-    </div>
-    <div class="winner-body" v-else>
+          <v-card dark v-if="winnerLists.length>0">
+          <v-card-title>
 
-          <div class="first-box box"  @click="weekly=!weekly">
-                  <div class="week">
-                Week {{winnerWeek}}
-                </div>
-                <div class="date">
-                  {{ winnerWeekDetail[0].fromDate}} -  {{winnerWeekDetail[0].toDate}}
-                </div>
-         </div>
+            <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+          dark
+              :headers="headers"
+            :items="winnerLists"
+            :items-per-page="10"
+             :search="search"
+       class="elevation-1"
+          ></v-data-table>
+        </v-card>
+        <v-row v-else class="center">
+          <h1 >{{winnerText.nowinner}}</h1>
+        </v-row>
 
-         <div class="two-container weekly"   v-for="(item, index) in winnerWeekDetailChunk"
-          :key="'winner'+index"   >
-             <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
-               <p>{{item2.name}}<BR/>
-               {{item2.email}}
-               </p>
-
-             </div>
-         </div>
-          </div>
 
       </v-col>
     </v-row>
@@ -147,8 +85,9 @@
 import moment from "moment";
 import * as _ from 'lodash';
 import deepClone from 'deep-clone'
+import {translation} from "@/constants/index"
 export default {
-  name: "RewardDetails",
+  name: "WinnerDetails",
   components: {
   },
   data() {
@@ -156,8 +95,21 @@ export default {
       showWinnerDetail:false,
       winnerWeek:null,
       weekly:false,
-      monthly:false
-
+      monthly:false,
+      search:null,
+      winnerText:translation.winnerText,
+      headers: [
+          {
+            text: 'No',
+            align: 'center',
+            sortable:false,
+            value: 'no',
+          },
+          { text: 'Name', value: 'name', align: 'center' },
+          { text: 'Email', value: 'email' , align: 'center' },
+          { text: 'Phone', value: 'phone' , align: 'center' },
+          { text: 'Prize', value: 'prize' , align: 'center' },
+        ]
     };
   },
   props: {
@@ -167,23 +119,17 @@ export default {
   },
   computed:{
     winnerLists(){
-      return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.fromDate!=""&&o.toDate!="" }),'week');
+      return _.map(this.winners,(o,index)=>{
+          return {
+              no:index+1,
+              name:o.name,
+              email:o.email ? this.maskEmail(o.email) : null,
+              phone:o.phone ? this.maskEmail(o.phone) : null,
+              prize:o.prize
+          }
+      });
     },
-    winnerListsSecond(){
-      let secondRow=deepClone(this.winnerLists);
-      let secondRowResult=secondRow.splice(0, secondRow.length);
-     //
-      return _.chunk(secondRowResult, 2);
-    },
-    winnerWeekDetail(){
-      return _.filter(this.winners,(o)=>{ return o.week == this.winnerWeek});
-    },
-    winnerWeekDetailChunk(){
-      let secondRow=deepClone(this.winnerWeekDetail);
-      let secondRowResult=secondRow;
-     //
-      return _.chunk(secondRowResult, 2);
-    },
+
 
   },
   methods:{
@@ -225,6 +171,9 @@ export default {
 
 <style lang="scss">
 .winner-details{
+  .text-start{
+    text-align: center;
+  }
   .next-draw{
     text-align: center;
     padding: 30px;

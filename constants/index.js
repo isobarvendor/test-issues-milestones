@@ -54,7 +54,8 @@ let language =
       continue:"Continue with"
     },
     winnerText:{
-      header:"WINNER LIST"
+      header:"WINNER LIST",
+      nowinner:"Coming soon"
     },
     globalError:{
       errorAPI:"Oops something went wrong",
@@ -119,7 +120,8 @@ let language =
         continue:"ล็อกอินผ่าน"
       },
       winnerText:{
-        header:"WINNER LIST"
+        header:"WINNER LIST",
+        nowinner:"Coming soon"
       },
       globalError:{
         errorAPI:"Oops something went wrong",
