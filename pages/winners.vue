@@ -93,7 +93,7 @@ export default {
         }
       }
     }
-.theme--light.v-application{
+.coke .theme--light.v-application{
   color: #fff;
 }
 </style>
