@@ -14,8 +14,14 @@
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
-      <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
+      <div class="btn-text">
       <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+      </div>
+        <div class="info-icon tooltip">
+            <img src="/img/landing/info-button.png" width="25"  />
+            <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
+          </div>
         <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
     </div>
 
@@ -461,6 +467,9 @@ export default {
 </script>
 
 <style scoped>
+  .details{
+    position: relative;
+  }
   .error-message-red{
     color:red;
   }
@@ -519,10 +528,16 @@ form.mechanics{
   color:#000;
   text-decoration: #000;
 }
-.info-icon{
+.info-btn .info-icon{
   position: absolute;
   right: 10px;
   top: 34%;
+
+}
+.details .info-icon{
+  position: absolute;
+  right: 10px;
+  top: 0px;
 
 }
  form input#code::placeholder{
@@ -548,9 +563,15 @@ form.mechanics{
     padding: 15px;
     position: absolute;
     z-index: 1;
-    top: -30px;
     left: 150%;
+      top: -15px;
     text-align: left;
+  }
+  .info-btn .tooltip .tooltiptext {
+      top: -15px;
+  }
+  .details .tooltip .tooltiptext {
+    top:-50px;
   }
 
 
