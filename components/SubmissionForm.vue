@@ -16,7 +16,7 @@
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
-      <input id="phoneNumber" type="text" name="phone" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -397,6 +397,7 @@ export default {
   watch:{
      "form.phoneNumber": function (val) {
        let envs=this.$config;
+       let numberPhone=val.replace(envs.phoneCode,"");
        if(val.length==1||!val.includes(envs.phoneCode)){
          this.form.phoneNumber=envs.phoneCode+val;
        }
@@ -406,7 +407,14 @@ export default {
           field: 'phoneNumber',
           msg: 'You reach maximum phone number length'
         });
-       }else{
+       }else if(isNaN(numberPhone)){
+         this.errors.clear();
+         this.$validator.errors.add({
+          field: 'phoneNumber',
+          msg: 'Please enter a number'
+        });
+       }
+       else{
             this.errors.clear()
        }
     },
