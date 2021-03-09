@@ -25,6 +25,7 @@ export default {
     maxPhoneNumber: process.env.maxPhoneNumber,
     voucherParameter: process.env.voucherParameter,
     configID: process.env.configID,
+    prizeHasVoucher:process.env.prizeHasVoucher,
     lotID: process.env.lotID,
     gtm: {
       id: process.env.GTM
