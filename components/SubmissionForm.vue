@@ -4,7 +4,7 @@
     <div class="img-footer" >
             <img src="/img/landing/instruments.png" width="100%" />
     </div>
-   <div class="header">{{submissionText.header}}</div>
+   <div class="header">{{form.name ? submissionText.hello+" "+form.name : submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
      <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>

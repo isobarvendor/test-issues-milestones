@@ -27,6 +27,7 @@ let language =
     },
     submissionText:{
       header:"Enter your code",
+      hello:"Hello",
       siginHeader:"Sign in or register a Coca-Cola <br>account to enter the draw",
       name:"Name",
       email:"Email",
@@ -103,6 +104,7 @@ let language =
       },
       submissionText:{
         header:"",
+        hello:"Hello",
         siginHeader:'Đăng kí và bắt đầu tham gia chương trình rút thăm trúng thưởng',
         name:"Họ & Tên",
         email:"Email",
