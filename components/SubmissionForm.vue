@@ -16,7 +16,7 @@
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+      <input id="phoneNumber" type="text" name="phone" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
