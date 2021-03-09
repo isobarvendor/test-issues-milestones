@@ -517,10 +517,10 @@ form.mechanics{
     text-align: left;
   }
   .info-btn .tooltip .tooltiptext {
-      top: -15px;
+      top: -35px;
   }
   .details .tooltip .tooltiptext {
-    top:-50px;
+    top:-40px;
   }
 
 
