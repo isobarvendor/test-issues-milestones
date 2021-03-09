@@ -47,6 +47,7 @@ import Form from './SubmissionForm'
 import {translation} from "@/constants/index"
 
 let configID=process.env.configID.split(",");
+
 export default {
   name: "SubmissionMechanics",
   components:{
@@ -111,6 +112,7 @@ export default {
         request:this.request
       }
       request.configurationId=configID[this.submitNumber-1];
+      request.hasMore=false;
 
     if(this.submitNumber==1){
       this.loading=true;
@@ -173,6 +175,7 @@ export default {
         attemptData:this.attemptData,
         request:request
       }
+      request.hasMore=page>1 ? true : false;
     for(let a=0; a<configID.length; a++){
       request.configurationId=configID[a];
 
@@ -313,7 +316,7 @@ export default {
                       id:page
                     }]:[])
                   ,havejoox:false,
-                  code: null,
+                  code:this.$config.prizeHasVoucher.includes(prizewin.instantWinResult.redeemedPrize.prizeId) ?  prizewin.instantWinResult.redeemedPrize.voucherCode : null ,
                 subName:null,
               }
 

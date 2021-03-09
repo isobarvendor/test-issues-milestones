@@ -4,7 +4,7 @@
     <div class="img-footer" >
             <img src="/img/landing/instruments.png" width="100%" />
     </div>
-   <div class="header">{{submissionText.header}}</div>
+   <div class="header">{{form.name ? submissionText.hello+" "+form.name : submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
      <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
@@ -14,8 +14,14 @@
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
-      <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <input id="phoneNumber" type="text" name="phoneNumber" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+    <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
+      <div class="btn-text">
+      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+      </div>
+        <div class="info-icon tooltip">
+            <img src="/img/landing/info-button.png" width="25"  />
+            <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
+          </div>
         <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
     </div>
 
@@ -391,6 +397,7 @@ export default {
   watch:{
      "form.phoneNumber": function (val) {
        let envs=this.$config;
+       let numberPhone=val.replace(envs.phoneCode,"");
        if(val.length==1||!val.includes(envs.phoneCode)){
          this.form.phoneNumber=envs.phoneCode+val;
        }
@@ -400,7 +407,14 @@ export default {
           field: 'phoneNumber',
           msg: 'You reach maximum phone number length'
         });
-       }else{
+       }else if(isNaN(numberPhone)){
+         this.errors.clear();
+         this.$validator.errors.add({
+          field: 'phoneNumber',
+          msg: 'Please enter a number'
+        });
+       }
+       else{
             this.errors.clear()
        }
     },
@@ -410,6 +424,9 @@ export default {
 </script>
 
 <style scoped>
+  .details{
+    position: relative;
+  }
   .error-message-red{
     color:red;
   }
@@ -468,10 +485,16 @@ form.mechanics{
   color:#000;
   text-decoration: #000;
 }
-.info-icon{
+.info-btn .info-icon{
   position: absolute;
   right: 10px;
   top: 34%;
+
+}
+.details .info-icon{
+  position: absolute;
+  right: 10px;
+  top: 0px;
 
 }
  form input#code::placeholder{
@@ -497,9 +520,15 @@ form.mechanics{
     padding: 15px;
     position: absolute;
     z-index: 1;
-    top: -30px;
     left: 150%;
+      top: -15px;
     text-align: left;
+  }
+  .info-btn .tooltip .tooltiptext {
+      top: -35px;
+  }
+  .details .tooltip .tooltiptext {
+    top:-40px;
   }
 
 

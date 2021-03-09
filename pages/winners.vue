@@ -1,7 +1,9 @@
 <template>
+  <v-app>
   <div v-if="data" id="main" class="winner-detail">
         <WinnerDetails :data="data ? data[0].luckyWinner : null" :winners="winners" :howData="data ? data[0].worksSection : null" />
   </div>
+  </v-app>
 </template>
 
 <script>
@@ -91,5 +93,7 @@ export default {
         }
       }
     }
-
+.coke .theme--light.v-application{
+  color: #fff;
+}
 </style>

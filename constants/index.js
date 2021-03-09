@@ -27,6 +27,7 @@ let language =
     },
     submissionText:{
       header:"Enter your code",
+      hello:"Hello",
       siginHeader:"Sign in or register a Coca-Cola <br>account to enter the draw",
       name:"Name",
       email:"Email",
@@ -36,6 +37,7 @@ let language =
       declareAge:'I declare that I am above 13  years old.',
       enterCode:'Enter Unique Code',
       tooltipText:'Enter the code found under the cap/tab of your Coca Cola purchase here',
+      phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
       buttonText:'Collect your prize',
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",
@@ -63,7 +65,8 @@ let language =
       hardLuckImage:"/img/landing/hardluck.png"
     },
     winnerText:{
-      header:"WINNER LIST"
+      header:"WINNER LIST",
+      nowinner:"Coming soon"
     },
     globalError:{
       errorAPI:"Oops something went wrong",
@@ -84,7 +87,7 @@ let language =
           content: "Home page Coke - Turn Up Your Rhythm"
         }
       ],
-      periodDescription:"Từ hôm nay đến 23/05/2021, mỗi sản phẩm Coca-Cola có khuyến mãi sẽ cho bạn cơ hội nhận ngay Tài khoản VIP Zingmp3 và nhiều quà tặng hấp dẫn khác. Thực hiện ngay các bước hướng dẫn bên dưới để bắt đầu tham gia và trúng thưởng.",
+      periodDescription:"Từ hôm nay đến 23/05/2021, mỗi sản phẩm Coca-Cola có khuyến mãi sẽ cho bạn cơ hội nhận ngay Tài khoản VIP Zing mp3 và nhiều quà tặng hấp dẫn khác. Thực hiện ngay các bước hướng dẫn bên dưới để bắt đầu tham gia và trúng thưởng.",
       signInButton:"ĐĂNG NHẬP <BR/><small>để trúng thưởng</small>",
       menu:{
         home:"Trang Chủ",
@@ -101,6 +104,7 @@ let language =
       },
       submissionText:{
         header:"",
+        hello:"Hello",
         siginHeader:'Đăng kí và bắt đầu tham gia chương trình rút thăm trúng thưởng',
         name:"Họ & Tên",
         email:"Email",
@@ -110,6 +114,7 @@ let language =
         declareAge:'Tôi cam đoan đã đủ hoặc trên 12 tuổi',
         enterCode:'Nhập mã ngay',
         tooltipText:'Nhập mã dự thưởng bên dưới nắp khoen hay nắp chai của sản phẩm Coca-Cola có khuyến mãi',
+        phoneTooltip:"Vui lòng nhập chính xác số điện thoại để BTC có thể liên lạc trong trường hợp bạn là người trúng giải",
         buttonText:'Nhận quà thưởng',
         errorTerm:'Vui lòng chấp nhận các điều khoản và điều kiện của chúng tôi',
         errorPolicy:"Vui lòng chấp nhận chính sách bảo mật của chúng tôi",
@@ -125,7 +130,7 @@ let language =
         errorMaxPhone:"Bạn đạt đến độ dài số điện thoại tối đa",
         participateAgain:"Participate again",
         listenNow:"Nghe nhạc ngay",
-        redeemPrize:"Chuộc lại giải thưởng",
+        redeemPrize:"Sử dụng code ngay",
         continue:"Tiếp tục với",
         note:"Vui lòng gọi hotline 1900555584 (1500VND/ phút từ 9:00 đến 17:00, ngày hành chính) để nhận hướng dẫn thủ tục nhận giải thưởng.",
         startRedeeming:"Bắt đầu rút thăm",
@@ -137,7 +142,8 @@ let language =
         hardLuckImage:"/img/landing/hardluck.png"
       },
       winnerText:{
-        header:"WINNER LIST"
+        header:"WINNER LIST",
+        nowinner:"Coming soon"
       },
       globalError:{
         errorAPI:"Oops something went wrong",
