@@ -27,6 +27,7 @@ let language =
     },
     submissionText:{
       header:"Enter your code",
+      hello:"Hello",
       siginHeader:"Sign in or register a Coca-Cola <br>account to enter the draw",
       name:"Name",
       email:"Email",
@@ -93,7 +94,8 @@ let language =
         secs:"SECS",
       },
       submissionText:{
-        header:"",
+        header:"Enter your code",
+        hello:"Hello",
         siginHeader:'ลงทะเบียนกับ "โค้ก" เพื่อร่วมกิจกรรม เปิดจังหวะซ่าในตัวคุณ',
         name:"ชื่อ นามสกุล",
         email:"อีเมลล์",
