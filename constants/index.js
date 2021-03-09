@@ -27,6 +27,7 @@ let language =
     },
     submissionText:{
       header:"Enter your code",
+      hello:"Hello",
       siginHeader:"Sign in or register a Coca-Cola <br>account to enter the draw",
       name:"Name",
       email:"Email",
@@ -36,6 +37,7 @@ let language =
       declareAge:'I declare that I am above 13  years old.',
       enterCode:'Enter Unique Code',
       tooltipText:'Enter the code found under the cap/tab of your Coca Cola purchase here',
+      phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
       buttonText:'Collect your prize',
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",
@@ -54,7 +56,8 @@ let language =
       continue:"Continue with"
     },
     winnerText:{
-      header:"WINNER LIST"
+      header:"WINNER LIST",
+      nowinner:"Coming soon"
     },
     globalError:{
       errorAPI:"Oops something went wrong",
@@ -91,7 +94,8 @@ let language =
         secs:"SECS",
       },
       submissionText:{
-        header:"",
+        header:"Enter your code",
+        hello:"Hello",
         siginHeader:'ลงทะเบียนกับ "โค้ก" เพื่อร่วมกิจกรรม เปิดจังหวะซ่าในตัวคุณ',
         name:"ชื่อ นามสกุล",
         email:"อีเมลล์",
@@ -101,6 +105,7 @@ let language =
         declareAge:'ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลของข้าพเจ้าเพื่อวัตถุประสงค์เกี่ยวกับการรับข้อมูลข่าวสารการตลาดและการโฆษณาประชาสัมพันธ์จากโคคา-โคล่า​',
         enterCode:'ใส่รหัส 9 หลักใต้ฝาโค้ก',
         tooltipText:'ใส่รหัส 9 หลักใต้ฝาโค้ก ที่นี่',
+        phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
         buttonText:'กดส่งรหัสใต้ฝา',
         errorTerm:'Please accept our terms and conditions',
         errorPolicy:"Please accept our privacy policies",
@@ -119,7 +124,8 @@ let language =
         continue:"ล็อกอินผ่าน"
       },
       winnerText:{
-        header:"WINNER LIST"
+        header:"WINNER LIST",
+        nowinner:"Coming soon"
       },
       globalError:{
         errorAPI:"Oops something went wrong",
