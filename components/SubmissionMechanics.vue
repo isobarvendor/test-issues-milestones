@@ -111,6 +111,7 @@ export default {
         request:this.request
       }
       request.configurationId=configID[this.submitNumber-1];
+      request.hasMore=false;
 
     if(this.submitNumber==1){
       this.loading=true;
@@ -173,6 +174,7 @@ export default {
         attemptData:this.attemptData,
         request:request
       }
+      request.hasMore=page>1 ? true : false;
     for(let a=0; a<configID.length; a++){
       request.configurationId=configID[a];
 
