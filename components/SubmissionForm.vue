@@ -644,4 +644,7 @@ form input#phoneNumber.short{
 .details .btn-text{
   border-bottom: solid 1px #fff;
 }
+form.mechanics{
+ margin: auto;
+}
 </style>
