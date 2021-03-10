@@ -294,6 +294,11 @@ export default {
                   note : null
                   ,button:button ? (prizewin.instantWinResult.redeemedPrize.redemptionLink ? [
                     {
+                      text:"Copy",
+                      type:"copy",
+                      id:page
+                    },
+                    {
                       text:this.submissionText.redeemPrize,
                       link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
                       id:page
@@ -363,7 +368,11 @@ export default {
                     name : prizewin.instantWinResult.redeemedPrize.name,
                     image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                     note : null
-                    ,button:[{
+                    ,button:[  {
+                      text:"Copy",
+                      type:"copy",
+                      id:page
+                    },{
                         text:this.submissionText.redeemPrize,
                         link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
                         id:page

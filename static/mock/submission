@@ -19,6 +19,7 @@
                     "description":"Conglratulations",
                     "shortDescription": "http://google.com",
                     "redeemDescription": "http://abcd",
+                    "redemptionLink": "http://abcd",
                     "imgUrl": "/img/landing/week 1 prize.png",
                     "barcodeType": 1,
                     "emailSent": false,

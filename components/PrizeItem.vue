@@ -21,7 +21,9 @@
                 <div class="desc-text">
                     <h1>{{prize.name}}</h1>
                     <small v-if="prize.subName">{{prize.subName}}</small>
-                    <p v-if="prize.code">Code: {{prize.code}}</p>
+                    <p v-if="prize.code">Code: {{prize.code}}
+                     <input type="hidden" id="voucherCode" :value="prize.code">
+                    </p>
                 </div>
                </div>
            </v-col>
@@ -47,10 +49,14 @@
         v-if="loading"
       ></v-progress-circular>
       <div v-else style="margin-bottom:40px;"  v-for="(btn,index) in prize.button" :key="index" >
-       <a  :id="'page'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
+        <a  :id="'page'+btn.id" href="#prize-chance" v-if="btn.type=='copy'" @click="copyVoucher"  >
         <v-btn  v-html="btn.text">
         </v-btn>
-
+        <p v-if="successCopy">Copied!</p>
+       </a>
+       <a v-else :id="'page'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
+        <v-btn  v-html="btn.text">
+        </v-btn>
        </a>
       </div>
    </div>
@@ -67,11 +73,12 @@ export default {
     props:{
       prize:{},
       themes:null,
-      loading: false
+      loading: false,
     },
     data(){
       return {
-        submissionText:translation.submissionText
+        submissionText:translation.submissionText,
+        successCopy:false
       }
     },
     computed:{
@@ -82,6 +89,23 @@ export default {
 
     },
     methods:{
+      copyVoucher(){
+         let testingCodeToCopy = document.querySelector('#voucherCode')
+          testingCodeToCopy.setAttribute('type', 'text')
+          testingCodeToCopy.select()
+          try {
+            var successful = document.execCommand('copy');
+            if(successful){
+              this.successCopy=true;
+            }
+
+          } catch (err) {
+
+          }
+          testingCodeToCopy.setAttribute('type', 'hidden')
+          setTimeout(() => {   this.successCopy=false; }, 2000);
+          window.getSelection().removeAllRanges()
+      },
       playAgain(){
         console.log('tesplay');
         this.$emit("playAgain");
