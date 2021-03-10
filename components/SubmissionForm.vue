@@ -17,7 +17,7 @@
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
         <input id="phoneCode" type="tel"  v-model="phoneCode" v-if="showPhone"  :readonly="true" />
-      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'" @click="addPhoneCode" :class="{short:showPhone}"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'" @focus="addPhoneCode" :class="{short:showPhone}"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
