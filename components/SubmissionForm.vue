@@ -16,7 +16,8 @@
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
-      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"   :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+        <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
+      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -173,6 +174,9 @@ export default {
         amazonImage:'',
         loading:false,
         prizeWin:null,
+        phoneCodeDisplay:"+"+this.$config.phoneCode,
+        phoneCode:this.$config.phoneCode+"-",
+        showPhone:false,
         submissionText:translation.submissionText
 
 
@@ -253,7 +257,7 @@ export default {
           //request["userId"]=this.loginInfo.uuid;
         }
         if(this.form.phoneNumber){
-          request["phone"]=this.form.phoneNumber;
+          request["phone"]=this.phoneCode+this.form.phoneNumber;
         }
         if(this.form.code){
           request['pin']=this.form.code;
@@ -342,7 +346,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -402,7 +406,8 @@ export default {
           this.form.name=this.loginInfo.name;
           this.form.email=this.loginInfo.email;
            if(this.loginInfo.phone){
-             this.form.phoneNumber=this.loginInfo.phone;
+             this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
+             this.showPhone=true;
            }
            this.form.terms=this.loginInfo.terms;
            this.form.privacy=this.loginInfo.privacy;
@@ -438,7 +443,8 @@ export default {
             'action' : 'success',
             'label' : 'rhythm sign up'
       });
-     }
+     },
+
 
   },
   beforeMount() {},
@@ -448,17 +454,13 @@ export default {
   watch:{
      "form.phoneNumber": function (val) {
        let envs=this.$config;
-       let numberPhone=val.replace(envs.phoneCode,"");
-       if(val.length==1||!val.includes(envs.phoneCode)){
-         this.form.phoneNumber=envs.phoneCode+val;
-       }
-       if((val.length-envs.phoneCode.length)>envs.maxPhoneNumber){
+       if((val.length)>envs.maxPhoneNumber){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
           msg: 'You reach maximum phone number length'
         });
-       }else if(isNaN(numberPhone)){
+       }else if(isNaN(val)){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
@@ -626,5 +628,22 @@ form.mechanics{
 }
 
 }
-
+form input#phoneCode{
+  width: 35px !important;
+  display: inline-block;
+  border: none;
+}
+form input#phoneNumber{
+   border: none;
+}
+form input#phoneNumber.short{
+  width: calc(100% - 65px) !important;
+  border: none;
+}
+.details .btn-text{
+  border-bottom: solid 1px #fff;
+}
+form.mechanics{
+ margin: auto;
+}
 </style>
