@@ -40,12 +40,12 @@
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
    <div class="prize-button-area center">
-       <a :href="btn.link" target="_blank"  v-for="(btn,index) in prize.button" :key="index" >
+       <a :href="btn.link" target="_blank" :id="btn.id"  v-for="(btn,index) in prize.button" :key="index" >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>
    </div>
-    <div class="prize-button-area center" style="margin-top:40px;">
+    <div class="prize-button-area center" id="participateAgain" style="margin-top:40px;">
           <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
     </div>
  </div>
