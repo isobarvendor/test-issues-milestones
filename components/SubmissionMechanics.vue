@@ -18,7 +18,7 @@
 
             <span v-html="thankYouMessage"></span>
              <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
+                  <v-btn @click="playAgain" id="participateAgain">{{submissionText.participateAgain}}</v-btn>
             </div>
 
       </div>
@@ -105,6 +105,7 @@ export default {
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:[{
+                      id:"redeemNow",
                       text:this.submissionText.redeemPrize,
                       link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
                   }]

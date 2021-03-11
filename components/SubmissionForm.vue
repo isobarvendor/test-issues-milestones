@@ -97,7 +97,7 @@
 
       ></v-progress-circular>
       </div>
-      <v-btn class="get-code"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
+      <v-btn class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
     </div>
   </form>
 
