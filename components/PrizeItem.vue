@@ -54,13 +54,13 @@
         </v-btn>
         <p v-if="successCopy">Copied!</p>
        </a>
-       <a v-else :id="'page'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
+       <a v-else :id="'prize-'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>
       </div>
    </div>
-    <div class="prize-button-area center" v-if="prize.isPlayAgain">
+    <div class="prize-button-area center" id="participateAgain" v-if="prize.isPlayAgain">
           <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
     </div>
  </div>

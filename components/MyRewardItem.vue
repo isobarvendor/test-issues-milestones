@@ -1,6 +1,5 @@
 <template>
-      <div>
-        <v-row  @click="reward.audio ? toggleSound(reward.id,reward.audio) : redeemLink(reward.link,reward.code)" class=" mb-4 toggle-sound paused center list-reward" >
+        <v-row :id="'link-'+reward.title"  @click="reward.audio ? toggleSound(reward.id,reward.audio) : redeemLink(reward.link,reward.code)" class=" mb-4 toggle-sound paused center list-reward" >
               <audio
                 v-if="reward.audio"
                 :ref="'audio'+reward.id"

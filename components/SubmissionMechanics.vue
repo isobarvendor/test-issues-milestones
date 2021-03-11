@@ -21,7 +21,7 @@
       <div v-if="prize.length==0" style="text-align:center">
             <span v-html="thankYouMessage"></span>
              <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
+                  <v-btn @click="playAgain" id="participateAgain">{{submissionText.participateAgain}}</v-btn>
             </div>
       </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize.length>0 && prize[0].havejoox"  >
