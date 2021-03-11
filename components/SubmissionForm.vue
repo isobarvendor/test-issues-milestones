@@ -16,8 +16,8 @@
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
-        <input id="phoneCode" type="tel"  v-model="phoneCode" v-if="showPhone"  :readonly="true" />
-      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'" @focus="addPhoneCode" :class="{short:showPhone}"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+        <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
+      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -174,7 +174,8 @@ export default {
         amazonImage:'',
         loading:false,
         prizeWin:null,
-        phoneCode:this.$config.phoneCode,
+        phoneCodeDisplay:"+"+this.$config.phoneCode,
+        phoneCode:this.$config.phoneCode+"-",
         showPhone:false,
         submissionText:translation.submissionText
 
@@ -364,7 +365,7 @@ export default {
           this.form.name=this.loginInfo.name;
           this.form.email=this.loginInfo.email;
            if(this.loginInfo.phone){
-             this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"");
+             this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
            this.form.terms=this.loginInfo.terms;
