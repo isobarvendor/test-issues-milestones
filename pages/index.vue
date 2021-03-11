@@ -73,7 +73,7 @@ export default {
                 y: true
             }
 
-             this.$scrollTo('#submission-section', 60, options)
+             this.$scrollTo('.mechanics', 60, options)
     }
 
     if(this.CMSContent && new Date(this.CMSContent[0].endDate).getTime()>new Date().getTime()){
