@@ -144,16 +144,6 @@ export default {
 
   [SUBMIT_FORM]: ({ commit, state, getters}, request) => {
 
-      var cdsTrackingClientId = process.env.cdsTrackingClientId;
-      var data = {
-      event_sub_type: "Page",
-      channel: "App",
-      email: request.email,
-      event_type: "IMPRESSION"
-      };
-     // console.log(data);
-      cds_pixel(cdsTrackingClientId, data);
-
     return new Promise((resolve, reject) => {
       const moduleState = state;
       //if (state.token) {
