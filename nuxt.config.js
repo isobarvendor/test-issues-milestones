@@ -20,8 +20,6 @@ export default {
   */
   publicRuntimeConfig: {
     //baseURL: 'https://nuxtjs.org'
-    pixelUrl:process.env.pixelUrl,
-    cdsTrackingClientId:process.env.cdsTrackingClientId,
     phoneCode:process.env.phoneCode,
     maxPhoneNumber:process.env.maxPhoneNumber,
     voucherParameter:process.env.voucherParameter,
@@ -64,7 +62,6 @@ export default {
     "./plugins/vue-awesome-swiper.js",
     './plugins/axios', //axios interceptor
     { src: '~/plugins/vuex-persist', ssr: false },
-    { src: '~/plugins/pixel', ssr: false },
     {
       src: '~/plugins/vue-video-background',
       ssr: false

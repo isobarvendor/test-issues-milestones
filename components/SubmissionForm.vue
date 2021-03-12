@@ -97,7 +97,7 @@
 
       ></v-progress-circular>
       </div>
-      <v-btn class="get-code"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
+      <v-btn class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
     </div>
   </form>
 
@@ -227,7 +227,7 @@ export default {
        if(mixCode.length>0){
          // console.log(mixCode);
           let programs=_.filter(mixCode,(a)=>{
-          return a.codeInitial==this.form.code.charAt(0)&&a.characterLimit==this.form.code.length;
+          return a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
         })
         //console.log(programs);
         let programsNull=_.filter(mixCode,(a)=>{
