@@ -18,7 +18,7 @@ export default {
       this.$store.commit('SET_ERROR',null)
        this.$store.commit('SET_TOKEN',this.$route.query.token)
     }
-       location.href="/";
+       this.$route.push("/")
     },
   },
 };
