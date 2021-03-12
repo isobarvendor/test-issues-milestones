@@ -22,6 +22,8 @@
                     <h1>{{prize.name}}</h1>
                     <small v-if="prize.subName">{{prize.subName}}</small>
                     <p v-if="prize.code">Code: {{prize.code}}
+                      <img src="/img/landing/copy.png"  v-if="prize.code" @click="copyVoucher"  width="30" />
+                       <p v-if="successCopy">Copied!</p>
                      <input type="hidden" id="voucherCode" :value="prize.code">
                     </p>
                 </div>
@@ -49,12 +51,7 @@
         v-if="loading"
       ></v-progress-circular>
       <div v-else style="margin-bottom:40px;"  v-for="(btn,index) in prize.button" :key="index" >
-        <a  :id="'page'+btn.id" href="#prize-chance" v-if="btn.type=='copy'" @click="copyVoucher"  >
-        <v-btn  v-html="btn.text">
-        </v-btn>
-        <p v-if="successCopy">Copied!</p>
-       </a>
-       <a v-else :id="'prize-'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
+       <a :id="'prize-'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>

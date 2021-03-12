@@ -227,7 +227,7 @@ export default {
        if(mixCode.length>0){
          // console.log(mixCode);
           let programs=_.filter(mixCode,(a)=>{
-          return a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
+          return a.codeInitial!==null&&a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
         })
         //console.log(programs);
         let programsNull=_.filter(mixCode,(a)=>{
