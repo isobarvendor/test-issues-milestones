@@ -331,9 +331,10 @@ background-color: #b10017;
             height: 100%;
             min-height: 900px;
             .wallet-swiper{
-                width: 90%;
+                width: 305px;
                 .wallet-swiper-item img{
-                    height: auto;
+                    height: 290px !important;
+                    width: 305px;
                 }
             }
         }
