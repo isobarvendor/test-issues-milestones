@@ -22,7 +22,7 @@
                     <h1>{{prize.name}}</h1>
                     <small v-if="prize.subName">{{prize.subName}}</small>
                     <p v-if="prize.code">Code: {{prize.code}}
-                      <img src="/img/landing/copy.png"  v-if="prize.code" @click="copyVoucher"  width="30" />
+                      <img src="/img/landing/copy.svg" style="padding-left:2px"  v-if="prize.code" @click="copyVoucher"  width="30" />
                        <p v-if="successCopy">Copied!</p>
                      <input type="hidden" id="voucherCode" :value="prize.code">
                     </p>
