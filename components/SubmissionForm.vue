@@ -17,7 +17,7 @@
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
         <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
-      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+     <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone&&form.phoneNumber.length<=maxPhoneNumber" />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -196,6 +196,9 @@ export default {
     },
 
 
+    maxPhoneNumber(){
+      return this.$config.maxPhoneNumber;
+    },
      /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
