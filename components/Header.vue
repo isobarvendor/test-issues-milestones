@@ -18,7 +18,7 @@
         </div>
     </a-->
 
-        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" v-if="!logged&&notCountDown"  v-scroll-to="'#submission-section'" @click="goToSignIn" href="#" style="text-decoration:none">
+        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" id="signIn" v-if="!logged&&notCountDown"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
         <div class="profile-content" >
             <template ><div v-html="siginButton"></div></template>
         </div>
@@ -84,13 +84,13 @@
                     <div class="img-text">
                         <img src="/img/icons/home-icon.png"  />
                         <div>
-                            <a href="/">{{menu.home}}</a>
+                            <a href="/" id="home">{{menu.home}}</a>
                         </div>
                     </div>
                        <div class="img-text" v-if="logged">
                         <img src="/img/icons/wallet.png"/>
                         <div>
-                            <a data-nav="myrewards" @click="clickNav">{{menu.myRewards}}</a>
+                            <a data-nav="myrewards" id="myReward" @click="clickNav">{{menu.myRewards}}</a>
                         </div>
                     </div>
 
@@ -101,9 +101,9 @@
                     <p v-if="logged&&CMSContent"  class="logout" @click="logout" >{{CMSContent[0].SectionMenu.Menu[7].Link}}</p>
                 </div-->
                 <div class="tnc-container">
-                    <p><a @click="clickPrivacy" v-if="CMSContent">{{menu.privacy}}</a></p>
-                    <p><a @click="clickTerms" v-if="CMSContent">{{menu.terms}}</a></p>
-                    <p v-if="logged&&CMSContent"  class="logout" @click="logout" >{{menu.logout}}</p>
+                    <p><a @click="clickPrivacy" v-if="CMSContent" id="privacy">{{menu.privacy}}</a></p>
+                    <p><a @click="clickTerms" v-if="CMSContent" id="tnc">{{menu.terms}}</a></p>
+                    <p v-if="logged&&CMSContent"  class="logout" id="logout" @click="logout" >{{menu.logout}}</p>
                 </div>
 
             </div>
@@ -331,9 +331,10 @@ background-color: #b10017;
             height: 100%;
             min-height: 900px;
             .wallet-swiper{
-                width: 90%;
+                width: 305px;
                 .wallet-swiper-item img{
-                    height: auto;
+                    height: 290px !important;
+                    width: 305px;
                 }
             }
         }

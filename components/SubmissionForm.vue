@@ -16,8 +16,8 @@
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
-        <input id="phoneCode" type="tel"  v-model="phoneCode" v-if="showPhone"  :readonly="true" />
-      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'" @focus="addPhoneCode" :class="{short:showPhone}"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+        <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
+     <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber"  />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -97,7 +97,7 @@
 
       ></v-progress-circular>
       </div>
-      <v-btn class="get-code"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
+      <v-btn class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
     </div>
   </form>
 
@@ -174,7 +174,8 @@ export default {
         amazonImage:'',
         loading:false,
         prizeWin:null,
-        phoneCode:this.$config.phoneCode,
+        phoneCodeDisplay:"+"+this.$config.phoneCode,
+        phoneCode:this.$config.phoneCode+"-",
         showPhone:false,
         submissionText:translation.submissionText
 
@@ -195,6 +196,9 @@ export default {
     },
 
 
+    maxPhoneNumber(){
+      return this.$config.maxPhoneNumber;
+    },
      /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
@@ -226,7 +230,7 @@ export default {
        if(mixCode.length>0){
          // console.log(mixCode);
           let programs=_.filter(mixCode,(a)=>{
-          return a.codeInitial==this.form.code.charAt(0)&&a.characterLimit==this.form.code.length;
+          return a.codeInitial!==null&&a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
         })
         //console.log(programs);
         let programsNull=_.filter(mixCode,(a)=>{
@@ -364,7 +368,7 @@ export default {
           this.form.name=this.loginInfo.name;
           this.form.email=this.loginInfo.email;
            if(this.loginInfo.phone){
-             this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"");
+             this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
            this.form.terms=this.loginInfo.terms;
@@ -594,5 +598,8 @@ form input#phoneNumber.short{
 }
 .details .btn-text{
   border-bottom: solid 1px #fff;
+}
+form.mechanics{
+ margin: auto;
 }
 </style>

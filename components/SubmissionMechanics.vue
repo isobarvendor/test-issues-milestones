@@ -21,7 +21,7 @@
       <div v-if="prize.length==0" style="text-align:center">
             <span v-html="thankYouMessage"></span>
              <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
+                  <v-btn @click="playAgain" id="participateAgain">{{submissionText.participateAgain}}</v-btn>
             </div>
       </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="prize.length>0 && prize[0].havejoox"  >
@@ -232,13 +232,9 @@ export default {
       }
 
     },
-     addGTMSuccess(){
-          this.$gtm.push({
-            'event' : 'event_form_submit',
-            'category' : 'form submit',
-            'action' : 'success',
-            'label' : 'rhythm sign up'
-      });
+     addGTMSuccess(data){
+          this.$gtm.push(data);
+          //console.log(data);
      },
      submit(data){
       // console.log(data);
@@ -252,7 +248,11 @@ export default {
       if(!this.$config.lotID.includes(lotID)){
         this.submitPrizeDouble();
       }else{
-
+        this.addGTMSuccess(
+          {
+            'event' : 'event_redeem_page1',
+            'sku_type' : '235ml or 300ml'
+          });
           let prize = [
             {
                 text : "<h2>"+this.submissionText.textPage+"</h2>"
@@ -276,7 +276,7 @@ export default {
 
     },
     submitOne(data,button=true,page=1){
-      this.addGTMSuccess();
+
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
@@ -286,6 +286,23 @@ export default {
       let prize =[];
        if(prizewin.instantWinResult.winner)
        {
+         if(page>1)
+         {
+             this.addGTMSuccess(
+          {
+              'event' : 'event_redeem_page'+page,
+              'sku_type' : '235ml or 300ml',
+	            'gift_name' : prizewin.instantWinResult.redeemedPrize.name
+          });
+        }else{
+             this.addGTMSuccess(
+          {
+              'event' : 'event_redeem_page1',
+              'sku_type' : 'other sku',
+	            'gift_name' : prizewin.instantWinResult.redeemedPrize.name
+          });
+        }
+
           prize =[
               {
                   text : prizewin.instantWinResult.redeemedPrize.redeemDescription,
@@ -349,7 +366,6 @@ export default {
     },
      submitTwo(data,page=1){
        // console.log(data)
-      this.addGTMSuccess();
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
@@ -357,6 +373,23 @@ export default {
       let prize =[];
        if(prizewin.instantWinResult.winner)
        {
+            if(page>1)
+         {
+             this.addGTMSuccess(
+          {
+              'event' : 'event_redeem_page'+page,
+              'sku_type' : '235ml or 300ml',
+	            'gift_name' : prizewin.instantWinResult.redeemedPrize.name
+          });
+        }else{
+             this.addGTMSuccess(
+          {
+              'event' : 'event_redeem_page1',
+              'sku_type' : 'other sku',
+	            'gift_name' : prizewin.instantWinResult.redeemedPrize.name
+          });
+        }
+
         prize =[
                 {
                     text :null,
@@ -422,7 +455,6 @@ export default {
     width:100%;
 }
 .prize-chance .wrapper{
-  padding-bottom: 50px;
   padding-top: 30px;
 }
 .desc-joox{
