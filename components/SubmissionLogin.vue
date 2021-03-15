@@ -1,5 +1,5 @@
 <template>
-  <div class="login-box column center">
+  <div class="login-box column center mechanics">
       <p class="text-center" v-html="submissionText.siginHeader"></p>
       <a class="social-button fb"  v-on:click="redirectTo('facebook')" v-if="social.facebook"><i class="ic ic-fb" /><span>{{submissionText.continue}} Facebook</span></a>
       <a class="social-button line"  v-on:click="redirectTo('line')" v-if="social.line" ><i class="ic ic-line" /><span>{{submissionText.continue}} LINE</span></a>
