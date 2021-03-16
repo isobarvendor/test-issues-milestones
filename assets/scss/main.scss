@@ -578,20 +578,37 @@ footer{
   }
 }
 
+
 form {
-  max-width: 340px;
+  max-width: 800px;
   @media only screen and (max-width: 767px) {
     max-width: 300px;
   }
+
   width:100%;
   margin: 0 2em;
   margin-top: 40px;
+  .inner-wrapper{
+    margin: auto;
+    max-width: 360px;
+  }
   .details{
     margin-bottom:30px;
     &.receipt{
-      margin-top: 40px;
+      margin-top: 20px;
     }
   }
+  .checkbox-area{
+    .border-white-right{
+      border-right: solid 1px #fff;
+      @media only screen and (max-width: 767px) {
+        border: none;
+      }
+    }
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
   .consent{
     .terms{
       line-height: 28px;
@@ -1079,6 +1096,9 @@ form {
   .divider{
     padding-top: 30px;
     padding-bottom: 20px;
+  }
+  .header{
+    text-align: center!important;
   }
 }
 .black-red-border{
