@@ -53,7 +53,8 @@ let language =
       participateAgain:"Participate again",
       listenNow:"Listen now",
       redeemPrize:"Redeem Prize",
-      continue:"Continue with"
+      continue:"Continue with",
+      nextQuestion:"Next question"
     },
     winnerText:{
       header:"WINNER LIST",

@@ -11,7 +11,7 @@
 
   </div>
   <div  v-else >
-  <div class="container  prize-chance black-red-border">
+  <!--div class="container  prize-chance black-red-border">
       <div class="wrapper">
       <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
       <div v-else style="text-align:center">
@@ -22,6 +22,7 @@
             </div>
 
       </div>
+
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
@@ -30,11 +31,14 @@
     </div>
     <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
-        <!--div class="joox-listen">
-            <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
-        </div-->
+
     </div>
-  </div>
+  </div-->
+    <div class="container  prize-chance black-red-border">
+      <div class="wrapper">
+         <PrizeQuestion :questions="questions" />
+      </div>
+    </div>
   </div>
  </div>
 </template>
@@ -56,12 +60,32 @@ export default {
   data() {
     return {
         prize:[],
-        submitted:false,
+        submitted:true,
         listenNowLink:'',
         thankYouMessage:"",
         request:{
           email:''
         },
+        questions:[{
+          question:"What is the latest tagline for Coca-Cola",
+          answers:[{
+           value:'1',
+           text:"Coke Side of Life"
+          },
+          {
+           value:'2',
+           text:"Together Tastes Better"
+          },
+           {
+           value:'3',
+           text:"Open Happiness"
+          },
+           {
+           value:'4',
+           text:"Taste the feeling"
+          }
+          ]
+        }],
         submissionText:translation.submissionText
     }
 
