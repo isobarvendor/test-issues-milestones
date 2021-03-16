@@ -6,6 +6,7 @@
     </div>
    <div class="header">{{form.name ? submissionText.hello+" "+form.name : submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
+    <div class="inner-wrapper">
      <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
@@ -17,7 +18,7 @@
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
       <div class="btn-text">
         <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
-      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber" :readonly="this.loginInfo.phone" />
+     <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber"  />
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -25,56 +26,61 @@
           </div>
         <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
     </div>
-
-    <!--div v-if="submissionType=='with_receipt'" class="details receipt">
-      <div v-if="!image">
-
-       <label for="file-upload" class="custom-file-upload">
-       <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload receipt</span>
-      </label>
-       <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
-      </div>
-      <div v-else>
-        <img :src="image" width="100" />
-        <button @click="removeImage">Remove image</button>
-      </div>
-    </div-->
-
-    <br>
-
-    <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_tnc">
-            <input type="checkbox" name="tnc" id="form_tnc" v-model="form.terms">
-            <span></span>
-          </label>
-        </div>
-        <div class="terms" v-html="submissionText.acceptTerm"></div>
-      </div>
     </div>
 
-    <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_pp">
-            <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
-            <span></span>
-          </label>
+    <div class="checkbox-area">
+    <div class="inner-wrapper">
+       <div class="row top">
+          <div class="col d-flex consent">
+            <div class="checkbox">
+              <label for="form_pp">
+                <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
+                <span></span>
+              </label>
+            </div>
+            <div class="terms" v-html="submissionText.acceptPrivacy"></div>
+          </div>
         </div>
-        <div class="terms" v-html="submissionText.acceptPrivacy"></div>
-      </div>
     </div>
-        <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_age">
-            <input type="checkbox" name="ageConsent" id="form_age" v-model="form.ageConsent">
-            <span></span>
-          </label>
+
+   <v-row  class="top two-checkbox"  >
+    <v-col
+        cols="12"
+        md="6"
+        sm="6"
+        class="no-padding-top border-white-right"
+      >
+       <div class="row top">
+        <div class="col d-flex consent">
+          <div class="checkbox">
+            <label for="form_tnc">
+              <input type="checkbox" name="tnc" id="form_tnc" v-model="form.terms">
+              <span></span>
+            </label>
+          </div>
+          <div class="terms" v-html="submissionText.acceptTerm"></div>
         </div>
-        <div class="terms" v-html="submissionText.declareAge"></div>
       </div>
+    </v-col>
+      <v-col
+        cols="12"
+        md="6"
+        sm="6"
+        class="no-padding-top"
+      >
+          <div class="row top">
+            <div class="col d-flex consent">
+              <div class="checkbox">
+                <label for="form_age">
+                  <input type="checkbox" name="ageConsent" id="form_age" v-model="form.ageConsent">
+                  <span></span>
+                </label>
+              </div>
+              <div class="terms" v-html="submissionText.declareAge"></div>
+            </div>
+          </div>
+      </v-col>
+   </v-row>
     </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
@@ -89,6 +95,31 @@
             <span class="tooltiptext">{{submissionText.tooltipText}}</span>
           </div>
       </div>
+         <div class="details receipt">
+      <div v-if="!image">
+
+       <label for="file-upload" class="custom-file-upload">
+       <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload unique code image</span>
+      </label>
+       <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
+      </div>
+      <div v-else class="image-upload-container">
+        <v-row no-gutters  class="center-layout" >
+          <v-col
+              cols="6"
+            >
+            <img :src="image" width="100" />
+          </v-col>
+          <v-col
+              cols="6"
+            >
+                <span>{{fileName}}</span>
+          </v-col>
+        </v-row>
+        <button class="remove-image" @click="removeImage">X</button>
+      </div>
+    </div>
+
       <div style="padding:20px"  v-if="loading">
       <v-progress-circular
         :width="2"
@@ -170,6 +201,7 @@ export default {
         },
         errorMessage:null,
         submitted:true,
+        fileName:"",
         image:'',
         amazonImage:'',
         loading:false,
@@ -196,6 +228,9 @@ export default {
     },
 
 
+    maxPhoneNumber(){
+      return this.$config.maxPhoneNumber;
+    },
      /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
@@ -214,6 +249,30 @@ export default {
     }
   },
   methods:{
+    async uploadFile(){
+
+              var formData = new FormData();
+              formData.append("file", this.form.uploadFile);
+                let upload={
+                request:formData,
+                type:'receipts'
+              }
+
+               await this.$store.dispatch(UPLOAD_FILE,upload)
+               .then((response)=>{
+                  this.amazonImage=response.data.filePath;
+
+                })
+                .catch((error) =>{
+                    if(error){
+                      this.errorMessage="Upload error please try again";
+                      return false;
+                    }
+
+                });
+
+
+    },
     generateRequest(currentAttempt){
       if(currentAttempt>=this.getAttempt.length){
         currentAttempt=this.getAttempt.length-1;
@@ -227,7 +286,7 @@ export default {
        if(mixCode.length>0){
          // console.log(mixCode);
           let programs=_.filter(mixCode,(a)=>{
-          return a.codeInitial==this.form.code.charAt(0)&&a.characterLimit==this.form.code.length;
+          return a.codeInitial!=null&&a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
         })
         //console.log(programs);
         let programsNull=_.filter(mixCode,(a)=>{
@@ -262,7 +321,45 @@ export default {
         if(this.form.code){
           request['pin']=this.form.code;
         }
+        if(this.amazonImage){
+          request['imageurl']=this.amazonImage;
+        }
+
         return request;
+    },
+      onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      let FileSize = files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+           this.errorMessage ="Please upload file not more than 2 MB"
+           return;
+        }
+      let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
+      let filePath = e.target.value;
+      this.fileName= e.target.files[0].name;
+      if(!allowedExtensions.exec(filePath)){
+         this.errorMessage ="Please upload image or file"
+           return;
+      }
+      this.form.uploadFile = files[0];
+      this.createImage(files[0]);
+       this.errorMessage = null;
+    },
+    createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = '';
+
     },
     async checkcurrentAttempt(){
       await this.$store.dispatch(CHECK_ATTEMPT)
@@ -280,35 +377,6 @@ export default {
       let request = null;
       this.loading=true;
       let index =0;
-
-       /*let result={
-    "burnResult": [
-        {
-            "pincode": "0J6TC2VP5",
-            "programId": "453269",
-            "lotId": "445580",
-            "burned": true
-        }
-    ],
-    "participationId": "1ylazdy9kkxmpa53",
-    "instantWinResult": {
-        "winner": true,
-       "redeemedPrize": {
-            "prizeId": "kkqhy9so",
-            "voucherCode": "Voucher891",
-            "status": "claimed",
-            "expiryDate": 1620018590000,
-            "name": "JOOX VIP PASS",
-            "shortDescription": "http://google.com",
-            "redeemDescription": "http://abcd",
-            "imgUrl": "/img/landing/week 1 prize.png",
-            "barcodeType": 1,
-            "emailSent": false,
-            "emailMessage": "Email could not be sent"
-        }
-    }
-}*/
-
 
 
        this.$validator.validateAll().then( async(valid) => {
@@ -334,6 +402,9 @@ export default {
 
             if(this.getAttempt)
             {
+               if(this.form.uploadFile){
+                await this.uploadFile();
+               }
 
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
@@ -488,10 +559,11 @@ export default {
   }
   .error-message-black{
     color:#000;
+    text-align: center;
+    padding-bottom: 20px;
   }
   .d-flex {
     display: flex;
-    align-items: center;
   }
   .get-code {
     display: block;
@@ -515,6 +587,8 @@ export default {
 .btn-area{
   text-align: center;
   margin-top: 30px;
+  max-width: 360px;
+  margin: auto;
 }
 button.get-code{
   height: 60px !important;
@@ -562,6 +636,9 @@ form.mechanics{
 
   display: inline-block;
 
+}
+.no-padding-top{
+  padding-top: 0px !important;
 }
 @media only screen and (min-width: 769px) {
   .tooltip .tooltiptext {
@@ -645,5 +722,9 @@ form input#phoneNumber.short{
 }
 form.mechanics{
  margin: auto;
+}
+.two-checkbox{
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
 }
 </style>
