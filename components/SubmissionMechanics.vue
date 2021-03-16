@@ -75,6 +75,7 @@ export default {
         errorMessage:null,
         submissionText:translation.submissionText,
         loading:false,
+        winFirstPrize:false
     }
 
   },
@@ -121,8 +122,10 @@ export default {
            data.response=response.data
            this.submitOne(data,true,2);
              this.loading=false;
+             this.winFirstPrize=true;
 
       }).catch((error)=>{
+        this.winFirstPrize=false;
        if(error.response){
           this.errorMessage=this.submissionText.errorAPI;
         }
@@ -175,7 +178,7 @@ export default {
         attemptData:this.attemptData,
         request:request
       }
-      request.hasMore=page>1 ? true : false;
+      request.hasMore=page>1&&this.winFirstPrize ? true : false;
     for(let a=0; a<configID.length; a++){
       request.configurationId=configID[a];
 
