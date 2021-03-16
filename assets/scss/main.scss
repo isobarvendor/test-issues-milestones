@@ -596,6 +596,18 @@ form {
     margin-bottom:30px;
     &.receipt{
       margin-top: 20px;
+      .image-upload-container{
+        border:solid 1px #fff;
+        position: relative;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        .remove-image{
+          position: absolute;
+          right: 10px;
+          top:10px;
+        }
+      }
     }
   }
   .checkbox-area{

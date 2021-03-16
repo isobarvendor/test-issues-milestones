@@ -103,9 +103,20 @@
       </label>
        <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
       </div>
-      <div v-else>
-        <img :src="image" width="100" />
-        <button @click="removeImage">Remove image</button>
+      <div v-else class="image-upload-container">
+        <v-row no-gutters  class="center-layout" >
+          <v-col
+              cols="6"
+            >
+            <img :src="image" width="100" />
+          </v-col>
+          <v-col
+              cols="6"
+            >
+                <span>{{fileName}}</span>
+          </v-col>
+        </v-row>
+        <button class="remove-image" @click="removeImage">X</button>
       </div>
     </div>
 
@@ -190,6 +201,7 @@ export default {
         },
         errorMessage:null,
         submitted:true,
+        fileName:"",
         image:'',
         amazonImage:'',
         loading:false,
@@ -326,6 +338,7 @@ export default {
         }
       let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
       let filePath = e.target.value;
+      this.fileName= e.target.files[0].name;
       if(!allowedExtensions.exec(filePath)){
          this.errorMessage ="Please upload image or file"
            return;
@@ -546,6 +559,8 @@ export default {
   }
   .error-message-black{
     color:#000;
+    text-align: center;
+    padding-bottom: 20px;
   }
   .d-flex {
     display: flex;
