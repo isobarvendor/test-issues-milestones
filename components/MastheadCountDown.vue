@@ -156,6 +156,8 @@ export default {
       margin-top: 15px !important;
     }
  }
+
+
 .coundown-text{
   font-size:39px;
 }
@@ -180,4 +182,24 @@ export default {
   flex: 0 0 23% !important;
     max-width: 23% !important;
 }
+
+  @media only screen and (max-width: 400px) {
+    #masthead-countdown{
+      width:300px;
+      height:110px;
+      background-size: 100%;
+   }
+   .coundown-text{
+      font-size:32px;
+    }
+    .number-area{
+      margin-top: 10px !important;
+    }
+    .countdown-number{
+      padding:0px;
+      margin-left: 1px;
+      width:25px;
+    }
+
+ }
 </style>

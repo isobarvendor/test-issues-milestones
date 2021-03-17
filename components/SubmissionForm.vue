@@ -24,7 +24,7 @@
             <img src="/img/landing/info-button.png" width="25"  />
             <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
           </div>
-        <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
+        <span class="error-message">{{ errors.first('phone') ? (errors.first('phone').includes('required') ? submissionText.errorRequiredPhone : errors.first('phone')) : errors.first('phoneNumber')   }}</span>
     </div>
     </div>
 
@@ -382,21 +382,18 @@ export default {
        this.$validator.validateAll().then( async(valid) => {
          if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
-           if(!this.form.terms){
-             this.loading=false;
-             this.errorMessage=this.submissionText.errorTerm;
-             return false;
-           }
+
             if(!this.form.privacy){
               this.loading=false;
              this.errorMessage=this.submissionText.errorPolicy;
              return false;
            }
-            if(!this.form.ageConsent){
-              this.loading=false;
-             this.errorMessage=this.submissionText.errorDeclare;
+             if(!this.form.terms&&!this.form.ageConsent){
+             this.loading=false;
+              this.errorMessage=this.submissionText.errorDeclare;
              return false;
            }
+
              this.errorMessage=null;
              await this.checkcurrentAttempt();
 
