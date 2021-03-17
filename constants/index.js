@@ -41,7 +41,7 @@ let language =
       buttonText:'Collect your prize',
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",
-      errorDeclare:"Please declare that you are above 13  years old",
+      errorDeclare:"Please declare that you are agree with terms and condition",
       errorPinCode:"Oops your pin code is invalid or already redeemed",
       errorPinCode1:"Oops your pin code is invalid or already redeemed",
       errorPinCode2:"Oops your pin code is invalid or already redeemed",
