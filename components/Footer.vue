@@ -3,10 +3,10 @@
       <div class="container">
 
         <p v-html="footerText" class="footer-text"></p>
-        <p>
+        <!--p>
           <a href="/privacy">{{footer.privacy}}</a>
           <a href="/tnc">{{footer.terms}}</a>
-        </p>
+        </p-->
       </div>
     </footer>
 </template>
