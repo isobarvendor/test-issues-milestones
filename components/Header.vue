@@ -339,7 +339,7 @@ background-color: #b10017;
             }
         }
     }
-        @media only screen and (max-width: 700px) {
+        @media only screen and (max-width: 400px) {
         .menu-container{
             right: -50px;
         }
