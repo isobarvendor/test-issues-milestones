@@ -17,9 +17,7 @@
       <div v-else style="text-align:center">
 
             <span v-html="thankYouMessage"></span>
-             <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain" id="participateAgain">{{submissionText.participateAgain}}</v-btn>
-            </div>
+             <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"   />
 
       </div>
 
@@ -144,8 +142,21 @@ export default {
           this.jooxMessage=attemptData.FormHeading.Prize;
       }
       else{
-        this.thankYouMessage=attemptData.FormHeading.thankYouMessage;
-        this.listenNowLink="";
+
+          let prize =[
+              {
+                  text : attemptData.FormHeading.thankYouMessage,
+                  name : this.submissionText.luckyDrawSuccess,
+                  image:  '/img/landing/luckydraw.png' ,
+                  note : null
+                  ,button:[]
+                  ,havejoox:attemptData.FormHeading.Prize,
+                  code: null,
+                subName:null
+              }
+          ];
+          this.prize=prize;
+
         this.jooxMessage=attemptData.FormHeading.Prize;
       }
 
