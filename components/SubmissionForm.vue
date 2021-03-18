@@ -522,6 +522,11 @@ export default {
   watch:{
      "form.phoneNumber": function (val) {
        let envs=this.$config;
+       if(val.length==1){
+         if(val=="0"){
+            this.form.phoneNumber="";
+         }
+       }
        if((val.length)>envs.maxPhoneNumber){
          this.errors.clear();
          this.$validator.errors.add({
