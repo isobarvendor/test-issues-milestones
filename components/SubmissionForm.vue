@@ -204,7 +204,7 @@ export default {
         submitted:true,
         fileName:"",
         image:'',
-        amazonImage:'',
+        amazonImage:null,
         loading:false,
         prizeWin:null,
         phoneCodeDisplay:"+"+this.$config.phoneCode,
@@ -360,7 +360,7 @@ export default {
     },
     removeImage: function (e) {
       this.image = '';
-
+      this.amazonImage =null;
     },
     async checkcurrentAttempt(){
       await this.$store.dispatch(CHECK_ATTEMPT)
@@ -400,7 +400,7 @@ export default {
 
             if(this.getAttempt)
             {
-               if(this.form.uploadFile){
+               if(this.form.uploadFile&&!this.amazonImage){
                 await this.uploadFile();
                }
 
