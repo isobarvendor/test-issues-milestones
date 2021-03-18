@@ -42,7 +42,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'robots', content: 'noindex, nofollow' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content:  'Home page Coke - Turn Up Your Rhythm' }
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "img/icons/favicon.png" },
