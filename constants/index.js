@@ -55,6 +55,9 @@ let language =
       redeemPrize:"Redeem Prize",
       continue:"Continue with",
       nextQuestion:"Next question",
+      redeemAnswer:"Redeem Answer",
+      submit:"Submit",
+      nextPrize:"Next Prize",
       luckyDrawSuccess:"YOU HAVE SUCCESSFULLY ENROLLED IN THE WEEKLY LUCKY DRAW!"
     },
     winnerText:{

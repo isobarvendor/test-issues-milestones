@@ -368,7 +368,7 @@ export default {
       })
       .catch((error) =>{
         if(error){
-          this.currentAttempt=9999999;
+          this.currentAttempt=0;
         }
       });
     },

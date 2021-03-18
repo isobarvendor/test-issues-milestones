@@ -9,18 +9,19 @@
         <v-radio
            v-for="(o,index) in  currentQuestion.answers"
           :key="index"
-          :label="`${o.text}`"
-          :value="o.value"
+          :label="`${o.answer}`"
+          :value="o.id"
         ></v-radio>
       </v-radio-group>
    </div>
 
    <div class="prize-button-area center">
-       <a href="#"  >
-        <v-btn  >
+        <v-btn v-if="questionNo<this.questions.length" @click="nextQuestion"  >
           {{submissionText.nextQuestion}}
         </v-btn>
-       </a>
+        <v-btn v-else @click="submit"   >
+          {{submissionText.submit}}
+        </v-btn>
    </div>
 
  </div>
@@ -51,9 +52,11 @@ export default {
 
     },
     methods:{
-      playAgain(){
-        console.log('tesplay');
-        this.$emit("playAgain");
+      nextQuestion(){
+       this.questionNo=this.questionNo+1;
+      },
+      submit(){
+        this.$emit("submit");
       }
     }
 }
@@ -65,7 +68,7 @@ export default {
     text-decoration: none;
 }
 .answer-area{
-  width: 300px;
+  width: 230px;
   margin: auto;
   margin-bottom: 30px;
 }

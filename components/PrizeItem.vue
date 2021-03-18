@@ -22,6 +22,17 @@
                     <h1>{{prize.name}}</h1>
                     <small v-if="prize.subName">{{prize.subName}}</small>
                     <p v-if="prize.code">Code: {{prize.code}}</p>
+                    <div v-if="prize.code"  @click="copyVoucher" >
+                       <v-row  v-if="prize.name" class="copyClipboard center-layout">
+                        <v-col cols="2">
+                        <img src="/img/landing/copy.svg" style="padding-left:2px"    width="30" />
+                        </v-col>
+                        <v-col cols="10" > Copy to clipboard </v-col>
+                       </v-row>
+                       <span v-if="successCopy">Copied!</span>
+                     <input type="hidden" id="voucherCode" :value="prize.code"/>
+                    </div>
+
                 </div>
                </div>
            </v-col>
@@ -39,13 +50,17 @@
    </div>
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
-   <div class="prize-button-area center">
-       <a :href="btn.link" target="_blank" :id="btn.id"  v-for="(btn,index) in prize.button" :key="index" >
+   <div class="prize-button-area center"  style="margin-top:40px"  v-for="(btn,index) in prize.button" :key="index" >
+       <a href="#prize-area" :id="btn.id" v-if="btn.type='submission'"  @click="submitPrize(btn.type)"  >
+        <v-btn  v-html="btn.text">
+        </v-btn>
+       </a>
+          <a :href="btn.link" target="_blank" :id="btn.id" v-else  >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>
    </div>
-    <div class="prize-button-area center" id="participateAgain" style="margin-top:40px;">
+    <div class="prize-button-area center" id="participateAgain" style="margin-top:40px;" v-if="prize.isPlayAgain">
           <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
     </div>
  </div>
@@ -61,7 +76,8 @@ export default {
     },
     data(){
       return {
-        submissionText:translation.submissionText
+        submissionText:translation.submissionText,
+        successCopy:false
       }
     },
     computed:{
@@ -72,10 +88,35 @@ export default {
 
     },
     methods:{
+       copyVoucher(){
+         console.log('tes')
+         let testingCodeToCopy = document.querySelector('#voucherCode')
+          testingCodeToCopy.setAttribute('type', 'text')
+          testingCodeToCopy.select()
+          try {
+            var successful = document.execCommand('copy');
+            if(successful){
+              this.successCopy=true;
+            }
+
+          } catch (err) {
+
+          }
+          testingCodeToCopy.setAttribute('type', 'hidden')
+          setTimeout(() => {   this.successCopy=false; }, 2000);
+          window.getSelection().removeAllRanges()
+      },
       playAgain(){
-        console.log('tesplay');
         this.$emit("playAgain");
+      },
+      submitPrize(type){
+        if(type=='submission'){
+          this.$emit('submitPrize');
+        }else{
+          return false
+        }
       }
+
     }
 }
 </script>
@@ -83,6 +124,11 @@ export default {
 <style>
 .prize-button-area a{
     text-decoration: none;
+}
+.copyClipboard{
+  max-width: 220px;
+  margin: auto;
+  cursor: pointer;
 }
 .image-placeholder{
     min-height: 300px;

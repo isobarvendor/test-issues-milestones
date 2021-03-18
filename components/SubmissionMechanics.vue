@@ -11,15 +11,10 @@
 
   </div>
   <div  v-else >
-  <!--div class="container  prize-chance black-red-border">
+  <div class="container  prize-chance black-red-border" id="prize-area">
       <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
-      <div v-else style="text-align:center">
-
-            <span v-html="thankYouMessage"></span>
-             <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"   />
-
-      </div>
+      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage"  />
+      <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else />
 
       </div>
     </div>
@@ -31,12 +26,8 @@
         <span v-html="jooxMessage"></span>
 
     </div>
-  </div-->
-    <div class="container  prize-chance black-red-border">
-      <div class="wrapper">
-         <PrizeQuestion :questions="questions" />
-      </div>
-    </div>
+  </div>
+
   </div>
  </div>
 </template>
@@ -44,6 +35,7 @@
 <script>
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
+import { SUBMIT_FORM } from '@/store/action_types';
 import {translation} from "@/constants/index"
 export default {
   name: "SubmissionMechanics",
@@ -58,37 +50,25 @@ export default {
   data() {
     return {
         prize:[],
-        submitted:true,
+        submitted:false,
+        attemptData:[],
         listenNowLink:'',
         thankYouMessage:"",
         request:{
           email:''
         },
-        questions:[{
-          question:"What is the latest tagline for Coca-Cola",
-          answers:[{
-           value:'1',
-           text:"Coke Side of Life"
-          },
-          {
-           value:'2',
-           text:"Together Tastes Better"
-          },
-           {
-           value:'3',
-           text:"Open Happiness"
-          },
-           {
-           value:'4',
-           text:"Taste the feeling"
-          }
-          ]
-        }],
-        submissionText:translation.submissionText
+        submissionText:translation.submissionText,
+        isPrizePage:false
     }
 
   },
     computed:{
+    getAttempt(){
+      return this.dataForm.attempts;
+    },
+    questions(){
+      return this.attemptData ? this.attemptData.Question : null
+    },
     campaignType(){
       return this.dataForm;
     },
@@ -114,12 +94,100 @@ export default {
       this.submitted=false;
       this.prize=[];
     },
+      generateRequest(currentAttempt){
+
+      if(currentAttempt>=this.getAttempt.length){
+        currentAttempt=this.getAttempt.length-1;
+      }
+
+      let mixCode=this.getAttempt[currentAttempt].mixCode;
+      let ngps=this.getAttempt[currentAttempt].NPGS;
+      let programId=null;
+      this.attemptData=this.getAttempt[currentAttempt];
+
+       if(mixCode.length>0){
+         // console.log(mixCode);
+          let programs=_.filter(mixCode,(a)=>{
+          return a.codeInitial!=null&&a.codeInitial.toUpperCase()==this.request.pin.charAt(0).toUpperCase()&&a.characterLimit==this.request.pin.length;
+        })
+        //console.log(programs);
+        let programsNull=_.filter(mixCode,(a)=>{
+          return (a.codeInitial==null||a.codeInitial=="")&&a.characterLimit==this.request.pin.length;
+        })
+        if(programs.length>0){
+          programId=programs[0].ProgrammeID;
+        }else{
+          programId=programsNull.length>0 ? programsNull[0].ProgrammeID : null;
+        }
+      }
+
+
+      if(!programId){
+        return false;
+      }
+      let request;
+        request={
+                    "mechanic" : this.getAttempt[currentAttempt].campaignType,
+                    "programmeId": programId,
+                    "configurationId": ngps[0].configID,
+                    "flowLabel": ngps[0].flowLabel
+        }
+        return request;
+    },
+    submitPrize(){
+      let request=this.request;
+      let changeRequest=this.generateRequest(1);
+      request = {...request, changeRequest}
+
+          this.$store.dispatch(SUBMIT_FORM,request)
+                .then((response)=>{
+                   // this.submitted=true;
+                   this.addGTMSuccess();
+                    this.response=response.data;
+                    this.isPrizePage=false;
+                });
+    },
+    submitQuestion(){
+      this.isPrizePage=true;
+      this.submitLuckyDraw();
+
+    },
+    addGTMSuccess(){
+          this.$gtm.push({
+            'event' : 'event_form_submit',
+            'category' : 'form submit',
+            'action' : 'success',
+            'label' : 'rhythm sign up'
+      });
+     },
+    submitLuckyDraw(){
+
+        let attemptData =this.attemptData;
+        let prize =[
+              {
+                  text : attemptData.FormHeading.thankYouMessage,
+                  name : this.submissionText.luckyDrawSuccess,
+                  image:  '/img/landing/luckydraw.png' ,
+                  note : null
+                  ,button:[]
+                  ,havejoox:attemptData.FormHeading.Prize,
+                  isPlayAgain:true,
+                  code: null,
+                subName:null
+              }
+          ];
+          this.prize=prize;
+          this.jooxMessage=attemptData.FormHeading.Prize;
+    },
     submit(data){
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
+      this.attemptData=data.attemptData;
       this.request=data.request;
+      this.response=prizewin;
       if(attemptData.campaignType == 'InstantWin'){
+        this.isPrizePage=true;
           let prize =[
               {
                   text : attemptData.FormHeading.thankYouMessage,
@@ -130,9 +198,18 @@ export default {
                       id:"redeemNow",
                       text:this.submissionText.redeemPrize,
                       link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
-                  }]
+                  },
+                    {
+                      id:"gotoquestions",
+                      text:this.submissionText.nextPrize,
+                      type:"submission",
+                      link:"#"
+                    }
+
+                  ]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
+                  isPlayAgain:false,
                 subName:null
               }
           ];
@@ -142,22 +219,7 @@ export default {
           this.jooxMessage=attemptData.FormHeading.Prize;
       }
       else{
-
-          let prize =[
-              {
-                  text : attemptData.FormHeading.thankYouMessage,
-                  name : this.submissionText.luckyDrawSuccess,
-                  image:  '/img/landing/luckydraw.png' ,
-                  note : null
-                  ,button:[]
-                  ,havejoox:attemptData.FormHeading.Prize,
-                  code: null,
-                subName:null
-              }
-          ];
-          this.prize=prize;
-
-        this.jooxMessage=attemptData.FormHeading.Prize;
+        this.isPrizePage=false;
       }
 
 
