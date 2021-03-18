@@ -400,7 +400,7 @@ export default {
             if(this.getAttempt)
             {
                if(this.form.uploadFile){
-                await this.uploadFile();
+                //await this.uploadFile();
                }
 
             //my code for submit
