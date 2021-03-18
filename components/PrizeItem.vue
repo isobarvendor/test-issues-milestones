@@ -22,10 +22,18 @@
                     <h1>{{prize.name}}</h1>
                     <small v-if="prize.subName">{{prize.subName}}</small>
                     <p v-if="prize.code">Code: {{prize.code}}
-                      <img src="/img/landing/copy.svg" style="padding-left:2px"  v-if="prize.code" @click="copyVoucher"  width="30" />
-                       <p v-if="successCopy">Copied!</p>
-                     <input type="hidden" id="voucherCode" :value="prize.code">
                     </p>
+                    <div v-if="prize.code"  @click="copyVoucher" >
+                       <v-row  v-if="prize.name" class="copyClipboard center-layout">
+                        <v-col cols="2">
+                        <img src="/img/landing/copy.svg" style="padding-left:2px"    width="30" />
+                        </v-col>
+                        <v-col cols="10" > Copy code </v-col>
+                       </v-row>
+                       <span v-if="successCopy">Copied!</span>
+                     <input type="hidden" id="voucherCode" :value="prize.code"/>
+                    </div>
+
                 </div>
                </div>
            </v-col>
@@ -122,6 +130,12 @@ export default {
 .prize-button-area a{
     text-decoration: none;
 }
+.copyClipboard{
+  max-width: 160px !important;
+  margin: auto;
+  cursor: pointer;
+}
+
 .image-placeholder{
     min-height: 300px;
 }
