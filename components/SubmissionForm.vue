@@ -101,7 +101,7 @@
        <label for="file-upload" class="custom-file-upload">
        <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload unique code image</span>
       </label>
-       <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
+       <input id="file-upload" name="upload" type="file"  v-validate="'required'" @change="onFileChange" value="uploadReceipt">
       </div>
       <div v-else class="image-upload-container">
         <v-row no-gutters  class="center-layout" >
@@ -119,6 +119,7 @@
         <button class="remove-image" @click="removeImage">X</button>
       </div>
     </div>
+      <span class="error-message">{{ errors.first('upload') }}</span>
 
       <div style="padding:20px"  v-if="loading">
       <v-progress-circular
@@ -400,7 +401,7 @@ export default {
             if(this.getAttempt)
             {
                if(this.form.uploadFile){
-                //await this.uploadFile();
+                await this.uploadFile();
                }
 
             //my code for submit

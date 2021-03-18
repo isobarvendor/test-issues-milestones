@@ -39,10 +39,11 @@ export default {
     return axios.post(`${origin}/api/campaign/public/submission`, data)
   },
 
-  async uploadFile(payload,type) {
+  async uploadFile(payload,type,token) {
     let config = {
         headers: {
             'Content-Type': 'multipart/form-data',
+            'Authorization': 'Bearer '+ token
         }
     };
     let resp;
