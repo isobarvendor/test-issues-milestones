@@ -36,7 +36,7 @@
 <script>
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
-import { SUBMIT_FORM } from '@/store/action_types';
+import { SUBMIT_FORM, START_QUESTION, SEND_ANSWER } from '@/store/action_types';
 import {translation} from "@/constants/index"
 export default {
   name: "SubmissionMechanics",
@@ -145,29 +145,31 @@ export default {
     submitPrize(){
       this.isPrizePage=false;
       this.fromInstantWin=true;
-      this.startQuestion=new Date();
+       this.$store.dispatch(START_QUESTION,'')
+        .then((response)=>{
+        })
+         .catch((error) =>{
+                 if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
+           })
 
     },
-    submitQuestion(){
+    submitQuestion(data){
       this.isPrizePage=true;
       let endTime = new Date();
       this.endQuestion=endTime;
-      let timeDiff = endTime - this.startQuestion;
-      timeDiff /= 1000;
-      let seconds = Math.round(timeDiff);
-      console.log(seconds + " seconds");
-      this.submitLuckyDraw();
+
+      this.submitLuckyDraw(data);
 
     },
-    submitQuestionWithSubmit(){
+    submitQuestionWithSubmit(dataQuestion){
       this.isPrizePage=true;
-      let endTime = new Date();
-      this.endQuestion=endTime;
-      let timeDiff = endTime - this.startQuestion;
-      timeDiff /= 1000;
-      let seconds = Math.round(timeDiff);
-      console.log(seconds + " seconds");
-
+       let endTime = new Date();
+       this.endQuestion=endTime;
       let request=this.request;
       let changeRequest=this.generateRequest(1);
       request = {...request, changeRequest}
@@ -176,7 +178,7 @@ export default {
           // this.submitted=true;
           this.addGTMSuccess();
           this.response=response.data;
-          this.submitLuckyDraw();
+          this.submitLuckyDraw(dataQuestion);
       })
        .catch((error) =>{
                   this.loading=false;
@@ -216,23 +218,34 @@ export default {
             'label' : 'rhythm sign up'
       });
      },
-    submitLuckyDraw(){
+    submitLuckyDraw(data){
+      this.$store.dispatch(SEND_ANSWER,data)
+        .then((response)=>{
+              let attemptData =this.attemptData;
+              let prize =[
+                    {
+                        text : attemptData.FormHeading.thankYouMessage,
+                        name : this.submissionText.luckyDrawSuccess,
+                        image:  '/img/landing/luckydraw.png' ,
+                        note : null
+                        ,button:[]
+                        ,havejoox:attemptData.FormHeading.Prize,
+                        isPlayAgain:true,
+                        code: null,
+                      subName:null
+                    }
+                ];
+                this.prize=prize;
+        })
+         .catch((error) =>{
+                 if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
+           })
 
-        let attemptData =this.attemptData;
-        let prize =[
-              {
-                  text : attemptData.FormHeading.thankYouMessage,
-                  name : this.submissionText.luckyDrawSuccess,
-                  image:  '/img/landing/luckydraw.png' ,
-                  note : null
-                  ,button:[]
-                  ,havejoox:attemptData.FormHeading.Prize,
-                  isPlayAgain:true,
-                  code: null,
-                subName:null
-              }
-          ];
-          this.prize=prize;
           this.jooxMessage=attemptData.FormHeading.Prize;
     },
     submit(data){

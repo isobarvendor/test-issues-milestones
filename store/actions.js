@@ -17,7 +17,9 @@ import {
   GET_LIST_WINNERS,
   CHECK_ATTEMPT,
   GET_MY_PRIZE,
-  GET_PHONE
+  GET_PHONE,
+  SEND_ANSWER,
+  START_QUESTION
 } from './action_types';
 
 
@@ -41,6 +43,30 @@ export default {
        NGPSAPI.redeemPrize(data, state.token)
         .then(response => {
           commit('SET_REDEEM_PRIZE', response.data);
+          return resolve(response);
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    });
+  },
+  [SEND_ANSWER]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+       NGPSAPI.sendAnswer(data, state.token)
+        .then(response => {
+          return resolve(response);
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    });
+  },
+  [START_QUESTION]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+       NGPSAPI.startQuestion(data, state.token)
+        .then(response => {
           return resolve(response);
         })
         .catch(error => {

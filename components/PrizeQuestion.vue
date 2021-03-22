@@ -56,7 +56,11 @@ export default {
        this.questionNo=this.questionNo+1;
       },
       submit(){
-        this.$emit("submit");
+        let data={
+          questionId:this.currentQuestion.id,
+          answerId:currentAnswer
+        }
+        this.$emit("submit",data);
       }
     }
 }
