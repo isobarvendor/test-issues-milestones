@@ -478,15 +478,12 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
            this.form.privacy=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
+
         }
         await this.checkcurrentAttempt();
         if(this.currentAttempt>1){
-           this.form.terms=true;
            this.form.privacy=true;
-           this.form.ageConsent=true;
         }
     },
 
@@ -532,7 +529,7 @@ export default {
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'You reach maximum phone number length'
+          msg: 'You’ve reached the maximum phone number length'
         });
        }else if(isNaN(val)){
          this.errors.clear();
