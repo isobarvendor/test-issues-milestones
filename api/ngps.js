@@ -33,15 +33,17 @@ export default {
   },
   submitLogin(data, token) {
     return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
+    //return axios.get(`/mock/submission`, setHeader(token))
   },
   submitNonLogin(data) {
     return axios.post(`${origin}/api/campaign/public/submission`, data)
   },
 
-  async uploadFile(payload,type) {
+  async uploadFile(payload,type,token) {
     let config = {
         headers: {
             'Content-Type': 'multipart/form-data',
+            'Authorization': 'Bearer '+ token
         }
     };
     let resp;

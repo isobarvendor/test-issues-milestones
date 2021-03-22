@@ -101,7 +101,7 @@
        <label for="file-upload" class="custom-file-upload">
        <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload unique code image</span>
       </label>
-       <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
+       <input id="file-upload" name="upload" type="file"  v-validate="'required'" @change="onFileChange" value="uploadReceipt">
       </div>
       <div v-else class="image-upload-container">
         <v-row no-gutters  class="center-layout" >
@@ -119,6 +119,7 @@
         <button class="remove-image" @click="removeImage">X</button>
       </div>
     </div>
+      <span class="error-message">{{ errors.first('upload') }}</span>
 
       <div style="padding:20px"  v-if="loading">
       <v-progress-circular
@@ -203,7 +204,7 @@ export default {
         submitted:true,
         fileName:"",
         image:'',
-        amazonImage:'',
+        amazonImage:null,
         loading:false,
         prizeWin:null,
         phoneCodeDisplay:"+"+this.$config.phoneCode,
@@ -359,7 +360,7 @@ export default {
     },
     removeImage: function (e) {
       this.image = '';
-
+      this.amazonImage =null;
     },
     async checkcurrentAttempt(){
       await this.$store.dispatch(CHECK_ATTEMPT)
@@ -399,7 +400,7 @@ export default {
 
             if(this.getAttempt)
             {
-               if(this.form.uploadFile){
+               if(this.form.uploadFile&&!this.amazonImage){
                 await this.uploadFile();
                }
 
@@ -477,15 +478,12 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
            this.form.privacy=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
+
         }
         await this.checkcurrentAttempt();
         if(this.currentAttempt>1){
-           this.form.terms=true;
            this.form.privacy=true;
-           this.form.ageConsent=true;
         }
     },
 
@@ -522,11 +520,16 @@ export default {
   watch:{
      "form.phoneNumber": function (val) {
        let envs=this.$config;
+       if(val.length==1){
+         if(val=="0"){
+            this.form.phoneNumber="";
+         }
+       }
        if((val.length)>envs.maxPhoneNumber){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'You reach maximum phone number length'
+          msg: 'You’ve reached the maximum phone number length'
         });
        }else if(isNaN(val)){
          this.errors.clear();

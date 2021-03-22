@@ -214,7 +214,7 @@ export default {
   [UPLOAD_FILE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-        NGPSAPI.uploadFile(data.request,data.type)
+        NGPSAPI.uploadFile(data.request,data.type,state.token)
         .then(response => {
           return resolve(response);
         })

@@ -34,7 +34,7 @@ let language =
       phoneNumber:"Phone Number",
       acceptTerm:'I am 21 years and above. I hereby agree to the  <a href="/tnc">terms of this Promotion</a> and accept the <a href="/privacy">Privacy Policy</a>.',
       acceptPrivacy:'I agree to the collection, use, disclosure, or processing of my personal data in accordance of <a href="/privacy">Privacy Policy</a>.',
-      declareAge:'I am bellow 21 years. I have the consent of my parent/guardian to participate based on the <a href="/tnc">terms and conditions</a> of this Promotion and accept the <a href="/privacy">Privacy Policy</a>.',
+      declareAge:'I am below 21 years. I have the consent of my parent/guardian to participate based on the <a href="/tnc">terms and conditions</a> of this Promotion and accept the <a href="/privacy">Privacy Policy</a>.',
       enterCode:'Enter Unique Code',
       tooltipText:'Enter the code found under the cap/tab of your Coca Cola purchase here',
       phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
@@ -53,7 +53,8 @@ let language =
       participateAgain:"Participate again",
       listenNow:"Listen now",
       redeemPrize:"Redeem Prize",
-      continue:"Continue with"
+      continue:"Continue with",
+      luckyDrawSuccess:"YOU HAVE SUCCESSFULLY ENROLLED IN THE WEEKLY LUCKY DRAW!"
     },
     winnerText:{
       header:"WINNER LIST",
@@ -105,7 +106,7 @@ let language =
         declareAge:'ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลของข้าพเจ้าเพื่อวัตถุประสงค์เกี่ยวกับการรับข้อมูลข่าวสารการตลาดและการโฆษณาประชาสัมพันธ์จากโคคา-โคล่า​',
         enterCode:'ใส่รหัส 9 หลักใต้ฝาโค้ก',
         tooltipText:'ใส่รหัส 9 หลักใต้ฝาโค้ก ที่นี่',
-        phoneTooltip:"โปรดใส่เบอร์โทรศัพท์มือถือที่ถูกต้องเพื่อให้เราสามารถติดต่อกลับคุณได้ในกรณีที่คุณได้รับรางวัลสุดซ่ารายสัปดาห์",
+        phoneTooltip:"โปรดใส่เบอร์มือถือ 9 หลักหลัง +66 โดยไม่ต้องใส่เลข 0 เช่น ถ้าเบอร์ของคุณคือ 081-123-4567 โปรดใส่ +66811234567",
         buttonText:'กดส่งรหัสใต้ฝา',
         errorTerm:'Please accept our terms and conditions',
         errorPolicy:"Please accept our privacy policies",
