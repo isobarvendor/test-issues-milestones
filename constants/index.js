@@ -136,7 +136,7 @@ let language =
         startRedeeming:"Bắt đầu rút thăm",
         redeemNextPrize:"Tiếp tục đổi giải",
         errorRequiredPhone:"The phone number is required",
-        textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 330ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng",
+        textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 300ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng",
         hardLuckHeader:"",
         hardLuckTitle:"Bạn chưa may mắn lần này. Nhưng vẫn còn nhiều quà hấp dẫn đang chờ. Hãy tiếp tục khui Coke và tham gia bạn nhé!",
         hardLuckImage:"/img/landing/hardluck.png"
