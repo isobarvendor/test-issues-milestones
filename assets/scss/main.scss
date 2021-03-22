@@ -1074,6 +1074,12 @@ form {
 .prize-section{
   background-color: #1d1d1b;
   position: relative;
+  .header{
+    text-align: center!important;
+  }
+  .all-prize-area{
+    z-index: 1;
+  }
   .background-image{
     width: 100%;
     position: absolute;
