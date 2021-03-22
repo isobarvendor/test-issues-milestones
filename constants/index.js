@@ -34,7 +34,7 @@ let language =
       phoneNumber:"Phone Number",
       acceptTerm:'I am 21 years and above. I hereby agree to the  <a href="/tnc">terms of this Promotion</a> and accept the <a href="/privacy">Privacy Policy</a>.',
       acceptPrivacy:'I agree to the collection, use, disclosure, or processing of my personal data in accordance of <a href="/privacy">Privacy Policy</a>.',
-      declareAge:'I am bellow 21 years. I have the consent of my parent/guardian to participate based on the <a href="/tnc">terms and conditions</a> of this Promotion and accept the <a href="/privacy">Privacy Policy</a>.',
+      declareAge:'I am below 21 years. I have the consent of my parent/guardian to participate based on the <a href="/tnc">terms and conditions</a> of this Promotion and accept the <a href="/privacy">Privacy Policy</a>.',
       enterCode:'Enter Unique Code',
       tooltipText:'Enter the code found under the cap/tab of your Coca Cola purchase here',
       phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
