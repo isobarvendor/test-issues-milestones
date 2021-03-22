@@ -13,9 +13,10 @@
   <div  v-else >
   <div class="container  prize-chance black-red-border" id="prize-area">
       <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage"  />
-      <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else />
-
+        <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage"  />
+        <PrizeQuestion :questions="questions" @submit="submitQuestionWithSubmit" v-else-if="fromInstantWin" />
+        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="!fromInstantWin" />
+        <div v-if="errorMessage" v-html="errorMessage" class="errorMessage"/>
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
@@ -58,7 +59,10 @@ export default {
           email:''
         },
         submissionText:translation.submissionText,
-        isPrizePage:false
+        isPrizePage:false,
+        startQuestion:null,
+        endQuestion:null,
+        fromInstantWin:false,
     }
 
   },
@@ -67,7 +71,11 @@ export default {
       return this.dataForm.attempts;
     },
     questions(){
-      return this.attemptData ? this.attemptData.Question : null
+      let question= this.attemptData ? this.attemptData.Question : null;
+      if(this.attemptData&&this.attemptData.Question){
+        question = question[Math.floor(Math.random() * question.length)];
+      }
+      return question;
     },
     campaignType(){
       return this.dataForm;
@@ -135,23 +143,71 @@ export default {
         return request;
     },
     submitPrize(){
-      let request=this.request;
-      let changeRequest=this.generateRequest(1);
-      request = {...request, changeRequest}
+      this.isPrizePage=false;
+      this.fromInstantWin=true;
+      this.startQuestion=new Date();
 
-          this.$store.dispatch(SUBMIT_FORM,request)
-                .then((response)=>{
-                   // this.submitted=true;
-                   this.addGTMSuccess();
-                    this.response=response.data;
-                    this.isPrizePage=false;
-                });
     },
     submitQuestion(){
       this.isPrizePage=true;
+      let endTime = new Date();
+      this.endQuestion=endTime;
+      let timeDiff = endTime - this.startQuestion;
+      timeDiff /= 1000;
+      let seconds = Math.round(timeDiff);
+      console.log(seconds + " seconds");
       this.submitLuckyDraw();
 
     },
+    submitQuestionWithSubmit(){
+      this.isPrizePage=true;
+      let endTime = new Date();
+      this.endQuestion=endTime;
+      let timeDiff = endTime - this.startQuestion;
+      timeDiff /= 1000;
+      let seconds = Math.round(timeDiff);
+      console.log(seconds + " seconds");
+
+      let request=this.request;
+      let changeRequest=this.generateRequest(1);
+      request = {...request, changeRequest}
+      this.$store.dispatch(SUBMIT_FORM,request)
+      .then((response)=>{
+          // this.submitted=true;
+          this.addGTMSuccess();
+          this.response=response.data;
+          this.submitLuckyDraw();
+      })
+       .catch((error) =>{
+                  this.loading=false;
+                    if(error.response){
+                    this.errorMessage=this.submissionText.errorAPI;
+                  }
+                   if(error.response && error.response.data.detail){
+                     this.errorMessage=this.submissionText.errorPinCode;
+                   }
+
+                 if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                    this.errorMessage=this.submissionText.errorPinCode1;
+                  }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+                    this.errorMessage=this.submissionText.errorPinCode4;
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                    this.errorMessage=this.submissionText.errorPinCode2;
+                  }
+                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                    this.errorMessage=this.submissionText.errorPinCode3;
+                  }
+                })
+    },
+
     addGTMSuccess(){
           this.$gtm.push({
             'event' : 'event_form_submit',
@@ -220,6 +276,7 @@ export default {
       }
       else{
         this.isPrizePage=false;
+        this.startQuestion=new Date();
       }
 
 
@@ -262,6 +319,11 @@ export default {
     padding:30px;
     font-weight: bold;
 }
-
+.errorMessage{
+  text-align: center;
+  color:red;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 
 </style>
