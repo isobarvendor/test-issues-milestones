@@ -79,13 +79,13 @@ export default {
     });
   },
 
-  [GET_LIST_PRIZE]: ({ commit, state, getters }) => {
+  [GET_LIST_PRIZE]: ({ commit, state, getters },config) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
 
-        NGPSAPI.getListPrize()
+        NGPSAPI.getListPrize(config)
         .then(response => {
-          commit('SET_LIST_PRIZE', response.data);
+         // commit('SET_LIST_PRIZE', response.data);
           return resolve(response);
         })
         .catch(error => {

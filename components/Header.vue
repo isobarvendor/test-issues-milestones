@@ -324,7 +324,7 @@ background-color: #b10017;
     }
     @media only screen and (max-width: 700px) {
         .menu-container{
-            right: -20px;
+            right: 10px;
             top: -150px;
             margin-top: 20px;
             padding-top:150px;
@@ -339,7 +339,12 @@ background-color: #b10017;
             }
         }
     }
-        @media only screen and (max-width: 400px) {
+     @media only screen and (max-width: 400px) {
+        .menu-container{
+            right: -30px;
+        }
+     }
+        @media only screen and (max-width: 320px) {
         .menu-container{
             right: -50px;
         }
