@@ -323,7 +323,7 @@ export default {
           request['pin']=this.form.code;
         }
         if(this.amazonImage){
-          request['imageurl']=this.amazonImage;
+          request['imageURL']=this.amazonImage;
         }
 
         return request;
