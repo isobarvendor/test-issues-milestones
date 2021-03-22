@@ -130,7 +130,7 @@ let language =
         errorMaxPhone:"Bạn đạt đến độ dài số điện thoại tối đa",
         participateAgain:"Participate again",
         listenNow:"Nghe nhạc ngay",
-        redeemPrize:"Sử dụng code ngay",
+        redeemPrize:"ĐỔI GIẢI THƯỞNG TẠI ĐÂY",
         continue:"Tiếp tục với",
         note:"Vui lòng gọi hotline 1900555584 (1500VND/ phút từ 9:00 đến 17:00, ngày hành chính) để nhận hướng dẫn thủ tục nhận giải thưởng.",
         startRedeeming:"Bắt đầu rút thăm",
