@@ -466,7 +466,7 @@ export default {
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'You reach maximum phone number length'
+          msg: 'You’ve reached the maximum phone number length'
         });
        }else if(isNaN(val)){
          this.errors.clear();
