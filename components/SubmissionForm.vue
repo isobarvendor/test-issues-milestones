@@ -30,7 +30,7 @@
 
     <div class="checkbox-area">
     <div class="inner-wrapper">
-       <div class="row top">
+       <!--div class="row top">
           <div class="col d-flex consent">
             <div class="checkbox">
               <label for="form_pp">
@@ -40,7 +40,7 @@
             </div>
             <div class="terms" v-html="submissionText.acceptPrivacy"></div>
           </div>
-        </div>
+        </div-->
          <div class="row top">
         <div class="col d-flex consent">
           <div class="checkbox">
@@ -371,11 +371,11 @@ export default {
          if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
 
-            if(!this.form.privacy){
+           /* if(!this.form.privacy){
               this.loading=false;
              this.errorMessage=this.submissionText.errorPolicy;
              return false;
-           }
+           }*/
              if(!this.form.ageConsent){
              this.loading=false;
               this.errorMessage=this.submissionText.errorDeclare;
@@ -402,7 +402,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber,  privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, ageConsent:this.form.ageConsent  }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
