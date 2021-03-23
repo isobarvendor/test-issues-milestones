@@ -465,12 +465,12 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.privacy=this.loginInfo.privacy;
+         //  this.form.privacy=this.loginInfo.privacy;
 
         }
         await this.checkcurrentAttempt();
         if(this.currentAttempt>1){
-           this.form.privacy=true;
+        //   this.form.privacy=true;
         }
     },
 
