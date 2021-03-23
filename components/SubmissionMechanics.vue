@@ -63,6 +63,8 @@ export default {
         startQuestion:null,
         endQuestion:null,
         fromInstantWin:false,
+        questionAnswerData:null,
+        participationId:-1
     }
 
   },
@@ -147,6 +149,7 @@ export default {
       this.fromInstantWin=true;
        this.$store.dispatch(START_QUESTION,'')
         .then((response)=>{
+          this.questionAnswerData = response.data;
         })
          .catch((error) =>{
                  if(error.response && error.response.data.status=='401'){
@@ -178,6 +181,7 @@ export default {
           // this.submitted=true;
           this.addGTMSuccess();
           this.response=response.data;
+          this.participationId=response.data.participationId;
           this.submitLuckyDraw(dataQuestion);
       })
        .catch((error) =>{
@@ -219,7 +223,9 @@ export default {
       });
      },
     submitLuckyDraw(data){
-      this.$store.dispatch(SEND_ANSWER,data)
+      let request = { ...questionAnswerData, data }; // add question answer data
+      request = {...request, participationId:this.participationId}; // add participation id data
+      this.$store.dispatch(SEND_ANSWER,request)
         .then((response)=>{
               let attemptData =this.attemptData;
               let prize =[
@@ -289,6 +295,7 @@ export default {
       }
       else{
         this.isPrizePage=false;
+        this.participationId=prizewin.participationId;
         this.startQuestion=new Date();
       }
 
