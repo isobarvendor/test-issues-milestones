@@ -232,7 +232,7 @@ export default {
                     {
                         text : attemptData.FormHeading.thankYouMessage,
                         name : this.submissionText.luckyDrawSuccess,
-                        image:  '/img/landing/luckydraw.png' ,
+                        image:  '/img/landing/luckydraw_my.png' ,
                         note : null
                         ,button:[]
                         ,havejoox:attemptData.FormHeading.Prize,
