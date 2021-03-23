@@ -41,46 +41,33 @@
             <div class="terms" v-html="submissionText.acceptPrivacy"></div>
           </div>
         </div>
-    </div>
-
-   <v-row  class="top two-checkbox"  >
-    <v-col
-        cols="12"
-        md="6"
-        sm="6"
-        class="no-padding-top border-white-right"
-      >
-       <div class="row top">
+         <div class="row top">
         <div class="col d-flex consent">
           <div class="checkbox">
             <label for="form_tnc">
-              <input type="checkbox" name="tnc" id="form_tnc" v-model="form.terms">
+              <input type="radio" name="ageConsent" id="form_tnc" v-model="form.ageConsent" value="above">
               <span></span>
             </label>
           </div>
           <div class="terms" v-html="submissionText.acceptTerm"></div>
         </div>
       </div>
-    </v-col>
-      <v-col
-        cols="12"
-        md="6"
-        sm="6"
-        class="no-padding-top"
-      >
+
           <div class="row top">
             <div class="col d-flex consent">
               <div class="checkbox">
                 <label for="form_age">
-                  <input type="checkbox" name="ageConsent" id="form_age" v-model="form.ageConsent">
+                  <input type="radio" name="ageConsent" id="form_age" v-model="form.ageConsent" value="below">
                   <span></span>
                 </label>
               </div>
               <div class="terms" v-html="submissionText.declareAge"></div>
             </div>
           </div>
-      </v-col>
-   </v-row>
+    </div>
+
+
+
     </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
@@ -389,7 +376,7 @@ export default {
              this.errorMessage=this.submissionText.errorPolicy;
              return false;
            }
-             if(!this.form.terms&&!this.form.ageConsent){
+             if(!this.form.ageConsent){
              this.loading=false;
               this.errorMessage=this.submissionText.errorDeclare;
              return false;
@@ -415,7 +402,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber,  privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
