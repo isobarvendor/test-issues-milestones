@@ -1,6 +1,6 @@
 <template>
  <div class="prize-inner-wrapper" v-if="questions">
-   <h3>Question {{questionNo}}</h3><BR/><BR/><BR/>
+   <!--h3>Question {{questionNo}}</h3--><BR/><BR/><BR/>
    <div class="prize-title">
      <h1 v-html="currentQuestion.question"></h1><BR/><BR/>
    </div>
