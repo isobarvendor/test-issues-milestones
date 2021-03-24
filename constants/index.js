@@ -14,8 +14,8 @@ let language =
     signInButton:"SIGN IN <BR/><small>to win prizes</small>",
     menu:{
       home:"Home",
-      privacy:"Privacy",
-      terms:"Terms",
+      privacy:"Dasar Polisi",
+      terms:"Terma dan syarat",
       logout:"Logout",
       myRewards:"My Rewards"
     },
@@ -142,8 +142,8 @@ let language =
       tryagain:"Please try again"
     },
     footer:{
-      privacy:"Privacy Policy",
-      terms:"Terms and conditions"
+      privacy:"Dasar Polisi",
+      terms:"Terma dan syarat"
     }
 
   }
