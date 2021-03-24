@@ -14,8 +14,8 @@
   <div class="container  prize-chance black-red-border" id="prize-area">
       <div class="wrapper">
         <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage"  />
-        <PrizeQuestion :questions="questions" @submit="submitQuestionWithSubmit" v-else-if="fromInstantWin" />
-        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="!fromInstantWin" />
+        <PrizeQuestion :questions="questions" @submit="submitQuestionWithSubmit" v-else-if="fromInstantWin&&!isPrizePage" />
+        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="!fromInstantWin&&!isPrizePage" />
         <div v-if="errorMessage" v-html="errorMessage" class="errorMessage"/>
       </div>
     </div>
@@ -60,11 +60,11 @@ export default {
         },
         submissionText:translation.submissionText,
         isPrizePage:false,
-        startQuestion:null,
-        endQuestion:null,
         fromInstantWin:false,
         questionAnswerData:null,
-        participationId:-1
+        participationId:-1,
+        errorMessage:null,
+        jooxMessage:null
     }
 
   },
@@ -73,10 +73,11 @@ export default {
       return this.dataForm.attempts;
     },
     questions(){
-      let question= this.attemptData ? this.attemptData.Question : null;
-      if(this.attemptData&&this.attemptData.Question){
-        question = question[Math.floor(Math.random() * question.length)];
+      let question= this.getAttempt[1] ? this.getAttempt[1].Question : null;
+      if(this.getAttempt[1]&&this.getAttempt[1].Question){
+        question[0] = question[Math.floor(Math.random() * question.length)];
       }
+      console.log(question)
       return question;
     },
     campaignType(){
@@ -147,11 +148,17 @@ export default {
     submitPrize(){
       this.isPrizePage=false;
       this.fromInstantWin=true;
-       this.$store.dispatch(START_QUESTION,'')
+      this.startQuestion();
+    },
+    startQuestion(){
+         this.$store.dispatch(START_QUESTION,'')
         .then((response)=>{
           this.questionAnswerData = response.data;
         })
          .catch((error) =>{
+                 if(error.response && error.response.data.status=='201'){
+                    this.questionAnswerData = error.response.data.data;
+                 }
                  if(error.response && error.response.data.status=='401'){
                       localStorage.clear();
                       this.$store.commit('SET_LOGIN_ACCOUNT', null);
@@ -162,17 +169,11 @@ export default {
 
     },
     submitQuestion(data){
-      this.isPrizePage=true;
-      let endTime = new Date();
-      this.endQuestion=endTime;
 
       this.submitLuckyDraw(data);
 
     },
     submitQuestionWithSubmit(dataQuestion){
-      this.isPrizePage=true;
-       let endTime = new Date();
-       this.endQuestion=endTime;
       let request=this.request;
       let changeRequest=this.generateRequest(1);
       request = {...request, changeRequest}
@@ -223,13 +224,14 @@ export default {
       });
      },
     submitLuckyDraw(data){
-      let request = { ...questionAnswerData, data }; // add question answer data
+      let request = { ...this.questionAnswerData, ...data }; // add question answer data
        if(this.participationId!=-1){
         request = {...request, participationId:this.participationId}; // add participation id data
       }
       this.$store.dispatch(SEND_ANSWER,request)
         .then((response)=>{
               let attemptData =this.attemptData;
+              //console.log("attemptData",attemptData)
               let prize =[
                     {
                         text : attemptData.FormHeading.thankYouMessage,
@@ -244,6 +246,8 @@ export default {
                     }
                 ];
                 this.prize=prize;
+                this.jooxMessage=attemptData.FormHeading.Prize;
+                this.isPrizePage=true;
         })
          .catch((error) =>{
                  if(error.response && error.response.data.status=='401'){
@@ -254,7 +258,7 @@ export default {
                   }
            })
 
-          this.jooxMessage=attemptData.FormHeading.Prize;
+
     },
     submit(data){
       this.submitted=true;
@@ -298,7 +302,8 @@ export default {
       else{
         this.isPrizePage=false;
         this.participationId=prizewin.participationId;
-        this.startQuestion=new Date();
+
+        this.startQuestion();
       }
 
 

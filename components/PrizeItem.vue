@@ -89,7 +89,7 @@ export default {
     },
     methods:{
        copyVoucher(){
-         console.log('tes')
+       //  console.log('tes')
          let testingCodeToCopy = document.querySelector('#voucherCode')
           testingCodeToCopy.setAttribute('type', 'text')
           testingCodeToCopy.select()
@@ -111,6 +111,7 @@ export default {
       },
       submitPrize(type){
         if(type=='submission'){
+          console.log('submit prize')
           this.$emit('submitPrize');
         }else{
           return false

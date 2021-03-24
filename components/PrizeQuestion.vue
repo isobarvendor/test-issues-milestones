@@ -44,7 +44,7 @@ export default {
     },
     computed:{
       currentQuestion(){
-        return this.questions[this.questionNo-1];
+        return this.questions[0];
       }
     },
     mounted(){
@@ -58,7 +58,7 @@ export default {
       submit(){
         let data={
           questionId:this.currentQuestion.id,
-          answerId:currentAnswer
+          answerId:this.currentAnswer
         }
         this.$emit("submit",data);
       }
