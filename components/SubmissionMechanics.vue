@@ -224,7 +224,9 @@ export default {
      },
     submitLuckyDraw(data){
       let request = { ...questionAnswerData, data }; // add question answer data
-      request = {...request, participationId:this.participationId}; // add participation id data
+       if(this.participationId!=-1){
+        request = {...request, participationId:this.participationId}; // add participation id data
+      }
       this.$store.dispatch(SEND_ANSWER,request)
         .then((response)=>{
               let attemptData =this.attemptData;
