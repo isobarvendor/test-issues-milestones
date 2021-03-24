@@ -65,7 +65,8 @@ export default {
         participationId:-1,
         errorMessage:null,
         jooxMessage:null,
-        loading:false
+        loading:false,
+        question:[]
     }
 
   },
@@ -76,10 +77,10 @@ export default {
     questions(){
       let question= this.getAttempt[1] ? this.getAttempt[1].Question : null;
       if(this.getAttempt[1]&&this.getAttempt[1].Question){
-        question[0] = question[Math.floor(Math.random() * question.length)];
+        this.question[0] = question[Math.floor(Math.random() * question.length)];
       }
       //console.log(question)
-      return question;
+      return this.question;
     },
     campaignType(){
       return this.dataForm;
@@ -103,8 +104,10 @@ export default {
 
   methods: {
     playAgain(){
+       this.prize=[];
+      this.question=[];
       this.submitted=false;
-      this.prize=[];
+
     },
       generateRequest(currentAttempt){
 
@@ -324,6 +327,9 @@ export default {
 
     }
   },
+  mounted(){
+    console.log(this.questions)
+  }
 }
 </script>
 
