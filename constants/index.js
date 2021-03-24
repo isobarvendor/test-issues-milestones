@@ -57,7 +57,7 @@ let language =
       nextQuestion:"Next question",
       redeemAnswer:"Redeem Answer",
       submit:"Submit",
-      nextPrize:"Next Prize",
+      nextPrize:"Participate in Lucky Draw",
       luckyDrawSuccess:"YOU HAVE SUCCESSFULLY ENROLLED IN THE WEEKLY LUCKY DRAW!"
     },
     winnerText:{
@@ -108,10 +108,10 @@ let language =
       acceptTerm:'Saya berumur 18 tahun dan ke atas. Saya bersetuju dengan <a href="/tnc">terma dan syarat promosi</a>, serta menerima <a href="/privacy">dasar polisi</a>.',
       acceptPrivacy:'I agree to the collection, use, disclosure, or processing of my personal data in accordance of <a href="/privacy">Privacy Policy</a>.',
       declareAge:'Saya berumur bawah 18 tahun. Saya mempunyai kebenaran ibu bapa/ penjaga untuk menyertai peraduan ini yang tertakluk kepada <a href="/tnc">terma dan syarat</a>, serta menerima <a href="/privacy">dasar polisi</a>.',
-      enterCode:'Enter unique code',
+      enterCode:'Kod Unik',
       tooltipText:'Enter the code found under the cap/tab of your Coca Cola purchase here',
       phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
-      buttonText:'Submit now',
+      buttonText:'Klik untuk seterusnya',
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",
       errorDeclare:"Please declare your age and you are agree with terms and condition",
@@ -130,7 +130,7 @@ let language =
       nextQuestion:"Next question",
       redeemAnswer:"Redeem Answer",
       submit:"Submit",
-      nextPrize:"Next Prize",
+      nextPrize:"Participate in Lucky Draw",
       luckyDrawSuccess:"YOU HAVE SUCCESSFULLY ENROLLED IN THE WEEKLY LUCKY DRAW!"
     },
     winnerText:{

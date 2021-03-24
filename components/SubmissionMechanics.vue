@@ -178,6 +178,7 @@ export default {
 
     },
     submitQuestionWithSubmit(dataQuestion){
+      this.errorMessage=null
       this.loading = true;
       let request=this.request;
       request['hasMore'] = true;
@@ -191,6 +192,7 @@ export default {
           this.participationId=response.data.participationId;
           this.submitLuckyDraw(dataQuestion);
            this.loading = false;
+
       })
        .catch((error) =>{
                   this.loading=false;
@@ -235,6 +237,7 @@ export default {
        if(this.participationId!=-1){
         request = {...request, participationId:this.participationId}; // add participation id data
       }
+      this.errorMessage=null
       this.$store.dispatch(SEND_ANSWER,request)
         .then((response)=>{
               let attemptData =this.attemptData;

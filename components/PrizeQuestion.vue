@@ -5,7 +5,7 @@
      <h1 v-html="currentQuestion.question"></h1><BR/><BR/>
    </div>
   <div class="answer-area center-layout">
-      <v-radio-group v-model="currentAnswer"  dark>
+      <v-radio-group v-model="currentAnswer" v-validate="'required'" name="answer"  dark>
         <v-radio
            v-for="(o,index) in  currentQuestion.answers"
           :key="index"
@@ -14,6 +14,7 @@
         ></v-radio>
       </v-radio-group>
    </div>
+    <div class="error-message">{{ errors.first('answer') }}</div>
      <div style="padding:20px" class="prize-button-area center"  v-if="loading">
       <v-progress-circular
         :width="2"
@@ -39,6 +40,7 @@
 import {translation} from "@/constants/index"
 export default {
     name:"PrizeQuestion",
+    inject: ['$validator'],
     props:{
       questions:{},
       loading:false
@@ -65,11 +67,15 @@ export default {
        this.questionNo=this.questionNo+1;
       },
       submit(){
-        let data={
-          questionId:this.currentQuestion.id,
-          answerId:this.currentAnswer
-        }
-        this.$emit("submit",data);
+        this.$validator.validateAll().then( async(valid) => {
+            if(valid){
+              let data={
+                questionId:this.currentQuestion.id,
+                answerId:this.currentAnswer
+              }
+            this.$emit("submit",data);
+            }
+       });
       }
     }
 }
@@ -88,6 +94,10 @@ export default {
 .answer-area .v-label{
   padding-left: 10px !important;
   color: #fff !important;
+}
+.error-message{
+  color:red;
+  padding-bottom: 30px;
 }
 
 
