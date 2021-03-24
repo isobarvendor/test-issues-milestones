@@ -14,8 +14,15 @@
         ></v-radio>
       </v-radio-group>
    </div>
+     <div style="padding:20px" class="prize-button-area center"  v-if="loading">
+      <v-progress-circular
+        :width="2"
+        color="white"
+        indeterminate
 
-   <div class="prize-button-area center">
+      ></v-progress-circular>
+      </div>
+   <div class="prize-button-area center" v-else>
         <v-btn v-if="questionNo<this.questions.length" @click="nextQuestion"  >
           {{submissionText.nextQuestion}}
         </v-btn>
@@ -23,6 +30,7 @@
           {{submissionText.submit}}
         </v-btn>
    </div>
+
 
  </div>
 </template>
@@ -32,7 +40,8 @@ import {translation} from "@/constants/index"
 export default {
     name:"PrizeQuestion",
     props:{
-      questions:{}
+      questions:{},
+      loading:false
     },
     data(){
       return {

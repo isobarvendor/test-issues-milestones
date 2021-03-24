@@ -298,7 +298,8 @@ export default {
                     "mechanic" : this.getAttempt[currentAttempt].campaignType,
                     "programmeId": programId,
                     "configurationId": ngps[0].configID,
-                    "flowLabel": ngps[0].flowLabel
+                    "flowLabel": ngps[0].flowLabel,
+                    "hasMore":false
         }
         if(this.loginInfo){
           //request["userId"]=this.loginInfo.uuid;

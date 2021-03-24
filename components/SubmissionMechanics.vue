@@ -13,9 +13,9 @@
   <div  v-else >
   <div class="container  prize-chance black-red-border" id="prize-area">
       <div class="wrapper">
-        <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage"  />
-        <PrizeQuestion :questions="questions" @submit="submitQuestionWithSubmit" v-else-if="fromInstantWin&&!isPrizePage" />
-        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="!fromInstantWin&&!isPrizePage" />
+        <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage" :loading="loading"  />
+        <PrizeQuestion :questions="questions" @submit="submitQuestionWithSubmit" v-else-if="fromInstantWin&&!isPrizePage" :loading="loading" />
+        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="!fromInstantWin&&!isPrizePage" :loading="loading" />
         <div v-if="errorMessage" v-html="errorMessage" class="errorMessage"/>
       </div>
     </div>
@@ -64,7 +64,8 @@ export default {
         questionAnswerData:null,
         participationId:-1,
         errorMessage:null,
-        jooxMessage:null
+        jooxMessage:null,
+        loading:false
     }
 
   },
@@ -151,11 +152,14 @@ export default {
       this.startQuestion();
     },
     startQuestion(){
+         this.loading = true;
          this.$store.dispatch(START_QUESTION,'')
         .then((response)=>{
           this.questionAnswerData = response.data;
+           this.loading = false;
         })
          .catch((error) =>{
+           this.loading = false;
                  if(error.response && error.response.data.status=='201'){
                     this.questionAnswerData = error.response.data.data;
                  }
@@ -174,9 +178,11 @@ export default {
 
     },
     submitQuestionWithSubmit(dataQuestion){
+      this.loading = true;
       let request=this.request;
+      request['hasMore'] = true;
       let changeRequest=this.generateRequest(1);
-      request = {...request, changeRequest}
+      request = {...request, ...changeRequest}
       this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
           // this.submitted=true;
@@ -184,6 +190,7 @@ export default {
           this.response=response.data;
           this.participationId=response.data.participationId;
           this.submitLuckyDraw(dataQuestion);
+           this.loading = false;
       })
        .catch((error) =>{
                   this.loading=false;
@@ -248,13 +255,17 @@ export default {
                 this.prize=prize;
                 this.jooxMessage=attemptData.FormHeading.Prize;
                 this.isPrizePage=true;
+                this.loading=false;
         })
          .catch((error) =>{
+            this.loading = false;
                  if(error.response && error.response.data.status=='401'){
                       localStorage.clear();
                       this.$store.commit('SET_LOGIN_ACCOUNT', null);
                       this.$store.commit('SET_TOKEN', null);
                       location.reload();
+                  }else{
+                    this.errorMessage="Failed sending answer. Please try again."
                   }
            })
 
