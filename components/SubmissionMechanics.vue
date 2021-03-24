@@ -78,7 +78,7 @@ export default {
       if(this.getAttempt[1]&&this.getAttempt[1].Question){
         question[0] = question[Math.floor(Math.random() * question.length)];
       }
-      console.log(question)
+     // console.log(question)
       return question;
     },
     campaignType(){
@@ -292,6 +292,7 @@ export default {
                   ,button:[{
                       id:"redeemNow",
                       text:this.submissionText.redeemPrize,
+                       type:"link",
                       link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
                   },
                     {

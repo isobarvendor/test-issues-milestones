@@ -59,7 +59,7 @@
         ></v-progress-circular>
       </div>
    <div class="prize-button-area center"  style="margin-top:40px"  v-for="(btn,index) in prize.button" :key="index" v-else >
-       <a href="#prize-area" :id="btn.id" v-if="btn.type='submission'"  @click="submitPrize(btn.type)"  >
+       <a href="#prize-area" :id="btn.id" v-if="btn.type=='submission'"  @click="submitPrize(btn.type)"  >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>
