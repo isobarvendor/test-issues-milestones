@@ -10,7 +10,7 @@
            v-for="(o,index) in  currentQuestion.answers"
           :key="index"
           :label="`${o.answer}`"
-          :value="o.id"
+          :value="index+1"
         ></v-radio>
       </v-radio-group>
    </div>
@@ -24,10 +24,10 @@
       ></v-progress-circular>
       </div>
    <div class="prize-button-area center" v-else>
-        <v-btn v-if="questionNo<this.questions.length" @click="nextQuestion"  >
+        <!--v-btn v-if="questionNo<this.questions.length" @click="nextQuestion"  >
           {{submissionText.nextQuestion}}
-        </v-btn>
-        <v-btn v-else @click="submit"   >
+        </v-btn-->
+        <v-btn @click="submit"   >
           {{submissionText.submit}}
         </v-btn>
    </div>
