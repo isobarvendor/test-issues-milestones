@@ -33,9 +33,11 @@ export default {
   },
   startQuestion(data, token) {
     return axios.post(`${origin}/api/quiz-participation`, data, setHeader(token))
+    // return axios.get(`/mock/participation`, setHeader(token))
   },
   sendAnswer(data, token) {
     return axios.put(`${origin}/api/quiz-participation`, data, setHeader(token))
+    //return axios.get(`/mock/participation`, setHeader(token))
   },
   submitLogin(data, token) {
     return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))

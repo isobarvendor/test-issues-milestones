@@ -313,7 +313,7 @@ export default {
       else{
         this.isPrizePage=false;
         this.participationId=prizewin.participationId;
-
+         this.fromInstantWin=false;
         this.startQuestion();
       }
 
