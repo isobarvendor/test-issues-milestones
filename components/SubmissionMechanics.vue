@@ -123,7 +123,7 @@ export default {
               {
                   text : "",
                   name : attemptData.FormHeading.thankYouMessage,
-                  image:  '/img/landing/luckydraw_sg.png' ,
+                  image:  '/img/landing/luckydraw_sg.jpg' ,
                   note : null
                   ,button:[]
                   ,havejoox:attemptData.FormHeading.Prize,
