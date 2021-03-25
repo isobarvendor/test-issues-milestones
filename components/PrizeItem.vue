@@ -19,7 +19,7 @@
                </div>
                <div class="prize-desc">
                 <div class="desc-text">
-                    <h1>{{prize.name}}</h1>
+                    <h1 v-html="prize.name"></h1>
                     <small v-if="prize.subName">{{prize.subName}}</small>
                     <p v-if="prize.code">Kod: {{prize.code}}</p>
                     <div v-if="prize.code"  @click="copyVoucher" >
