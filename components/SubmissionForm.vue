@@ -320,8 +320,8 @@ export default {
       if (!files.length)
         return;
       let FileSize = files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 2) {
-           this.errorMessage ="Please upload file not more than 2 MB"
+        if (FileSize > 5) {
+           this.errorMessage ="Please upload file not more than 5 MB"
            return;
         }
       let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
