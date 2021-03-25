@@ -136,7 +136,7 @@ export default {
     text-decoration: none;
 }
 .copyClipboard{
-  max-width: 220px;
+  max-width: 250px;
   margin: auto;
   cursor: pointer;
 }
