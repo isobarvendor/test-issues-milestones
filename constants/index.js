@@ -104,7 +104,7 @@ let language =
     },
     submissionText:{
       header:"Enter your code",
-      hello:"Hi",
+      hello:"Hai",
       siginHeader:"Log masuk atau  <br>daftar akaun untuk menyertai peraduan",
       name:"Name",
       email:"Email",
