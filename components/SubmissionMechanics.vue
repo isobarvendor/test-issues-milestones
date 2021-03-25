@@ -121,8 +121,8 @@ export default {
 
           let prize =[
               {
-                  text : attemptData.FormHeading.thankYouMessage,
-                  name : this.submissionText.luckyDrawSuccess,
+                  text : "",
+                  name : attemptData.FormHeading.thankYouMessage,
                   image:  '/img/landing/luckydraw_sg.png' ,
                   note : null
                   ,button:[]
