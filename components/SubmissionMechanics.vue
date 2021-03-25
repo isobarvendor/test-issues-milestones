@@ -236,7 +236,12 @@ export default {
       });
      },
     submitLuckyDraw(data){
-      let request = { ...this.questionAnswerData, ...data }; // add question answer data
+      let request = {
+                      id:this.questionAnswerData.id,
+                      question:data.question,
+                      answer:data.answer,
+                      participationId:this.questionAnswerData.participationId
+                    }; // add question answer data
        if(this.participationId!=-1){
         request = {...request, participationId:this.participationId}; // add participation id data
       }

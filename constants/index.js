@@ -111,7 +111,7 @@ let language =
       phoneNumber:"Nombor telefon",
       acceptTerm:'Saya berumur 18 tahun dan ke atas. Saya bersetuju dengan <a href="/tnc">terma dan syarat promosi</a>, serta menerima <a href="/privacy">polisi privasi</a>.',
       acceptPrivacy:'I agree to the collection, use, disclosure, or processing of my personal data in accordance of <a href="/privacy">Privacy Policy</a>.',
-      declareAge:'Saya berumur bawah 18 tahun. Saya mempunyai kebenaran ibu bapa/ penjaga untuk menyertai peraduan ini yang tertakluk kepada <a href="/tnc">terma dan syarat</a>, serta menerima <a href="/privacy">dasar polisi</a>.',
+      declareAge:'Saya berumur bawah 18 tahun. Saya mempunyai kebenaran ibu bapa/ penjaga untuk menyertai peraduan ini yang tertakluk kepada <a href="/tnc">terma dan syarat</a>, serta menerima <a href="/privacy">polisi privasi</a>.',
       enterCode:'Kod Unik',
       tooltipText:'Isikan kod unik di bawah penutup botol/ penutup sentap tin/ kad penyertaan peraduan Coca-Cola di sini',
       phoneTooltip:"Isikan nombor telefon yang betul supaya kami dapat menghubungi anda sekiranya anda memenangi hadiah.",
