@@ -14,8 +14,8 @@ let language =
     signInButton:"SIGN IN <BR/><small>to win prizes</small>",
     menu:{
       home:"Home",
-      privacy:"Dasar Polisi",
-      terms:"Terma dan syarat",
+      privacy:"Privacy",
+      terms:"Terms",
       logout:"Logout",
       myRewards:"My Rewards"
     },
@@ -84,11 +84,11 @@ let language =
       }
     ],
     periodDescription:"",
-    signInButton:"SIGN IN <BR/><small>to win prizes</small>",
+    signInButton:"LOG MASUK <BR/><small>untuk menangi hadiah</small>",
     menu:{
       home:"Home",
-      privacy:"Privacy",
-      terms:"Terms",
+      privacy:"Polisi Privasi",
+      terms:"Terma dan syarat",
       logout:"Logout",
       myRewards:"My Rewards"
     },
@@ -100,17 +100,17 @@ let language =
     },
     submissionText:{
       header:"Enter your code",
-      hello:"Hello",
-      siginHeader:"Sign in or register a Coca-Cola <br>account to enter the draw",
+      hello:"Hi",
+      siginHeader:"Log masuk atau  <br>daftar akaun untuk menyertai peraduan",
       name:"Name",
       email:"Email",
-      phoneNumber:"Phone Number",
-      acceptTerm:'Saya berumur 18 tahun dan ke atas. Saya bersetuju dengan <a href="/tnc">terma dan syarat promosi</a>, serta menerima <a href="/privacy">dasar polisi</a>.',
+      phoneNumber:"Nombor telefon",
+      acceptTerm:'Saya berumur 18 tahun dan ke atas. Saya bersetuju dengan <a href="/tnc">terma dan syarat promosi</a>, serta menerima <a href="/privacy">polisi privasi</a>.',
       acceptPrivacy:'I agree to the collection, use, disclosure, or processing of my personal data in accordance of <a href="/privacy">Privacy Policy</a>.',
       declareAge:'Saya berumur bawah 18 tahun. Saya mempunyai kebenaran ibu bapa/ penjaga untuk menyertai peraduan ini yang tertakluk kepada <a href="/tnc">terma dan syarat</a>, serta menerima <a href="/privacy">dasar polisi</a>.',
       enterCode:'Kod Unik',
-      tooltipText:'Enter the code found under the cap/tab of your Coca Cola purchase here',
-      phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
+      tooltipText:'Isikan kod unik di bawah penutup botol/ penutup sentap tin/ kad penyertaan peraduan Coca-Cola di sini',
+      phoneTooltip:"Isikan nombor telefon yang betul supaya kami dapat menghubungi anda sekiranya anda memenangi hadiah.",
       buttonText:'Klik untuk seterusnya',
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",
@@ -126,7 +126,7 @@ let language =
       participateAgain:"Participate again",
       listenNow:"Listen now",
       redeemPrize:"Tebus Sekarang",
-      continue:"Continue with",
+      continue:"Teruskan dengan",
       nextQuestion:"Next question",
       redeemAnswer:"Redeem Answer",
       submit:"Submit",
@@ -142,7 +142,7 @@ let language =
       tryagain:"Please try again"
     },
     footer:{
-      privacy:"Dasar Polisi",
+      privacy:"Polisi Privasi",
       terms:"Terma dan syarat"
     }
 

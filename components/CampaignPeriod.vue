@@ -109,10 +109,10 @@ export default {
   },
   computed:{
     startdate (){
-        return this.data && moment(this.data.fromDate).format("Do MMMM YYYY")
+        return this.data && moment(this.data.fromDate).format("DD MMMM YYYY")
     },
     enddate (){
-      return this.data && moment(this.data.toDate).format("Do MMMM YYYY");
+      return this.data && moment(this.data.toDate).format("DD MMMM YYYY");
     },
     loginInfo(){
        return this.$store.state.login;
