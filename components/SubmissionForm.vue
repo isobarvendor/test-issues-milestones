@@ -75,7 +75,7 @@
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red">{{ errors.first('code') }}</span>
+             <span class="error-message-red">{{ errors.first('code') ? (errors.first('code').includes('required') ? submissionText.errorRequiredCode : errors.first('code')) : errors.first('code')  }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -86,7 +86,7 @@
       <div v-if="!image">
 
        <label for="file-upload" class="custom-file-upload">
-       <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload unique code image</span>
+       <img src="/img/icons/upload-icon.png"/> <span class="labels">{{submissionText.uploadButton }}</span>
       </label>
        <input id="file-upload" name="upload" type="file"  v-validate="'required'" @change="onFileChange" value="uploadReceipt">
       </div>
@@ -106,7 +106,7 @@
         <button class="remove-image" @click="removeImage">X</button>
       </div>
     </div>
-      <span class="error-message">{{ errors.first('upload') }}</span>
+      <span class="error-message">{{ errors.first('upload') ? (errors.first('upload').includes('required') ? submissionText.errorRequiredUpload : errors.first('upload')) : errors.first('upload') }}</span>
 
       <div style="padding:20px"  v-if="loading">
       <v-progress-circular
@@ -517,13 +517,13 @@ export default {
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'You’ve reached the maximum phone number length'
+          msg: this.submissionText.errorMaxPhone
         });
        }else if(isNaN(val)){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'Please enter a number'
+          msg: this.submissionText.errorNumberPhone
         });
        }
        else{
