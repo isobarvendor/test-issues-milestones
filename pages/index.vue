@@ -128,7 +128,7 @@ export default {
             this.$store.dispatch(GET_LIST_PRIZE,luckyDraw[a].NPGS[0].configID)
             .then((response)=>{
                 this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
-                console.log( this.listPrizesData);
+                //console.log( this.listPrizesData);
             })
             .catch((error) =>{
 
