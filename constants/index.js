@@ -117,7 +117,7 @@ let language =
       phoneTooltip:"Isikan nombor telefon yang betul supaya kami dapat menghubungi anda sekiranya anda memenangi hadiah.",
       buttonText:'Klik untuk seterusnya',
       uploadButton:'Muatnaik gambar kod unik',
-      errorRequiredCode:'The code field is required',
+      errorRequiredCode:'Kod perlu diisikan',
       errorRequiredUpload:'Gambar kod unik perlu dimuatnaikkan.',
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",

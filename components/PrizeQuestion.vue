@@ -10,7 +10,7 @@
            v-for="(o,index) in  currentQuestion.answers"
           :key="index"
           :label="`${o.answer}`"
-          :value="index+1"
+          :value="o.answer"
         ></v-radio>
       </v-radio-group>
    </div>
@@ -70,8 +70,8 @@ export default {
         this.$validator.validateAll().then( async(valid) => {
             if(valid){
               let data={
-                questionId:this.currentQuestion.id,
-                answerId:this.currentAnswer
+                question:this.currentQuestion.question,
+                answer:this.currentAnswer
               }
             this.$emit("submit",data);
             }
