@@ -21,13 +21,13 @@
                 <div class="desc-text">
                     <h1>{{prize.name}}</h1>
                     <small v-if="prize.subName">{{prize.subName}}</small>
-                    <p v-if="prize.code">Code: {{prize.code}}</p>
+                    <p v-if="prize.code">Kod: {{prize.code}}</p>
                     <div v-if="prize.code"  @click="copyVoucher" >
                        <v-row  v-if="prize.name" class="copyClipboard center-layout">
                         <v-col cols="2">
                         <img src="/img/landing/copy.svg" style="padding-left:2px"    width="30" />
                         </v-col>
-                        <v-col cols="10" > Copy to clipboard </v-col>
+                        <v-col cols="10" > Salin kepada ‘clipboard’</v-col>
                        </v-row>
                        <span v-if="successCopy">Copied!</span>
                      <input type="hidden" id="voucherCode" :value="prize.code"/>
