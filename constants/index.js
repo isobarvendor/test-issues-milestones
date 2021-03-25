@@ -139,7 +139,7 @@ let language =
       redeemAnswer:"Redeem Answer",
       submit:"Hantar",
       nextPrize:"Sertai Peraduan",
-      luckyDrawSuccess:"YOU HAVE SUCCESSFULLY ENROLLED IN THE WEEKLY LUCKY DRAW!"
+      luckyDrawSuccess:"Sila datang lagi untuk memenangi lebih hadiah menarik!"
     },
     winnerText:{
       header:"WINNER LIST",
