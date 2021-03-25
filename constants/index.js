@@ -58,7 +58,7 @@ let language =
       listenNow:"Listen now",
       redeemPrize:"Redeem Prize",
       continue:"Continue with",
-      luckyDrawSuccess:"YOU HAVE SUCCESSFULLY ENROLLED IN THE WEEKLY LUCKY DRAW!"
+      luckyDrawSuccess:"Do come back for next entry submission to win more attractive prizes."
     },
     winnerText:{
       header:"WINNER LIST",
