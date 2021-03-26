@@ -88,7 +88,7 @@
        <label for="file-upload" class="custom-file-upload">
        <img src="/img/icons/upload-icon.png"/> <span class="labels">{{submissionText.uploadButton }}</span>
       </label>
-       <input id="file-upload" name="upload" type="file"  v-validate="'required'" @change="onFileChange" value="uploadReceipt">
+       <input id="file-upload" :value="filePath" name="upload" type="file"  v-validate="'required'" @change="onFileChange" >
       </div>
       <div v-else class="image-upload-container">
         <v-row no-gutters  class="center-layout" >
@@ -190,6 +190,7 @@ export default {
         errorMessage:null,
         submitted:true,
         fileName:"",
+        filePath:null,
         image:'',
         amazonImage:null,
         loading:false,
@@ -328,6 +329,7 @@ export default {
       let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
       let filePath = e.target.value;
       this.fileName= e.target.files[0].name;
+      this.filePath=filePath;
       if(!allowedExtensions.exec(filePath)){
          this.errorMessage ="Please upload image or file"
            return;
@@ -347,8 +349,9 @@ export default {
       reader.readAsDataURL(file);
     },
     removeImage: function (e) {
-      this.image = '';
+      this.image = null;
       this.amazonImage =null;
+       this.filePath = null;
     },
     async checkcurrentAttempt(){
       await this.$store.dispatch(CHECK_ATTEMPT)
