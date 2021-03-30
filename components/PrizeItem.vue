@@ -52,6 +52,9 @@
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
    <div class="prize-button-area center">
+      <audio controls v-if="playSound">
+          <source :src="audio" type="audio/mpeg">
+        </audio>
         <v-progress-circular
         :width="2"
         color="white"
@@ -59,7 +62,11 @@
         v-if="loading"
       ></v-progress-circular>
       <div v-else style="margin-bottom:40px;"  v-for="(btn,index) in prize.button" :key="index" >
-       <a :id="'prize-'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
+       <a v-if="btn.link&&btn.link.includes('.mp3')" :id="'prize-'+btn.id" :href="'#prize-chance'"  @click="redeemMusic(btn.link)"  >
+        <v-btn  v-html="btn.text">
+        </v-btn>
+       </a>
+       <a v-else :id="'prize-'+btn.id" :href="btn.link ?btn.link : '#prize-chance'" :target="btn.link ? '_blank' : ''" @click="submitPrize(btn.type)"  >
         <v-btn  v-html="btn.text">
         </v-btn>
        </a>
@@ -83,7 +90,9 @@ export default {
     data(){
       return {
         submissionText:translation.submissionText,
-        successCopy:false
+        successCopy:false,
+        playSound:false,
+        audio:false
       }
     },
     computed:{
@@ -115,6 +124,10 @@ export default {
         console.log('tesplay');
         this.$emit("playAgain");
       },
+      redeemMusic(link){
+        this.audio=link;
+        this.playSound=true;
+      },
       submitPrize(type){
         if(type=='submission'){
           this.$emit('submitPrize');
@@ -145,5 +158,9 @@ export default {
     min-height: 100px;
 }
      }
+audio{
+  margin-bottom: 20px;
+  max-width:300px;
 
+}
 </style>

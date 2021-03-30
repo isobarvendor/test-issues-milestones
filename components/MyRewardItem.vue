@@ -1,15 +1,7 @@
 <template>
       <div>
         <v-row :id="'link-'+reward.title"  @click="reward.audio ? toggleSound(reward.id,reward.audio) : redeemLink(reward.link,reward.code)" class=" mb-4 toggle-sound paused center list-reward" >
-              <audio
-                v-if="reward.audio"
-                :ref="'audio'+reward.id"
-                :src="reward.audio"
-                preload
-                loop
-                id="audio"
-                muted
-                ></audio>
+
             <v-col cols="3" >
                 <img :src="reward.image" width="100%" />
             </v-col>
@@ -19,6 +11,11 @@
                 <p>{{reward.date}}</p>
             </v-col>
         </v-row>
+        <div class="audio-area">
+          <audio controls v-if="playSound">
+                <source :src="audio" type="audio/mpeg">
+              </audio>
+        </div>
         <div v-html="reward.description" class="description"/>
       </div>
 </template>
@@ -31,6 +28,8 @@ export default {
     },
     data(){
       return {
+        playSound:false,
+        audio:null
       }
     },
     computed:{
@@ -38,18 +37,8 @@ export default {
     },
     methods:{
         toggleSound(rewardId,sound) {
-            if(!sound) return false;
-            let audio = this.$refs['audio'+rewardId];
-            if (
-            audio.paused &&
-            document.querySelector(".toggle-sound").classList.contains("paused")
-            ) {
-            audio.play();
-            document.querySelector(".toggle-sound").classList.remove("paused");
-            } else {
-            audio.pause();
-            document.querySelector(".toggle-sound").classList.add("paused");
-            }
+          this.audio=sound;
+          this.playSound=true;
       },
       redeemLink(link,voucherCode){
         if(link){
@@ -72,5 +61,13 @@ export default {
 }
 .list-reward p {
     padding-top: 5px;
+}
+.audio-area{
+  max-width: 360px;
+  margin: auto;
+}
+.audio-area audio{
+  width: 100%;
+  margin: auto;
 }
 </style>

@@ -69,7 +69,7 @@ export default {
                           link:o.redemptionLink,
                           image:o.imgUrl,
                           code:o.voucher,
-                          audio:o.prizeName.includes(".") ? o.prizeName : null,
+                          audio:o.redemptionLink && o.redemptionLink.includes(".mp3") ? o.redemptionLink : null,
                           description:o.redeemDescription
                         }
                     });
