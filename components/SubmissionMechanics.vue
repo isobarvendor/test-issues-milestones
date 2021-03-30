@@ -149,8 +149,6 @@ export default {
         return request;
     },
     submitPrize(){
-      this.isPrizePage=false;
-      this.fromInstantWin=true;
       this.submitLuckyDrawAPI();
     },
    /* startQuestion(){
@@ -192,6 +190,8 @@ export default {
           this.addGTMSuccess();
           this.response=response.data;
            this.loading = false;
+          this.isPrizePage=false;
+           this.fromInstantWin=true;
 
       })
        .catch((error) =>{
@@ -233,11 +233,12 @@ export default {
       });
      },
     submitLuckyDraw(data){
+      //console.log(this.response)
       let request = {
-                      id:this.response.data.quizId,
+                      id:this.response.quizId,
                       question:data.question,
                       answer:data.answer,
-                      participationId:this.response.data.participationId
+                      participationId:this.response.participationId
                     }; // add question answer data
 
       this.errorMessage=null
@@ -327,7 +328,7 @@ export default {
     }
   },
   mounted(){
-    console.log(this.questions)
+    //console.log(this.questions)
   }
 }
 </script>

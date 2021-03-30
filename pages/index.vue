@@ -58,11 +58,11 @@ export default {
   },
   mounted(){
     this.configData && this.configData.ExclusivePrizes&&this.configData.ExclusivePrizes.ExclusivePrizes && this.getListPrize();
-    if(this.$store.state.token){
+  //  if(this.$store.state.token){
          this.getAccount();
         // this.campaignType=='Experience' && this.getListWallet();
 
-    }
+  //  }
     if(this.$store.state.token||this.$store.state.goToSignin){
           var options = {
                 container: 'body',
