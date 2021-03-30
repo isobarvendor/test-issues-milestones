@@ -149,5 +149,8 @@ export default {
     min-height: 100px;
 }
      }
-
+.desc-text h1{
+    max-width: 270px !important;
+    margin: auto  !important;
+}
 </style>
