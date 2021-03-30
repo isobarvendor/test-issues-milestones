@@ -90,11 +90,11 @@ let language =
     periodDescription:"",
     signInButton:"LOG MASUK <BR/><small>untuk menangi hadiah</small>",
     menu:{
-      home:"Home",
+      home:"Laman utama",
       privacy:"Polisi Privasi",
       terms:"Terma dan syarat",
-      logout:"Logout",
-      myRewards:"My Rewards"
+      logout:"log keluar",
+      myRewards:"Hadiah anda"
     },
     countdown:{
       days:"DAYS",
@@ -122,11 +122,11 @@ let language =
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",
       errorDeclare:"Please declare your age",
-      errorPinCode:"Oops your pin code is invalid or already redeemed",
-      errorPinCode1:"Oops your pin code is invalid or already redeemed",
-      errorPinCode2:"Oops your pin code is invalid or already redeemed",
-      errorPinCode3:"Oops your pin code is invalid or already redeemed",
-      errorPinCode4:"Oops your pin code is invalid or already redeemed",
+      errorPinCode:"Maaf. Kod unik anda tidak sah atau sudah ditebus.",
+      errorPinCode1:"Maaf. Kod unik anda tidak sah atau sudah ditebus.",
+      errorPinCode2:"Maaf. Kod unik anda tidak sah atau sudah ditebus.",
+      errorPinCode3:"Maaf. Kod unik anda tidak sah atau sudah ditebus.",
+      errorPinCode4:"Maaf. Kod unik anda tidak sah atau sudah ditebus.",
       errorAPI:"Oops something went wrong please try again",
       errorMaxPhone:"You’ve reached the maximum phone number length",
       errorNumberPhone:"Please enter a number",
