@@ -14,7 +14,7 @@
   <div class="container  prize-chance black-red-border" id="prize-area">
       <div class="wrapper">
         <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage" :loading="loading"  />
-        <PrizeQuestion :questions="questions" @submit="submitQuestionWithSubmit" v-else-if="fromInstantWin&&!isPrizePage" :loading="loading" />
+        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="fromInstantWin&&!isPrizePage" :loading="loading" />
         <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="!fromInstantWin&&!isPrizePage" :loading="loading" />
         <div v-if="errorMessage" v-html="errorMessage" class="errorMessage"/>
       </div>
@@ -61,8 +61,7 @@ export default {
         submissionText:translation.submissionText,
         isPrizePage:false,
         fromInstantWin:false,
-        questionAnswerData:null,
-        participationId:-1,
+
         errorMessage:null,
         jooxMessage:null,
         loading:false,
@@ -152,9 +151,9 @@ export default {
     submitPrize(){
       this.isPrizePage=false;
       this.fromInstantWin=true;
-      this.startQuestion();
+      this.submitLuckyDrawAPI();
     },
-    startQuestion(){
+   /* startQuestion(){
          this.loading = true;
          this.$store.dispatch(START_QUESTION,'')
         .then((response)=>{
@@ -174,13 +173,13 @@ export default {
                   }
            })
 
-    },
+    },*/
     submitQuestion(data){
 
       this.submitLuckyDraw(data);
 
     },
-    submitQuestionWithSubmit(dataQuestion){
+    submitLuckyDrawAPI(){
       this.errorMessage=null
       this.loading = true;
       let request=this.request;
@@ -192,8 +191,6 @@ export default {
           // this.submitted=true;
           this.addGTMSuccess();
           this.response=response.data;
-          this.participationId=response.data.participationId;
-          this.submitLuckyDraw(dataQuestion);
            this.loading = false;
 
       })
@@ -237,14 +234,12 @@ export default {
      },
     submitLuckyDraw(data){
       let request = {
-                      id:this.questionAnswerData.id,
+                      id:this.response.data.quizId,
                       question:data.question,
                       answer:data.answer,
-                      participationId:this.questionAnswerData.participationId
+                      participationId:this.response.data.participationId
                     }; // add question answer data
-       if(this.participationId!=-1){
-        request = {...request, participationId:this.participationId}; // add participation id data
-      }
+
       this.errorMessage=null
       this.$store.dispatch(SEND_ANSWER,request)
         .then((response)=>{
@@ -324,9 +319,8 @@ export default {
       }
       else{
         this.isPrizePage=false;
-        this.participationId=prizewin.participationId;
          this.fromInstantWin=false;
-        this.startQuestion();
+        //this.startQuestion();
       }
 
 
