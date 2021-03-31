@@ -52,7 +52,7 @@
    <div class="prize-note-two" v-html="prize.note" v-if="themes==2">
    </div>
    <div class="prize-button-area center">
-      <audio controls v-if="playSound">
+      <audio controls v-if="playSound" controlsList="nodownload">
           <source :src="audio" type="audio/mpeg">
         </audio>
         <v-progress-circular

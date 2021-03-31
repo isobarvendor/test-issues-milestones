@@ -12,7 +12,7 @@
             </v-col>
         </v-row>
         <div class="audio-area">
-          <audio controls v-if="playSound">
+          <audio controls v-if="playSound" controlsList="nodownload">
                 <source :src="audio" type="audio/mpeg">
               </audio>
         </div>
