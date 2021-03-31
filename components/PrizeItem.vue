@@ -99,8 +99,7 @@ export default {
 
     },
     mounted(){
-
-
+      this.playSound=false;
     },
     methods:{
       copyVoucher(){
@@ -121,7 +120,7 @@ export default {
           window.getSelection().removeAllRanges()
       },
       playAgain(){
-        console.log('tesplay');
+        this.playSound=false;
         this.$emit("playAgain");
       },
       redeemMusic(link){
@@ -129,6 +128,7 @@ export default {
         this.playSound=true;
       },
       submitPrize(type){
+        this.playSound=false;
         if(type=='submission'){
           this.$emit('submitPrize');
         }else{
