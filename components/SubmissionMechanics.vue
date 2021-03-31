@@ -11,18 +11,12 @@
 
   </div>
   <div  v-else >
-  <!--div class="container  prize-chance black-red-border">
+  <div class="container  prize-chance black-red-border" id="prize-area">
       <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
-      <div v-else style="text-align:center">
-
-            <span v-html="thankYouMessage"></span>
-             <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain" id="participateAgain">{{submissionText.participateAgain}}</v-btn>
-            </div>
-
-      </div>
-
+        <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" @submitPrize="submitPrize"  v-if="isPrizePage" :loading="loading"  />
+        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="fromInstantWin&&!isPrizePage" :loading="loading" />
+        <PrizeQuestion :questions="questions" @submit="submitQuestion" v-else-if="!fromInstantWin&&!isPrizePage" :loading="loading" />
+        <div v-if="errorMessage" v-html="errorMessage" class="errorMessage"/>
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
@@ -33,12 +27,8 @@
         <span v-html="jooxMessage"></span>
 
     </div>
-  </div-->
-    <div class="container  prize-chance black-red-border">
-      <div class="wrapper">
-         <PrizeQuestion :questions="questions" />
-      </div>
-    </div>
+  </div>
+
   </div>
  </div>
 </template>
@@ -46,6 +36,7 @@
 <script>
 import Login from './SubmissionLogin'
 import Form from './SubmissionForm'
+import { SUBMIT_FORM, START_QUESTION, SEND_ANSWER } from '@/store/action_types';
 import {translation} from "@/constants/index"
 export default {
   name: "SubmissionMechanics",
@@ -60,37 +51,36 @@ export default {
   data() {
     return {
         prize:[],
-        submitted:true,
+        submitted:false,
+        attemptData:[],
         listenNowLink:'',
         thankYouMessage:"",
         request:{
           email:''
         },
-        questions:[{
-          question:"What is the latest tagline for Coca-Cola",
-          answers:[{
-           value:'1',
-           text:"Coke Side of Life"
-          },
-          {
-           value:'2',
-           text:"Together Tastes Better"
-          },
-           {
-           value:'3',
-           text:"Open Happiness"
-          },
-           {
-           value:'4',
-           text:"Taste the feeling"
-          }
-          ]
-        }],
-        submissionText:translation.submissionText
+        submissionText:translation.submissionText,
+        isPrizePage:false,
+        fromInstantWin:false,
+
+        errorMessage:null,
+        jooxMessage:null,
+        loading:false,
+        question:[]
     }
 
   },
     computed:{
+    getAttempt(){
+      return this.dataForm.attempts;
+    },
+    questions(){
+      let question= this.getAttempt[1] ? this.getAttempt[1].Question : null;
+      if(this.getAttempt[1]&&this.getAttempt[1].Question){
+        this.question[0] = question[Math.floor(Math.random() * question.length)];
+      }
+      //console.log(question)
+      return this.question;
+    },
     campaignType(){
       return this.dataForm;
     },
@@ -113,15 +103,190 @@ export default {
 
   methods: {
     playAgain(){
+       this.prize=[];
+      this.question=[];
       this.submitted=false;
-      this.prize=[];
+
+    },
+      generateRequest(currentAttempt){
+
+      if(currentAttempt>=this.getAttempt.length){
+        currentAttempt=this.getAttempt.length-1;
+      }
+
+      let mixCode=this.getAttempt[currentAttempt].mixCode;
+      let ngps=this.getAttempt[currentAttempt].NPGS;
+      let programId=null;
+      this.attemptData=this.getAttempt[currentAttempt];
+
+       if(mixCode.length>0){
+         // console.log(mixCode);
+          let programs=_.filter(mixCode,(a)=>{
+          return a.codeInitial!=null&&a.codeInitial.toUpperCase()==this.request.pin.charAt(0).toUpperCase()&&a.characterLimit==this.request.pin.length;
+        })
+        //console.log(programs);
+        let programsNull=_.filter(mixCode,(a)=>{
+          return (a.codeInitial==null||a.codeInitial=="")&&a.characterLimit==this.request.pin.length;
+        })
+        if(programs.length>0){
+          programId=programs[0].ProgrammeID;
+        }else{
+          programId=programsNull.length>0 ? programsNull[0].ProgrammeID : null;
+        }
+      }
+
+
+      if(!programId){
+        return false;
+      }
+      let request;
+        request={
+                    "mechanic" : this.getAttempt[currentAttempt].campaignType,
+                    "programmeId": programId,
+                    "configurationId": ngps[0].configID,
+                    "flowLabel": ngps[0].flowLabel
+        }
+        return request;
+    },
+    submitPrize(){
+      this.submitLuckyDrawAPI();
+    },
+   /* startQuestion(){
+         this.loading = true;
+         this.$store.dispatch(START_QUESTION,'')
+        .then((response)=>{
+          this.questionAnswerData = response.data;
+           this.loading = false;
+        })
+         .catch((error) =>{
+           this.loading = false;
+                 if(error.response && error.response.data.status=='201'){
+                    this.questionAnswerData = error.response.data.data;
+                 }
+                 if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
+           })
+
+    },*/
+    submitQuestion(data){
+
+      this.submitLuckyDraw(data);
+
+    },
+    submitLuckyDrawAPI(){
+      this.errorMessage=null
+      this.loading = true;
+      let request=this.request;
+      request['hasMore'] = true;
+      let changeRequest=this.generateRequest(1);
+      request = {...request, ...changeRequest}
+      this.$store.dispatch(SUBMIT_FORM,request)
+      .then((response)=>{
+          // this.submitted=true;
+          this.addGTMSuccess();
+          this.response=response.data;
+           this.loading = false;
+          this.isPrizePage=false;
+           this.fromInstantWin=true;
+
+      })
+       .catch((error) =>{
+                  this.loading=false;
+                    if(error.response){
+                    this.errorMessage=this.submissionText.errorAPI;
+                  }
+                   if(error.response && error.response.data.detail){
+                     this.errorMessage=this.submissionText.errorPinCode;
+                   }
+
+                 if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                    this.errorMessage=this.submissionText.errorPinCode1;
+                  }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+                    this.errorMessage=this.submissionText.errorPinCode4;
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                    this.errorMessage=this.submissionText.errorPinCode2;
+                  }
+                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                    this.errorMessage=this.submissionText.errorPinCode3;
+                  }
+                })
+    },
+
+    addGTMSuccess(){
+          this.$gtm.push({
+            'event' : 'event_form_submit',
+            'category' : 'form submit',
+            'action' : 'success',
+            'label' : 'rhythm sign up'
+      });
+     },
+    submitLuckyDraw(data){
+      //console.log(this.response)
+      let request = {
+                      id:this.response.quizId,
+                      question:data.question,
+                      answer:data.answer,
+                      participationId:this.response.participationId
+                    }; // add question answer data
+
+      this.errorMessage=null
+      this.$store.dispatch(SEND_ANSWER,request)
+        .then((response)=>{
+              let attemptData =this.attemptData;
+              //console.log("attemptData",attemptData)
+              let prize =[
+                    {
+                        text : attemptData.FormHeading.thankYouMessage,
+                        name : this.submissionText.luckyDrawSuccess,
+                        image:  '/img/landing/luckydraw_my.png' ,
+                        note : null
+                        ,button:[]
+                        ,havejoox:attemptData.FormHeading.Prize,
+                        isPlayAgain:true,
+                        code: null,
+                      subName:null
+                    }
+                ];
+                this.prize=prize;
+                this.jooxMessage=attemptData.FormHeading.Prize;
+                this.isPrizePage=true;
+                this.loading=false;
+        })
+         .catch((error) =>{
+            this.loading = false;
+                 if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }else{
+                    this.errorMessage="Failed sending answer. Please try again."
+                  }
+           })
+
+
     },
     submit(data){
       this.submitted=true;
       let prizewin=data.response;
       let attemptData =data.attemptData;
+      this.attemptData=data.attemptData;
       this.request=data.request;
+      this.response=prizewin;
       if(attemptData.campaignType == 'InstantWin'){
+        this.isPrizePage=true;
           let prize =[
               {
                   text : attemptData.FormHeading.thankYouMessage,
@@ -131,10 +296,20 @@ export default {
                   ,button:[{
                       id:"redeemNow",
                       text:this.submissionText.redeemPrize,
+                       type:"link",
                       link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
-                  }]
+                  },
+                    {
+                      id:"gotoquestions",
+                      text:this.submissionText.nextPrize,
+                      type:"submission",
+                      link:"#"
+                    }
+
+                  ]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
+                  isPlayAgain:false,
                 subName:null
               }
           ];
@@ -144,14 +319,17 @@ export default {
           this.jooxMessage=attemptData.FormHeading.Prize;
       }
       else{
-        this.thankYouMessage=attemptData.FormHeading.thankYouMessage;
-        this.listenNowLink="";
-        this.jooxMessage=attemptData.FormHeading.Prize;
+        this.isPrizePage=false;
+         this.fromInstantWin=false;
+        //this.startQuestion();
       }
 
 
     }
   },
+  mounted(){
+    //console.log(this.questions)
+  }
 }
 </script>
 
@@ -189,6 +367,11 @@ export default {
     padding:30px;
     font-weight: bold;
 }
-
+.errorMessage{
+  text-align: center;
+  color:red;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 
 </style>

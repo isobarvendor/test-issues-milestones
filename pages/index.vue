@@ -5,7 +5,7 @@
       <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
 
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
-      <Prizes v-if="configData&&notCountDown" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData.prizeList : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
+      <Prizes v-if="configData&&notCountDown" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
       <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
@@ -27,6 +27,7 @@ import Footer from '../components/Footer'
 import deepClone from 'deep-clone'
 import { GET_ACCOUNT,GET_LIST_WALLET, GET_LIST_PRIZE, GET_PHONE} from '@/store/action_types';
 import  VueScrollTo from 'vue-scrollto';
+import * as _ from 'lodash';
 
 
 //const campaignCoin = "coin"
@@ -42,7 +43,8 @@ export default {
     return{
       notCountDown:this.$store.state.isCampaignStarted,
       browserTitle:translation.browserTitle,
-      metaData:translation.meta
+      metaData:translation.meta,
+       listPrizesData:[],
     }
   },
   head() {
@@ -118,14 +120,20 @@ export default {
 
      },
         getListPrize(){
-          this.$store.dispatch(GET_LIST_PRIZE)
-                .then((response)=>{
-                })
-                .catch((error) =>{
+        let luckyDraw=_.filter(this.getAttempt,(a)=>{
+          return a.campaignType=='LuckyDraw';
+        })
+         let array=[];
+          for(let a=0; a<luckyDraw.length;a++){
+            this.$store.dispatch(GET_LIST_PRIZE,luckyDraw[a].NPGS[0].configID)
+            .then((response)=>{
+                this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
+                //console.log( this.listPrizesData);
+            })
+            .catch((error) =>{
 
-                })
-
-
+            })
+        }
      },
 
 
@@ -141,9 +149,10 @@ export default {
     campaignType(){
       return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
     },
-      listPrizesData(){
-      return this.$store.getters.getListPrize
-    }
+      getAttempt(){
+      return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.attempts : null;
+    },
+
   },
 
 }

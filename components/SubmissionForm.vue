@@ -30,7 +30,7 @@
 
     <div class="checkbox-area">
     <div class="inner-wrapper">
-       <div class="row top">
+       <!--div class="row top">
           <div class="col d-flex consent">
             <div class="checkbox">
               <label for="form_pp">
@@ -40,47 +40,34 @@
             </div>
             <div class="terms" v-html="submissionText.acceptPrivacy"></div>
           </div>
-        </div>
-    </div>
-
-   <v-row  class="top two-checkbox"  >
-    <v-col
-        cols="12"
-        md="6"
-        sm="6"
-        class="no-padding-top border-white-right"
-      >
-       <div class="row top">
+        </div-->
+         <div class="row top">
         <div class="col d-flex consent">
           <div class="checkbox">
             <label for="form_tnc">
-              <input type="checkbox" name="tnc" id="form_tnc" v-model="form.terms">
+              <input type="radio" name="ageConsent" id="form_tnc" v-model="form.ageConsent" value="above">
               <span></span>
             </label>
           </div>
           <div class="terms" v-html="submissionText.acceptTerm"></div>
         </div>
       </div>
-    </v-col>
-      <v-col
-        cols="12"
-        md="6"
-        sm="6"
-        class="no-padding-top"
-      >
+
           <div class="row top">
             <div class="col d-flex consent">
               <div class="checkbox">
                 <label for="form_age">
-                  <input type="checkbox" name="ageConsent" id="form_age" v-model="form.ageConsent">
+                  <input type="radio" name="ageConsent" id="form_age" v-model="form.ageConsent" value="below">
                   <span></span>
                 </label>
               </div>
               <div class="terms" v-html="submissionText.declareAge"></div>
             </div>
           </div>
-      </v-col>
-   </v-row>
+    </div>
+
+
+
     </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
@@ -88,7 +75,7 @@
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red">{{ errors.first('code') }}</span>
+             <span class="error-message-red">{{ errors.first('code') ? (errors.first('code').includes('required') ? submissionText.errorRequiredCode : errors.first('code')) : errors.first('code')  }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -99,9 +86,9 @@
       <div v-if="!image">
 
        <label for="file-upload" class="custom-file-upload">
-       <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload unique code image</span>
+       <img src="/img/icons/upload-icon.png"/> <span class="labels">{{submissionText.uploadButton }}</span>
       </label>
-       <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
+       <input id="file-upload" :value="filePath" name="upload" type="file"  v-validate="'required'" @change="onFileChange" >
       </div>
       <div v-else class="image-upload-container">
         <v-row no-gutters  class="center-layout" >
@@ -119,6 +106,7 @@
         <button class="remove-image" @click="removeImage">X</button>
       </div>
     </div>
+      <span class="error-message">{{ errors.first('upload') ? (errors.first('upload').includes('required') ? submissionText.errorRequiredUpload : errors.first('upload')) : errors.first('upload') }}</span>
 
       <div style="padding:20px"  v-if="loading">
       <v-progress-circular
@@ -202,8 +190,9 @@ export default {
         errorMessage:null,
         submitted:true,
         fileName:"",
+        filePath:null,
         image:'',
-        amazonImage:'',
+        amazonImage:null,
         loading:false,
         prizeWin:null,
         phoneCodeDisplay:"+"+this.$config.phoneCode,
@@ -310,7 +299,8 @@ export default {
                     "mechanic" : this.getAttempt[currentAttempt].campaignType,
                     "programmeId": programId,
                     "configurationId": ngps[0].configID,
-                    "flowLabel": ngps[0].flowLabel
+                    "flowLabel": ngps[0].flowLabel,
+                    "hasMore":false
         }
         if(this.loginInfo){
           //request["userId"]=this.loginInfo.uuid;
@@ -322,7 +312,7 @@ export default {
           request['pin']=this.form.code;
         }
         if(this.amazonImage){
-          request['imageurl']=this.amazonImage;
+          request['imageURL']=this.amazonImage;
         }
 
         return request;
@@ -332,13 +322,14 @@ export default {
       if (!files.length)
         return;
       let FileSize = files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 2) {
-           this.errorMessage ="Please upload file not more than 2 MB"
+        if (FileSize > 5) {
+           this.errorMessage ="Please upload file not more than 5 MB"
            return;
         }
       let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
       let filePath = e.target.value;
       this.fileName= e.target.files[0].name;
+      this.filePath=filePath;
       if(!allowedExtensions.exec(filePath)){
          this.errorMessage ="Please upload image or file"
            return;
@@ -358,8 +349,9 @@ export default {
       reader.readAsDataURL(file);
     },
     removeImage: function (e) {
-      this.image = '';
-
+      this.image = null;
+      this.amazonImage =null;
+       this.filePath = null;
     },
     async checkcurrentAttempt(){
       await this.$store.dispatch(CHECK_ATTEMPT)
@@ -368,7 +360,7 @@ export default {
       })
       .catch((error) =>{
         if(error){
-          this.currentAttempt=9999999;
+          this.currentAttempt=0;
         }
       });
     },
@@ -383,12 +375,12 @@ export default {
          if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
 
-            if(!this.form.privacy){
+           /* if(!this.form.privacy){
               this.loading=false;
              this.errorMessage=this.submissionText.errorPolicy;
              return false;
-           }
-             if(!this.form.terms&&!this.form.ageConsent){
+           }*/
+             if(!this.form.ageConsent){
              this.loading=false;
               this.errorMessage=this.submissionText.errorDeclare;
              return false;
@@ -399,7 +391,7 @@ export default {
 
             if(this.getAttempt)
             {
-               if(this.form.uploadFile){
+               if(this.form.uploadFile&&!this.amazonImage){
                 await this.uploadFile();
                }
 
@@ -414,7 +406,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, ageConsent:this.form.ageConsent  }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -477,15 +469,12 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
-           this.form.privacy=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
+         //  this.form.privacy=this.loginInfo.privacy;
+
         }
         await this.checkcurrentAttempt();
         if(this.currentAttempt>1){
-           this.form.terms=true;
-           this.form.privacy=true;
-           this.form.ageConsent=true;
+        //   this.form.privacy=true;
         }
     },
 
@@ -522,17 +511,22 @@ export default {
   watch:{
      "form.phoneNumber": function (val) {
        let envs=this.$config;
+       if(val.length==1){
+         if(val=="0"){
+            this.form.phoneNumber="";
+         }
+       }
        if((val.length)>envs.maxPhoneNumber){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'You reach maximum phone number length'
+          msg: this.submissionText.errorMaxPhone
         });
        }else if(isNaN(val)){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'Please enter a number'
+          msg: this.submissionText.errorNumberPhone
         });
        }
        else{

@@ -991,7 +991,7 @@ form {
        border: solid 1px #ffffff;
        justify-content: center;
        text-align: center;
-       padding: 20px;
+       padding: 20px !important;
        margin-bottom: 0px;
        .participate-image{
          max-height: 150px;
@@ -1074,6 +1074,12 @@ form {
 .prize-section{
   background-color: #1d1d1b;
   position: relative;
+  .header{
+    text-align: center!important;
+  }
+  .all-prize-area{
+    z-index: 1;
+  }
   .background-image{
     width: 100%;
     position: absolute;
@@ -1220,7 +1226,7 @@ form {
             z-index: -1;
           }
           .prize-desc{
-            max-width: 300px;
+            max-width: 400px;
             margin: auto;
             z-index: 1;
             .desc-text{

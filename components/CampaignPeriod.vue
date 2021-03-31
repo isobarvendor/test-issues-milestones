@@ -36,8 +36,8 @@
         class="desc-container"
       >
           <div class="periode-container">
-            <p class="campaign-period" v-html="this.data.Title"></p>
-            <!--p class="campaign-period" v-html="startdate+' – '+enddate"></p-->
+            <p v-html="this.data.Title"></p>
+            <p class="campaign-period" v-html="startdate+' – '+enddate"></p>
           </div>
           <div class="period-desc-container">
               {{periodDescription}}
@@ -109,10 +109,10 @@ export default {
   },
   computed:{
     startdate (){
-        return this.data && moment(this.data.fromDate).format("Do MMMM YYYY")
+        return this.data && moment(this.data.fromDate).format("DD MMMM YYYY")
     },
     enddate (){
-      return this.data && moment(this.data.toDate).format("Do MMMM YYYY");
+      return this.data && moment(this.data.toDate).format("DD MMM YYYY");
     },
     loginInfo(){
        return this.$store.state.login;

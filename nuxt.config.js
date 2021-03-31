@@ -40,7 +40,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'robots', content: 'noindex, nofollow' },
-      { hid: 'description', name: 'description', content:  'Please come back on 1st April 2021. Something exciting awaits you!' }
+      { hid: 'description', name: 'description', content:  'Something exciting awaits you!' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'img/icons/favicon.png' }

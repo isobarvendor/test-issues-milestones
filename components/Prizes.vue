@@ -8,12 +8,13 @@
         <div class="header" v-html="item.title"></div>
         <p v-html="item.subTitle"></p>
         <div class="joox-image">
-          <img :src="item.imageUpload ? item.imageUpload.url : '/img/landing/joox image.png'" />
+          <img class="desktop-img" :src="item.imageUpload ? item.imageUpload.url : '/img/landing/joox image.png'" />
+          <img class="mobile-img"  :src="item.imageUploadMobile ? item.imageUploadMobile.url : (item.imageUpload ? item.imageUpload.url  :'/img/landing/joox image.png')" />
         </div>
 
 
     </div>
-    <div v-if="exclusivePrizes">
+    <div v-if="exclusivePrizes" class="all-prize-area">
     <div class="header">{{data.title}}</div>
     <!--div v-html="data.description"></div-->
     <div class="container prize-swiper-container">
@@ -55,14 +56,17 @@ export default {
       swiperOption: {
         slidesPerView: 2,
         spaceBetween: 10,
+         autoplay: {
+          delay: 5000,
+        },
         breakpoints: {
           // when window width is >= 320px
           768: {
-            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
+            slidesPerView: 2,
             spaceBetween: 10,
           },
           992: {
-            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
+            slidesPerView: 3,
             spaceBetween: 20,
           },
         },
@@ -107,5 +111,20 @@ export default {
     }
   }
 }
+}
+.desktop-img{
+  display: block;
+}
+.mobile-img {
+  display: none;
+}
+@media only screen and (max-width: 680px) {
+  .desktop-img{
+    display: none;
+  }
+  .mobile-img {
+    display: block;
+  }
+
 }
 </style>
