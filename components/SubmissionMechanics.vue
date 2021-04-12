@@ -126,15 +126,10 @@ export default {
 
       }).catch((error)=>{
         this.winFirstPrize=false;
-       if(error.response){
-          this.errorMessage=this.submissionText.errorAPI;
-        }
-        if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-              this.errorMessage=this.submissionText.errorPinCode1;
-            }
-        if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+
+        if(error.response){
           //this.errorMessage=this.submissionText.errorNormalPrize;
-          let  prize =[
+          let prize =[
             {
                 text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
                 ,name:this.submissionText.hardLuckTitle
@@ -156,12 +151,6 @@ export default {
             this.errorMessage="";
         }
 
-        if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-          this.errorMessage=this.submissionText.errorPinCode2;
-        }
-          if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-          this.errorMessage=this.submissionText.errorPinCode3;
-        }
           this.loading=false;
       })
     }else{
@@ -198,12 +187,7 @@ export default {
 
       }).catch((error)=>{
               if(error.response){
-                this.errorMessage=this.submissionText.errorAPI;
-                }
-              if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                      this.errorMessage=this.submissionText.errorPinCode1;
-                    }
-                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+
                 //this.errorMessage=this.submissionText.errorNormalPrize;
                         this.errorMessage="";
                           if(a==0){
@@ -223,12 +207,7 @@ export default {
                                 this.prize=prize;
                        }
               }
-                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                      this.errorMessage=this.submissionText.errorPinCode2;
-                    }
-                      if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                      this.errorMessage=this.submissionText.errorPinCode3;
-                    }
+
                   this.loading=false;
 
             })
