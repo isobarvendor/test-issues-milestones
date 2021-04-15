@@ -255,6 +255,7 @@ export default {
             }
         }
 
+
     }
     .image-fluid{
         img{
@@ -375,5 +376,14 @@ export default {
   position: absolute;
   top:30%;
   right: 30px;
+}
+.desc-container{
+  .v-data-table.elevation-1.theme--dark{
+    background-color: #de0a1c !important;
+    border-color: #de0a1c !important;
+  }
+  .v-data-table tbody tr:hover{
+    background-color: #de0a1c !important;
+  }
 }
 </style>
