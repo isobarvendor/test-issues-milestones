@@ -8,8 +8,8 @@
                 <h1>YOUR REWARDS</h1>
             </div>
             <div class="rewards-area">
-                <div v-for="item in rewards" :key="item.id">
-                    <MyRewardItem :reward="item" />
+                <div v-for="item in rewards" :key="item.id" >
+                    <MyRewardItem :reward="item" v-if="item.title" />
                 </div>
             </div>
 
@@ -57,22 +57,40 @@ export default {
       let configID=this.$config.configID.split(",");
       if(configID.length>0){
             let array=[];
+            let showOnce=0;
             for(let a=0;a<configID.length;a++){
                 this.$store.dispatch(GET_MY_PRIZE,configID[a])
                   .then((response)=>{
-
                     let res = _.map(response.data.vouchers,(o,index)=>{
+                      if(this.$config.prizeShowOnce.includes(o.prizeId)){
+                        showOnce++;
+                      }
+                      if(showOnce==1||!this.$config.prizeShowOnce.includes(o.prizeId)){
                         return {
                           id:index,
                           title:o.name,
-                          date:moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
+                          date:this.$config.prizeShowOnce.includes(o.prizeId)? null : moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
                           link:o.redemptionLink,
                           image:o.imgUrl,
-                          code:o.voucher,
+                          code:this.$config.prizeShowOnce.includes(o.prizeId)? null : o.voucher,
                           audio:o.redemptionLink && o.redemptionLink.includes(".mp3") ? o.redemptionLink : null,
                           description:o.redeemDescription
                         }
+                      }else{
+                        return {
+                          id:null,
+                          title:null,
+                          date:null,
+                          link:null,
+                          image:null,
+                          code:null,
+                          audio: null,
+                          description:null
+                        }
+                      }
+
                     });
+
                    this.rewards=[...this.rewards,...[...array, ...res]];
                 })
               .catch((error) =>{
