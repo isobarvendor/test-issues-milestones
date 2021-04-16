@@ -138,8 +138,9 @@ let language =
         errorRequiredPhone:"The phone number is required",
         textPage:"Bạn vừa nhập Mã dự thưởng từ sản phẩm chai nhựa Coca-Cola 300ml hoặc Lon Coca-Cola 235ml. Bạn có 2 cơ hội rút thăm trúng thưởng",
         hardLuckHeader:"",
-        hardLuckTitle:"Bạn chưa may mắn lần này. Nhưng vẫn còn nhiều quà hấp dẫn đang chờ. Hãy tiếp tục khui Coke và tham gia bạn nhé!",
-        hardLuckImage:"/img/landing/hardluck.png"
+        hardLuckTitle:"Lượt nghe một bài nhạc độc quyền của Coca-Cola",
+        hardLuckImage:"https://d1tnwdlrciourl.cloudfront.net/prizeImages/1e0b8kkwap0rj/kkwbxo87/ExclusiveSong.png",
+        hardLuckMusic:"https://elasticbeanstalk-prod-appcontent-016176.s3-ap-southeast-1.amazonaws.com/can_mong_tay_master_11-4_fix.mp3",
       },
       winnerText:{
         header:"WINNER LIST",

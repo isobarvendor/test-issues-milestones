@@ -29,7 +29,7 @@
               <h3 v-html="item.shortDescription"></h3>
               {{item.name}} <BR/>
               <!--div  v-if="item.configurationId==zaloPayConfig"><span v-html="item.description"> </span><BR/></div-->
-              Total : {{item.amountAvailable}}
+              <span v-if="checkMusic(item.redemptionLink)"> Total : {{item.amountAvailable}}</span>
             </div>
           </div>
         </swiper-slide>
@@ -90,6 +90,15 @@ export default {
     prize:null,
     ngpsPrize:{},
     exclusivePrizes:null
+  },
+  methods:{
+    checkMusic(link){
+      if(link&&link.includes("mp3")){
+        return false;
+      }else{
+        return true;
+      }
+    }
   },
   beforeMount() {},
 };

@@ -136,8 +136,13 @@ export default {
                 ,note:null
                  ,image:this.submissionText.hardLuckImage
                 ,havejoox:false
-                ,button:[{
-                    text:this.submissionText.startRedeeming,
+                ,button:[
+                  { text:this.submissionText.redeemPrize,
+                    link:this.submissionText.hardLuckMusic,
+                    id:"RedeemMusic"
+                  }
+                ,{
+                    text:this.submissionText.redeemNextPrize,
                     type:"submission",
                     id:1
                 }],
@@ -198,7 +203,10 @@ export default {
                                     ,note:null
                                     ,image:this.submissionText.hardLuckImage
                                     ,havejoox:false
-                                    ,button:[],
+                                    ,button:[ { text:this.submissionText.redeemPrize,
+                                          link:this.submissionText.hardLuckMusic,
+                                          id:"RedeemMusic"
+                                        }],
                                     code:null,
                                     subName:null,
                                     isPlayAgain:false
@@ -328,11 +336,19 @@ export default {
                 ,note:null
                 ,image:this.submissionText.hardLuckImage
                 ,havejoox:false
-                ,button:button ?[{
+                ,button:button ?[
+                  { text:this.submissionText.redeemPrize,
+                    link:this.submissionText.hardLuckMusic,
+                    id:"RedeemMusic"
+                  },
+                    {
                     text:this.submissionText.startRedeeming,
                     type:"submission",
                     id:1
-                }] :[],
+                }] :[ { text:this.submissionText.redeemPrize,
+                    link:this.submissionText.hardLuckMusic,
+                    id:"RedeemMusic"
+                  }],
                 code:null,
                 subName:null,
                 isPlayAgain:false
@@ -397,7 +413,10 @@ export default {
                 ,note:null
                  ,image:this.submissionText.hardLuckImage
                 ,havejoox:false
-                ,button:[],
+                ,button:[{ text:this.submissionText.redeemPrize,
+                    link:this.submissionText.hardLuckMusic,
+                    id:"RedeemMusic"
+                  }],
                 code:null,
                 subName:null,
                 isPlayAgain:false
