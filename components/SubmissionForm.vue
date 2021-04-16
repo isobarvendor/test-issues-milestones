@@ -199,6 +199,7 @@ export default {
     maxPhoneNumber(){
       return this.$config.maxPhoneNumber;
     },
+
      /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
@@ -462,11 +463,11 @@ export default {
             this.form.phoneNumber="";
          }
        }
-       if((val.length)>envs.maxPhoneNumber){
+       if(val.length>envs.maxPhoneNumber||val.length<envs.minPhoneNumber){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'You’ve reached the maximum phone number length'
+          msg: 'Please insert a valid number'
         });
        }else if(isNaN(val)){
          this.errors.clear();
