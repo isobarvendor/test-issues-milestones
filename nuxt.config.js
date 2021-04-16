@@ -20,6 +20,7 @@ export default {
   publicRuntimeConfig: {
     //baseURL: 'https://nuxtjs.org'
     phoneCode: process.env.phoneCode,
+    minPhoneNumber:process.env.minPhoneNumber,
     maxPhoneNumber: process.env.maxPhoneNumber,
     voucherParameter: process.env.voucherParameter,
     configID: process.env.configID,
