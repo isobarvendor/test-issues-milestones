@@ -45,32 +45,67 @@
         <v-row no-gutters class="logo-title">
                     <h1>{{winnerText.header}}</h1><BR/><BR/><BR/>
             </v-row>
-          <v-card dark v-if="winnerLists.length>0">
-          <v-card-title>
+          <span v-if="showWinnerDetail">
+              <v-card dark v-if="winnerWeekDetail.length>0">
+              <v-card-title>
 
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-card-title>
-          <v-data-table
-          dark
-              :headers="headers"
-            :items="winnerLists"
-            :items-per-page="10"
-             :search="search"
-       class="elevation-1"
-          ></v-data-table>
-        </v-card>
-        <v-row v-else class="center">
-          <h1 >{{winnerText.nowinner}}</h1>
-        </v-row>
+                <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
+                <v-text-field
+                  v-model="search"
+                  append-icon="mdi-magnify"
+                  label="Search"
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-card-title>
+              <v-data-table
+              dark
+                  :headers="headers"
+                :items="winnerWeekDetail"
+                :items-per-page="10"
+                :search="search"
+          class="elevation-1"
+              ></v-data-table>
+            </v-card>
+            <v-row v-else class="center">
+              <h1 >{{winnerText.nowinner}}</h1>
+            </v-row>
+          </span>
+          <span v-else>
+             <div class="winner-body" >
+                <div class="first-box box" v-for="(item2, index) in winnerLists"  :key="'winner'+index" @click="showWinners(winnerLists[0].week)"  >
+                      <div class="week">
+                      March
+                      </div>
+                      <div class="date">
+                        {{ winnerLists[0].fromDate}} -  {{winnerLists[0].toDate}}
+                      </div>
+                </div>
+                <div class="two-container"   v-for="(item, index) in winnerListsSecond"
+                  :key="'winner'+index"   >
+                    <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
+                        <div class="week">
+                      March
+                      </div>
+                      <div class="date">
+                        {{ item2.fromDate}} -  {{item2.toDate}}
+                      </div>
+                    </div>
+                     <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
+                        <div class="week">
+                      March
+                      </div>
+                      <div class="date">
+                        {{ item2.fromDate}} -  {{item2.toDate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+          </span>
 
 
       </v-col>
@@ -118,8 +153,9 @@ export default {
     howData:null
   },
   computed:{
-    winnerLists(){
-      return _.map(this.winners,(o,index)=>{
+    winnerWeekDetail(){
+      console.log(_.filter(this.winners,(o)=>{ return o.week == this.winnerWeek}));
+      return _.map(_.filter(this.winners,(i)=>{ return i.week == this.winnerWeek}),(o,index)=>{
           return {
               no:index+1,
               name:o.name,
@@ -128,8 +164,25 @@ export default {
               prize:o.prize
           }
       });
+      console(_.map(_.filter(this.winners,(i)=>{ return i.week == this.winnerWeek}),(o,index)=>{
+          return {
+              no:index+1,
+              name:o.name,
+              email:o.email ? this.maskEmail(o.email) : null,
+              phone:o.phone ? this.maskEmail(o.phone) : null,
+              prize:o.prize
+          }
+      }));
     },
-
+    winnerLists(){
+        return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.fromDate!=""&&o.toDate!="" }),'week');
+    },
+    winnerListsSecond(){
+      let secondRow=deepClone(this.winnerLists);
+      let secondRowResult=secondRow.splice(0, secondRow.length);
+     //
+      return _.chunk(secondRowResult, 2);
+    },
 
   },
   methods:{
@@ -198,7 +251,7 @@ export default {
     .winner-body{
         display: flex;
         flex-direction: column;
-        margin: 120px 50px;
+        margin-top:50px;
         padding: 0px 15px;
         .title{
             font-size: 30px;
