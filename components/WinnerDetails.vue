@@ -75,32 +75,25 @@
           </span>
           <span v-else>
              <div class="winner-body" >
-                <div class="first-box box" v-for="(item2, index) in winnerLists"  :key="'winner'+index" @click="showWinners(winnerLists[0].week)"  >
+                <div class="first-box box"  :key="'winner'+index" @click="showWinners(winnerLists[0].week)" v-if="winnerLists.length==1" >
                       <div class="week">
-                      March
+                      {{monthName(winnerLists[0].week)}}
                       </div>
                       <div class="date">
-                        {{ winnerLists[0].fromDate}} -  {{winnerLists[0].toDate}}
+                        {{ startMonth(winnerLists[0].week)}} -  {{endMonth(winnerLists[0].week)}}
                       </div>
                 </div>
-                <div class="two-container"   v-for="(item, index) in winnerListsSecond"
+                <div v-else :class="item.length==2 ? 'two-container' : 'top-margin'"   v-for="(item, index) in winnerListsSecond"
                   :key="'winner'+index"   >
                     <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
                         <div class="week">
-                      March
+                      {{monthName(item2.week)}}
                       </div>
                       <div class="date">
-                        {{ item2.fromDate}} -  {{item2.toDate}}
+                        {{ startMonth(item2.week)}} -  {{endMonth(item2.week)}}
                       </div>
                     </div>
-                     <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
-                        <div class="week">
-                      March
-                      </div>
-                      <div class="date">
-                        {{ item2.fromDate}} -  {{item2.toDate}}
-                      </div>
-                    </div>
+
                   </div>
                 </div>
 
@@ -142,7 +135,6 @@ export default {
           },
           { text: 'Name', value: 'name', align: 'center' },
           { text: 'Email', value: 'email' , align: 'center' },
-          { text: 'Phone', value: 'phone' , align: 'center' },
           { text: 'Prize', value: 'prize' , align: 'center' },
         ]
     };
@@ -160,19 +152,9 @@ export default {
               no:index+1,
               name:o.name,
               email:o.email ? this.maskEmail(o.email) : null,
-              phone:o.phone ? this.maskEmail(o.phone) : null,
               prize:o.prize
           }
       });
-      console(_.map(_.filter(this.winners,(i)=>{ return i.week == this.winnerWeek}),(o,index)=>{
-          return {
-              no:index+1,
-              name:o.name,
-              email:o.email ? this.maskEmail(o.email) : null,
-              phone:o.phone ? this.maskEmail(o.phone) : null,
-              prize:o.prize
-          }
-      }));
     },
     winnerLists(){
         return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.fromDate!=""&&o.toDate!="" }),'week');
@@ -193,6 +175,15 @@ export default {
     },
     formatDate(date){
       return  moment(date).format("DD/MM/YYYY")
+    },
+    monthName(month){
+      return moment().month(month).format("MMMM");
+    },
+    startMonth(month){
+      return moment().clone().month(month).startOf('month').format('DD MMM YYYY');
+    },
+     endMonth(month){
+      return moment().clone().month(month).endOf('month').format('DD MMM YYYY');
     },
     close(){
        if(this.showWinnerDetail){
@@ -438,5 +429,8 @@ export default {
   .v-data-table tbody tr:hover{
     background-color: #de0a1c !important;
   }
+}
+.top-margin{
+  margin-top: 20px;
 }
 </style>

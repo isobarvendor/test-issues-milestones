@@ -35,10 +35,10 @@
         <div class="prize-swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
-    <!--div v-if="winners && winners.luckyWinnerSection" class="winners-section">
+    <div v-if="winners && winners.luckyWinnerSection" class="winners-section">
       <div class="header">{{winners.title}}</div>
       <a class="button" href="/winners">{{winners.ButtonTitle}}</a>
-    </div-->
+    </div>
     </div>
   </div>
 </template>
@@ -101,6 +101,7 @@ export default {
     margin:auto;
     display: table;
     margin-top: 35px;
+    margin-bottom: 35px;
     padding: 20px 90px;
   }
 }
