@@ -177,13 +177,13 @@ export default {
       return  moment(date).format("DD/MM/YYYY")
     },
     monthName(month){
-      return moment().month(month).format("MMMM");
+      return moment().month(month-1).format("MMMM");
     },
     startMonth(month){
-      return moment().clone().month(month).startOf('month').format('DD MMM YYYY');
+      return moment().clone().month(month-1).startOf('month').format('DD MMM YYYY');
     },
      endMonth(month){
-      return moment().clone().month(month).endOf('month').format('DD MMM YYYY');
+      return moment().clone().month(month-1).endOf('month').format('DD MMM YYYY');
     },
     close(){
        if(this.showWinnerDetail){
@@ -203,7 +203,7 @@ export default {
       this.winnerWeek=week;
     },
     maskEmail(email){
-      return this.replace_String(email,5,"*");
+      return this.replace_String(email,6,"*");
     }
   },
   beforeMount() {},

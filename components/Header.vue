@@ -87,10 +87,16 @@
                             <a href="/" id="home">{{menu.home}}</a>
                         </div>
                     </div>
-                       <div class="img-text" v-if="logged">
+                    <div class="img-text" v-if="logged">
                         <img src="/img/icons/wallet.png"/>
                         <div>
                             <a data-nav="myrewards" id="myReward" @click="clickNav">{{menu.myRewards}}</a>
+                        </div>
+                    </div>
+                    <div class="img-text" v-if="logged">
+                        <img src="/img/icons/wallet.png"/>
+                        <div>
+                            <a data-nav="winners" id="winners" @click="clickNav">{{menu.winners}}</a>
                         </div>
                     </div>
 
