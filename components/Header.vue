@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="img-text" v-if="logged">
-                        <img src="/img/icons/wallet.png"/>
+                        <img src="/img/icons/winners.png"/>
                         <div>
                             <a data-nav="winners" id="winners" @click="clickNav">{{menu.winners}}</a>
                         </div>
