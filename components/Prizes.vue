@@ -14,7 +14,7 @@
 
     </div>
     <div v-if="exclusivePrizes">
-    <div class="header">{{data.title}}</div>
+    <div class="header" style="text-align:center">{{data.title}}</div>
     <!--div v-html="data.description"></div-->
     <div class="container prize-swiper-container">
       <swiper class="swiper prize-swiper" :options="swiperOption">
@@ -58,11 +58,11 @@ export default {
         breakpoints: {
           // when window width is >= 320px
           768: {
-            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
+            slidesPerView: 3,
             spaceBetween: 10,
           },
           992: {
-            slidesPerView: this.ngpsPrize.length>2 ? 3 : 2,
+            slidesPerView: 3,
             spaceBetween: 20,
           },
         },

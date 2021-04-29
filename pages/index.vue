@@ -5,7 +5,7 @@
       <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
 
       <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
-      <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData.prizeList : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
+      <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
       <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
@@ -42,7 +42,8 @@ export default {
     return{
       notCountDown:this.$store.state.isCampaignStarted,
       browserTitle:translation.browserTitle,
-      metaData:translation.meta
+      metaData:translation.meta,
+      listPrizesData:[]
     }
   },
   head() {
@@ -118,12 +119,20 @@ export default {
 
      },
         getListPrize(){
-          this.$store.dispatch(GET_LIST_PRIZE)
-                .then((response)=>{
-                })
-                .catch((error) =>{
+           let configID=this.$config.showPrizeList.split(",");
+              if(configID.length>0){
+              let array=[];
+              for(let a=0;a<configID.length;a++){
+                  this.$store.dispatch(GET_LIST_PRIZE,configID[a])
+                  .then((response)=>{
+                    this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
+                  })
+                  .catch((error) =>{
 
-                })
+                  })
+              }
+            }
+
 
 
      },
@@ -141,9 +150,7 @@ export default {
     campaignType(){
       return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
     },
-      listPrizesData(){
-      return this.$store.getters.getListPrize
-    }
+
   },
 
 }
