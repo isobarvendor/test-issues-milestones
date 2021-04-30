@@ -119,20 +119,20 @@ export default {
 
      },
         getListPrize(){
-           let configID=this.$config.showPrizeList.split(",");
-              if(configID.length>0){
-              let array=[];
-              for(let a=0;a<configID.length;a++){
-                  this.$store.dispatch(GET_LIST_PRIZE,configID[a])
-                  .then((response)=>{
-                    this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
-                  })
-                  .catch((error) =>{
 
-                  })
-              }
-            }
+        let luckyDraw=_.filter(this.getAttempt,(a)=>{
+          return a.campaignType=='LuckyDraw';
+        })
+         let array=[];
+          for(let a=0; a<luckyDraw.length;a++){
+            this.$store.dispatch(GET_LIST_PRIZE,luckyDraw[a].NPGS[0].configID)
+            .then((response)=>{
+                this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
+            })
+            .catch((error) =>{
 
+            })
+        }
 
 
      },
@@ -150,6 +150,10 @@ export default {
     campaignType(){
       return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.campaignTypes.mechanicType : null;
     },
+      getAttempt(){
+      return this.$store.getters.getCMSConfig ? this.$store.getters.getCMSConfig.attempts : null;
+    },
+
 
   },
 
