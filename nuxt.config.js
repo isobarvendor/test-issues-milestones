@@ -24,7 +24,6 @@ export default {
     minPhoneNumber:process.env.minPhoneNumber,
     maxPhoneNumber:process.env.maxPhoneNumber,
     voucherParameter:process.env.voucherParameter,
-    showPrizeList:process.env.showPrizeList,
     gtm: {
       id: process.env.GTM
     }
