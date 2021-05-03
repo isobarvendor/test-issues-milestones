@@ -55,7 +55,7 @@
                 <v-text-field
                   v-model="search"
                   append-icon="mdi-magnify"
-                  label="Search"
+                  label="Cari"
                   single-line
                   hide-details
                 ></v-text-field>
