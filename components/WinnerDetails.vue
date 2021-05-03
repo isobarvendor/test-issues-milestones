@@ -135,6 +135,7 @@ export default {
           },
           { text: 'Name', value: 'name', align: 'center' },
           { text: 'Email', value: 'email' , align: 'center' },
+          { text: 'Phone', value: 'phone' , align: 'center' },
           { text: 'Prize', value: 'prize' , align: 'center' },
         ]
     };
@@ -152,6 +153,7 @@ export default {
               no:index+1,
               name:o.name,
               email:o.email ? this.maskEmail(o.email) : null,
+              phone:o.phone ? this.maskEmail(o.phone) : null,
               prize:o.prize
           }
       });
