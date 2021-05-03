@@ -66,8 +66,8 @@ let language =
       luckyDrawSuccess:"YOU HAVE SUCCESSFULLY ENROLLED IN THE WEEKLY LUCKY DRAW!"
     },
     winnerText:{
-      header:"WINNER LIST",
-      nowinner:"Coming soon"
+      header:"SENARAI PEMENANG",
+      nowinner:"Coming soon",
     },
     globalError:{
       errorAPI:"Oops something went wrong",
@@ -107,7 +107,7 @@ let language =
       header:"Enter your code",
       hello:"Hai",
       siginHeader:"Log masuk atau  <br>daftar akaun untuk menyertai peraduan",
-      name:"Name",
+      name:"Nama",
       email:"Email",
       phoneNumber:"Nombor telefon",
       acceptTerm:'Saya berumur 18 tahun dan ke atas. Saya bersetuju dengan <a href="/tnc">terma dan syarat promosi</a>, serta menerima <a href="/privacy">polisi privasi</a>.',
@@ -143,7 +143,7 @@ let language =
       luckyDrawSuccess:"Sila datang lagi untuk memenangi lebih hadiah menarik!"
     },
     winnerText:{
-      header:"WINNER LIST",
+      header:"SENARAI PEMENANG",
       nowinner:"Coming soon"
     },
     globalError:{
