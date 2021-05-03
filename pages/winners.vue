@@ -44,7 +44,12 @@ export default {
     },
   },
   mounted() {
+      if(!this.$store.state.token){
+       location.assign("/");
+     }
+
     this.getListWinners();
+
   }
 };
 </script>
