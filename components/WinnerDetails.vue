@@ -45,32 +45,60 @@
         <v-row no-gutters class="logo-title">
                     <h1>{{winnerText.header}}</h1><BR/><BR/><BR/>
             </v-row>
-          <v-card dark v-if="winnerLists.length>0">
-          <v-card-title>
+          <span v-if="showWinnerDetail">
+              <v-card dark v-if="winnerWeekDetail.length>0">
+              <v-card-title>
 
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-text-field
-              v-model="search"
-              append-icon="mdi-magnify"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-card-title>
-          <v-data-table
-          dark
-              :headers="headers"
-            :items="winnerLists"
-            :items-per-page="10"
-             :search="search"
-       class="elevation-1"
-          ></v-data-table>
-        </v-card>
-        <v-row v-else class="center">
-          <h1 >{{winnerText.nowinner}}</h1>
-        </v-row>
+                <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
+                <v-text-field
+                  v-model="search"
+                  append-icon="mdi-magnify"
+                  label="Search"
+                  single-line
+                  hide-details
+                ></v-text-field>
+              </v-card-title>
+              <v-data-table
+              dark
+                  :headers="headers"
+                :items="winnerWeekDetail"
+                :items-per-page="10"
+                :search="search"
+          class="elevation-1"
+              ></v-data-table>
+            </v-card>
+            <v-row v-else class="center">
+              <h1 >{{winnerText.nowinner}}</h1>
+            </v-row>
+          </span>
+          <span v-else>
+             <div class="winner-body" >
+                <div class="first-box box"  :key="'winner'+index" @click="showWinners(winnerLists[0].week)" v-if="winnerLists.length==1" >
+                      <div class="week">
+                      {{monthName(winnerLists[0].week)}}
+                      </div>
+                      <div class="date">
+                        {{ startMonth(winnerLists[0].week)}} -  {{endMonth(winnerLists[0].week)}}
+                      </div>
+                </div>
+                <div v-else :class="item.length==2 ? 'two-container' : 'top-margin'"   v-for="(item, index) in winnerListsSecond"
+                  :key="'winner'+index"   >
+                    <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
+                        <div class="week">
+                      {{monthName(item2.week)}}
+                      </div>
+                      <div class="date">
+                        {{ startMonth(item2.week)}} -  {{endMonth(item2.week)}}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+          </span>
 
 
       </v-col>
@@ -118,8 +146,9 @@ export default {
     howData:null
   },
   computed:{
-    winnerLists(){
-      return _.map(this.winners,(o,index)=>{
+    winnerWeekDetail(){
+      console.log(_.filter(this.winners,(o)=>{ return o.week == this.winnerWeek}));
+      return _.map(_.filter(this.winners,(i)=>{ return i.week == this.winnerWeek}),(o,index)=>{
           return {
               no:index+1,
               name:o.name,
@@ -129,7 +158,15 @@ export default {
           }
       });
     },
-
+    winnerLists(){
+        return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.fromDate!=""&&o.toDate!="" }),'week');
+    },
+    winnerListsSecond(){
+      let secondRow=deepClone(this.winnerLists);
+      let secondRowResult=secondRow.splice(0, secondRow.length);
+     //
+      return _.chunk(secondRowResult, 2);
+    },
 
   },
   methods:{
@@ -140,6 +177,15 @@ export default {
     },
     formatDate(date){
       return  moment(date).format("DD/MM/YYYY")
+    },
+    monthName(month){
+      return moment().month(month-1).format("MMMM");
+    },
+    startMonth(month){
+      return moment().clone().month(month-1).startOf('month').format('DD MMM YYYY');
+    },
+     endMonth(month){
+      return moment().clone().month(month-1).endOf('month').format('DD MMM YYYY');
     },
     close(){
        if(this.showWinnerDetail){
@@ -159,7 +205,7 @@ export default {
       this.winnerWeek=week;
     },
     maskEmail(email){
-      return this.replace_String(email,5,"*");
+      return this.replace_String(email,6,"*");
     }
   },
   beforeMount() {},
@@ -198,7 +244,7 @@ export default {
     .winner-body{
         display: flex;
         flex-direction: column;
-        margin: 120px 50px;
+        margin-top:50px;
         padding: 0px 15px;
         .title{
             font-size: 30px;
@@ -254,6 +300,7 @@ export default {
                 }
             }
         }
+
 
     }
     .image-fluid{
@@ -375,5 +422,17 @@ export default {
   position: absolute;
   top:30%;
   right: 30px;
+}
+.desc-container{
+  .v-data-table.elevation-1.theme--dark{
+    background-color: #de0a1c !important;
+    border-color: #de0a1c !important;
+  }
+  .v-data-table tbody tr:hover{
+    background-color: #de0a1c !important;
+  }
+}
+.top-margin{
+  margin-top: 20px;
 }
 </style>

@@ -17,7 +17,8 @@ let language =
       privacy:"Privacy",
       terms:"Terms",
       logout:"Logout",
-      myRewards:"My Rewards"
+      myRewards:"My Rewards",
+      winners:"Winners"
     },
     countdown:{
       days:"DAYS",
