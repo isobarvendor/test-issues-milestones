@@ -274,9 +274,12 @@ export default {
         this.currentAttempt=response.data.currentAttemptNumber;
       })
       .catch((error) =>{
-        if(error){
-          this.currentAttempt=9999999;
-        }
+         if(error.response && error.response.data.status=='401' ){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
       });
     },
 
@@ -284,34 +287,6 @@ export default {
       let request = null;
       this.loading=true;
       let index =0;
-
-       /*let result={
-    "burnResult": [
-        {
-            "pincode": "0J6TC2VP5",
-            "programId": "453269",
-            "lotId": "445580",
-            "burned": true
-        }
-    ],
-    "participationId": "1ylazdy9kkxmpa53",
-    "instantWinResult": {
-        "winner": true,
-       "redeemedPrize": {
-            "prizeId": "kkqhy9so",
-            "voucherCode": "Voucher891",
-            "status": "claimed",
-            "expiryDate": 1620018590000,
-            "name": "JOOX VIP PASS",
-            "shortDescription": "http://google.com",
-            "redeemDescription": "http://abcd",
-            "imgUrl": "/img/landing/week 1 prize.png",
-            "barcodeType": 1,
-            "emailSent": false,
-            "emailMessage": "Email could not be sent"
-        }
-    }
-}*/
 
 
 
@@ -368,31 +343,25 @@ export default {
                 })
                 .catch((error) =>{
                   this.loading=false;
-                    if(error.response){
-                    this.errorMessage=this.submissionText.errorAPI;
-                  }
-                   if(error.response && error.response.data.detail){
-                     this.errorMessage=this.submissionText.errorPinCode;
-                   }
-
-                 if(error.response && error.response.data.status=='401'){
+                  if(error.response && error.response.data.status=='401' ){
                       localStorage.clear();
                       this.$store.commit('SET_LOGIN_ACCOUNT', null);
                       this.$store.commit('SET_TOKEN', null);
                       location.reload();
+                  }else{
+                      let result=error.response.data;
+                      if( result) {
+                        let attemptData=this.attemptData
+                        let data={
+                          attemptData,response:result,request
+                        }
+                          this.$emit('submit',data);
+
+
+                    }
+
                   }
-                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                    this.errorMessage=this.submissionText.errorPinCode1;
-                  }
-                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-                    this.errorMessage=this.submissionText.errorPinCode4;
-                  }
-                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                    this.errorMessage=this.submissionText.errorPinCode2;
-                  }
-                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                    this.errorMessage=this.submissionText.errorPinCode3;
-                  }
+
                 })
                }else{
                  this.loading=false;

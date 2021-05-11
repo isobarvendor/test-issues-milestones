@@ -33,6 +33,7 @@ export default {
   },
   submitLogin(data, token) {
     return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
+    //return axios.get(`/mock/submission`, setHeader(token))
   },
   submitNonLogin(data) {
     return axios.post(`${origin}/api/campaign/public/submission`, data)

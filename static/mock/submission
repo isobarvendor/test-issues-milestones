@@ -1,0 +1,30 @@
+{
+            "burnResult": [
+                {
+                    "pincode": "0J6TC2VP5",
+                    "programId": "453269",
+                    "lotId": "445580",
+                    "burned": true
+                }
+            ],
+
+            "participationId": "1ylazdy9kkxmpa53",
+            "instantWinResult": {
+                "winner": true,
+              "redeemedPrize": {
+                    "prizeId": "kkwav9kv",
+                    "voucherCode": "Voucher891",
+                    "status": "claimed",
+                    "expiryDate": 1620018590000,
+                    "name": "JOOX VIP PASS",
+                    "description":"Conglratulations",
+                    "shortDescription": "http://google.com",
+                    "redeemDescription": "http://abcd",
+                    "redemptionLink": "http://abcd",
+                    "imgUrl": "/img/landing/coke.jpg",
+                    "barcodeType": 1,
+                    "emailSent": false,
+                    "emailMessage": "Email could not be sent"
+                }
+            }
+        }

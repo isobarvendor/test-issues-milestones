@@ -11,17 +11,17 @@
 
   </div>
   <div  v-else >
-  <div class="container  prize-chance black-red-border">
-      <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
-      <div v-else style="text-align:center">
-
-            <span v-html="thankYouMessage"></span>
-             <div class="prize-button-area center" style="margin-top:40px;">
-                  <v-btn @click="playAgain" id="participateAgain">{{submissionText.participateAgain}}</v-btn>
-            </div>
-
+  <div class="container  prize-chance black-red-border" >
+      <div class="wrapper"  v-if="prize.length>0">
+        <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"  />
       </div>
+    </div>
+      <div class="container  prize-chance black-red-border luckydraw"  v-if="campaignWin=='InstantWin'">
+      <div class="wrapper center"  >
+         <p> {{submissionText.luckyDrawHeader}} </p>  <BR/>
+         <p>  {{submissionText.luckyDrawSuccess}} </p>  <BR/><BR/>
+          <img src= '/img/landing/luckydraw.png' /><BR/><BR/>
+           <a href="/"> {{submissionText.luckyDrawFooter}}</a>
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
@@ -62,7 +62,8 @@ export default {
         request:{
           email:''
         },
-        submissionText:translation.submissionText
+        submissionText:translation.submissionText,
+        campaignWin:null,
     }
 
   },
@@ -97,8 +98,26 @@ export default {
       let prizewin=data.response;
       let attemptData =data.attemptData;
       this.request=data.request;
-      if(attemptData.campaignType == 'InstantWin'){
-          let prize =[
+
+      let prize = [];
+      if(attemptData.campaignType == 'InstantWin' && prizewin.instantWinResult!=null ){
+        this.campaignWin=attemptData.campaignType;
+        if(prizewin.barcode){
+           prize =[
+              {
+                  text : this.submissionText.prizeBarcodeHeader,
+                  name : '<img src="'+prizewin.barcode+'" width="100%" />',
+                  image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
+                  note : null
+                  ,button:[]
+                  ,havejoox:attemptData.FormHeading.Prize,
+                  code:  null,
+                subName:null,
+                 luckyDraw:false
+              }
+          ];
+        }else{
+          prize =[
               {
                   text : attemptData.FormHeading.thankYouMessage,
                   name : prizewin.instantWinResult.redeemedPrize.name,
@@ -111,17 +130,35 @@ export default {
                   }]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
-                subName:null
+                subName:null,
+                 luckyDraw:false
               }
           ];
+        }
+
           this.prize=prize;
 
-          this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
           this.jooxMessage=attemptData.FormHeading.Prize;
       }
       else{
-        this.thankYouMessage=attemptData.FormHeading.thankYouMessage;
-        this.listenNowLink="";
+        this.campaignWin="luckyDraw";
+            prize =[
+              {
+                  text : "<h1>"+this.submissionText.luckyDrawHeader+"</h1><BR/><p>"+this.submissionText.luckyDrawSubHeader+"</p>",
+                  name : this.submissionText.luckyDrawSuccess,
+                  image:  '/img/landing/luckydraw.png' ,
+                  note : null
+                  ,button:[]
+                  ,havejoox:attemptData.FormHeading.Prize,
+                  code: null,
+                subName:null,
+                luckyDraw:true
+              }
+
+          ];
+          this.prize=prize;
+
+
         this.jooxMessage=attemptData.FormHeading.Prize;
       }
 
@@ -148,6 +185,10 @@ export default {
 .prize-chance .background-image-joox img{
     width:100%;
 }
+.prize-chance.luckydraw p{
+  font-size:25px;
+  max-width: 600px;
+}
 .desc-joox{
     z-index: 1;
 }
@@ -165,6 +206,8 @@ export default {
     padding:30px;
     font-weight: bold;
 }
-
+.center{
+  text-align: center;
+}
 
 </style>
