@@ -13,7 +13,7 @@
 
 
     </div>
-    <div v-if="exclusivePrizes">
+    <div v-if="exclusivePrizes" id="prize">
     <div class="header" style="text-align:center">{{data.title}}</div>
     <!--div v-html="data.description"></div-->
     <div class="container prize-swiper-container">

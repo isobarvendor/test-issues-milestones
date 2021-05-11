@@ -21,7 +21,7 @@
          <p> {{submissionText.luckyDrawHeader}} </p>  <BR/>
          <p>  {{submissionText.luckyDrawSuccess}} </p>  <BR/><BR/>
           <img src= '/img/landing/luckydraw.png' /><BR/><BR/>
-           <a href="/"> {{submissionText.luckyDrawFooter}}</a>
+           <a style="text-decoration:none" href="/#prize"> {{submissionText.luckyDrawFooter}}</a>
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
