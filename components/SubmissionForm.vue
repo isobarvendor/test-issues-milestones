@@ -343,24 +343,18 @@ export default {
                 })
                 .catch((error) =>{
                   this.loading=false;
-                  if(error.response && error.response.data.status=='401' ){
-                      localStorage.clear();
-                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                      this.$store.commit('SET_TOKEN', null);
-                      location.reload();
-                  }else{
-                      let result=error.response.data;
-                      if( result) {
-                        let attemptData=this.attemptData
-                        let data={
-                          attemptData,response:result,request
-                        }
-                          this.$emit('submit',data);
-
-
+                     if(err.response){
+                      this.errorMessage=this.submissionText.errorAPI;
                     }
-
-                  }
+                    if(error.response&& error.response.data.status=='400' ){
+                      this.errorMessage=this.submissionText.errorPinCode1;
+                    }
+                      if(error.response && error.response.data.status=='401' ){
+                          localStorage.clear();
+                          this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                          this.$store.commit('SET_TOKEN', null);
+                          location.reload();
+                      }
 
                 })
                }else{

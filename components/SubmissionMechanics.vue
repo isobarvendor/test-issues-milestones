@@ -100,7 +100,7 @@ export default {
       this.request=data.request;
 
       let prize = [];
-      if(attemptData.campaignType == 'InstantWin' && prizewin.instantWinResult!=null ){
+      if(attemptData.campaignType == 'InstantWin' && prizewin.instantWinResult!=null && prizewin.instantWinResult.winner ){
         this.campaignWin=attemptData.campaignType;
         if(prizewin.barcode){
            prize =[
