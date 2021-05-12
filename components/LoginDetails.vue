@@ -8,7 +8,7 @@
     </div>
     <div class="continue" v-if="$mq == 'xl'">
       <p v-if="data">{{data.SubTitle}}</p>
-      <div class="icons">
+      <!--div class="icons">
         <div v-on:click="redirectTo('line')" v-if="social.line" class="line">
           <span><img src="img/icons/line.png" /></span>
         </div>
@@ -18,13 +18,13 @@
         <div v-on:click="redirectTo('google')" v-if="social.google" class="google">
           <span><img src="img/icons/google.png" /></span>
         </div>
-        <!--<div v-on:click="redirectTo('email')" v-if="social.email">
+        <div v-on:click="redirectTo('email')" v-if="social.email">
           <span><img src="img/icons/email.png" /></span>
-        </div>-->
-      </div>
-      <p>or</p>
+        </div>
+      </div-->
+      <!--p>or</p-->
     </div>
-    <div
+    <!--div
       class="login-box column center"
       v-if="$mq == 'sm' || $mq == 'md' || $mq == 'lg'"
     >
@@ -37,7 +37,7 @@
       <a class="social-button google" v-on:click="redirectTo('google')"
         ><i class="ic ic-google" /><span>Continue with Google</span></a
       >
-    </div>
+    </div-->
     <transition name="fade">
       <div class="details">
         <div class="input-container">
