@@ -70,11 +70,11 @@ let language =
 
   },
   id:{
-    browserTitle:"Hidupkan Rentakmu",
+    browserTitle:"Hidupkan Semangatmu",
     meta: [
       {
-        hid: "Hidupkan Rentakmu",
-        name: "Hidupkan Rentakmu",
+        hid: "Hidupkan Semangatmu",
+        name: "Hidupkan Semangatmu",
         content: "Home page Coke - Turn Up Your Rhythm"
       }
     ],
