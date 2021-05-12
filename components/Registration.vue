@@ -89,7 +89,7 @@ export default {
               this.errorMessage="Your password and confirm password is different"
               return false;
             }
-           
+
 
             this.$store.dispatch(SIGNUP,this.user)
             .then( (response)=> {

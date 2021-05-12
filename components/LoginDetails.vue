@@ -75,7 +75,7 @@
               <a class="button login" v-on:click="userLogin()" v-else>Login</a>
           </div>
          <!-- <p>Forget Password</p>-->
-          <p v-on:click="userSignUp()" class="signUp">Sign Up</p>
+          <!--p v-on:click="userSignUp()" class="signUp">Sign Up</p-->
         </div>
       </div>
     </transition>
