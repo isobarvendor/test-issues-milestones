@@ -343,11 +343,9 @@ export default {
                 })
                 .catch((error) =>{
                   this.loading=false;
-                     if(err.response){
-                      this.errorMessage=this.submissionText.errorAPI;
-                    }
+
                     if(error.response&& error.response.data.status=='400' ){
-                      this.errorMessage=this.submissionText.errorPinCode1;
+                      this.errorMessage=this.submissionText.errorPinCode;
                     }
                       if(error.response && error.response.data.status=='401' ){
                           localStorage.clear();
@@ -355,6 +353,10 @@ export default {
                           this.$store.commit('SET_TOKEN', null);
                           location.reload();
                       }
+
+                    if(err.response){
+                      this.errorMessage=this.submissionText.errorAPI;
+                    }
 
                 })
                }else{
