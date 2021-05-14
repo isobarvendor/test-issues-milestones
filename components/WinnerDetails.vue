@@ -46,7 +46,7 @@
                     <h1>{{winnerText.header}}</h1>
             </v-row>
           <v-row no-gutters class="logo-title">
-              <p> All winners will be contacted by 31st May</p>
+              <p> Semua pemenang akan dihubungi pada 31 Mei</p>
             </v-row>
           <span v-if="showWinnerDetail">
               <v-card dark >
