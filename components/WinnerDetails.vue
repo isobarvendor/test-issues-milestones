@@ -264,7 +264,7 @@ export default {
 
        this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:req}).then((res) => {
           this.getCountData(req);
-
+         this.page=1;
            this.winnersData = res.data;
 
             this.loading = false
