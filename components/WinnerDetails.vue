@@ -46,7 +46,7 @@
                     <h1>{{winnerText.header}}</h1><BR/><BR/><BR/>
             </v-row>
           <span v-if="showWinnerDetail">
-              <v-card dark v-if="winnerWeekDetail.length>0">
+              <v-card dark >
               <v-card-title>
 
                 <v-spacer></v-spacer>
@@ -64,14 +64,16 @@
               dark
                   :headers="headers"
                 :items="winnerWeekDetail"
-                :items-per-page="10"
-                :search="search"
+                :page="page"
+                :pageCount="numberOfPages"
+                :search.sync="search"
+                :options.sync="options"
+                :server-items-length.sync="totalWinner"
+                :loading="loading"
           class="elevation-1"
               ></v-data-table>
             </v-card>
-            <v-row v-else class="center">
-              <h1 >{{winnerText.nowinner}}</h1>
-            </v-row>
+
           </span>
           <span v-else>
              <div class="winner-body" >
@@ -114,6 +116,7 @@ import moment from "moment";
 import * as _ from 'lodash';
 import deepClone from 'deep-clone'
 import {translation} from "@/constants/index"
+import { GET_LIST_WINNERS } from '@/store/action_types';
 export default {
   name: "WinnerDetails",
   components: {
@@ -125,7 +128,15 @@ export default {
       weekly:false,
       monthly:false,
       search:null,
+      options: {},
+      loading: true,
       winnerText:translation.winnerText,
+       numberOfPages: 0,
+      itemsPerPage:10,
+      totalWinner:0,
+      page:1,
+      winnersData:[],
+      winnerMonth:[],
       headers: [
           {
             text: 'No',
@@ -142,15 +153,14 @@ export default {
   },
   props: {
     data: null,
-    winners: null,
     howData:null
   },
   computed:{
+
     winnerWeekDetail(){
-      console.log(_.filter(this.winners,(o)=>{ return o.week == this.winnerWeek}));
-      return _.map(_.filter(this.winners,(i)=>{ return i.week == this.winnerWeek}),(o,index)=>{
+      return _.map(this.winnersData,(o,index)=>{
           return {
-              no:index+1,
+              no:(index+1)+((this.page-1)*this.itemsPerPage),
               name:o.name,
               email:o.email ? this.maskEmail(o.email) : null,
               phone:o.phone ? this.maskEmail(o.phone) : null,
@@ -159,7 +169,8 @@ export default {
       });
     },
     winnerLists(){
-        return _.uniqBy(_.filter(_.orderBy(this.winners, ['week'], ['desc']), (o)=>{ return o.fromDate!=""&&o.toDate!="" }),'week');
+      console.log(this.winnerMonth);
+        return this.winnerMonth;
     },
     winnerListsSecond(){
       let secondRow=deepClone(this.winnerLists);
@@ -168,8 +179,98 @@ export default {
       return _.chunk(secondRowResult, 2);
     },
 
+
   },
   methods:{
+   async checkWinnerMonth(){
+       console.log(this.data)
+     let startMonth= moment(this.data.fromDate).format("M");
+     let endMonth= moment(this.data.toDate).format("M");
+     for(let l=startMonth;l<=endMonth;l++){
+      await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:{week_eq:l}}).then((res)=>{
+          if(res.data>0){
+             this.winnerMonth.push({week:l});
+          }
+      })
+
+     }
+    },
+   getListWinners(data){
+          this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:{}}).then((res)=>{
+              this.winnersData=res.data;
+      })
+   },
+   async getCountData(params){
+
+     await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:params}).then((res)=>{
+              this.totalWinner=res.data;
+          })
+    },
+   async getDataFromApi(){
+         this.loading = true
+        const { sortBy, sortDesc, page, itemsPerPage } = this.options
+        //console.log(this.options);
+        let req ={};
+
+        let sortByLabel='';
+        //console.log(sortBy);
+        for(let k=0;k<sortBy.length;k++){
+         // console.log('sort',sortBy[k]);
+          sortByLabel+=sortBy[k]+(sortDesc[k] ? ":DESC" :":ASC")
+          if(sortBy.length-1!=k){
+            sortByLabel+=","
+          }
+        }
+        if(sortByLabel!=''){
+          req['_sort']=sortByLabel;
+        }
+        req['week_eq']=this.winnerWeek;
+         req['_limit']=itemsPerPage;
+        req['_start']=(page-1)*itemsPerPage;
+
+      //   req['email_eq']=this.search;
+          this.page=page;
+        this.numberOfPages=this.totalWinner/itemsPerPage;
+        this.itemsPerPage=itemsPerPage;
+
+       this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:req}).then((res) => {
+          let params={}
+          if(this.winnerWeek){
+              params['week_eq']=this.winnerWeek;
+          }
+          this.getCountData(params);
+           this.winnersData = res.data;
+
+            this.loading = false
+        })
+    },
+
+       async getSearchDataFromApi(){
+         this.loading = true
+        let req ={};
+
+        req['week_eq']=this.winnerWeek;
+        if(this.search!=''){
+          req['_where[_or][0][name_contains]']=this.search;
+          req['_where[_or][1][email_contains]']=this.search;
+          req['_where[_or][2][prize_contains]']=this.search;
+        }
+        else{
+             req['_limit']=this.itemsPerPage;
+            req['_start']=(this.page-1)*this.itemsPerPage;
+            this.numberOfPages=this.totalWinner/this.itemsPerPage;
+        }
+
+
+       this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:req}).then((res) => {
+          this.getCountData(req);
+
+           this.winnersData = res.data;
+
+            this.loading = false
+        })
+    },
+
     replace_String(string, numberofchar,chartoreplace) {
 
      return string.substring(0, numberofchar).split("").map(ele => ele = chartoreplace).join("").concat(string.substring(numberofchar, string.length))
@@ -208,10 +309,29 @@ export default {
       return this.replace_String(email,6,"*");
     }
   },
-  beforeMount() {},
-  mounted(){
+  beforeMount() {
 
-  }
+  },
+  mounted(){
+    //this.getListWinners();
+    //this.getCountData();
+    this.checkWinnerMonth();
+
+  },
+  watch: {
+      options: {
+        handler () {
+          this.getDataFromApi()
+        },
+        deep: true,
+      },
+       search: {
+        handler () {
+          this.getSearchDataFromApi();
+        },
+        deep: true,
+      },
+    },
 };
 </script>
 
