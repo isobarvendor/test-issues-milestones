@@ -64,8 +64,8 @@
               dark
                   :headers="headers"
                 :items="winnerWeekDetail"
-                :page="page"
-                :pageCount="numberOfPages"
+                :page.sync="page"
+                :pageCount.sync="numberOfPages"
                 :search.sync="search"
                 :options.sync="options"
                 :server-items-length.sync="totalWinner"
@@ -229,16 +229,21 @@ export default {
         req['_start']=(page-1)*itemsPerPage;
 
       //   req['email_eq']=this.search;
-          this.page=page;
+
+              if(this.search!=''){
+          req['_where[_or][0][name_contains]']=this.search;
+          req['_where[_or][1][email_contains]']=this.search;
+          req['_where[_or][2][prize_contains]']=this.search;
+          }
+               this.page=page;
         this.numberOfPages=this.totalWinner/itemsPerPage;
         this.itemsPerPage=itemsPerPage;
 
        this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:req}).then((res) => {
-          let params={}
-          if(this.winnerWeek){
-              params['week_eq']=this.winnerWeek;
-          }
-          this.getCountData(params);
+
+          this.getCountData(req);
+
+
            this.winnersData = res.data;
 
             this.loading = false
@@ -250,15 +255,18 @@ export default {
         let req ={};
 
         req['week_eq']=this.winnerWeek;
+         this.page=1;
         if(this.search!=''){
           req['_where[_or][0][name_contains]']=this.search;
           req['_where[_or][1][email_contains]']=this.search;
           req['_where[_or][2][prize_contains]']=this.search;
+           req['_limit']=this.itemsPerPage;
+            req['_start']=(this.page-1)*this.itemsPerPage;
         }
         else{
              req['_limit']=this.itemsPerPage;
             req['_start']=(this.page-1)*this.itemsPerPage;
-            this.numberOfPages=this.totalWinner/this.itemsPerPage;
+
         }
 
 
@@ -266,6 +274,7 @@ export default {
           this.getCountData(req);
 
            this.winnersData = res.data;
+            this.numberOfPages=this.totalWinner/this.itemsPerPage;
 
             this.loading = false
         })
