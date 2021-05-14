@@ -43,7 +43,10 @@
                   <img src="/img/icons/close.png"/>
               </div>
         <v-row no-gutters class="logo-title">
-                    <h1>{{winnerText.header}}</h1><BR/><BR/><BR/>
+                    <h1>{{winnerText.header}}</h1>
+            </v-row>
+          <v-row no-gutters class="logo-title">
+              <p> All winners will be contacted by 31st May</p>
             </v-row>
           <span v-if="showWinnerDetail">
               <v-card dark >
