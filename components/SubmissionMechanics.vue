@@ -102,11 +102,11 @@ export default {
       let prize = [];
       if(attemptData.campaignType == 'InstantWin' && prizewin.instantWinResult!=null && prizewin.instantWinResult.winner ){
         this.campaignWin=attemptData.campaignType;
-        if(prizewin.barcode){
+        if(prizewin.barCode){
            prize =[
               {
                   text : this.submissionText.prizeBarcodeHeader,
-                  name : '<img src="'+prizewin.barcode+'" width="100%" />',
+                  name : '<img src="'+prizewin.barCode+'" width="100%" />',
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:[]
