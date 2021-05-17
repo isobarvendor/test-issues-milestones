@@ -95,7 +95,8 @@ let language =
       privacy:"Polisi Privasi",
       terms:"Terma dan syarat",
       logout:"log keluar",
-      myRewards:"Hadiah anda"
+      myRewards:"Hadiah anda",
+      winners: "Pemenang"
     },
     countdown:{
       days:"DAYS",
