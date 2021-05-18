@@ -117,6 +117,7 @@ let language =
       errorPinCode4:"Kode yang dimasukkan salah atau sudah terpakai.",
       errorAPI:"Oops ada masalah dengan sistem kami. Tolong coba kembali",
       errorMaxPhone:"Masukkan 10-12 digit nomor HP kamu dengan benar.",
+      errorNumberPhone:"Masukkan 10-12 digit nomor HP kamu dengan benar.",
       errorRequiredPhone:"Masukkan 10-12 digit nomor HP kamu dengan benar.",
       errorRequiredCode:"Masukkan kode kamu dengan benar.",
       participateAgain:"Partisipasi kembali",
