@@ -79,11 +79,11 @@ let language =
       }
     ],
     periodDescription:"Dengan membeli COCA-COLA 250ml atau 390ml PET kamu bisa dapat akses VIP Joox atau COKE PET 250 gratis dan hadiah seru lainnya. Cukup ikuti langkah di bawah untuk ikutan dan menangkan hadiahmu!",
-    signInButton:"LOG MASUK <BR/><small>untuk menangi hadiah</small>",
+    signInButton:"Login <BR/><small>untuk memenangi hadiah</small>",
     menu:{
       home:"Halaman utama",
-      privacy:"Privacy Policy",
-      terms:"Terms and conditions",
+      privacy:"Kebijakan Privasi",
+      terms:"Syarat & Ketentuan",
       logout:"logout",
       myRewards:"Hadiah anda"
     },
@@ -109,7 +109,7 @@ let language =
       buttonText:'Dapatkan hadiah kamu',
       errorTerm:'Pastikan anda setuju dengan syarat & ketentuan yang berlaku',
       errorPolicy:"Pastikan anda setuju dengan kebijakan privasi yang berlaku",
-      errorDeclare:"Pastikan anda berumur 13 tahun atau lebih",
+      errorDeclare:"Pastikan anda setuju dengan syarat & ketentuan yang berlaku",
       errorPinCode:"Kode yang dimasukkan salah atau sudah terpakai.",
       errorPinCode1:"Kode yang dimasukkan salah atau sudah terpakai.",
       errorPinCode2:"Kode yang dimasukkan salah atau sudah terpakai.",
@@ -124,9 +124,10 @@ let language =
       listenNow:"Dengar sekarang",
       redeemPrize:"Tukarkan sekarang",
       continue:"Lanjutkan dengan",
-      luckyDrawHeader:"Terima kasih atas partisipasinya!",
-      luckyDrawSubHeader:"Pemenang “Undian Mingguan” akan diumumkan di laman microsite Coke Music Indonesia:<BR/> <a href='https://CokeURL.com/CokeMusicWIN'>https://CokeURL.com/CokeMusicWIN</a> selama Periode Promosi.",
-      luckyDrawSuccess:"Kamu berkesempatan memenangkan hadiah menarik lainnya pada undian mingguan",
+      luckyDrawHeader:"Terimakasih atas partisipasinya!",
+      luckyDrawSubHeader:"Pemenang “Undian Mingguan” akan diumumkan di laman microsite <a href='https://CokeURL.com/CokeMusicWIN' target='_blank'>Coke Music Indonesia</a> selama Periode Promosi.",
+      luckyDrawSuccess:"Kamu berkesempatan memenangkan hadiah menarik lainnya pada undian mingguan.",
+      luckyDrawSuccess2:"Kamu tetap berkesempatan memenangkan hadiah menarik lainnya pada undian mingguan.",
       luckyDrawFooter:"Lihat hadiah lain yang bisa kalian menangkan.",
       prizeBarcodeHeader:"<h1>Tunjukkan kode ini ke kasir<BR/> Alfamart/Indomaret untuk tukarkan<BR/> dengan COCA-COLA 250ml PET gratis.</h1>"
     },
@@ -139,8 +140,8 @@ let language =
       tryagain:"Please try again"
     },
     footer:{
-      privacy:"Privacy Policy",
-      terms:"Terms and conditions"
+      privacy:"Kebijakan Privasi",
+      terms:"Syarat & Ketentuan",
     }
 
   }

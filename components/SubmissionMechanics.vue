@@ -21,7 +21,8 @@
          <p> {{submissionText.luckyDrawHeader}} </p>  <BR/>
          <p>  {{submissionText.luckyDrawSuccess}} </p>  <BR/><BR/>
           <img src= '/img/landing/luckydraw.png' /><BR/><BR/>
-           <a style="text-decoration:none" href="/#prize"> {{submissionText.luckyDrawFooter}}</a>
+           <a style="text-decoration:none" href="/#prize"> {{submissionText.luckyDrawFooter}}</a><BR/>
+           <div style="max-width:800px" v-html="this.submissionText.luckyDrawSubHeader"></div>
       </div>
     </div>
     <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
@@ -144,10 +145,10 @@ export default {
         this.campaignWin="luckyDraw";
             prize =[
               {
-                  text : "<h1>"+this.submissionText.luckyDrawHeader+"</h1><BR/><p>"+this.submissionText.luckyDrawSubHeader+"</p>",
-                  name : this.submissionText.luckyDrawSuccess,
+                  text : "<h1>"+this.submissionText.luckyDrawHeader+"</h1>",
+                  name : this.submissionText.luckyDrawSuccess2,
                   image:  '/img/landing/luckydraw.png' ,
-                  note : null
+                  note : this.submissionText.luckyDrawSubHeader
                   ,button:[]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code: null,
