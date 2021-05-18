@@ -6,6 +6,7 @@
     </div>
    <div class="header">{{form.name ? submissionText.hello+" "+form.name : submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
+    <div class="inner-wrapper">
      <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
@@ -23,66 +24,58 @@
             <img src="/img/landing/info-button.png" width="25"  />
             <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
           </div>
-        <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
+        <span class="error-message">{{ errors.first('phone') ? (errors.first('phone').includes('required') ? submissionText.errorRequiredPhone : errors.first('phone')) : errors.first('phoneNumber')   }}</span>
+    </div>
     </div>
 
-    <!--div v-if="submissionType=='with_receipt'" class="details receipt">
-      <div v-if="!image">
-
-       <label for="file-upload" class="custom-file-upload">
-       <img src="/img/icons/upload-icon.png"/> <span class="labels">Upload receipt</span>
-      </label>
-       <input id="file-upload" type="file" @change="onFileChange" value="uploadReceipt">
-      </div>
-      <div v-else>
-        <img :src="image" width="100" />
-        <button @click="removeImage">Remove image</button>
-      </div>
-    </div-->
-
-    <br>
-
-    <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_tnc">
-            <input type="checkbox" name="tnc" id="form_tnc" v-model="form.terms">
-            <span></span>
-          </label>
+    <div class="checkbox-area">
+    <div class="inner-wrapper">
+       <!--div class="row top">
+          <div class="col d-flex consent">
+            <div class="checkbox">
+              <label for="form_pp">
+                <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
+                <span></span>
+              </label>
+            </div>
+            <div class="terms" v-html="submissionText.acceptPrivacy"></div>
+          </div>
+        </div-->
+         <div class="row top">
+        <div class="col d-flex consent">
+          <div class="checkbox">
+            <label for="form_tnc">
+              <input type="radio" name="ageConsent" id="form_tnc" v-model="form.ageConsent" value="above">
+              <span></span>
+            </label>
+          </div>
+          <div class="terms" v-html="submissionText.acceptTerm"></div>
         </div>
-        <div class="terms" v-html="submissionText.acceptTerm"></div>
       </div>
+
+          <div class="row top">
+            <div class="col d-flex consent">
+              <div class="checkbox">
+                <label for="form_age">
+                  <input type="radio" name="ageConsent" id="form_age" v-model="form.ageConsent" value="below">
+                  <span></span>
+                </label>
+              </div>
+              <div class="terms" v-html="submissionText.declareAge"></div>
+            </div>
+          </div>
     </div>
 
-    <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_pp">
-            <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
-            <span></span>
-          </label>
-        </div>
-        <div class="terms" v-html="submissionText.acceptPrivacy"></div>
-      </div>
-    </div>
-        <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_age">
-            <input type="checkbox" name="ageConsent" id="form_age" v-model="form.ageConsent">
-            <span></span>
-          </label>
-        </div>
-        <div class="terms" v-html="submissionText.declareAge"></div>
-      </div>
+
+
     </div>
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
-    <div class="btn-area">
+    <div class="btn-area" style="padding:20px" >
 
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red">{{ errors.first('code') }}</span>
+             <span class="error-message-red">{{ errors.first('code') ? (errors.first('code').includes('required') ? submissionText.errorRequiredCode : errors.first('code')) : errors.first('code')  }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
@@ -103,45 +96,7 @@
 
   </div>
 
-  <!--div v-else class="thanks"-->
 
-    <!--div v-if="prizeWin.allocationArray">
-        <div class="header">{{thankyouPage.Title}}</div>
-        <div>{{  prizeWin.allocationArray[0].amount }}&nbsp;
-            {{thankyouPage.Message}}
-        </div>
-        <div>
-          <v-btn class="get-code" v-on:click="goToRewards()">View Rewards</v-btn>
-        </div>
-    </div>
-     <div v-if="prizeWin.participationInserted">
-           <div class="header" >{{thankyouSubmission.Ttitle}} </div>
-
-        <div>
-            {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
-        </div>
-    </div>
-    <div v-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status=='claimed'">
-        <div class="header">{{thankyouPage.Title}}</div>
-        <div class="header">{{prizeWin.instantWinResult.redeemedPrize.name}} </div>
-        <div>
-            <img :src="prizeWin.instantWinResult.redeemedPrize.imgUrl" width="250" />
-        </div>
-        <div>
-            {{prizeWin.instantWinResult.redeemedPrize.shortDescription}}
-        </div>
-    </div>
-    <div v-else-if="prizeWin.instantWinResult&&prizeWin.instantWinResult.redeemedPrize.status!='claimed'">
-      <div class="header" >{{thankyouSubmission.Ttitle}} </div>
-
-       <div>
-          {{prizeWin.instantWinResult.redeemedPrize.redeemDescription}}
-       </div>
-      <div>
-          {{thankyouSubmission.Message}} <a href='#'>{{form.email}}</a>
-      </div>
-    </div>
-  </div-->
 
   </div>
 </template>
@@ -170,8 +125,10 @@ export default {
         },
         errorMessage:null,
         submitted:true,
+        fileName:"",
+        filePath:null,
         image:'',
-        amazonImage:'',
+        amazonImage:null,
         loading:false,
         prizeWin:null,
         phoneCodeDisplay:"+"+this.$config.phoneCode,
@@ -199,7 +156,6 @@ export default {
     maxPhoneNumber(){
       return this.$config.maxPhoneNumber;
     },
-
      /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
@@ -218,6 +174,30 @@ export default {
     }
   },
   methods:{
+    async uploadFile(){
+
+              var formData = new FormData();
+              formData.append("file", this.form.uploadFile);
+                let upload={
+                request:formData,
+                type:'receipts'
+              }
+
+               await this.$store.dispatch(UPLOAD_FILE,upload)
+               .then((response)=>{
+                  this.amazonImage=response.data.filePath;
+
+                })
+                .catch((error) =>{
+                    if(error){
+                      this.errorMessage="Upload error please try again";
+                      return false;
+                    }
+
+                });
+
+
+    },
     generateRequest(currentAttempt){
       if(currentAttempt>=this.getAttempt.length){
         currentAttempt=this.getAttempt.length-1;
@@ -266,7 +246,47 @@ export default {
         if(this.form.code){
           request['pin']=this.form.code;
         }
+        if(this.amazonImage){
+          request['imageURL']=this.amazonImage;
+        }
+
         return request;
+    },
+      onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      let FileSize = files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 5) {
+           this.errorMessage ="Please upload file not more than 5 MB"
+           return;
+        }
+      let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
+      let filePath = e.target.value;
+      this.fileName= e.target.files[0].name;
+      this.filePath=filePath;
+      if(!allowedExtensions.exec(filePath)){
+         this.errorMessage ="Please upload image or file"
+           return;
+      }
+      this.form.uploadFile = files[0];
+      this.createImage(files[0]);
+       this.errorMessage = null;
+    },
+    createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (e) {
+      this.image = null;
+      this.amazonImage =null;
+       this.filePath = null;
     },
     async checkcurrentAttempt(){
       await this.$store.dispatch(CHECK_ATTEMPT)
@@ -274,12 +294,9 @@ export default {
         this.currentAttempt=response.data.currentAttemptNumber;
       })
       .catch((error) =>{
-         if(error.response && error.response.data.status=='401' ){
-                      localStorage.clear();
-                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                      this.$store.commit('SET_TOKEN', null);
-                      location.reload();
-                  }
+        if(error){
+          this.currentAttempt=9999999;
+        }
       });
     },
 
@@ -289,30 +306,29 @@ export default {
       let index =0;
 
 
-
        this.$validator.validateAll().then( async(valid) => {
          if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
-           if(!this.form.terms){
-             this.loading=false;
-             this.errorMessage=this.submissionText.errorTerm;
-             return false;
-           }
-            if(!this.form.privacy){
+
+           /* if(!this.form.privacy){
               this.loading=false;
              this.errorMessage=this.submissionText.errorPolicy;
              return false;
-           }
-            if(!this.form.ageConsent){
-              this.loading=false;
-             this.errorMessage=this.submissionText.errorDeclare;
+           }*/
+             if(!this.form.ageConsent){
+             this.loading=false;
+              this.errorMessage=this.submissionText.errorDeclare;
              return false;
            }
+
              this.errorMessage=null;
              await this.checkcurrentAttempt();
 
             if(this.getAttempt)
             {
+               if(this.form.uploadFile&&!this.amazonImage){
+                await this.uploadFile();
+               }
 
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
@@ -325,7 +341,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, ageConsent:this.form.ageConsent  }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -343,21 +359,31 @@ export default {
                 })
                 .catch((error) =>{
                   this.loading=false;
+                    if(error.response){
+                    this.errorMessage=this.submissionText.errorAPI;
+                  }
+                   if(error.response && error.response.data.detail){
+                     this.errorMessage=this.submissionText.errorPinCode;
+                   }
 
-                    if(error.response&& error.response.data.status=='400' ){
-                      this.errorMessage=this.submissionText.errorPinCode;
-                    }
-                      if(error.response && error.response.data.status=='401' ){
-                          localStorage.clear();
-                          this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                          this.$store.commit('SET_TOKEN', null);
-                          location.reload();
-                      }
-
-                    if(err.response){
-                      this.errorMessage=this.submissionText.errorAPI;
-                    }
-
+                 if(error.response && error.response.data.status=='401'){
+                      localStorage.clear();
+                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
+                      this.$store.commit('SET_TOKEN', null);
+                      location.reload();
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
+                    this.errorMessage=this.submissionText.errorPinCode1;
+                  }
+                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
+                    this.errorMessage=this.submissionText.errorPinCode4;
+                  }
+                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
+                    this.errorMessage=this.submissionText.errorPinCode2;
+                  }
+                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
+                    this.errorMessage=this.submissionText.errorPinCode3;
+                  }
                 })
                }else{
                  this.loading=false;
@@ -378,15 +404,12 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
-           this.form.privacy=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
+         //  this.form.privacy=this.loginInfo.privacy;
+
         }
         await this.checkcurrentAttempt();
         if(this.currentAttempt>1){
-           this.form.terms=true;
-           this.form.privacy=true;
-           this.form.ageConsent=true;
+        //   this.form.privacy=true;
         }
     },
 
@@ -428,17 +451,17 @@ export default {
             this.form.phoneNumber="";
          }
        }
-       if(val.length>envs.maxPhoneNumber||val.length<envs.minPhoneNumber){
+       if((val.length)>envs.maxPhoneNumber){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'Please insert a valid number'
+          msg: this.submissionText.errorMaxPhone
         });
        }else if(isNaN(val)){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
-          msg: 'Please enter a number'
+          msg: this.submissionText.errorNumberPhone
         });
        }
        else{
@@ -462,10 +485,11 @@ export default {
   }
   .error-message-black{
     color:#000;
+    text-align: center;
+    padding-bottom: 20px;
   }
   .d-flex {
     display: flex;
-    align-items: center;
   }
   .get-code {
     display: block;
@@ -489,6 +513,8 @@ export default {
 .btn-area{
   text-align: center;
   margin-top: 30px;
+  max-width: 360px;
+  margin: auto;
 }
 button.get-code{
   height: 60px !important;
@@ -536,6 +562,9 @@ form.mechanics{
 
   display: inline-block;
 
+}
+.no-padding-top{
+  padding-top: 0px !important;
 }
 @media only screen and (min-width: 769px) {
   .tooltip .tooltiptext {
@@ -619,5 +648,9 @@ form input#phoneNumber.short{
 }
 form.mechanics{
  margin: auto;
+}
+.two-checkbox{
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
 }
 </style>
