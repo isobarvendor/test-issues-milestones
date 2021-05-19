@@ -79,7 +79,7 @@ let language =
       }
     ],
     periodDescription:"Dengan membeli COCA-COLA 250ml atau 390ml PET kamu bisa dapat akses VIP JOOX atau COKE PET 250 gratis dan hadiah seru lainnya. Cukup ikuti langkah di bawah untuk ikutan dan menangkan hadiahmu!",
-    signInButton:"Login <BR/><small>untuk memenangi hadiah</small>",
+    signInButton:"Login <BR/><small>untuk menangkan hadiah</small>",
     menu:{
       home:"Halaman utama",
       privacy:"Kebijakan Privasi",
