@@ -22,7 +22,7 @@
 import MyRewardItem from '../components/MyRewardItem'
 import * as _ from 'lodash';
 import moment from "moment";
-import {  GET_MY_PRIZE} from '@/store/action_types';
+import {  GET_MY_PRIZE,GET_GRIVY_PRIZE} from '@/store/action_types';
 import {translation} from "@/constants/index"
 export default {
   name:"myrewards",
@@ -89,6 +89,23 @@ export default {
                 })
 
             }
+             this.$store.dispatch(GET_GRIVY_PRIZE)
+                  .then((response)=>{
+                    let res = _.map(response.data,(o,index)=>{
+                        return {
+                          id:index,
+                          title:o.store_name,
+                          date:null,
+                          link:null,
+                          image:o.creative_image,
+                          code:o.public_code,
+                          audio:null,
+                          barcode:o.secret_code_image
+                        }
+                    });
+                   this.rewards=[...this.rewards,...[...array, ...res]];
+
+                  });
           }
     }
   },

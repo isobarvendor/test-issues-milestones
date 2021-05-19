@@ -19,6 +19,10 @@ export default {
   getMyPrize(token,campaign='13qiq88kkqbov6j') {
     return axios.get(`${origin}/api/campaign/my-list-prize/${campaign}/queryVouchers`,setHeader(token))
   },
+  getGrivyPrize(token) {
+    return axios.get(`${origin}/api/grivy/list-reward`,setHeader(token))
+    //return axios.get(`/mock/list-reward`, setHeader(token))
+  },
   getListWallet(token) {
     return axios.get(`${origin}/api/campaign/auth/list-wallet`, setHeader(token))
   },

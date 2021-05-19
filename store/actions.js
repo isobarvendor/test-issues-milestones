@@ -17,6 +17,7 @@ import {
   GET_LIST_WINNERS,
   CHECK_ATTEMPT,
   GET_MY_PRIZE,
+  GET_GRIVY_PRIZE,
   GET_PHONE
 } from './action_types';
 
@@ -117,6 +118,20 @@ export default {
       const moduleState = state;
 
         NGPSAPI.getMyPrize(state.token,campaign)
+        .then(response => {
+          return resolve(response);
+        })
+        .catch(error => {
+          console.error(error);
+          return reject(error);
+        });
+    });
+  },
+  [GET_GRIVY_PRIZE]: ({ commit, state, getters }) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+
+        NGPSAPI.getGrivyPrize(state.token)
         .then(response => {
           return resolve(response);
         })

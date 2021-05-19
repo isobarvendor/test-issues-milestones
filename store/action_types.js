@@ -4,6 +4,7 @@ export const GET_ACCOUNT= `getAccount`;
 
 //ngps
 export const GET_LIST_PRIZE= `getListPrize`;
+export const GET_GRIVY_PRIZE= `getGrivyPrize`;
 export const GET_LIST_WALLET= `getListWallet`;
 export const CHECK_ATTEMPT= `checkAttempt`;
 export const SUBMIT_FORM= `submitForm`;

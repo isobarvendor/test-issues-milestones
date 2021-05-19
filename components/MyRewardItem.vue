@@ -1,5 +1,5 @@
 <template>
-        <v-row :id="'link-'+reward.title"  @click="reward.audio ? toggleSound(reward.id,reward.audio) : redeemLink(reward.link,reward.code)" class=" mb-4 toggle-sound paused center list-reward" >
+        <v-row no-gutters  padding :id="'link-'+reward.title"   @click="reward.audio ? toggleSound(reward.id,reward.audio) : redeemLink(reward.link,reward.code)" class=" mb-4 toggle-sound paused center list-reward" >
               <audio
                 v-if="reward.audio"
                 :ref="'audio'+reward.id"
@@ -9,13 +9,16 @@
                 id="audio"
                 muted
                 ></audio>
-            <v-col cols="3" >
+            <v-col cols="4" >
                 <img :src="reward.image" width="100%" />
             </v-col>
-            <v-col cols="9">
+            <v-col cols="1"  >
+            </v-col>
+            <v-col cols="7">
                 <h3>{{reward.title}}</h3>
-                <p v-if="reward.code">Voucher Code : {{reward.code}}</p>
+                <p v-if="reward.code">Kode : {{reward.code}}</p>
                 <p>{{reward.date}}</p>
+                <p v-if="reward.barcode"><img :src="reward.barcode" width="80%"  /></p>
             </v-col>
         </v-row>
 </template>

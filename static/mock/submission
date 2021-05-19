@@ -7,7 +7,26 @@
                     "burned": true
                 }
             ],
+            "grivy":
+              {
 
+                  "public_code": "demo-active",
+
+                  "secret_code": "C085E093F89C",
+
+                  "url": "https://barcode-stage.web.app/c/demo-active",
+
+                 "secret_code_image": "/img/landing/barcode.png",
+
+                  "store_name": "shopee",
+
+                  "coupon_expired_at": "2021-04-22 02:41:00",
+
+                  "creative_image": "https://cdn2.grivy.com/Testing%20Juice/JUICE_BANNER-1080x480.jpg"
+
+                  }
+
+              },
             "participationId": "1ylazdy9kkxmpa53",
             "instantWinResult": {
                 "winner": true,

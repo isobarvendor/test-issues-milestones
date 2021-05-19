@@ -1,0 +1,25 @@
+[ {       "public_code": "shopee-test-2",
+       "secret_code": "005ZWWZXFE82",
+       "url": "https://barcode-stage.web.app/c/shopee-test-2",
+        "secret_code_image": "/img/landing/barcode.png",
+       "store_name": "Shopee",
+       "coupon_expired_at": "2021-05-09 17:50:00",
+       "creative_image": "https://cdn2.grivy.com/Testing%20Juice/JUICE_BANNER-1080x480.jpg"
+   },
+   {       "public_code": "shopee-test-2",
+       "secret_code": "005ZWWZXFE82",
+       "url": "https://barcode-stage.web.app/c/shopee-test-2",
+        "secret_code_image": "/img/landing/barcode.png",
+       "store_name": "Shopee",
+       "coupon_expired_at": "2021-05-09 17:50:00",
+       "creative_image": "https://cdn2.grivy.com/Testing%20Juice/JUICE_BANNER-1080x480.jpg"
+   },
+   {       "public_code": "shopee-test-2",
+       "secret_code": "005ZWWZXFE82",
+       "url": "https://barcode-stage.web.app/c/shopee-test-2",
+        "secret_code_image": "/img/landing/barcode.png",
+       "store_name": "Shopee",
+       "coupon_expired_at": "2021-05-09 17:50:00",
+       "creative_image": "https://cdn2.grivy.com/Testing%20Juice/JUICE_BANNER-1080x480.jpg"
+   }
+]
