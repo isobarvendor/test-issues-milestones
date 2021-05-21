@@ -1,5 +1,5 @@
 <template>
- <div class="prize-inner-wrapper">
+ <div class="prize-inner-wrapper" :id="prize.prizeType">
       <div class="prize-background-two" v-if="themes==2">
                    <img src="/img/landing/Dots.png" width="110%"/>
                </div>
@@ -56,8 +56,8 @@
         </v-btn>
        </a>
    </div>
-    <div class="prize-button-area center" id="participateAgain" style="margin-top:40px;">
-          <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
+    <div class="prize-button-area center"  style="margin-top:40px;">
+          <v-btn @click="playAgain" :id="'Participate_Again_'+prize.prizeType">{{submissionText.participateAgain}}</v-btn>
     </div>
  </div>
 </template>
