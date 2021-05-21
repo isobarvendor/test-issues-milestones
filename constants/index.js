@@ -129,7 +129,7 @@ let language =
       luckyDrawSuccess:"Kamu berkesempatan memenangkan hadiah menarik lainnya pada undian mingguan.",
       luckyDrawSuccess2:"Kamu tetap berkesempatan memenangkan hadiah menarik lainnya pada undian mingguan.",
       luckyDrawFooter:"Lihat hadiah lain yang bisa kalian menangkan.",
-      prizeBarcodeHeader:"<h1>Selamat kamu mendapatkan COKE AYO PET 250ml gratis!</h1><BR/>Tunjukkan kode di bawah ini ke kasir <<STORE>> untuk menukarkan hadiah produk.*Syarat & Ketentuan berlaku",
+      prizeBarcodeHeader:"<h1>Selamat kamu mendapatkan <<NAME>></h1><BR/>Tunjukkan kode di bawah ini ke kasir untuk menukarkan hadiah produk.*Syarat & Ketentuan berlaku",
     },
     winnerText:{
       header:"SENARAI PEMENANG",

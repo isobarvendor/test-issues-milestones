@@ -18,7 +18,7 @@
 
                  "secret_code_image": "/img/landing/barcode.png",
 
-                  "store_name": "shopee",
+                  "store_name": "Alfamart",
 
                   "coupon_expired_at": "2021-04-22 02:41:00",
 
@@ -35,7 +35,7 @@
                     "voucherCode": "Voucher891",
                     "status": "claimed",
                     "expiryDate": 1620018590000,
-                    "name": "JOOX VIP PASS",
+                    "name": "COKE AYO PET 250 ml gratis!",
                     "description":"Conglratulations",
                     "shortDescription": "http://google.com",
                     "redeemDescription": "http://abcd",
