@@ -5,7 +5,7 @@
                 <img src="/img/landing/back-dots.png" width="100%" />
             </div>
             <div class="title">
-                <h1>YOUR REWARDS</h1>
+                <h1>HADIAH ANDA</h1>
             </div>
             <div class="rewards-area">
                 <div v-for="item in rewards" :key="item.id">
