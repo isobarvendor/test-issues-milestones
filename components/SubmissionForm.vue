@@ -451,7 +451,7 @@ export default {
             this.form.phoneNumber="";
          }
        }
-       if((val.length)>envs.maxPhoneNumber){
+      if(val.length>envs.maxPhoneNumber||val.length<envs.minPhoneNumber){
          this.errors.clear();
          this.$validator.errors.add({
           field: 'phoneNumber',
