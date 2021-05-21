@@ -106,8 +106,8 @@ export default {
         if(prizewin.grivy){
            prize =[
               {
-                  text : this.submissionText.prizeBarcodeHeader.replace("<<STORE>>",prizewin.grivy.store_name),
-                  name : prizewin.instantWinResult.redeemedPrize.name + "<BR/>"+ '<img src="'+prizewin.grivy.secret_code_image+'" width="100%" />',
+                  text : this.submissionText.prizeBarcodeHeader.replace("<<NAME>>",prizewin.instantWinResult.redeemedPrize.name),
+                  name : '<div class="namePrize">'+prizewin.instantWinResult.redeemedPrize.name + "</div>"+ '<img src="'+prizewin.grivy.secret_code_image+'" width="100%" /> <div class="namePrize">'+prizewin.grivy.store_name+'</div>',
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:[]
@@ -221,5 +221,8 @@ export default {
 .center{
   text-align: center;
 }
-
+.prize-chance .namePrize{
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
 </style>
