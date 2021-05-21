@@ -94,6 +94,30 @@ export default {
       this.submitted=false;
       this.prize=[];
     },
+    addGTMSuccessPrize(prize){
+          this.$gtm.push({
+            'event' : 'event_redeem_page1',
+            'gift_name':prize,
+      });
+    /*  console.log({
+            'event' : 'event_redeem_page1',
+            'gift_name':prize,
+      });*/
+     },
+       addGTMSuccessLucky(){
+          this.$gtm.push({
+            'event' : 'event_redeem_page1',
+            'category' : 'form submit',
+            'action' : 'success',
+            'label' : 'LUCKY_DRAW'
+      });
+    /*  console.log({
+            'event' : 'event_redeem_page1',
+            'category' : 'form submit',
+            'action' : 'success',
+            'label' : 'LUCKY_DRAW'
+      });*/
+     },
     submit(data){
       this.submitted=true;
       let prizewin=data.response;
@@ -104,6 +128,7 @@ export default {
       if(attemptData.campaignType == 'InstantWin' && prizewin.instantWinResult!=null && prizewin.instantWinResult.winner ){
         this.campaignWin=attemptData.campaignType;
         if(prizewin.grivy){
+          this.addGTMSuccessPrize("Coke");
            prize =[
               {
                   text : this.submissionText.prizeBarcodeHeader.replace("<<NAME>>",prizewin.instantWinResult.redeemedPrize.name),
@@ -114,10 +139,12 @@ export default {
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  null,
                 subName:null,
-                 luckyDraw:false
+                 luckyDraw:false,
+                 prizeType:"Coke",
               }
           ];
         }else{
+          this.addGTMSuccessPrize("JOOX");
           prize =[
               {
                   text : attemptData.FormHeading.thankYouMessage,
@@ -125,14 +152,15 @@ export default {
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:[{
-                      id:"redeemNow",
+                      id:"Redeem_Now",
                       text:this.submissionText.redeemPrize,
                       link:prizewin.instantWinResult.redeemedPrize.redeemDescription + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode
                   }]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
                 subName:null,
-                 luckyDraw:false
+                 luckyDraw:false,
+                 prizeType:"Joox",
               }
           ];
         }
@@ -142,6 +170,7 @@ export default {
           this.jooxMessage=attemptData.FormHeading.Prize;
       }
       else{
+        this.addGTMSuccessLucky();
         this.campaignWin="luckyDraw";
             prize =[
               {
@@ -153,7 +182,8 @@ export default {
                   ,havejoox:attemptData.FormHeading.Prize,
                   code: null,
                 subName:null,
-                luckyDraw:true
+                luckyDraw:true,
+                 prizeType:"Lucky_Draw",
               }
 
           ];
