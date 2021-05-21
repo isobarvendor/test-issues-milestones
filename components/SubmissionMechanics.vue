@@ -1,5 +1,5 @@
 <template>
- <div style="width:100%">
+ <div style="width:100%" class="winning-area">
   <div class="container campaign-section redbox-withwhiteborder submission-section" id="submission-section" v-if="cmsData&&!submitted">
       <div class="divider">
         <img src="/img/landing/coke line divider.png" width="100%" />
@@ -162,7 +162,18 @@ export default {
 
         this.jooxMessage=attemptData.FormHeading.Prize;
       }
+          var options = {
+                container: 'body',
+                easing: 'ease-in',
+                lazy: false,
+                offset: -60,
+                force: true,
+                cancelable: true,
+                x: false,
+                y: true
+            }
 
+             this.$scrollTo('.winning-area', 60, options)
 
     }
   },
