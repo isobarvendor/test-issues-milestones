@@ -107,7 +107,7 @@ export default {
            prize =[
               {
                   text : this.submissionText.prizeBarcodeHeader.replace("<<STORE>>",prizewin.grivy.store_name),
-                  name : '<img src="'+prizewin.grivy.secret_code_image+'" width="100%" />',
+                  name : prizewin.instantWinResult.redeemedPrize.name + "<BR/>"+ '<img src="'+prizewin.grivy.secret_code_image+'" width="100%" />',
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                   note : null
                   ,button:[]
