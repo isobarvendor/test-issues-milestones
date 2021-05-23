@@ -134,7 +134,7 @@ export default {
                   text : this.submissionText.prizeBarcodeHeader.replace("<<NAME>>",prizewin.instantWinResult.redeemedPrize.name),
                   name : '<div class="namePrize">'+prizewin.instantWinResult.redeemedPrize.name + "</div>"+ '<img src="'+prizewin.grivy.secret_code_image+'" width="100%" /> <div class="namePrize">'+prizewin.grivy.store_name+'</div>',
                   image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
-                  note : null
+                  note : '<div class="glink">Jika ada kendala mengenai penukaran kode, hubungi Support Grivy melalui link <a target="_blank" href="https://grivy.app/ad/support-coke-music-1">ini.​</a></div>'
                   ,button:[]
                   ,havejoox:attemptData.FormHeading.Prize,
                   code:  null,
