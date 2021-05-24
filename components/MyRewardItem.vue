@@ -60,7 +60,7 @@ export default {
 
       },
       canLink(link){
-        if (link.includes("http") || link.includes("https")){
+        if (link && (link.includes("http") || link.includes("https"))){
           return true
         } else {
           return false
