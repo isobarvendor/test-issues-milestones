@@ -1,5 +1,5 @@
 <template>
-        <v-row no-gutters  padding :id="'link-'+reward.title"   @click="reward.audio ? toggleSound(reward.id,reward.audio) : canLink() ? redeemLink(reward.link,reward.code) : null" class=" mb-4 toggle-sound paused center list-reward" >
+        <v-row no-gutters  padding :id="'link-'+reward.title"   @click="reward.audio ? toggleSound(reward.id,reward.audio) : canLink(reward.link) ? redeemLink(reward.link,reward.code) : null" class=" mb-4 toggle-sound paused center list-reward" >
               <audio
                 v-if="reward.audio"
                 :ref="'audio'+reward.id"
@@ -59,8 +59,8 @@ export default {
         }
 
       },
-      canLink(){
-        if (reward.link.includes("http") || reward.link.includes("https")){
+      canLink(link){
+        if (link.includes("http") || link.includes("https")){
           return true
         } else {
           return false
