@@ -340,6 +340,7 @@ export default {
                 this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response)=>{
                    // this.submitted=true;
+                    this.pushGTMCode();
 
                    let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, ageConsent:this.form.ageConsent  }
 
@@ -428,7 +429,14 @@ export default {
      goToRewards(){
        location.href='/rewards';
      },
-
+     pushGTMCode(){
+      this.$gtm.push({
+                        'event' : 'event_form_submit',
+                        'category' : 'form submit',
+                        'action' : 'success',
+                        'label' : 'rhythm sign up'
+                    });
+     }
 
 
   },
