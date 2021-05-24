@@ -98,7 +98,7 @@ export default {
                           date:null,
                           link:null,
                           image:o.creative_image,
-                          code:o.public_code,
+                          code:null,
                           audio:null,
                           barcode:o.secret_code_image
                         }
