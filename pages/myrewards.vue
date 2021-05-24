@@ -5,7 +5,7 @@
                 <img src="/img/landing/back-dots.png" width="100%" />
             </div>
             <div class="title">
-                <h1>YOUR REWARDS</h1>
+                <h1>HADIAH ANDA</h1>
             </div>
             <div class="rewards-area">
                 <div v-for="item in rewards" :key="item.id">
@@ -98,7 +98,7 @@ export default {
                           date:null,
                           link:null,
                           image:o.creative_image,
-                          code:o.public_code,
+                          code:null,
                           audio:null,
                           barcode:o.secret_code_image
                         }
