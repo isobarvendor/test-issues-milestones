@@ -58,7 +58,7 @@
                 <v-text-field
                   v-model="search"
                   append-icon="mdi-magnify"
-                  label="Search by name"
+                  label="Search"
                   single-line
                   hide-details
                 ></v-text-field>
@@ -73,7 +73,7 @@
                 :options.sync="options"
                 :server-items-length.sync="totalWinner"
                 :loading="loading"
-                
+
           class="elevation-1"
               ></v-data-table>
             </v-card>
@@ -127,7 +127,7 @@ export default {
   },
   data() {
     return {
-      
+
       showWinnerDetail:false,
       winnerWeek:null,
       weekly:false,
@@ -189,8 +189,8 @@ export default {
 
   },
   methods:{
-    
-    
+
+
    async checkWinnerMonth(){
        console.log(this.data)
      let startMonth= moment(this.data.fromDate).format("M");
