@@ -153,7 +153,7 @@ export default {
           { text: 'Email', value: 'email' , align: 'center'},
           { text: 'Phone', value: 'phone' , align: 'center', },
           { text: 'Prize', value: 'prize' , align: 'center', },
-          { text: 'Mixcode', value: 'mixcode', align: 'center' }
+          { text: 'Mixcode', value: 'mixcode', align: 'center', sortable: false }
         ]
     };
   },
