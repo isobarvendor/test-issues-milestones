@@ -153,7 +153,7 @@ export default {
           { text: 'Email', value: 'email' , align: 'center'},
           { text: 'Phone', value: 'phone' , align: 'center', },
           { text: 'Prize', value: 'prize' , align: 'center', },
-          { text: 'Mixcode', value: 'mixcode', align: 'center', filterable:true, sortable:false }
+          { text: 'Mixcode', value: 'mixcode', align: 'center' }
         ]
     };
   },
@@ -189,15 +189,6 @@ export default {
 
   },
   methods:{
-    filter(value, search, item){
-      let inCode = RegExp(search, "i").test(item.mixcode)
-      let inName = RegExp(search, "i").test(item.name)
-      let inEmail = RegExp(search, "i").test(item.email)
-      let inPhone = RegExp(search, "i").test(item.phone)
-      let inPrize = RegExp(search, "i").test(item.prize)
-
-      return inCode || inName || inEmail || inPhone || inPrize
-      },
     
     
    async checkWinnerMonth(){
@@ -252,6 +243,7 @@ export default {
           req['_where[_or][0][name_contains]']=this.search;
           req['_where[_or][1][email_contains]']=this.search;
           req['_where[_or][2][prize_contains]']=this.search;
+          req['_where[_or][3][mixCode_contains]']=this.search;
           }
                this.page=page;
         this.numberOfPages=this.totalWinner/itemsPerPage;
@@ -278,6 +270,7 @@ export default {
           req['_where[_or][0][name_contains]']=this.search;
           req['_where[_or][1][email_contains]']=this.search;
           req['_where[_or][2][prize_contains]']=this.search;
+          req['_where[_or][3][mixCode_contains]']=this.search;
            req['_limit']=this.itemsPerPage;
             req['_start']=(this.page-1)*this.itemsPerPage;
         }
