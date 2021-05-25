@@ -65,7 +65,7 @@
               </v-card-title>
               <v-data-table
               dark
-                  :headers="headers"
+                :headers="headers"
                 :items="winnerWeekDetail"
                 :page.sync="page"
                 :pageCount.sync="numberOfPages"
@@ -73,6 +73,7 @@
                 :options.sync="options"
                 :server-items-length.sync="totalWinner"
                 :loading="loading"
+                
           class="elevation-1"
               ></v-data-table>
             </v-card>
@@ -126,6 +127,7 @@ export default {
   },
   data() {
     return {
+      
       showWinnerDetail:false,
       winnerWeek:null,
       weekly:false,
@@ -134,7 +136,7 @@ export default {
       options: {},
       loading: true,
       winnerText:translation.winnerText,
-       numberOfPages: 0,
+      numberOfPages: 0,
       itemsPerPage:10,
       totalWinner:0,
       page:1,
@@ -147,10 +149,11 @@ export default {
             sortable:false,
             value: 'no',
           },
-          { text: 'Name', value: 'name', align: 'center'},
-          { text: 'Email', value: 'email' , align: 'center' },
-          { text: 'Phone', value: 'phone' , align: 'center' },
-          { text: 'Prize', value: 'prize' , align: 'center' },
+          { text: 'Name', value: 'name', align: 'center' },
+          { text: 'Email', value: 'email' , align: 'center'},
+          { text: 'Phone', value: 'phone' , align: 'center', },
+          { text: 'Prize', value: 'prize' , align: 'center', },
+          { text: 'Mixcode', value: 'mixcode', align: 'center', filterable:true, sortable:false }
         ]
     };
   },
@@ -167,7 +170,8 @@ export default {
               name:o.name,
               email:o.email ? this.maskEmail(o.email) : null,
               phone:o.phone ? this.maskEmail(o.phone) : null,
-              prize:o.prize
+              prize:o.prize,
+              mixcode:o.mixCode ? o.mixCode : null
           }
       });
     },
@@ -185,6 +189,17 @@ export default {
 
   },
   methods:{
+    filter(value, search, item){
+      let inCode = RegExp(search, "i").test(item.mixcode)
+      let inName = RegExp(search, "i").test(item.name)
+      let inEmail = RegExp(search, "i").test(item.email)
+      let inPhone = RegExp(search, "i").test(item.phone)
+      let inPrize = RegExp(search, "i").test(item.prize)
+
+      return inCode || inName || inEmail || inPhone || inPrize
+      },
+    
+    
    async checkWinnerMonth(){
        console.log(this.data)
      let startMonth= moment(this.data.fromDate).format("M");
@@ -348,6 +363,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .winner-details{
   .text-start{
     text-align: center;
