@@ -19,9 +19,9 @@
     </a-->
 
         <a :class="[{'profile-button':true,'hide-mobile' : expand}]" id="signIn" v-if="!logged&&notCountDown"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
-        <div class="profile-content" >
+        <!-- <div class="profile-content" >
             <template ><div v-html="siginButton"></div></template>
-        </div>
+        </div> -->
     </a>
     <div></div>
     <div class="nav-container">
