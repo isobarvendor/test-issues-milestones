@@ -1,7 +1,7 @@
 <template>
   <v-app>
   <div v-if="data" id="main" class="winner-detail">
-        <WinnerDetails :data="data ? data[0].luckyWinner : null" :winners="winners" :howData="data ? data[0].worksSection : null" />
+        <WinnerDetails :data="data ? configData.campaignPeriod : null" :howData="data ? data[0].worksSection : null" />
   </div>
   </v-app>
 </template>
@@ -18,7 +18,8 @@ export default {
   data(){
     return{
        browserTitle:translation.browserTitle,
-        metaData:translation.meta
+        metaData:translation.meta,
+        winners:[]
     }
   },
   head() {
@@ -31,20 +32,25 @@ export default {
      data(){
         return this.$store.getters.getCMSContent;
      },
-     winners(){
-       return this.$store.getters.getListWinners;
-     },
+
      configData(){
        return this.$store.getters.getCMSConfig;
      }
   },
   methods:{
-      async getListWinners(){
-          await  this.$store.dispatch(GET_LIST_WINNERS);
+       getListWinners(data){
+          this.$store.dispatch(GET_LIST_WINNERS,data).then((res)=>{
+              this.winners=res.data;
+          })
     },
   },
   mounted() {
-    this.getListWinners();
+      if(!this.$store.state.token){
+       location.assign("/");
+     }
+
+
+
   }
 };
 </script>
