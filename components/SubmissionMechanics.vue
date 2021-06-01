@@ -1,17 +1,17 @@
 <template>
  <div style="width:100%">
-  <!-- <div class="container campaign-section redbox-withwhiteborder submission-section" id="submission-section" v-if="cmsData&&!submitted">
+  <div class="container campaign-section redbox-withwhiteborder submission-section" id="submission-section" v-if="cmsData&&!submitted">
       <div class="divider">
         <img src="/img/landing/coke line divider.png" width="100%" />
       </div>
       <Login :social="dataSocial" v-if="!this.$store.state.login"   />
-      <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="this.$store.state.login" @submit="submit"  /> -->
+      <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="this.$store.state.login" @submit="submit"  />
       <!--Login :social="dataSocial" v-if="false"   />
       <Form :data="dataForm" :cmsData="cmsData[0]" /-->
 
-  <!-- </div> -->
-  <!-- <div  v-else > -->
-  <div class="container  prize-chance black-red-border" v-if="!cmsData&&submitted">
+  </div>
+  <div  v-else >
+  <div class="container  prize-chance black-red-border">
       <div class="wrapper">
       <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
       <div v-else style="text-align:center">
