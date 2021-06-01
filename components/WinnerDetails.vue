@@ -151,6 +151,7 @@ export default {
           { text: translation.submissionText.email, value: 'email' , align: 'center' },
           { text: translation.submissionText.phoneNumber, value: 'phone' , align: 'center' },
           { text: 'Hadiah', value: 'prize' , align: 'center' },
+          { text: 'Winning code', value: 'mixcode', align: 'center', sortable: false }
         ]
     };
   },
@@ -167,7 +168,8 @@ export default {
               name:o.name,
               email:o.email ? this.maskEmail(o.email) : null,
               phone:o.phone ? this.maskEmail(o.phone) : null,
-              prize:o.prize
+              prize:o.prize,
+              mixcode:o.mixCode ? o.mixCode : null
           }
       });
     },
@@ -237,6 +239,7 @@ export default {
           req['_where[_or][0][name_contains]']=this.search;
           req['_where[_or][1][email_contains]']=this.search;
           req['_where[_or][2][prize_contains]']=this.search;
+          req['_where[_or][3][mixCode_contains]']=this.search;
           }
                this.page=page;
         this.numberOfPages=this.totalWinner/itemsPerPage;
@@ -263,6 +266,7 @@ export default {
           req['_where[_or][0][name_contains]']=this.search;
           req['_where[_or][1][email_contains]']=this.search;
           req['_where[_or][2][prize_contains]']=this.search;
+          req['_where[_or][3][mixCode_contains]']=this.search;
            req['_limit']=this.itemsPerPage;
             req['_start']=(this.page-1)*this.itemsPerPage;
         }
