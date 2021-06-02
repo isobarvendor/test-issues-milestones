@@ -139,7 +139,7 @@ let language =
       prizeBarcodeHeader:"<h1>Selamat kamu mendapatkan <<NAME>></h1><BR/>Tunjukkan kode di bawah ini ke kasir untuk menukarkan hadiah produk.*Syarat & Ketentuan berlaku",
     },
     winnerText:{
-      header:"SENARAI PEMENANG",
+      header:"DAFTAR PEMENANG",
       nowinner:"Coming soon"
     },
     globalError:{
