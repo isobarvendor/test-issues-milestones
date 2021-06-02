@@ -58,14 +58,14 @@
                 <v-text-field
                   v-model="search"
                   append-icon="mdi-magnify"
-                  label="Search by name"
+                  label="Search"
                   single-line
                   hide-details
                 ></v-text-field>
               </v-card-title>
               <v-data-table
               dark
-                  :headers="headers"
+                :headers="headers"
                 :items="winnerWeekDetail"
                 :page.sync="page"
                 :pageCount.sync="numberOfPages"
@@ -73,6 +73,7 @@
                 :options.sync="options"
                 :server-items-length.sync="totalWinner"
                 :loading="loading"
+
           class="elevation-1"
               ></v-data-table>
             </v-card>
@@ -126,6 +127,7 @@ export default {
   },
   data() {
     return {
+
       showWinnerDetail:false,
       winnerWeek:null,
       weekly:false,
@@ -134,7 +136,7 @@ export default {
       options: {},
       loading: true,
       winnerText:translation.winnerText,
-       numberOfPages: 0,
+      numberOfPages: 0,
       itemsPerPage:10,
       totalWinner:0,
       page:1,
@@ -147,10 +149,11 @@ export default {
             sortable:false,
             value: 'no',
           },
-          { text: 'Name', value: 'name', align: 'center'},
-          { text: 'Email', value: 'email' , align: 'center' },
-          { text: 'Phone', value: 'phone' , align: 'center' },
-          { text: 'Prize', value: 'prize' , align: 'center' },
+          { text: 'Name', value: 'name', align: 'center' },
+          { text: 'Email', value: 'email' , align: 'center'},
+          { text: 'Phone', value: 'phone' , align: 'center', },
+          { text: 'Prize', value: 'prize' , align: 'center', },
+          { text: 'Winning code', value: 'mixcode', align: 'center', sortable: false }
         ]
     };
   },
@@ -167,7 +170,8 @@ export default {
               name:o.name,
               email:o.email ? this.maskEmail(o.email) : null,
               phone:o.phone ? this.maskEmail(o.phone) : null,
-              prize:o.prize
+              prize:o.prize,
+              mixcode:o.mixCode ? o.mixCode : null
           }
       });
     },
@@ -185,6 +189,8 @@ export default {
 
   },
   methods:{
+
+
    async checkWinnerMonth(){
        console.log(this.data)
      let startMonth= moment(this.data.fromDate).format("M");
@@ -237,6 +243,7 @@ export default {
           req['_where[_or][0][name_contains]']=this.search;
           req['_where[_or][1][email_contains]']=this.search;
           req['_where[_or][2][prize_contains]']=this.search;
+          req['_where[_or][3][mixCode_contains]']=this.search;
           }
                this.page=page;
         this.numberOfPages=this.totalWinner/itemsPerPage;
@@ -263,6 +270,7 @@ export default {
           req['_where[_or][0][name_contains]']=this.search;
           req['_where[_or][1][email_contains]']=this.search;
           req['_where[_or][2][prize_contains]']=this.search;
+          req['_where[_or][3][mixCode_contains]']=this.search;
            req['_limit']=this.itemsPerPage;
             req['_start']=(this.page-1)*this.itemsPerPage;
         }
@@ -348,6 +356,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .winner-details{
   .text-start{
     text-align: center;
