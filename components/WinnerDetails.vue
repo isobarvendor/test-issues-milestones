@@ -58,7 +58,7 @@
                 <v-text-field
                   v-model="search"
                   append-icon="mdi-magnify"
-                  label="Search"
+                  label="Cari"
                   single-line
                   hide-details
                 ></v-text-field>
@@ -149,11 +149,11 @@ export default {
             sortable:false,
             value: 'no',
           },
-          { text: 'Name', value: 'name', align: 'center' },
+          { text: 'Nama', value: 'name', align: 'center' },
           { text: 'Email', value: 'email' , align: 'center'},
-          { text: 'Phone', value: 'phone' , align: 'center', },
-          { text: 'Prize', value: 'prize' , align: 'center', },
-          { text: 'Winning code', value: 'mixcode', align: 'center', sortable: false }
+          { text: 'Telephone', value: 'phone' , align: 'center', },
+          { text: 'Hadiah', value: 'prize' , align: 'center', },
+          { text: 'Kode', value: 'mixcode', align: 'center', sortable: false }
         ]
     };
   },
