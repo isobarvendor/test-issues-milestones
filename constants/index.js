@@ -17,7 +17,8 @@ let language =
       privacy:"Privacy",
       terms:"Terms",
       logout:"Logout",
-      myRewards:"My Rewards"
+      myRewards:"My Rewards",
+      winners:"Winners"
     },
     countdown:{
       days:"DAYS",
@@ -32,28 +33,33 @@ let language =
       name:"Name",
       email:"Email",
       phoneNumber:"Phone Number",
-      acceptTerm:'I accept the <a href="/tnc">Terms and Conditions</a> of this this redemption.',
-      acceptPrivacy:'I accept the <a href="/privacy">Privacy Policy</a> of this redemption.',
-      declareAge:'I declare that I am above 13  years old.',
+      acceptTerm:'I am 18 years and above. I hereby agree to the  <a href="/tnc">terms and conditions of this Promotion </a> and accept the <a href="/privacy">Privacy Policy</a>.',
+      acceptPrivacy:'I agree to the collection, use, disclosure, or processing of my personal data in accordance of <a href="/privacy">Privacy Policy</a>.',
+      declareAge:'I am below 18 years. I have the consent of my parent/guardian to participate based on the <a href="/tnc">terms and conditions</a> of this Promotion and accept the <a href="/privacy">Privacy Policy</a>.',
       enterCode:'Enter Unique Code',
       tooltipText:'Enter the code found under the cap/tab of your Coca Cola purchase here',
       phoneTooltip:"Please input the correct phone number so that Coca-Cola can contact you directly incase you are the winner",
-      buttonText:'Collect your prize',
+      buttonText:'Submit now',
+      uploadButton:'Upload unique code image',
+      errorRequiredCode:'The code field is required',
+      errorRequiredUpload:'The upload field is required',
       errorTerm:'Please accept our terms and conditions',
       errorPolicy:"Please accept our privacy policies",
-      errorDeclare:"Please declare that you are above 13  years old",
+      errorDeclare:"Please declare your age and you are agree with terms and condition",
       errorPinCode:"Oops your pin code is invalid or already redeemed",
       errorPinCode1:"Oops your pin code is invalid or already redeemed",
       errorPinCode2:"Oops your pin code is invalid or already redeemed",
       errorPinCode3:"Oops your pin code is invalid or already redeemed",
       errorPinCode4:"Oops your pin code is invalid or already redeemed",
       errorAPI:"Oops something went wrong please try again",
-      errorMaxPhone:"You reach maximum phone number length",
+      errorMaxPhone:"You’ve reached the maximum phone number length",
+      errorNumberPhone:"Please enter a number",
       errorRequiredPhone:"The phone number is required",
-      participateAgain:"Participate again",
+      participateAgain:"Join Again",
       listenNow:"Listen now",
       redeemPrize:"Redeem Prize",
-      continue:"Continue with"
+      continue:"Continue with",
+      luckyDrawSuccess:"Do come back for next entry submission to win more attractive prizes."
     },
     winnerText:{
       header:"WINNER LIST",
@@ -85,7 +91,8 @@ let language =
       privacy:"Kebijakan Privasi",
       terms:"Syarat & Ketentuan",
       logout:"logout",
-      myRewards:"Hadiah anda"
+      myRewards:"Hadiah anda",
+      winners:"Pemenang"
     },
     countdown:{
       days:"DAYS",
@@ -132,7 +139,7 @@ let language =
       prizeBarcodeHeader:"<h1>Selamat kamu mendapatkan <<NAME>></h1><BR/>Tunjukkan kode di bawah ini ke kasir untuk menukarkan hadiah produk.*Syarat & Ketentuan berlaku",
     },
     winnerText:{
-      header:"SENARAI PEMENANG",
+      header:"DAFTAR PEMENANG",
       nowinner:"Coming soon"
     },
     globalError:{

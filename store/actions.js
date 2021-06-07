@@ -86,7 +86,7 @@ export default {
 
         NGPSAPI.getListPrize(prizeConfig)
         .then(response => {
-          commit('SET_LIST_PRIZE', response.data);
+         // commit('SET_LIST_PRIZE', response.data);
           return resolve(response);
         })
         .catch(error => {
@@ -142,12 +142,12 @@ export default {
     });
   },
 
-  [GET_LIST_WINNERS]: ({ commit, state, getters }) => {
+  [GET_LIST_WINNERS]: ({ commit, state, getters },data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-        CMSAPI.getWinners()
+        CMSAPI.getWinners({count:data.count,params:data.params})
         .then(response => {
-          commit('SET_LIST_WINNERS', response.data);
+         // commit('SET_LIST_WINNERS', response.data);
           return resolve(response);
         })
         .catch(error => {
@@ -229,7 +229,7 @@ export default {
   [UPLOAD_FILE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-        NGPSAPI.uploadFile(data.request,data.type)
+        NGPSAPI.uploadFile(data.request,data.type,state.token)
         .then(response => {
           return resolve(response);
         })

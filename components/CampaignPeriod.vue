@@ -36,7 +36,7 @@
         class="desc-container"
       >
           <div class="periode-container">
-            <p>{{this.data.Title}}</p>
+            <p v-html="this.data.Title"></p>
             <p class="campaign-period" v-html="startdate+' – '+enddate"></p>
           </div>
           <div class="period-desc-container">

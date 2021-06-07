@@ -87,10 +87,16 @@
                             <a href="/" id="home">{{menu.home}}</a>
                         </div>
                     </div>
-                       <div class="img-text" v-if="logged">
+                    <div class="img-text" v-if="logged">
                         <img src="/img/icons/wallet.png"/>
                         <div>
                             <a data-nav="myrewards" id="myReward" @click="clickNav">{{menu.myRewards}}</a>
+                        </div>
+                    </div>
+                    <div class="img-text" v-if="logged">
+                        <img src="/img/icons/winners.png"/>
+                        <div>
+                            <a data-nav="winners" id="winners" @click="clickNav">{{menu.winners}}</a>
                         </div>
                     </div>
 
@@ -324,7 +330,7 @@ background-color: #b10017;
     }
     @media only screen and (max-width: 700px) {
         .menu-container{
-            right: -20px;
+            right: 10px;
             top: -150px;
             margin-top: 20px;
             padding-top:150px;
@@ -337,6 +343,16 @@ background-color: #b10017;
                     width: 305px;
                 }
             }
+        }
+    }
+     @media only screen and (max-width: 400px) {
+        .menu-container{
+            right: -30px;
+        }
+     }
+        @media only screen and (max-width: 320px) {
+        .menu-container{
+            right: -50px;
         }
     }
 }

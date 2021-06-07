@@ -10,8 +10,13 @@ export default {
   async getCMSConfig() {
     return await axios.get(`${origin}/cms-api/campaign-configurations`)
   },
-  async getWinners() {
-    return await axios.get(`${origin}/cms-api/winners`)
+  async getWinners(data) {
+    if(data.count){
+      return await axios.get(`${origin}/cms-api/winners/count`,{params:data.params})
+    }else{
+      return await axios.get(`${origin}/cms-api/winners`,{params:data.params})
+    }
+
   },
 
 
