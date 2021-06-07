@@ -151,8 +151,8 @@ export default {
           },
           { text: 'Nama', value: 'name', align: 'center' },
           { text: 'Email', value: 'email' , align: 'center'},
-          { text: 'Nomor telepon', value: 'phone' , align: 'center', },
-          { text: 'Hadiah', value: 'prize' , align: 'center', },
+          { text: 'Nomor telepon', value: 'phone' , align: 'center', sortable: false },
+          { text: 'Hadiah', value: 'prize' , align: 'center', sortable: false },
           { text: 'Kode Menang', value: 'mixcode', align: 'center', sortable: false }
         ]
     };
