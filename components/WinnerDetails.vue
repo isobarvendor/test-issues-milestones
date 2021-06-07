@@ -151,9 +151,9 @@ export default {
           },
           { text: 'Nama', value: 'name', align: 'center' },
           { text: 'Email', value: 'email' , align: 'center'},
-          { text: 'Telephone', value: 'phone' , align: 'center', },
+          { text: 'Nomor telepon', value: 'phone' , align: 'center', },
           { text: 'Hadiah', value: 'prize' , align: 'center', },
-          { text: 'Kode', value: 'mixcode', align: 'center', sortable: false }
+          { text: 'Kode Menang', value: 'mixcode', align: 'center', sortable: false }
         ]
     };
   },
