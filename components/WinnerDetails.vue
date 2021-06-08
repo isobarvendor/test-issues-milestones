@@ -168,7 +168,7 @@ export default {
           return {
               no:(index+1)+((this.page-1)*this.itemsPerPage),
               name:o.name,
-              email:o.email ? this.maskEmail(o.email) : null,
+              email:o.email,
               phone:o.phone ? this.maskEmail(o.phone) : null,
               prize:o.prize,
               mixcode:o.mixCode ? o.mixCode : null
