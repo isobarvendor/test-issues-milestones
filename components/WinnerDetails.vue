@@ -86,7 +86,7 @@
                       {{monthName(winnerLists[0].week)}}
                       </div>
                       <div class="date">
-                        {{ startMonth(winnerLists[0].week)}} -  {{endMonth(winnerLists[0].week)}}
+                        {{ winnerLists[0].startDate}} -  {{endMonth(winnerLists[0].week)}}
                       </div>
                 </div>
                 <div v-else :class="item.length==2 ? 'two-container' : 'top-margin'"   v-for="(item, index) in winnerListsSecond"
@@ -96,7 +96,7 @@
                       {{monthName(item2.week)}}
                       </div>
                       <div class="date">
-                        {{ startMonth(item2.week)}} -  {{endMonth(item2.week)}}
+                        {{ startMonth(item2.week)}} -  {{index2 == winnerLists.length-1 ? item2.endDate : endMonth( item2.week)}}
                       </div>
                     </div>
 
@@ -194,11 +194,13 @@ export default {
    async checkWinnerMonth(){
        console.log(this.data)
      let startMonth= moment(this.data.fromDate).format("M");
+     let startDate= moment(this.data.fromDate).format('DD MMM YYYY');
      let endMonth= moment(this.data.toDate).format("M");
+     let endDate= moment(this.data.toDate).format('DD MMM YYYY');
      for(let l=startMonth;l<=endMonth;l++){
       await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:{week_eq:l}}).then((res)=>{
           if(res.data>0){
-             this.winnerMonth.push({week:l});
+             this.winnerMonth.push({week:l,startDate:startDate, endDate:endDate});
           }
       })
 
