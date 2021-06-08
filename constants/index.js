@@ -87,7 +87,7 @@ let language =
           content: "Home page Coke - Turn Up Your Rhythm"
         }
       ],
-      periodDescription:"Từ hôm nay đến 23/05/2021, mỗi sản phẩm Coca-Cola có khuyến mãi sẽ cho bạn cơ hội nhận ngay Tài khoản VIP Zing MP3 và nhiều quà tặng hấp dẫn khác. Thực hiện ngay các bước hướng dẫn bên dưới để bắt đầu tham gia và trúng thưởng.",
+      periodDescription:"Rất tiếc thời gian CTKM Bừng Giai Điệu Hứng Khởi đã kết thúc vào ngày 06/06/2021",
       signInButton:"ĐĂNG NHẬP <BR/><small>để trúng thưởng</small>",
       menu:{
         home:"Trang Chủ",
