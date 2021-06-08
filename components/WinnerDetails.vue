@@ -149,17 +149,10 @@ export default {
             sortable:false,
             value: 'no',
           },
-<<<<<<< HEAD
           { text:translation.submissionText.name, value: 'name', align: 'center' },
           { text: translation.submissionText.email, value: 'email' , align: 'center' },
           { text: translation.submissionText.phoneNumber, value: 'phone' , align: 'center' },
           { text: 'Hadiah', value: 'prize' , align: 'center' },
-=======
-          { text: 'Name', value: 'name', align: 'center' },
-          { text: 'Email', value: 'email' , align: 'center'},
-          { text: 'Phone', value: 'phone' , align: 'center', },
-          { text: 'Prize', value: 'prize' , align: 'center', },
->>>>>>> origin/dev/sg
           { text: 'Winning code', value: 'mixcode', align: 'center', sortable: false }
         ]
     };
