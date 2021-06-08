@@ -40,7 +40,7 @@
             <p class="campaign-period" v-html="startdate+' – '+enddate"></p>
           </div>
           <div class="period-desc-container">
-            <p class="description">
+            <p class="desc">
               
               {{periodDescription}}
             </p>
@@ -137,12 +137,12 @@ export default {
 
 <style>
   @media only screen and (min-width: 700px) {
-    .campaign-period-section .description .period-desc-container{
+    .campaign-period-section .description {
       text-align: center;
       padding-top: 50px;
     }
   }
-  .description{
+  .desc{
     text-align: center;
   }
 </style>
