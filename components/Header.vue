@@ -93,7 +93,7 @@
                             <a data-nav="myrewards" id="myReward" @click="clickNav">{{menu.myRewards}}</a>
                         </div>
                     </div>
-                    <div class="img-text" v-if="logged">
+                    <div class="img-text" >
                         <img src="/img/icons/winners.png"/>
                         <div>
                             <a data-nav="winners" id="winners" @click="clickNav">{{menu.winners}}</a>
