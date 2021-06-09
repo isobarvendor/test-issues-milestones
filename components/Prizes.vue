@@ -36,7 +36,7 @@
         <div class="prize-swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
-    <div v-if="winners && winners.luckyWinnerSection" class="winners-section">
+    <div v-if="winners && winners.luckyWinnerSection && token" class="winners-section">
       <div class="header">{{winners.title}}</div>
       <a class="button" href="/winners">{{winners.ButtonTitle}}</a>
     </div>
