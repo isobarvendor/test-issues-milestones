@@ -83,20 +83,20 @@
              <div class="winner-body" >
                 <div class="first-box box"  :key="'winner'+index" @click="showWinners(winnerLists[0].week)" v-if="winnerLists.length==1" >
                       <div class="week">
-                      {{monthName(winnerLists[0].week)}}
+
                       </div>
                       <div class="date">
-                        {{ winnerLists[0].startDate}} -  {{endMonth(winnerLists[0].week)}}
+                        {{ winnerLists[0].startDate}} -  {{winnerLists[0].endDate}}
                       </div>
                 </div>
                 <div v-else :class="item.length==2 ? 'two-container' : 'top-margin'"   v-for="(item, index) in winnerListsSecond"
                   :key="'winner'+index"   >
                     <div class="second-box box"  v-for="(item2, index2) in item"  :key="'winners'+index2"   @click="showWinners(item2.week)" >
                         <div class="week">
-                      {{monthName(item2.week)}}
+
                       </div>
                       <div class="date">
-                        {{ startMonth(item2.week)}} -  {{index2 == winnerLists.length-1 ? item2.endDate : endMonth( item2.week)}}
+                        {{ item2.startDate }} - {{ item2.endDate }}
                       </div>
                     </div>
 
@@ -200,6 +200,16 @@ export default {
      for(let l=startMonth;l<=endMonth;l++){
       await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:{week_eq:l}}).then((res)=>{
           if(res.data>0){
+            if(l==5){
+                startDate= moment("2021-05-24").format('DD MMM YYYY');
+
+                endDate= moment("2021-05-30").format('DD MMM YYYY');
+            }
+            else if(l==6){
+                startDate= moment("2021-05-31").format('DD MMM YYYY');
+
+                endDate= moment("2021-06-06").format('DD MMM YYYY');
+            }
              this.winnerMonth.push({week:l,startDate:startDate, endDate:endDate});
           }
       })
