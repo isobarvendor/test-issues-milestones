@@ -96,7 +96,7 @@
                       {{monthName(item2.week)}}
                       </div>
                       <div class="date">
-                        {{ startMonth(item2.week)}} -  {{index2 == winnerLists.length-1 ? item2.endDate : endMonth( item2.week)}}
+                        {{ startMonth(item2.week)}} -  {{endMonth( item2.week)}}
                       </div>
                     </div>
 
