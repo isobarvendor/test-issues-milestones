@@ -96,7 +96,7 @@
                       {{monthName(item2.week)}}
                       </div>
                       <div class="date">
-                        {{ startMonth(item2.week)}} -  {{index2 == winnerLists.length-1 ? item2.endDate : endMonth( item2.week)}}
+                        {{ startMonth(item2.week)}} -  {{endMonth( item2.week)}}
                       </div>
                     </div>
 
@@ -200,9 +200,11 @@ export default {
      for(let l=startMonth;l<=endMonth;l++){
       await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:{week_eq:l}}).then((res)=>{
           if(res.data>0){
+            
              this.winnerMonth.push({week:l,startDate:startDate, endDate:endDate});
           }
       })
+    
 
      }
     },
