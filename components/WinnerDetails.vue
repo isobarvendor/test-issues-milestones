@@ -46,7 +46,7 @@
                     <h1>{{winnerText.header}}</h1>
             </v-row>
           <v-row no-gutters class="logo-title">
-              <p> Semua pemenang akan dihubungi pada 31 Mei</p>
+              <p> Semua pemenang akan dihubungi pada 30 Jun</p>
             </v-row>
           <span v-if="showWinnerDetail">
               <v-card dark >
@@ -96,7 +96,7 @@
                       {{monthName(item2.week)}}
                       </div>
                       <div class="date">
-                        {{ startMonth(item2.week)}} -  {{index2 == winnerLists.length-1 ? item2.endDate : endMonth( item2.week)}}
+                        {{ startMonth(item2.week)}} -  {{endMonth( item2.week)}}
                       </div>
                     </div>
 
@@ -169,7 +169,7 @@ export default {
               no:(index+1)+((this.page-1)*this.itemsPerPage),
               name:o.name,
               email:o.email,
-              phone:o.phone ? this.maskEmail(o.phone) : null,
+              phone:o.phone,
               prize:o.prize,
               mixcode:o.mixCode ? o.mixCode : null
           }
