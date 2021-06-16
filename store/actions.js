@@ -130,7 +130,7 @@ export default {
   [GET_LIST_WINNERS]: ({ commit, state, getters },data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
-        CMSAPI.getWinners({count:data.count,params:data.params})
+        CMSAPI.getWinners({count:data.count,params:data.params}, state.token)
         .then(response => {
          // commit('SET_LIST_WINNERS', response.data);
           return resolve(response);
