@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 const origin = process.env.origin;
 const setHeader = (token)=>{
@@ -9,6 +8,10 @@ const setHeader = (token)=>{
             }
   }
 }
+
+
+
+
 export default {
 
   async getCMSContent() {
@@ -18,10 +21,19 @@ export default {
     return await axios.get(`${origin}/cms-api/campaign-configurations`)
   },
   async getWinners(data, token) {
+    let config = {
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ token
+      },
+      params: {
+        week_eq: data.params.week_eq
+      },
+    }
     if(data.count){
-      return await axios.get(`${origin}/api/cms/winners/count`,{params:data.params}, setHeader(token))
+      return await axios.get(`${origin}/api/cms/winners/count`, config)
     }else{
-      return await axios.get(`${origin}/api/cms/winners`,{params:data.params}, setHeader(token))
+      return await axios.get(`${origin}/api/cms/winners`, config)
     }
 
   },
