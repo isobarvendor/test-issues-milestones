@@ -21,13 +21,15 @@ export default {
     return await axios.get(`${origin}/cms-api/campaign-configurations`)
   },
   async getWinners(data, token) {
+    let key = Object.keys(data.params);
+    
     let config = {
       headers:{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+ token
       },
       params: {
-        week_eq: data.params.week_eq
+        [key]: data.params[key]
       },
     }
     if(data.count){
