@@ -14,20 +14,29 @@ export default {
     return await axios.get(`${origin}/cms-api/campaign-configurations`)
   },
   async getWinners(data, token) {
-    let key = Object.keys(data.params);
-
     let config = {
       headers:{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+ token
       },
       params: {
-        [key]: data.params[key]
+        
       },
     }
+    let param = Object.keys(data.params);
+    param.forEach(ele => {
+      
+        config.params[ele] = data.params[ele]
+      
+    })
+    console.log(config.params)
+    
+    
     if(data.count){
+      
       return await axios.get(`${origin}/api/auth/cms/winners/count`, config)
     }else{
+      
       return await axios.get(`${origin}/api/auth/cms/winners`, config)
     }
 

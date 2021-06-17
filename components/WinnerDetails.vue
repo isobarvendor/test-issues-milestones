@@ -257,9 +257,9 @@ export default {
 
           this.getCountData(req);
 
-
+          
            this.winnersData = res.data;
-
+          
             this.loading = false
         })
     },
@@ -284,11 +284,12 @@ export default {
 
         }
 
-
+      console.log(req)
        this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:req}).then((res) => {
           this.getCountData(req);
 
            this.winnersData = res.data;
+           
             this.numberOfPages=this.totalWinner/this.itemsPerPage;
 
             this.loading = false
