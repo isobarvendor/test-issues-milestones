@@ -20,23 +20,23 @@ export default {
         'Authorization': 'Bearer '+ token
       },
       params: {
-        
+
       },
     }
     let param = Object.keys(data.params);
     param.forEach(ele => {
-      
+
         config.params[ele] = data.params[ele]
-      
+
     })
-    console.log(config.params)
-    
-    
+    //console.log(config.params)
+
+
     if(data.count){
-      
+
       return await axios.get(`${origin}/api/auth/cms/winners/count`, config)
     }else{
-      
+
       return await axios.get(`${origin}/api/auth/cms/winners`, config)
     }
 
