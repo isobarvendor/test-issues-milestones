@@ -176,7 +176,7 @@ export default {
       });
     },
     winnerLists(){
-      console.log(this.winnerMonth);
+      //console.log(this.winnerMonth);
         return this.winnerMonth;
     },
     winnerListsSecond(){
@@ -200,11 +200,11 @@ export default {
      for(let l=startMonth;l<=endMonth;l++){
       await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:{week_eq:l}}).then((res)=>{
           if(res.data>0){
-            
+
              this.winnerMonth.push({week:l,startDate:startDate, endDate:endDate});
           }
       })
-    
+
 
      }
     },
@@ -257,9 +257,9 @@ export default {
 
           this.getCountData(req);
 
-          
+
            this.winnersData = res.data;
-          
+
             this.loading = false
         })
     },
@@ -284,12 +284,12 @@ export default {
 
         }
 
-      console.log(req)
+      //console.log(req)
        this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:req}).then((res) => {
           this.getCountData(req);
 
            this.winnersData = res.data;
-           
+
             this.numberOfPages=this.totalWinner/this.itemsPerPage;
 
             this.loading = false
