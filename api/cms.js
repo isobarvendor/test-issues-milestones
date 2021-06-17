@@ -15,7 +15,7 @@ export default {
   },
   async getWinners(data, token) {
     let key = Object.keys(data.params);
-    
+
     let config = {
       headers:{
         'Content-Type': 'application/json',
@@ -26,9 +26,9 @@ export default {
       },
     }
     if(data.count){
-      return await axios.get(`${origin}/api/cms/winners/count`, config)
+      return await axios.get(`${origin}/api/auth/cms/winners/count`, config)
     }else{
-      return await axios.get(`${origin}/api/cms/winners`, config)
+      return await axios.get(`${origin}/api/auth/cms/winners`, config)
     }
 
   },
