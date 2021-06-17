@@ -1,13 +1,6 @@
 import axios from 'axios';
 const origin = process.env.origin;
-const setHeader = (token)=>{
-  return {
-    headers:{
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer '+ token
-            }
-  }
-}
+
 
 
 
