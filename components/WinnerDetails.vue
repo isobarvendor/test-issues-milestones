@@ -209,6 +209,10 @@ export default {
                 startDate= moment("2021-05-31").format('DD MMM YYYY');
 
                 endDate= moment("2021-06-06").format('DD MMM YYYY');
+            } else if (l==7){
+              startDate= moment("2021-06-07").format('DD MMM YYYY');
+
+                endDate= moment("2021-06-13").format('DD MMM YYYY');
             }
              this.winnerMonth.push({week:l,startDate:startDate, endDate:endDate});
           }
@@ -587,5 +591,8 @@ export default {
 }
 .top-margin{
   margin-top: 20px;
+  .date{
+    font-size: 20px;
+  }
 }
 </style>
