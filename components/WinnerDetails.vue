@@ -197,6 +197,7 @@ export default {
      let startDate= moment(this.data.fromDate).format('DD MMM YYYY');
      let endMonth= moment(this.data.toDate).format("M");
      let endDate= moment(this.data.toDate).format('DD MMM YYYY');
+     
      for(let l=startMonth;l<=endMonth;l++){
       await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:{week_eq:l}}).then((res)=>{
           if(res.data>0){
@@ -226,6 +227,7 @@ export default {
    getListWinners(data){
           this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:{}}).then((res)=>{
               this.winnersData=res.data;
+              
       })
    },
    async getCountData(params){
