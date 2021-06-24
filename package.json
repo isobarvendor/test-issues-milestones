@@ -19,7 +19,6 @@
     "@nuxtjs/gtm": "^2.4.0",
     "crypto-js": "^4.0.0",
     "deep-clone": "^3.0.3",
-    "fibers": "^5.0.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
