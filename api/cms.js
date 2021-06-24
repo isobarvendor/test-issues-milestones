@@ -24,6 +24,7 @@ export default {
     param.forEach(ele => {
       config.params[ele] = data.params[ele]
     })
+
     if(data.count){
       return await axios.get(`${origin}/api/auth/cms/winners/count`, config)
     }else{
