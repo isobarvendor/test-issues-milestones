@@ -191,11 +191,11 @@ export default {
   },
   methods:{
 
-  
+
    async checkWinnerMonth(){
       //  console.log(this.data)
      let startMonth= moment(this.data.fromDate).format("M");
-     let startDate= moment(this.data.fromDate).format('DD MMM YYYY'); // 24 may 2021 // 31 may 2021 // 
+     let startDate= moment(this.data.fromDate).format('DD MMM YYYY'); // 24 may 2021 // 31 may 2021 //
      let endMonth= moment(this.data.toDate).format("M");
      let endDate= moment(this.data.toDate).format('DD MMM YYYY');  // 30 may 2021 // 6 June 2021 // 13 June 2021
      //  this function is checking is there any data from request on every single week
@@ -207,10 +207,10 @@ export default {
         startDate= moment("2021-05-24").format('DD MMM YYYY'); // 24 may 2021
         // set the initial value of end date
         endDate= moment(startDate).add(6, 'day').format('DD MMM YYYY') // 30 may 2021
-        // push 
-        this.winnerMonth.push({week:this.checkOnWeek,startDate:startDate, endDate:endDate}); 
+        // push
+        this.winnerMonth.push({week:this.checkOnWeek,startDate:startDate, endDate:endDate});
         this.checkOnWeek++
-        console.log('this should come out once') 
+        //console.log('this should come out once')
         // recursion time..... calling the function again
         checkDataEveryWeek()
       } else {
@@ -218,26 +218,26 @@ export default {
         const response = await this.$store.dispatch(GET_LIST_WINNERS,{count:true,params:{week_eq:this.checkOnWeek}})
           // checking is there is any data on this week or not
           if(response.data>0) {
-            console.log(this.checkOnWeek)
-            console.log('============ WinnersDetails.vue ============')
-            console.log(response.data)
+           // console.log(this.checkOnWeek)
+            //console.log('============ WinnersDetails.vue ============')
+            //console.log(response.data)
             // set the start date and end date
             startDate= moment(endDate).add(1, 'day').format('DD MMM YYYY') // 31 may 2021 // 7 June 2021
             endDate= moment(startDate).add(6, 'day').format('DD MMM YYYY') // 6 June 2021 // 13 June 2021
-            // push 
-            this.winnerMonth.push({week:this.checkOnWeek,startDate:startDate, endDate:endDate});  
+            // push
+            this.winnerMonth.push({week:this.checkOnWeek,startDate:startDate, endDate:endDate});
             this.checkOnWeek++
-            // call this function again 
+            // call this function again
             checkDataEveryWeek()
           }
           else {
             // is there is no data, return null
-            console.log('is this come out?')
+            //console.log('is this come out?')
             return null
           }
       }
-      
-      
+
+
     }
     checkDataEveryWeek()
     //  for(let l=startMonth;l<=endMonth;l++){
@@ -258,19 +258,19 @@ export default {
 
           //       endDate= moment("2021-06-13").format('DD MMM YYYY');
           //   }
-              
-          //    this.winnerMonth.push({week:l,startDate:startDate, endDate:endDate});  
+
+          //    this.winnerMonth.push({week:l,startDate:startDate, endDate:endDate});
           //   //  console.log(this.winnerMonth)
           // }
     //   })
     //  }
-     
-     
+
+
     },
    getListWinners(data){
           this.$store.dispatch(GET_LIST_WINNERS,{count:false,params:{}}).then((res)=>{
               this.winnersData=res.data;
-              
+
       })
    },
    async getCountData(params){
