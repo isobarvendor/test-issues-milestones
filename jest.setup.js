@@ -20,13 +20,13 @@ config.stubs['client-only'] = {template: '<div><slot /></div>' } ;
 config.stubs['mq-layout'] = {template: '<div><slot /></div>' } ;
 
 
-process.env.phoneCode=66;
-process.env.minPhoneNumber=9;
-process.env.maxPhoneNumber=9;
+process.env.phoneCode=62;
+process.env.minPhoneNumber=10;
+process.env.maxPhoneNumber=12;
 process.env.origin="";
 process.env.voucherParameter="c";
-process.env.language="th";
-process.env.GTM="GTM-TGJL2CD";
+process.env.language="id";
+process.env.GTM="GTM-5J9CBM8";
 config.phoneCode=process.env.phoneCode;
 config.minPhoneNumber=process.env.minPhoneNumber,
 config.maxPhoneNumber=process.env.maxPhoneNumber,
