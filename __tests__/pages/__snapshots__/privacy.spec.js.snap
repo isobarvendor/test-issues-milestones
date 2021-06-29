@@ -7,8 +7,7 @@ exports[`privacy renders properly 1`] = `
       <div class="privacy-component">
         <div class="privacy-section">
           <div class="primary-section">
-            <div class="header">
-              Privacy Policy
+            <div class="header"><span>Privacy Policy</span>
               <p></p>
             </div>
             <div class="desc">

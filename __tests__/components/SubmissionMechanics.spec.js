@@ -1,6 +1,7 @@
 
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import SubmissionMechanics from "@/components/SubmissionMechanics";
+import {translation} from "@/constants/index"
 import Vuex from 'vuex';
 
 
@@ -63,6 +64,19 @@ let localVue, store;
 
 const factory = () => {
   return shallowMount(SubmissionMechanics, {
+    data() {
+      return {
+          prize:[],
+          submitted:false,
+          listenNowLink:'',
+          thankYouMessage:"",
+          request:{
+            email:''
+          },
+          submissionText:translation.submissionText
+      }
+
+    },
     localVue, store,
     propsData: {
         dataForm:{

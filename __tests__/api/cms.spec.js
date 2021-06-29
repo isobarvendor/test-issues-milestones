@@ -56,7 +56,7 @@ describe('getCMSConfig fetch data', () => {
 
 
 
-describe('getWinners fetch data', () => {
+/*describe('getWinners fetch data', () => {
   test('fetches successfully data from an API', async () => {
     const data = null;
 
@@ -64,7 +64,7 @@ describe('getWinners fetch data', () => {
 
     await expect(CMSAPI.getWinners()).resolves.toEqual(data);
     expect(axios.get).toHaveBeenCalledWith(
-      `${origin}/cms-api/winners`,
+      `${origin}/api/auth/winners`,
     );
   });
 
@@ -77,6 +77,6 @@ describe('getWinners fetch data', () => {
 
     await expect(CMSAPI.getWinners()).rejects.toThrow(errorMessage);
   });
-});
+});*/
 
 

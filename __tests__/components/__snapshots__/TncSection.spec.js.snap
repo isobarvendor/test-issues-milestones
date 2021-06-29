@@ -4,12 +4,11 @@ exports[`TncSection renders properly 1`] = `
 <div class="tnc-component">
   <div class="tnc-section">
     <div class="primary-section">
-      <div class="header">
-        <p> </p>
+      <div class="header"><span></span>
+        <p></p>
       </div>
       <div class="desc">
-        <p>
-        </p>
+        <p></p>
         <div class="links">
           <p><a href="#"></a></p>
           <p><a href="#"></a></p>
@@ -23,8 +22,7 @@ exports[`TncSection renders properly 1`] = `
     <div class="secondary-component">
       <div class="sub-header"></div>
       <div class="desc">
-        <p>
-        </p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -32,8 +30,7 @@ exports[`TncSection renders properly 1`] = `
     <div class="secondary-component">
       <div class="sub-header"></div>
       <div class="desc">
-        <p>
-        </p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -41,8 +38,7 @@ exports[`TncSection renders properly 1`] = `
     <div class="secondary-component">
       <div class="sub-header"></div>
       <div class="desc">
-        <p>
-        </p>
+        <p></p>
       </div>
     </div>
   </div>
