@@ -78,9 +78,6 @@ exports[`register renders properly 1`] = `
               <div class="btn-area"><a class="button register">Register</a></div>
             </div>
           </div>
-          <div class="profile-icon"><img src="/img/icons/profile-icon.png">
-            <div class="input-area"><input type="file" value="uploadReceipt"></div>
-          </div>
         </div>
       </div>
     </div>
