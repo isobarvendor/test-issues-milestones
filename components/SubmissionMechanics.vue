@@ -5,7 +5,7 @@
         <img src="/img/landing/coke line divider.png" width="100%" />
       </div>
       <Login :social="dataSocial" v-if="!this.$store.state.login"   />
-      <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="this.$store.state.login" @submit="submit"  />
+      <!-- <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="this.$store.state.login" @submit="submit"  /> -->
       <!--Login :social="dataSocial" v-if="false"   />
       <Form :data="dataForm" :cmsData="cmsData[0]" /-->
 
