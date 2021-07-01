@@ -8,7 +8,11 @@
       <Prizes v-if="configData&&notCountDown" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
       <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
-      <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
+      <!-- <SubmissionMechanics :dataForm="configData" v-if="notCountDown" /> -->
+      <SubmissionMechanics
+        :dataForm="configData"
+        v-if="!this.$store.state.login"
+      />
     </div>
     <Footer :data="CMSContent[0].footer"  />
   </div>
