@@ -2,14 +2,9 @@
 
 exports[`Header renders properly 1`] = `
 <header>
-  <div><a class="profile-button invisible"><img src="tes" class="profile-image">
-      <div class="profile-content">
-        <div class="column center">
-          <div class="user-coins">30</div>
-          <div>coins</div>
-        </div>
-      </div>
-    </a>
+  <div>
+    <!---->
+    <div></div>
     <div class="nav-container">
       <!---->
       <v-expand-transition-stub mode="in-out">
@@ -24,27 +19,17 @@ exports[`Header renders properly 1`] = `
               </div>
             </div>
             <div class="body-options">
-              <div class="language-container"><a href="#" class="">English</a> | <a href="#" class="active">Indonesia</a></div>
               <div class="img-text"><img src="/img/icons/home-icon.png">
-                <div><a href="/">Home</a></div>
-              </div>
-              <div class="img-text"><img src="/img/icons/reward.png">
-                <div><a data-nav="rewards">Wallet</a></div>
+                <div><a href="/" id="home">หน้าหลัก</a></div>
               </div>
               <div class="img-text"><img src="/img/icons/wallet.png">
-                <div><a data-nav="wallet">Wallet</a></div>
-              </div>
-              <div class="img-text"><img src="/img/icons/account.png">
-                <div><a data-nav="account">Wallet</a></div>
-              </div>
-              <div class="img-text"><img src="/img/icons/help.png">
-                <div><a data-nav="help">Wallet</a></div>
+                <div><a data-nav="myrewards" id="myReward">รางวัลของฉัน</a></div>
               </div>
             </div>
             <div class="tnc-container">
-              <p><a> Wallet </a></p>
-              <p><a> Wallet</a></p>
-              <p class="logout">Wallet</p>
+              <p><a id="privacy">นโยบายข้อมูลส่วนบุคคล</a></p>
+              <p><a id="tnc">งื่อนไขการเข้าร่วมกิจกรรม</a></p>
+              <p id="logout" class="logout">ออกจากระบบ</p>
             </div>
           </div>
         </v-card-stub>

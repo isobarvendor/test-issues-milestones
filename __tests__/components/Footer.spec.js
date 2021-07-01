@@ -2,11 +2,15 @@
 import {shallowMount  } from '@vue/test-utils'
 
 import Footer from "@/components/Footer";
-
+import {translation} from "@/constants/index"
 
 const factory = () => {
   return shallowMount(Footer, {
-
+    data() {
+      return {
+        footer:translation.footer
+      };
+    },
     propsData: {
       data :{
        copyright:{

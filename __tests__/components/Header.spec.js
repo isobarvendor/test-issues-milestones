@@ -2,6 +2,7 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Header from "@/components/Header";
 import Vuex from 'vuex';
+import {translation} from "@/constants/index"
 
 const $route = {
   name: "register"
@@ -76,6 +77,7 @@ let localVue, store;
       },
       state:{
         language: "id",
+        isCampaignStarted:true,
         listWallet:{
           walletStatus:[
             {amount :30}
@@ -88,6 +90,17 @@ let localVue, store;
 
 const factory = (route,store) => {
   return shallowMount(Header, {
+    data(){
+      return{
+          isDark:false,
+          isReward:false,
+          expand: false,
+          config:store.getters.getCMSConfig,
+          notCountDown:store.state.isCampaignStarted,
+          siginButton:translation.signInButton,
+          menu:translation.menu
+      }
+  },
     mocks: {
       $route : route
     },
@@ -97,29 +110,7 @@ const factory = (route,store) => {
 
 describe("Header", () => {
 
-  test("hide profile button when route is register", () => {
-    const $route = {
-      name: "register"
-    }
-    const wrapper = factory($route,store);
-    expect(wrapper.vm.showProfile).toBe(false);
-  });
 
-  test("hide profile button when route is login", () => {
-    const $route = {
-      name: "login"
-    }
-    const wrapper = factory($route,store);
-    expect(wrapper.vm.showProfile).toBe(false);
-  });
-
-  test("show profile button", () => {
-    const $route = {
-      name: "home"
-    }
-    const wrapper = factory($route,store);
-    expect(wrapper.vm.showProfile).toBe(true);
-  });
 
   test("hide menu when route is register", () => {
     const $route = {
