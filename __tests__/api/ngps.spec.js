@@ -25,7 +25,7 @@ describe('getListPrize fetch data', () => {
 
     await expect(API.getListPrize()).resolves.toEqual(data);
     expect(axios.get).toHaveBeenCalledWith(
-      `${origin}/api/campaign/public/list-prize`,
+      `${origin}/api/campaign/list-prize/13qiq88kkqbov6j/listPrizes`,
     );
   });
 
@@ -70,7 +70,7 @@ describe('getListWallet fetch data', () => {
   });
 });
 
-
+/*
 describe('redeem prize', () => {
   const data = {prize:[{
     name:"tes",
@@ -102,7 +102,7 @@ describe('redeem prize', () => {
   });
 });
 
-
+*/
 
 describe('submitLogin', () => {
   const data = {prize:[{
@@ -135,7 +135,7 @@ describe('submitLogin', () => {
   });
 });
 
-
+/*
 describe('submitNonLogin', () => {
   const data = {prize:[{
     name:"tes",
@@ -242,7 +242,8 @@ describe('deleteFile', () => {
 
     await expect(API.deleteFile(upload.request,upload.type)).rejects.toThrow(errorMessage);
   });
-});
 
+});
+  */
 
 
