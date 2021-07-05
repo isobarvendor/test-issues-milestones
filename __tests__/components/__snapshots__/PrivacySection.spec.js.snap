@@ -4,8 +4,7 @@ exports[`PrivacySection renders properly 1`] = `
 <div class="privacy-component">
   <div class="privacy-section">
     <div class="primary-section">
-      <div class="header">
-        privacy
+      <div class="header"><span>privacy</span>
         <p>12 December 2020</p>
       </div>
       <div class="desc">

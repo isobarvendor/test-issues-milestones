@@ -18,3 +18,19 @@ config.stubs['no-ssr'] = {template : '<span><slot /></span>' }
 
 config.stubs['client-only'] = {template: '<div><slot /></div>' } ;
 config.stubs['mq-layout'] = {template: '<div><slot /></div>' } ;
+
+
+process.env.phoneCode=62;
+process.env.minPhoneNumber=10;
+process.env.maxPhoneNumber=12;
+process.env.origin="";
+process.env.voucherParameter="c";
+process.env.language="id";
+process.env.GTM="GTM-5J9CBM8";
+config.phoneCode=process.env.phoneCode;
+config.minPhoneNumber=process.env.minPhoneNumber,
+config.maxPhoneNumber=process.env.maxPhoneNumber,
+config.voucherParameter=process.env.voucherParameter,
+config.gtm= {
+  id: process.env.GTM
+}

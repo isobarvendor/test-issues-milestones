@@ -28,7 +28,7 @@ import deepClone from 'deep-clone'
 import { GET_ACCOUNT,GET_LIST_WALLET, GET_LIST_PRIZE, GET_PHONE} from '@/store/action_types';
 import  VueScrollTo from 'vue-scrollto';
 
-
+import * as _ from 'lodash';
 //const campaignCoin = "coin"
 //const campaignEmail = "email"
 //const campaign
