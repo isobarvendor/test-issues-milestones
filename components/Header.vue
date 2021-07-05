@@ -18,9 +18,24 @@
         </div>
     </a-->
 
-        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" id="signIn" v-if="!logged&&notCountDown"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
+        <a :class="[{'profile-button':true,'hide-mobile' : expand} , 'mobile-height']" id="signIn" v-if="!logged&&notCountDown"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
         <div class="profile-content" >
+            <div class="">
             <template ><div v-html="siginButton"></div></template>
+            <div class="profile-button-row">
+
+                <span class="margin-social-icon">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 8.04467C0 12.022 2.88867 15.3293 6.66667 16V10.222H4.66667V8H6.66667V6.222C6.66667 4.222 7.95533 3.11133 9.778 3.11133C10.3553 3.11133 10.978 3.2 11.5553 3.28867V5.33333H10.5333C9.55533 5.33333 9.33333 5.822 9.33333 6.44467V8H11.4667L11.1113 10.222H9.33333V16C13.1113 15.3293 16 12.0227 16 8.04467C16 3.62 12.4 0 8 0C3.6 0 0 3.62 0 8.04467Z" fill="white"/>
+                    </svg>
+                </span>
+                <span>
+                    <svg width="20.5" height="20.5" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.304 5.76932C13.386 6.20865 13.4307 6.66798 13.4307 7.14732C13.4307 10.8967 10.9213 13.5626 7.13133 13.5626C6.26943 13.5629 5.41593 13.3933 4.6196 13.0636C3.82326 12.7339 3.09969 12.2505 2.49024 11.6411C1.88079 11.0316 1.39739 10.3081 1.06768 9.51172C0.737971 8.71538 0.568402 7.86188 0.568665 6.99998C0.568402 6.13809 0.737971 5.28459 1.06768 4.48825C1.39739 3.69191 1.88079 2.96834 2.49024 2.35889C3.09969 1.74944 3.82326 1.26605 4.6196 0.936335C5.41593 0.606623 6.26943 0.437054 7.13133 0.437317C8.90333 0.437317 10.384 1.08932 11.52 2.14798L9.67 3.99798V3.99332C8.98133 3.33732 8.10733 3.00065 7.13133 3.00065C4.966 3.00065 3.206 4.82998 3.206 6.99598C3.206 9.16132 4.966 10.9947 7.13133 10.9947C9.096 10.9947 10.4333 9.87132 10.708 8.32865H7.13133V5.76932H13.3047H13.304Z" fill="white"/>
+                    </svg>
+                </span>
+            </div>
+            </div>
         </div>
     </a>
     <div></div>
@@ -254,6 +269,17 @@ export default {
 background-color: #b10017;
  text-align: center;
 }
+.profile-button-row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin: 3px 0;
+    align-items: center;
+    .margin-social-icon {
+        margin: 0 0.7rem 0 0;
+    }
+}
 .nav-container{
     display: flex;
     flex-direction: column;
@@ -344,6 +370,7 @@ background-color: #b10017;
                 }
             }
         }
+        
     }
      @media only screen and (max-width: 400px) {
         .menu-container{
@@ -357,8 +384,16 @@ background-color: #b10017;
     }
 }
     @media only screen and (max-width: 700px) {
+        .mobile-height {
+            height: 65px;
+        }
         .hide-mobile{
           display: none !important;
+        }
+    }
+    @media only screen and (max-width: 992px) {
+        .mobile-height {
+            height: 65px;
         }
     }
 </style>
