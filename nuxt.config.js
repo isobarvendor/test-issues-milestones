@@ -26,6 +26,10 @@ export default {
     voucherParameter:process.env.voucherParameter,
     gtm: {
       id: process.env.GTM
+    },
+    recaptcha: {
+      /* reCAPTCHA options */
+      siteKey: process.env.RECAPTCHA_SITE_KEY // for example
     }
   },
   privateRuntimeConfig: {
@@ -93,9 +97,10 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
-    'nuxt-validate',
+    "@nuxtjs/axios",
+    "@nuxtjs/dotenv",
+    '@nuxtjs/recaptcha',
+    "nuxt-validate",
     [
       'nuxt-mq',
       {
@@ -110,6 +115,9 @@ export default {
       }
     ]
   ],
+  recaptcha: {
+    version: 3,     // Version
+  },
   styleResources: {
     scss: [
       '~assets/scss/variables.scss',

@@ -346,6 +346,9 @@ export default {
                   this.errorMessage=this.submissionText.errorPinCode;
                   return false;
                 }
+              const tokenCaptcha = await this.$recaptcha.execute('register')
+          //console.log('ReCaptcha token:', token)
+                request.captchaResponse=tokenCaptcha;
                 this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response)=>{
                    // this.submitted=true;
@@ -452,8 +455,16 @@ export default {
 
   },
   beforeMount() {},
-  mounted(){
-    this.getAccount();
+  async mounted(){
+    try {
+        await this.$recaptcha.init();
+        this.getAccount();
+      } catch (e) {
+        console.error(e);
+      }
+  },
+  beforeDestroy() {
+    this.$recaptcha.destroy()
   },
   watch:{
      "form.phoneNumber": function (val) {

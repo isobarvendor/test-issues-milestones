@@ -17,6 +17,7 @@
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/gtm": "^2.4.0",
+    "@nuxtjs/recaptcha": "^1.0.4",
     "crypto-js": "^4.0.0",
     "deep-clone": "^3.0.3",
     "js-cookie": "^2.2.1",
