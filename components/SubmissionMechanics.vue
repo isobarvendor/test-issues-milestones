@@ -105,7 +105,7 @@ export default {
       this.submitted=false;
       this.prize=[];
     },
-    submitPrize(){
+   async submitPrize(){
       let request= this.request;
       let response = {};
       let data = {
@@ -117,6 +117,11 @@ export default {
 
     if(this.submitNumber==1){
       this.loading=true;
+       try {
+          const token = await this.$recaptcha.execute('register')
+          //console.log('ReCaptcha token:', token)
+
+              request.captchaResponse=token;
       this.$store.dispatch(SUBMIT_FORM,request)
       .then((response)=>{
            data.response=response.data
@@ -158,6 +163,11 @@ export default {
 
           this.loading=false;
       })
+
+        } catch (error) {
+          console.log('register error:', error)
+        }
+
     }else{
         this.submitPrizeDouble(3);
     }
@@ -175,6 +185,10 @@ export default {
       request.hasMore=page>1&&this.winFirstPrize ? true : false;
     for(let a=0; a<configID.length; a++){
       request.configurationId=configID[a];
+        try {
+          const token = await this.$recaptcha.execute('register')
+          //console.log('ReCaptcha token:', token)
+           request.captchaResponse=token;
 
         await this.$store.dispatch(SUBMIT_FORM,request)
           .then((response)=>{
@@ -190,35 +204,41 @@ export default {
                 this.loading=false;
               }
 
-      }).catch((error)=>{
-              if(error.response){
+            }).catch((error)=>{
+                    if(error.response){
 
-                //this.errorMessage=this.submissionText.errorNormalPrize;
-                        this.errorMessage="";
-                          if(a==0){
-                              let  prize =[
-                                {
-                                    text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
-                                    ,name:this.submissionText.hardLuckTitle
-                                    ,note:null
-                                    ,image:this.submissionText.hardLuckImage
-                                    ,havejoox:false
-                                    ,button:[ { text:this.submissionText.redeemPrize,
-                                          link:this.submissionText.hardLuckMusic,
-                                          id:"RedeemMusic"
-                                        }],
-                                    code:null,
-                                    subName:null,
-                                    isPlayAgain:false
-                                  },
-                              ]
-                                this.prize=prize;
-                       }
-              }
+                      //this.errorMessage=this.submissionText.errorNormalPrize;
+                              this.errorMessage="";
+                                if(a==0){
+                                    let  prize =[
+                                      {
+                                          text : "<h2>"+this.submissionText.hardLuckHeader+"</h2>"
+                                          ,name:this.submissionText.hardLuckTitle
+                                          ,note:null
+                                          ,image:this.submissionText.hardLuckImage
+                                          ,havejoox:false
+                                          ,button:[ { text:this.submissionText.redeemPrize,
+                                                link:this.submissionText.hardLuckMusic,
+                                                id:"RedeemMusic"
+                                              }],
+                                          code:null,
+                                          subName:null,
+                                          isPlayAgain:false
+                                        },
+                                    ]
+                                      this.prize=prize;
+                            }
+                    }
 
-                  this.loading=false;
+                        this.loading=false;
 
             })
+
+        } catch (error) {
+          console.log('register error:', error)
+        }
+
+
       }
 
     },
@@ -431,6 +451,16 @@ export default {
 
     }
   },
+  async mounted(){
+    try {
+        await this.$recaptcha.init()
+      } catch (e) {
+        console.error(e);
+      }
+  },
+  beforeDestroy() {
+    this.$recaptcha.destroy()
+  }
 }
 </script>
 

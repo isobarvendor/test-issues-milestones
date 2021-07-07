@@ -29,6 +29,10 @@ export default {
     lotID: process.env.lotID,
     gtm: {
       id: process.env.GTM
+    },
+    recaptcha: {
+      /* reCAPTCHA options */
+      siteKey: process.env.RECAPTCHA_SITE_KEY // for example
     }
   },
   privateRuntimeConfig: {
@@ -98,6 +102,7 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/dotenv",
+    '@nuxtjs/recaptcha',
     "nuxt-validate",
     [
       "nuxt-mq",
@@ -113,6 +118,9 @@ export default {
       },
     ],
   ],
+  recaptcha: {
+    version: 3,     // Version
+  },
   styleResources: {
     scss: ["~assets/scss/variables.scss", "~assets/scss/mixins.scss"],
   },
