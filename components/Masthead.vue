@@ -1,5 +1,5 @@
 <template>
-  <div id="masthead" class="container" >
+  <div id="masthead" class="container">
     <mq-layout :mq="['sm']">
       <svg
         ref="coke_masthead_sm"
@@ -7,7 +7,7 @@
         data-name="coke_masthead"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 360 429"
+        viewBox="0 0 455 429"
       >
         <def>
           <mask id="clipMask">
@@ -21,6 +21,7 @@
           </mask>
         </def>
         <image
+          class="image-mobile"
           ref="coke_masthead_sm_image"
           :href="this.imgMob"
           preserveAspectRatio="xMidYMid slice"
@@ -52,7 +53,6 @@
           :href="this.imgTab"
           preserveAspectRatio="xMidYMid slice"
           mask="url(#clipMask)"
-
         />
       </svg>
     </mq-layout>
@@ -83,31 +83,39 @@
       </svg>
     </mq-layout>
     <div class="masthead-content">
-      <h1>{{data.title}}</h1>
-      <p>{{data.description}}</p>
-      
+      <h1>{{ data.title }}</h1>
+      <p>{{ data.description }}</p>
     </div>
     <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
   </div>
 </template>
 
 <script>
-import MastheadCountDown from '../components/MastheadCountDown'
+import MastheadCountDown from "../components/MastheadCountDown";
 export default {
   name: "Masthead",
   props: {
     data: null,
-    isCountDown:null
+    isCountDown: null
   },
-  components:{
+  components: {
     MastheadCountDown
   },
   data() {
     return {
-      imgDesk: this.data.homepage.mastheadSection.desktopImage.length>0 ? this.data.homepage.mastheadSection.desktopImage[0].url : "/img/landing/Hero Banner.png", 
-      imgTab: this.data.homepage.mastheadSection.tabletImage.length>0 ? this.data.homepage.mastheadSection.tabletImage[0].url: "/img/landing/Hero Banner.png", 
-      imgMob: this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url :"/img/landing/banner_mobile.png",
-    }
+      imgDesk:
+        this.data.homepage.mastheadSection.desktopImage.length > 0
+          ? this.data.homepage.mastheadSection.desktopImage[0].url
+          : "/img/landing/Hero Banner.png",
+      imgTab:
+        this.data.homepage.mastheadSection.tabletImage.length > 0
+          ? this.data.homepage.mastheadSection.tabletImage[0].url
+          : "/img/landing/Hero Banner.png",
+      imgMob:
+        this.data.homepage.mastheadSection.mobileImage.length > 0
+          ? this.data.homepage.mastheadSection.mobileImage[0].url
+          : "/img/landing/banner_mobile.png"
+    };
   },
   mounted() {
     // this.loadMasthead()
@@ -132,25 +140,28 @@ export default {
         );
     }*/
   },
-  mounted() {
-
-  },
+  mounted() {}
 };
 </script>
 
 <style>
- #masthead{
-      background:#de0a1c;
-      padding: 20px;
-    }
-  @media only screen and (max-width: 600px) {
-     #masthead{
-      padding: 10px;
-    }
+#masthead {
+  background: #de0a1c;
+  padding: 20px;
+}
+@media only screen and (max-width: 600px) {
+  #masthead {
+    padding: 10px;
+    max-height: auto !important;
+    background-color: yellow;
   }
-    @media only screen and (max-width: 1099px) {
-     #masthead{
-      padding: 10px;
-    }
+  .image-mobile {
+    width: 100%;
   }
+}
+@media only screen and (max-width: 1099px) {
+  #masthead {
+    padding: 10px;
+  }
+}
 </style>
