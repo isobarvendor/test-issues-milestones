@@ -438,13 +438,16 @@ export default {
                 this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
                 this.loading = false;
                 let result = response.data;
+                // generate request 2
+                let request2 = this.generateRequest(this.currentAttempt);
                 if (result) {
                   this.prizeWin = result;
                   let attemptData = this.attemptData;
                   let data = {
                     attemptData,
                     response: result,
-                    request
+                    request,
+                    request2
                   };
                   this.$emit("submit", data);
                 }
@@ -495,8 +498,8 @@ export default {
                   this.errorMessage = this.submissionText.errorPinCode3;
                 }
               });
+            // console.log("=============loop");
             // for (index = 0; index < 2; index++) {
-            //   console.log("=============loop");
             // }
             // this.$store
             //   .dispatch(SUBMIT_FORM, request)
