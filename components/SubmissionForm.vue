@@ -1,36 +1,88 @@
 <template>
   <div>
-  <div >
-    <div class="img-footer" >
-            <img src="/img/landing/instruments.png" width="100%" />
-    </div>
-   <div class="header">{{form.name ? submissionText.hello+" "+form.name : submissionText.header}}</div>
-  <form class="mechanics" autocomplete="off">
-    <div class="inner-wrapper">
-     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
-      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
-        <!--span class="error-message">{{ errors.first('name') }}</span-->
-    </div>
-    <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
-      <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
-        <!--span class="error-message">{{ errors.first('email') }}</span-->
-    </div>
-    <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
-      <div class="btn-text">
-        <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
-     <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber"  />
+    <div>
+      <div class="img-footer">
+        <img src="/img/landing/instruments.png" width="100%" />
       </div>
-        <div class="info-icon tooltip">
-            <img src="/img/landing/info-button.png" width="25"  />
-            <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
+      <div class="header">
+        {{
+          form.name
+            ? submissionText.hello + " " + form.name
+            : submissionText.header
+        }}
+      </div>
+      <form class="mechanics" autocomplete="off">
+        <div class="inner-wrapper">
+          <div
+            class="details"
+            v-if="submissionFormFields && submissionFormFields.isNameActive"
+          >
+            <input
+              id="name"
+              type="text"
+              name="name"
+              v-model="form.name"
+              v-validate="'required'"
+              :placeholder="submissionText.name"
+              readonly
+            />
+            <!--span class="error-message">{{ errors.first('name') }}</span-->
           </div>
-        <span class="error-message">{{ errors.first('phone') ? (errors.first('phone').includes('required') ? submissionText.errorRequiredPhone : errors.first('phone')) : errors.first('phoneNumber')   }}</span>
-    </div>
-    </div>
+          <div
+            class="details"
+            v-if="submissionFormFields && submissionFormFields.isEmailActive"
+          >
+            <input
+              id="email"
+              type="email"
+              name="email"
+              v-model="form.email"
+              v-validate="'required'"
+              :placeholder="submissionText.email"
+              readonly
+            />
+            <!--span class="error-message">{{ errors.first('email') }}</span-->
+          </div>
+          <div
+            class="details"
+            v-if="
+              submissionFormFields && submissionFormFields.isPhoneNumberActive
+            "
+          >
+            <div class="btn-text">
+              <input
+                id="phoneCode"
+                type="tel"
+                v-model="phoneCodeDisplay"
+                :readonly="true"
+              />
+              <input
+                id="phoneNumber"
+                type="tel"
+                name="phone"
+                v-model="form.phoneNumber"
+                v-validate="'required'"
+                class="short"
+                :placeholder="submissionText.phoneNumber"
+              />
+            </div>
+            <div class="info-icon tooltip">
+              <img src="/img/landing/info-button.png" width="25" />
+              <span class="tooltiptext">{{ submissionText.phoneTooltip }}</span>
+            </div>
+            <span class="error-message">{{
+              errors.first("phone")
+                ? errors.first("phone").includes("required")
+                  ? submissionText.errorRequiredPhone
+                  : errors.first("phone")
+                : errors.first("phoneNumber")
+            }}</span>
+          </div>
+        </div>
 
-    <div class="checkbox-area">
-    <div class="inner-wrapper">
-       <!--div class="row top">
+        <div class="checkbox-area">
+          <div class="inner-wrapper">
+            <!--div class="row top">
           <div class="col d-flex consent">
             <div class="checkbox">
               <label for="form_pp">
@@ -41,530 +93,582 @@
             <div class="terms" v-html="submissionText.acceptPrivacy"></div>
           </div>
         </div-->
-         <div class="row top">
-        <div class="col d-flex consent">
-          <div class="checkbox">
-            <label for="form_tnc">
-              <input type="radio" name="ageConsent" id="form_tnc" v-model="form.ageConsent" value="above">
-              <span></span>
-            </label>
-          </div>
-          <div class="terms" v-html="submissionText.acceptTerm"></div>
-        </div>
-      </div>
-
-          <div class="row top">
-            <div class="col d-flex consent">
-              <div class="checkbox">
-                <label for="form_age">
-                  <input type="radio" name="ageConsent" id="form_age" v-model="form.ageConsent" value="below">
-                  <span></span>
-                </label>
+            <div class="row top">
+              <div class="col d-flex consent">
+                <div class="checkbox">
+                  <label for="form_tnc">
+                    <input
+                      type="radio"
+                      name="ageConsent"
+                      id="form_tnc"
+                      v-model="form.ageConsent"
+                      value="above"
+                    />
+                    <span></span>
+                  </label>
+                </div>
+                <div class="terms" v-html="submissionText.acceptTerm"></div>
               </div>
-              <div class="terms" v-html="submissionText.declareAge"></div>
+            </div>
+
+            <div class="row top">
+              <div class="col d-flex consent">
+                <div class="checkbox">
+                  <label for="form_age">
+                    <input
+                      type="radio"
+                      name="ageConsent"
+                      id="form_age"
+                      v-model="form.ageConsent"
+                      value="below"
+                    />
+                    <span></span>
+                  </label>
+                </div>
+                <div class="terms" v-html="submissionText.declareAge"></div>
+              </div>
             </div>
           </div>
-    </div>
-
-
-
-    </div>
-   <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
-    <div class="btn-area" style="padding:20px" >
-
-      <div class="info-btn"  >
-          <div class="btn-text">
-          <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red">{{ errors.first('code') ? (errors.first('code').includes('required') ? submissionText.errorRequiredCode : errors.first('code')) : errors.first('code')  }}</span>
+        </div>
+        <div
+          class="error-message-black"
+          v-if="errorMessage"
+          v-html="errorMessage"
+        ></div>
+        <div class="btn-area" style="padding:20px">
+          <div class="info-btn">
+            <div class="btn-text">
+              <input
+                id="code"
+                v-model="form.code"
+                v-validate="'required'"
+                type="text"
+                name="code"
+                :placeholder="submissionText.enterCode"
+              />
+              <span class="error-message-red">{{
+                errors.first("code")
+                  ? errors.first("code").includes("required")
+                    ? submissionText.errorRequiredCode
+                    : errors.first("code")
+                  : errors.first("code")
+              }}</span>
+            </div>
+            <div class="info-icon tooltip">
+              <img src="/img/landing/info-button.png" width="25" />
+              <span class="tooltiptext">{{ submissionText.tooltipText }}</span>
+            </div>
           </div>
-          <div class="info-icon tooltip">
-            <img src="/img/landing/info-button.png" width="25"  />
-            <span class="tooltiptext">{{submissionText.tooltipText}}</span>
+          <div style="padding:20px" v-if="loading">
+            <v-progress-circular
+              :width="2"
+              color="white"
+              indeterminate
+            ></v-progress-circular>
           </div>
-      </div>
-      <div style="padding:20px"  v-if="loading">
-      <v-progress-circular
-        :width="2"
-        color="white"
-        indeterminate
-
-      ></v-progress-circular>
-      </div>
-      <v-btn class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
+          <v-btn
+            class="get-code"
+            id="submission"
+            dark
+            v-else
+            v-on:click="submit()"
+            >{{ submissionText.buttonText }}</v-btn
+          >
+        </div>
+      </form>
     </div>
-  </form>
-
-  </div>
-
-
-
   </div>
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
-import * as _ from 'lodash';
-import {translation} from "@/constants/index"
+import {
+  SUBMIT_FORM,
+  UPLOAD_FILE,
+  CHECK_ATTEMPT,
+  DELETE_FILE,
+  GET_LIST_WALLET,
+  CHECK_MIXCODE
+} from "@/store/action_types";
+import * as _ from "lodash";
+import { translation } from "@/constants/index";
 export default {
-    name:"Form",
-    inject: ['$validator'],
-     props: {
-        data: null,
-        cmsData: null,
-      },
-       data(){
-    return{
-        form:{
-          name:null,
-          email:null,
-          code:null,
-          terms:false,
-          privacy:false,
-          uploadFile:null,
-          phoneNumber:null
-        },
-        errorMessage:null,
-        submitted:true,
-        fileName:"",
-        filePath:null,
-        image:'',
-        amazonImage:null,
-        loading:false,
-        prizeWin:null,
-        phoneCodeDisplay:"+"+this.$config.phoneCode,
-        phoneCode:this.$config.phoneCode+"-",
-        showPhone:false,
-        submissionText:translation.submissionText
-
-
-    }
+  name: "Form",
+  inject: ["$validator"],
+  props: {
+    data: null,
+    cmsData: null
   },
-  computed:{
-   /* submissionType(){
+  data() {
+    return {
+      form: {
+        name: null,
+        email: null,
+        code: null,
+        terms: false,
+        privacy: false,
+        uploadFile: null,
+        phoneNumber: null
+      },
+      errorMessage: null,
+      submitted: true,
+      fileName: "",
+      filePath: null,
+      image: "",
+      amazonImage: null,
+      loading: false,
+      prizeWin: null,
+      phoneCodeDisplay: "+" + this.$config.phoneCode,
+      phoneCode: this.$config.phoneCode + "-",
+      showPhone: false,
+      submissionText: translation.submissionText
+    };
+  },
+  computed: {
+    /* submissionType(){
 
       return this.data.campaignTypes.submissionType;
     },*/
-    submissionFormFields(){
+    submissionFormFields() {
       return this.data.submissionFormFields;
     },
-     campaignType(){
+    campaignType() {
       return "";
       //return this.data.campaignTypes.mechanicType;
     },
 
-
-    maxPhoneNumber(){
+    maxPhoneNumber() {
       return this.$config.maxPhoneNumber;
     },
-     /*campaignTitle(){
+    /*campaignTitle(){
       return this.data.campaignTypes.Title;
     },*/
 
-    thankyouSubmission(){
-       return this.cmsData.ThankYouSubmission;
+    thankyouSubmission() {
+      return this.cmsData.ThankYouSubmission;
     },
-     thankyouPage(){
-       return this.cmsData.ThanksYouPage;
+    thankyouPage() {
+      return this.cmsData.ThanksYouPage;
     },
-    loginInfo(){
+    loginInfo() {
       return this.$store.getters.getLoginAccount;
     },
-    getAttempt(){
+    getAttempt() {
       return this.data.attempts;
     }
   },
-  methods:{
-    async uploadFile(){
+  methods: {
+    async uploadFile() {
+      var formData = new FormData();
+      formData.append("file", this.form.uploadFile);
+      let upload = {
+        request: formData,
+        type: "receipts"
+      };
 
-              var formData = new FormData();
-              formData.append("file", this.form.uploadFile);
-                let upload={
-                request:formData,
-                type:'receipts'
-              }
-
-               await this.$store.dispatch(UPLOAD_FILE,upload)
-               .then((response)=>{
-                  this.amazonImage=response.data.filePath;
-
-                })
-                .catch((error) =>{
-                    if(error){
-                      this.errorMessage="Upload error please try again";
-                      return false;
-                    }
-
-                });
-
-
+      await this.$store
+        .dispatch(UPLOAD_FILE, upload)
+        .then(response => {
+          this.amazonImage = response.data.filePath;
+        })
+        .catch(error => {
+          if (error) {
+            this.errorMessage = "Upload error please try again";
+            return false;
+          }
+        });
     },
-    generateRequest(currentAttempt){
-      if(currentAttempt>=this.getAttempt.length){
-        currentAttempt=this.getAttempt.length-1;
+    generateRequest(currentAttempt) {
+      if (currentAttempt >= this.getAttempt.length) {
+        currentAttempt = this.getAttempt.length - 1;
       }
+      currentAttempt = 0;
+      let mixCode = this.getAttempt[currentAttempt].mixCode;
+      let ngps = this.getAttempt[currentAttempt].NPGS;
+      let programId = null;
+      this.attemptData = this.getAttempt[currentAttempt];
 
-      let mixCode=this.getAttempt[currentAttempt].mixCode;
-      let ngps=this.getAttempt[currentAttempt].NPGS;
-      let programId=null;
-      this.attemptData=this.getAttempt[currentAttempt];
-
-       if(mixCode.length>0){
-         // console.log(mixCode);
-          let programs=_.filter(mixCode,(a)=>{
-          return a.codeInitial!=null&&a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
-        })
+      if (mixCode.length > 0) {
+        // console.log(mixCode);
+        let programs = _.filter(mixCode, a => {
+          return (
+            a.codeInitial != null &&
+            a.codeInitial.toUpperCase() ==
+              this.form.code.charAt(0).toUpperCase() &&
+            a.characterLimit == this.form.code.length
+          );
+        });
         //console.log(programs);
-        let programsNull=_.filter(mixCode,(a)=>{
-          return (a.codeInitial==null||a.codeInitial=="")&&a.characterLimit==this.form.code.length;
-        })
-        if(programs.length>0){
-          programId=programs[0].ProgrammeID;
-        }else{
-          programId=programsNull.length>0 ? programsNull[0].ProgrammeID : null;
+        let programsNull = _.filter(mixCode, a => {
+          return (
+            (a.codeInitial == null || a.codeInitial == "") &&
+            a.characterLimit == this.form.code.length
+          );
+        });
+        if (programs.length > 0) {
+          programId = programs[0].ProgrammeID;
+        } else {
+          programId =
+            programsNull.length > 0 ? programsNull[0].ProgrammeID : null;
         }
       }
 
-
-      if(!programId){
+      if (!programId) {
         return false;
       }
       let request;
-        request={
-                    "name"  : this.form.name,
-                    "email" : this.form.email,
-                    "mechanic" : this.getAttempt[currentAttempt].campaignType,
-                    "programmeId": programId,
-                    "configurationId": ngps[0].configID,
-                    "flowLabel": ngps[0].flowLabel
-        }
-        if(this.loginInfo){
-          //request["userId"]=this.loginInfo.uuid;
-        }
-        if(this.form.phoneNumber){
-          request["phone"]=this.phoneCode+this.form.phoneNumber;
-        }
-        if(this.form.code){
-          request['pin']=this.form.code;
-        }
-        if(this.amazonImage){
-          request['imageURL']=this.amazonImage;
-        }
+      request = {
+        name: this.form.name,
+        email: this.form.email,
+        mechanic: this.getAttempt[currentAttempt].campaignType,
+        programmeId: programId,
+        configurationId: ngps[0].configID,
+        flowLabel: ngps[0].flowLabel
+      };
+      if (this.loginInfo) {
+        //request["userId"]=this.loginInfo.uuid;
+      }
+      if (this.form.phoneNumber) {
+        request["phone"] = this.phoneCode + this.form.phoneNumber;
+      }
+      if (this.form.code) {
+        request["pin"] = this.form.code;
+      }
+      if (this.amazonImage) {
+        request["imageURL"] = this.amazonImage;
+      }
 
-        return request;
+      return request;
     },
-      onFileChange(e) {
+    onFileChange(e) {
       let files = e.target.files || e.dataTransfer.files;
-      if (!files.length)
-        return;
+      if (!files.length) return;
       let FileSize = files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 5) {
-           this.errorMessage ="Please upload file not more than 5 MB"
-           return;
-        }
+      if (FileSize > 5) {
+        this.errorMessage = "Please upload file not more than 5 MB";
+        return;
+      }
       let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf)$/i;
       let filePath = e.target.value;
-      this.fileName= e.target.files[0].name;
-      this.filePath=filePath;
-      if(!allowedExtensions.exec(filePath)){
-         this.errorMessage ="Please upload image or file"
-           return;
+      this.fileName = e.target.files[0].name;
+      this.filePath = filePath;
+      if (!allowedExtensions.exec(filePath)) {
+        this.errorMessage = "Please upload image or file";
+        return;
       }
       this.form.uploadFile = files[0];
       this.createImage(files[0]);
-       this.errorMessage = null;
+      this.errorMessage = null;
     },
     createImage(file) {
       var image = new Image();
       var reader = new FileReader();
       var vm = this;
 
-      reader.onload = (e) => {
+      reader.onload = e => {
         vm.image = e.target.result;
       };
       reader.readAsDataURL(file);
     },
-    removeImage: function (e) {
+    removeImage: function(e) {
       this.image = null;
-      this.amazonImage =null;
-       this.filePath = null;
+      this.amazonImage = null;
+      this.filePath = null;
     },
-    async checkcurrentAttempt(){
-      await this.$store.dispatch(CHECK_ATTEMPT)
-      .then((response)=>{
-        this.currentAttempt=response.data.currentAttemptNumber;
-      })
-      .catch((error) =>{
-        if(error){
-          this.currentAttempt=9999999;
-        }
-      });
+    async checkcurrentAttempt() {
+      await this.$store
+        .dispatch(CHECK_ATTEMPT)
+        .then(response => {
+          this.currentAttempt = response.data.currentAttemptNumber;
+        })
+        .catch(error => {
+          if (error) {
+            this.currentAttempt = 9999999;
+          }
+        });
     },
 
     async submit() {
       let request = null;
-      this.loading=true;
-      let index =0;
+      this.loading = true;
+      let index = 0;
 
+      this.$validator.validateAll().then(async valid => {
+        if (valid && this.errors.all().length <= 0) {
+          let currentattempt = 0;
 
-       this.$validator.validateAll().then( async(valid) => {
-         if(valid&&this.errors.all().length<=0){
-           let currentattempt=0;
-
-           /* if(!this.form.privacy){
+          /* if(!this.form.privacy){
               this.loading=false;
              this.errorMessage=this.submissionText.errorPolicy;
              return false;
            }*/
-             if(!this.form.ageConsent){
-             this.loading=false;
-              this.errorMessage=this.submissionText.errorDeclare;
-             return false;
-           }
+          if (!this.form.ageConsent) {
+            this.loading = false;
+            this.errorMessage = this.submissionText.errorDeclare;
+            return false;
+          }
 
-             this.errorMessage=null;
-             await this.checkcurrentAttempt();
+          this.errorMessage = null;
+          await this.checkcurrentAttempt();
 
-            if(this.getAttempt)
-            {
-               if(this.form.uploadFile&&!this.amazonImage){
-                await this.uploadFile();
-               }
+          if (this.getAttempt) {
+            if (this.form.uploadFile && !this.amazonImage) {
+              await this.uploadFile();
+            }
 
             //my code for submit
-                request = this.generateRequest(this.currentAttempt);
-                if(!request){
-                  this.loading=false;
-                  this.errorMessage=this.submissionText.errorPinCode;
-                  return false;
+            request = this.generateRequest(this.currentAttempt);
+            request.hasMore = true;
+            if (!request) {
+              this.loading = false;
+              this.errorMessage = this.submissionText.errorPinCode;
+              return false;
+            }
+            this.$store
+              .dispatch(CHECK_MIXCODE, request)
+              .then(response => {
+                this.pushGTMCode();
+
+                let loginData = {
+                  ...this.$store.state.login,
+                  phone: this.phoneCode + this.form.phoneNumber,
+                  ageConsent: this.form.ageConsent
+                };
+
+                this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
+                this.loading = false;
+                let result = response.data;
+                let isBurn = response.data.redeemed;
+
+                if (isBurn) {
+                  this.errorMessage = this.submissionText.errorPinCode1;
+                } else {
+                  this.prizeWin = result;
+                  let attemptData = this.attemptData;
+                  let data = {
+                    attemptData,
+                    response: result,
+                    request
+                  };
+                  this.$emit("submit", data);
                 }
-                this.$store.dispatch(SUBMIT_FORM,request)
-                .then((response)=>{
-                   // this.submitted=true;
-                    this.pushGTMCode();
+              })
+              .catch(error => {
+                this.loading = false;
 
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, ageConsent:this.form.ageConsent  }
+                if (error.response) {
+                  this.errorMessage = this.submissionText.errorAPI;
+                }
+                if (error.response && error.response.data.detail) {
+                  this.errorMessage = this.submissionText.errorPinCode;
+                }
 
-                   this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
-                    this.loading=false;
-                    let result=response.data;
-                    if( result) {
-                      this.prizeWin = result;
-                      let attemptData=this.attemptData
-                      let data={
-                        attemptData,response:result,request
-                      }
-                        this.$emit('submit',data);
-
-
-                    }
-                })
-                .catch((error) =>{
-                  this.loading=false;
-                    if(error.response){
-                    this.errorMessage=this.submissionText.errorAPI;
-                  }
-                   if(error.response && error.response.data.detail){
-                     this.errorMessage=this.submissionText.errorPinCode;
-                   }
-
-                 if(error.response && error.response.data.status=='401'){
-                      localStorage.clear();
-                      this.$store.commit('SET_LOGIN_ACCOUNT', null);
-                      this.$store.commit('SET_TOKEN', null);
-                      location.reload();
-                  }
-                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='1'){
-                    this.errorMessage=this.submissionText.errorPinCode1;
-                  }
-                    if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='2'){
-                    this.errorMessage=this.submissionText.errorPinCode4;
-                  }
-                  if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='4'){
-                    this.errorMessage=this.submissionText.errorPinCode2;
-                  }
-                   if(error.response&&error.response.data.trace && error.response.data.trace.errorCode=='6'){
-                    this.errorMessage=this.submissionText.errorPinCode3;
-                  }
-                })
-               }else{
-                 this.loading=false;
-                 this.errorMessage=this.submissionText.errorPinCode;
-               }
-         }else{
-            this.loading=false;
-         }
-
-       });
-
-    },
-       async getAccount(){
-        if(this.loginInfo){
-          this.form.name=this.loginInfo.name;
-          this.form.email=this.loginInfo.email;
-           if(this.loginInfo.phone){
-             this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
-             this.showPhone=true;
-           }
-         //  this.form.privacy=this.loginInfo.privacy;
-
+                if (error.response && error.response.data.status == "401") {
+                  localStorage.clear();
+                  this.$store.commit("SET_LOGIN_ACCOUNT", null);
+                  this.$store.commit("SET_TOKEN", null);
+                  location.reload();
+                }
+                if (
+                  error.response &&
+                  error.response.data.trace &&
+                  error.response.data.trace.errorCode == "1"
+                ) {
+                  this.errorMessage = this.submissionText.errorPinCode1;
+                }
+                if (
+                  error.response &&
+                  error.response.data.trace &&
+                  error.response.data.trace.errorCode == "2"
+                ) {
+                  this.errorMessage = this.submissionText.errorPinCode4;
+                }
+                if (
+                  error.response &&
+                  error.response.data.trace &&
+                  error.response.data.trace.errorCode == "4"
+                ) {
+                  this.errorMessage = this.submissionText.errorPinCode2;
+                }
+                if (
+                  error.response &&
+                  error.response.data.trace &&
+                  error.response.data.trace.errorCode == "6"
+                ) {
+                  this.errorMessage = this.submissionText.errorPinCode3;
+                }
+              });
+          } else {
+            request = this.generateRequest(this.currentAttempt);
+            this.loading = false;
+            this.errorMessage = this.submissionText.errorPinCode;
+          }
+        } else {
+          this.loading = false;
         }
-        await this.checkcurrentAttempt();
-        if(this.currentAttempt>1){
+      });
+    },
+    async getAccount() {
+      if (this.loginInfo) {
+        this.form.name = this.loginInfo.name;
+        this.form.email = this.loginInfo.email;
+        if (this.loginInfo.phone) {
+          this.form.phoneNumber = this.loginInfo.phone
+            .replace(this.phoneCode, "")
+            .replace(this.phoneCodeDisplay, "");
+          this.showPhone = true;
+        }
+        //  this.form.privacy=this.loginInfo.privacy;
+      }
+      await this.checkcurrentAttempt();
+      if (this.currentAttempt > 1) {
         //   this.form.privacy=true;
-        }
+      }
     },
 
-        getListWallet(){
-          this.$store.dispatch(GET_LIST_WALLET)
-                .then((response)=>{
-                })
-                .catch((error) =>{
-                  if(error.response && error.response.data.status=='401'){
-                    localStorage.clear();
-                  }
-                })
-
-
-     },
-     goToRewards(){
-       location.href='/rewards';
-     },
-     pushGTMCode(){
+    getListWallet() {
+      this.$store
+        .dispatch(GET_LIST_WALLET)
+        .then(response => {})
+        .catch(error => {
+          if (error.response && error.response.data.status == "401") {
+            localStorage.clear();
+          }
+        });
+    },
+    goToRewards() {
+      location.href = "/rewards";
+    },
+    pushGTMCode() {
       this.$gtm.push({
-                        'event' : 'event_form_submit',
-                        'category' : 'form submit',
-                        'action' : 'success',
-                        'label' : 'rhythm sign up'
-                    });
-     }
-
-
+        event: "event_form_submit",
+        category: "form submit",
+        action: "success",
+        label: "rhythm sign up"
+      });
+    }
   },
   beforeMount() {},
-  mounted(){
+  mounted() {
     this.getAccount();
   },
-  watch:{
-     "form.phoneNumber": function (val) {
-       let envs=this.$config;
-       if(val.length==1){
-         if(val=="0"){
-            this.form.phoneNumber="";
-         }
-       }
-      if(val.length>envs.maxPhoneNumber||val.length<envs.minPhoneNumber){
-         this.errors.clear();
-         this.$validator.errors.add({
-          field: 'phoneNumber',
+  watch: {
+    "form.phoneNumber": function(val) {
+      let envs = this.$config;
+      if (val.length == 1) {
+        if (val == "0") {
+          this.form.phoneNumber = "";
+        }
+      }
+      if (
+        val.length > envs.maxPhoneNumber ||
+        val.length < envs.minPhoneNumber
+      ) {
+        this.errors.clear();
+        this.$validator.errors.add({
+          field: "phoneNumber",
           msg: this.submissionText.errorMaxPhone
         });
-       }else if(isNaN(val)){
-         this.errors.clear();
-         this.$validator.errors.add({
-          field: 'phoneNumber',
+      } else if (isNaN(val)) {
+        this.errors.clear();
+        this.$validator.errors.add({
+          field: "phoneNumber",
           msg: this.submissionText.errorNumberPhone
         });
-       }
-       else{
-            this.errors.clear()
-       }
-    },
+      } else {
+        this.errors.clear();
+      }
+    }
   }
-
-}
+};
 </script>
 
 <style scoped>
-  .details{
-    position: relative;
-  }
-  .error-message-red{
-    color:red;
-  }
-  .error-message{
-    color:#000;
-  }
-  .error-message-black{
-    color:#000;
-    text-align: center;
-    padding-bottom: 20px;
-  }
-  .d-flex {
-    display: flex;
-  }
-  .get-code {
-    display: block;
-    width: 100%;
-    margin: 25px 0;
-  }
-  input[type="file"] {
-    display: none;
-  }
-  .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 12px 12px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 14px;
+.details {
+  position: relative;
 }
-.custom-file-upload span{
+.error-message-red {
+  color: red;
+}
+.error-message {
+  color: #000;
+}
+.error-message-black {
+  color: #000;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.d-flex {
+  display: flex;
+}
+.get-code {
+  display: block;
+  width: 100%;
+  margin: 25px 0;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 12px 12px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+}
+.custom-file-upload span {
   padding-left: 20px;
 }
-.btn-area{
+.btn-area {
   text-align: center;
   margin-top: 30px;
   max-width: 360px;
   margin: auto;
 }
-button.get-code{
+button.get-code {
   height: 60px !important;
   border-radius: 15px;
 }
 
-form.mechanics{
+form.mechanics {
   margin: 0 1em;
 }
-.thanks{
+.thanks {
   text-align: center;
 }
-.info-btn{
+.info-btn {
   background: #fff;
   padding: 20px;
-  border-radius:15px;
+  border-radius: 15px;
   cursor: pointer;
   position: relative;
 }
-.btn-text{
-  color:#000;
+.btn-text {
+  color: #000;
   text-decoration: #000;
 }
-.info-btn .info-icon{
+.info-btn .info-icon {
   position: absolute;
   right: 10px;
   top: 34%;
-
 }
-.details .info-icon{
+.details .info-icon {
   position: absolute;
   right: 10px;
   top: 0px;
-
 }
- form input#code::placeholder{
-   color: #1d1d1b;
-   text-decoration: underline;
- }
- form input#code{
-   color: #1d1d1b;
-   text-align: center;
- }
+form input#code::placeholder {
+  color: #1d1d1b;
+  text-decoration: underline;
+}
+form input#code {
+  color: #1d1d1b;
+  text-align: center;
+}
 .tooltip {
-
   display: inline-block;
-
 }
-.no-padding-top{
+.no-padding-top {
   padding-top: 0px !important;
 }
 @media only screen and (min-width: 769px) {
@@ -578,16 +682,15 @@ form.mechanics{
     position: absolute;
     z-index: 1;
     left: 150%;
-      top: -15px;
+    top: -15px;
     text-align: left;
   }
   .info-btn .tooltip .tooltiptext {
-      top: -15px;
+    top: -15px;
   }
   .details .tooltip .tooltiptext {
-    top:-50px;
+    top: -50px;
   }
-
 
   .tooltip .tooltiptext::after {
     content: "";
@@ -597,60 +700,58 @@ form.mechanics{
     margin-top: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: transparent #1d1d1b  transparent transparent;
+    border-color: transparent #1d1d1b transparent transparent;
   }
 }
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
 @media only screen and (max-width: 768px) {
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 280px;
+    background-color: #1d1d1b;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: -720%;
+    margin-left: -60px;
+  }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-   width: 280px;
-  background-color: #1d1d1b;
-  color: #fff;
-  text-align: left;
-  border-radius: 6px;
-  padding: 15px;
-  position: absolute;
-  z-index: 1;
-  top: 150%;
-  left: -720%;
-  margin-left: -60px;
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 90%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #1d1d1b transparent;
+  }
 }
-
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 90%;
-  margin-left: -10px;
-  border-width: 10px;
-  border-style: solid;
-  border-color: transparent transparent #1d1d1b transparent;
-}
-
-}
-form input#phoneCode{
+form input#phoneCode {
   width: 35px !important;
   display: inline-block;
   border: none;
 }
-form input#phoneNumber{
-   border: none;
+form input#phoneNumber {
+  border: none;
 }
-form input#phoneNumber.short{
+form input#phoneNumber.short {
   width: calc(100% - 65px) !important;
   border: none;
 }
-.details .btn-text{
+.details .btn-text {
   border-bottom: solid 1px #fff;
 }
-form.mechanics{
- margin: auto;
+form.mechanics {
+  margin: auto;
 }
-.two-checkbox{
+.two-checkbox {
   margin-top: 40px !important;
   margin-bottom: 40px !important;
 }
