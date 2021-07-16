@@ -186,7 +186,8 @@ import {
   UPLOAD_FILE,
   CHECK_ATTEMPT,
   DELETE_FILE,
-  GET_LIST_WALLET
+  GET_LIST_WALLET,
+  CHECK_MIXCODE
 } from "@/store/action_types";
 import * as _ from "lodash";
 import { translation } from "@/constants/index";
@@ -416,17 +417,15 @@ export default {
 
             //my code for submit
             request = this.generateRequest(this.currentAttempt);
+            request.hasMore = true;
             if (!request) {
               this.loading = false;
               this.errorMessage = this.submissionText.errorPinCode;
               return false;
             }
             this.$store
-              .dispatch(SUBMIT_FORM, request)
+              .dispatch(CHECK_MIXCODE, request)
               .then(response => {
-                // this.submitted=true;
-                // console.log("=============berhasil");
-                // console.log(response);
                 this.pushGTMCode();
 
                 let loginData = {
@@ -438,24 +437,24 @@ export default {
                 this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
                 this.loading = false;
                 let result = response.data;
-                // generate request 2
-                let request2 = this.generateRequest(this.currentAttempt);
-                if (result) {
+                let isBurn = response.data.redeemed;
+
+                if (isBurn) {
+                  this.errorMessage = this.submissionText.errorPinCode1;
+                } else {
                   this.prizeWin = result;
                   let attemptData = this.attemptData;
                   let data = {
                     attemptData,
                     response: result,
-                    request,
-                    request2
+                    request
                   };
                   this.$emit("submit", data);
                 }
               })
               .catch(error => {
                 this.loading = false;
-                // console.log("=============gagal");
-                // console.log(error.response);
+
                 if (error.response) {
                   this.errorMessage = this.submissionText.errorAPI;
                 }
@@ -498,80 +497,8 @@ export default {
                   this.errorMessage = this.submissionText.errorPinCode3;
                 }
               });
-            // console.log("=============loop");
-            // for (index = 0; index < 2; index++) {
-            // }
-            // this.$store
-            //   .dispatch(SUBMIT_FORM, request)
-            //   .then(response => {
-            //     // this.submitted=true;
-            //     this.pushGTMCode();
-
-            //     let loginData = {
-            //       ...this.$store.state.login,
-            //       phone: this.phoneCode + this.form.phoneNumber,
-            //       ageConsent: this.form.ageConsent
-            //     };
-
-            //     this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
-            //     this.loading = false;
-            //     let result = response.data;
-            //     if (result) {
-            //       this.prizeWin = result;
-            //       let attemptData = this.attemptData;
-            //       let data = {
-            //         attemptData,
-            //         response: result,
-            //         request
-            //       };
-            //       this.$emit("submit", data);
-            //     }
-            //   })
-            //   .catch(error => {
-            //     this.loading = false;
-            //     if (error.response) {
-            //       this.errorMessage = this.submissionText.errorAPI;
-            //     }
-            //     if (error.response && error.response.data.detail) {
-            //       this.errorMessage = this.submissionText.errorPinCode;
-            //     }
-
-            //     if (error.response && error.response.data.status == "401") {
-            //       localStorage.clear();
-            //       this.$store.commit("SET_LOGIN_ACCOUNT", null);
-            //       this.$store.commit("SET_TOKEN", null);
-            //       location.reload();
-            //     }
-            //     if (
-            //       error.response &&
-            //       error.response.data.trace &&
-            //       error.response.data.trace.errorCode == "1"
-            //     ) {
-            //       this.errorMessage = this.submissionText.errorPinCode1;
-            //     }
-            //     if (
-            //       error.response &&
-            //       error.response.data.trace &&
-            //       error.response.data.trace.errorCode == "2"
-            //     ) {
-            //       this.errorMessage = this.submissionText.errorPinCode4;
-            //     }
-            //     if (
-            //       error.response &&
-            //       error.response.data.trace &&
-            //       error.response.data.trace.errorCode == "4"
-            //     ) {
-            //       this.errorMessage = this.submissionText.errorPinCode2;
-            //     }
-            //     if (
-            //       error.response &&
-            //       error.response.data.trace &&
-            //       error.response.data.trace.errorCode == "6"
-            //     ) {
-            //       this.errorMessage = this.submissionText.errorPinCode3;
-            //     }
-            //   });
           } else {
+            request = this.generateRequest(this.currentAttempt);
             this.loading = false;
             this.errorMessage = this.submissionText.errorPinCode;
           }

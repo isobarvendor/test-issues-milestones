@@ -1,71 +1,94 @@
-
-import axios from 'axios';
+import axios from "axios";
 
 const origin = process.env.origin;
-const setHeader = (token)=>{
-    return {
-      headers:{
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer '+ token
-              }
+const setHeader = token => {
+  return {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
     }
-}
+  };
+};
 
 export default {
-
-  getListPrize(campaign='13qiq88kkqbov6j') {
-    return axios.get(`${origin}/api/campaign/list-prize/${campaign}/listPrizes`)
+  getListPrize(campaign = "13qiq88kkqbov6j") {
+    return axios.get(
+      `${origin}/api/campaign/list-prize/${campaign}/listPrizes`
+    );
   },
-  getMyPrize(token,campaign='13qiq88kkqbov6j') {
-    return axios.get(`${origin}/api/campaign/my-list-prize/${campaign}/queryVouchers`,setHeader(token))
+  getMyPrize(token, campaign = "13qiq88kkqbov6j") {
+    return axios.get(
+      `${origin}/api/campaign/my-list-prize/${campaign}/queryVouchers`,
+      setHeader(token)
+    );
   },
   getGrivyPrize(token) {
-    return axios.get(`${origin}/api/grivy/list-reward`,setHeader(token))
+    return axios.get(`${origin}/api/grivy/list-reward`, setHeader(token));
     //return axios.get(`/mock/list-reward`, setHeader(token))
   },
   getListWallet(token) {
-    return axios.get(`${origin}/api/campaign/auth/list-wallet`, setHeader(token))
+    return axios.get(
+      `${origin}/api/campaign/auth/list-wallet`,
+      setHeader(token)
+    );
   },
   checkUserAttempt(token) {
-    return axios.get(`${origin}/api/user-participators/current-attempt-number`, setHeader(token))
+    return axios.get(
+      `${origin}/api/user-participators/current-attempt-number`,
+      setHeader(token)
+    );
   },
   getUserPhone(token) {
-    return axios.get(`${origin}/api/user-participators/get-phone-number`, setHeader(token))
+    return axios.get(
+      `${origin}/api/user-participators/get-phone-number`,
+      setHeader(token)
+    );
   },
   redeemPrize(data, token) {
-    return axios.post(`${origin}/api/campaign/auth/redeem-prize`, data, setHeader(token))
+    return axios.post(
+      `${origin}/api/campaign/auth/redeem-prize`,
+      data,
+      setHeader(token)
+    );
   },
   submitLogin(data, token) {
-    return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
-    //return axios.get(`/mock/submission`, setHeader(token))
+    return axios.post(
+      `${origin}/api/campaign/auth/submission`,
+      data,
+      setHeader(token)
+    );
+    // return axios.get(`/mock/submission`, setHeader(token));
   },
-  submitNonLogin(data) {
-    return axios.post(`${origin}/api/campaign/public/submission`, data)
+  checkMixCode(token, data) {
+    return axios.get(
+      `${origin}/api/mix-codes/verify/${data.programmeId}/${data.pin}`,
+      setHeader(token)
+    );
+    //return axios.get(`/mock/mixcode`, setHeader(token))
   },
 
-  async uploadFile(payload,type,token) {
+  submitNonLogin(data) {
+    return axios.post(`${origin}/api/campaign/public/submission`, data);
+  },
+
+  async uploadFile(payload, type, token) {
     let config = {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': 'Bearer '+ token
-        }
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + token
+      }
     };
     let resp;
-        resp = await axios.post(`${origin}/api/${type}`, payload, config)
+    resp = await axios.post(`${origin}/api/${type}`, payload, config);
 
     return resp;
-},
+  },
 
-async deleteFile(payload,type) {
-  let config = {
+  async deleteFile(payload, type) {
+    let config = {};
+    let resp;
+    resp = await axios.delete(`${origin}/api/${type}`, payload, config);
 
-  };
-  let resp;
-      resp = await axios.delete(`${origin}/api/${type}`, payload, config)
-
-  return resp;
-},
-
-
-
-}
+    return resp;
+  }
+};

@@ -28,6 +28,7 @@
             :prize="prize[index]"
             :themes="1"
             @playAgain="playAgain"
+            :showParticipateAgain="index == prize.length - 1 ? true : false"
           />
         </div>
       </div>
@@ -151,24 +152,26 @@ export default {
       let attemptData = data.attemptData;
       this.request = data.request;
 
+      let newRequest = data.request;
       let prize = [];
-      if (
-        attemptData.campaignType == "InstantWin" &&
-        prizewin.instantWinResult != null &&
-        prizewin.instantWinResult.winner
-      ) {
-        this.$store
-          .dispatch(SUBMIT_FORM, data.request2)
-          .then(async response => {
-            console.log(response);
-            let prizewin2 = await response.data;
+      newRequest.hasMore = true;
+      for (let index = 0; index < 2; index++) {
+        if (index == 1) {
+          newRequest.hasMore = false;
+        }
+        console.log(newRequest);
+        this.$store.dispatch(SUBMIT_FORM, newRequest).then(async response => {
+          let prizewin2 = await response.data;
+
+          if (
+            attemptData.campaignType == "InstantWin" &&
+            prizewin2.instantWinResult != null &&
+            prizewin2.instantWinResult.winner
+          ) {
+            /////////// Instant Win ///////////
             this.campaignWin = attemptData.campaignType;
             if (prizewin2.grivy) {
               this.addGTMSuccessPrize("Coke");
-              // prize = [
-
-              // ];
-              prize.push({ a: "test push" });
               prize.push({
                 text: this.submissionText.prizeBarcodeHeader.replace(
                   "<<NAME>>",
@@ -197,9 +200,6 @@ export default {
               });
             } else {
               this.addGTMSuccessPrize("JOOX");
-              // prize = [
-
-              // ];
               prize.push({
                 text: attemptData.FormHeading.thankYouMessage,
                 name: prizewin2.instantWinResult.redeemedPrize.name,
@@ -226,96 +226,29 @@ export default {
                 luckyDraw: false,
                 prizeType: "Joox"
               });
-              prize.push({ a: "test push" });
             }
-          })
-          .catch(error => {
-            console.log(error);
-          });
-        /////////// Instant Win ///////////
-        this.campaignWin = attemptData.campaignType;
-        if (prizewin.grivy) {
-          this.addGTMSuccessPrize("Coke");
-          prize.push({
-            text: this.submissionText.prizeBarcodeHeader.replace(
-              "<<NAME>>",
-              prizewin.instantWinResult.redeemedPrize.name
-            ),
-            name:
-              '<div class="namePrize">' +
-              prizewin.instantWinResult.redeemedPrize.name +
-              "</div>" +
-              '<img src="' +
-              prizewin.grivy.secret_code_image +
-              '" width="100%" /> <div class="namePrize">' +
-              prizewin.grivy.store_name +
-              "</div>",
-            image: prizewin.instantWinResult.redeemedPrize.imgUrl
-              ? prizewin.instantWinResult.redeemedPrize.imgUrl
-              : "/img/landing/week 1 prize.png",
-            note:
-              '<div class="glink">Jika ada kendala mengenai penukaran kode, hubungi Support Grivy melalui link <a target="_blank" href="https://grivy.app/ad/support-coke-music-1">ini.​</a></div>',
-            button: [],
-            havejoox: attemptData.FormHeading.Prize,
-            code: null,
-            subName: null,
-            luckyDraw: false,
-            prizeType: "Coke"
-          });
-          // prize = [];
-        } else {
-          this.addGTMSuccessPrize("JOOX");
-          prize.push({
-            text: attemptData.FormHeading.thankYouMessage,
-            name: prizewin.instantWinResult.redeemedPrize.name,
-            image: prizewin.instantWinResult.redeemedPrize.imgUrl
-              ? prizewin.instantWinResult.redeemedPrize.imgUrl
-              : "/img/landing/week 1 prize.png",
-            note: null,
-            button: [
-              {
-                id: "Redeem_Now",
-                text: this.submissionText.redeemPrize,
-                link:
-                  prizewin.instantWinResult.redeemedPrize.redeemDescription +
-                  "?" +
-                  this.$config.voucherParameter +
-                  "=" +
-                  prizewin.instantWinResult.redeemedPrize.voucherCode
-              }
-            ],
-            havejoox: attemptData.FormHeading.Prize,
-            code: prizewin.instantWinResult.redeemedPrize.voucherCode,
-            subName: null,
-            luckyDraw: false,
-            prizeType: "Joox"
-          });
-          // prize = [];
-        }
-        console.log("===========================prize");
-        console.log(prize);
-        this.prize = prize;
 
-        this.jooxMessage = attemptData.FormHeading.Prize;
-      } else {
-        this.addGTMSuccessLucky();
-        this.campaignWin = "luckyDraw";
-        prize.push({
-          text: "<h1>" + this.submissionText.luckyDrawHeader + "</h1>",
-          name: this.submissionText.luckyDrawSuccess2,
-          image: "/img/landing/luckydraw.png",
-          note: this.submissionText.luckyDrawSubHeader,
-          button: [],
-          havejoox: attemptData.FormHeading.Prize,
-          code: null,
-          subName: null,
-          luckyDraw: true,
-          prizeType: "Lucky_Draw"
+            this.jooxMessage = attemptData.FormHeading.Prize;
+          } else {
+            this.addGTMSuccessLucky();
+            this.campaignWin = "luckyDraw";
+            prize.push({
+              text: "<h1>" + this.submissionText.luckyDrawHeader + "</h1>",
+              name: this.submissionText.luckyDrawSuccess2,
+              image: "/img/landing/luckydraw.png",
+              note: this.submissionText.luckyDrawSubHeader,
+              button: [],
+              havejoox: attemptData.FormHeading.Prize,
+              code: null,
+              subName: null,
+              luckyDraw: true,
+              prizeType: "Lucky_Draw"
+            });
+
+            this.jooxMessage = attemptData.FormHeading.Prize;
+          }
         });
-        // prize = [];
         this.prize = prize;
-
-        this.jooxMessage = attemptData.FormHeading.Prize;
       }
       var options = {
         container: "body",
