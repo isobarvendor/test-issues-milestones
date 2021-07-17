@@ -159,7 +159,7 @@
               <span class="tooltiptext">{{ submissionText.tooltipText }}</span>
             </div>
           </div>
-          <div style="padding:20px" v-if="loading">
+          <div style="padding:20px;" v-if="loading">
             <v-progress-circular
               :width="2"
               color="white"
