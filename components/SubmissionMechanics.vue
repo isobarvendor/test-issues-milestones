@@ -20,7 +20,15 @@
     </div>
     <div v-else>
       <div class="container  prize-chance black-red-border">
-        <div class="wrapper" v-if="prize.length > 0">
+        <div style="padding:20px; margin: auto;" v-if="loading">
+          <v-progress-circular
+            :size="32"
+            :width="4"
+            color="white"
+            indeterminate
+          ></v-progress-circular>
+        </div>
+        <div class="wrapper" v-if="!loading">
           <!-- <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain"  /> -->
           <PrizeItem
             v-for="(p, index) in prize"
@@ -89,6 +97,7 @@ export default {
       submitted: false,
       listenNowLink: "",
       thankYouMessage: "",
+      loading: true,
       request: {
         email: ""
       },
@@ -151,7 +160,7 @@ export default {
       let prizewin = data.response;
       let attemptData = data.attemptData;
       this.request = data.request;
-
+      this.loading = true;
       let newRequest = data.request;
       let prize = [];
       newRequest.hasMore = true;
@@ -159,7 +168,6 @@ export default {
         if (index == 1) {
           newRequest.hasMore = false;
         }
-        console.log(newRequest);
         this.$store.dispatch(SUBMIT_FORM, newRequest).then(async response => {
           let prizewin2 = await response.data;
 
@@ -246,6 +254,9 @@ export default {
             });
 
             this.jooxMessage = attemptData.FormHeading.Prize;
+          }
+          if (index == 1) {
+            this.loading = false;
           }
         });
         this.prize = prize;
