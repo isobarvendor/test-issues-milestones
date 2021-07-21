@@ -1,4 +1,4 @@
-<template>
+I<template>
   <div style="width:100%" class="winning-area">
     <div
       class="container campaign-section redbox-withwhiteborder submission-section"
@@ -156,21 +156,22 @@ export default {
       });*/
     },
     submit(data) {
+      console.log(data)
       this.submitted = true;
-      let prizewin = data.response;
-      let attemptData = data.attemptData;
-      this.request = data.request;
-      this.loading = true;
-      let newRequest = data.request;
       let prize = [];
-      newRequest.hasMore = true;
-      for (let index = 0; index < 2; index++) {
-        if (index == 1) {
+      for (let index=0;index<2;index++){
+        let prizewin = data[index].response;
+        let attemptData = data[index].attemptData;
+        this.request = data[index].request;
+        this.loading = true;
+        let newRequest = data[index].request;
+        newRequest.hasMore = true;
+        if (index==1){
           newRequest.hasMore = false;
         }
         this.$store.dispatch(SUBMIT_FORM, newRequest).then(async response => {
           let prizewin2 = await response.data;
-
+          console.log(prizewin2)
           if (
             attemptData.campaignType == "InstantWin" &&
             prizewin2.instantWinResult != null &&
@@ -260,7 +261,9 @@ export default {
           }
         });
         this.prize = prize;
+        console.log(this.prize);
       }
+      
       var options = {
         container: "body",
         easing: "ease-in",

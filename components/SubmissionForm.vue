@@ -281,7 +281,8 @@ export default {
       if (currentAttempt >= this.getAttempt.length) {
         currentAttempt = this.getAttempt.length - 1;
       }
-      currentAttempt = 0;
+      
+      
       let mixCode = this.getAttempt[currentAttempt].mixCode;
       let ngps = this.getAttempt[currentAttempt].NPGS;
       let programId = null;
@@ -414,89 +415,104 @@ export default {
             if (this.form.uploadFile && !this.amazonImage) {
               await this.uploadFile();
             }
-
+            let all_data = [];
+            
             //my code for submit
-            request = this.generateRequest(this.currentAttempt);
-            request.hasMore = true;
-            if (!request) {
-              this.loading = false;
-              this.errorMessage = this.submissionText.errorPinCode;
-              return false;
-            }
-            this.$store
-              .dispatch(CHECK_MIXCODE, request)
-              .then(response => {
-                this.pushGTMCode();
-
-                let loginData = {
-                  ...this.$store.state.login,
-                  phone: this.phoneCode + this.form.phoneNumber,
-                  ageConsent: this.form.ageConsent
-                };
-
-                this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
+            for( let index=0; index<=2; index+=2){
+              request = this.generateRequest(index);
+              console.log(request)
+              request.hasMore = true;
+              if (!request) {
                 this.loading = false;
-                let result = response.data;
-                let isBurn = response.data.redeemed;
+                this.errorMessage = this.submissionText.errorPinCode;
+                return false;
+              }
+              
+              await this.$store
+                .dispatch(CHECK_MIXCODE, request)
+                .then(response => {
+                  
+                  this.pushGTMCode();
 
-                if (isBurn) {
-                  this.errorMessage = this.submissionText.errorPinCode1;
-                } else {
-                  this.prizeWin = result;
-                  let attemptData = this.attemptData;
-                  let data = {
-                    attemptData,
-                    response: result,
-                    request
+                  let loginData = {
+                    ...this.$store.state.login,
+                    phone: this.phoneCode + this.form.phoneNumber,
+                    ageConsent: this.form.ageConsent
                   };
-                  this.$emit("submit", data);
-                }
-              })
-              .catch(error => {
-                this.loading = false;
 
-                if (error.response) {
-                  this.errorMessage = this.submissionText.errorAPI;
-                }
-                if (error.response && error.response.data.detail) {
-                  this.errorMessage = this.submissionText.errorPinCode;
-                }
+                  this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
+                  this.loading = false;
+                  let result = response.data;
+                  let isBurn = response.data.redeemed;
 
-                if (error.response && error.response.data.status == "401") {
-                  localStorage.clear();
-                  this.$store.commit("SET_LOGIN_ACCOUNT", null);
-                  this.$store.commit("SET_TOKEN", null);
-                  location.reload();
-                }
-                if (
-                  error.response &&
-                  error.response.data.trace &&
-                  error.response.data.trace.errorCode == "1"
-                ) {
-                  this.errorMessage = this.submissionText.errorPinCode1;
-                }
-                if (
-                  error.response &&
-                  error.response.data.trace &&
-                  error.response.data.trace.errorCode == "2"
-                ) {
-                  this.errorMessage = this.submissionText.errorPinCode4;
-                }
-                if (
-                  error.response &&
-                  error.response.data.trace &&
-                  error.response.data.trace.errorCode == "4"
-                ) {
-                  this.errorMessage = this.submissionText.errorPinCode2;
-                }
-                if (
-                  error.response &&
-                  error.response.data.trace &&
-                  error.response.data.trace.errorCode == "6"
-                ) {
-                  this.errorMessage = this.submissionText.errorPinCode3;
-                }
-              });
+                  if (isBurn) {
+                    this.errorMessage = this.submissionText.errorPinCode1;
+                  } else {
+                    this.prizeWin = result;
+                    let attemptData = this.attemptData;
+                    let data = {
+                      attemptData,
+                      response: result,
+                      request
+                    };
+                    console.log(data)
+                    all_data.push(data);
+                    if (all_data.length == 2){
+                      console.log(all_data)
+                      this.$emit("submit", all_data);
+                    }
+                    
+                  }
+                })
+                .catch(error => {
+                  this.loading = false;
+
+                  if (error.response) {
+                    this.errorMessage = this.submissionText.errorAPI;
+                  }
+                  if (error.response && error.response.data.detail) {
+                    this.errorMessage = this.submissionText.errorPinCode;
+                  }
+
+                  if (error.response && error.response.data.status == "401") {
+                    localStorage.clear();
+                    this.$store.commit("SET_LOGIN_ACCOUNT", null);
+                    this.$store.commit("SET_TOKEN", null);
+                    location.reload();
+                  }
+                  if (
+                    error.response &&
+                    error.response.data.trace &&
+                    error.response.data.trace.errorCode == "1"
+                  ) {
+                    this.errorMessage = this.submissionText.errorPinCode1;
+                  }
+                  if (
+                    error.response &&
+                    error.response.data.trace &&
+                    error.response.data.trace.errorCode == "2"
+                  ) {
+                    this.errorMessage = this.submissionText.errorPinCode4;
+                  }
+                  if (
+                    error.response &&
+                    error.response.data.trace &&
+                    error.response.data.trace.errorCode == "4"
+                  ) {
+                    this.errorMessage = this.submissionText.errorPinCode2;
+                  }
+                  if (
+                    error.response &&
+                    error.response.data.trace &&
+                    error.response.data.trace.errorCode == "6"
+                  ) {
+                    this.errorMessage = this.submissionText.errorPinCode3;
+                  }
+                });
+            }
+            
+            
+            
           } else {
             request = this.generateRequest(this.currentAttempt);
             this.loading = false;
