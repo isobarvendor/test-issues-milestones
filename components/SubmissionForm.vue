@@ -282,7 +282,7 @@ export default {
         currentAttempt = this.getAttempt.length - 1;
       }
       
-      currentAttempt = 0;
+      
       let mixCode = this.getAttempt[currentAttempt].mixCode;
       let ngps = this.getAttempt[currentAttempt].NPGS;
       let programId = null;
@@ -416,18 +416,22 @@ export default {
               await this.uploadFile();
             }
             let all_data = [];
+            
             //my code for submit
             for( let index=0; index<=2; index+=2){
               request = this.generateRequest(index);
+              console.log(request)
               request.hasMore = true;
               if (!request) {
                 this.loading = false;
                 this.errorMessage = this.submissionText.errorPinCode;
                 return false;
               }
-              this.$store
+              
+              await this.$store
                 .dispatch(CHECK_MIXCODE, request)
                 .then(response => {
+                  
                   this.pushGTMCode();
 
                   let loginData = {
@@ -451,7 +455,13 @@ export default {
                       response: result,
                       request
                     };
+                    console.log(data)
                     all_data.push(data);
+                    if (all_data.length == 2){
+                      console.log(all_data)
+                      this.$emit("submit", all_data);
+                    }
+                    
                   }
                 })
                 .catch(error => {
@@ -500,9 +510,8 @@ export default {
                   }
                 });
             }
-            if (all_data){
-              this.$emit("submit", all_data);
-            }
+            
+            
             
           } else {
             request = this.generateRequest(this.currentAttempt);

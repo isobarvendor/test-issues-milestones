@@ -156,7 +156,7 @@ export default {
       });*/
     },
     submit(data) {
-      
+      console.log(data)
       this.submitted = true;
       let prize = [];
       for (let index=0;index<2;index++){
@@ -171,7 +171,7 @@ export default {
         }
         this.$store.dispatch(SUBMIT_FORM, newRequest).then(async response => {
           let prizewin2 = await response.data;
-
+          console.log(prizewin2)
           if (
             attemptData.campaignType == "InstantWin" &&
             prizewin2.instantWinResult != null &&
@@ -261,6 +261,7 @@ export default {
           }
         });
         this.prize = prize;
+        console.log(this.prize);
       }
       
       var options = {
