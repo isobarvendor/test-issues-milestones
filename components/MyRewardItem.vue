@@ -19,6 +19,7 @@
                 <p v-if="reward.code">Kode : {{reward.code}}</p>
                 <p>{{reward.date}}</p>
                 <p v-if="reward.barcode"><img :src="reward.barcode" width="80%"  /></p>
+                <p v-if="reward.expired" class="expiry">Expiry: {{ reward.expired }}</p>
             </v-col>
         </v-row>
 </template>
@@ -79,5 +80,8 @@ export default {
 }
 .list-reward p {
     padding-top: 5px;
+}
+.expiry {
+  margin-bottom: 15px
 }
 </style>

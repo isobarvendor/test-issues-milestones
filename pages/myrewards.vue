@@ -107,7 +107,8 @@ export default {
                           image:o.creative_image,
                           code:null,
                           audio:null,
-                          barcode:o.secret_code_image
+                          barcode:o.secret_code_image,
+                          expired:o.coupon_expired_at
                         }
                     });
                     
