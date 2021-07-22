@@ -79,7 +79,7 @@ import { translation } from "@/constants/index";
 export default {
   name: "PrizeItem",
   props: {
-    prize: {},
+    prize: null,
     themes: null,
     showParticipateAgain: false
   },

@@ -62,22 +62,29 @@ export default {
               return e.NPGS[0].configID;
             });
             let array=[];
+            console.log(attempt)
             for(let a=0;a<attempt.length;a++){
                 this.$store.dispatch(GET_MY_PRIZE,attempt[a].NPGS[0].configID)
                   .then((response)=>{
-
-                    let res = _.map(response.data.vouchers,(o,index)=>{
-                        return {
-                          id:index,
-                          title:o.name,
-                          date:moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
-                          link:o.redeemDescription,
-                          image:o.imgUrl,
-                          code:o.voucher,
-                          audio:o.prizeName.includes(".") ? o.prizeName : null
-                        }
+                    
+                    let res = _.filter(response.data.vouchers, o=>o.name=="JOOX VIP PASS")
+                    let final_res = _.map(res,(o,index)=>{
+                        
+                          return {
+                            id:index,
+                            title:o.name,
+                            date:moment(o.claimTimestamp).format('DD/MM/YYYY - H:mm'),
+                            link:o.redeemDescription,
+                            image:o.imgUrl,
+                            code:o.voucher,
+                            audio:o.prizeName.includes(".") ? o.prizeName : null
+                          }
+                        
+                        
                     });
-                   this.rewards=[...this.rewards,...[...array, ...res]];
+                    
+                   this.rewards=[...this.rewards,...[...array, ...final_res]];
+                   
                 })
               .catch((error) =>{
                   if (error.response && error.response.data.status == "401") {
@@ -87,7 +94,7 @@ export default {
                     location.assign("/")
                   }
                 })
-
+              
             }
              this.$store.dispatch(GET_GRIVY_PRIZE)
                   .then((response)=>{
@@ -103,10 +110,12 @@ export default {
                           barcode:o.secret_code_image
                         }
                     });
+                    
                    this.rewards=[...this.rewards,...[...array, ...res]];
 
                   });
           }
+          
     }
   },
   computed: {
