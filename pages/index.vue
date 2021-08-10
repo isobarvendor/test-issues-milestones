@@ -1,23 +1,30 @@
 <template>
-  <div id="main" class="home" v-if="CMSContent" >
-    <div class="wrapper" >
-      <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
-      <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/>
+  <v-app>
+    <div id="main" class="home" v-if="CMSContent" >
+      <div class="wrapper" >
+        <!-- <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
+        <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/> -->
+        <MastHeadFanta />
+        <HowItWorksFanta />
+        <PrizesFanta />
+        <PrizeRedeem @scroll="scroll"/>
+        <LuckyDraw id="lucky"/>
+        <!-- <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/> -->
+        <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
+        <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
-      <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/>
-      <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/>
-      <!--HowItWorks :data="CMSContent[0].worksSection" /-->
-
-      <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
+        <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
+      </div>
+      
+      <Footer :data="CMSContent[0].footer"  />
     </div>
-    <Footer :data="CMSContent[0].footer"  />
-  </div>
+  </v-app>
 
 </template>
 
 <script >
 import Masthead from '../components/Masthead'
-
+import HowItWorksFanta from '../components/HowItWorksFanta'
 import MastheadVideo from '../components/MastheadVideo'
 import CampaignPeriod from '../components/CampaignPeriod'
 import Prizes from '../components/Prizes'
@@ -136,7 +143,19 @@ export default {
 
 
      },
-
+     scroll(){
+       var options = {
+                container: 'body',
+                easing: 'ease-in',
+                lazy: false,
+                offset: -60,
+                force: true,
+                cancelable: true,
+                x: false,
+                y: true
+            }
+        this.$scrollTo('#lucky', 120, options)
+     },
 
 
   },
