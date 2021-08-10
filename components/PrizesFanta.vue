@@ -134,9 +134,9 @@ import * as _ from "lodash";
         right: 25%; */
         margin-top: 0;
         text-align: center;
-        height: 230px;
+        height: 180px;
         img{
-            height: 240px;
+            height: 180px;
         }
     }
 
@@ -168,7 +168,7 @@ import * as _ from "lodash";
 
     .title{
         position: absolute;
-        top: 15%;
+        top: 13%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;

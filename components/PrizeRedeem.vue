@@ -15,7 +15,11 @@
         </div>
         <div class="text">
                 <p>Use this code and redeem your box in game!</p>
-                <input type="text" > HELLO THERE
+                
+                <div class="copy-button">
+                    <input type="text" id="code" value="something">
+                    <button @click="copy"><img src="/develop/copy.png" >{{ button }}</button>
+                </div>
         </div>
         <div class="link" @click="scroll">
             <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
@@ -31,10 +35,33 @@
 <script>
     import  VueScrollTo from 'vue-scrollto';
     export default {
+        data(){
+            return {
+                button: "Copy"
+            }
+        },
         methods:{
             scroll(){
                 this.$emit("scroll")
-            }
+            },
+            copy(){
+                let testingCodeToCopy = document.querySelector('#code')
+                testingCodeToCopy.setAttribute('type', 'text')
+                testingCodeToCopy.select()
+                try {
+                    var successful = document.execCommand('copy');
+                    if(successful){
+                    this.button="Copied!";
+                    }
+
+                } catch (err) {
+
+                }
+                /* testingCodeToCopy.setAttribute('type', 'hidden') */
+                setTimeout(() => {   this.successCopy=false; }, 2000);
+                window.getSelection().removeAllRanges()
+            },
+
         }
     }
 </script>
@@ -96,7 +123,36 @@
             background: white;
             border-radius: 4px;
             border: 2px solid #73AA17;
+            padding-right: 50px;
+            width: 240px;
+            height: 39px;
+            box-shadow: 3px 3px 5px #707070;
+            text-align: center;
         }
+        button{
+            margin-left: -50px;
+            text-align: center;
+            background: #73AA17;
+            height: 39px;
+            width: 125px;
+            border-radius: 4px;
+            box-shadow: 3px 3px 5px #707070;
+            color: white;
+            font-family: "Avenir";
+            padding-left: 1cm;
+            img{
+                width: 20px;
+                height: 26px;
+                position: absolute;
+                right: 44%;
+            }
+        }
+    }
+
+    .copy-button{
+        display: flex;
+        justify-content: center;
+        position: relative;
     }
 
     .link {
@@ -105,7 +161,7 @@
         left: 50%;
         transform: translate(-50%, -50%); */
         position: relative;
-        margin: 3rem 0 2.5rem 0;
+        margin: 2rem 0 2.5rem 0;
         text-align: center;
         cursor: pointer;
         #top{
