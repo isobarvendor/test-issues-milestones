@@ -1,20 +1,39 @@
 <template>
   <div>
   <div >
-    <div class="img-footer" >
+    <!-- <div class="img-footer" >
             <img src="/img/landing/instruments.png" width="100%" />
-    </div>
+    </div> -->
    <div class="header">{{form.name ? submissionText.hello+" "+form.name : submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
-     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
+     <!-- <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
-        <!--span class="error-message">{{ errors.first('name') }}</span-->
+        <span> class="error-message">{{ errors.first('name') }}</span>
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
-        <!--span class="error-message">{{ errors.first('email') }}</span-->
+        <span> class="error-message">{{ errors.first('email') }}</span>
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
+      <div class="btn-text">
+        <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
+     <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber"  />
+      </div>
+        <div class="info-icon tooltip">
+            <img src="/img/landing/info-button.png" width="25"  />
+            <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
+          </div>
+        <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
+    </div> -->
+    <div class="details" >
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
+        <!--span class="error-message">{{ errors.first('name') }}</span-->
+    </div>
+    <div class="details" >
+      <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
+        <!--span class="error-message">{{ errors.first('email') }}</span-->
+    </div>
+    <div class="details">
       <div class="btn-text">
         <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber"  />
@@ -85,7 +104,7 @@
              <span class="error-message-red">{{ errors.first('code') }}</span>
           </div>
           <div class="info-icon tooltip">
-            <img src="/img/landing/info-button.png" width="25"  />
+            <img src="/develop/info-button.png" width="25"  />
             <span class="tooltiptext">{{submissionText.tooltipText}}</span>
           </div>
       </div>
@@ -97,7 +116,7 @@
 
       ></v-progress-circular>
       </div>
-      <v-btn class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
+      <button class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</button>
     </div>
   </form>
 
@@ -514,9 +533,12 @@ export default {
     align-items: center;
   }
   .get-code {
-    display: block;
-    width: 100%;
-    margin: 25px 0;
+    /* display: block; */
+    border-radius: 4px;
+    width: 340px;
+    margin: 25px 0 55px 0;
+    background-color: #73AA17;
+    color: white
   }
   input[type="file"] {
     display: none;
@@ -538,7 +560,8 @@ export default {
 }
 button.get-code{
   height: 60px !important;
-  border-radius: 15px;
+  border-radius: 5px;
+  font-family: "Avenir";
 }
 
 form.mechanics{
@@ -587,7 +610,7 @@ form.mechanics{
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 280px;
-    background-color: #1d1d1b;
+    background-color: #73AA17;
     color: #fff;
     border-radius: 6px;
     padding: 15px;
@@ -613,7 +636,7 @@ form.mechanics{
     margin-top: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: transparent #1d1d1b  transparent transparent;
+    border-color: transparent #73AA17 transparent transparent;
   }
 }
 .tooltip:hover .tooltiptext {

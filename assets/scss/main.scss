@@ -118,7 +118,7 @@ footer{
   background-color:$coke-footer-background-color;
   text-align: center;
   width:100%;
-  padding:1em;
+  /* padding:1em; */
   justify-content: center;
   align-items: center;
   .footer-text{
@@ -337,13 +337,13 @@ footer{
 }
 
 .campaign-section.submission-section{
-  padding-bottom: 280px !important;
-  @media only screen and (max-width: 767px) {
+  /* padding-bottom: 280px !important; */
+  /* @media only screen and (max-width: 767px) {
     padding-bottom: 200px !important;
   }
   @media only screen and (max-width: 480px) {
     padding-bottom: 100px !important;
-  }
+  } */
 }
 
 
@@ -927,8 +927,8 @@ form {
 //campaign period
 
 .redbox-withwhiteborder{
-  background-color: $coke-secondary-color;
-  border: solid 20px #ffffff;
+  /* background-color: $coke-secondary-color; */
+  /* border: solid 20px #ffffff; */
   overflow: visible;
 }
 
@@ -1077,7 +1077,7 @@ form {
 .submission-section{
   padding: 0px !important;
   .divider{
-    padding-top: 30px;
+    padding-top: 60px;
     padding-bottom: 20px;
   }
 }

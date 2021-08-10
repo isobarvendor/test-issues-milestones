@@ -1,8 +1,8 @@
 <template>
  <div style="width:100%">
-  <div class="container campaign-section redbox-withwhiteborder submission-section" id="submission-section" v-if="cmsData&&!submitted">
+  <div class="container campaign-section redbox-withwhiteborder submission-section submission" id="submission-section" v-if="cmsData&&!submitted">
       <div class="divider">
-        <img src="/img/landing/coke line divider.png" width="100%" />
+        <img src="/develop/fanta-logo.png" width="100%" />
       </div>
       <Login :social="dataSocial" v-if="!this.$store.state.login"   />
       <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="this.$store.state.login" @submit="submit"  />
@@ -132,7 +132,11 @@ export default {
 </script>
 
 <style>
-
+  .submission{
+    margin: auto;
+    background-image: url('/develop/background-submission.png');
+    background-size: cover;
+  }
 
  .prize-chance.joox-section{
      padding-top: 80px;
