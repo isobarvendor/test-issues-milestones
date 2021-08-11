@@ -140,7 +140,7 @@ export default {
 
 <style>
  #masthead{
-      background:#de0a1c;
+      /* background:#de0a1c; */
       padding: 20px;
     }
   @media only screen and (max-width: 600px) {

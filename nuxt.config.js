@@ -49,7 +49,13 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'img/icons/favicon.png' }
-    ]
+    ],
+    script: [
+      {
+        src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61122fd2c425a9d3",
+        type: "text/javascript"
+      },
+    ],
   },
   /*
   ** Global CSS

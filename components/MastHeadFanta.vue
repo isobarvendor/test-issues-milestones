@@ -1,5 +1,5 @@
 <template>
-  <div class="container masthead" >
+  <div class="container masthead" id="masthead">
       <div class="swiper">
     <swiper :options="swiperOption">
       <swiper-slide
@@ -22,8 +22,13 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import MastheadCountDown from "../components/MastheadCountDown";
 export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   data() {
     return {
        swiperOption: {
@@ -59,7 +64,6 @@ export default {
 
 <style>
 #masthead {
-  background: #de0a1c;
   padding: 20px;
 }
 @media only screen and (max-width: 600px) {
@@ -86,9 +90,16 @@ export default {
     
 }
 
-.carousell-image img{
-    max-height: 719.96px;
-    max-width: 100%;
+.carousell-image {
+    height: 100%;
+    width: 100%;
     
+    
+}
+
+.carousell-image img{
+  height: 100%;
+  width: 100%;
+
 }
 </style>
