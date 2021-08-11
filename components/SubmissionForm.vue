@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import { CHECK_MIXCODE, CHECK_ATTEMPT, GET_LIST_WALLET } from '@/store/action_types';
+import { CHECK_MIXCODE, CHECK_ATTEMPT, GET_LIST_WALLET, GET_USER_DATA  } from '@/store/action_types';
 import {translation} from "@/constants/index"
 import * as _ from 'lodash';
 export default {
@@ -166,7 +166,8 @@ export default {
           terms:false,
           privacy:false,
           uploadFile:null,
-          phoneNumber:null
+          phoneNumber:null,
+          ageConsent: null
         },
         errorMessage:null,
         submitted:true,
@@ -255,7 +256,11 @@ export default {
                     "mechanic" : this.getAttempt[currentAttempt].campaignType,
                     "programmeId": programId,
                     "configurationId": ngps[0].configID,
-                    "flowLabel": ngps[0].flowLabel
+                    "flowLabel": ngps[0].flowLabel,
+                    "termsAgreement": this.form.terms,
+                    "privacyAgreement": this.form.privacy,
+                    "ageAgreement": this.form.ageConsent
+
         }
         if(this.loginInfo){
           //request["userId"]=this.loginInfo.uuid;
@@ -269,9 +274,12 @@ export default {
         return request;
     },
     async checkcurrentAttempt(){
-      await this.$store.dispatch(CHECK_ATTEMPT)
+      await this.$store.dispatch(GET_USER_DATA)
       .then((response)=>{
         this.currentAttempt=response.data.currentAttemptNumber;
+          this.form.terms=response.data.termsAgreement;
+           this.form.privacy=response.data.privacyAgreement;
+           this.form.ageConsent=response.data.ageAgreement;
       })
       .catch((error) =>{
         if(error){
@@ -320,7 +328,7 @@ export default {
                 this.$store.dispatch(CHECK_MIXCODE,request)
                 .then((response)=>{
                    // this.submitted=true;
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode  }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -372,15 +380,11 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
-           this.form.privacy=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
+
         }
         await this.checkcurrentAttempt();
         if(this.currentAttempt>1){
-           this.form.terms=true;
-           this.form.privacy=true;
-           this.form.ageConsent=true;
+
         }
     },
 
