@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET, GET_USER_DATA } from '@/store/action_types';
 import * as _ from 'lodash';
 import {translation} from "@/constants/index"
 export default {
@@ -185,7 +185,8 @@ export default {
           terms:false,
           privacy:false,
           uploadFile:null,
-          phoneNumber:null
+          phoneNumber:null,
+          ageConsent: null
         },
         errorMessage:null,
         submitted:true,
@@ -274,7 +275,11 @@ export default {
                     "mechanic" : this.getAttempt[currentAttempt].campaignType,
                     "programmeId": programId,
                     "configurationId": ngps[0].configID,
-                    "flowLabel": ngps[0].flowLabel
+                    "flowLabel": ngps[0].flowLabel,
+                    "termsAgreement": this.form.terms,
+                    "privacyAgreement": this.form.privacy,
+                    "ageAgreement": this.form.ageConsent
+
         }
         if(this.loginInfo){
           //request["userId"]=this.loginInfo.uuid;
@@ -288,7 +293,7 @@ export default {
         return request;
     },
     async checkcurrentAttempt(){
-      await this.$store.dispatch(CHECK_ATTEMPT)
+      await this.$store.dispatch(GET_USER_DATA)
       .then((response)=>{
         this.currentAttempt=response.data.currentAttemptNumber;
       })

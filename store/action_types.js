@@ -11,7 +11,8 @@ export const UPLOAD_FILE= `uploadFile`;
 export const DELETE_FILE= `deleteFile`;
 export const REDEEM_PRIZE=`redeemPrize`;
 export const GET_MY_PRIZE=`getMyPrize`;
-export const GET_PHONE=`getPhone`;
+export const GET_PHONE = `getPhone`;
+export const GET_USER_DATA = `getUserData`
 
 //cms
 export const FETCH_CMS_DATA= `fethCMSData`;
