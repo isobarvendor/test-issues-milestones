@@ -43,13 +43,19 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { name: 'robots', content: 'noindex, nofollow' },
       { hid: 'description', name: 'description', content:  'Home page Coke - Turn Up Your Rhythm' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'img/icons/favicon.png' }
-    ]
+    ],
+    script: [
+      {
+        src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61122fd2c425a9d3",
+        type: "text/javascript"
+      },
+    ],
   },
   /*
   ** Global CSS

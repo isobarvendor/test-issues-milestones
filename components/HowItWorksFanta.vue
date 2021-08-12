@@ -54,7 +54,7 @@ export default {
 <style>
 .howitworks{
     background-image: url('/develop/background-howto.png');
-    background-size: cover;
+    background-size: 100% 100%;
 }
 
 p{

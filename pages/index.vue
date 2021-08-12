@@ -4,7 +4,7 @@
       <div class="wrapper" >
         <!-- <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
         <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/> -->
-        <MastHeadFanta />
+        <MastHeadFanta :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
         <HowItWorksFanta />
         <PrizesFanta />
         <PrizeRedeem @scroll="scroll"/>
@@ -13,7 +13,7 @@
         <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
         <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
-        <SubmissionMechanics :dataForm="configData" v-if="notCountDown" />
+        <SubmissionMechanics :dataForm="configData"  />
       </div>
       
       <Footer :data="CMSContent[0].footer"  />
@@ -156,6 +156,7 @@ export default {
             }
         this.$scrollTo('#lucky', 120, options)
      },
+     
 
 
   },

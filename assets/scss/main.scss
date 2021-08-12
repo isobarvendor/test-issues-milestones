@@ -382,7 +382,7 @@ footer{
   position: relative;
   .prize-item-content{
     padding: 10px;
-    background-color:$secondary-color;
+    background-color:#111E72;
   }
 
   .this-week-prize{
@@ -406,11 +406,11 @@ footer{
   }
 
   & img{
-    height:154px;
+    height:280px;
     width:100%;
     object-fit: cover;
     @include breakpoint(lg){
-      height:280px;
+      height:320px;
     }
   }
 
@@ -419,7 +419,7 @@ footer{
     min-height:calc(300px - 154px);
     height: auto;
     padding:10px;
-    background: $secondary-color;
+    background: #111E72;
 
     @include breakpoint(lg){
       font-size:20px;
@@ -441,7 +441,7 @@ footer{
     bottom:0 !important;
     & &-bullet{
       position: relative;
-      background:$secondary-color;
+      background: $secondary-color;
       width:15px;
       height:15px;
       display: inline-block;

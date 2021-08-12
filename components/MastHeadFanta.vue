@@ -1,32 +1,65 @@
 <template>
-  <div class="container masthead" >
-      <div class="swiper">
-    <swiper :options="swiperOption">
-      <swiper-slide
-        v-for="(item, index) in carousell"
-        :key="'prize' + index"
-        
-      >
-        <div class="carousell-image">
-          <img :src="item.img ? item.img : '/img/landing/week 1 prize.png'" />
-          <!-- <div class="prize-description">
+  <div class="container masthead" id="masthead">
+    <div class="swiper">
+      <swiper :options="swiperOption" class="swiper-container">
+        <swiper-slide>
+          <video-background
+              :src="videoDesk"
+              :poster="imgDesk"
+              :sources="[
+                  {src: videoDesk, res: 1100, autoplay: true},
+                  {src: videoTab, res: 900, autoplay: true},
+                  {src: videoMob, res: 638, autoplay: true}
+              ]"
+              class="videoBackground"
+              style="height: 100vh; width: 100%"
+              ref="videobackground"
+              :muted="muted"
+
+
+          >
+                <div class="masthead-content">
+                <h1>{{data.title}}</h1>
+                <p>{{data.description}}</p>
+
+              </div>
+              <MastheadCountDown v-if="isCountDown" :data="data.endDate" class="countdown"/>
+              <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
+          </video-background>
+          
+        </swiper-slide>
+        <swiper-slide>
+          <div class="carousell-image" @click="redirect">
+            <img id='image' :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
+            <!-- <div class="prize-description">
             <h3 v-html="item.shortDescription"></h3>
             {{ item.name }}
           </div> -->
-        </div>
-        <div class="prize-swiper-pagination" slot="pagination"></div>
-      </swiper-slide>
-    </swiper>
+          </div>
+          
+        </swiper-slide>
+        <div class="prize-swiper-pagination pagination" slot="pagination"></div>
+      </swiper>
     </div>
   </div>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import MastheadCountDown from "../components/MastheadCountDown";
 export default {
+  props: {
+    data: null,
+    /* isCountDown: null, */
+  },
+  components: {
+    Swiper,
+    SwiperSlide
+  },
   data() {
     return {
-       swiperOption: {
+      isCountDown: false,
+      swiperOption: {
         /* slidesPerView: 2,
         spaceBetween: 10,
         autoplay: {
@@ -50,45 +83,116 @@ export default {
           bulletClass: "prize-swiper-pagination-bullet",
           bulletActiveClass: "prize-swiper-pagination-bullet-active"
         }
-      }, 
-      carousell: [{ img: "/develop/Carousell-image.png" }, { img: "/develop/Carousell-image.png" }]
+      },
+      carousell: [
+        { img: "/develop/Carousell-image.png" },
+        { img: "/develop/Carousell-image.png" }
+      ],
+      imgDesk: this.data.homepage.mastheadSection.desktopImage[0].url,
+      videoDesk: this.data.homepage.mastheadSection.video.url,
+      videoTab:  this.data.homepage.mastheadSection.video.url,
+      videoMob:  this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url : this.data.homepage.mastheadSection.video.url,
+      muted:true
     };
+  },
+  methods:{
+    play(){
+      this.muted=!this.muted;
+    },
+    redirect(){
+      const link = this.data.homepage.mastheadSection.description
+      window.open(link);
+    }
   }
 };
 </script>
 
 <style>
-#masthead {
-  background: #de0a1c;
-  padding: 20px;
-}
-@media only screen and (max-width: 600px) {
-  #masthead {
-    padding: 10px;
-  }
-}
-@media only screen and (max-width: 1099px) {
-  #masthead {
-    padding: 10px;
-  }
+.swiper-container{
+  position: relative;
 }
 
-.masthead{
-    background-image: url('/develop/masthead-border.png');
-    background-size: cover;
-    /* background-attachment: fixed; */
-    /* width: 1280px;
+.videoBackground{
+  position:relative;
+}
+
+.countdown{
+  position: absolute;
+  top: -50%;
+}
+
+.pagination{
+  position: absolute;
+  bottom: 0;
+  right: 46%;
+  z-index: 99;
+}
+#masthead{
+      /* background:#de0a1c; */
+      padding: 20px;
+    }
+    .mutedIcon{
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      cursor: pointer;
+    }
+  @media only screen and (max-width: 600px) {
+    .videoBackground{
+      max-height: 400px !important;
+    }
+     #masthead{
+      padding: 10px;
+    }
+    .mutedIcon{
+
+      bottom: 5px;
+      left: 5px;
+
+    }
+  }
+    @media only screen and (max-width: 1099px) {
+    .videoBackground{
+      max-height: 500px;
+    }
+     #masthead{
+      padding: 10px;
+    }
+  }
+      @media only screen and (min-width: 1100px) {
+    .videoBackground{
+      max-height: 600px;
+    }
+
+  }
+
+.masthead {
+  background-image: url("/develop/masthead-border.png");
+  background-size: 100% 100%;
+  /* background-attachment: fixed; */
+  /* width: 1280px;
     height: 736.44px */
 }
 
-.swiper{
-    /* margin: 1cm; */
-    
+.prize-swiper {
+  /* margin: 1cm; */
+  /* position: relative; */
 }
 
-.carousell-image img{
-    max-height: 719.96px;
-    max-width: 100%;
-    
+.prize-swiper-pagination{
+  /* position: absolute;
+  bottom: 10%;
+  left: 50%; */
+  padding-bottom: 20px;
+}
+
+.carousell-image {
+  height: 100%;
+  width: 100%;
+}
+
+#image{
+  width: 1240px;
+  height: 700px;
 }
 </style>
