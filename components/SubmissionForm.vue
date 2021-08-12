@@ -540,10 +540,11 @@ export default {
   .get-code {
     /* display: block; */
     border-radius: 4px;
-    width: 340px;
+    width: 100%;
     margin: 25px 0 55px 0;
     background-color: #73AA17;
-    color: white
+    color: white;
+    text-align: center;
   }
   input[type="file"] {
     display: none;

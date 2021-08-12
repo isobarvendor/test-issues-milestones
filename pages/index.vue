@@ -4,7 +4,7 @@
       <div class="wrapper" >
         <!-- <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
         <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/> -->
-        <MastHeadFanta />
+        <MastHeadFanta :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
         <HowItWorksFanta />
         <PrizesFanta />
         <PrizeRedeem @scroll="scroll"/>
