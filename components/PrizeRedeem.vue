@@ -12,7 +12,7 @@
       <p>Use this code and redeem your box in game!</p>
 
       <div class="copy-button">
-        <input type="text" id="code" value="something" />
+        <input type="text" id="code" readonly value="something" />
         <button @click="copy">
           <img src="/develop/copy.png" />{{ button }}
         </button>
@@ -54,7 +54,7 @@ export default {
         this.successCopy = false;
       }, 2000);
       window.getSelection().removeAllRanges();
-    }
+    },
   }
 };
 </script>

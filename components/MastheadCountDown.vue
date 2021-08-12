@@ -84,6 +84,7 @@ export default {
   },
   data() {
     return {
+        value: false,
        countdownText:translation.countdown,
     }
   },
@@ -93,7 +94,8 @@ export default {
   },
   computed:{
     endDate(){
-      return this.data ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ;
+      return this.value ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ;
+      /* return this.data ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ; */
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <div class="container masthead" id="masthead">
     <div class="swiper">
-      <swiper :options="swiperOption">
+      <swiper :options="swiperOption" class="swiper-container">
         <swiper-slide>
           <video-background
               :src="videoDesk"
@@ -23,14 +23,14 @@
                 <p>{{data.description}}</p>
 
               </div>
-              <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
+              <MastheadCountDown v-if="isCountDown" :data="data.endDate" class="countdown"/>
               <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
           </video-background>
           
         </swiper-slide>
         <swiper-slide>
           <div class="carousell-image" @click="redirect">
-            <img :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
+            <img id='image' :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
             <!-- <div class="prize-description">
             <h3 v-html="item.shortDescription"></h3>
             {{ item.name }}
@@ -38,7 +38,7 @@
           </div>
           
         </swiper-slide>
-        <div class="prize-swiper-pagination" slot="pagination"></div>
+        <div class="prize-swiper-pagination pagination" slot="pagination"></div>
       </swiper>
     </div>
   </div>
@@ -49,7 +49,8 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import MastheadCountDown from "../components/MastheadCountDown";
 export default {
   props: {
-    data: null
+    data: null,
+    /* isCountDown: null, */
   },
   components: {
     Swiper,
@@ -57,6 +58,7 @@ export default {
   },
   data() {
     return {
+      isCountDown: false,
       swiperOption: {
         /* slidesPerView: 2,
         spaceBetween: 10,
@@ -106,6 +108,25 @@ export default {
 </script>
 
 <style>
+.swiper-container{
+  position: relative;
+}
+
+.videoBackground{
+  position:relative;
+}
+
+.countdown{
+  position: absolute;
+  top: -50%;
+}
+
+.pagination{
+  position: absolute;
+  bottom: 0;
+  right: 46%;
+  z-index: 99;
+}
 #masthead{
       /* background:#de0a1c; */
       padding: 20px;
@@ -170,8 +191,8 @@ export default {
   width: 100%;
 }
 
-.carousell-image img {
-  height: 100%;
-  width: 100%;
+#image{
+  width: 1240px;
+  height: 700px;
 }
 </style>

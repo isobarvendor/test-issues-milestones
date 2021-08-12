@@ -156,6 +156,7 @@ export default {
             }
         this.$scrollTo('#lucky', 120, options)
      },
+     
 
 
   },

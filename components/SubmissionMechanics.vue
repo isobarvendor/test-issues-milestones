@@ -13,7 +13,8 @@
   <div  v-else >
   <div class="container  prize-chance black-red-border">
       <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
+      <!-- <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  /> -->
+      <PrizeRedeem @scroll="scroll" v-if="prize.length>0"/>
       <div v-else style="text-align:center">
 
             <span v-html="thankYouMessage"></span>
@@ -24,10 +25,11 @@
       </div>
       </div>
     </div>
-    <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
+    <!-- <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
-    </div>
+    </div> -->
+    <LuckyDraw id="lucky"/>
     <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
         <!--div class="joox-listen">
@@ -126,7 +128,20 @@ export default {
       }
 
 
-    }
+    },
+    scroll(){
+       var options = {
+                container: 'body',
+                easing: 'ease-in',
+                lazy: false,
+                offset: -60,
+                force: true,
+                cancelable: true,
+                x: false,
+                y: true
+            }
+        this.$scrollTo('#lucky', 120, options)
+     },
   },
 }
 </script>
