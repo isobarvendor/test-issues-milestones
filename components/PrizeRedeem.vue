@@ -12,7 +12,7 @@
       <p>Use this code and redeem your box in game!</p>
 
       <div class="copy-button">
-        <input type="text" id="code" readonly value="something" />
+        <input type="text" id="redeem" readonly value="something" />
         <button @click="copy">
           <img src="/develop/copy.png" />{{ button }}
         </button>
@@ -40,7 +40,7 @@ export default {
       this.$emit("scroll");
     },
     copy() {
-      let testingCodeToCopy = document.querySelector("#code");
+      let testingCodeToCopy = document.querySelector("#redeem");
       testingCodeToCopy.setAttribute("type", "text");
       testingCodeToCopy.select();
       try {
@@ -158,16 +158,16 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%); */
   position: relative;
-  margin: 4rem 0 2.5rem 0;
+  margin: 2rem 0 1rem 0;
   text-align: center;
   cursor: pointer;
-  #top {
-      /* width: 2.5%;
-      height: 5%; */
-  }
   p {
     font-family: "Hackney";
-    font-size: 25px;
+    font-size: 200%;
+  }
+  #top{
+    height: 3%;
+    width: 3%;
   }
   /* button{
         background-color: #73AA17;
@@ -208,57 +208,42 @@ export default {
     }
     .link{
         #top{
-            width: 7%;
-            height: 14%;
+            width: 3%;
+            height: 3%;
         }
     } 
-    /* .text-redeem{
-        width: 50%;
-        p {
-            font-size: 100px;
-        }
-        input[type="text"] {
-            background: white;
-            border-radius: 4px;
-            border: 2px solid #73aa17;
-            padding-right: 50px;
-            width: 50%;
-            height: 39px;
-            box-shadow: 3px 3px 5px #707070;
-            text-align: center;
-        }
-        button {
-            margin-left: -50px;
-            text-align: center;
-            background: #73aa17;
-            height: 39px;
-            width: 125px;
-            border-radius: 4px;
-            box-shadow: 3px 3px 5px #707070;
-            color: white;
-            font-family: "Avenir";
-            padding-left: 1cm;
-            img {
-            width: 20px;
-            height: 26px;
-            position: absolute;
-            right: 44%;
-            }
-        }
-    }
-    .link{
-        #top{
-            width: 7%;
-            height: 14%;
-        }
-    } */
+    
 }
 
 @media screen and (max-width: 400px){
   .images{
         height: 70%;
         width: 40%;
+  }
+    .text-redeem{
+        button{
+            width: 30%;
+            img{
+              right: 60%;
+            }
+        }
+  }
+  .header-redeem {
+    p {
+      font-size: 225%;
+      font-family: "Hackney";
     }
+  }
+  .link{
+        margin-top: 2.5rem;
+        p{
+          font-size: 150%;
+        }
+        #top{
+            width: 5%;
+            height: 5%;
+        }
+    } 
 }
 
 

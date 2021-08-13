@@ -11,8 +11,8 @@
 
   </div>
   <div  v-else >
-  <div class="container  prize-chance black-red-border">
-      <div class="wrapper">
+  <!-- <div class="container  prize-chance black-red-border">
+      <div class="wrapper"> -->
       <!-- <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  /> -->
       <PrizeRedeem @scroll="scroll" v-if="prize.length>0"/>
       <div v-else style="text-align:center">
@@ -23,19 +23,19 @@
             </div>
 
       </div>
-      </div>
-    </div>
+<!--       </div>
+    </div> -->
     <!-- <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
     </div> -->
     <LuckyDraw id="lucky"/>
-    <div class="desc-joox" >
+    <!-- <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
-        <!--div class="joox-listen">
+        div class="joox-listen">
             <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
-        </div-->
-    </div>
+        </div>
+    </div> -->
   </div>
   </div>
  </div>
