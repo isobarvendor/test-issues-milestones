@@ -5,10 +5,10 @@
         <!-- <MastheadVideo :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
         <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/> -->
         <MastHeadFanta :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
-        <HowItWorksFanta />
+        <HowItWorksFanta :data="CMSContent[0]" />
         <PrizesFanta />
-        <PrizeRedeem @scroll="scroll"/>
-        <LuckyDraw id="lucky"/>
+        <!-- <PrizeRedeem @scroll="scroll"/>
+        <LuckyDraw id="lucky"/> -->
         <!-- <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/> -->
         <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
         <!--HowItWorks :data="CMSContent[0].worksSection" /-->
@@ -143,7 +143,7 @@ export default {
 
 
      },
-     scroll(){
+     /* scroll(){
        var options = {
                 container: 'body',
                 easing: 'ease-in',
@@ -155,7 +155,7 @@ export default {
                 y: true
             }
         this.$scrollTo('#lucky', 120, options)
-     },
+     }, */
      
 
 
