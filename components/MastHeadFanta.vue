@@ -12,7 +12,7 @@
                   {src: videoMob, res: 638, autoplay: true}
               ]"
               class="videoBackground"
-              style="height: 100vh; width: 100%"
+              style="height: 150vh;"
               ref="videobackground"
               :muted="muted"
 
@@ -153,7 +153,7 @@ export default {
   }
     @media only screen and (max-width: 1099px) {
     .videoBackground{
-      max-height: 500px;
+      max-height: 600px;
     }
      #masthead{
       padding: 10px;
@@ -161,7 +161,7 @@ export default {
   }
       @media only screen and (min-width: 1100px) {
     .videoBackground{
-      max-height: 600px;
+      max-height: 700px;
     }
 
   }
@@ -189,10 +189,11 @@ export default {
 .carousell-image {
   height: 100%;
   width: 100%;
+  margin-bottom: -0.5cm;
 }
 
 #image{
-  width: 1240px;
-  height: 700px;
+  width: 100%;
+  height: 100%;
 }
 </style>

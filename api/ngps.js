@@ -35,7 +35,8 @@ export default {
     return axios.post(`${origin}/api/campaign/auth/redeem-prize`, data, setHeader(token))
   },
   submitLogin(data, token) {
-    return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
+    /* return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token)) */
+    return axios.get(`/mock/submission`, setHeader(token));
   },
   submitNonLogin(data) {
     return axios.post(`${origin}/api/campaign/public/submission`, data)

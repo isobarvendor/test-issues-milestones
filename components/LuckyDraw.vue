@@ -46,13 +46,13 @@
             /* margin: 3cm 2cm 0 1cm; */
             text-align: center;
             color: white;
-            font-size: 5vw;
+            font-size: 4vw;
             font-family: "Hackney";
         }
         .text-words{
             text-align: center;
             color: white;
-            font-size: 1.8vw;
+            font-size: 1.65vw;
             font-family: "Avenir";
         }
     }
@@ -81,15 +81,35 @@
 
     } */
 
+    @media (max-width: 1300px){
+        .draw{
+            .text-words{
+                font-size: 1.7vw;
+                
+            }
+
+            .image{
+                margin-left: 12%;
+            }
+        }
+    }
+
     @media (max-width: 1076px){
         .draw{
             margin-right: 30vw;
+            .image{
+                margin-left: 11%;
+            }
         }
     }
 
     @media (max-width: 834px){
         .draw{
             margin-right: 40vw;
+            .text-words{
+                font-size: 2.5vw;
+                
+            }
             .image{
                 margin-left: 10%;
             }
@@ -98,6 +118,10 @@
             width: 70%;
             margin-left: 60%;
         }
+        img{
+                width: 40%;
+                height: 50%;
+        }
         
     }
 
@@ -105,6 +129,10 @@
         .draw{
             margin-right: 20vw;
             margin-left: 0;
+            .text-words{
+                font-size: 2.7vw;
+                
+            }
             .text-header{
                 font-size: 7vw;
             }
@@ -112,21 +140,17 @@
                 margin-left: 5%
                 
             }
-            .text_words{
-                p{
-                    font-size: 25px;
-                }
-                
-                
-            }
+            
+            
             
             
         }
+        
 
         
         img{
                 width: 45%;
-                height: 60%;
+                height: 50%;
         }
         
         

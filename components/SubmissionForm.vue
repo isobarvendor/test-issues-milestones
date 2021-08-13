@@ -116,7 +116,7 @@
 
       ></v-progress-circular>
       </div>
-      <button class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</button>
+      <button class="get-code" id="submission"  dark v-else  @click="submit">{{submissionText.buttonText}}</button>
     </div>
   </form>
 
@@ -521,6 +521,9 @@ export default {
 </script>
 
 <style scoped>
+  .header{
+    text-align: center;
+  }
   .details{
     position: relative;
   }

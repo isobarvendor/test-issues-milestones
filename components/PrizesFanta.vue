@@ -334,7 +334,7 @@ export default {
   border-radius: 5px;
   margin: 5% 1cm 0 1cm;
   text-align: center;
-  height: 3vh;
+  height: 4vh;
   font-family: "Avenir";
   box-shadow: 3px 3px 5px #707070;
 }
@@ -473,9 +473,41 @@ export default {
   }
   .button{
     font-size: 50%;
+    height: 2vh;
   }
   #header{
     margin-left: 35%;
+  }
+  
+}
+
+@media screen and (max-width: 450px){
+.header-title{
+  margin-top: 1%;
+  p{
+    font-size: 5vw;
+  }
+}
+
+ .prize-content{
+   margin-left: 3%;
+ }
+
+  .text-title{
+    font-size: 50%;
+  }
+  #number {
+    font-size: 50%;
+  }
+  .text-subtitle{
+    font-size: 50%;
+  }
+  .button{
+    font-size: 50%;
+    height: 2vh;
+  }
+  #header{
+    margin-left: 30%;
   }
   
 }
