@@ -278,7 +278,7 @@ export default {
                     "configurationId": ngps[0].configID,
                     "flowLabel": ngps[0].flowLabel,
                     "termsAgreement": this.form.terms,
-                    "marketingAgreement": this.form.marketing,
+                    "privacyAgreement": this.form.marketing,
                     "ageAgreement": this.form.ageConsent
 
         }
@@ -299,7 +299,7 @@ export default {
         this.currentAttempt=response.data.currentAttemptNumber;
         if (this.currentAttempt > 1){
           if (response.data.termsAgreement && response.data.ageAgreement){
-            
+
           }
         }
       })
