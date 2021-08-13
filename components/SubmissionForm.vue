@@ -26,11 +26,11 @@
         <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
     </div> -->
     <div class="details" >
-      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" />
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
     <div class="details" >
-      <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
+      <input id="email" type="email" name="email" v-model="form.email" :placeholder="submissionText.email"/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
     </div>
     <div class="details">
@@ -72,19 +72,7 @@
         <div class="terms" v-html="submissionText.acceptTerm"></div>
       </div>
     </div>
-
     <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_pp">
-            <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
-            <span></span>
-          </label>
-        </div>
-        <div class="terms" v-html="submissionText.acceptPrivacy"></div>
-      </div>
-    </div>
-        <div class="row top">
       <div class="col d-flex consent">
         <div class="checkbox">
           <label for="form_age">
@@ -95,6 +83,19 @@
         <div class="terms" v-html="submissionText.declareAge"></div>
       </div>
     </div>
+
+    <div class="row top">
+      <div class="col d-flex consent">
+        <div class="checkbox">
+          <label for="form_marketing">
+            <input type="checkbox" name="marketing" id="form_marketing" v-model="form.marketing">
+            <span></span>
+          </label>
+        </div>
+        <div class="terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed sem vel odio lacinia laoreet at in velit. Pellentesque efficitur odio et leo placerat, at bibendum lorem molestie. Nulla lorem ipsum, aliquam ut justo id, iaculis scelerisque massa. </div>
+      </div>
+    </div>
+        
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
@@ -183,7 +184,7 @@ export default {
           email:null,
           code:null,
           terms:false,
-          privacy:false,
+          marketing:false,
           uploadFile:null,
           phoneNumber:null,
           ageConsent: null
@@ -277,7 +278,7 @@ export default {
                     "configurationId": ngps[0].configID,
                     "flowLabel": ngps[0].flowLabel,
                     "termsAgreement": this.form.terms,
-                    "privacyAgreement": this.form.privacy,
+                    "privacyAgreement": this.form.marketing,
                     "ageAgreement": this.form.ageConsent
 
         }
@@ -296,6 +297,17 @@ export default {
       await this.$store.dispatch(GET_USER_DATA)
       .then((response)=>{
         this.currentAttempt=response.data.currentAttemptNumber;
+        if(this.currentAttempt>1){
+           if (response.data.termsAgreement){
+             this.form.terms = true;
+           }
+           if (response.data.ageAgreement){
+             this.form.ageConsent = true;
+           }
+           if (response.data.privacyAgreement){
+             this.form.marketing = true
+           }
+        }
       })
       .catch((error) =>{
         if(error){
@@ -347,11 +359,6 @@ export default {
              this.errorMessage=this.submissionText.errorTerm;
              return false;
            }
-            if(!this.form.privacy){
-              this.loading=false;
-             this.errorMessage=this.submissionText.errorPolicy;
-             return false;
-           }
             if(!this.form.ageConsent){
               this.loading=false;
              this.errorMessage=this.submissionText.errorDeclare;
@@ -365,6 +372,7 @@ export default {
 
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
+                console.log(request);
                 if(!request){
                   this.loading=false;
                   this.errorMessage=this.submissionText.errorPinCode;
@@ -377,7 +385,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -388,6 +396,7 @@ export default {
                       let data={
                         attemptData,response:result,request
                       }
+                      console.log(data)
                         this.$emit('submit',data);
 
 
@@ -440,16 +449,9 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
-           this.form.privacy=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
         }
         await this.checkcurrentAttempt();
-        if(this.currentAttempt>1){
-           this.form.terms=true;
-           this.form.privacy=true;
-           this.form.ageConsent=true;
-        }
+        
     },
 
         getListWallet(){
