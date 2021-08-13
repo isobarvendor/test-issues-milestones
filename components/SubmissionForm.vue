@@ -297,11 +297,7 @@ export default {
       await this.$store.dispatch(GET_USER_DATA)
       .then((response)=>{
         this.currentAttempt=response.data.currentAttemptNumber;
-        if (this.currentAttempt > 1){
-          if (response.data.termsAgreement && response.data.ageAgreement){
-
-          }
-        }
+        
       })
       .catch((error) =>{
         if(error){
@@ -379,7 +375,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.marketing, ageConsent:this.form.ageConsent  }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -444,13 +440,12 @@ export default {
              this.showPhone=true;
            }
            this.form.terms=this.loginInfo.terms;
-           this.form.privacy=this.loginInfo.privacy;
+           this.form.marketing=this.loginInfo.privacy;
            this.form.ageConsent=this.loginInfo.ageConsent;
         }
         await this.checkcurrentAttempt();
         if(this.currentAttempt>1){
            this.form.terms=true;
-           this.form.privacy=true;
            this.form.ageConsent=true;
         }
     },
