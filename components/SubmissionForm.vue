@@ -297,7 +297,17 @@ export default {
       await this.$store.dispatch(GET_USER_DATA)
       .then((response)=>{
         this.currentAttempt=response.data.currentAttemptNumber;
-        
+        if(this.currentAttempt>1){
+           if (response.data.termsAgreement){
+             this.form.terms = true;
+           }
+           if (response.data.ageAgreement){
+             this.form.ageConsent = true;
+           }
+           if (response.data.privacyAgreement){
+             this.form.marketing = true
+           }
+        }
       })
       .catch((error) =>{
         if(error){
@@ -375,7 +385,7 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.marketing, ageConsent:this.form.ageConsent  }
+                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -439,15 +449,9 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
-           this.form.marketing=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
         }
         await this.checkcurrentAttempt();
-        if(this.currentAttempt>1){
-           this.form.terms=true;
-           this.form.ageConsent=true;
-        }
+        
     },
 
         getListWallet(){
