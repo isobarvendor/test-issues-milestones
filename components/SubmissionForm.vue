@@ -372,7 +372,6 @@ export default {
 
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
-                console.log(request);
                 if(!request){
                   this.loading=false;
                   this.errorMessage=this.submissionText.errorPinCode;
@@ -396,7 +395,6 @@ export default {
                       let data={
                         attemptData,response:result,request
                       }
-                      console.log(data)
                         this.$emit('submit',data);
 
 
