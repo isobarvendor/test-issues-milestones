@@ -184,14 +184,24 @@ export default {
         } */
 }
 
+@media screen and (max-width: 1034px) {
+    .images{
+      height: 70%;
+    }
+    
+}
+
 @media screen and (max-width: 736px) {
     .header-redeem {
         p {
         font-size: 250%;
         }
     }
+    /* .content{
+      height: 35%;
+    } */
     .images{
-        height: 70%;
+        height: 80%;
         width: 30%;
     }
     .text-redeem{
