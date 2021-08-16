@@ -38,7 +38,7 @@
           </div>
           
         </swiper-slide>
-        <div class="prize-swiper-pagination pagination" slot="pagination"><</div>
+        <div class="prize-swiper-pagination pagination" slot="pagination"></div>
       </swiper>
     </div>
     <img id="arrow" src="/develop/masthead-arrow.png" />
@@ -183,7 +183,43 @@ export default {
   height: 100%;
 }
 
-@media only screen and (max-width: 600px) {
+   
+      @media only screen and (min-width: 1170px) {
+    .videoBackground{
+      max-height: 700px;
+    }
+    .masthead #arrow{
+      bottom: 6.5%;
+      right: 45%;
+      
+    }
+
+  }
+
+   @media only screen and (max-width: 1099px) {
+    .videoBackground{
+      max-height: 550px;
+    }
+     #masthead{
+      padding: 10px;
+    }
+    .masthead #arrow{
+      bottom: 7%;
+      right: 44%;
+      
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    
+    .masthead #arrow{
+      bottom: 7%;
+      right: 43%;
+      
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
     .videoBackground{
       max-height: 300px !important;
     }
@@ -202,36 +238,13 @@ export default {
       
     }
   }
-  @media only screen and (max-width: 800px) {
-    
-    .masthead #arrow{
-      bottom: 7%;
-      right: 43%;
-      
-    }
-  }
-    @media only screen and (max-width: 1099px) {
-    .videoBackground{
-      max-height: 400px;
-    }
-     #masthead{
-      padding: 10px;
-    }
-    .masthead #arrow{
-      bottom: 7%;
-      right: 44%;
-      
-    }
-  }
-      @media only screen and (min-width: 1170px) {
-    .videoBackground{
-      max-height: 700px;
-    }
-    .masthead #arrow{
-      bottom: 6.5%;
-      right: 45%;
-      
-    }
 
+  @media only screen and (max-width: 450px) {
+    .masthead #arrow{
+      bottom: 11%;
+      right: 35%;
+      
+    }
   }
+
 </style>

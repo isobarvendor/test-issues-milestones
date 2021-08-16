@@ -27,6 +27,7 @@
     </div> -->
     <div class="details" >
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" />
+        <span class="error-message" v-if="form.name == ''">{{ error.name }}</span>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
     <div class="details" >
@@ -198,8 +199,10 @@ export default {
         phoneCodeDisplay:"+"+this.$config.phoneCode,
         phoneCode:this.$config.phoneCode+"-",
         showPhone:false,
-        submissionText:translation.submissionText
-
+        submissionText:translation.submissionText,
+        error: {
+          name: "Please insert a name.",
+        }
 
     }
   },

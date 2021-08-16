@@ -6,8 +6,7 @@
             </div>
             <div class="text-box">
                 <div class="text">
-                    <div class="text-header"><p>CONGRATULATIONS</p></div>
-                    <div class="text-words">You have a chance of becoming the owner of our epic prize iPhone 12. We will announce our winners every Friday, starting from 17 Sep ‘21 onwards. Stay tuned for the announcements here and on Facebook Fanta Thailand</div>
+                    <div class="all-text" v-html="data.attempts[0].FormHeading.Prize"></div>
                 </div>
             </div>
         </div>
@@ -16,7 +15,9 @@
 
 <script>
     export default {
-        
+        props: {
+            data: null
+        }
     }
 </script>
 
@@ -42,14 +43,14 @@
             }
         }
         
-        .text-header{
+        div >>> h4{
             /* margin: 3cm 2cm 0 1cm; */
             text-align: center;
             color: white;
             font-size: 4vw;
             font-family: "Hackney";
         }
-        .text-words{
+        div >>> p{
             text-align: center;
             color: white;
             font-size: 1.65vw;
@@ -66,7 +67,7 @@
         /* margin-bottom: 4cm;
         margin-left: 2cm;
         margin-top: -1cm; */
-        margin: 2cm 0cm 3cm 40%;
+        margin: 1.5cm 0cm 3cm 40%;
         
     }
 
@@ -83,10 +84,6 @@
 
     @media (max-width: 1300px){
         .draw{
-            .text-words{
-                font-size: 1.7vw;
-                
-            }
 
             .image{
                 margin-left: 12%;
@@ -106,21 +103,18 @@
     @media (max-width: 834px){
         .draw{
             margin-right: 40vw;
-            .text-words{
-                font-size: 2.5vw;
-                
-            }
             .image{
-                margin-left: 10%;
+                margin-left: 15%;
             }
         }
         .text{
             width: 70%;
-            margin-left: 60%;
+            margin-left: 55%;
+            margin-bottom: 2cm;
         }
         img{
-                width: 40%;
-                height: 50%;
+                width: 33%;
+                height: 53%;
         }
         
     }
@@ -129,13 +123,7 @@
         .draw{
             margin-right: 20vw;
             margin-left: 0;
-            .text-words{
-                font-size: 2.7vw;
-                
-            }
-            .text-header{
-                font-size: 7vw;
-            }
+            height: 280px;
             .image{
                 margin-left: 5%
                 
@@ -152,7 +140,10 @@
                 width: 45%;
                 height: 50%;
         }
-        
+        .text{
+            margin-top: 1cm;
+            padding-top: 0.5cm;
+        }
         
     }
 

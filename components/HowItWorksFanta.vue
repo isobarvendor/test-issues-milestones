@@ -1,10 +1,14 @@
 <template>
-  <div class="container howitworks">
+  <div>
+  <div class="container howitworks hidden-sm-and-down">
     <div class="image">
-      <img class="hidden-sm-and-down" :src="deskImg" />
-      <img class="hidden-md-and-up" :src="mobileImg" />
+      <img :src="deskImg" />
     </div>
     
+  </div>
+  <div class=" hidden-md-and-up">
+      <span><img id="image" :src="mobileImg" /></span>
+  </div>
   </div>
 </template>
 
@@ -44,66 +48,24 @@ p {
   text-align: center;
 }
 
+#image{
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+
+
 /* .container{
     margin: 1cm
 } */
 
-img {
-  max-height: 100%;
-  max-width: 100%;
+@media only screen and (max-width: 960px) {
+  .mobile{
+    width: 100vw;
+
+  }
 }
 
-.works {
-  margin-left: 50px;
-  padding: 1.5cm;
-}
 
-.works li {
-  padding: 1cm;
-  list-style: none;
-}
-
-.works-title {
-  margin: auto;
-}
-
-.iphone {
-  padding: 1.1cm;
-  margin-left: 50px;
-}
-
-.title {
-  font-size: 30px;
-}
-
-.subtitle {
-  font-size: 15px;
-  padding: 0.5cm 0;
-}
-
-.iphone-photo {
-  width: 189.85px;
-  height: 147px;
-  margin: auto;
-}
-
-.iphone-subheader {
-  width: 154.88px;
-  height: 20.72px;
-  margin: 0.5cm auto auto auto;
-}
-
-.ROV {
-  height: 100%;
-  width: 100%;
-  margin: auto;
-  align-content: center;
-}
-
-.ROV img {
-  margin-top: 1cm;
-  margin-left: 1.5cm;
-  height: 619px;
-  width: 409.54px;
-}
 </style>
