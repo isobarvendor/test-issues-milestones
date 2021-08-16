@@ -25,13 +25,14 @@ export default {
   /* checkUserAttempt(token) {
     return axios.get(`${origin}/api/user-participators/current-attempt-number`, setHeader(token))
   },
+  */
   checkMixCode(token,data) {
     return axios.get(`${origin}/api/mix-codes/verify/${data.programmeId}/${data.pin}`, setHeader(token))
     //return axios.get(`/mock/mixcode`, setHeader(token))
   },
-  getUserPhone(token) {
+  /*getUserPhone(token) {
     return axios.get(`${origin}/api/user-participators/get-phone-number`, setHeader(token))
-  }, */
+  },*/
   getUserData(token) {
     return axios.get(`${origin}/api/user-participators/get-user-data`, setHeader(token))
   },
