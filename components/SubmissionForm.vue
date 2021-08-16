@@ -383,7 +383,7 @@ export default {
               const tokenCaptcha = await this.$recaptcha.execute('register')
           //console.log('ReCaptcha token:', token)
                 request.captchaResponse=tokenCaptcha;
-                this.$store.dispatch(SUBMIT_FORM,request)
+                await this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
@@ -445,7 +445,6 @@ export default {
        async getAccount(){
         if(this.loginInfo){
           this.form.name=this.loginInfo.name;
-          this.form.email=this.loginInfo.email;
            if(this.loginInfo.phone){
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;

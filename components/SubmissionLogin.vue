@@ -45,6 +45,9 @@ export default {
 </script>
 
 <style scoped>
+  .mechanics{
+    margin-bottom: 1cm;
+  }
   .text-center {
     text-align: center;
   }

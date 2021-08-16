@@ -12,7 +12,7 @@
       <p>Use this code and redeem your box in game!</p>
 
       <div class="copy-button">
-        <input type="text" id="redeem" readonly value="something" />
+        <input type="text" id="redeem" readonly :value="voucher" />
         <button @click="copy">
           <img src="/develop/copy.png" />{{ button }}
         </button>
@@ -30,6 +30,10 @@
 <script>
 import VueScrollTo from "vue-scrollto";
 export default {
+  props:{
+    voucher: null,
+    data: null
+  },
   data() {
     return {
       button: "Copy"

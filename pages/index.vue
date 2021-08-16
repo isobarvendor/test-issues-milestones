@@ -6,14 +6,14 @@
         <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/> -->
         <MastHeadFanta :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
         <HowItWorksFanta :data="CMSContent[0]" />
-        <PrizesFanta />
+        <PrizesFanta :data="listPrizesData" :total="remaining"  />
         <!-- <PrizeRedeem @scroll="scroll"/>
         <LuckyDraw id="lucky"/> -->
         <!-- <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/> -->
         <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
         <!--HowItWorks :data="CMSContent[0].worksSection" /-->
 
-        <SubmissionMechanics :dataForm="configData"  />
+        <SubmissionMechanics :dataForm="configData" :cms="CMSContent[0]" />
       </div>
       
       <Footer :data="CMSContent[0].footer"  />
@@ -47,6 +47,7 @@ export default {
   },
   data(){
     return{
+      remaining: null,
       notCountDown:this.$store.state.isCampaignStarted,
       browserTitle:translation.browserTitle,
       metaData:translation.meta,
@@ -125,24 +126,31 @@ export default {
 
 
      },
-        getListPrize(){
-
+        async getListPrize(){
         let luckyDraw=_.filter(this.getAttempt,(a)=>{
-          return a.campaignType=='LuckyDraw';
+          return a.campaignType=='InstantWin';
         })
+
          let array=[];
           for(let a=0; a<luckyDraw.length;a++){
-            this.$store.dispatch(GET_LIST_PRIZE,luckyDraw[a].NPGS[0].configID)
+            await this.$store.dispatch(GET_LIST_PRIZE,luckyDraw[a].NPGS[0].configID)
             .then((response)=>{
                 this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
+                console.log(this.listPrizesData)
+                let total = 0;
+                this.listPrizesData.forEach(ele => {
+                  total += ele.amountAvailable
+                })
+                this.remaining = total;
             })
             .catch((error) =>{
 
             })
-        }
 
 
-     },
+
+          }
+        },
      /* scroll(){
        var options = {
                 container: 'body',

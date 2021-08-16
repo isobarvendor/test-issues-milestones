@@ -14,7 +14,7 @@
   <!-- <div class="container  prize-chance black-red-border">
       <div class="wrapper"> -->
       <!-- <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  /> -->
-      <PrizeRedeem @scroll="scroll" v-if="prize.length>0"/>
+      <PrizeRedeem @scroll="scroll" v-if="prize.length>0" :voucher="prize[0].code" :data="cms" />
       <div v-else style="text-align:center">
 
             <span v-html="thankYouMessage"></span>
@@ -53,7 +53,7 @@ export default {
   },
    props: {
         dataForm: null,
-
+        cms: null
       },
   data() {
     return {
@@ -117,7 +117,6 @@ export default {
               }
           ];
           this.prize=prize;
-
           this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
           this.jooxMessage=attemptData.FormHeading.Prize;
       }
