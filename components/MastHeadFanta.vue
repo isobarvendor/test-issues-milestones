@@ -41,6 +41,7 @@
         <div class="prize-swiper-pagination pagination" slot="pagination"></div>
       </swiper>
     </div>
+    <img id="arrow" src="/develop/masthead-arrow.png" />
   </div>
 </template>
 
@@ -84,10 +85,6 @@ export default {
           bulletActiveClass: "prize-swiper-pagination-bullet-active"
         }
       },
-      carousell: [
-        { img: "/develop/Carousell-image.png" },
-        { img: "/develop/Carousell-image.png" }
-      ],
       imgDesk: this.data.homepage.mastheadSection.desktopImage[0].url,
       videoDesk: this.data.homepage.mastheadSection.video.url,
       videoTab:  this.data.homepage.mastheadSection.video.url,
@@ -126,6 +123,12 @@ export default {
   bottom: 0;
   right: 46%;
   z-index: 99;
+  
+}
+.pagination span{
+  position: absolute;
+  z-index: 99;
+  
 }
 #masthead{
       /* background:#de0a1c; */
@@ -137,41 +140,24 @@ export default {
       left: 50px;
       cursor: pointer;
     }
-  @media only screen and (max-width: 600px) {
-    .videoBackground{
-      max-height: 400px !important;
-    }
-     #masthead{
-      padding: 10px;
-    }
-    .mutedIcon{
-
-      bottom: 5px;
-      left: 5px;
-
-    }
-  }
-    @media only screen and (max-width: 1099px) {
-    .videoBackground{
-      max-height: 600px;
-    }
-     #masthead{
-      padding: 10px;
-    }
-  }
-      @media only screen and (min-width: 1100px) {
-    .videoBackground{
-      max-height: 700px;
-    }
-
-  }
+  
 
 .masthead {
   background-image: url("/develop/masthead-border.png");
   background-size: 100% 100%;
+  position: relative;
   /* background-attachment: fixed; */
   /* width: 1280px;
     height: 736.44px */
+}
+
+.masthead #arrow{
+  position: absolute;
+  z-index: 99;
+  bottom: 6.3%;
+  right: 45%;
+  height: 15px;
+  width: 9px;
 }
 
 .prize-swiper {
@@ -196,4 +182,69 @@ export default {
   width: 100%;
   height: 100%;
 }
+
+   
+      @media only screen and (min-width: 1170px) {
+    .videoBackground{
+      max-height: 700px;
+    }
+    .masthead #arrow{
+      bottom: 6.5%;
+      right: 45%;
+      
+    }
+
+  }
+
+   @media only screen and (max-width: 1099px) {
+    .videoBackground{
+      max-height: 550px;
+    }
+     #masthead{
+      padding: 10px;
+    }
+    .masthead #arrow{
+      bottom: 7%;
+      right: 44%;
+      
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    
+    .masthead #arrow{
+      bottom: 7%;
+      right: 43%;
+      
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .videoBackground{
+      max-height: 300px !important;
+    }
+     #masthead{
+      padding: 10px;
+    }
+    .mutedIcon{
+
+      bottom: 5px;
+      left: 5px;
+
+    }
+    .masthead #arrow{
+      bottom: 9%;
+      right: 40%;
+      
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .masthead #arrow{
+      bottom: 11%;
+      right: 35%;
+      
+    }
+  }
+
 </style>

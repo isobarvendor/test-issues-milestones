@@ -29,7 +29,7 @@
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
     </div> -->
-    <LuckyDraw id="lucky"/>
+    <LuckyDraw id="lucky" :data="dataForm" />
     <!-- <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
         div class="joox-listen">

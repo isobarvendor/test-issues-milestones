@@ -47,30 +47,48 @@
                                     <p style="color: whiter;">WIN ANY OF THESE ROV SKINS</p>
                                 </div>
                                 <div class="images">
-                                    <div class="hidden-sm-and-down">
-                                        <div v-for="(item, index) in final_images(4)" :key="index" class="image-row" >
+                                  <div v-if="$vuetify.breakpoint.xs">
+                                        <div v-for="(item, index) in final_images(1)" :key="index" class="image-row" >
                                             <div v-for="(item2, index2) in item" :key="index2" class="image">
-                                                <img src="/develop/popup.png">
-                                                <div>
-                                                    <p style="color: black;">{{ item2.title }}</p>
+                                                <img :src="item2.img">
+                                                <div class="image-text">
+                                                    <p style="color: black;">{{ item2.name }}</p>
+                                                    <p style="color: black;">{{ item2.cost }}</p>
+                                                    <p style="color: black;">{{ item2.amount }}</p>
                                                 </div>
                                             </div>
                                             <br>
                                         </div>
                                     </div>
-                                    <div class="hidden-md-and-up">
+                                    <div class="hidden-sm-and-down">
+                                        <div v-for="(item, index) in final_images(4)" :key="index" class="image-row" >
+                                            <div v-for="(item2, index2) in item" :key="index2" class="image">
+                                                <img :src="item2.img">
+                                                <div class="image-text">
+                                                    <p style="color: black;">{{ item2.name }}</p>
+                                                    <p style="color: black;">{{ item2.cost }}</p>
+                                                    <p style="color: black;">{{ item2.amount }}</p>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div v-if="$vuetify.breakpoint.sm">
                                         <div v-for="(item, index) in final_images(2)" :key="index" class="image-row" >
                                             <div v-for="(item2, index2) in item" :key="index2" class="image">
-                                                <img src="/develop/popup.png" alt="">
-                                                <div>
-                                                    <p style="color: black;">{{ item2.title }}</p>
+                                                <img :src="item2.img" alt="">
+                                                <div class="image-text">
+                                                    <p style="color: black;">{{ item2.name }}</p>
+                                                    <p style="color: black;">{{ item2.cost }}</p>
+                                                    <p style="color: black;">{{ item2.amount }}</p>
                                                 </div>
                                             </div>
                                             <br>
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <br>
+                                <br>
 
                                 
                                 
@@ -194,34 +212,54 @@ export default {
       ],
       dialog: false,
       images: [
-        { img: "/img/ROV.jpeg", title: "Some information about the ROV Skins" },
         {
-          img: "/develop/popup.png",
-          title: "Some information about the ROV Skins"
+          img: "/develop/popup-1.png",
+          title: "Some information about the ROV Skins",
+          name: "Celurean Princess Sinestrea",
+          cost: "THB 692.25",
+          amount: "Available amount: 8,400"
         },
         {
-          img: "/develop/popup.png",
-          title: "Some information about the ROV Skins"
+          img: "/develop/popup-2.png",
+          title: "Some information about the ROV Skins",
+          name: "Home Runner Astrid",
+          cost: "THB 692.25",
+          amount: "Available amount: 6,400"
         },
         {
-          img: "/develop/popup.png",
-          title: "Some information about the ROV Skins"
+          img: "/develop/popup-3.png",
+          title: "Some information about the ROV Skins",
+          name: "Sweet Dreams Ishar",
+          cost: "THB 263.25",
+          amount: "Available amount: 35,500"
         },
         {
-          img: "/develop/popup.png",
-          title: "Some information about the ROV Skins"
+          img: "/develop/popup-4.png",
+          title: "Some information about the ROV Skins",
+          name: "Viper Airi",
+          cost: "THB 263.25",
+          amount: "Available amount: 35,000"
         },
         {
-          img: "/develop/popup.png",
-          title: "Some information about the ROV Skins"
+          img: "/develop/popup-5.png",
+          title: "Some information about the ROV Skins",
+          name: "Arcana Fragments x250",
+          cost: "THB 12",
+          amount: "Available amount: 329,750"
         },
         {
-          img: "/develop/popup.png",
-          title: "Some information about the ROV Skins"
+          img: "/develop/popup-6.png",
+          title: "Some information about the ROV Skins",
+          name: "Gem x50",
+          cost: "THB 7.5",
+          amount: "Available amount: 594,750"
         },
         {
-          img: "/develop/popup.png",
-          title: "Some information about the ROV Skins"
+          img: "/develop/popup-7.png",
+          title: "Some information about the ROV Skins",
+          name: "Normal Scroll x10",
+          cost: "THB 10",
+          amount: "Available amount: 490,200"
         }
       ],
       
@@ -251,10 +289,7 @@ export default {
   justify-content: space-evenly;
 }
 
-.individual-prize{
-  
-  
-}
+
 
 .header-title {
   height: 10%;
@@ -369,7 +404,7 @@ export default {
 .image-row {
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: 80%;
   margin: auto;
   img {
     width: 228px;
@@ -378,19 +413,50 @@ export default {
   div {
     font-size: 16px;
     text-align: center;
-    margin-top: -1cm;
-    margin-bottom: 1.5cm;
+    margin-top: 2%;
+    margin-bottom: 8%;
     p {
-      width: 170px;
+      width: 100%;
       margin: auto;
     }
   }
 }
 
 .image {
-  width: 228px;
+  width: 300px;
   height: 261px;
+  img{
+    padding: 0 5%;
+  }
 }
+@media screen and (max-width: 1050px){
+  .image img{
+    padding: 0 12%;
+  }
+  
+
+}
+
+@media screen and (max-width: 960px){
+  .image-row div{
+    margin-bottom: 12%;
+  }
+  .header {
+  /* text-align: center; */
+    background-position: 50% 0%;
+    background-size: 500px 200px;
+    margin-bottom: 0;
+    p{
+      font-size: 2.9vw;
+    }
+  }
+  .card .button-close {
+  position: absolute;
+  right: 5%;
+  top: 3%;
+}
+}
+
 
 @media screen and (max-width: 900px){
   .text-title{
@@ -407,6 +473,27 @@ export default {
   }
   #header{
     margin-left: 5%;
+  }
+  .image-row div{
+    margin-bottom: 15%;
+  }
+}
+
+@media screen and (max-width: 750px){
+  .card .button-close {
+    position: absolute;
+    right: 4%;
+    top: 2%;
+  }
+  .header {
+  /* text-align: center; */
+    background-size: 400px 200px;
+    p{
+      font-size: 2.9vw;
+    }
+  }
+  .image-row div{
+    margin-bottom: 20%;
   }
 }
 
@@ -425,6 +512,21 @@ export default {
   }
   #header{
     margin-left: 10%;
+  }
+  .card .button-close {
+    position: absolute;
+    right: 3%;
+    top: 2.5%;
+  }
+  .header {
+  /* text-align: center; */
+    background-size: 380px 200px;
+    p{
+      font-size: 3.5vw;
+    }
+  }
+  .image-row div{
+    margin-bottom: 25%;
   }
 }
 
@@ -448,9 +550,34 @@ export default {
   #header{
     margin-left: 15%;
   }
+  .card{
+    padding-top: 2rem;
+  }
+
+  .card .button-close {
+    position: absolute;
+    right: 4%;
+    top: 1.2%;
+  }
+  .images{
+    padding-top: 1cm;
+  }
+  .header {
+  /* text-align: center; */
+    background-size: 200px 100px;
+    padding-top: 2rem;
+    margin-right: 2rem;
+    
+    p{
+      font-size: 3vw;
+    }
+  }
+  .image-row div{
+    margin-bottom: 35%;
+  }
 }
 
-@media screen and (max-width: 500px){
+/* @media screen and (max-width: 500px){
 .header-title{
   margin-top: 1%;
   p{
@@ -479,11 +606,11 @@ export default {
     margin-left: 35%;
   }
   
-}
+} */
 
 @media screen and (max-width: 450px){
 .header-title{
-  margin-top: 1%;
+  margin-top: 0;
   p{
     font-size: 5vw;
   }
