@@ -78,6 +78,13 @@ let language =
           content: "Home page Coke - Turn Up Your Rhythm"
         }
       ],
+      prizes: {
+        instantWin: "รับทันที!",
+        chance: "ลุ้นรับรางวัลทุกสัปดาห์!",
+        view: "ดูเพิ่มเติม",
+        iphone: "iPhone 12 ขนาด 128 GB",
+        iphone_desc: "สัปดาห์ละ 15 รางวัล",
+      },
       periodDescription:"กิจกรรมเปิดจังหวะซ่าในตัวคุณได้สิ้นสุดลงแล้ว ขอบคุณที่สนใจและเข้าร่วมกิจกรรมกับ โค้ก",
       signInButton:"SIGN IN <BR/><small>to win prizes</small>",
       menu:{
@@ -121,7 +128,8 @@ let language =
         participateAgain:"ส่งรหัสใต้ฝาเพื่อลุ้นรางวัลรายสัปดาห์",
         listenNow:"Listen now",
         redeemPrize:"กดเพื่อรับรางวัลของคุณทันที",
-        continue:"ล็อกอินผ่าน"
+        continue:"ล็อกอินผ่าน",
+        redeem: "รับรางวัล",
       },
       winnerText:{
         header:"WINNER LIST",

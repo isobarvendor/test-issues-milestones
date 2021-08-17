@@ -142,6 +142,7 @@ export default {
                   total += ele.amountAvailable
                 })
                 this.remaining = total;
+                console.log(this.remaining)
             })
             .catch((error) =>{
 

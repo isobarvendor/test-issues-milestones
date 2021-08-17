@@ -17,7 +17,7 @@
                         <div class="text-box">
                             <div id='text'>
                                 <h3 class="text-title"><strong>{{ item.title }}</strong></h3>
-                                <div v-if="item.number && item.header=='INSTANT WIN'" id="number">
+                                <div v-if="item.number" id="number">
                                     <h4>{{ total }} {{ item.number }}</h4>
                                 </div>
                                 <div v-if="item.subtitle" class="text-subtitle">
@@ -27,7 +27,7 @@
                             
                         </div>
                     </div>
-                    <div v-if="item.header !== 'CHANCE TO WIN WEEKLY'">
+                    <div v-if="item.header !== translation.chance">
                         <v-dialog
                             v-model="item.dialog"
                             width="1500"
@@ -35,7 +35,7 @@
                             <template v-slot:activator="{ on }">
                                 
                                 <button class="button" 
-                                v-on="on"><strong>View more</strong></button>
+                                v-on="on"><strong>{{ view }}</strong></button>
                             </template>
 
                             <v-card class="card">
@@ -179,6 +179,7 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import * as _ from "lodash";
+import {translation} from "@/constants/index"
 export default {
   components: {
     Swiper,
@@ -190,9 +191,11 @@ export default {
   },
   data() {
     return {
+      view: translation.prizes.view,
+      translation: translation.prizes,
       prizes: [
         {
-          header: "INSTANT WIN",
+          header: translation.prizes.instantWin,
           title: "1.5 Million Fanta x ROV Boxes",
           number: " remaining",
           subtitle: null,
@@ -200,10 +203,10 @@ export default {
           dialog: false
         },
         {
-          header: "CHANCE TO WIN WEEKLY",
-          title: "iPhone 12, 128GB",
+          header: translation.prizes.chance,
+          title: translation.prizes.iphone,
           number: null,
-          subtitle: "15 Prizes giveaway weekly",
+          subtitle: translation.prizes.iphone_desc,
           image: "/develop/iphone.png",
           dialog: false
         }
@@ -276,17 +279,7 @@ export default {
     this.prizes[0].number = total;
     console.log(this.prizes)
   }, */
-  computed: {
-    total(){
-      console.log("HELLO")
-      let total = 0;
-      this.data.forEach(ele => {
-        total += ele.amountAvailable
-      });
-      console.log(total)
-      return total;
-    }
-  }
+  
 };
 </script>
 
@@ -324,7 +317,7 @@ export default {
 #header {
   font-family: "Hackney";
   text-align: center;
-  font-size: 3.5vw;
+  font-size: 3.3vw;
 }
 
 .bigger-box {
@@ -567,6 +560,7 @@ export default {
   }
   #header{
     margin-left: 15%;
+    font-size: 2.7vw;
   }
   .card{
     padding-top: 2rem;
@@ -597,36 +591,6 @@ export default {
   }
 }
 
-/* @media screen and (max-width: 500px){
-.header-title{
-  margin-top: 1%;
-  p{
-    font-size: 5vw;
-  }
-}
-
- .prize-content{
-   margin-left: 3%;
- }
-
-  .text-title{
-    font-size: 50%;
-  }
-  #number {
-    font-size: 50%;
-  }
-  .text-subtitle{
-    font-size: 50%;
-  }
-  .button{
-    font-size: 50%;
-    height: 2vh;
-  }
-  #header{
-    margin-left: 35%;
-  }
-  
-} */
 
 @media screen and (max-width: 450px){
 .header-title{
@@ -654,7 +618,7 @@ export default {
     height: 2vh;
   }
   #header{
-    margin-left: 30%;
+    margin-left: 27%;
   }
   
 }
