@@ -68,6 +68,10 @@ a.button {
   filter: $shadow;
 }
 
+.grecaptcha-badge { 
+  bottom: 70px !important;
+}
+
 header {
   @include row;
   justify-content: space-between;
