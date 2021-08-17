@@ -33,7 +33,7 @@
     <div class="details" >
       <input id="email" type="email" name="email" v-model="form.email" :placeholder="submissionText.email"/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
-        <span class="error-message" v-if="!validateEmail(form.email)">{{ error.email }}</span>
+        <!-- <span class="error-message" v-if="!validateEmail(form.email)">{{ error.email }}</span> -->
     </div>
     <div class="details">
       <div class="btn-text">

@@ -20,9 +20,10 @@
           <input type="text" id="redeem" readonly :value="voucher" />
           <button @click="copy">
             <img src="/develop/copy.png" />{{ button }}
-          </button>
+          </button><br>
         </div>
       </div>
+      <div id="link"><u  @click="open">https://shortenanything.page.link/eNh4</u></div>
       <div class="link" @click="scroll">
         <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
         <div class="arrow">
@@ -147,6 +148,15 @@ export default {
   
 }
 
+#link{
+  
+    margin-top: 1rem;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    
+}
+
 .text-redeem {
   text-align: center;
   /* position: absolute;
@@ -155,6 +165,7 @@ export default {
         transform: translate(-50%, -50%); */
   height: 10%;
   width: 100%;
+  
   p {
     font-size: 150%;
   }
@@ -201,7 +212,7 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%); */
   position: relative;
-  margin: 2rem 0 1rem 0;
+  margin: 1rem 0 1rem 0;
   text-align: center;
   cursor: pointer;
   p {
