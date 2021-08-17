@@ -1,4 +1,3 @@
-
 let language =
 {
   en:{
@@ -87,7 +86,7 @@ let language =
         content: "Home page Coke - បញ្ចេញភាពរស់រវើករបស់អ្នក"
       }
     ],
-    periodDescription:"កាលបរិច្ឆេទកម្មវិធី ថ្ងៃទី 04 កញ្ញា 2021 ដល់ថ្ងៃទី 30 តុលា 2021",
+    periodDescription:"ចាប់ពីថ្ងៃនេះរហូតដល់ 04 កញ្ញា 2021 គ្រប់ផលិតផលកូកា-កូឡា អ្នកអាចមានឱកាសស្តាប់ចម្រៀងថ្មីៗ ពី Pleng (Unbox Music Playlist) និងរង្វាន់ជាច្រើនទៀត ដោយគ្រាន់តែអនុវត្តតាមជំហានដូចខាងក្រោម",
     signInButton:"SIGN IN <BR/><small>to win prizes</small>",
     menu:{
       home:"Home",
