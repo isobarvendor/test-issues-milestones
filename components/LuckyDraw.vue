@@ -2,7 +2,7 @@
     <div class="container lucky-draw">
         <div class="draw">
             <div class="image">
-                <img src="/develop/iphone.png" alt="">
+                <img :src="cms.luckyWinner.image[0].url" alt="">
             </div>
             <div class="text-box">
                 <div class="text">
@@ -16,7 +16,8 @@
 <script>
     export default {
         props: {
-            data: null
+            data: null,
+            cms: null
         }
     }
 </script>

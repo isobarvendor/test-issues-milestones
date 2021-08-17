@@ -1,11 +1,11 @@
 <template>
   <div class="container redeem">
     <div class="header-redeem">
-      <p>THANK YOU FOR YOUR PARTICIPATION, <br />YOUR PRIZE IS READY.</p>
+      <div v-html="config.attempts[0].FormHeading.thankYouMessage"></div>
     </div>
     <div class="content">
       <div class="images">
-        <img src="/develop/fanta.png" alt="" />
+        <img :src="image" alt="" />
       </div>
     </div>
     <div class="text-redeem">
@@ -32,7 +32,9 @@ import VueScrollTo from "vue-scrollto";
 export default {
   props:{
     voucher: null,
-    data: null
+    data: null,
+    image: null,
+    config: null
   },
   data() {
     return {
