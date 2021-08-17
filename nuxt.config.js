@@ -80,7 +80,8 @@ export default {
     {
       src: '~/plugins/vue-countdown',
       ssr: false
-    }
+    },
+    {src: '~/plugins/hotjar', ssr: false}
   ],
   router: {
     middleware: ['redirect']

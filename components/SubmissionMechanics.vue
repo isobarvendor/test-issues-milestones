@@ -14,7 +14,7 @@
   <!-- <div class="container  prize-chance black-red-border">
       <div class="wrapper"> -->
       <!-- <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  /> -->
-      <PrizeRedeem @scroll="scroll" v-if="prize.length>0"/>
+      <PrizeRedeem @scroll="scroll" v-if="prize.length>0" :voucher="prize[0].code" :data="cms" :image="prize[0].image" :config="dataForm" />
       <div v-else style="text-align:center">
 
             <span v-html="thankYouMessage"></span>
@@ -29,7 +29,7 @@
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
     </div> -->
-    <LuckyDraw id="lucky" :data="dataForm" />
+    <LuckyDraw id="lucky" :data="dataForm" :cms="cms"/>
     <!-- <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
         div class="joox-listen">
@@ -53,7 +53,7 @@ export default {
   },
    props: {
         dataForm: null,
-
+        cms: null
       },
   data() {
     return {
@@ -117,7 +117,6 @@ export default {
               }
           ];
           this.prize=prize;
-
           this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
           this.jooxMessage=attemptData.FormHeading.Prize;
       }

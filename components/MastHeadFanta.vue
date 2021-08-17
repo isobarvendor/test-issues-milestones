@@ -132,7 +132,7 @@ export default {
 }
 #masthead{
       /* background:#de0a1c; */
-      padding: 20px;
+      /* padding: 20px; */
     }
     .mutedIcon{
       position: absolute;
@@ -184,9 +184,12 @@ export default {
 }
 
    
-      @media only screen and (min-width: 1170px) {
+      @media only screen and (min-width: 1200px) {
     .videoBackground{
-      max-height: 700px;
+      max-height: 650px;
+    }
+    .carousell-image{
+      height: 650px;
     }
     .masthead #arrow{
       bottom: 6.5%;
@@ -195,14 +198,27 @@ export default {
     }
 
   }
+  @media only screen and (max-width: 1150px) {
+    
+    .carousell-image{
+      height: 600px;
+    }
+     /* #masthead{
+      padding: 10px;
+    } */
+    
+  }
 
    @media only screen and (max-width: 1099px) {
     .videoBackground{
-      max-height: 550px;
+      max-height: 600px;
     }
-     #masthead{
+    .carousell-image{
+      max-height: 600px;
+    }
+     /* #masthead{
       padding: 10px;
-    }
+    } */
     .masthead #arrow{
       bottom: 7%;
       right: 44%;
@@ -211,7 +227,12 @@ export default {
   }
 
   @media only screen and (max-width: 800px) {
-    
+    .videoBackground{
+      max-height: 400px !important;
+    }
+    .carousell-image{
+      height: 400px;
+    }
     .masthead #arrow{
       bottom: 7%;
       right: 43%;
@@ -223,9 +244,12 @@ export default {
     .videoBackground{
       max-height: 300px !important;
     }
-     #masthead{
-      padding: 10px;
+    .carousell-image{
+      height: 300px;
     }
+     /* #masthead{
+      padding: 10px;
+    } */
     .mutedIcon{
 
       bottom: 5px;
@@ -241,9 +265,15 @@ export default {
 
   @media only screen and (max-width: 450px) {
     .masthead #arrow{
-      bottom: 11%;
+      bottom: 17%;
       right: 35%;
       
+    }
+    .videoBackground{
+      max-height: 180px !important;
+    }
+    .carousell-image{
+      max-height: 180px;
     }
   }
 

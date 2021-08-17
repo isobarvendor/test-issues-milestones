@@ -1,27 +1,33 @@
 <template>
   <div class="container redeem">
     <div class="header-redeem">
-      <p>THANK YOU FOR YOUR PARTICIPATION, <br />YOUR PRIZE IS READY.</p>
+      <div v-html="config.attempts[0].FormHeading.thankYouMessage"></div>
     </div>
     <div class="content">
       <div class="images">
-        <img src="/develop/fanta.png" alt="" />
+        <img :src="image" alt="" />
       </div>
     </div>
-    <div class="text-redeem">
-      <p>Use this code and redeem your box in game!</p>
+    <div class="redeem-button" v-if="!showCode">
+      <button @click="show">{{ translation.redeem }}</button><br>
+      <u @click="open">https://shortenanything.page.link/eNh4</u>
+    </div>
+    <div v-if="showCode">
+      <div class="text-redeem" >
+        <p>Use this code and redeem your box in game!</p>
 
-      <div class="copy-button">
-        <input type="text" id="redeem" readonly value="something" />
-        <button @click="copy">
-          <img src="/develop/copy.png" />{{ button }}
-        </button>
+        <div class="copy-button">
+          <input type="text" id="redeem" readonly :value="voucher" />
+          <button @click="copy">
+            <img src="/develop/copy.png" />{{ button }}
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="link" @click="scroll">
-      <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
-      <div class="arrow">
-        <img id="top" src="/develop/arrow.png" alt="" />
+      <div class="link" @click="scroll">
+        <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
+        <div class="arrow">
+          <img id="top" src="/develop/arrow.png" alt="" />
+        </div>
       </div>
     </div>
   </div>
@@ -29,10 +35,19 @@
 
 <script>
 import VueScrollTo from "vue-scrollto";
+import {translation} from '@/constants/index';
 export default {
+  props:{
+    voucher: null,
+    data: null,
+    image: null,
+    config: null
+  },
   data() {
     return {
-      button: "Copy"
+      button: "Copy",
+      translation: translation.submissionText,
+      showCode: false,
     };
   },
   methods: {
@@ -55,6 +70,12 @@ export default {
       }, 2000);
       window.getSelection().removeAllRanges();
     },
+    show(){
+      this.showCode = !this.showCode
+    },
+    open(){
+      window.open("https://shortenanything.page.link/eNh4")
+    }
   }
 };
 </script>
@@ -102,6 +123,28 @@ export default {
         transform: translate(-50%, -50%); */
   height: 80%;
   width: 20%;
+}
+
+.redeem-button{
+  text-align: center;
+  margin-bottom: 1cm;
+  button{
+    background-color: #73aa17;
+    color: white;
+    font-size: 100%;
+    width: 30%;
+    border-radius: 5px;
+    margin: 1cm auto 0.5cm auto;
+    text-align: center;
+    height: 7vh;
+    font-family: "Avenir";
+    box-shadow: 3px 3px 5px #707070;
+  }
+  u{
+    cursor: pointer;
+    color: white;
+  }
+  
 }
 
 .text-redeem {

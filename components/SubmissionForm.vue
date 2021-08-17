@@ -33,6 +33,7 @@
     <div class="details" >
       <input id="email" type="email" name="email" v-model="form.email" :placeholder="submissionText.email"/>
         <!--span class="error-message">{{ errors.first('email') }}</span-->
+        <span class="error-message" v-if="!validateEmail(form.email)">{{ error.email }}</span>
     </div>
     <div class="details">
       <div class="btn-text">
@@ -202,6 +203,7 @@ export default {
         submissionText:translation.submissionText,
         error: {
           name: "Please insert a name.",
+          email: "Please insert a valid email"
         }
 
     }
@@ -242,6 +244,14 @@ export default {
     }
   },
   methods:{
+    validateEmail(email){
+      email = String(email)
+      if (email.includes(".com")){
+        return true
+      } else {
+        return false;
+      }
+    },
     generateRequest(currentAttempt){
       if(currentAttempt>=this.getAttempt.length){
         currentAttempt=this.getAttempt.length-1;
@@ -383,7 +393,7 @@ export default {
               const tokenCaptcha = await this.$recaptcha.execute('register')
           //console.log('ReCaptcha token:', token)
                 request.captchaResponse=tokenCaptcha;
-                this.$store.dispatch(SUBMIT_FORM,request)
+                await this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();

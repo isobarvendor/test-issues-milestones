@@ -364,6 +364,35 @@ footer {
   }
 }
 
+.header-redeem {
+  /* height: 20% */
+  p {
+    font-size: 275%;
+    font-family: "Hackney";
+  }
+  @media screen and (max-width: 736px) {
+      
+          p {
+          font-size: 250%;
+          }
+      
+      
+      
+  }
+
+  @media screen and (max-width: 400px){
+    
+    
+      p {
+        font-size: 225%;
+        font-family: "Hackney";
+      }
+    
+    
+  }
+
+}
+
 .campaign-section {
   align-items: center;
 }

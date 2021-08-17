@@ -18,7 +18,7 @@
                             <div id='text'>
                                 <h3 class="text-title"><strong>{{ item.title }}</strong></h3>
                                 <div v-if="item.number" id="number">
-                                    <h4>{{ item.number }}</h4>
+                                    <h4>{{ total }} {{ item.number }}</h4>
                                 </div>
                                 <div v-if="item.subtitle" class="text-subtitle">
                                     <h4 >{{ item.subtitle }}</h4>
@@ -27,7 +27,7 @@
                             
                         </div>
                     </div>
-                    <div v-if="item.header !== 'CHANCE TO WIN WEEKLY'">
+                    <div v-if="item.header !== translation.chance">
                         <v-dialog
                             v-model="item.dialog"
                             width="1500"
@@ -35,7 +35,7 @@
                             <template v-slot:activator="{ on }">
                                 
                                 <button class="button" 
-                                v-on="on"><strong>View more</strong></button>
+                                v-on="on"><strong>{{ view }}</strong></button>
                             </template>
 
                             <v-card class="card">
@@ -53,8 +53,6 @@
                                                 <img :src="item2.img">
                                                 <div class="image-text">
                                                     <p style="color: black;">{{ item2.name }}</p>
-                                                    <p style="color: black;">{{ item2.cost }}</p>
-                                                    <p style="color: black;">{{ item2.amount }}</p>
                                                 </div>
                                             </div>
                                             <br>
@@ -66,8 +64,6 @@
                                                 <img :src="item2.img">
                                                 <div class="image-text">
                                                     <p style="color: black;">{{ item2.name }}</p>
-                                                    <p style="color: black;">{{ item2.cost }}</p>
-                                                    <p style="color: black;">{{ item2.amount }}</p>
                                                 </div>
                                             </div>
                                             <br>
@@ -79,8 +75,6 @@
                                                 <img :src="item2.img" alt="">
                                                 <div class="image-text">
                                                     <p style="color: black;">{{ item2.name }}</p>
-                                                    <p style="color: black;">{{ item2.cost }}</p>
-                                                    <p style="color: black;">{{ item2.amount }}</p>
                                                 </div>
                                             </div>
                                             <br>
@@ -185,27 +179,34 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import * as _ from "lodash";
+import {translation} from "@/constants/index"
 export default {
   components: {
     Swiper,
     SwiperSlide
   },
+  props: {
+    data: null,
+    total: null
+  },
   data() {
     return {
+      view: translation.prizes.view,
+      translation: translation.prizes,
       prizes: [
         {
-          header: "INSTANT WIN",
+          header: translation.prizes.instantWin,
           title: "1.5 Million Fanta x ROV Boxes",
-          number: "1,234,567 remaining",
+          number: " remaining",
           subtitle: null,
           image: "/develop/fanta-prize.png",
           dialog: false
         },
         {
-          header: "CHANCE TO WIN WEEKLY",
-          title: "iPhone 12, 128GB",
+          header: translation.prizes.chance,
+          title: translation.prizes.iphone,
           number: null,
-          subtitle: "15 Prizes giveaway weekly",
+          subtitle: translation.prizes.iphone_desc,
           image: "/develop/iphone.png",
           dialog: false
         }
@@ -269,7 +270,16 @@ export default {
     final_images(num) {
       return _.chunk(this.images, num);
     }
-  }
+  },
+  /* created(){
+    let total = 0;
+      this.data.forEach(ele => {
+        total += ele.amountAvailable
+    });
+    this.prizes[0].number = total;
+    console.log(this.prizes)
+  }, */
+  
 };
 </script>
 
@@ -307,7 +317,7 @@ export default {
 #header {
   font-family: "Hackney";
   text-align: center;
-  font-size: 3.5vw;
+  font-size: 3.3vw;
 }
 
 .bigger-box {
@@ -414,7 +424,7 @@ export default {
     font-size: 16px;
     text-align: center;
     margin-top: 2%;
-    margin-bottom: 8%;
+    margin-bottom: 6%;
     p {
       width: 100%;
       margin: auto;
@@ -520,6 +530,7 @@ export default {
   }
   .header {
   /* text-align: center; */
+    /* margin-top: 2rem; */
     background-size: 380px 200px;
     p{
       font-size: 3.5vw;
@@ -549,6 +560,7 @@ export default {
   }
   #header{
     margin-left: 15%;
+    font-size: 2.7vw;
   }
   .card{
     padding-top: 2rem;
@@ -557,7 +569,7 @@ export default {
   .card .button-close {
     position: absolute;
     right: 4%;
-    top: 1.2%;
+    top: 1.4%;
   }
   .images{
     padding-top: 1cm;
@@ -565,11 +577,13 @@ export default {
   .header {
   /* text-align: center; */
     background-size: 200px 100px;
-    padding-top: 2rem;
+    padding: 1.5rem 1rem 0 1rem;
     margin-right: 2rem;
     
     p{
-      font-size: 3vw;
+      width: 60%;
+      text-align: center;
+      font-size: 3.5vw;
     }
   }
   .image-row div{
@@ -577,36 +591,6 @@ export default {
   }
 }
 
-/* @media screen and (max-width: 500px){
-.header-title{
-  margin-top: 1%;
-  p{
-    font-size: 5vw;
-  }
-}
-
- .prize-content{
-   margin-left: 3%;
- }
-
-  .text-title{
-    font-size: 50%;
-  }
-  #number {
-    font-size: 50%;
-  }
-  .text-subtitle{
-    font-size: 50%;
-  }
-  .button{
-    font-size: 50%;
-    height: 2vh;
-  }
-  #header{
-    margin-left: 35%;
-  }
-  
-} */
 
 @media screen and (max-width: 450px){
 .header-title{
@@ -634,7 +618,7 @@ export default {
     height: 2vh;
   }
   #header{
-    margin-left: 30%;
+    margin-left: 27%;
   }
   
 }
