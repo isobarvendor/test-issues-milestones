@@ -397,7 +397,9 @@ export default {
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber }
+                   let logininfo = this.$store.state.login;
+                   logininfo.email = request.email
+                   let loginData={...logininfo, phone : this.phoneCode+this.form.phoneNumber }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;

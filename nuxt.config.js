@@ -81,7 +81,8 @@ export default {
       src: '~/plugins/vue-countdown',
       ssr: false
     },
-    {src: '~/plugins/hotjar', ssr: false}
+    { src: '~/plugins/hotjar', ssr: false },
+    
   ],
   router: {
     middleware: ['redirect']
@@ -98,12 +99,14 @@ export default {
     // Simple usage
     '@nuxtjs/vuetify',
     'vue-scrollto/nuxt',
-    '@nuxtjs/gtm',
+   '@nuxtjs/gtm',
+   
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/device',
     "@nuxtjs/axios",
     "@nuxtjs/dotenv",
     '@nuxtjs/recaptcha',
