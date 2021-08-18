@@ -18,7 +18,7 @@
         </div>
     </a-->
 
-        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" id="signIn" v-if="!logged&&notCountDown"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
+        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" id="signIn" v-if="!logged"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
         <div class="profile-content" >
             <template ><div v-html="siginButton"></div></template>
         </div>
@@ -245,7 +245,7 @@ export default {
         opacity:0;
     }
  position: fixed;
-background-color: #b10017;
+background-color: #F7941E;
  text-align: center;
 }
 .nav-container{

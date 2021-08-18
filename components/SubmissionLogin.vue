@@ -27,9 +27,10 @@ export default {
     },
     methods: {
       redirectTo(source){
-        location.href="/api/oauth2/authorize/"+source+"?redirect_uri=" +
-        window.location.origin +
-        "/settoken";
+        
+          location.href= window.location.origin + "/api/oauth2/authorize/"+source+"?redirect_uri=" +
+              window.location.origin +
+              "/settoken"; 
       }
     },
     computed: {

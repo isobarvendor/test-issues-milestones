@@ -1,177 +1,234 @@
 <template>
-  <div class="container prize" style="">
-    <div class="header-title">
+  <div class="container prize">
+    <div class=" hidden-sm-and-down" style="padding-bottom: 1cm;">
+      <div class="header-title">
         <p>PRIZES</p>
       </div>
-    <div class="prize-content">
-      
-        
-        <div class="individual-prize" v-for="(item,index) in prizes" :key="index">
-                    <div id="header">
-                        <p>{{ item.header }}</p>
-                    </div>
-                    <div class="bigger-box">
-                        <div class="image-box">
-                            <img :src="item.image"/>
-                        </div>
-                        <div class="text-box">
-                            <div id='text'>
-                                <h3 class="text-title"><strong>{{ item.title }}</strong></h3>
-                                <div v-if="item.number" id="number">
-                                    <h4>{{ total }} {{ item.number }}</h4>
-                                </div>
-                                <div v-if="item.subtitle" class="text-subtitle">
-                                    <h4 >{{ item.subtitle }}</h4>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div v-if="item.header !== translation.chance">
-                        <v-dialog
-                            v-model="item.dialog"
-                            width="1500"
-                            >
-                            <template v-slot:activator="{ on }">
-                                
-                                <button class="button" 
-                                v-on="on"><strong>{{ view }}</strong></button>
-                            </template>
-
-                            <v-card class="card">
-                                
-                                <div class='button-close'>
-                                    <img @click="item.dialog = false" src="/img/icons/close.png" alt="">
-                                </div>
-                                <div class="header">
-                                    <p style="color: whiter;">WIN ANY OF THESE ROV SKINS</p>
-                                </div>
-                                <div class="images">
-                                  <div v-if="$vuetify.breakpoint.xs">
-                                        <div v-for="(item, index) in final_images(1)" :key="index" class="image-row" >
-                                            <div v-for="(item2, index2) in item" :key="index2" class="image">
-                                                <img :src="item2.img">
-                                                <div class="image-text">
-                                                    <p style="color: black;">{{ item2.name }}</p>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                    <div class="hidden-sm-and-down">
-                                        <div v-for="(item, index) in final_images(4)" :key="index" class="image-row" >
-                                            <div v-for="(item2, index2) in item" :key="index2" class="image">
-                                                <img :src="item2.img">
-                                                <div class="image-text">
-                                                    <p style="color: black;">{{ item2.name }}</p>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                    <div v-if="$vuetify.breakpoint.sm">
-                                        <div v-for="(item, index) in final_images(2)" :key="index" class="image-row" >
-                                            <div v-for="(item2, index2) in item" :key="index2" class="image">
-                                                <img :src="item2.img" alt="">
-                                                <div class="image-text">
-                                                    <p style="color: black;">{{ item2.name }}</p>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-
-                                
-                                
-                                
-                            </v-card>
-                        </v-dialog>
-                        
-                    </div>
-                </div>
-                
-        
-         <!-- <div class="prize-swiper-container container">
-        <swiper class="swiper prize-swiper" :options="swiperOption">
-          <swiper-slide
-            v-for="(item, index) in prizes"
-            :key="'prize' + index"
-            class="prize-item"
-          >
-            <div class="prize-item-content">
-              <img
-                :src="
-                  item.image ? item.image : '/img/landing/week 1 prize.png'
-                "
-              />
-              <div class="prize-description">
-                <div class="prize-title"><strong>{{ item.title }}</strong></div>
+      <div class="prize-content ">
+        <div class=" " v-for="(item, index) in prizes" :key="index">
+          <div id="header">
+            <p>{{ item.header }}</p>
+          </div>
+          <div class="bigger-box">
+            <div class="image-box">
+              <img :src="item.image" />
+            </div>
+            <div class="text-box">
+              <div id="text">
+                <h3 class="text-title">
+                  <strong>{{ item.title }}</strong>
+                </h3>
                 <div v-if="item.number" id="number">
-                    <h4>{{ item.number }}</h4>
+                  <h4>{{ total }} {{ item.number }}</h4>
                 </div>
-                <div v-if="item.subtitle" class="prize-subtitle">
-                    <h4 >{{ item.subtitle }}</h4>
+                <div v-if="item.subtitle" class="text-subtitle">
+                  <h4>{{ item.subtitle }}</h4>
                 </div>
               </div>
             </div>
-            <div>
-                <v-dialog
-                    v-model="item.dialog"
-                    width="1500"
+          </div>
+          <div v-if="item.header !== translation.chance">
+            <v-dialog v-model="item.dialog" width="1500">
+              <template v-slot:activator="{ on }">
+                <button class="button" v-on="on">
+                  <strong>{{ view }}</strong>
+                </button>
+              </template>
+
+              <v-card class="card">
+                <div class="button-close">
+                  <img
+                    @click="item.dialog = false"
+                    src="/img/icons/close.png"
+                    alt=""
+                  />
+                </div>
+                <div class="header">
+                  <p style="color: whiter;">WIN ANY OF THESE ROV SKINS</p>
+                </div>
+                <div class="images">
+                  <div v-if="$vuetify.breakpoint.xs">
+                    <div
+                      v-for="(item, index) in final_images(1)"
+                      :key="index"
+                      class="image-row"
                     >
-                    <template v-slot:activator="{ on }">
-                        
-                        <button class="button" 
-                        v-on="on"><strong>View more</strong></button>
-                    </template>
-
-                    <v-card class="card">
-                        
-                        <div class='button-close'>
-                            <img @click="item.dialog = false" src="/img/icons/close.png" alt="">
+                      <div
+                        v-for="(item2, index2) in item"
+                        :key="index2"
+                        class="image"
+                      >
+                        <img :src="item2.img" />
+                        <div class="image-text">
+                          <p style="color: black;">{{ item2.name }}</p>
                         </div>
-                        <div class="header">
-                            <p style="color: whiter;">WIN ANY OF THESE ROV SKINS</p>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                  <div class="hidden-sm-and-down">
+                    <div
+                      v-for="(item, index) in final_images(4)"
+                      :key="index"
+                      class="image-row"
+                    >
+                      <div
+                        v-for="(item2, index2) in item"
+                        :key="index2"
+                        class="image"
+                      >
+                        <img :src="item2.img" />
+                        <div class="image-text">
+                          <p style="color: black;">{{ item2.name }}</p>
                         </div>
-                        <div class="images">
-                            <div class="hidden-sm-and-down">
-                                <div v-for="(item, index) in final_images(4)" :key="index" class="image-row" >
-                                    <div v-for="(item2, index2) in item" :key="index2" class="image">
-                                        <img src="/develop/popup.png">
-                                        <div>
-                                            <p style="color: black;">{{ item2.title }}</p>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="hidden-md-and-up">
-                                <div v-for="(item, index) in final_images(2)" :key="index" class="image-row" >
-                                    <div v-for="(item2, index2) in item" :key="index2" class="image">
-                                        <img src="/develop/popup.png" alt="">
-                                        <div>
-                                            <p style="color: black;">{{ item2.title }}</p>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                  <div v-if="$vuetify.breakpoint.sm">
+                    <div
+                      v-for="(item, index) in final_images(2)"
+                      :key="index"
+                      class="image-row"
+                    >
+                      <div
+                        v-for="(item2, index2) in item"
+                        :key="index2"
+                        class="image"
+                      >
+                        <img :src="item2.img" alt="" />
+                        <div class="image-text">
+                          <p style="color: black;">{{ item2.name }}</p>
                         </div>
-                        
-
-                        
-                        
-                        
-                    </v-card>
-                </v-dialog>
-                
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <br />
+              </v-card>
+            </v-dialog>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden-md-and-up">
+      <div  style="">
+        <div class="header-title-mobile">
+          <p>PRIZES</p>
+        </div>
+        <div
+          class="individual-prize-mobile"
+          v-for="(item, index) in prizes"
+          :key="index"
+        >
+          <div id="header">
+            <p>{{ item.header }}</p>
+          </div>
+          <div class="bigger-box-mobile">
+            <div class="image-box">
+              <img :src="item.image" />
             </div>
-          </swiper-slide>
-        </swiper>
-      </div> -->
+            <div class="text-box">
+              <div id="text">
+                <h3 class="text-title">
+                  <strong>{{ item.title }}</strong>
+                </h3>
+                <div v-if="item.number" id="number">
+                  <h4>{{ total }} {{ item.number }}</h4>
+                </div>
+                <div v-if="item.subtitle" class="text-subtitle">
+                  <h4>{{ item.subtitle }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-if="item.header !== translation.chance">
+            <v-dialog v-model="item.dialog" width="1500">
+              <template v-slot:activator="{ on }">
+                <button class="button-mobile" v-on="on">
+                  <strong>{{ view }}</strong>
+                </button>
+              </template>
+
+              <v-card class="card">
+                <div class="button-close">
+                  <img
+                    @click="item.dialog = false"
+                    src="/img/icons/close.png"
+                    alt=""
+                  />
+                </div>
+                <div class="header">
+                  <p style="color: whiter;">WIN ANY OF THESE ROV SKINS</p>
+                </div>
+                <div class="images">
+                  <div v-if="$vuetify.breakpoint.xs">
+                    <div
+                      v-for="(item, index) in final_images(1)"
+                      :key="index"
+                      class="image-row"
+                    >
+                      <div
+                        v-for="(item2, index2) in item"
+                        :key="index2"
+                        class="image"
+                      >
+                        <img :src="item2.img" />
+                        <div class="image-text">
+                          <p style="color: black;">{{ item2.name }}</p>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                  <div class="hidden-sm-and-down">
+                    <div
+                      v-for="(item, index) in final_images(4)"
+                      :key="index"
+                      class="image-row"
+                    >
+                      <div
+                        v-for="(item2, index2) in item"
+                        :key="index2"
+                        class="image"
+                      >
+                        <img :src="item2.img" />
+                        <div class="image-text">
+                          <p style="color: black;">{{ item2.name }}</p>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                  <div v-if="$vuetify.breakpoint.sm">
+                    <div
+                      v-for="(item, index) in final_images(2)"
+                      :key="index"
+                      class="image-row"
+                    >
+                      <div
+                        v-for="(item2, index2) in item"
+                        :key="index2"
+                        class="image"
+                      >
+                        <img :src="item2.img" alt="" />
+                        <div class="image-text">
+                          <p style="color: black;">{{ item2.name }}</p>
+                        </div>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <br />
+              </v-card>
+            </v-dialog>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -179,7 +236,7 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import * as _ from "lodash";
-import {translation} from "@/constants/index"
+import { translation } from "@/constants/index";
 export default {
   components: {
     Swiper,
@@ -196,7 +253,7 @@ export default {
       prizes: [
         {
           header: translation.prizes.instantWin,
-          title: "1.5 Million Fanta x ROV Boxes",
+          title: "FANTA x ROV Box* จำนวนจำกัดทั้งสิ้น 1.5 ล้านรางวัล",
           number: " remaining",
           subtitle: null,
           image: "/develop/fanta-prize.png",
@@ -262,15 +319,14 @@ export default {
           cost: "THB 10",
           amount: "Available amount: 490,200"
         }
-      ],
-      
+      ]
     };
   },
   methods: {
     final_images(num) {
       return _.chunk(this.images, num);
     }
-  },
+  }
   /* created(){
     let total = 0;
       this.data.forEach(ele => {
@@ -279,7 +335,6 @@ export default {
     this.prizes[0].number = total;
     console.log(this.prizes)
   }, */
-  
 };
 </script>
 
@@ -299,7 +354,23 @@ export default {
   justify-content: space-evenly;
 }
 
+.individual-prize-mobile {
+  width: 100%;
+  padding-top: 10%;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 2%;
+  height: 100%;
+}
 
+.bigger-box-mobile {
+  background-color: darkblue;
+  margin: 0 auto;
+  /* width: 80%;
+    height: 70%; */
+  width: 35%;
+  height: 100%;
+}
 
 .header-title {
   height: 10%;
@@ -308,23 +379,38 @@ export default {
   position: relative;
   p {
     font-family: "Hackney";
-    font-size: 3vw;
+    font-size: 50px;
     position: relative;
-    top: 70%;
+    top: 55%;
+  }
+}
+
+.header-title-mobile{
+  height: 10%;
+  text-align: center;
+  margin-top: 18%;
+  p{
+    font-family: "Hackney";
+    font-size: 400%;
+
   }
 }
 
 #header {
   font-family: "Hackney";
   text-align: center;
-  font-size: 3.3vw;
+  p {
+    font-size: 2.5vw;
+  }
 }
 
 .bigger-box {
   background-color: darkblue;
   margin: 0 1cm;
-  width: 80%;
-  height: 70%;
+  /* width: 80%;
+  height: 70%; */
+  width: 303.58px;
+  height: 434.13px;
 }
 .prizes {
   display: flex;
@@ -339,13 +425,15 @@ export default {
   height: 70%;
   margin: 5% auto auto auto;
   padding-top: 5%;
-  img{
+  img {
+    /* height: 276.74px;
+    width: 276.74px; */
     height: 100%;
     width: 100%;
   }
 }
 
-.text-box{
+.text-box {
   width: 90%;
   height: 30%;
   margin: auto;
@@ -353,22 +441,25 @@ export default {
   text-align: center;
 }
 
-.text-title{
-    height: 50%;
-    margin-bottom: 5%;
-    margin-top: 3%;
-    font-size: 100%;
+.text-title {
+  height: 50%;
+  /* margin-bottom: 5%; */
+  margin-top: 3%;
+  font-size: 100%;
+  width: 100%;
+  margin: 3% auto 2% auto;
 }
 
-#number{
-    background: #F27C00;
-    padding: 5% 0;
-    font-size: 100%;
+#number {
+  background: #f27c00;
+  height: 50%;
+  padding: 5% 0;
+  font-size: 100%;
 }
 
-.text-subtitle{
-    padding: 5% 0;
-    font-size: 100%;
+.text-subtitle {
+  padding: 14% 0;
+  font-size: 100%;
 }
 
 .button {
@@ -376,6 +467,19 @@ export default {
   color: white;
   font-size: 100%;
   width: 80%;
+  border-radius: 5px;
+  margin: 5% 1cm 0 1cm;
+  text-align: center;
+  height: 4vh;
+  font-family: "Avenir";
+  box-shadow: 3px 3px 5px #707070;
+}
+
+.button-mobile {
+  background-color: #73aa17;
+  color: white;
+  font-size: 100%;
+  width: 35%;
   border-radius: 5px;
   margin: 5% 1cm 0 1cm;
   text-align: center;
@@ -435,134 +539,123 @@ export default {
 .image {
   width: 300px;
   height: 261px;
-  img{
+  img {
     padding: 0 5%;
   }
 }
-@media screen and (max-width: 1050px){
-  .image img{
+@media screen and (max-width: 1050px) {
+  .image img {
     padding: 0 12%;
   }
-  
-
 }
 
-@media screen and (max-width: 960px){
-  .image-row div{
+@media screen and (max-width: 960px) {
+  .image-row div {
     margin-bottom: 12%;
   }
   .header {
-  /* text-align: center; */
+    /* text-align: center; */
     background-position: 50% 0%;
     background-size: 500px 200px;
     margin-bottom: 0;
-    p{
+    p {
       font-size: 2.9vw;
     }
   }
   .card .button-close {
-  position: absolute;
-  right: 5%;
-  top: 3%;
-}
+    position: absolute;
+    right: 5%;
+    top: 3%;
+  }
 }
 
-
-@media screen and (max-width: 900px){
-  .text-title{
+@media screen and (max-width: 900px) {
+  .text-title {
     font-size: 90%;
   }
   #number {
     font-size: 90%;
   }
-  .text-subtitle{
+  .text-subtitle {
     font-size: 90%;
   }
-  .button{
+  .button {
     font-size: 90%;
   }
-  #header{
-    margin-left: 5%;
-  }
-  .image-row div{
+  .image-row div {
     margin-bottom: 15%;
   }
 }
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 750px) {
   .card .button-close {
     position: absolute;
     right: 4%;
     top: 2%;
   }
   .header {
-  /* text-align: center; */
+    /* text-align: center; */
     background-size: 400px 200px;
-    p{
+    p {
       font-size: 2.9vw;
     }
   }
-  .image-row div{
+  .image-row div {
     margin-bottom: 20%;
   }
 }
 
-@media screen and (max-width: 640px){
-  .text-title{
+@media screen and (max-width: 640px) {
+  .text-title {
     font-size: 70%;
   }
   #number {
     font-size: 70%;
   }
-  .text-subtitle{
+  .text-subtitle {
     font-size: 70%;
   }
-  .button{
+  .button {
     font-size: 70%;
   }
-  #header{
-    margin-left: 10%;
-  }
+  
   .card .button-close {
     position: absolute;
     right: 3%;
     top: 2.5%;
   }
   .header {
-  /* text-align: center; */
+    /* text-align: center; */
     /* margin-top: 2rem; */
     background-size: 380px 200px;
-    p{
+    p {
       font-size: 3.5vw;
     }
   }
-  .image-row div{
+  .image-row div {
     margin-bottom: 25%;
   }
 }
 
-@media screen and (max-width: 500px){
- .prize-content{
-   margin-left: 5%;
- }
+@media screen and (max-width: 500px) {
+  .prize-content {
+    margin-left: 5%;
+  }
 
-  .text-title{
+  .text-title {
     font-size: 60%;
   }
   #number {
     font-size: 60%;
   }
-  .text-subtitle{
+  .text-subtitle {
     font-size: 60%;
   }
-  .button{
+  .button {
     font-size: 60%;
   }
-  #header{
-    margin-left: 15%;
-    font-size: 2.7vw;
-  }
-  .card{
+  
+  .card {
     padding-top: 2rem;
   }
 
@@ -571,54 +664,56 @@ export default {
     right: 4%;
     top: 1.4%;
   }
-  .images{
+  .images {
     padding-top: 1cm;
   }
   .header {
-  /* text-align: center; */
+    /* text-align: center; */
     background-size: 200px 100px;
     padding: 1.5rem 1rem 0 1rem;
     margin-right: 2rem;
-    
-    p{
+
+    p {
       width: 60%;
       text-align: center;
       font-size: 3.5vw;
     }
   }
-  .image-row div{
+  .image-row div {
     margin-bottom: 35%;
   }
+  .header-title-mobile{
+  
+  margin-top: 15%;
+  
+  
+}
 }
 
-
-@media screen and (max-width: 450px){
-.header-title{
-  margin-top: 0;
-  p{
-    font-size: 5vw;
+@media screen and (max-width: 450px) {
+  .header-title {
+    margin-top: 0;
+    p {
+      font-size: 5vw;
+    }
   }
-}
 
- .prize-content{
-   margin-left: 3%;
- }
+  .prize-content {
+    margin-left: 3%;
+  }
 
-  .text-title{
+  .text-title {
     font-size: 50%;
   }
   #number {
     font-size: 50%;
   }
-  .text-subtitle{
+  .text-subtitle {
     font-size: 50%;
   }
-  .button{
+  .button {
     font-size: 50%;
     height: 2vh;
-  }
-  #header{
-    margin-left: 27%;
   }
   
 }
