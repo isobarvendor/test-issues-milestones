@@ -5,7 +5,7 @@
         <swiper-slide>
           <video-background
               :src="videoDesk"
-              :poster="imgDesk"
+              :poster="videoMob"
               :sources="[
                   {src: videoDesk, res: 1100, autoplay: true},
                   {src: videoTab, res: 900, autoplay: true},
@@ -30,7 +30,8 @@
         </swiper-slide>
         <swiper-slide>
           <div class="carousell-image" @click="redirect">
-            <img id='image' :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
+            <img id='image' class="hidden-sm-and-up" :src="videoMob ? videoMob : '/img/landing/week 1 prize.png'" />
+            <img id='image' class="hidden-xs-only" :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
             <!-- <div class="prize-description">
             <h3 v-html="item.shortDescription"></h3>
             {{ item.name }}
@@ -107,6 +108,7 @@ export default {
 <style>
 .swiper-container{
   position: relative;
+  max-height: 600px;
 }
 
 .videoBackground{
@@ -214,7 +216,7 @@ export default {
       max-height: 600px;
     }
     .carousell-image{
-      max-height: 600px;
+      max-height: 500px;
     }
      /* #masthead{
       padding: 10px;
@@ -242,10 +244,10 @@ export default {
 
   @media only screen and (max-width: 600px) {
     .videoBackground{
-      max-height: 300px !important;
+      max-height: 400px !important;
     }
     .carousell-image{
-      height: 300px;
+      max-height: 400px;
     }
      /* #masthead{
       padding: 10px;
@@ -263,6 +265,18 @@ export default {
     }
   }
 
+  @media only screen and (max-width: 575px) {
+    .videoBackground{
+      max-height: 800px !important;
+    }
+    .masthead #arrow{
+      bottom: 10%;
+      right: 35%;
+      
+    }
+    
+  }
+
   @media only screen and (max-width: 450px) {
     .masthead #arrow{
       bottom: 17%;
@@ -272,9 +286,7 @@ export default {
     .videoBackground{
       max-height: 180px !important;
     }
-    .carousell-image{
-      max-height: 180px;
-    }
+    
   }
 
 </style>

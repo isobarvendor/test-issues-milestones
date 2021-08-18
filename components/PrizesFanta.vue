@@ -131,14 +131,14 @@
               <img :src="item.image" />
             </div>
             <div class="text-box">
-              <div id="text">
-                <h3 class="text-title">
+              <div id="text-mobile">
+                <h3 class="text-title-mobile">
                   <strong>{{ item.title }}</strong>
                 </h3>
-                <div v-if="item.number" id="number">
+                <div v-if="item.number" id="number-mobile">
                   <h4>{{ total }} {{ item.number }}</h4>
                 </div>
-                <div v-if="item.subtitle" class="text-subtitle">
+                <div v-if="item.subtitle" class="text-subtitle-mobile">
                   <h4>{{ item.subtitle }}</h4>
                 </div>
               </div>
@@ -359,8 +359,8 @@ export default {
   padding-top: 10%;
   text-align: center;
   align-items: center;
-  margin-bottom: 2%;
   height: 100%;
+  margin-bottom: 2%;
 }
 
 .bigger-box-mobile {
@@ -368,8 +368,8 @@ export default {
   margin: 0 auto;
   /* width: 80%;
     height: 70%; */
-  width: 35%;
-  height: 100%;
+  width: 45%;
+  height: 230px;
 }
 
 .header-title {
@@ -450,6 +450,15 @@ export default {
   margin: 3% auto 2% auto;
 }
 
+.text-title-mobile{
+  height: 50%;
+  /* margin-bottom: 5%; */
+  margin-top: 3%;
+  font-size: 60%;
+  width: 100%;
+  margin: 4% auto 2% auto;
+}
+
 #number {
   background: #f27c00;
   height: 50%;
@@ -457,9 +466,21 @@ export default {
   font-size: 100%;
 }
 
+#number-mobile {
+  background: #f27c00;
+  height: 50%;
+  padding: 5% 0;
+  font-size: 60%;
+}
+
 .text-subtitle {
   padding: 14% 0;
   font-size: 100%;
+}
+
+.text-subtitle-mobile {
+  padding: 10% 0;
+  font-size: 60%;
 }
 
 .button {
@@ -479,7 +500,7 @@ export default {
   background-color: #73aa17;
   color: white;
   font-size: 100%;
-  width: 35%;
+  width: 45%;
   border-radius: 5px;
   margin: 5% 1cm 0 1cm;
   text-align: center;
