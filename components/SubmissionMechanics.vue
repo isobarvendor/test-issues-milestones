@@ -20,16 +20,14 @@
     </div>
     <div v-else>
       <div class="container  prize-chance black-red-border" id="prize-chance">
-        <div style="text-align:center" v-if="loading">
-              <v-progress-circular
-                :width="2"
-                color="white"
-                indeterminate
-
-              ></v-progress-circular>
+        <div style="padding:20px; margin: auto;" v-if="loading">
+          <v-progress-circular
+            :width="2"
+            color="white"
+            indeterminate
+          ></v-progress-circular>
         </div>
         <div class="wrapper" v-for="(item, idx) in prize" :key="idx">
-
           <PrizeItem
             :prize="item"
             :themes="themes"
@@ -229,6 +227,11 @@ export default {
                 .dispatch(SUBMIT_FORM, request)
                 .then(response => {
                   data.response = response.data;
+                  console.log(
+                    response.data.instantWinResult.redeemedPrize
+                      .shortDescription
+                  );
+
                   if (a == 0) {
                     this.submitOne(data, false, page);
                     if (configID.length == 1) {
@@ -351,7 +354,7 @@ export default {
           {
             text: "<h2>" + this.submissionText.textPage + "</h2>",
             name: null,
-            note: null,
+            note: prizewin.instantWinResult.redeemedPrize.shortDescription,
             image: null,
             havejoox: false,
             button: [
@@ -399,7 +402,7 @@ export default {
             image: prizewin.instantWinResult.redeemedPrize.imgUrl
               ? prizewin.instantWinResult.redeemedPrize.imgUrl
               : "/img/landing/week 1 prize.png",
-            note: null,
+            note: prizewin.instantWinResult.redeemedPrize.shortDescription,
             button: button
               ? prizewin.instantWinResult.redeemedPrize.redemptionLink
                 ? [
@@ -445,8 +448,10 @@ export default {
               : [],
             havejoox: false,
             code: !this.$config.prizeHasVoucher.includes(
-                      prizewin.instantWinResult.redeemedPrize.prizeId
-                    ) ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
+              prizewin.instantWinResult.redeemedPrize.prizeId
+            )
+              ? prizewin.instantWinResult.redeemedPrize.voucherCode
+              : null,
             subName: null
           }
         ];
@@ -455,7 +460,7 @@ export default {
           {
             text: "<h2>" + this.submissionText.hardLuckHeader + "</h2>",
             name: this.submissionText.hardLuckTitle,
-            note: null,
+            note: prizewin.instantWinResult.redeemedPrize.shortDescription,
             image: this.submissionText.hardLuckImage,
             havejoox: false,
             button: [],
@@ -500,7 +505,7 @@ export default {
             image: prizewin.instantWinResult.redeemedPrize.imgUrl
               ? prizewin.instantWinResult.redeemedPrize.imgUrl
               : "/img/landing/week 1 prize.png",
-            note: null,
+            note: prizewin.instantWinResult.redeemedPrize.shortDescription,
             button: prizewin.instantWinResult.redeemedPrize.redemptionLink
               ? [
                   {
