@@ -136,7 +136,7 @@ let language =
       startRedeeming:"ចាប់ផ្តើមប្តូរយករង្វាន់",
       redeemNextPrize:"ប្តូរយករង្វាន់បន្ទាប់",
       textPage:"អ្នកបានបញ្ចូលលេខកូដពីដបកូកា-កូឡាដបជ័រ 350ml អ្នកនឹងមានឱកាសចាប់រង្វាន់ 2 ដង",
-      hardLuckHeader:"",
+      hardLuckHeader:"Oops something went wrong",
       hardLuckTitle:"",
       hardLuckImage:""
     },

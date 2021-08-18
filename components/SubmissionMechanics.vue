@@ -339,11 +339,12 @@ export default {
                   }])
                   :(prizewin.instantWinResult.redeemedPrize.redemptionLink ? [{
                       text:this.submissionText.redeemPrize,
-                      link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      link:this.$config.prizeHasVoucher.includes(prizewin.instantWinResult.redeemedPrize.prizeId) ? (prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode)
+                       : prizewin.instantWinResult.redeemedPrize.redemptionLink ,
                       id:page
                     }]:[])
                   ,havejoox:false,
-                  code:this.$config.prizeHasVoucher.includes(prizewin.instantWinResult.redeemedPrize.prizeId) ?  prizewin.instantWinResult.redeemedPrize.voucherCode : null ,
+                  code:null ,
                 subName:null,
               }
 
@@ -356,19 +357,7 @@ export default {
                 ,note:null
                 ,image:this.submissionText.hardLuckImage
                 ,havejoox:false
-                ,button:button ?[
-                  { text:this.submissionText.redeemPrize,
-                    link:this.submissionText.hardLuckMusic,
-                    id:"RedeemMusic"
-                  },
-                    {
-                    text:this.submissionText.startRedeeming,
-                    type:"submission",
-                    id:1
-                }] :[ { text:this.submissionText.redeemPrize,
-                    link:this.submissionText.hardLuckMusic,
-                    id:"RedeemMusic"
-                  }],
+                ,button:[],
                 code:null,
                 subName:null,
                 isPlayAgain:false
@@ -414,11 +403,12 @@ export default {
                     name : prizewin.instantWinResult.redeemedPrize.name,
                     image: prizewin.instantWinResult.redeemedPrize.imgUrl ? prizewin.instantWinResult.redeemedPrize.imgUrl : '/img/landing/week 1 prize.png' ,
                     note : null
-                    ,button:[{
+                    ,button:prizewin.instantWinResult.redeemedPrize.redemptionLink ? [{
                         text:this.submissionText.redeemPrize,
-                        link:prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode,
+                        link:this.$config.prizeHasVoucher.includes(prizewin.instantWinResult.redeemedPrize.prizeId) ? (prizewin.instantWinResult.redeemedPrize.redemptionLink + "?"+this.$config.voucherParameter+"="+prizewin.instantWinResult.redeemedPrize.voucherCode)
+                       : prizewin.instantWinResult.redeemedPrize.redemptionLink ,
                         id:page
-                    }]
+                    }]:[]
                     ,havejoox:false,
                     code:  prizewin.instantWinResult.redeemedPrize.voucherCode,
                   subName:null,
@@ -433,10 +423,7 @@ export default {
                 ,note:null
                  ,image:this.submissionText.hardLuckImage
                 ,havejoox:false
-                ,button:[{ text:this.submissionText.redeemPrize,
-                    link:this.submissionText.hardLuckMusic,
-                    id:"RedeemMusic"
-                  }],
+                ,button:[],
                 code:null,
                 subName:null,
                 isPlayAgain:false
