@@ -246,11 +246,7 @@ export default {
                           image: this.submissionText.hardLuckImage,
                           havejoox: false,
                           button: [
-                            {
-                              text: this.submissionText.redeemPrize,
-                              link: this.submissionText.hardLuckMusic,
-                              id: "RedeemMusic"
-                            }
+
                           ],
                           code: null,
                           subName: null,
@@ -307,11 +303,7 @@ export default {
                         image: this.submissionText.hardLuckImage,
                         havejoox: false,
                         button: [
-                          {
-                            text: this.submissionText.redeemPrize,
-                            link: this.submissionText.hardLuckMusic,
-                            id: "RedeemMusic"
-                          }
+
                         ],
                         code: null,
                         subName: null,
