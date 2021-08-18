@@ -434,7 +434,9 @@ export default {
                 ]
               : [],
             havejoox: false,
-            code: null,
+            code: !this.$config.prizeHasVoucher.includes(
+                      prizewin.instantWinResult.redeemedPrize.prizeId
+                    ) ? prizewin.instantWinResult.redeemedPrize.voucherCode : null,
             subName: null
           }
         ];

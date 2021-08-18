@@ -72,9 +72,9 @@
        </a>
       </div>
    </div>
-    <div class="prize-button-area center" id="participateAgain" v-if="prize.isPlayAgain">
+    <!--div class="prize-button-area center" id="participateAgain" v-if="prize.isPlayAgain">
           <v-btn @click="playAgain">{{submissionText.participateAgain}}</v-btn>
-    </div>
+    </div-->
  </div>
 </template>
 
