@@ -245,16 +245,13 @@ export default {
                           note: null,
                           image: this.submissionText.hardLuckImage,
                           havejoox: false,
-                          button: [
-
-                          ],
+                          button: [],
                           code: null,
                           subName: null,
                           isPlayAgain: false
                         }
                       ];
                       this.prize.push(prize[0]);
-                    } else if (error.response.status == "400") {
                       i = 100;
                     }
                   }
@@ -302,9 +299,7 @@ export default {
                         note: null,
                         image: this.submissionText.hardLuckImage,
                         havejoox: false,
-                        button: [
-
-                        ],
+                        button: [],
                         code: null,
                         subName: null,
                         isPlayAgain: false
@@ -458,7 +453,8 @@ export default {
           }
         ];
       }
-      this.prize = prize;
+      // this.prize = prize;
+      this.prize.push(prize[0]);
 
       // console.log(prize);
       //  this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
