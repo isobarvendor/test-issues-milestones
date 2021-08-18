@@ -20,7 +20,16 @@
     </div>
     <div v-else>
       <div class="container  prize-chance black-red-border" id="prize-chance">
+        <div style="text-align:center" v-if="loading">
+              <v-progress-circular
+                :width="2"
+                color="white"
+                indeterminate
+
+              ></v-progress-circular>
+        </div>
         <div class="wrapper" v-for="(item, idx) in prize" :key="idx">
+
           <PrizeItem
             :prize="item"
             :themes="themes"
@@ -39,11 +48,12 @@
       </div>
       <div v-if="prize.length == 0" style="text-align:center">
         <span v-html="thankYouMessage"></span>
-        <div class="prize-button-area center" style="margin-top:40px;">
+
+        <!--div class="prize-button-area center" style="margin-top:40px;">
           <v-btn @click="playAgain" id="participateAgain">{{
             submissionText.participateAgain
           }}</v-btn>
-        </div>
+        </div-->
       </div>
       <div
         class="container prize-chance redbox-withwhiteborder joox-section"
