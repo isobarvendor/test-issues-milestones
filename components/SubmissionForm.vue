@@ -31,8 +31,8 @@
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
     <div class="details" >
-      <input id="email" type="email" name="email" v-model="form.email" :placeholder="submissionText.email"/>
-        <!--span class="error-message">{{ errors.first('email') }}</span-->
+      <input id="email" type="email" name="email" v-model="form.email" v-validate="'email'" :placeholder="submissionText.email"/>
+        <span class="error-message">{{ errors.first('email') }}</span>
         <!-- <span class="error-message" v-if="!validateEmail(form.email)">{{ error.email }}</span> -->
     </div>
     <div class="details">
@@ -97,7 +97,7 @@
         <div class="terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed sem vel odio lacinia laoreet at in velit. Pellentesque efficitur odio et leo placerat, at bibendum lorem molestie. Nulla lorem ipsum, aliquam ut justo id, iaculis scelerisque massa. </div>
       </div>
     </div>
-        
+
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
@@ -462,7 +462,7 @@ export default {
            }
         }
         await this.checkcurrentAttempt();
-        
+
     },
 
         getListWallet(){
