@@ -367,6 +367,10 @@ export default {
       await this.$store
         .dispatch(GET_USER_DATA)
         .then(response => {
+          this.form.phoneNumber = response.data.phoneNumber
+            .replace(this.phoneCode, "")
+            .replace(this.phoneCodeDisplay, "");
+          // this.showPhone = true;
           this.currentAttempt = response.data.currentAttemptNumber;
           this.form.terms = response.data.termsAgreement;
           this.form.privacy = response.data.privacyAgreement;
@@ -422,6 +426,7 @@ export default {
                   ...this.$store.state.login,
                   phone: this.phoneCode
                 };
+                console.log(loginData);
 
                 this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
                 this.loading = false;
@@ -519,7 +524,7 @@ export default {
         this.errors.clear();
         this.$validator.errors.add({
           field: "phoneNumber",
-          msg: "Please insert a valid number"
+          msg: "តម្រូវឲ្យមានលេខទូរស័ព្ទ"
         });
       } else if (isNaN(val)) {
         this.errors.clear();

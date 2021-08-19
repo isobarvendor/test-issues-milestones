@@ -1,5 +1,5 @@
 <template>
-  <div class="container campaign-section howitworks-section">
+  <div class="container campaign-section">
     <div class="header">{{ data.title }}</div>
     <div class="howitworks">
       <div
@@ -28,9 +28,5 @@ export default {
 <style>
 .howitworks {
   text-align: center;
-}
-
-.howitworks-section {
-  padding: 10rem !important;
 }
 </style>
