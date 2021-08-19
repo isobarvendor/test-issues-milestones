@@ -26,23 +26,27 @@
               <MastheadCountDown v-if="isCountDown" :data="data.endDate" class="countdown"/>
               <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
           </video-background>
-          
+
         </swiper-slide>
         <swiper-slide>
           <div class="carousell-image" @click="redirect">
-            <img id='image' class="hidden-sm-and-up" :src="videoMob ? videoMob : '/img/landing/week 1 prize.png'" />
+            <img id='image' class="hidden-sm-and-up" :src="imgMob ? imgMob : '/img/landing/week 1 prize.png'" />
             <img id='image' class="hidden-xs-only" :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
             <!-- <div class="prize-description">
             <h3 v-html="item.shortDescription"></h3>
             {{ item.name }}
           </div> -->
           </div>
-          
+
         </swiper-slide>
         <div class="prize-swiper-pagination pagination" slot="pagination"></div>
+
       </swiper>
     </div>
-    <img id="arrow" src="/develop/masthead-arrow.png" />
+  <div class="swiper-button-area">
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
   </div>
 </template>
 
@@ -78,18 +82,25 @@ export default {
             spaceBetween: 20
           }
         }, */
+         navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+
         freeMode: true,
         pagination: {
           el: ".prize-swiper-pagination",
           clickable: true,
           bulletClass: "prize-swiper-pagination-bullet",
-          bulletActiveClass: "prize-swiper-pagination-bullet-active"
+          bulletActiveClass: "prize-swiper-pagination-bullet-active",
+
         }
       },
       imgDesk: this.data.homepage.mastheadSection.desktopImage[0].url,
+      imgMob: this.data.homepage.mastheadSection.mobileImage[0].url,
       videoDesk: this.data.homepage.mastheadSection.video.url,
       videoTab:  this.data.homepage.mastheadSection.video.url,
-      videoMob:  this.data.homepage.mastheadSection.mobileImage.length>0 ? this.data.homepage.mastheadSection.mobileImage[0].url : this.data.homepage.mastheadSection.video.url,
+      videoMob:  this.data.homepage.mastheadSection.tabletImage.length>0 ? this.data.homepage.mastheadSection.tabletImage[0].url : this.data.homepage.mastheadSection.video.url,
       muted:true
     };
   },
@@ -125,12 +136,12 @@ export default {
   bottom: 0;
   right: 46%;
   z-index: 99;
-  
+
 }
 .pagination span{
   position: absolute;
   z-index: 99;
-  
+
 }
 #masthead{
       /* background:#de0a1c; */
@@ -142,7 +153,7 @@ export default {
       left: 50px;
       cursor: pointer;
     }
-  
+
 
 .masthead {
   background-image: url("/develop/masthead-border.png");
@@ -173,7 +184,26 @@ export default {
   left: 50%; */
   padding-bottom: 20px;
 }
+.swiper-button-area{
+  width: 280px;
+  margin: auto;
+  position: relative;
+  top: -35px;
+}
 
+.swiper-button-prev, .swiper-button-next{
+  z-index: 9999;
+  color: #fff !important;
+  top:90% !important;
+  width: 100px !important;
+}
+.swiper-button-prev:after, .swiper-button-next:after
+{
+  font-size: 25px;
+}
+.swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled{
+  opacity: 0 !important;
+}
 .carousell-image {
   height: 100%;
   width: 100%;
@@ -185,7 +215,7 @@ export default {
   height: 100%;
 }
 
-   
+
       @media only screen and (min-width: 1200px) {
     .videoBackground{
       max-height: 650px;
@@ -196,19 +226,19 @@ export default {
     .masthead #arrow{
       bottom: 6.5%;
       right: 45%;
-      
+
     }
 
   }
   @media only screen and (max-width: 1150px) {
-    
+
     .carousell-image{
       height: 600px;
     }
      /* #masthead{
       padding: 10px;
     } */
-    
+
   }
 
    @media only screen and (max-width: 1099px) {
@@ -224,7 +254,7 @@ export default {
     .masthead #arrow{
       bottom: 7%;
       right: 44%;
-      
+
     }
   }
 
@@ -238,7 +268,7 @@ export default {
     .masthead #arrow{
       bottom: 7%;
       right: 43%;
-      
+
     }
   }
 
@@ -261,32 +291,30 @@ export default {
     .masthead #arrow{
       bottom: 9%;
       right: 40%;
-      
+
     }
   }
 
   @media only screen and (max-width: 575px) {
     .videoBackground{
-      max-height: 800px !important;
+      max-height: 400px !important;
     }
     .masthead #arrow{
       bottom: 10%;
       right: 35%;
-      
+
     }
-    
+
   }
 
   @media only screen and (max-width: 450px) {
     .masthead #arrow{
       bottom: 17%;
       right: 35%;
-      
+
     }
-    .videoBackground{
-      max-height: 180px !important;
-    }
-    
+
+
   }
 
 </style>

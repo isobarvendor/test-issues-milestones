@@ -368,8 +368,10 @@ export default {
   margin: 0 auto;
   /* width: 80%;
     height: 70%; */
-  width: 45%;
-  height: 230px;
+  width: 90%;
+  padding-bottom: 10px;
+
+
 }
 
 .header-title {
@@ -382,7 +384,13 @@ export default {
     font-size: 50px;
     position: relative;
     top: 55%;
+      background-image: url("/develop/background-prizes-title.png");
+    background-size: 100% 100%;
+    max-width: 500px;
+    margin: auto;
+       height: 90px;
   }
+
 }
 
 .header-title-mobile{
@@ -392,6 +400,11 @@ export default {
   p{
     font-family: "Hackney";
     font-size: 400%;
+      background-image: url("/develop/background-prizes-title.png");
+    background-size: 100% 100%;
+    height: 100px;
+
+    margin: auto;
 
   }
 }
@@ -400,7 +413,7 @@ export default {
   font-family: "Hackney";
   text-align: center;
   p {
-    font-size: 2.5vw;
+    font-size: 20px;
   }
 }
 
@@ -457,6 +470,7 @@ export default {
   font-size: 60%;
   width: 100%;
   margin: 4% auto 2% auto;
+  font-size: 16px;
 }
 
 #number {
@@ -470,7 +484,7 @@ export default {
   background: #f27c00;
   height: 50%;
   padding: 5% 0;
-  font-size: 60%;
+  font-size: 14px;
 }
 
 .text-subtitle {
@@ -480,7 +494,7 @@ export default {
 
 .text-subtitle-mobile {
   padding: 10% 0;
-  font-size: 60%;
+  font-size: 14px;
 }
 
 .button {
@@ -500,7 +514,7 @@ export default {
   background-color: #73aa17;
   color: white;
   font-size: 100%;
-  width: 45%;
+  width: 80%;
   border-radius: 5px;
   margin: 5% 1cm 0 1cm;
   text-align: center;
@@ -534,6 +548,7 @@ export default {
   background-position: 50% 0%;
   background-size: 700px 200px;
   margin-bottom: 0;
+
 }
 
 .image-row {
@@ -639,7 +654,7 @@ export default {
   .button {
     font-size: 70%;
   }
-  
+
   .card .button-close {
     position: absolute;
     right: 3%;
@@ -675,7 +690,7 @@ export default {
   .button {
     font-size: 60%;
   }
-  
+
   .card {
     padding-top: 2rem;
   }
@@ -704,10 +719,10 @@ export default {
     margin-bottom: 35%;
   }
   .header-title-mobile{
-  
+
   margin-top: 15%;
-  
-  
+
+
 }
 }
 
@@ -736,7 +751,7 @@ export default {
     font-size: 50%;
     height: 2vh;
   }
-  
+
 }
 
 /* @media screen and (max-width: 768px) {
@@ -754,7 +769,7 @@ export default {
 
     .prize-title{
         font-size: 150%
-    }   
+    }
     .prize-subtitle{
         font-size: 150%
     }

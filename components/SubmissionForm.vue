@@ -94,7 +94,7 @@
             <span></span>
           </label>
         </div>
-        <div class="terms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed sem vel odio lacinia laoreet at in velit. Pellentesque efficitur odio et leo placerat, at bibendum lorem molestie. Nulla lorem ipsum, aliquam ut justo id, iaculis scelerisque massa. </div>
+        <div class="terms" v-html="submissionText.declareMarketing"></div>
       </div>
     </div>
 

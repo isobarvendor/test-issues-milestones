@@ -1,6 +1,6 @@
 <template>
  <div style="width:100%">
-  <div class="container campaign-section redbox-withwhiteborder submission-section submission" id="submission-section" v-if="cmsData&&!submitted">
+  <div class="container mechanics campaign-section redbox-withwhiteborder submission-section submission" id="submission-section" v-if="cmsData&&!submitted">
       <div class="divider">
         <img src="/develop/fanta-logo.png" width="100%" />
       </div>
