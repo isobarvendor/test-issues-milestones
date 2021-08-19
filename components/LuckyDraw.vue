@@ -43,7 +43,7 @@
                 top: 18%;
             }
         }
-        
+
         div >>> h4{
             /* margin: 3cm 2cm 0 1cm; */
             text-align: center;
@@ -69,7 +69,7 @@
         margin-left: 2cm;
         margin-top: -1cm; */
         margin: 1.5cm 0cm 3cm 40%;
-        
+
     }
 
     /* .image{
@@ -117,26 +117,26 @@
                 width: 33%;
                 height: 53%;
         }
-        
+
     }
 
-     @media (max-width: 400px){
+     @media (max-width: 600px){
         .draw{
             margin-right: 20vw;
             margin-left: 0;
             height: 280px;
             .image{
                 margin-left: 5%
-                
-            }
-            
-            
-            
-            
-        }
-        
 
-        
+            }
+
+
+
+
+        }
+
+
+
         img{
                 width: 45%;
                 height: 50%;
@@ -145,11 +145,11 @@
             margin-top: 1cm;
             padding-top: 0.5cm;
         }
-        
+
     }
 
-    
 
-    
+
+
 
 </style>

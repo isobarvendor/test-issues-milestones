@@ -285,7 +285,7 @@ export default {
       let request;
         request={
                     "name"  : this.form.name,
-                    "email" : this.form.email,
+                    "email" : this.form.email ? this.form.email : "",
                     "mechanic" : this.getAttempt[currentAttempt].campaignType,
                     "programmeId": programId,
                     "configurationId": ngps[0].configID,
@@ -550,6 +550,7 @@ export default {
   }
   .error-message-black{
     color:#000;
+    margin-top: 20px;
   }
   .d-flex {
     display: flex;

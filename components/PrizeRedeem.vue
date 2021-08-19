@@ -145,16 +145,16 @@ export default {
     cursor: pointer;
     color: white;
   }
-  
+
 }
 
 #link{
-  
+
     margin-top: 1rem;
     cursor: pointer;
     color: white;
     text-align: center;
-    
+
 }
 
 .text-redeem {
@@ -165,7 +165,7 @@ export default {
         transform: translate(-50%, -50%); */
   height: 10%;
   width: 100%;
-  
+
   p {
     font-size: 150%;
   }
@@ -242,13 +242,13 @@ export default {
     .images{
       height: 70%;
     }
-    
+
 }
 
 @media screen and (max-width: 736px) {
     .header-redeem {
         p {
-        font-size: 250%;
+             font-size: 26px;
         }
     }
     /* .content{
@@ -256,7 +256,7 @@ export default {
     } */
     .images{
         height: 80%;
-        width: 30%;
+        width: 50%;
     }
     .text-redeem{
         font-size: 80%;
@@ -275,8 +275,8 @@ export default {
             width: 3%;
             height: 3%;
         }
-    } 
-    
+    }
+
 }
 
 @media screen and (max-width: 400px){
@@ -307,7 +307,7 @@ export default {
             width: 5%;
             height: 5%;
         }
-    } 
+    }
 }
 
 

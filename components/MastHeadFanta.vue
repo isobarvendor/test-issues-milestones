@@ -82,6 +82,9 @@ export default {
             spaceBetween: 20
           }
         }, */
+           autoplay: {
+          delay: 5000
+        },
          navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -277,7 +280,7 @@ export default {
       max-height: 400px !important;
     }
     .carousell-image{
-      max-height: 400px;
+      max-height: 450px;
     }
      /* #masthead{
       padding: 10px;

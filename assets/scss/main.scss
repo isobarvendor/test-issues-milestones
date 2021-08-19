@@ -68,7 +68,7 @@ a.button {
   filter: $shadow;
 }
 
-.grecaptcha-badge { 
+.grecaptcha-badge {
   bottom: 70px !important;
 }
 
@@ -347,24 +347,24 @@ footer {
       p {
         font-size: 1.7vw;
       }
-    
+
   }
 
   @media (max-width: 834px) {
       p {
         font-size: 2.5vw;
       }
-    
+
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
       p {
         font-size: 2.7vw;
       }
       h4 {
         font-size: 7vw;
       }
-    
+
   }
 }
 
@@ -375,24 +375,24 @@ footer {
     font-family: "Hackney";
   }
   @media screen and (max-width: 736px) {
-      
+
           p {
-          font-size: 250%;
+            font-size: 26px;
           }
-      
-      
-      
+
+
+
   }
 
   @media screen and (max-width: 400px){
-    
-    
+
+
       p {
         font-size: 225%;
         font-family: "Hackney";
       }
-    
-    
+
+
   }
 
 }
@@ -1313,4 +1313,8 @@ input:focus::placeholder {
 
 .profile-content {
   font-weight: bold;
+}
+
+.at-expanding-share-button-toggle-bg span{
+ background-color: #73AA17 !important;
 }
