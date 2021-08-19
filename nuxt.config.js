@@ -54,7 +54,17 @@ export default {
         content: "Home page Coke - Turn Up Your Rhythm"
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "img/icons/favicon.png" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "img/icons/favicon.png" }
+    ],
+    script: [
+      {
+        hid: "addthis",
+        src:
+          "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-611e0863522656bc",
+        defer: true
+      }
+    ]
   },
   /*
    ** Global CSS
