@@ -413,7 +413,7 @@ export default {
                       text: this.submissionText.redeemPrize,
                       link:
                         prizewin.instantWinResult.redeemedPrize.redemptionLink +
-                        "?" +
+                        "&" +
                         this.$config.voucherParameter +
                         "=" +
                         prizewin.instantWinResult.redeemedPrize.voucherCode,
@@ -440,7 +440,7 @@ export default {
                       prizewin.instantWinResult.redeemedPrize.prizeId
                     )
                       ? prizewin.instantWinResult.redeemedPrize.redemptionLink +
-                        "?" +
+                        "&" +
                         this.$config.voucherParameter +
                         "=" +
                         prizewin.instantWinResult.redeemedPrize.voucherCode
@@ -515,7 +515,7 @@ export default {
                       prizewin.instantWinResult.redeemedPrize.prizeId
                     )
                       ? prizewin.instantWinResult.redeemedPrize.redemptionLink +
-                        "?" +
+                        "&" +
                         this.$config.voucherParameter +
                         "=" +
                         prizewin.instantWinResult.redeemedPrize.voucherCode
