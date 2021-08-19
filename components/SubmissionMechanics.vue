@@ -397,15 +397,18 @@ export default {
             gift_name: prizewin.instantWinResult.redeemedPrize.name
           });
         }
-
+        let thankYouMessage = attemptData.FormHeading.thankYouMessage;
+        if (this.request.pin[0] == "2") {
+          thankYouMessage = this.submissionText.thankyouMessage;
+        }
         prize = [
           {
-            text: attemptData.FormHeading.thankYouMessage,
+            text: this.prize.length < 1 ? thankYouMessage : null,
             name: prizewin.instantWinResult.redeemedPrize.name,
             image: prizewin.instantWinResult.redeemedPrize.imgUrl
               ? prizewin.instantWinResult.redeemedPrize.imgUrl
               : "/img/landing/week 1 prize.png",
-            note: prizewin.instantWinResult.redeemedPrize.shortDescription,
+            note: prizewin.instantWinResult.redeemedPrize.redeemDescription,
             button: button
               ? prizewin.instantWinResult.redeemedPrize.redemptionLink
                 ? [
