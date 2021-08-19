@@ -419,6 +419,7 @@ footer {
 
     @include breakpoint(lg) {
       font-size: 20px;
+      line-height: 25px;
       height: calc(414px - 280px);
     }
   }
