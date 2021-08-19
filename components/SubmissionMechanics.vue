@@ -19,7 +19,9 @@
       <Form :data="dataForm" :cmsData="cmsData[0]" /-->
     </div>
     <div v-else>
-      <div class="container  prize-chance black-red-border" id="prize-chance">
+      <div class="container prize-chance black-red-border" id="prize-chance">
+        <span v-html="thankYouMessage"></span>
+        <!-- <span>{{ thankYouMessage }}</span> -->
         <div style="padding:20px; margin: auto;" v-if="loading">
           <v-progress-circular
             :width="2"
@@ -72,7 +74,7 @@
 </template>
 
 <script>
-import { SUBMIT_FORM } from "@/store/action_types";
+import { SUBMIT_FORM, FETCH_CMS_DATA } from "@/store/action_types";
 import Login from "./SubmissionLogin";
 import Form from "./SubmissionForm";
 import { translation } from "@/constants/index";
@@ -141,6 +143,7 @@ export default {
         attemptData: this.attemptData,
         request: this.request
       };
+
       request.configurationId = configID[this.submitNumber - 1];
       request.hasMore = false;
 
@@ -227,10 +230,10 @@ export default {
                 .dispatch(SUBMIT_FORM, request)
                 .then(response => {
                   data.response = response.data;
-                  console.log(
-                    response.data.instantWinResult.redeemedPrize
-                      .shortDescription
-                  );
+                  // console.log(
+                  //   response.data.instantWinResult.redeemedPrize
+                  //     .shortDescription
+                  // );
 
                   if (a == 0) {
                     this.submitOne(data, false, page);
@@ -397,7 +400,7 @@ export default {
 
         prize = [
           {
-            text: prizewin.instantWinResult.redeemedPrize.redeemDescription,
+            text: attemptData.FormHeading.thankYouMessage,
             name: prizewin.instantWinResult.redeemedPrize.name,
             image: prizewin.instantWinResult.redeemedPrize.imgUrl
               ? prizewin.instantWinResult.redeemedPrize.imgUrl
@@ -447,9 +450,7 @@ export default {
                 ]
               : [],
             havejoox: false,
-            code: !this.$config.prizeHasVoucher.includes(
-              prizewin.instantWinResult.redeemedPrize.prizeId
-            )
+            code: !prizewin.instantWinResult.redeemedPrize.redemptionLink
               ? prizewin.instantWinResult.redeemedPrize.voucherCode
               : null,
             subName: null
