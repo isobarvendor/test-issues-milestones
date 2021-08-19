@@ -67,6 +67,9 @@ a.button {
   text-align: center;
   filter: $shadow;
 }
+.grecaptcha-badge {
+  bottom: 70px !important;
+}
 
 header {
   @include row;
