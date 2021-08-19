@@ -144,7 +144,8 @@ let language = {
       note: "សូមទាក់ទងលេខ 1-800-20-2222 ដើម្បីដឹងពីរបៀបប្តូរយករង្វាន់",
       startRedeeming: "ចាប់ផ្តើមប្តូរយករង្វាន់",
       redeemNextPrize: "ប្តូរយករង្វាន់បន្ទាប់",
-      thankyouMessage: "<h2>Thank you for your participation (350 ml) !<h2/>",
+      thankyouMessage:
+        "<h2>Congratulations on winning 2 prizes from your 350ml Coke purchase.<h2/>",
       textPage:
         "អ្នកបានបញ្ចូលលេខកូដពីដបកូកា-កូឡាដបជ័រ 350ml អ្នកនឹងមានឱកាសចាប់រង្វាន់ 2 ដង",
       hardLuckHeader: "មានបញ្ហាបច្ចេទេស",
