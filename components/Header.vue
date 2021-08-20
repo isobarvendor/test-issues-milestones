@@ -345,4 +345,9 @@ background-color: #F7941E;
           display: none !important;
         }
     }
+     @media only screen and (max-width: 1023px) {
+       .logout{
+             display: none !important;
+       }
+     }
 </style>

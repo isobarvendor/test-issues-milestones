@@ -126,7 +126,7 @@
             margin-left: 0;
             height: 280px;
             .image{
-                margin-left: 5%
+                margin-left: 0%
 
             }
 
@@ -143,6 +143,8 @@
         }
         .text{
             margin-top: 1cm;
+             margin-left: 42%;
+               width: 90%;
             padding-top: 0.5cm;
         }
 

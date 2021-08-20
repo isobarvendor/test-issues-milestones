@@ -334,35 +334,35 @@ footer {
     /* margin: 3cm 2cm 0 1cm; */
     text-align: center;
     color: white;
-    font-size: 3.9vw;
+    font-size: 3.4vw;
     font-family: "Hackney";
   }
   p {
     text-align: center;
     color: white;
-    font-size: 1.65vw;
+    font-size: 1.3vw;
     font-family: "Avenir";
   }
   @media (max-width: 1300px) {
       p {
-        font-size: 1.7vw;
+        font-size: 1.3vw;
       }
 
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 1024px) {
       p {
-        font-size: 2.5vw;
+        font-size: 2vw;
       }
 
   }
 
   @media (max-width: 600px) {
       p {
-        font-size: 2.7vw;
+        font-size: 2.9vw;
       }
       h4 {
-        font-size: 7vw;
+        font-size: 8vw;
       }
 
   }
@@ -388,7 +388,7 @@ footer {
 
 
       p {
-        font-size: 225%;
+        font-size: 26px;
         font-family: "Hackney";
       }
 

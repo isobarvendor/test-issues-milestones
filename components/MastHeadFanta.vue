@@ -56,6 +56,7 @@ import MastheadCountDown from "../components/MastheadCountDown";
 export default {
   props: {
     data: null,
+
     /* isCountDown: null, */
   },
   components: {

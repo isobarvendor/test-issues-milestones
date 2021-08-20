@@ -244,14 +244,7 @@ export default {
     }
   },
   methods:{
-    validateEmail(email){
-      email = String(email)
-      if (email.includes(".com")){
-        return true
-      } else {
-        return false;
-      }
-    },
+
     generateRequest(currentAttempt){
       if(currentAttempt>=this.getAttempt.length){
         currentAttempt=this.getAttempt.length-1;
@@ -323,9 +316,12 @@ export default {
         }
       })
       .catch((error) =>{
-        if(error){
-          this.currentAttempt=9999999;
-        }
+        if(error.response && error.response.data.status=='401'){
+              localStorage.clear();
+              this.$store.commit('SET_LOGIN_ACCOUNT', null);
+              this.$store.commit('SET_TOKEN', null);
+              location.reload();
+          }
       });
     },
 
