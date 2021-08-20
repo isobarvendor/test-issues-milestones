@@ -1,57 +1,63 @@
-$primary-color:#B10017;
-$secondary-color:#de0a1c;
+$primary-color: #b10017;
+$secondary-color: #de0a1c;
 
-$coke-primary-color:#B10017;
-$coke-secondary-color:#de0a1c;
-$coke-font-heading-color:#FFFFFF;
-$coke-font-footer-color:#FFFFFF;
-$coke-footer-background-color:#1d1d1b;
-$coke-button-background-color:#FFFFFF;
-$coke-button-font-color:#000000;
-$coke-border-color:#db1f27;
-$coke-prize-border-color:#db1f27;
-$coke-prize-pagination-color:#db1f27;
+$coke-primary-color: #b10017;
+$coke-secondary-color: #de0a1c;
+$coke-font-heading-color: #ffffff;
+$coke-font-footer-color: #ffffff;
+$coke-footer-background-color: #1d1d1b;
+$coke-button-background-color: #ffffff;
+$coke-button-font-color: #000000;
+$coke-border-color: #db1f27;
+$coke-prize-border-color: #db1f27;
+$coke-prize-pagination-color: #db1f27;
 
-$sprite-primary-color:#009739;
-$sprite-secondary-color:#C6C6C6;
-$sprite-font-heading-color:#FFD100;
-$sprite-font-footer-color:#039539;
-$sprite-button-background-color:#FFFFFF;
-$sprite-button-font-color:#039539;
-$sprite-border-color:#01722E;
-$sprite-prize-border-color:#FFFFFF;
-$sprite-prize-pagination-color:#FFD100;
+$sprite-primary-color: #009739;
+$sprite-secondary-color: #c6c6c6;
+$sprite-font-heading-color: #ffd100;
+$sprite-font-footer-color: #039539;
+$sprite-button-background-color: #ffffff;
+$sprite-button-font-color: #039539;
+$sprite-border-color: #01722e;
+$sprite-prize-border-color: #ffffff;
+$sprite-prize-pagination-color: #ffd100;
 
-$fanta-primary-color:#F7941E;
-$fanta-secondary-color:#77BC1F;
-$fanta-font-heading-color:#FFFFFF;
-$fanta-font-footer-color:#FFFFFF;
-$fanta-button-background-color:#000F8B;
-$fanta-button-font-color:#FFFFFF;
-$fanta-border-color:#FFFFFF;
-$fanta-prize-border-color:#FFFFFF;
-$fanta-prize-pagination-color:#000F8B;
+$fanta-primary-color: #f7941e;
+$fanta-secondary-color: #77bc1f;
+$fanta-font-heading-color: #ffffff;
+$fanta-font-footer-color: #ffffff;
+$fanta-button-background-color: #000f8b;
+$fanta-button-font-color: #ffffff;
+$fanta-border-color: #ffffff;
+$fanta-prize-border-color: #ffffff;
+$fanta-prize-pagination-color: #000f8b;
 
+// $body-fontfamily: "Unity Text", Helvetica, Arial, sans-serif;
+$body-fontfamily: "Khamer", Helvetica, Arial, sans-serif;
+// $header-fontfamily: 'Unity Headline', Helvetica, Arial, sans-serif;
+$header-fontfamily: "Khamer", Helvetica, Arial, sans-serif;
+// $tagline-fontfamily: "Unity Condensed";
+$tagline-fontfamily: "Khamer";
 
-$body-fontfamily: 'Unity Text',Helvetica, Arial, sans-serif;
-$header-fontfamily: 'Unity Headline', Helvetica, Arial, sans-serif;
-$tagline-fontfamily: 'Unity Condensed';
-
-$body-font-color:white;
+$body-font-color: white;
 $body-font-size: 16px;
-$body-bg-color:$primary-color;
-$body-bg-color-wallet:#272727;
-$footer-bg-color:$secondary-color;
+$body-bg-color: $primary-color;
+$body-bg-color-wallet: #272727;
+$footer-bg-color: $secondary-color;
 
 $mobile-body-font-size: 14px;
 
-$content-max-width:1280px;
+$content-max-width: 1280px;
 
 $masthead-vpadding: 25px;
 $masthead-hpadding: 50px;
 
 $content-hpadding: 1.4em;
 
-$shadow: drop-shadow(4px 4px 8px rgba(0,0,0,.25));
+$shadow: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.25));
 
-$wallet-button-gradient: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(59,59,59,1) 100%);
+$wallet-button-gradient: linear-gradient(
+  0deg,
+  rgba(0, 0, 0, 1) 0%,
+  rgba(59, 59, 59, 1) 100%
+);

@@ -93,12 +93,12 @@ let language = {
       }
     ],
     periodDescription:
-      "ចាប់ពីថ្ងៃនេះរហូតដល់ 04 កញ្ញា 2021 គ្រប់ផលិតផលកូកា-កូឡា អ្នកអាចមានឱកាសស្តាប់ចម្រៀងថ្មីៗ ពី Pleng (Unbox Music Playlist) និងរង្វាន់ជាច្រើនទៀត ដោយគ្រាន់តែអនុវត្តតាមជំហានដូចខាងក្រោម",
-    signInButton: "SIGN IN <BR/><small>to win prizes</small>",
+      "ចាប់ពីថ្ងៃទី 04 កញ្ញា 2021 ដល់ថ្ងៃទី 30 តុលា 2021 គ្រប់ផលិតផលកូកា-កូឡា អ្នកអាចមានឱកាសស្តាប់ចម្រៀងថ្មីៗ ពី Pleng (Unbox Music Playlist) និងរង្វាន់ជាច្រើនទៀត ដោយគ្រាន់តែអនុវត្តតាមជំហានដូចខាងក្រោម",
+    signInButton: "ចុះឈ្មោះ<BR/><small>ដើម្បីមានឱកាសឈ្នះ</small>",
     menu: {
-      home: "Home",
-      privacy: "Privacy",
-      terms: "Terms",
+      home: "ទំព័រដើម",
+      privacy: "គោលការណ៍ឯកជន",
+      terms: "លក្ខន្ដិកនៃការចូលរួម",
       logout: "Logout",
       myRewards: "My Rewards"
     },
@@ -135,7 +135,7 @@ let language = {
       errorZaloPrize: "Redemption Limit for zalo prize has been reached",
       errorNormalPrize: "Redemption Limit for normal prize has been reached",
       errorAPI: " បញ្ហាបច្ចេទេស សូមព្យាយាមម្តងទៀត",
-      errorMaxPhone: "You reach maximum phone number length",
+      errorMaxPhone: "អ្នកបញ្ជូលលេខទូរស័ព្ទគ្រប់ខ្ទង់",
       errorRequiredPhone: " តម្រូវឲ្យមានលេខទូរស័ព្ទ",
       participateAgain: " ចូលរួមម្តងទៀត",
       listenNow: "ស្តាប់ឥឡូវនេះ",
