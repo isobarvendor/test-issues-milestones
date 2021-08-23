@@ -22,17 +22,21 @@ export default {
   getListWallet(token) {
     return axios.get(`${origin}/api/campaign/auth/list-wallet`, setHeader(token))
   },
-  checkUserAttempt(token) {
+  /* checkUserAttempt(token) {
     return axios.get(`${origin}/api/user-participators/current-attempt-number`, setHeader(token))
   },
   getUserPhone(token) {
     return axios.get(`${origin}/api/user-participators/get-phone-number`, setHeader(token))
+  }, */
+  getUserData(token) {
+    return axios.get(`${origin}/api/user-participators/get-user-data`, setHeader(token))
   },
   redeemPrize(data, token) {
     return axios.post(`${origin}/api/campaign/auth/redeem-prize`, data, setHeader(token))
   },
   submitLogin(data, token) {
     return axios.post(`${origin}/api/campaign/auth/submission`, data, setHeader(token))
+    /* return axios.get(`/mock/submission`, setHeader(token)); */
   },
   submitNonLogin(data) {
     return axios.post(`${origin}/api/campaign/public/submission`, data)

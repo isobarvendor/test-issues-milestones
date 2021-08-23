@@ -26,6 +26,10 @@ export default {
     voucherParameter:process.env.voucherParameter,
     gtm: {
       id: process.env.GTM
+    },
+    recaptcha: {
+      /* reCAPTCHA options */
+      siteKey: process.env.RECAPTCHA_SITE_KEY // for example
     }
   },
   privateRuntimeConfig: {
@@ -39,13 +43,19 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { name: 'robots', content: 'noindex, nofollow' },
       { hid: 'description', name: 'description', content:  'Home page Coke - Turn Up Your Rhythm' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'img/icons/favicon.png' }
-    ]
+    ],
+    script: [
+      {
+        src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61122fd2c425a9d3",
+        type: "text/javascript"
+      },
+    ],
   },
   /*
   ** Global CSS
@@ -70,7 +80,9 @@ export default {
     {
       src: '~/plugins/vue-countdown',
       ssr: false
-    }
+    },
+    { src: '~/plugins/hotjar', ssr: false },
+
   ],
   router: {
     middleware: ['redirect']
@@ -87,15 +99,17 @@ export default {
     // Simple usage
     '@nuxtjs/vuetify',
     'vue-scrollto/nuxt',
-    '@nuxtjs/gtm',
+   '@nuxtjs/gtm',
+
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
-    'nuxt-validate',
+    "@nuxtjs/axios",
+    "@nuxtjs/dotenv",
+    '@nuxtjs/recaptcha',
+    "nuxt-validate",
     [
       'nuxt-mq',
       {
@@ -110,6 +124,9 @@ export default {
       }
     ]
   ],
+  recaptcha: {
+    version: 3,     // Version
+  },
   styleResources: {
     scss: [
       '~assets/scss/variables.scss',

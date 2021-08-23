@@ -8,7 +8,7 @@ import TncSection from '@/components/TncSection'
 
 
 import {mockCMSConfig,mockCMSContent} from "@/__mock__/mock";
-
+import {translation} from "@/constants/index"
 
 
 
@@ -45,7 +45,13 @@ let localVue, store,router;
 
   const factory = () => {
     return mount(tnc, {
-
+      data(){
+        return{
+          dataStatus:{},
+          browserTitle:translation.browserTitle,
+          metaData:translation.meta
+        }
+      },
       localVue, store,router
     });
   };

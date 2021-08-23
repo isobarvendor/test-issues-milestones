@@ -3,7 +3,7 @@
 exports[`Footer renders properly 1`] = `
 <footer>
   <div class="container">
-    <p>tes</p>
+    <p class="footer-text">tes</p>
     <p><a href="/privacy">Privacy Policy</a> <a href="/tnc">Terms and conditions</a></p>
   </div>
 </footer>

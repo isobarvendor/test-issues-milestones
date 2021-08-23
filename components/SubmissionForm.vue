@@ -1,20 +1,41 @@
 <template>
   <div>
   <div >
-    <div class="img-footer" >
+    <!-- <div class="img-footer" >
             <img src="/img/landing/instruments.png" width="100%" />
-    </div>
+    </div> -->
    <div class="header">{{form.name ? submissionText.hello+" "+form.name : submissionText.header}}</div>
   <form class="mechanics" autocomplete="off">
-     <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
+     <!-- <div class="details" v-if="submissionFormFields&&submissionFormFields.isNameActive">
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" readonly/>
-        <!--span class="error-message">{{ errors.first('name') }}</span-->
+        <span> class="error-message">{{ errors.first('name') }}</span>
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isEmailActive">
       <input id="email" type="email" name="email" v-model="form.email"  v-validate="'required'" :placeholder="submissionText.email" readonly/>
-        <!--span class="error-message">{{ errors.first('email') }}</span-->
+        <span> class="error-message">{{ errors.first('email') }}</span>
     </div>
     <div class="details" v-if="submissionFormFields&&submissionFormFields.isPhoneNumberActive">
+      <div class="btn-text">
+        <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
+     <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber"  />
+      </div>
+        <div class="info-icon tooltip">
+            <img src="/img/landing/info-button.png" width="25"  />
+            <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
+          </div>
+        <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
+    </div> -->
+    <div class="details" >
+      <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" />
+        <span class="error-message" v-if="form.name == ''">{{ error.name }}</span>
+        <!--span class="error-message">{{ errors.first('name') }}</span-->
+    </div>
+    <div class="details" >
+      <input id="email" type="email" name="email" v-model="form.email" v-validate="'email'" :placeholder="submissionText.email"/>
+        <span class="error-message">{{ errors.first('email') }}</span>
+        <!-- <span class="error-message" v-if="!validateEmail(form.email)">{{ error.email }}</span> -->
+    </div>
+    <div class="details">
       <div class="btn-text">
         <input id="phoneCode" type="tel"  v-model="phoneCodeDisplay"   :readonly="true" />
      <input id="phoneNumber" type="tel" name="phone" v-model="form.phoneNumber" v-validate="'required'"  class="short"  :placeholder="submissionText.phoneNumber"  />
@@ -53,19 +74,7 @@
         <div class="terms" v-html="submissionText.acceptTerm"></div>
       </div>
     </div>
-
     <div class="row top">
-      <div class="col d-flex consent">
-        <div class="checkbox">
-          <label for="form_pp">
-            <input type="checkbox" name="privacy" id="form_pp" v-model="form.privacy">
-            <span></span>
-          </label>
-        </div>
-        <div class="terms" v-html="submissionText.acceptPrivacy"></div>
-      </div>
-    </div>
-        <div class="row top">
       <div class="col d-flex consent">
         <div class="checkbox">
           <label for="form_age">
@@ -76,6 +85,19 @@
         <div class="terms" v-html="submissionText.declareAge"></div>
       </div>
     </div>
+
+    <div class="row top">
+      <div class="col d-flex consent">
+        <div class="checkbox">
+          <label for="form_marketing">
+            <input type="checkbox" name="marketing" id="form_marketing" v-model="form.marketing">
+            <span></span>
+          </label>
+        </div>
+        <div class="terms" v-html="submissionText.declareMarketing"></div>
+      </div>
+    </div>
+
    <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
@@ -85,7 +107,7 @@
              <span class="error-message-red">{{ errors.first('code') }}</span>
           </div>
           <div class="info-icon tooltip">
-            <img src="/img/landing/info-button.png" width="25"  />
+            <img src="/develop/info-button.png" width="25"  />
             <span class="tooltiptext">{{submissionText.tooltipText}}</span>
           </div>
       </div>
@@ -97,7 +119,7 @@
 
       ></v-progress-circular>
       </div>
-      <v-btn class="get-code" id="submission"  dark v-else  v-on:click="submit()">{{submissionText.buttonText}}</v-btn>
+      <button class="get-code" id="submission"  dark v-else  @click="submit">{{submissionText.buttonText}}</button>
     </div>
   </form>
 
@@ -147,7 +169,7 @@
 </template>
 
 <script>
-import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET } from '@/store/action_types';
+import { SUBMIT_FORM, UPLOAD_FILE, CHECK_ATTEMPT, DELETE_FILE,GET_LIST_WALLET, GET_USER_DATA } from '@/store/action_types';
 import * as _ from 'lodash';
 import {translation} from "@/constants/index"
 export default {
@@ -164,9 +186,10 @@ export default {
           email:null,
           code:null,
           terms:false,
-          privacy:false,
+          marketing:false,
           uploadFile:null,
-          phoneNumber:null
+          phoneNumber:null,
+          ageConsent: null
         },
         errorMessage:null,
         submitted:true,
@@ -177,8 +200,11 @@ export default {
         phoneCodeDisplay:"+"+this.$config.phoneCode,
         phoneCode:this.$config.phoneCode+"-",
         showPhone:false,
-        submissionText:translation.submissionText
-
+        submissionText:translation.submissionText,
+        error: {
+          name: "Please insert a name.",
+          email: "Please insert a valid email"
+        }
 
     }
   },
@@ -218,6 +244,7 @@ export default {
     }
   },
   methods:{
+
     generateRequest(currentAttempt){
       if(currentAttempt>=this.getAttempt.length){
         currentAttempt=this.getAttempt.length-1;
@@ -251,11 +278,15 @@ export default {
       let request;
         request={
                     "name"  : this.form.name,
-                    "email" : this.form.email,
+                    "email" : this.form.email ? this.form.email : "",
                     "mechanic" : this.getAttempt[currentAttempt].campaignType,
                     "programmeId": programId,
                     "configurationId": ngps[0].configID,
-                    "flowLabel": ngps[0].flowLabel
+                    "flowLabel": ngps[0].flowLabel,
+                    "termsAgreement": this.form.terms,
+                    "privacyAgreement": this.form.marketing,
+                    "ageAgreement": this.form.ageConsent
+
         }
         if(this.loginInfo){
           //request["userId"]=this.loginInfo.uuid;
@@ -269,14 +300,28 @@ export default {
         return request;
     },
     async checkcurrentAttempt(){
-      await this.$store.dispatch(CHECK_ATTEMPT)
+      await this.$store.dispatch(GET_USER_DATA)
       .then((response)=>{
         this.currentAttempt=response.data.currentAttemptNumber;
+        if(this.currentAttempt>1){
+           if (response.data.termsAgreement){
+             this.form.terms = true;
+           }
+           if (response.data.ageAgreement){
+             this.form.ageConsent = true;
+           }
+           if (response.data.privacyAgreement){
+             this.form.marketing = true
+           }
+        }
       })
       .catch((error) =>{
-        if(error){
-          this.currentAttempt=9999999;
-        }
+        if(error.response && error.response.data.status=='401'){
+              localStorage.clear();
+              this.$store.commit('SET_LOGIN_ACCOUNT', null);
+              this.$store.commit('SET_TOKEN', null);
+              location.reload();
+          }
       });
     },
 
@@ -323,11 +368,6 @@ export default {
              this.errorMessage=this.submissionText.errorTerm;
              return false;
            }
-            if(!this.form.privacy){
-              this.loading=false;
-             this.errorMessage=this.submissionText.errorPolicy;
-             return false;
-           }
             if(!this.form.ageConsent){
               this.loading=false;
              this.errorMessage=this.submissionText.errorDeclare;
@@ -346,11 +386,16 @@ export default {
                   this.errorMessage=this.submissionText.errorPinCode;
                   return false;
                 }
-                this.$store.dispatch(SUBMIT_FORM,request)
+              const tokenCaptcha = await this.$recaptcha.execute('register')
+          //console.log('ReCaptcha token:', token)
+                request.captchaResponse=tokenCaptcha;
+                await this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response)=>{
                    // this.submitted=true;
                    this.addGTMSuccess();
-                   let loginData={...this.$store.state.login, phone : this.phoneCode+this.form.phoneNumber, terms:this.form.terms, privacy:this.form.privacy, ageConsent:this.form.ageConsent  }
+                   let logininfo = this.$store.state.login;
+                   logininfo.email = request.email
+                   let loginData={...logininfo, phone : this.phoneCode+this.form.phoneNumber }
 
                    this.$store.commit('SET_LOGIN_ACCOUNT',loginData );
                     this.loading=false;
@@ -413,16 +458,9 @@ export default {
              this.form.phoneNumber=this.loginInfo.phone.replace(this.phoneCode,"").replace(this.phoneCodeDisplay,"");
              this.showPhone=true;
            }
-           this.form.terms=this.loginInfo.terms;
-           this.form.privacy=this.loginInfo.privacy;
-           this.form.ageConsent=this.loginInfo.ageConsent;
         }
         await this.checkcurrentAttempt();
-        if(this.currentAttempt>1){
-           this.form.terms=true;
-           this.form.privacy=true;
-           this.form.ageConsent=true;
-        }
+
     },
 
         getListWallet(){
@@ -452,8 +490,16 @@ export default {
 
   },
   beforeMount() {},
-  mounted(){
-    this.getAccount();
+  async mounted(){
+    try {
+        await this.$recaptcha.init();
+        this.getAccount();
+      } catch (e) {
+        console.error(e);
+      }
+  },
+  beforeDestroy() {
+    this.$recaptcha.destroy()
   },
   watch:{
      "form.phoneNumber": function (val) {
@@ -486,6 +532,9 @@ export default {
 </script>
 
 <style scoped>
+  .header{
+    text-align: center;
+  }
   .details{
     position: relative;
   }
@@ -497,15 +546,20 @@ export default {
   }
   .error-message-black{
     color:#000;
+    margin-top: 20px;
   }
   .d-flex {
     display: flex;
     align-items: center;
   }
   .get-code {
-    display: block;
+    /* display: block; */
+    border-radius: 4px;
     width: 100%;
-    margin: 25px 0;
+    margin: 25px 0 55px 0;
+    background-color: #73AA17;
+    color: white;
+    text-align: center;
   }
   input[type="file"] {
     display: none;
@@ -527,7 +581,8 @@ export default {
 }
 button.get-code{
   height: 60px !important;
-  border-radius: 15px;
+  border-radius: 5px;
+  font-family: "Avenir";
 }
 
 form.mechanics{
@@ -576,7 +631,7 @@ form.mechanics{
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 280px;
-    background-color: #1d1d1b;
+    background-color: #73AA17;
     color: #fff;
     border-radius: 6px;
     padding: 15px;
@@ -602,7 +657,7 @@ form.mechanics{
     margin-top: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: transparent #1d1d1b  transparent transparent;
+    border-color: transparent #73AA17 transparent transparent;
   }
 }
 .tooltip:hover .tooltiptext {

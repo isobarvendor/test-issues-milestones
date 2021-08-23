@@ -17,11 +17,23 @@ import {
   GET_LIST_WINNERS,
   CHECK_ATTEMPT,
   GET_MY_PRIZE,
-  GET_PHONE
+  GET_PHONE,
+  GET_USER_DATA
 } from './action_types';
 
 
 export default {
+  [GET_USER_DATA]: ({ commit, state, getters }, data) => {
+    return new Promise((resolve, reject) => {
+        NGPSAPI.getUserData(state.token)
+        .then(response => {
+          return resolve(response);
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    })
+  },
   [LOGIN]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
@@ -191,7 +203,7 @@ export default {
 
     return new Promise((resolve, reject) => {
 
-        NGPSAPI.getUserPhone(state.token)
+        NGPSAPI.getUserData(state.token)
         .then(response => {
           let phone = response.data.phoneNumber;
           let loginAccount=state.login;

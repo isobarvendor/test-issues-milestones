@@ -1,8 +1,8 @@
 <template>
  <div style="width:100%">
-  <div class="container campaign-section redbox-withwhiteborder submission-section" id="submission-section" v-if="cmsData&&!submitted">
+  <div class="container mechanics campaign-section redbox-withwhiteborder submission-section submission" id="submission-section" v-if="cmsData&&!submitted">
       <div class="divider">
-        <img src="/img/landing/coke line divider.png" width="100%" />
+        <img src="/develop/fanta-logo.png" width="100%" />
       </div>
       <Login :social="dataSocial" v-if="!this.$store.state.login"   />
       <Form :data="dataForm" :cmsData="cmsData[0]"  v-if="this.$store.state.login" @submit="submit"  />
@@ -11,9 +11,10 @@
 
   </div>
   <div  v-else >
-  <div class="container  prize-chance black-red-border">
-      <div class="wrapper">
-      <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  />
+  <!-- <div class="container  prize-chance black-red-border">
+      <div class="wrapper"> -->
+      <!-- <PrizeItem :prize="prize[0]" :themes="1" @playAgain="playAgain" v-if="prize.length>0"  /> -->
+      <PrizeRedeem @scroll="scroll" v-if="prize.length>0" :voucher="prize[0].code" :data="cms" :image="prize[0].image" :config="dataForm" />
       <div v-else style="text-align:center">
 
             <span v-html="thankYouMessage"></span>
@@ -22,18 +23,19 @@
             </div>
 
       </div>
-      </div>
-    </div>
-    <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
+<!--       </div>
+    </div> -->
+    <!-- <div class="container prize-chance redbox-withwhiteborder joox-section" v-if="jooxMessage"   >
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
-    </div>
-    <div class="desc-joox" >
+    </div> -->
+    <LuckyDraw id="lucky" :data="dataForm" :cms="cms"/>
+    <!-- <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
-        <!--div class="joox-listen">
+        div class="joox-listen">
             <a :href="listenNowLink" target="_blank"><v-btn >{{submissionText.listenNow}}</v-btn></a>
-        </div-->
-    </div>
+        </div>
+    </div> -->
   </div>
   </div>
  </div>
@@ -51,7 +53,7 @@ export default {
   },
    props: {
         dataForm: null,
-
+        cms: null
       },
   data() {
     return {
@@ -115,7 +117,6 @@ export default {
               }
           ];
           this.prize=prize;
-
           this.listenNowLink=prizewin.instantWinResult.redeemedPrize.redemptionLink;
           this.jooxMessage=attemptData.FormHeading.Prize;
       }
@@ -126,13 +127,30 @@ export default {
       }
 
 
-    }
+    },
+    scroll(){
+       var options = {
+                container: 'body',
+                easing: 'ease-in',
+                lazy: false,
+                offset: -60,
+                force: true,
+                cancelable: true,
+                x: false,
+                y: true
+            }
+        this.$scrollTo('#lucky', 120, options)
+     },
   },
 }
 </script>
 
 <style>
-
+  .submission{
+    margin: auto;
+    background-image: url('/develop/background-submission.png');
+    background-size: 100% 100%
+  }
 
  .prize-chance.joox-section{
      padding-top: 80px;

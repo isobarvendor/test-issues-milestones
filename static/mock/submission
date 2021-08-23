@@ -1,0 +1,49 @@
+{
+            "burnResult": [
+                {
+                    "pincode": "0J6TC2VP5",
+                    "programId": "453269",
+                    "lotId": "445580",
+                    "burned": true
+                }
+            ],
+            "grivy":
+              {
+
+                  "public_code": "demo-active",
+
+                  "secret_code": "C085E093F89C",
+
+                  "url": "https://barcode-stage.web.app/c/demo-active",
+
+                 "secret_code_image": "/img/landing/barcode.png",
+
+                  "store_name": "Alfamart",
+
+                  "coupon_expired_at": "2021-04-22 02:41:00",
+
+                  "creative_image": "https://cdn2.grivy.com/Testing%20Juice/JUICE_BANNER-1080x480.jpg"
+
+
+
+              },
+            "participationId": "1ylazdy9kkxmpa53",
+            "instantWinResult": {
+                "winner": true,
+              "redeemedPrize": {
+                    "prizeId": "kkwav9kv",
+                    "voucherCode": "Voucher891",
+                    "status": "claimed",
+                    "expiryDate": 1620018590000,
+                    "name": "COKE AYO PET 250 ml gratis!",
+                    "description":"Conglratulations",
+                    "shortDescription": "http://google.com",
+                    "redeemDescription": "http://abcd",
+                    "redemptionLink": "http://abcd",
+                    "imgUrl": "/img/landing/coke.jpg",
+                    "barcodeType": 1,
+                    "emailSent": false,
+                    "emailMessage": "Email could not be sent"
+                }
+            }
+        }

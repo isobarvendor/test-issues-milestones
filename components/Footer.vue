@@ -1,6 +1,6 @@
 <template>
   <footer>
-      <div class="container">
+      <div class="footer">
 
         <p v-html="footerText" class="footer-text"></p>
         <p>
@@ -40,5 +40,16 @@ export default {
 </script>
 
 <style>
-
+ .footer{
+    @include column;
+    position: relative;
+    max-width: 1280px !important;
+    overflow: hidden;
+    width: 100%;
+    padding: 1.4em 1.4em;
+    background-color: #111E72;
+    @include breakpoint(md){
+      padding: 0 2em;
+    }
+ }
 </style>
