@@ -24,13 +24,13 @@ export default {
       }
     },
     computed:{
-/*       footerText(){
+      footerText(){
         if(this.data){
           var text = this.data.copyright.copyright;
           return text;
         }
 
-      } */
+      }
     },
     mounted(){
 
