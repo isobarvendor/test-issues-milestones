@@ -141,8 +141,8 @@ let language =
         tryagain:"Please try again"
       },
       footer:{
-        privacy:"Privacy Policy",
-        terms:"Terms and conditions"
+        privacy:"นโยบายคุ้มครองข้อมูลส่วนบุคคล",
+        terms:"ข้อกำหนดและเงื่อนไข"
       }
 
     }
