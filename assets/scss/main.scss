@@ -70,6 +70,15 @@ a.button {
 
 .grecaptcha-badge {
   bottom: 70px !important;
+  @media only screen and(max-width: 500px) {
+    bottom: 140px !important
+  }
+}
+
+.at-expanding-share-button-desktop{
+  @media only screen and(max-width: 500px) {
+    bottom: 80px !important
+  }
 }
 
 header {
