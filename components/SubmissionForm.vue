@@ -25,7 +25,9 @@
             :placeholder="submissionText.name"
             readonly
           />
-          <!--span class="error-message">{{ errors.first('name') }}</span-->
+          <span class="tip-message">{{
+            submissionText.nameAsShownOnTheIDcard
+          }}</span>
         </div>
         <div
           class="details"
@@ -557,6 +559,9 @@ export default {
 }
 .error-message-black {
   color: #000;
+}
+.tip-message {
+  color: rgb(255, 255, 255);
 }
 .d-flex {
   display: flex;

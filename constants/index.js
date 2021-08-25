@@ -150,7 +150,8 @@ let language = {
       hardLuckHeader: "មានបញ្ហាបច្ចេទេស",
       hardLuckTitle: "",
       hardLuckImage: "",
-      theCodeFieldIsRequired: "សូមបំពេញលេខកូដទីនេះ"
+      theCodeFieldIsRequired: "សូមបំពេញលេខកូដទីនេះ",
+      nameAsShownOnTheIDcard: "ขื่อ-นามสกุล ตามที่ปรากฎบนบัตรประชาชน"
     },
     winnerText: {
       header: "តារាងឈ្មោះអ្នកឈ្នះ",
