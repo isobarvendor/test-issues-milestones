@@ -150,6 +150,7 @@ export default {
     margin: auto;
     background-image: url('/develop/background-submission.png');
     background-size: 100% 101%;
+    z-index: 100;
   }
 
  .prize-chance.joox-section{
