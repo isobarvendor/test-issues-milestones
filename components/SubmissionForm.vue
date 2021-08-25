@@ -27,7 +27,8 @@
     </div> -->
     <div class="details" >
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" />
-        <span class="error-message" v-if="form.name == ''">{{ error.name }}</span>
+        <span class="error-message" v-if="form.name == ''">{{ error.name }}</span><br>
+        <span class="error-message" style="color:white;">{{ submissionText.text }}</span>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
     <div class="details" >

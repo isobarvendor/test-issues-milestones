@@ -30,7 +30,8 @@
     position: fixed;
     bottom: 0;
     height: 70px;
-    display: block
+    display: block;
+    z-index: 99;
   }
 
 .smaller-box{

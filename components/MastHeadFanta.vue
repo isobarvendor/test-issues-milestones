@@ -1,5 +1,5 @@
 <template>
-  <div class="container masthead" id="masthead">
+  <div class="container masthead" >
     <div class="swiper">
       <swiper :options="swiperOption" class="swiper-container">
         <swiper-slide>
@@ -11,11 +11,11 @@
                   {src: videoTab, res: 900, autoplay: true},
                   {src: videoMob, res: 638, autoplay: true}
               ]"
-              class="videoBackground"
+              class="videoBackgroundFanta"
               style="height: 150vh;"
               ref="videobackground"
               :muted="muted"
-
+              v-if="!isImage(videoDesk) || $vuetify.breakpoint.xs"
 
           >
                 <div class="masthead-content">
@@ -26,6 +26,9 @@
               <MastheadCountDown v-if="isCountDown" :data="data.endDate" class="countdown"/>
               <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
           </video-background>
+          <div class="carousell-image" v-if="isImage(videoDesk) && !$vuetify.breakpoint.xs">
+            <img id="image" :src="videoDesk" >
+          </div>
 
         </swiper-slide>
         <swiper-slide>
@@ -105,7 +108,8 @@ export default {
       videoDesk: this.data.homepage.mastheadSection.video.url,
       videoTab:  this.data.homepage.mastheadSection.video.url,
       videoMob:  this.data.homepage.mastheadSection.tabletImage.length>0 ? this.data.homepage.mastheadSection.tabletImage[0].url : this.data.homepage.mastheadSection.video.url,
-      muted:true
+      muted:true,
+      image: false
     };
   },
   methods:{
@@ -115,7 +119,22 @@ export default {
     redirect(){
       const link = this.data.homepage.mastheadSection.description
       window.open(link);
-    }
+    },
+    isImage(img){
+      if(img.includes("png") || img.includes("jpg")){
+        return true
+      } else {
+        return false
+      }
+    },
+    /* mounted(){
+      if (this.videoDesk.includes("png") || this.videoDesk.includes("jpg")){
+        this.image = true;
+
+      }
+      console.log(this.videoDesk)
+      console.log(this.image)
+    } */
   }
 };
 </script>
@@ -123,10 +142,10 @@ export default {
 <style>
 .swiper-container{
   position: relative;
-  max-height: 600px;
+  max-height: 1000px;
 }
 
-.videoBackground{
+.videoBackgroundFanta{
   position:relative;
 }
 
@@ -150,6 +169,7 @@ export default {
 #masthead{
       /* background:#de0a1c; */
       /* padding: 20px; */
+      padding: 0;
     }
     .mutedIcon{
       position: absolute;
@@ -211,21 +231,22 @@ export default {
 .carousell-image {
   height: 100%;
   width: 100%;
-  margin-bottom: -0.5cm;
+  max-height: 600px;
+  /* margin-bottom: -0.5cm; */
 }
 
-#image{
-  width: 100%;
+.carousell-image img{
   height: 100%;
+  width: 100%
 }
 
 
       @media only screen and (min-width: 1200px) {
-    .videoBackground{
+    .videoBackgroundFanta{
       max-height: 650px;
     }
     .carousell-image{
-      height: 650px;
+      height: 600px;
     }
     .masthead #arrow{
       bottom: 6.5%;
@@ -246,7 +267,7 @@ export default {
   }
 
    @media only screen and (max-width: 1099px) {
-    .videoBackground{
+    .videoBackgroundFanta{
       max-height: 600px;
     }
     .carousell-image{
@@ -263,7 +284,7 @@ export default {
   }
 
   @media only screen and (max-width: 800px) {
-    .videoBackground{
+    .videoBackgroundFanta{
       max-height: 400px !important;
     }
     .carousell-image{
@@ -277,8 +298,8 @@ export default {
   }
 
   @media only screen and (max-width: 600px) {
-    .videoBackground{
-      max-height: 400px !important;
+    .videoBackgroundFanta{
+      max-height: 600px;
     }
     .carousell-image{
       max-height: 450px;
@@ -300,8 +321,9 @@ export default {
   }
 
   @media only screen and (max-width: 575px) {
-    .videoBackground{
+    .videoBackgroundFanta{
       max-height: 400px !important;
+      z-index: -1;
     }
     .masthead #arrow{
       bottom: 10%;
