@@ -23,8 +23,10 @@ export default {
     minPhoneNumber: process.env.minPhoneNumber,
     maxPhoneNumber: process.env.maxPhoneNumber,
     voucherParameter: process.env.voucherParameter,
+    voucherParameter2: process.env.voucherParameter2,
     configID: process.env.configID,
     prizeHasVoucher: process.env.prizeHasVoucher,
+    prizePlaylist: process.env.prizePlaylist,
     prizeShowOnce: process.env.prizeShowOnce,
     lotID: process.env.lotID,
     gtm: {
