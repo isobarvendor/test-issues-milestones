@@ -25,7 +25,9 @@
             :placeholder="submissionText.name"
             readonly
           />
-          <!--span class="error-message">{{ errors.first('name') }}</span-->
+          <!-- <span class="error-message">{{
+            errors.first('name')
+          }}</span> -->
         </div>
         <div
           class="details"
@@ -159,7 +161,11 @@
                 name="code"
                 :placeholder="submissionText.enterCode"
               />
-              <span class="error-message-red">{{ errors.first("code") }}</span>
+              <span class="error-message-red">{{
+                errors.first("code")
+                  ? submissionText.theCodeFieldIsRequired
+                  : null
+              }}</span>
             </div>
             <div class="info-icon tooltip">
               <img src="/img/landing/info-button.png" width="25" />
@@ -508,6 +514,7 @@ export default {
   beforeMount() {},
   mounted() {
     this.getAccount();
+    // console.log(this.errors);
   },
   watch: {
     "form.phoneNumber": function(val) {
@@ -530,7 +537,7 @@ export default {
         this.errors.clear();
         this.$validator.errors.add({
           field: "phoneNumber",
-          msg: "Please enter a number"
+          msg: "តម្រូវឲ្យមានលេខទូរស័ព្ទ"
         });
       } else {
         this.errors.clear();
@@ -553,6 +560,7 @@ export default {
 .error-message-black {
   color: #000;
 }
+
 .d-flex {
   display: flex;
   align-items: center;

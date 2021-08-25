@@ -117,7 +117,7 @@ let language = {
       phoneNumber: "លេខទូរស័ព្ទ",
       acceptTerm: "ខ្ញុំយល់ព្រមទទួលយកនូវលក្ខន្ដិកនេះ",
       acceptPrivacy: "ខ្ញុំយល់ព្រមទទួលយកនូវគោលការណ៍ឯកជនភាពនេះ",
-      declareAge: "ខ្ញុំសូមប្រកាសថាខ្ញុំមានអាយុលើស 18 ឆ្នាំ",
+      declareAge: "ខ្ញុំសូមប្រកាសថាខ្ញុំមានអាយុលើស 13 ឆ្នាំ",
       enterCode: "វាយបញ្ចូលលេខកូដ",
       tooltipText:
         "វាយបញ្ចូលលេខកូដដែលឃើញពីក្រោមគម្របដប ឬក្រវិលកំប៉ុងកូកា-កូឡារបស់អ្នកនៅទីនេះ",
@@ -144,13 +144,13 @@ let language = {
       note: "សូមទាក់ទងលេខ 1-800-20-2222 ដើម្បីដឹងពីរបៀបប្តូរយករង្វាន់",
       startRedeeming: "ចាប់ផ្តើមប្តូរយករង្វាន់",
       redeemNextPrize: "ប្តូរយករង្វាន់បន្ទាប់",
-      thankyouMessage:
-        "<h2>Congratulations on winning 2 prizes from your 350ml Coke purchase.<h2/>",
+      thankyouMessage: "<h2>អបអរសាទរ! អ្នកឈ្នះរង្វាន់ទ្វេរដង!<h2/>",
       textPage:
         "អ្នកបានបញ្ចូលលេខកូដពីដបកូកា-កូឡាដបជ័រ 350ml អ្នកនឹងមានឱកាសចាប់រង្វាន់ 2 ដង",
       hardLuckHeader: "មានបញ្ហាបច្ចេទេស",
       hardLuckTitle: "",
-      hardLuckImage: ""
+      hardLuckImage: "",
+      theCodeFieldIsRequired: "សូមបំពេញលេខកូដទីនេះ"
     },
     winnerText: {
       header: "តារាងឈ្មោះអ្នកឈ្នះ",
