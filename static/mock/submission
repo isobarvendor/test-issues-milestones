@@ -11,19 +11,21 @@
             "instantWinResult": {
                 "winner": false,
               "redeemedPrize": {
-                    "prizeId": "kkwav9kv",
-                    "voucherCode": "Voucher891",
-                    "status": "claimed",
-                    "expiryDate": 1620018590000,
-                    "name": "JOOX VIP PASS",
-                    "description":"Conglratulations",
-                    "shortDescription": "http://google.com",
-                    "redeemDescription": "http://abcd",
-                    "redemptionLink": "/img/sample.mp3",
-                    "imgUrl": "/img/landing/week 1 prize.png",
-                    "barcodeType": 1,
-                    "emailSent": false,
-                    "emailMessage": "Email could not be sent"
+                    "amountAvailable": 1847,
+"barcodeType": 1,
+"deliveryType": 1,
+"active": true,
+"description": "<p>Exclusive Music Playlist!</p>",
+"shortDescription": "<p>ឈ្នះបទចម្រៀងថ្មីៗ (Unpublic Playlist) ពី Pleng Music app</p>",
+"priority": 1,
+"prizeId": "ks8o5wc3",
+"imgUrl": "https://d1tnwdlrciourl.cloudfront.net/prizeImages/z2xtqi9ks8ndwx3/ks8o5wc3/7.CAM prizes-10 songs@2x.png",
+"totalAmount": 2000,
+"minAge": 13,
+"name": "Exclusive Music Playlist!",
+"redemptionLink": "https://pleng.onelink.me/pp89?pid=ddlink&af_web_dp=https%3A%2F%2Fwww.smart.com.kh%2Fkm%2Fpleng%2F&af_dp=plengmusic%3A%2F% 2F&af_partner_name=cc",
+"configurationId": "z2xtqi9ks8ndwx3",
+"redeemDescription": "<p>អបអរសាទរ! អ្នកបានឈ្នះការចូលទៅកាន់បញ្ជីចម្រៀងមុនគេបង្អស់របស់កម្មវិធី Pleng ពី Smart។ សូមចុចលីងខាងក្រោមដើម្បីស្តាប់កំសាន្ត</p>"
                 }
             }
         }

@@ -38,6 +38,15 @@
             v-if="prize.length > 0"
             :loading="loading"
           />
+          <div
+            v-if="idx == prize.length - 1"
+            class="prize-button-area center"
+            style="margin-top:40px;"
+          >
+            <v-btn @click="playAgain" id="participateAgain">{{
+              submissionText.participateAgain
+            }}</v-btn>
+          </div>
           <div class="error-message" v-if="idx == prize.length - 1">
             {{ errorMessage }}
           </div>
@@ -46,15 +55,15 @@
           {{ errorMessage }}
         </div>
       </div>
-      <div v-if="prize.length == 0" style="text-align:center">
+      <!-- <div v-if="prize.length > 0" style="text-align:center">
         <span v-html="thankYouMessage"></span>
 
-        <!--div class="prize-button-area center" style="margin-top:40px;">
+        <div class="prize-button-area center" style="margin-top:40px;">
           <v-btn @click="playAgain" id="participateAgain">{{
             submissionText.participateAgain
           }}</v-btn>
-        </div-->
-      </div>
+        </div>
+      </div> -->
       <div
         class="container prize-chance redbox-withwhiteborder joox-section"
         v-if="prize.length > 0 && prize[0].havejoox"
@@ -401,6 +410,38 @@ export default {
         if (this.request.pin[0] == "2") {
           thankYouMessage = this.submissionText.thankyouMessage;
         }
+        let prizeLink = "";
+        if (
+          this.$config.prizeHasVoucher.includes(
+            prizewin.instantWinResult.redeemedPrize.prizeId
+          )
+        ) {
+          // prizeLink = `${prizewin.instantWinResult.redeemedPrize.redemptionLink}&${this.$config.voucherParameter}=${prizewin.instantWinResult.redeemedPrize.voucherCode}`;
+          prizeLink =
+            prizewin.instantWinResult.redeemedPrize.redemptionLink +
+            "&" +
+            this.$config.voucherParameter +
+            "=" +
+            prizewin.instantWinResult.redeemedPrize.voucherCode;
+          prizeLink = prizeLink.replace(/\s/g, "");
+        } else if (
+          this.$config.prizePlaylist.includes(
+            prizewin.instantWinResult.redeemedPrize.prizeId
+          )
+        ) {
+          // prizeLink = `${prizewin.instantWinResult.redeemedPrize.redemptionLink}&${this.$config.voucherParameter2}=${prizewin.instantWinResult.redeemedPrize.voucherCode}`;
+          prizeLink =
+            prizewin.instantWinResult.redeemedPrize.redemptionLink +
+            "&" +
+            this.$config.voucherParameter2 +
+            "=" +
+            prizewin.instantWinResult.redeemedPrize.voucherCode;
+          prizeLink = prizeLink.replace(/\s/g, "");
+        }
+        // console.log("=======================================");
+        // console.log(prizewin.instantWinResult.redeemedPrize.prizeId);
+        // console.log(this.$config.prizePlaylist);
+        // console.log(prizeLink);
         prize = [
           {
             text: this.prize.length < 1 ? thankYouMessage : null,
@@ -414,12 +455,7 @@ export default {
                 ? [
                     {
                       text: this.submissionText.redeemPrize,
-                      link:
-                        prizewin.instantWinResult.redeemedPrize.redemptionLink +
-                        "&" +
-                        this.$config.voucherParameter +
-                        "=" +
-                        prizewin.instantWinResult.redeemedPrize.voucherCode,
+                      link: prizeLink,
                       id: page
                     },
                     {
@@ -439,15 +475,7 @@ export default {
               ? [
                   {
                     text: this.submissionText.redeemPrize,
-                    link: this.$config.prizeHasVoucher.includes(
-                      prizewin.instantWinResult.redeemedPrize.prizeId
-                    )
-                      ? prizewin.instantWinResult.redeemedPrize.redemptionLink +
-                        "&" +
-                        this.$config.voucherParameter +
-                        "=" +
-                        prizewin.instantWinResult.redeemedPrize.voucherCode
-                      : prizewin.instantWinResult.redeemedPrize.redemptionLink,
+                    link: prizeLink,
                     id: page
                   }
                 ]
