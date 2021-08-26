@@ -61,7 +61,10 @@ export default {
       data,
       setHeader(token)
     );
-    // return axios.get(`/mock/submission`, setHeader(token))
+    // return axios.get(`/mock/topup`, setHeader(token));
+    // return axios.get(`/mock/samsung`, setHeader(token));
+    // return axios.get(`/mock/playlist`, setHeader(token));
+    // return axios.get(`/mock/pleng`, setHeader(token));
   },
   submitNonLogin(data) {
     return axios.post(`${origin}/api/campaign/public/submission`, data);

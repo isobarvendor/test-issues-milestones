@@ -300,6 +300,7 @@ export default {
             await this.$store
               .dispatch(SUBMIT_FORM, request)
               .then(response => {
+                // console.log(response);
                 data.response = response.data;
                 if (a == 0) {
                   this.submitOne(data, false, page);
@@ -416,7 +417,7 @@ export default {
             prizewin.instantWinResult.redeemedPrize.prizeId
           )
         ) {
-          // prizeLink = `${prizewin.instantWinResult.redeemedPrize.redemptionLink}&${this.$config.voucherParameter}=${prizewin.instantWinResult.redeemedPrize.voucherCode}`;
+          // prizeLink = `${prizewin.instantWinResult.redeemedPrize.redemptionLink}&${this.$config.voucherParameter}=${prizewin.instantWinResult.redeemedPrize.voucherCode}&${this.$config.voucherParameter2}=`;
           prizeLink =
             prizewin.instantWinResult.redeemedPrize.redemptionLink +
             "&" +
@@ -429,7 +430,7 @@ export default {
             prizewin.instantWinResult.redeemedPrize.prizeId
           )
         ) {
-          // prizeLink = `${prizewin.instantWinResult.redeemedPrize.redemptionLink}&${this.$config.voucherParameter2}=${prizewin.instantWinResult.redeemedPrize.voucherCode}`;
+          // prizeLink = `${prizewin.instantWinResult.redeemedPrize.redemptionLink}&${this.$config.voucherParameter}=&${this.$config.voucherParameter2}=${prizewin.instantWinResult.redeemedPrize.voucherCode}`;
           prizeLink =
             prizewin.instantWinResult.redeemedPrize.redemptionLink +
             "&" +
@@ -442,6 +443,16 @@ export default {
         // console.log(prizewin.instantWinResult.redeemedPrize.prizeId);
         // console.log(this.$config.prizePlaylist);
         // console.log(prizeLink);
+        let voucherCode = !prizewin.instantWinResult.redeemedPrize
+          .redemptionLink
+          ? prizewin.instantWinResult.redeemedPrize.voucherCode
+          : null;
+        if (
+          prizewin.instantWinResult.redeemedPrize.name.includes("Samsung") ||
+          prizewin.instantWinResult.redeemedPrize.name.includes("Playlist")
+        ) {
+          voucherCode = null;
+        }
         prize = [
           {
             text: this.prize.length < 1 ? thankYouMessage : null,
@@ -481,9 +492,7 @@ export default {
                 ]
               : [],
             havejoox: false,
-            code: !prizewin.instantWinResult.redeemedPrize.redemptionLink
-              ? prizewin.instantWinResult.redeemedPrize.voucherCode
-              : null,
+            code: voucherCode,
             subName: null
           }
         ];
