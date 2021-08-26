@@ -1,0 +1,31 @@
+{
+  "burnResult": [
+    {
+      "pincode": "0J6TC2VP5",
+      "programId": "453269",
+      "lotId": "445580",
+      "burned": true
+    }
+  ],
+  "participationId": "1ylazdy9kkxmpa53",
+  "instantWinResult": {
+    "winner": true,
+    "redeemedPrize": {
+      "barcodeType": 1,
+      "deliveryType": 1,
+      "active": true,
+      "description": "<p></p>",
+      "shortDescription": "<p>លេខកូដកាតសម្រាប់បញ្ចូលទឹកប្រាក់ 5 ដុល្លា ដែលមានរយៈពេល 30 ថ្ងៃ</p>",
+      "priority": 1,
+      "prizeId": "ks8nusf9",
+      "imgUrl": "https://d1tnwdlrciourl.cloudfront.net/prizeImages/z2xtqi9ks8ndwx3/ks8nusf9/3.CAM prizes-Top up$5@2x.png",
+      "totalAmount": 500,
+      "minAge": 13,
+      "name": "Top up card/code $5",
+      "redemptionLink": "",
+      "configurationId": "z2xtqi9ks8ndwx3",
+      "redeemDescription": "<p>អបអរសាទរ! អ្នកបានឈ្នះកោសកាតប្រព័ន្ធទូរស័ព្ទ Smart 5 ដុល្លា! នេះជាលេខកូដសម្រាប់បញ្ចូលលុយទូរស័ព្ទ សូមចុចលេខ *888*លេខកូដ ១៣ខ្ទង់។ សូមប្តូរយករង្វាន់ឲ្យបានមុនថ្ងៃទី ៣០ ខែ វិច្ឆិកា ឆ្នាំ ២០២១។</p>",
+      "voucherCode": "CNXFUUAKAY"
+    }
+  }
+}

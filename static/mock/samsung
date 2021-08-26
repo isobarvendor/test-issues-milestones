@@ -1,0 +1,31 @@
+{
+  "burnResult": [
+    {
+      "pincode": "0J6TC2VP5",
+      "programId": "453269",
+      "lotId": "445580",
+      "burned": true
+    }
+  ],
+  "participationId": "1ylazdy9kkxmpa53",
+  "instantWinResult": {
+    "winner": true,
+    "redeemedPrize": {
+      "barcodeType": 1,
+      "deliveryType": 1,
+      "active": true,
+      "description": "<p></p>",
+      "shortDescription": "<p>ទូរស័ព្ទសាមសុង Galaxy Note20 Ultra</p>",
+      "priority": 1,
+      "prizeId": "ks8ns5hv",
+      "imgUrl": "https://d1tnwdlrciourl.cloudfront.net/prizeImages/z2xtqi9ks8ndwx3/ks8ns5hv/1.CAM prize-N20 Ultra@2x.png",
+      "totalAmount": 20,
+      "minAge": 13,
+      "name": "Samsung Galaxy Note20 Ultra",
+      "redemptionLink": "",
+      "configurationId": "z2xtqi9ks8ndwx3",
+      "redeemDescription": "<p>អបអរសាទរ! អ្នកបានឈ្នះទូរស័ព្ទសាមសុង Galaxy Note20 Ultra! សូមទាក់ទងទៅលេខ 1-800-20-2222 (មិនគិតថ្លៃសេវាទូរស័ព្ទ ២៤/៧) ដើម្បីដឹងពីរបៀបប្តូរយករង្វាន់។ សូមប្តូរយករង្វាន់ឲ្យបានមុនថ្ងៃទី ៣០ ខែ វិច្ឆិកា ឆ្នាំ</p>",
+      "voucherCode": "CNXFUUAKAY"
+    }
+  }
+}

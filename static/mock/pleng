@@ -1,0 +1,30 @@
+{
+  "burnResult": [
+    {
+      "pincode": "0J6TC2VP5",
+      "programId": "453269",
+      "lotId": "445580",
+      "burned": true
+    }
+  ],
+  "participationId": "1ylazdy9kkxmpa53",
+  "instantWinResult": {
+    "winner": true,
+    "redeemedPrize": {
+      "barcodeType": 1,
+      "deliveryType": 1,
+      "active": true,
+      "description": "<p>3 months subscription to Pleng Pro</p>",
+      "shortDescription": "<p>ឈ្នះថ្លៃសេវា Pleng Pro Subscription រយៈពេល 3 ខែ</p>",
+      "priority": 1,
+      "prizeId": "ks8o4ixh",
+      "imgUrl": "https://d1tnwdlrciourl.cloudfront.net/prizeImages/z2xtqi9ks8ndwx3/ks8o4ixh/CAM prizes — Pleng Pro@2x.png",
+      "name": "3 months subscription to Pleng Pro ",
+      "redemptionLink": "https://pleng.onelink.me/pp89?pid=ddlink&af_web_dp=https%3A%2F%2Fwww.smart.com.kh%2Fkm%2Fpleng%2F&af_dp=plengmusic%3A%2F% 2F&af_partner_name=cc",
+      "configurationId": "z2xtqi9ks8ndwx3",
+      "redeemDescription": "<p>អបអរសាទរ! អ្នកបានឈ្នះ Pleng Pro Subscription រយៈពេល ៣ ខែ! រីករាយនូវការស្តាប់ចម្រៀងឥតដែនកំណត់។ សូមដោនឡូតកម្មវិធី Pleng ពី Smart ដើម្បីបញ្ចូលលេខកូដ និងដាក់ដំណើរការ Smart Pleng Pro។ សូមប្តូរយករង្វាន់ឲ្យបានមុនថ្ងៃទី ៣០ ខែ វិច្ឆិកា ឆ្នាំ ២០២១។</p>",
+      "voucherCode": "CNXFUUAKAY"
+      
+    }
+  }
+}

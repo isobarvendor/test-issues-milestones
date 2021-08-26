@@ -432,7 +432,7 @@ export default {
                   ...this.$store.state.login,
                   phone: this.phoneCode
                 };
-                console.log(loginData);
+                // console.log(loginData);
 
                 this.$store.commit("SET_LOGIN_ACCOUNT", loginData);
                 this.loading = false;
