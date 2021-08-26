@@ -15,7 +15,7 @@
               style="height: 150vh;"
               ref="videobackground"
               :muted="muted"
-              v-if="!isImage(videoDesk) || $vuetify.breakpoint.xs"
+              v-if="!isImage(videoDesk)||!isImage(videoMob)"
 
           >
                 <div class="masthead-content">
@@ -24,10 +24,13 @@
 
               </div>
               <MastheadCountDown v-if="isCountDown" :data="data.endDate" class="countdown"/>
-              <div v-if="!$vuetify.breakpoint.xs" class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
+              <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
           </video-background>
           <div class="carousell-image" v-if="isImage(videoDesk) && !$vuetify.breakpoint.xs">
             <img id="image" :src="videoDesk" >
+          </div>
+          <div class="carousell-image" v-if="isImage(videoMob) && $vuetify.breakpoint.xs">
+            <img id="image" :src="videoMob" >
           </div>
 
         </swiper-slide>
