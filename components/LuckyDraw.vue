@@ -146,7 +146,7 @@
         .text{
             margin-top: 0.5cm;
              margin-left: 42%;
-               width: 90%;
+               width: 95%;
             padding-top: 0.5cm;
         }
 
@@ -176,9 +176,9 @@
                 height: 140px;
         }
         .text{
-            margin-top: 1cm;
-             margin-left: 42%;
-               width: 90%;
+            margin-top: 20px;
+             margin-left: 33%;
+               width: 100%;
             padding-top: 0.5cm;
         }
 
@@ -191,7 +191,7 @@
                 width: 110.5px;
                 height: 140px;
         }
-       
+
 
     }
 

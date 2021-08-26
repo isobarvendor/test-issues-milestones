@@ -1,17 +1,21 @@
 <template>
     <div class="container sticky">
       <div class="container smaller-box" @click="scroll">
-        <p>Participate Now</p>
+        <p>{{label}}</p>
       </div>
     </div>
 </template>
 
 <script>
     export default {
+       name:"Sticky",
+        props: {
+          label: null,
+        },
         methods:{
             scroll() {
                 this.$emit("scroll");
-            }
+            },
         }
     }
 </script>

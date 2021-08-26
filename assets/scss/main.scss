@@ -148,6 +148,9 @@ footer {
   & p + p {
     margin-top: 1em;
   }
+  @media only screen and (max-width: 600px) {
+    margin-bottom: 50px;
+  }
 }
 .img-footer {
   position: absolute;
@@ -370,7 +373,7 @@ footer {
 
   @media (max-width: 600px) {
       p {
-        font-size: 2.9vw;
+        font-size: 13px;
       }
       h4 {
         font-size: 8vw;

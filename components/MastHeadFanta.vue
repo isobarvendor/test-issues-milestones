@@ -29,23 +29,20 @@
           <div class="carousell-image" v-if="isImage(videoDesk) && !$vuetify.breakpoint.xs">
             <img id="image" :src="videoDesk" >
           </div>
-          <div class="carousell-image" v-if="isImage(videoMob) && $vuetify.breakpoint.xs">
-            <img id="image" :src="videoMob" >
+          <div  v-if="isImage(videoMob) && $vuetify.breakpoint.xs">
+            <img id="image" :src="videoMob" style="width:100% !important" >
           </div>
 
         </swiper-slide>
-        <swiper-slide>
+        <!--swiper-slide>
           <div class="carousell-image" @click="redirect">
             <img id='image' class="hidden-sm-and-up" :src="imgMob ? imgMob : '/img/landing/week 1 prize.png'" />
             <img id='image' class="hidden-xs-only" :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
-            <!-- <div class="prize-description">
-            <h3 v-html="item.shortDescription"></h3>
-            {{ item.name }}
-          </div> -->
+
           </div>
 
-        </swiper-slide>
-        <div class="prize-swiper-pagination pagination" slot="pagination"></div>
+        </swiper-slide-->
+        <!--div class="prize-swiper-pagination pagination" slot="pagination"></div-->
 
       </swiper>
     </div>
