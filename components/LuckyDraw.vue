@@ -49,7 +49,7 @@
             text-align: center;
             color: white;
             font-size: 4vw;
-            font-family: "Hackney";
+            font-family: "Avenir";
         }
         div >>> p{
             text-align: center;

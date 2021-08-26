@@ -22,6 +22,9 @@ body {
   @include breakpoint(md) {
     font-size: $body-font-size;
   }
+  .v-application{
+    font-family: 'Avenir' !important;
+  }
 }
 .main-container {
   transition: background 0.3s;
@@ -349,7 +352,7 @@ footer {
     text-align: center;
     color: white;
     font-size: 3.4vw;
-    font-family: "Hackney";
+    font-family: "Avenir";
   }
   p {
     text-align: center;
@@ -386,7 +389,7 @@ footer {
   /* height: 20% */
   p {
     font-size: 275%;
-    font-family: "Hackney";
+    font-family: "Avenir";
   }
   @media screen and (max-width: 736px) {
 
@@ -403,7 +406,7 @@ footer {
 
       p {
         font-size: 26px;
-        font-family: "Hackney";
+        font-family: "Avenir";
       }
 
 
