@@ -402,17 +402,14 @@ export default {
             // gift_name: prizewin.instantWinResult.redeemedPrize.name
           });
           this.addGTMSuccessAgain = false;
+        } else if (this.addGTMSuccessAgain) {
+          this.addGTMSuccess({
+            event: "event_redeem_page1",
+            sku_type: "other sku"
+            // gift_name: prizewin.instantWinResult.redeemedPrize.name
+          });
+          this.addGTMSuccessAgain = false;
         }
-        // else {
-        //   if (this.addGTMSuccessAgain) {
-        //     this.addGTMSuccess({
-        //       event: "event_redeem_page1",
-        //       sku_type: "other sku"
-        //       // gift_name: prizewin.instantWinResult.redeemedPrize.name
-        //     });
-        //   }
-        //   this.addGTMSuccessAgain = false;
-        // }
         // console.log(page);
         // console.log(this.addGTMSuccess);
         let thankYouMessage = attemptData.FormHeading.thankYouMessage;

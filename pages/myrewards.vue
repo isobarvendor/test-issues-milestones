@@ -70,6 +70,7 @@ export default {
                   showOnce == 1 ||
                   !this.$config.prizeShowOnce.includes(o.prizeId)
                 ) {
+                  // this is just filtering the voucherCode, if the prize is Samsung, Playlist, Pleng pro voucher code will be null
                   let voucherCode = this.$config.prizeShowOnce.includes(
                     o.prizeId
                   )
@@ -81,13 +82,37 @@ export default {
                   ) {
                     voucherCode = null;
                   }
+
+                  // this is filtering the link, if the prize is playlist or pleng pro link will be replaced
+                  let prizeLink = o.redemptionLink;
+                  if (o.name.includes("Playlist")) {
+                    prizeLink = o.redemptionLink.replace(
+                      "?af_coupon_code=null",
+                      ""
+                    );
+                    prizeLink = prizeLink.replace(/\s/g, "");
+                  } else if (this.$config.prizeHasVoucher.includes(o.prizeId)) {
+                    prizeLink = prizeLink.replace(/\s/g, "");
+                    prizeLink = prizeLink.replace("&af_coupon_code=", "");
+                    prizeLink =
+                      prizeLink +
+                      "&" +
+                      this.$config.voucherParameter +
+                      "=" +
+                      voucherCode;
+                    console.log(prizeLink);
+                  } else if (o.redemptionLink) {
+                    prizeLink = o.redemptionLink;
+                    prizeLink = prizeLink.replace(/\s/g, "");
+                  }
+
                   return {
                     id: index,
                     title: o.name,
                     date: this.$config.prizeShowOnce.includes(o.prizeId)
                       ? null
                       : moment(o.claimTimestamp).format("DD/MM/YYYY - H:mm"),
-                    link: o.redemptionLink,
+                    link: prizeLink,
                     image: o.imgUrl,
                     code: voucherCode,
                     audio:
@@ -109,11 +134,7 @@ export default {
                   };
                 }
               });
-              // console.log("original ==============");
-              // console.log(res);
-              let newRes = _.orderBy(res, ["date"], ["desc"]);
-              // console.log("sorted ==============");
-              // console.log(newRes);
+
               this.rewards = [...this.rewards, ...[...array, ...res]];
             })
             .catch(error => {
