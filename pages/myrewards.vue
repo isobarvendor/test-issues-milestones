@@ -100,7 +100,7 @@ export default {
                       this.$config.voucherParameter +
                       "=" +
                       voucherCode;
-                    console.log(prizeLink);
+                    // console.log(prizeLink);
                   } else if (o.redemptionLink) {
                     prizeLink = o.redemptionLink;
                     prizeLink = prizeLink.replace(/\s/g, "");

@@ -346,7 +346,7 @@ export default {
     },
     addGTMSuccess(data) {
       this.$gtm.push(data);
-      console.log(data);
+      // console.log(data);
     },
     submit(data) {
       // console.log(data);
