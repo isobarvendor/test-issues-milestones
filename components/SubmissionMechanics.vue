@@ -37,6 +37,7 @@
         </div>
     </div> -->
   </div>
+    <Sticky v-if="submitted" @scroll="playAgain" :label="submissionText.participateAgain"/>
   </div>
  </div>
 </template>
@@ -88,11 +89,26 @@ export default {
       }
     }
   },
+  mounted(){
+      this.$emit('changeStatus',this.submitted);
+  },
 
   methods: {
     playAgain(){
       this.submitted=false;
       this.prize=[];
+      this.$emit('changeStatus',this.submitted);
+      var options = {
+                container: 'body',
+                easing: 'ease-in',
+                lazy: false,
+                offset: -60,
+                force: true,
+                cancelable: true,
+                x: false,
+                y: true
+            }
+        this.$scrollTo('#form', 120, options);
     },
     submit(data){
       this.submitted=true;
@@ -149,7 +165,8 @@ export default {
   .submission{
     margin: auto;
     background-image: url('/develop/background-submission.png');
-    background-size: 100% 100%
+    background-size: 100% 101%;
+    z-index: 100;
   }
 
  .prize-chance.joox-section{

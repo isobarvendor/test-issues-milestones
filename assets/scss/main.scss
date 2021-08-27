@@ -22,6 +22,9 @@ body {
   @include breakpoint(md) {
     font-size: $body-font-size;
   }
+  .v-application{
+    font-family: 'Avenir' !important;
+  }
 }
 .main-container {
   transition: background 0.3s;
@@ -70,6 +73,17 @@ a.button {
 
 .grecaptcha-badge {
   bottom: 70px !important;
+  z-index: 100;
+  @media only screen and(max-width: 500px) {
+    bottom: 140px !important
+
+  }
+}
+
+.at-expanding-share-button{
+  @media only screen and(max-width: 500px) {
+    bottom: 80px !important
+  }
 }
 
 header {
@@ -136,6 +150,9 @@ footer {
 
   & p + p {
     margin-top: 1em;
+  }
+  @media only screen and (max-width: 600px) {
+    margin-bottom: 50px;
   }
 }
 .img-footer {
@@ -335,7 +352,7 @@ footer {
     text-align: center;
     color: white;
     font-size: 3.4vw;
-    font-family: "Hackney";
+    font-family: "Avenir";
   }
   p {
     text-align: center;
@@ -359,10 +376,10 @@ footer {
 
   @media (max-width: 600px) {
       p {
-        font-size: 2.9vw;
+        font-size: 13px !important;
       }
       h4 {
-        font-size: 8vw;
+        font-size: 8vw !important;
       }
 
   }
@@ -372,7 +389,7 @@ footer {
   /* height: 20% */
   p {
     font-size: 275%;
-    font-family: "Hackney";
+    font-family: "Avenir";
   }
   @media screen and (max-width: 736px) {
 
@@ -389,7 +406,7 @@ footer {
 
       p {
         font-size: 26px;
-        font-family: "Hackney";
+        font-family: "Avenir";
       }
 
 

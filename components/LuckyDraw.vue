@@ -49,7 +49,7 @@
             text-align: center;
             color: white;
             font-size: 4vw;
-            font-family: "Hackney";
+            font-family: "Avenir";
         }
         div >>> p{
             text-align: center;
@@ -110,17 +110,49 @@
         }
         .text{
             width: 70%;
-            margin-left: 55%;
+            margin-left: 50%;
             margin-bottom: 2cm;
         }
         img{
-                width: 33%;
+                width: 25%;
                 height: 53%;
         }
 
     }
 
      @media (max-width: 600px){
+        .draw{
+            margin-right: 20vw;
+            margin-left: 0;
+            height: 280px;
+            .image{
+                margin-left: 13%
+
+            }
+
+
+
+
+        }
+
+
+
+        img{
+                /* width: 45%;
+                height: 50%; */
+                width: 140.5px;
+                height: 150px;
+        }
+        .text{
+            margin-top: 0.5cm;
+             margin-left: 42%;
+               width: 95%;
+            padding-top: 0.5cm;
+        }
+
+    }
+
+    @media (max-width: 530px){
         .draw{
             margin-right: 20vw;
             margin-left: 0;
@@ -138,15 +170,28 @@
 
 
         img{
-                width: 45%;
-                height: 50%;
+                /* width: 45%;
+                height: 50%; */
+                width: 130.5px;
+                height: 140px;
         }
         .text{
-            margin-top: 1cm;
-             margin-left: 42%;
-               width: 90%;
+            margin-top: 20px;
+             margin-left: 33%;
+               width: 100%;
             padding-top: 0.5cm;
         }
+
+    }
+    @media (max-width: 350px){
+
+        img{
+                /* width: 45%;
+                height: 50%; */
+                width: 110.5px;
+                height: 140px;
+        }
+
 
     }
 

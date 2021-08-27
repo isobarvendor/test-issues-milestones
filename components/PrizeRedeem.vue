@@ -99,7 +99,7 @@ export default {
   /* height: 20% */
   p {
     font-size: 325%;
-    font-family: "Hackney";
+    font-family: "Avenir";
   }
 }
 
@@ -216,7 +216,7 @@ export default {
   text-align: center;
   cursor: pointer;
   p {
-    font-family: "Hackney";
+    font-family: "Avenir";
     font-size: 200%;
   }
   #top{
@@ -295,7 +295,7 @@ export default {
   .header-redeem {
     p {
       font-size: 225%;
-      font-family: "Hackney";
+      font-family: "Avenir";
     }
   }
   .link{

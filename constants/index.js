@@ -131,6 +131,7 @@ let language =
         redeemPrize:"กดเพื่อรับรางวัลของคุณทันที",
         continue:"ล็อกอินผ่าน",
         redeem: "รับรางวัล",
+        text: "ขื่อ-นามสกุล ตามที่ปรากฎบนบัตรประชาชน"
       },
       winnerText:{
         header:"WINNER LIST",
