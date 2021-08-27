@@ -64,7 +64,7 @@
       >
         <a
           v-if="btn.link && btn.link.includes('.mp3')"
-          :id="'prize-' + btn.id"
+          :id="btn.link ? 'redeem_now' : 'prize-' + btn.id"
           :href="'#prize-chance'"
           @click="redeemMusic(btn.link)"
         >
@@ -72,7 +72,7 @@
         </a>
         <a
           v-else
-          :id="'prize-' + btn.id"
+          :id="btn.link ? 'redeem_now' : 'prize-' + btn.id"
           :href="btn.link ? btn.link : '#prize-chance'"
           :target="btn.link ? '_blank' : ''"
           @click="submitPrize(btn.type)"
@@ -106,7 +106,7 @@ export default {
   },
   computed: {},
   mounted() {
-    console.log(this.prize);
+    // console.log(this.prize);
     this.playSound = false;
   },
   methods: {

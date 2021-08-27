@@ -116,7 +116,8 @@ export default {
       errorMessage: null,
       submissionText: translation.submissionText,
       loading: false,
-      winFirstPrize: false
+      winFirstPrize: false,
+      addGTMSuccessAgain: true
     };
   },
   computed: {
@@ -345,7 +346,7 @@ export default {
     },
     addGTMSuccess(data) {
       this.$gtm.push(data);
-      //console.log(data);
+      console.log(data);
     },
     submit(data) {
       // console.log(data);
@@ -394,19 +395,26 @@ export default {
       // console.log(data)
       let prize = [];
       if (prizewin.instantWinResult.winner) {
-        if (page > 1) {
+        if (this.request.pin[0] == "2" && this.addGTMSuccessAgain) {
           this.addGTMSuccess({
             event: "event_redeem_page" + page,
-            sku_type: "235ml or 300ml",
-            gift_name: prizewin.instantWinResult.redeemedPrize.name
+            sku_type: "350ml"
+            // gift_name: prizewin.instantWinResult.redeemedPrize.name
           });
-        } else {
-          this.addGTMSuccess({
-            event: "event_redeem_page1",
-            sku_type: "other sku",
-            gift_name: prizewin.instantWinResult.redeemedPrize.name
-          });
+          this.addGTMSuccessAgain = false;
         }
+        // else {
+        //   if (this.addGTMSuccessAgain) {
+        //     this.addGTMSuccess({
+        //       event: "event_redeem_page1",
+        //       sku_type: "other sku"
+        //       // gift_name: prizewin.instantWinResult.redeemedPrize.name
+        //     });
+        //   }
+        //   this.addGTMSuccessAgain = false;
+        // }
+        // console.log(page);
+        // console.log(this.addGTMSuccess);
         let thankYouMessage = attemptData.FormHeading.thankYouMessage;
         if (this.request.pin[0] == "2") {
           thankYouMessage = this.submissionText.thankyouMessage;
@@ -431,12 +439,7 @@ export default {
           )
         ) {
           // prizeLink = `${prizewin.instantWinResult.redeemedPrize.redemptionLink}&${this.$config.voucherParameter}=&${this.$config.voucherParameter2}=${prizewin.instantWinResult.redeemedPrize.voucherCode}`;
-          prizeLink =
-            prizewin.instantWinResult.redeemedPrize.redemptionLink +
-            "&" +
-            this.$config.voucherParameter2 +
-            "=" +
-            prizewin.instantWinResult.redeemedPrize.voucherCode;
+          prizeLink = prizewin.instantWinResult.redeemedPrize.redemptionLink;
           prizeLink = prizeLink.replace(/\s/g, "");
         }
         // console.log("=======================================");
