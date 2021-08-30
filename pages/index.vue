@@ -12,7 +12,7 @@
         <!-- <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/> -->
         <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
         <!--HowItWorks :data="CMSContent[0].worksSection" /-->
-        <Sticky v-if="$store.state.login&&!submission" @scroll="scroll" label="Participate Now"/>
+        <Sticky v-if="$store.state.login&&!submission" @scroll="scroll" label="ร่วมสนุกเลย"/>
         <SubmissionMechanics :dataForm="configData" :cms="CMSContent[0]" @changeStatus="changeStatus" id="form"/>
 
       </div>

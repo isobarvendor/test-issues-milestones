@@ -2,7 +2,7 @@
   <div class="container prize">
     <div class=" hidden-sm-and-down" style="padding-bottom: 1cm;">
       <div class="header-title">
-        <p>PRIZES</p>
+        <p>ของรางวัล</p>
       </div>
       <div class="prize-content ">
         <div class=" " v-for="(item, index) in prizes" :key="index">
@@ -19,10 +19,13 @@
                   <strong>{{ item.title }}</strong>
                 </h3>
                 <div v-if="item.number" id="number">
-                  <h4>{{ total }} {{ item.number }}</h4>
+                  <h4>{{ item.number }} {{ total }}</h4>
                 </div>
                 <div v-if="item.subtitle" class="text-subtitle">
                   <h4>{{ item.subtitle }}</h4>
+                </div>
+                <div v-if="item.text" >
+                  <h4>{{ item.text }}</h4>
                 </div>
               </div>
             </div>
@@ -112,11 +115,12 @@
           </div>
         </div>
       </div>
+      <div class="disclaimer">*เพื่อแลก ROV Item ตั้งแต่วันที่ 1 กันยายน 2564 ถึง 30 พฤศจิกายน 2564 หรือจนกว่าจำนวนของรางวัล ROV Box จะหมดลง</div>
     </div>
     <div class="hidden-md-and-up">
       <div  style="">
         <div class="header-title-mobile">
-          <p>PRIZES</p>
+          <p>ของรางวัล</p>
         </div>
         <div
           class="individual-prize-mobile"
@@ -136,10 +140,13 @@
                   <strong>{{ item.title }}</strong>
                 </h3>
                 <div v-if="item.number" id="number-mobile">
-                  <h4>{{ total }} {{ item.number }}</h4>
+                  <h4>{{ item.number }} {{ total }}</h4>
                 </div>
                 <div v-if="item.subtitle" class="text-subtitle-mobile">
                   <h4>{{ item.subtitle }}</h4>
+                </div>
+                <div v-if="item.text" >
+                  <h4>{{ item.text }}</h4>
                 </div>
               </div>
             </div>
@@ -161,7 +168,7 @@
                   />
                 </div>
                 <div class="header">
-                  <p style="color: whiter;">WIN ANY OF THESE ROV SKINS</p>
+                  <p style="color: whiter;">แลกได้ทันที ROV ไอเทมเหล่านี้อาจเป็นของคุณ!</p>
                 </div>
                 <div class="images">
                   <div v-if="$vuetify.breakpoint.xs">
@@ -226,7 +233,9 @@
                 <br />
               </v-card>
             </v-dialog>
+            <div class="disclaimer">*เพื่อแลก ROV Item ตั้งแต่วันที่ 1 กันยายน 2564 ถึง 30 พฤศจิกายน 2564 หรือจนกว่าจำนวนของรางวัล ROV Box จะหมดลง</div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -254,9 +263,10 @@ export default {
         {
           header: translation.prizes.instantWin,
           title: "FANTA x ROV Box* จำนวนจำกัดทั้งสิ้น 1.5 ล้านรางวัล",
-          number: " remaining",
+          number: "ไอเทมคงเหลือ ",
           subtitle: null,
           image: "/develop/fanta-prize.png",
+          text: null,
           dialog: false
         },
         {
@@ -265,6 +275,7 @@ export default {
           number: null,
           subtitle: translation.prizes.iphone_desc,
           image: "/develop/iphone.png",
+          text: 'รวมจำนวนทั้งสิ้น 180 รางวัล',
           dialog: false
         }
       ],
@@ -346,7 +357,7 @@ export default {
 
 .prize-content {
   width: 80%;
-  height: 83%;
+  height: 73%;
   margin-top: 8%;
   margin-left: auto;
   margin-right: auto;
@@ -446,6 +457,12 @@ export default {
   }
 }
 
+.disclaimer{
+  text-align: center;
+  color: white;
+  margin-top: 16px;
+}
+
 .text-box {
   width: 90%;
   height: 30%;
@@ -488,7 +505,7 @@ export default {
 }
 
 .text-subtitle {
-  padding: 14% 0;
+  padding: 5% 0;
   font-size: 100%;
 }
 
@@ -543,12 +560,12 @@ export default {
   /* text-align: center; */
   display: flex;
   justify-content: center;
-  padding-top: 3rem;
+  padding-top: 3.5rem;
   background-image: url("/develop/banner-popup.png");
   background-position: 50% 0%;
   background-size: 700px 200px;
   margin-bottom: 0;
-
+  font-size: 200%;
 }
 
 .image-row {
