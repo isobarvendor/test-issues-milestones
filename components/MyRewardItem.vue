@@ -47,10 +47,7 @@ export default {
     },
     redeemLink(link, voucherCode) {
       if (link) {
-        window.open(
-          link + "?" + this.$config.voucherParameter + "=" + voucherCode,
-          "_blank"
-        );
+        window.open(link, "_blank");
       } else {
         return false;
       }

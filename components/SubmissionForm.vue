@@ -181,7 +181,7 @@
           </div>
           <v-btn
             class="get-code"
-            id="submission"
+            id="form_submission"
             dark
             v-else
             v-on:click="submit()"
