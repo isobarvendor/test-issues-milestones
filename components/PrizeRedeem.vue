@@ -9,21 +9,37 @@
       </div>
     </div>
     <div class="redeem-button" v-if="!showCode">
-      <button @click="show">{{ translation.redeem }}</button><br>
+      <button @click="show">{{ translation.redeem }}</button><br />
+      <p>แลกรางวัลใน ROV ได้ตั้งแต่ 1 กันยายน ถึง 30 พฤศจิกายน 2564 เท่านั้น</p>
       <u @click="open">https://shortenanything.page.link/eNh4</u>
     </div>
     <div v-if="showCode">
-      <div class="text-redeem" >
-        <p>Use this code and redeem your box in game!</p>
+      <div class="text-redeem">
+        <p>กดคัดลอกโค้ดเพื่อแลกรางวัลได้เลย!</p>
 
         <div class="copy-button">
           <input type="text" id="redeem" readonly :value="voucher" />
           <button @click="copy">
-            <img src="/develop/copy.png" />{{ button }}
-          </button><br>
+            <img src="/develop/copy.png" />{{ button }}</button
+          ><br />
         </div>
+        <p>ขั้นตอนการแลกรางวัล</p>
+        <div class="list">
+          <ol>
+            <li>1. เปิด <u style="cursor: pointer;" @click="open">Application RoV</u> และทำการล็อคอินเข้าเกม</li>
+            <li>2. กดไปที่เมนูกิจกรรมบน widget ขวาบนของหน้าล็อบบี้</li>
+            <li>3. กดไปที่แถบประกาศเกมด้านบนของหน้ากิจกรรม</li>
+            <li>4. กดไปที่แถบ 'แลกไอเทม' ด้านซ้ายมือ</li>
+            <li>5. กดแลกไอเทม</li>
+            <li>6. กรอกโค้ดที่ได้มาลงในช่อง</li>
+            <li>7. กดยืนยันเพื่อรับไอเทมเป็นอันเสร็จสิ้น</li>
+          </ol>
+        </div>
+        <p>หมายเหตุ: ไอเทมจะถูกส่งไปที่จดหมายในเกมภายใน 5 นาที</p>
       </div>
-      <div id="link"><u  @click="open">https://shortenanything.page.link/eNh4</u></div>
+      <!-- <div id="link">
+        <u @click="open">https://shortenanything.page.link/eNh4</u>
+      </div> -->
       <div class="link" @click="scroll">
         <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
         <div class="arrow">
@@ -36,9 +52,9 @@
 
 <script>
 import VueScrollTo from "vue-scrollto";
-import {translation} from '@/constants/index';
+import { translation } from "@/constants/index";
 export default {
-  props:{
+  props: {
     voucher: null,
     data: null,
     image: null,
@@ -49,6 +65,9 @@ export default {
       button: "Copy",
       translation: translation.submissionText,
       showCode: false,
+      instructions: [
+        
+      ]
     };
   },
   methods: {
@@ -71,11 +90,11 @@ export default {
       }, 2000);
       window.getSelection().removeAllRanges();
     },
-    show(){
-      this.showCode = !this.showCode
+    show() {
+      this.showCode = !this.showCode;
     },
-    open(){
-      window.open("https://shortenanything.page.link/eNh4")
+    open() {
+      window.open("https://shortenanything.page.link/eNh4");
     }
   }
 };
@@ -92,6 +111,16 @@ export default {
         color: white;
     } */
 
+.list{
+  color: white;
+  margin: 0 auto 16px auto;
+  width: 33%;
+  text-align: left;
+  li{
+    list-style: none;
+  }
+}
+
 .header-redeem {
   text-align: center;
   margin-top: 3%;
@@ -99,7 +128,7 @@ export default {
   /* height: 20% */
   p {
     font-size: 325%;
-    font-family: "Hackney";
+    font-family: "Avenir";
   }
 }
 
@@ -126,10 +155,10 @@ export default {
   width: 20%;
 }
 
-.redeem-button{
+.redeem-button {
   text-align: center;
   margin-bottom: 1cm;
-  button{
+  button {
     background-color: #73aa17;
     color: white;
     font-size: 100%;
@@ -141,20 +170,17 @@ export default {
     font-family: "Avenir";
     box-shadow: 3px 3px 5px #707070;
   }
-  u{
+  u {
     cursor: pointer;
     color: white;
   }
-
 }
 
-#link{
-
-    margin-top: 1rem;
-    cursor: pointer;
-    color: white;
-    text-align: center;
-
+#link {
+  margin-top: 1rem;
+  cursor: pointer;
+  color: white;
+  text-align: center;
 }
 
 .text-redeem {
@@ -204,6 +230,7 @@ export default {
 .copy-button {
   display: flex;
   justify-content: center;
+  margin-bottom: 16px;
 }
 
 .link {
@@ -212,14 +239,14 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%); */
   position: relative;
-  margin: 1rem 0 1rem 0;
+  margin: 0 0 2rem 0;
   text-align: center;
   cursor: pointer;
   p {
     font-family: "Hackney";
     font-size: 200%;
   }
-  #top{
+  #top {
     height: 3%;
     width: 3%;
   }
@@ -239,58 +266,56 @@ export default {
 }
 
 @media screen and (max-width: 1034px) {
-    .images{
-      height: 70%;
-    }
-
+  .images {
+    height: 70%;
+  }
 }
 
 @media screen and (max-width: 736px) {
-    .header-redeem {
-        p {
-             font-size: 26px;
-        }
+  .header-redeem {
+    p {
+      font-size: 26px;
     }
-    /* .content{
+  }
+  /* .content{
       height: 35%;
     } */
-    .images{
-        height: 80%;
-        width: 50%;
+  .images {
+    height: 80%;
+    width: 50%;
+  }
+  .text-redeem {
+    font-size: 80%;
+    input[type="text"] {
+      width: 45%;
     }
-    .text-redeem{
-        font-size: 80%;
-        input[type="text"]{
-            width: 45%;
-        }
-        button{
-            width: 20%;
-            img{
-              right: 60%;
-            }
-        }
+    button {
+      width: 20%;
+      img {
+        right: 60%;
+      }
     }
-    .link{
-        #top{
-            width: 3%;
-            height: 3%;
-        }
+  }
+  .link {
+    #top {
+      width: 3%;
+      height: 3%;
     }
-
+  }
 }
 
-@media screen and (max-width: 400px){
-  .images{
-        height: 70%;
-        width: 40%;
+@media screen and (max-width: 400px) {
+  .images {
+    height: 70%;
+    width: 40%;
   }
-    .text-redeem{
-        button{
-            width: 30%;
-            img{
-              right: 60%;
-            }
-        }
+  .text-redeem {
+    button {
+      width: 30%;
+      img {
+        right: 60%;
+      }
+    }
   }
   .header-redeem {
     p {
@@ -298,17 +323,18 @@ export default {
       font-family: "Hackney";
     }
   }
-  .link{
-        margin-top: 2.5rem;
-        p{
-          font-size: 150%;
-        }
-        #top{
-            width: 5%;
-            height: 5%;
-        }
+  .link {
+    margin-top: 2.5rem;
+    p {
+      font-size: 150%;
     }
+    #top {
+      width: 5%;
+      height: 5%;
+    }
+  }
+  .list{
+    width: 60%;
+  }
 }
-
-
 </style>
