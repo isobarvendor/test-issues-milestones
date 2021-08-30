@@ -290,7 +290,7 @@ export default {
         }
       } else {
         request.hasMore = page > 1 && this.winFirstPrize ? true : false;
-        for (let a = 0; a < configID.length; a++) {
+        for (let a = 0; a < 1; a++) {
           request.configurationId = configID[a];
           try {
             const token = await this.$recaptcha.execute("register");
