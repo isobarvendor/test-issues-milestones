@@ -70,12 +70,12 @@ let language =
 
   },
   th:{
-      browserTitle:"- Fanta - PlayOn",
+      browserTitle:"Fanta - PlayOn",
       meta: [
         {
-          hid: "Turn Up Your Rhythm",
-          name: "Turn Up Your Rhythm",
-          content: "Home page Coke - Turn Up Your Rhythm"
+          hid: "Fanta - PlayOn",
+          name: "Fanta - PlayOn",
+          content: "Fanta - PlayOn"
         }
       ],
       prizes: {
