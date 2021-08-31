@@ -9,9 +9,9 @@
       </div>
     </div>
     <div class="redeem-button" v-if="!showCode">
-      <button @click="show">{{ translation.redeem }}</button><br />
+      <button @click="show" id="redeem_now">{{ translation.redeem }}</button><br />
       <p>แลกรางวัลใน ROV ได้ตั้งแต่ 1 กันยายน ถึง 30 พฤศจิกายน 2564 เท่านั้น</p>
-      <u @click="open">https://shortenanything.page.link/eNh4</u>
+      <!-- <u @click="open">https://shortenanything.page.link/eNh4</u> -->
     </div>
     <div v-if="showCode">
       <div class="text-redeem">
@@ -19,7 +19,7 @@
 
         <div class="copy-button">
           <input type="text" id="redeem" readonly :value="voucher" />
-          <button @click="copy">
+          <button @click="copy" id="copy_code">
             <img src="/develop/copy.png" />{{ button }}</button
           ><br />
         </div>
@@ -238,7 +238,7 @@ export default {
         top: 90%;
         left: 50%;
         transform: translate(-50%, -50%); */
-  position: relative;
+  
   margin: 0 0 2rem 0;
   text-align: center;
   cursor: pointer;

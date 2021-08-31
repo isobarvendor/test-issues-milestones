@@ -26,7 +26,7 @@
     <div></div>
     <div class="nav-container">
 
-        <a class="nav-button" @click="toggleMenu" v-if="showMenu">
+        <a class="nav-button" @click="toggleMenu" v-if="showMenu" id="show_menu">
             <div>
                 <span></span>
                 <span></span>
