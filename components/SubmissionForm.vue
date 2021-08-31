@@ -105,7 +105,7 @@
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red" style="color: red;">{{ errors.first('code') }}</span>
+             <span class="error-message-red" style="color: red;">ต้องระบุช่องรหัส</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/develop/info-button.png" width="25"  />
