@@ -106,7 +106,6 @@ export default {
    },
    addNumberClass(text){
      let arrayText = text.split("");
-     console.log(arrayText)
      let newtext="";
      for(let a=0;a<arrayText.length;a++ ){
        if(arrayText.length<2){

@@ -33,7 +33,7 @@
           <div v-if="item.header !== translation.chance">
             <v-dialog v-model="item.dialog" width="1500">
               <template v-slot:activator="{ on }">
-                <button class="button" v-on="on">
+                <button class="button" id="open_popup" v-on="on">
                   <strong>{{ view }}</strong>
                 </button>
               </template>
@@ -154,7 +154,7 @@
           <div v-if="item.header !== translation.chance">
             <v-dialog v-model="item.dialog" width="1500">
               <template v-slot:activator="{ on }">
-                <button class="button-mobile" v-on="on">
+                <button class="button-mobile" id="open_popup" v-on="on">
                   <strong>{{ view }}</strong>
                 </button>
               </template>
@@ -410,11 +410,11 @@ export default {
   margin-top: 18%;
   p{
     font-family: "Hackney";
-    font-size: 400%;
+    font-size: 250%;
       background-image: url("/develop/background-prizes-title.png");
     background-size: 100% 100%;
     height: 100px;
-
+    padding: 0.5cm;
     margin: auto;
 
   }
@@ -735,11 +735,12 @@ export default {
   .image-row div {
     margin-bottom: 35%;
   }
-  .header-title-mobile{
-
-  margin-top: 15%;
-
-
+  
+.header-title-mobile{
+  p{
+    
+    padding-top: 0.5cm;
+  }
 }
 }
 

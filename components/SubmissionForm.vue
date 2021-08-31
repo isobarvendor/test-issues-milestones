@@ -27,13 +27,13 @@
     </div> -->
     <div class="details" >
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" />
-        <span class="error-message" v-if="form.name == ''">{{ error.name }}</span><br>
+        <span class="error-message" style="color: red;" v-if="form.name == ''">{{ error.name }}</span><br>
         <span class="error-message" style="color:white;">{{ submissionText.text }}</span>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
     <div class="details" >
       <input id="email" type="email" name="email" v-model="form.email" v-validate="'email'" :placeholder="submissionText.email"/>
-        <span class="error-message">{{ errors.first('email') }}</span>
+        <span class="error-message" style="color: red;">{{ errors.first('email') }}</span>
         <!-- <span class="error-message" v-if="!validateEmail(form.email)">{{ error.email }}</span> -->
     </div>
     <div class="details">
@@ -45,7 +45,7 @@
             <img src="/img/landing/info-button.png" width="25"  />
             <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
           </div>
-        <span class="error-message">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
+        <span class="error-message" style="color: red;">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
     </div>
 
     <!--div v-if="submissionType=='with_receipt'" class="details receipt">
@@ -99,17 +99,17 @@
       </div>
     </div>
 
-   <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
+   <div class="error-message-black" style="color: red;" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red">{{ errors.first('code') }}</span>
+             <span class="error-message-red" style="color: red;">{{ errors.first('code') }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/develop/info-button.png" width="25"  />
-            <span class="tooltiptext">{{submissionText.tooltipText}}</span>
+            <span class="tooltiptext">{{submissionText.enterCode}}</span>
           </div>
       </div>
       <div style="padding:20px"  v-if="loading">
@@ -261,6 +261,7 @@ export default {
           let programs=_.filter(mixCode,(a)=>{
           return a.codeInitial!=null&&a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
         })
+
         //console.log(programs);
         let programsNull=_.filter(mixCode,(a)=>{
           return (a.codeInitial==null||a.codeInitial=="")&&a.characterLimit==this.form.code.length;
@@ -272,10 +273,12 @@ export default {
         }
       }
 
-
+      
       if(!programId){
+        
         return false;
       }
+      
       let request;
         request={
                     "name"  : this.form.name,
@@ -298,6 +301,7 @@ export default {
         if(this.form.code){
           request['pin']=this.form.code;
         }
+        
         return request;
     },
     async checkcurrentAttempt(){
@@ -330,6 +334,7 @@ export default {
       let request = null;
       this.loading=true;
       let index =0;
+      
 
        /*let result={
     "burnResult": [
@@ -362,6 +367,7 @@ export default {
 
 
        this.$validator.validateAll().then( async(valid) => {
+         
          if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
            if(!this.form.terms){
@@ -379,19 +385,22 @@ export default {
 
             if(this.getAttempt)
             {
-
+              
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
+                
                 if(!request){
                   this.loading=false;
                   this.errorMessage=this.submissionText.errorPinCode;
                   return false;
                 }
+                
               const tokenCaptcha = await this.$recaptcha.execute('register')
           //console.log('ReCaptcha token:', token)
                 request.captchaResponse=tokenCaptcha;
                 await this.$store.dispatch(SUBMIT_FORM,request)
                 .then((response)=>{
+                  
                    // this.submitted=true;
                    this.addGTMSuccess();
                    let logininfo = this.$store.state.login;
@@ -413,6 +422,7 @@ export default {
                     }
                 })
                 .catch((error) =>{
+                  
                   this.loading=false;
                     if(error.response){
                     this.errorMessage=this.submissionText.errorAPI;
