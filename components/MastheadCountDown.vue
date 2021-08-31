@@ -56,7 +56,7 @@
             </v-row>
          </span>
       </vac>
-      <v-row no-gutters>
+      <v-row no-gutters class="countdown-words">
         <v-col  cols="3">
           {{countdownText.days}}
         </v-col>
@@ -84,7 +84,7 @@ export default {
   },
   data() {
     return {
-        value: false,
+        /* value: false, */
        countdownText:translation.countdown,
     }
   },
@@ -94,8 +94,8 @@ export default {
   },
   computed:{
     endDate(){
-      return this.value ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ;
-      /* return this.data ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ; */
+      /* return this.value ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ; */
+      return this.data ?  new Date(this.data).getTime() : new Date().getTime() + 36000 ;
     }
   },
   methods: {
@@ -106,6 +106,7 @@ export default {
    },
    addNumberClass(text){
      let arrayText = text.split("");
+     console.log(arrayText)
      let newtext="";
      for(let a=0;a<arrayText.length;a++ ){
        if(arrayText.length<2){
@@ -125,9 +126,10 @@ export default {
 
 <style>
 #masthead-countdown{
-  width:365px;
-  height:135px;
+  width:500px;
+  height:150px;
   background-image: url("/img/landing/countdown box.png");
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   margin: auto;
   position: absolute;
@@ -145,11 +147,22 @@ export default {
   padding-left: 10px;
   padding-top: 5px;
 }
+
+.coundown-text{
+  color: white;
+}
+
+.countdown-number{
+  color: white;
+}
+
+.countdown-words{
+  color: white;
+}
  @media only screen and (max-width: 1199px) {
     #masthead-countdown{
-      width:330px;
-      height:135px;
-      background-size: 100%;
+      
+      
    }
    .coundown-text{
       font-size:35px;
@@ -181,5 +194,20 @@ export default {
 .number-area .col-3 {
   flex: 0 0 23% !important;
     max-width: 23% !important;
+}
+
+@media only screen and (max-width: 500px) {
+  #masthead-countdown{
+      width:330px;
+      height:135px;
+   }
+    .coundown-text{
+    font-size:25px;
+  }
+  .countdown-number{
+    
+      width: 15px;
+
+  }
 }
 </style>
