@@ -981,6 +981,7 @@ form {
 }
 
 .fanta {
+  background-color: $fanta-primary-color;
   #main.home,
   #main.winner-detail {
     background-color: $fanta-primary-color;
@@ -1177,10 +1178,10 @@ form {
   }
 }
 .black-red-border {
-  background-color: #1d1d1b;
-  border: solid 20px $coke-secondary-color;
+  background-color: $fanta-primary-color;
+  border: solid 20px white;
   @media only screen and (max-width: 600px) {
-    border: solid 10px $coke-secondary-color;
+    border: solid 10px white;
   }
 }
 
@@ -1220,6 +1221,7 @@ form {
     align-items: center;
     width: 100%;
     max-width: 300px;
+    z-index: 99;
   }
 }
 

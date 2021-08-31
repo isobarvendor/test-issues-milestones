@@ -13,7 +13,7 @@
                 <img :src="reward.image" width="100%" />
             </v-col>
             <v-col cols="9">
-                <h3>{{reward.title}}</h3>
+                <h3>ROV Box</h3>
                 <p v-if="reward.code">Voucher Code : {{reward.code}}</p>
                 <p>{{reward.date}}</p>
             </v-col>
