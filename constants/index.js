@@ -70,7 +70,7 @@ let language =
 
   },
   th:{
-      browserTitle:"ร่วมสนุกซ่ากันวันนีแฟนต้า ลุ้นซ่าสองต่อ",
+      browserTitle:"- Fanta - PlayOn",
       meta: [
         {
           hid: "Turn Up Your Rhythm",

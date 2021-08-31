@@ -45,7 +45,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { name: 'robots', content: 'noindex, nofollow' },
-      { hid: 'description', name: 'description', content:  'Home page Coke - Turn Up Your Rhythm' }
+      { hid: 'description', name: 'description', content:  '- Fanta - PlayOn' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'img/icons/fanta.png' }
