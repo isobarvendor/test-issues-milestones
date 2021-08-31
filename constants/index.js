@@ -126,7 +126,7 @@ let language =
         errorAPI:"Oops something went wrong please try again",
         errorMaxPhone:"You reach maximum phone number length",
         errorRequiredPhone:"โปรดใส่เบอร์โทรศัพท์",
-        participateAgain:"ส่งรหัสใต้ฝาเพื่อลุ้นรางวัลรายสัปดาห์",
+        participateAgain:"เล่นอีกครั้ง",
         listenNow:"Listen now",
         redeemPrize:"กดเพื่อรับรางวัลของคุณทันที",
         continue:"ล็อกอินผ่าน",
