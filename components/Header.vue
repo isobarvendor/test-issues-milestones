@@ -18,7 +18,7 @@
         </div>
     </a-->
 
-        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" id="signIn" v-if="!logged"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
+        <a :class="[{'profile-button':true,'hide-mobile' : expand}]" id="signIn" v-if="!logged&&countDown"  v-scroll-to="'.mechanics'" @click="goToSignIn" href="#" style="text-decoration:none">
         <div class="profile-content" >
             <template ><div v-html="siginButton"></div></template>
         </div>
@@ -128,7 +128,8 @@ export default {
             config:this.$store.getters.getCMSConfig,
             notCountDown:this.$store.state.isCampaignStarted,
             siginButton:translation.signInButton,
-            menu:translation.menu
+            menu:translation.menu,
+            countDown: this.$store.state.isCampaignStarted
         }
     },
     watch:{

@@ -6,14 +6,14 @@
         <Masthead :data="CMSContent[0]" :isCountDown="!notCountDown" v-else/> -->
         <MastHeadFanta :data="CMSContent[0]" :isCountDown="!notCountDown" v-if="CMSContent[0].homepage.mastheadSection.video"/>
         <HowItWorksFanta :data="CMSContent[0]" />
-        <PrizesFanta :data="listPrizesData" :total="remaining"  />
+        <PrizesFanta :data="listPrizesData" :total="remaining"  v-if="notCountDown"/>
         <!-- <PrizeRedeem @scroll="scroll"/>
         <LuckyDraw id="lucky"/> -->
         <!-- <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/> -->
         <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
         <!--HowItWorks :data="CMSContent[0].worksSection" /-->
-        <Sticky v-if="$store.state.login&&!submission" @scroll="scroll" label="ร่วมสนุกเลย"/>
-        <SubmissionMechanics :dataForm="configData" :cms="CMSContent[0]" @changeStatus="changeStatus" id="form"/>
+        <Sticky v-if="$store.state.login&&!submission&&notCountDown" @scroll="scroll" label="ร่วมสนุกเลย"/>
+        <SubmissionMechanics :dataForm="configData" :cms="CMSContent[0]" @changeStatus="changeStatus" id="form" v-if="notCountDown"/>
 
       </div>
 
@@ -89,6 +89,7 @@ export default {
     }
 
     if(this.CMSContent && new Date(this.CMSContent[0].endDate).getTime()>new Date().getTime()){
+      
         this.$store.commit('SET_CAMPAIGN_STARTED',false);
         localStorage.clear();
     }
@@ -100,7 +101,7 @@ export default {
       return check
     };
     let check = window.mobileAndTabletCheck();
-    console.log(check)
+    
     if (check){
         if (!this.$store.state.token){
           location.href= window.location.origin + "/api/oauth2/authorize/line?redirect_uri=" +
@@ -182,13 +183,13 @@ export default {
             await this.$store.dispatch(GET_LIST_PRIZE,luckyDraw[a].NPGS[0].configID)
             .then((response)=>{
                 this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
-                console.log(this.listPrizesData)
+                
                 let total = 0;
                 this.listPrizesData.forEach(ele => {
                   total += ele.amountAvailable
                 })
                 this.remaining = total;
-                console.log(this.remaining)
+                
             })
             .catch((error) =>{
 

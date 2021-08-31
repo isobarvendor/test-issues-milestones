@@ -27,9 +27,11 @@
               <div class="mutedIcon" @click="play" ><img :src="'/img/icons/'+ (this.muted ? 'muted.png' :'unmuted.png')" /></div>
           </video-background>
           <div class="carousell-image" v-if="isImage(videoDesk) && !$vuetify.breakpoint.xs">
+            <MastheadCountDown v-if="isCountDown&&isImage(videoDesk)&& !$vuetify.breakpoint.xs" :data="data.endDate" class="countdown"/>
             <img id="image" :src="videoDesk" >
           </div>
           <div  v-if="isImage(videoMob) && $vuetify.breakpoint.xs">
+            <MastheadCountDown v-if="isCountDown&&isImage(videoDesk)&& $vuetify.breakpoint.xs" :data="data.endDate" class="countdown"/>
             <img id="image" :src="videoMob" style="width:100% !important" >
           </div>
 
@@ -59,8 +61,7 @@ import MastheadCountDown from "../components/MastheadCountDown";
 export default {
   props: {
     data: null,
-
-    /* isCountDown: null, */
+    isCountDown: null,
   },
   components: {
     Swiper,
@@ -68,7 +69,6 @@ export default {
   },
   data() {
     return {
-      isCountDown: false,
       swiperOption: {
         /* slidesPerView: 2,
         spaceBetween: 10,
@@ -151,7 +151,7 @@ export default {
 
 .countdown{
   position: absolute;
-  top: -50%;
+  top: 80%;
 }
 
 .pagination{
@@ -330,6 +330,9 @@ export default {
       right: 35%;
 
     }
+    .countdown{
+      top: 50%;
+    }
 
   }
 
@@ -339,6 +342,7 @@ export default {
       right: 35%;
 
     }
+    
 
 
   }
