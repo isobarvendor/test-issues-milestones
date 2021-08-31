@@ -12,6 +12,7 @@
         <!-- <CampaignPeriod :data="configData.campaignPeriod" :howData="CMSContent[0].worksSection" v-if="configData"/> -->
         <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
         <!--HowItWorks :data="CMSContent[0].worksSection" /-->
+        <!-- <PrizeRedeem  :data="CMSContent[0]" image="/develop/fanta-logo.png" :config="configData" id="form"/> -->
         <Sticky v-if="$store.state.login&&!submission&&notCountDown" @scroll="scroll" label="ร่วมสนุกเลย"/>
         <SubmissionMechanics :dataForm="configData" :cms="CMSContent[0]" @changeStatus="changeStatus" id="form" v-if="notCountDown"/>
 
@@ -73,7 +74,7 @@ export default {
         // this.campaignType=='Experience' && this.getListWallet();
 
     }
-    if(this.$store.state.token||this.$store.state.goToSignin){
+    /* if(this.$store.state.token||this.$store.state.goToSignin){
           var options = {
                 container: 'body',
                 easing: 'ease-in',
@@ -86,10 +87,10 @@ export default {
             }
 
              this.$scrollTo('.mechanics', 60, options)
-    }
+    } */
 
     if(this.CMSContent && new Date(this.CMSContent[0].endDate).getTime()>new Date().getTime()){
-      
+        console.log("HELLO")
         this.$store.commit('SET_CAMPAIGN_STARTED',false);
         localStorage.clear();
     }
