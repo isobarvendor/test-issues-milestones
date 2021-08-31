@@ -2,7 +2,7 @@
   <div  id="main" class="container myrewards black-red-border">
     <div class="wrapper">
             <div class="background-image">
-                <img src="/img/landing/back-dots.png" width="100%" />
+                <!-- <img src="/develop/background-prizes.png" width="100%" /> -->
             </div>
             <div class="title">
                 <h1>YOUR REWARDS</h1>
@@ -101,7 +101,11 @@ export default {
 }
 </script>
 <style scoped>
-
-
+.container{
+  background-image: url('/develop/background-prizes.png');
+  background-size: 100% 100%;
+  padding: 0;
+}
+  
 
 </style>
