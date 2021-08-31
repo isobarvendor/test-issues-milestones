@@ -43,7 +43,7 @@
       </div>
         <div class="info-icon tooltip">
             <img src="/img/landing/info-button.png" width="25"  />
-            <span class="tooltiptext">{{submissionText.phoneNumber}}</span>
+            <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
           </div>
         <span class="error-message" style="color: red;">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : errors.first('phoneNumber')) : ""   }}</span>
     </div>
@@ -99,17 +99,17 @@
       </div>
     </div>
 
-   <div class="error-message-black" v-if="errorMessage" v-html="errorMessage"></div>
+   <div class="error-message-black" style="color: red;" v-if="errorMessage" v-html="errorMessage"></div>
     <div class="btn-area">
 
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red">{{ errors.first('code') }}</span>
+             <span class="error-message-red" style="color: red;">{{ errors.first('code') }}</span>
           </div>
           <div class="info-icon tooltip">
             <img src="/develop/info-button.png" width="25"  />
-            <span class="tooltiptext">{{submissionText.tooltipText}}</span>
+            <span class="tooltiptext">{{submissionText.enterCode}}</span>
           </div>
       </div>
       <div style="padding:20px"  v-if="loading">
@@ -641,7 +641,7 @@ form.mechanics{
 @media only screen and (min-width: 769px) {
   .tooltip .tooltiptext {
     visibility: hidden;
-    width: 180px;
+    width: 280px;
     background-color: #73AA17;
     color: #fff;
     border-radius: 6px;
