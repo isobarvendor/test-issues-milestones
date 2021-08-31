@@ -48,7 +48,7 @@ export default {
       { hid: 'description', name: 'description', content:  'Home page Coke - Turn Up Your Rhythm' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'img/icons/favicon.png' }
+      { rel: 'icon', type: 'image/x-icon', href: 'img/icons/fanta.png' }
     ],
     script: [
       {
