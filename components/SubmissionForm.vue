@@ -112,23 +112,6 @@
             <div class="terms" v-html="submissionText.acceptTerm"></div>
           </div>
         </div>
-
-        <div class="row top">
-          <div class="col d-flex consent">
-            <div class="checkbox">
-              <label for="form_pp">
-                <input
-                  type="checkbox"
-                  name="privacy"
-                  id="form_pp"
-                  v-model="form.privacy"
-                />
-                <span></span>
-              </label>
-            </div>
-            <div class="terms" v-html="submissionText.acceptPrivacy"></div>
-          </div>
-        </div>
         <div class="row top">
           <div class="col d-flex consent">
             <div class="checkbox">
@@ -145,6 +128,23 @@
             <div class="terms" v-html="submissionText.declareAge"></div>
           </div>
         </div>
+        <div class="row top">
+          <div class="col d-flex consent">
+            <div class="checkbox">
+              <label for="form_pp">
+                <input
+                  type="checkbox"
+                  name="privacy"
+                  id="form_pp"
+                  v-model="form.privacy"
+                />
+                <span></span>
+              </label>
+            </div>
+            <div class="terms" v-html="submissionText.acceptPrivacy"></div>
+          </div>
+        </div>
+
         <div
           class="error-message-black"
           v-if="errorMessage"
