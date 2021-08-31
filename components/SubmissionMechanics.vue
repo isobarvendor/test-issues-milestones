@@ -143,6 +143,13 @@ export default {
 
   methods: {
     playAgain() {
+      if (this.request.pin[0] == "2" && this.prize.length == 2) {
+        this.addGTMSuccessAgain = true;
+        // console.log("2");
+      } else if (this.request.pin[0] != "2" && this.prize.length == 1) {
+        this.addGTMSuccessAgain = true;
+        // console.log("1");
+      }
       this.submitted = false;
       this.prize = [];
     },
@@ -392,7 +399,7 @@ export default {
       let attemptData = data.attemptData;
       this.submitNumber = 2;
       this.request = data.request;
-      // console.log(data)
+
       let prize = [];
       if (prizewin.instantWinResult.winner) {
         if (this.request.pin[0] == "2" && this.addGTMSuccessAgain) {
