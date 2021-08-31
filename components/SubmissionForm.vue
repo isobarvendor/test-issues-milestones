@@ -261,7 +261,7 @@ export default {
           let programs=_.filter(mixCode,(a)=>{
           return a.codeInitial!=null&&a.codeInitial.toUpperCase()==this.form.code.charAt(0).toUpperCase()&&a.characterLimit==this.form.code.length;
         })
-        console.log(programs)
+
         //console.log(programs);
         let programsNull=_.filter(mixCode,(a)=>{
           return (a.codeInitial==null||a.codeInitial=="")&&a.characterLimit==this.form.code.length;
@@ -273,9 +273,9 @@ export default {
         }
       }
 
-      console.log(programId)
+      
       if(!programId){
-        console.log("false")
+        
         return false;
       }
       
@@ -388,7 +388,7 @@ export default {
               
             //my code for submit
                 request = this.generateRequest(this.currentAttempt);
-                console.log(request)
+                
                 if(!request){
                   this.loading=false;
                   this.errorMessage=this.submissionText.errorPinCode;
