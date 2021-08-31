@@ -410,7 +410,7 @@ export default {
   margin-top: 18%;
   p{
     font-family: "Hackney";
-    font-size: 200%;
+    font-size: 250%;
       background-image: url("/develop/background-prizes-title.png");
     background-size: 100% 100%;
     height: 100px;
