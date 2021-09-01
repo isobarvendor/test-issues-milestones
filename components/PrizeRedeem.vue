@@ -40,13 +40,13 @@
       <!-- <div id="link">
         <u @click="open">https://shortenanything.page.link/eNh4</u>
       </div> -->
-      <div class="link" @click="scroll">
+    </div>
+        <div class="link" @click="scroll">
         <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
         <div class="arrow">
           <img id="top" src="/develop/arrow.png" alt="" />
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -66,7 +66,7 @@ export default {
       translation: translation.submissionText,
       showCode: false,
       instructions: [
-        
+
       ]
     };
   },
@@ -238,7 +238,7 @@ export default {
         top: 90%;
         left: 50%;
         transform: translate(-50%, -50%); */
-  
+
   margin: 0 0 2rem 0;
   text-align: center;
   cursor: pointer;
