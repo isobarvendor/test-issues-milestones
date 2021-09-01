@@ -153,7 +153,10 @@ let language = {
       hardLuckHeader: "មានបញ្ហាបច្ចេទេស",
       hardLuckTitle: "",
       hardLuckImage: "",
-      theCodeFieldIsRequired: "សូមបំពេញលេខកូដទីនេះ"
+      theCodeFieldIsRequired: "សូមបំពេញលេខកូដទីនេះ",
+      nameTip:
+        "ប្រសិនបើឈ្មោះហ្វេសប៊ុកខុសពីអត្តសញ្ញាណប័ណ្ណរបស់អ្នក សូមបំពេញឈ្មោះពិតនៅទីនេះ",
+      errorRequiredName: "សូមបញ្ចូលឈ្មោះ"
     },
     winnerText: {
       header: "តារាងឈ្មោះអ្នកឈ្នះ",

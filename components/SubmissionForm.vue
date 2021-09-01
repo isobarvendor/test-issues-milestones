@@ -23,11 +23,13 @@
             v-model="form.name"
             v-validate="'required'"
             :placeholder="submissionText.name"
-            readonly
           />
-          <!-- <span class="error-message">{{
-            errors.first('name')
-          }}</span> -->
+          <div style="text-align: left;">
+            <p class="error-message">
+              {{ errors.first("name") ? submissionText.errorRequiredName : "" }}
+            </p>
+            <p class="name-tip">{{ submissionText.nameTip }}</p>
+          </div>
         </div>
         <div
           class="details"
@@ -430,7 +432,8 @@ export default {
                 // this.submitted=true;
                 let loginData = {
                   ...this.$store.state.login,
-                  phone: this.phoneCode
+                  phone: this.phoneCode,
+                  name: this.form.name
                 };
                 // console.log(loginData);
 
@@ -556,6 +559,7 @@ export default {
 }
 .error-message {
   color: #000;
+  text-align: left;
 }
 .error-message-black {
   color: #000;
