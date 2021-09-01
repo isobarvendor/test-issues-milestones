@@ -23,8 +23,8 @@
             v-model="form.name"
             v-validate="'required'"
             :placeholder="submissionText.name"
-            readonly
           />
+          <span class="name-tip">{{ submissionText.nameTip }}</span>
           <!-- <span class="error-message">{{
             errors.first('name')
           }}</span> -->
@@ -430,7 +430,8 @@ export default {
                 // this.submitted=true;
                 let loginData = {
                   ...this.$store.state.login,
-                  phone: this.phoneCode
+                  phone: this.phoneCode,
+                  name: this.form.name
                 };
                 // console.log(loginData);
 
