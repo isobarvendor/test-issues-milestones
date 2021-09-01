@@ -27,13 +27,13 @@
     </div> -->
     <div class="details" >
       <input id="name" type="text" name="name" v-model="form.name" v-validate="'required'" :placeholder="submissionText.name" />
-        <span class="error-message" style="color: red;" v-if="form.name == ''">{{ error.name }}</span><br>
+        <span class="error-message error-scroll" style="color: red;" v-if="form.name == ''">{{ error.name }}</span><br>
         <span class="error-message" style="color:white;">{{ submissionText.text }}</span>
         <!--span class="error-message">{{ errors.first('name') }}</span-->
     </div>
     <div class="details" >
       <input id="email" type="email" name="email" v-model="form.email" v-validate="'email'" :placeholder="submissionText.email"/>
-        <span class="error-message" style="color: red;">{{ errors.first('email') }}</span>
+        <span v-if="errors.first('email')"  class="error-message error-scroll" style="color: red;">{{ errors.first('email') }}</span>
         <!-- <span class="error-message" v-if="!validateEmail(form.email)">{{ error.email }}</span> -->
     </div>
     <div class="details">
@@ -45,7 +45,8 @@
             <img src="/img/landing/info-button.png" width="25"  />
             <span class="tooltiptext">{{submissionText.phoneTooltip}}</span>
           </div>
-        <span class="error-message" style="color: red;">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : "กรุณาใส่ตัวเลขที่ถูกต้อง") : ""   }}</span>
+        <span v-if="errors.first('phoneNumber')" class="error-message error-scroll" style="color: red;">{{ errors.first('phoneNumber') ? (errors.first('phoneNumber').includes('required') ? submissionText.errorRequiredPhone : "กรุณาใส่ตัวเลขที่ถูกต้อง") : ""   }}</span>
+         <span v-if="errors.first('phone')&&!errors.first('phoneNumber')" class="error-message error-scroll" style="color: red;">{{ errors.first('phone') ? (errors.first('phone').includes('required') ? submissionText.errorRequiredPhone : "กรุณาใส่ตัวเลขที่ถูกต้อง") : ""   }}</span>
     </div>
 
     <!--div v-if="submissionType=='with_receipt'" class="details receipt">
@@ -105,7 +106,8 @@
       <div class="info-btn"  >
           <div class="btn-text">
           <input id="code" v-model="form.code"  v-validate="'required'" type="text" name="code" :placeholder="submissionText.enterCode"/>
-             <span class="error-message-red" style="color: red;">ต้องระบุช่องรหัส</span>
+             <span class="error-message-red error-scroll" v-if="errors.first('code')">{{ errors.first('code') ? "ต้องระบุช่องรหัส" : "" }}</span>
+
           </div>
           <div class="info-icon tooltip">
             <img src="/develop/info-button.png" width="25"  />
@@ -367,6 +369,19 @@ export default {
 
 
        this.$validator.validateAll().then( async(valid) => {
+         if(!valid){
+             var options = {
+                container: 'body',
+                easing: 'ease-in',
+                lazy: false,
+                offset: -60,
+                force: true,
+                cancelable: true,
+                x: false,
+                y: true
+            }
+        this.$scrollTo('.error-scroll', 120, options);
+         }
 
          if(valid&&this.errors.all().length<=0){
            let currentattempt=0;
