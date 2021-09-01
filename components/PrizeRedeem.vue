@@ -9,7 +9,8 @@
       </div>
     </div>
     <div class="redeem-button" v-if="!showCode">
-      <button @click="show" id="redeem_now">{{ translation.redeem }}</button><br />
+      <button @click="show" id="redeem_now">{{ translation.redeem }}</button
+      ><br />
       <p>แลกรางวัลใน ROV ได้ตั้งแต่ 1 กันยายน ถึง 30 พฤศจิกายน 2564 เท่านั้น</p>
       <!-- <u @click="open">https://shortenanything.page.link/eNh4</u> -->
     </div>
@@ -26,7 +27,11 @@
         <p>ขั้นตอนการแลกรางวัล</p>
         <div class="list">
           <ol>
-            <li>1. เปิด <u style="cursor: pointer;" @click="open">Application RoV</u> และทำการล็อคอินเข้าเกม</li>
+            <li>
+              1. เปิด
+              <u style="cursor: pointer;" @click="open">Application RoV</u>
+              และทำการล็อคอินเข้าเกม
+            </li>
             <li>2. กดไปที่เมนูกิจกรรมบน widget ขวาบนของหน้าล็อบบี้</li>
             <li>3. กดไปที่แถบประกาศเกมด้านบนของหน้ากิจกรรม</li>
             <li>4. กดไปที่แถบ 'แลกไอเทม' ด้านซ้ายมือ</li>
@@ -41,12 +46,12 @@
         <u @click="open">https://shortenanything.page.link/eNh4</u>
       </div> -->
     </div>
-        <div class="link" @click="scroll">
-        <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
-        <div class="arrow">
-          <img id="top" src="/develop/arrow.png" alt="" />
-        </div>
+    <div class="link" @click="scroll">
+      <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
+      <div class="arrow">
+        <img id="top" src="/develop/arrow.png" alt="" />
       </div>
+    </div>
   </div>
 </template>
 
@@ -65,9 +70,7 @@ export default {
       button: "Copy",
       translation: translation.submissionText,
       showCode: false,
-      instructions: [
-
-      ]
+      instructions: []
     };
   },
   methods: {
@@ -111,12 +114,12 @@ export default {
         color: white;
     } */
 
-.list{
+.list {
   color: white;
   margin: 0 auto 16px auto;
   width: 33%;
   text-align: left;
-  li{
+  li {
     list-style: none;
   }
 }
@@ -234,6 +237,7 @@ export default {
 }
 
 .link {
+  display: none;
   /* position: absolute;
         top: 90%;
         left: 50%;
@@ -302,6 +306,11 @@ export default {
       height: 3%;
     }
   }
+  .redeem-button {
+    button {
+      margin: 0 auto 0.7cm auto;
+    }
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -333,8 +342,13 @@ export default {
       height: 5%;
     }
   }
-  .list{
+  .list {
     width: 60%;
+  }
+  .redeem-button {
+    button {
+      margin: 0 auto 0.7cm auto;
+    }
   }
 }
 </style>
