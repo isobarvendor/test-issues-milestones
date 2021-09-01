@@ -351,13 +351,13 @@ footer {
     text-align: center;
     color: white;
     font-size: 3.4vw;
-    font-family: "Avenir";
+    font-family: "SiamSquare";
   }
   p {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    font-family: "Avenir";
+    font-family: "SiamSquare";
   }
   @media (max-width: 1300px) {
     p {
@@ -373,7 +373,7 @@ footer {
 
   @media (max-width: 600px) {
     p {
-      font-size: 13px !important;
+      font-size: 16px !important;
     }
     h4 {
       font-size: 8vw !important;
@@ -385,7 +385,9 @@ footer {
   /* height: 20% */
   p {
     font-size: 275%;
-    font-family: "Avenir";
+    font-family: "SiamSquare";
+    padding-left: 10px;
+    padding-right: 10px;
   }
   @media screen and (max-width: 736px) {
     p {
@@ -395,8 +397,7 @@ footer {
 
   @media screen and (max-width: 400px) {
     p {
-      font-size: 20px;
-      font-family: "Avenir";
+      font-size: 24px;
     }
   }
 }

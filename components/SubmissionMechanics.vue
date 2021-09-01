@@ -145,7 +145,7 @@ export default {
                 container: 'body',
                 easing: 'ease-in',
                 lazy: false,
-                offset: -60,
+                offset: 20,
                 force: true,
                 cancelable: true,
                 x: false,

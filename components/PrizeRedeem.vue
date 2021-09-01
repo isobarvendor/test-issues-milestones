@@ -160,7 +160,7 @@ export default {
 
 .redeem-button {
   text-align: center;
-  margin-bottom: 1cm;
+  margin-bottom: 20px;
   button {
     background-color: #73aa17;
     color: white;
@@ -176,6 +176,10 @@ export default {
   u {
     cursor: pointer;
     color: white;
+  }
+  p{
+    font-family: "SiamSquare";
+    font-size: 20px;
   }
 }
 
