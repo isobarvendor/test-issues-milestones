@@ -24,10 +24,12 @@
             v-validate="'required'"
             :placeholder="submissionText.name"
           />
-          <span class="name-tip">{{ submissionText.nameTip }}</span>
-          <!-- <span class="error-message">{{
-            errors.first('name')
-          }}</span> -->
+          <div style="text-align: left;">
+            <p class="error-message">
+              {{ errors.first("name") ? submissionText.errorRequiredName : "" }}
+            </p>
+            <p class="name-tip">{{ submissionText.nameTip }}</p>
+          </div>
         </div>
         <div
           class="details"
@@ -557,6 +559,7 @@ export default {
 }
 .error-message {
   color: #000;
+  text-align: left;
 }
 .error-message-black {
   color: #000;

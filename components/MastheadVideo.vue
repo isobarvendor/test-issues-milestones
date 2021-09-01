@@ -18,7 +18,7 @@
         <p>{{ data.description }}</p>
       </div>
       <MastheadCountDown v-if="isCountDown" :data="data.endDate" />
-      <div class="mutedIcon" @click="play">
+      <div :class="['mutedIcon', this.showMuteIcon]" @click="play">
         <img
           :src="'/img/icons/' + (this.muted ? 'muted.png' : 'unmuted.png')"
         />
@@ -48,18 +48,31 @@ export default {
           ? this.data.homepage.mastheadSection.mobileImage[0].url
           : this.data.homepage.mastheadSection.video.url,
       muted: true,
-      showMuteIcon: true
+      showMuteIcon: ""
     };
   },
-  mounted() {},
+  mounted() {
+    let video =
+      this.data.homepage.mastheadSection.mobileImage.length > 0
+        ? this.data.homepage.mastheadSection.mobileImage[0].url
+        : "";
+    if (video.includes(".mp4")) {
+      this.showMuteIcon = "";
+    } else {
+      this.showMuteIcon = "hideMuteIcon";
+    }
+  },
   computed: {
     getVideoMob() {
-      let video =
-        this.data.homepage.mastheadSection.mobileImage.length > 0
-          ? this.data.homepage.mastheadSection.mobileImage[0].url
-          : this.data.homepage.mastheadSection.video.url;
-      if (video.includes(".mp4")) {
-      }
+      // let video =
+      //   this.data.homepage.mastheadSection.mobileImage.length > 0
+      //     ? this.data.homepage.mastheadSection.mobileImage[0].url
+      //     : "";
+      // if (video.includes(".mp4")) {
+      //   this.showMuteIcon = "";
+      // } else {
+      //   this.showMuteIcon = "hideMuteIcon";
+      // }
     }
   },
   methods: {
@@ -81,6 +94,7 @@ export default {
   left: 50px;
   cursor: pointer;
 }
+
 @media only screen and (max-width: 600px) {
   .videoBackground {
     max-height: 400px !important;
@@ -91,6 +105,9 @@ export default {
   .mutedIcon {
     bottom: 5px;
     left: 5px;
+  }
+  .hideMuteIcon {
+    display: none;
   }
 }
 @media only screen and (max-width: 1099px) {
