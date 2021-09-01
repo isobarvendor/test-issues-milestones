@@ -24,7 +24,7 @@
                 <div v-if="item.subtitle" class="text-subtitle">
                   <h4>{{ item.subtitle }}</h4>
                 </div>
-                <div v-if="item.text" >
+                <div v-if="item.text">
                   <h4>{{ item.text }}</h4>
                 </div>
               </div>
@@ -115,10 +115,13 @@
           </div>
         </div>
       </div>
-      <div class="disclaimer">*เพื่อแลก ROV Item ตั้งแต่วันที่ 1 กันยายน 2564 ถึง 30 พฤศจิกายน 2564 หรือจนกว่าจำนวนของรางวัล ROV Box จะหมดลง</div>
+      <div class="disclaimer">
+        *เพื่อแลก ROV Item ตั้งแต่วันที่ 1 กันยายน 2564 ถึง 30 พฤศจิกายน 2564
+        หรือจนกว่าจำนวนของรางวัล ROV Box จะหมดลง
+      </div>
     </div>
     <div class="hidden-md-and-up">
-      <div  style="">
+      <div style="">
         <div class="header-title-mobile">
           <p>ของรางวัล</p>
         </div>
@@ -145,7 +148,7 @@
                 <div v-if="item.subtitle" class="text-subtitle-mobile">
                   <h4>{{ item.subtitle }}</h4>
                 </div>
-                <div v-if="item.text" >
+                <div v-if="item.text">
                   <h4>{{ item.text }}</h4>
                 </div>
               </div>
@@ -168,7 +171,9 @@
                   />
                 </div>
                 <div class="header">
-                  <p style="color: whiter;">แลกได้ทันที ROV ไอเทมเหล่านี้อาจเป็นของคุณ!</p>
+                  <p style="color: whiter;">
+                    แลกได้ทันที ROV ไอเทมเหล่านี้อาจเป็นของคุณ!
+                  </p>
                 </div>
                 <div class="images">
                   <div v-if="$vuetify.breakpoint.xs">
@@ -233,9 +238,11 @@
                 <br />
               </v-card>
             </v-dialog>
-            <div class="disclaimer">*เพื่อแลก ROV Item ตั้งแต่วันที่ 1 กันยายน 2564 ถึง 30 พฤศจิกายน 2564 หรือจนกว่าจำนวนของรางวัล ROV Box จะหมดลง</div>
+            <div class="disclaimer">
+              *เพื่อแลก ROV Item ตั้งแต่วันที่ 1 กันยายน 2564 ถึง 30 พฤศจิกายน
+              2564 หรือจนกว่าจำนวนของรางวัล ROV Box จะหมดลง
+            </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -275,7 +282,7 @@ export default {
           number: null,
           subtitle: translation.prizes.iphone_desc,
           image: "/develop/iphone.png",
-          text: 'รวมจำนวนทั้งสิ้น 180 รางวัล',
+          text: "รวมจำนวนทั้งสิ้น 180 รางวัล",
           dialog: false
         }
       ],
@@ -381,8 +388,6 @@ export default {
     height: 70%; */
   width: 90%;
   padding-bottom: 10px;
-
-
 }
 
 .header-title {
@@ -391,32 +396,31 @@ export default {
   margin: 2% auto auto auto;
   position: relative;
   p {
-    font-family: "Hackney";
+    font-family: "SiamSquare";
     font-size: 50px;
     position: relative;
     top: 55%;
-      background-image: url("/develop/background-prizes-title.png");
+    background-image: url("/develop/background-prizes-title.png");
     background-size: 100% 100%;
     max-width: 500px;
     margin: auto;
-       height: 90px;
+    height: 90px;
+    padding-top: 10px;
   }
-
 }
 
-.header-title-mobile{
+.header-title-mobile {
   height: 10%;
   text-align: center;
   margin-top: 18%;
-  p{
-    font-family: "Hackney";
+  p {
+    font-family: "SiamSquare";
     font-size: 250%;
-      background-image: url("/develop/background-prizes-title.png");
+    background-image: url("/develop/background-prizes-title.png");
     background-size: 100% 100%;
     height: 100px;
     padding: 0.5cm;
     margin: auto;
-
   }
 }
 
@@ -457,7 +461,7 @@ export default {
   }
 }
 
-.disclaimer{
+.disclaimer {
   text-align: center;
   color: white;
   margin-top: 16px;
@@ -480,7 +484,7 @@ export default {
   margin: 3% auto 2% auto;
 }
 
-.text-title-mobile{
+.text-title-mobile {
   height: 50%;
   /* margin-bottom: 5%; */
   margin-top: 3%;
@@ -735,13 +739,12 @@ export default {
   .image-row div {
     margin-bottom: 35%;
   }
-  
-.header-title-mobile{
-  p{
-    
-    padding-top: 0.5cm;
+
+  .header-title-mobile {
+    p {
+      padding-top: 0.5cm;
+    }
   }
-}
 }
 
 @media screen and (max-width: 450px) {
@@ -769,7 +772,6 @@ export default {
     font-size: 50%;
     height: 2vh;
   }
-
 }
 
 /* @media screen and (max-width: 768px) {
