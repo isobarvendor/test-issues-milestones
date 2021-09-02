@@ -295,7 +295,7 @@ export default {
     width: 50%;
   }
   .text-redeem {
-    font-size: 80%;
+    font-size: 15px;
     input[type="text"] {
       width: 45%;
     }
@@ -349,7 +349,7 @@ export default {
     }
   }
   .list {
-    width: 60%;
+    width: 80%;
   }
   .redeem-button {
     button {
