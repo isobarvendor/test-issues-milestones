@@ -191,6 +191,7 @@ export default {
 }
 
 .text-redeem {
+  font-family: "SiamSquare" !important;
   text-align: center;
   /* position: absolute;
         top: 40%;
@@ -201,6 +202,7 @@ export default {
 
   p {
     font-size: 150%;
+     font-family: "SiamSquare" !important;
   }
   input[type="text"] {
     background: white;
