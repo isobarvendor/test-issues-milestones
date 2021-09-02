@@ -49,13 +49,13 @@
             text-align: center;
             color: white;
             font-size: 4vw;
-            font-family: "Avenir";
+            font-family: "SiamSquare";
         }
         div >>> p{
             text-align: center;
             color: white;
             font-size: 1.65vw;
-            font-family: "Avenir";
+            font-family: "SiamSquare";
         }
     }
     .text-box{
