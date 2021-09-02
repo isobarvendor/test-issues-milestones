@@ -351,13 +351,13 @@ footer {
     text-align: center;
     color: white;
     font-size: 3.4vw;
-    font-family: "SiamSquare";
+    font-family: "SiamSquare" !important;
   }
   p {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    font-family: "SiamSquare";
+    font-family: "SiamSquare" !important;
   }
   @media (max-width: 1300px) {
     p {
