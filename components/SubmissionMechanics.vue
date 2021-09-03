@@ -293,6 +293,7 @@ export default {
                 });
             } catch (error) {
               console.log("register error:", error);
+               this.loading = false;
             }
           }
         }
@@ -341,6 +342,7 @@ export default {
                     ];
                     this.prize = prize;
                   }
+                   this.loading = false;
                 }
 
                 this.loading = false;
@@ -349,6 +351,7 @@ export default {
             console.log("register error:", error);
           }
         }
+         this.loading = false;
       }
     },
     addGTMSuccess(data) {
