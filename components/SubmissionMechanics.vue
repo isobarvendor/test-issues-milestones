@@ -259,8 +259,10 @@ export default {
                     }
                   } else {
                     this.submitTwo(data, page);
-                    this.loading = false;
+                     this.loading = false;
+
                   }
+                   this.loading = false;
                 })
                 .catch(error => {
                   if (error.response) {

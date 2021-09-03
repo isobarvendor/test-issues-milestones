@@ -47,31 +47,21 @@
     <div class="prize-note" v-html="prize.note" v-if="themes == 1"></div>
     <div class="prize-note-two" v-html="prize.note" v-if="themes == 2"></div>
     <div class="prize-button-area center">
-      <audio controls v-if="playSound" controlsList="nodownload">
+      <!--audio controls v-if="playSound" controlsList="nodownload">
         <source :src="audio" type="audio/mpeg" />
-      </audio>
-      <v-progress-circular
+      </audio-->
+      <!--v-progress-circular
         :width="2"
         color="white"
         indeterminate
         v-if="loading"
-      ></v-progress-circular>
+      ></v-progress-circular-->
       <div
-        v-else
         style="margin-bottom:40px;"
         v-for="(btn, index) in prize.button"
         :key="index"
       >
         <a
-          v-if="btn.link && btn.link.includes('.mp3')"
-          :id="btn.link ? 'redeem_now' : 'prize-' + btn.id"
-          :href="'#prize-chance'"
-          @click="redeemMusic(btn.link)"
-        >
-          <v-btn v-html="btn.text"> </v-btn>
-        </a>
-        <a
-          v-else
           :id="btn.link ? 'redeem_now' : 'prize-' + btn.id"
           :href="btn.link ? btn.link : '#prize-chance'"
           :target="btn.link ? '_blank' : ''"
