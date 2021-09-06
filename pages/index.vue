@@ -147,21 +147,24 @@ export default {
           }
         });
     },
-    getListPrize() {
+    async getListPrize() {
       let configID = this.$config.configID.split(",");
       if (configID.length > 0) {
         let array = [];
         for (let a = configID.length - 1; a >= 0; a--) {
-          console.log(a);
-          this.$store
-            .dispatch(GET_LIST_PRIZE, configID[a])
-            .then(response => {
-              this.listPrizesData = [
-                ...this.listPrizesData,
-                ...[...array, ...response.data.prizeList]
-              ];
-            })
-            .catch(error => {});
+          // console.log(a);
+          try {
+            const response = await this.$store.dispatch(
+              GET_LIST_PRIZE,
+              configID[a]
+            );
+            this.listPrizesData = [
+              ...this.listPrizesData,
+              ...[...array, ...response.data.prizeList]
+            ];
+          } catch (error) {
+            throw error;
+          }
         }
       }
     }

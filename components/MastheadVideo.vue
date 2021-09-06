@@ -29,9 +29,7 @@
         <h1>{{ data.title }}</h1>
         <p>{{ data.description }}</p>
       </div>
-      <!-- <div class="poster-mobile">
-        <img :src="mobileImageUrl" alt="" />
-      </div> -->
+
       <div :class="['mutedIcon', this.showMuteIcon]" @click="play">
         <img
           :src="'/img/icons/' + (this.muted ? 'muted.png' : 'unmuted.png')"
@@ -80,19 +78,7 @@ export default {
       this.videoBackgroundClass = ".video-background-none";
     }
   },
-  computed: {
-    getVideoMob() {
-      // let video =
-      //   this.data.homepage.mastheadSection.mobileImage.length > 0
-      //     ? this.data.homepage.mastheadSection.mobileImage[0].url
-      //     : "";
-      // if (video.includes(".mp4")) {
-      //   this.showMuteIcon = "";
-      // } else {
-      //   this.showMuteIcon = "hideMuteIcon";
-      // }
-    }
-  },
+
   methods: {
     isImage(img) {
       if (img.includes("png") || img.includes("jpg")) {
@@ -127,10 +113,6 @@ export default {
   .videoBackground {
     max-height: 400px !important;
     width: 100% !important;
-
-    /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%; */
   }
   .video-background-none {
     display: none;
@@ -144,27 +126,6 @@ export default {
   }
   .hideMuteIcon {
     display: none;
-  }
-  .poster-mobile {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* right: 0; */
-    /* bottom: 0; */
-
-    /* padding: 5px; */
-    /* max-height: 500px; */
-    /* width: 100%;
-    height: 100%; */
-
-    background: black;
-  }
-  .poster-mobile img {
-    width: 100%;
-    display: block;
-    /* height: auto; */
-    object-fit: scale-down;
   }
 }
 @media only screen and (max-width: 1099px) {
