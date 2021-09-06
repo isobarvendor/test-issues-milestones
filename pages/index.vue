@@ -101,7 +101,7 @@ export default {
       return check
     };
     let check = window.mobileAndTabletCheck();
-    
+
     if (check){
         if (!this.$store.state.token){
           location.href= window.location.origin + "/api/oauth2/authorize/line?redirect_uri=" +
@@ -139,9 +139,9 @@ export default {
             }
         this.$scrollTo('#form', 120, options)
      },
-      getAccount(){
-       this.$store.dispatch(GET_ACCOUNT,this.$store.state.token).then((response)=>{
-            this.$store.dispatch(GET_PHONE).then((response2)=>{
+     async getAccount(){
+       await this.$store.dispatch(GET_ACCOUNT,this.$store.state.token).then( async(response)=>{
+            await this.$store.dispatch(GET_PHONE).then((response2)=>{
 
             }).catch(error=>{
               if(error.response && error.response.data.status=="401"){
@@ -183,13 +183,13 @@ export default {
             await this.$store.dispatch(GET_LIST_PRIZE,luckyDraw[a].NPGS[0].configID)
             .then((response)=>{
                 this.listPrizesData=[...this.listPrizesData,...[...array, ...response.data.prizeList]];
-                
+
                 let total = 0;
                 this.listPrizesData.forEach(ele => {
                   total += ele.amountAvailable
                 })
                 this.remaining = total;
-                
+
             })
             .catch((error) =>{
 
