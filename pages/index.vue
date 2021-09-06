@@ -104,9 +104,14 @@ export default {
 
     if (check){
         if (!this.$store.state.token){
-          location.href= window.location.origin + "/api/oauth2/authorize/line?redirect_uri=" +
+          const origin = window.location.origin; 
+          const index = origin.indexOf("/") 
+          const url_without_http = origin.substr(index) 
+          const url = "https:" + url_without_http 
+          location.href = url + "/api/oauth2/authorize/line?redirect_uri=" + url + "/settoken"
+          /* location.href= window.location.origin + "/api/oauth2/authorize/line?redirect_uri=" +
               window.location.origin +
-              "/settoken";
+              "/settoken"; */
         }
       }
 
