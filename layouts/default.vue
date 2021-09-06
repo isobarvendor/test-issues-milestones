@@ -52,7 +52,7 @@ export default {
     async fetchData(){
       this.loading=true;
       let language = this.$store.state.language;
-      this.$store.dispatch(FETCH_CMS_DATA, language).then(response=>{
+      await this.$store.dispatch(FETCH_CMS_DATA, language).then(response=>{
         this.loading=false;
       }).catch(error=>{
         if(error){

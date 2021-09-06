@@ -91,7 +91,11 @@ export default {
 
     if(this.CMSContent && new Date(this.CMSContent[0].endDate).getTime()>new Date().getTime()){
        await  this.$store.commit('SET_CAMPAIGN_STARTED',false);
+       this.notCountDown=false;
         localStorage.clear();
+    }else{
+       await this.$store.commit('SET_CAMPAIGN_STARTED',true);
+        this.notCountDown=true;
     }
 
     window.mobileAndTabletCheck = function() {
@@ -104,10 +108,10 @@ export default {
 
     if (check){
         if (!this.$store.state.token){
-          const origin = window.location.origin; 
-          const index = origin.indexOf("/") 
-          const url_without_http = origin.substr(index) 
-          const url = "https:" + url_without_http 
+          const origin = window.location.origin;
+          const index = origin.indexOf("/")
+          const url_without_http = origin.substr(index)
+          const url = "https:" + url_without_http
           location.href = url + "/api/oauth2/authorize/line?redirect_uri=" + url + "/settoken"
           /* location.href= window.location.origin + "/api/oauth2/authorize/line?redirect_uri=" +
               window.location.origin +
