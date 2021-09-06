@@ -18,7 +18,7 @@ export default {
       await this.$store.commit('SET_ERROR',null)
       await this.$store.commit('SET_TOKEN',this.$route.query.token)
     }
-        window.location.assign("/");
+        this.$router.push("/")
     },
   },
 };

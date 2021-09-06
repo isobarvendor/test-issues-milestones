@@ -67,10 +67,10 @@ export default {
   props: {
 
   },
-  mounted(){
+  async mounted(){
     this.configData && this.configData.ExclusivePrizes&&this.configData.ExclusivePrizes.ExclusivePrizes && this.getListPrize();
     if(this.$store.state.token){
-         this.getAccount();
+         await this.getAccount();
         // this.campaignType=='Experience' && this.getListWallet();
 
     }
@@ -90,7 +90,7 @@ export default {
     } */
 
     if(this.CMSContent && new Date(this.CMSContent[0].endDate).getTime()>new Date().getTime()){
-        this.$store.commit('SET_CAMPAIGN_STARTED',false);
+       await  this.$store.commit('SET_CAMPAIGN_STARTED',false);
         localStorage.clear();
     }
 
