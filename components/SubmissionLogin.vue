@@ -61,6 +61,11 @@ export default {
         "/settoken";
     }
   },
+  mounted() {
+//     if (location.protocol !== 'https:') {
+//     location.replace(`https:${location.href.substring(location.protocol.length)}`);
+// }
+  },
   computed: {
     errorMessage() {
       return this.$store.state.errorLogin;

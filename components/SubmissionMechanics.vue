@@ -623,6 +623,9 @@ export default {
   color: #fff;
   text-align: center;
 }
+#participateAgain {
+  font-family: "Koulen-Regular";
+}
 .prize-chance.joox-section {
   padding-top: 80px;
   text-align: center;

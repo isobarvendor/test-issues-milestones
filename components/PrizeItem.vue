@@ -62,6 +62,7 @@
         :key="index"
       >
         <a
+        class="btn-prize"
           :id="btn.link ? 'redeem_now' : 'prize-' + btn.id"
           :href="btn.link ? btn.link : '#prize-chance'"
           :target="btn.link ? '_blank' : ''"
@@ -146,6 +147,9 @@ export default {
   cursor: pointer;
 }
 
+.btn-prize{
+  font-family: "Koulen-Regular";
+}
 .image-placeholder {
   min-height: 300px;
 }

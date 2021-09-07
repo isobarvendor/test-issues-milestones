@@ -570,7 +570,7 @@ export default {
   align-items: center;
 }
 .get-code {
-  font-family: "KhmerOSKoulen", Helvetica, Arial, sans-serif !important;
+  font-family: "Koulen-Regular" !important;
   display: block;
   width: 100%;
   margin: 25px 0;
