@@ -5,7 +5,7 @@
     </div>
     <div class="content">
       <div class="images">
-        <img :src="image" alt="" />
+        <img src="develop/rov-background.png" alt="" />
       </div>
     </div>
     <div class="redeem-button" v-if="!showCode">
@@ -24,7 +24,7 @@
             <img src="/develop/copy.png" />{{ button }}</button
           ><br />
         </div>
-        <p>ขั้นตอนการแลกรางวัล</p>
+        <!-- <p>ขั้นตอนการแลกรางวัล</p>
         <div class="list">
           <ol>
             <li>
@@ -39,12 +39,24 @@
             <li>6. กรอกโค้ดที่ได้มาลงในช่อง</li>
             <li>7. กดยืนยันเพื่อรับไอเทมเป็นอันเสร็จสิ้น</li>
           </ol>
-        </div>
+        </div> -->
         <p>หมายเหตุ: ไอเทมจะถูกส่งไปที่จดหมายในเกมภายใน 5 นาที</p>
       </div>
       <!-- <div id="link">
         <u @click="open">https://shortenanything.page.link/eNh4</u>
       </div> -->
+    </div>
+    <div class="content">
+      <div class="images-second">
+        <img src="develop/iphone-background.png" alt="" />
+      </div>
+    </div>
+    <div class="text-redeem-second">
+      <p id="second-message">
+        คุณได้สิทธิ์รวมสนุกลุ้นเป็นเจ้าของ iPhone 12 แล้ว!
+        เราจะประกาศรางวัลทุกวันศุกร์ เริ่มตั้งแต่วันศุกร์ ที่ 17 กันยายน 2564
+        เป็นต้นไป ติดตามการประกาศรางวัลได้ที่นี่ และ Facebook Fanta Thailand
+      </p>
     </div>
     <div class="link" @click="scroll">
       <p>SCROLL DOWN FOR LUCKY DRAW DETAILS</p>
@@ -105,7 +117,7 @@ export default {
 
 <style lang="scss" scoped>
 .redeem {
-  background-image: url("/develop/background-redeem.png");
+  background-image: url("/develop/background-howto.png");
   background-size: 100% 100%;
   max-width: 1280px;
 }
@@ -136,26 +148,34 @@ export default {
 }
 
 .content {
-  display: flex;
+  margin: auto;
   /* background-size: 1700px 600px;
         margin-left: -3cm; */
   /* position: relative; */
   height: 40%;
-  img {
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .images {
-  display: flex;
-  margin: 1cm auto 0 auto;
+  
   /* position: absolute;
         top: 50%;
         left: 20%;
         transform: translate(-50%, -50%); */
-  height: 80%;
-  width: 20%;
+  height: 75%;
+  width: 50%;
+  align-items: center;
+  
+}
+
+.images-second{
+  
+  /* position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%); */
+  height: 75%;
+  width: 50%;
+  align-items: center;
 }
 
 .redeem-button {
@@ -169,7 +189,7 @@ export default {
     border-radius: 5px;
     margin: 1cm auto 0.5cm auto;
     text-align: center;
-    height: 7vh;
+    height: 5vh;
     font-family: "Avenir";
     box-shadow: 3px 3px 5px #707070;
   }
@@ -177,7 +197,7 @@ export default {
     cursor: pointer;
     color: white;
   }
-  p{
+  p {
     font-family: "SiamSquare";
     font-size: 20px;
   }
@@ -202,7 +222,8 @@ export default {
 
   p {
     font-size: 150%;
-     font-family: "SiamSquare" !important;
+    font-family: "SiamSquare" !important;
+    margin-bottom: 1cm;
   }
   input[type="text"] {
     background: white;
@@ -234,6 +255,24 @@ export default {
       right: 70%;
     }
   }
+}
+
+.text-redeem-second {
+  font-family: "SiamSquare" !important;
+  text-align: center;
+  /* position: absolute;
+        top: 40%;
+        left: 70%;
+        transform: translate(-50%, -50%); */
+  height: 10%;
+  width: 100%;
+  margin-bottom: 0.5cm;
+  p {
+    font-size: 150%;
+    font-family: "SiamSquare" !important;
+    
+  }
+  
 }
 
 .copy-button {
@@ -275,14 +314,16 @@ export default {
         } */
 }
 
+
+
 @media screen and (max-width: 1034px) {
-  .images {
-    height: 70%;
-  }
+  
 }
 
 @media screen and (max-width: 736px) {
   .header-redeem {
+    height: 12%;
+    margin-top: 7%;
     p {
       font-size: 26px;
     }
@@ -290,10 +331,7 @@ export default {
   /* .content{
       height: 35%;
     } */
-  .images {
-    height: 80%;
-    width: 50%;
-  }
+  
   .text-redeem {
     font-size: 15px;
     input[type="text"] {
@@ -305,6 +343,7 @@ export default {
         right: 60%;
       }
     }
+    
   }
   .link {
     #top {
@@ -320,9 +359,8 @@ export default {
 }
 
 @media screen and (max-width: 400px) {
-  .images {
-    height: 70%;
-    width: 40%;
+  .text-redeem-second{
+    margin-bottom: 1cm;
   }
   .text-redeem {
     button {
@@ -354,6 +392,7 @@ export default {
   .redeem-button {
     button {
       margin: 0 auto 0.7cm auto;
+      height: 6vh;
     }
   }
 }

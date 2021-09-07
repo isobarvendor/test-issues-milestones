@@ -9,10 +9,8 @@
           <div id="header">
             <p>{{ item.header }}</p>
           </div>
-          <div class="bigger-box">
-            <div class="image-box">
-              <img :src="item.image" />
-            </div>
+          <div class="bigger-box" :style="item.image">
+          </div>
             <div class="text-box">
               <div id="text">
                 <h3 class="text-title">
@@ -29,7 +27,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          
           <div v-if="item.header !== translation.chance">
             <v-dialog v-model="item.dialog" width="1500">
               <template v-slot:activator="{ on }">
@@ -133,11 +131,9 @@
           <div id="header">
             <p>{{ item.header }}</p>
           </div>
-          <div class="bigger-box-mobile">
-            <div class="image-box">
-              <img :src="item.image" />
-            </div>
-            <div class="text-box">
+          <div class="bigger-box-mobile" :style="item.image">
+          </div>
+            <div class="text-box-mobile">
               <div id="text-mobile">
                 <h3 class="text-title-mobile">
                   <strong>{{ item.title }}</strong>
@@ -153,7 +149,8 @@
                 </div>
               </div>
             </div>
-          </div>
+          
+          
           <div v-if="item.header !== translation.chance">
             <v-dialog v-model="item.dialog" width="1500">
               <template v-slot:activator="{ on }">
@@ -272,7 +269,7 @@ export default {
           title: "FANTA x ROV Box* จำนวนจำกัดทั้งสิ้น 1.5 ล้านรางวัล",
           number: "ไอเทมคงเหลือ ",
           subtitle: null,
-          image: "/develop/fanta-prize.png",
+          image: "background-image: url('/develop/rov-background.png')",
           text: null,
           dialog: false
         },
@@ -281,7 +278,7 @@ export default {
           title: translation.prizes.iphone,
           number: null,
           subtitle: translation.prizes.iphone_desc,
-          image: "/develop/iphone.png",
+          image: "background-image: url('/develop/iphone-background.png')",
           text: "รวมจำนวนทั้งสิ้น 180 รางวัล",
           dialog: false
         }
@@ -382,12 +379,13 @@ export default {
 }
 
 .bigger-box-mobile {
-  background-color: darkblue;
-  margin: 0 auto;
+  margin: 0 1cm;
   /* width: 80%;
-    height: 70%; */
-  width: 90%;
-  padding-bottom: 10px;
+  height: 70%; */
+  width: 303.58px;
+  height: 300.13px;
+  margin: auto;
+  background-size: 100% 100%;
 }
 
 .header-title {
@@ -433,12 +431,13 @@ export default {
 }
 
 .bigger-box {
-  background-color: darkblue;
   margin: 0 1cm;
   /* width: 80%;
   height: 70%; */
   width: 303.58px;
-  height: 434.13px;
+  height: 300.13px;
+  margin: auto;
+  background-size: 100% 100%;
 }
 .prizes {
   display: flex;
@@ -468,11 +467,35 @@ export default {
 }
 
 .text-box {
-  width: 90%;
-  height: 30%;
+  width: 300px;
+  height: 105px;
   margin: auto;
   color: white;
   text-align: center;
+  background-color: darkblue;
+  vertical-align: middle;
+}
+
+.text-box-mobile{
+  width: 300px;
+  height: 105px;
+  margin: auto;
+  color: white;
+  text-align: center;
+  background-color: darkblue;
+  vertical-align: middle;
+}
+
+#text{
+  width: 95%;
+  margin: auto;
+  padding-top: 0.1cm;
+}
+
+#text-mobile{
+  width: 95%;
+  margin: auto;
+  padding-top: 0.1cm;
 }
 
 .text-title {
@@ -481,7 +504,7 @@ export default {
   margin-top: 3%;
   font-size: 100%;
   width: 100%;
-  margin: 3% auto 2% auto;
+  margin: 3% auto auto auto;
 }
 
 .text-title-mobile {
@@ -490,31 +513,29 @@ export default {
   margin-top: 3%;
   font-size: 60%;
   width: 100%;
-  margin: 4% auto 2% auto;
+  margin: 4% auto auto auto;
   font-size: 16px;
 }
 
 #number {
   background: #f27c00;
   height: 50%;
-  padding: 5% 0;
+  padding: 2% 0;
   font-size: 100%;
 }
 
 #number-mobile {
   background: #f27c00;
   height: 50%;
-  padding: 5% 0;
+  padding: 2% 0;
   font-size: 14px;
 }
 
 .text-subtitle {
-  padding: 5% 0;
   font-size: 100%;
 }
 
 .text-subtitle-mobile {
-  padding: 10% 0;
   font-size: 14px;
 }
 
@@ -522,7 +543,7 @@ export default {
   background-color: #73aa17;
   color: white;
   font-size: 100%;
-  width: 80%;
+  width: 300px;
   border-radius: 5px;
   margin: 5% 1cm 0 1cm;
   text-align: center;
