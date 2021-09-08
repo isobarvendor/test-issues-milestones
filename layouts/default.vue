@@ -9,8 +9,8 @@
     ></v-progress-circular>
     <Nuxt v-if="!errorMessage&&!loading&&!hideAll" />
      <div class="center-text" v-else-if="!loading&&!hideAll">
-        <h1>{{errorMessage}}</h1>
-        <p>{{globalError.tryagain}}</p>
+        <h1>Loading</h1>
+        <p>Please wait ...</p>
       </div>
     <Header  v-if="!loading" @toggleMenu="toggleMenu" />
   </div>
@@ -95,10 +95,8 @@ export default {
 
 
   },
-  mounted() {
-     this.fetchData();
-
-
+  async mounted() {
+     await this.fetchData();
   },
   created(){
      if (process.client) {
