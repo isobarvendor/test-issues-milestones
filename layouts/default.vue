@@ -52,7 +52,7 @@ export default {
     async fetchData(){
       this.loading=true;
       let language = this.$store.state.language;
-      this.$store.dispatch(FETCH_CMS_DATA, language).then(response=>{
+      await this.$store.dispatch(FETCH_CMS_DATA, language).then(response=>{
         this.loading=false;
       }).catch(error=>{
         if(error){
@@ -101,8 +101,8 @@ export default {
       }
 
   },
-  mounted() {
-     this.fetchData();
+  async mounted() {
+     await this.fetchData();
 
       /*this.$store.dispatch(GET_CLIENT_INFO).then(response =>{
         const ranges = [
@@ -130,8 +130,12 @@ export default {
       window.addEventListener('beforeunload', this.beforeWindowUnload)
       let serverhost= window.location.href;
           let correctURL=serverhost.replace('www.','')
+           let httpsURL=serverhost.replace('http:','https:')
           if(serverhost.match(/www/g)){
             location.assign(correctURL);
+          }
+            if(serverhost.match(/http:/g)){
+            location.assign(httpsURL);
           }
 
      }

@@ -79,13 +79,13 @@ export default {
     };
   },
   props: {},
-  mounted() {
+  async mounted() {
     this.configData &&
       this.configData.ExclusivePrizes &&
       this.configData.ExclusivePrizes.ExclusivePrizes &&
       this.getListPrize();
     if (this.$store.state.token) {
-      this.getAccount();
+      await this.getAccount();
       // this.campaignType=='Experience' && this.getListWallet();
     }
     if (this.$store.state.token || this.$store.state.goToSignin) {
@@ -109,12 +109,14 @@ export default {
     ) {
       this.$store.commit("SET_CAMPAIGN_STARTED", false);
       localStorage.clear();
+    }else{
+       this.$store.commit("SET_CAMPAIGN_STARTED", true);
     }
   },
 
   methods: {
-    getAccount() {
-      this.$store
+    async getAccount() {
+      await this.$store
         .dispatch(GET_ACCOUNT, this.$store.state.token)
         .then(response => {
           this.$store
