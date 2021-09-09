@@ -52,10 +52,8 @@
       </div>
     </div>
     <div class="text-redeem-second">
-      <p id="second-message">
-        คุณได้สิทธิ์รวมสนุกลุ้นเป็นเจ้าของ iPhone 12 แล้ว!
-        เราจะประกาศรางวัลทุกวันศุกร์ เริ่มตั้งแต่วันศุกร์ ที่ 17 กันยายน 2564
-        เป็นต้นไป ติดตามการประกาศรางวัลได้ที่นี่ และ Facebook Fanta Thailand
+      <p id="second-message" v-html="config.attempts[0].FormHeading.Prize">
+
       </p>
     </div>
     <div class="link" @click="scroll">
@@ -156,7 +154,7 @@ export default {
 }
 
 .images {
-  
+
   /* position: absolute;
         top: 50%;
         left: 20%;
@@ -164,11 +162,11 @@ export default {
   height: 75%;
   width: 50%;
   align-items: center;
-  
+
 }
 
 .images-second{
-  
+
   /* position: absolute;
         top: 50%;
         left: 20%;
@@ -270,9 +268,9 @@ export default {
   p {
     font-size: 150%;
     font-family: "SiamSquare" !important;
-    
+
   }
-  
+
 }
 
 .copy-button {
@@ -317,7 +315,7 @@ export default {
 
 
 @media screen and (max-width: 1034px) {
-  
+
 }
 
 @media screen and (max-width: 736px) {
@@ -331,7 +329,7 @@ export default {
   /* .content{
       height: 35%;
     } */
-  
+
   .text-redeem {
     font-size: 15px;
     input[type="text"] {
@@ -343,7 +341,7 @@ export default {
         right: 60%;
       }
     }
-    
+
   }
   .link {
     #top {
