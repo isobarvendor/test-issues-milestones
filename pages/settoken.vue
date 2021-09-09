@@ -22,7 +22,7 @@ export default {
       await this.$store.dispatch(GET_TOKEN)
             .then((response)=>{
             })
-        console.log("token",this.$store.state.token);
+        //console.log("token",this.$store.state.token);
 
        if(this.$store.state.token){
           window.location.assign("/");
