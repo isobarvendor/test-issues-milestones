@@ -8,6 +8,9 @@ export default {
   login(data) {
     return axios.post(`${origin}/api/login`, data)
   },
+  getToken() {
+    return axios.get(`${origin}/api/getToken`);
+  },
   signup(data) {
     return axios.post(`${origin}/api/signup`, data)
   },
