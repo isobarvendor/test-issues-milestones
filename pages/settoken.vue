@@ -3,7 +3,7 @@
 </template>
 
 <script>
-
+import Cookie from 'js-cookie'
 export default {
 
   mounted() {
@@ -19,20 +19,20 @@ export default {
        }
     }else{
       await this.$store.commit('SET_ERROR',null)
-        let token = this.getCookie("tok_x_e_b");
+        let token = Cookie.get('tok_x_e_b');
+        //console.log("token",token);
+        if(!token){
+          token=this.$route.query.token;
+        }
        await this.$store.commit('SET_TOKEN',token)
        if(this.$store.state.token){
-          document.cookie = "tok_x_e_b" +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+         Cookie.remove('tok_x_e_b')
           window.location.assign("/");
        }
     }
 
     },
-    getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    }
+
   },
 };
 </script>
