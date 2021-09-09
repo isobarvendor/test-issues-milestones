@@ -1,4 +1,5 @@
 export const LOGIN= `login`;
+export const GET_TOKEN= `getToken`;
 export const SIGNUP= `signup`;
 export const GET_ACCOUNT= `getAccount`;
 export const GET_CLIENT_INFO=`getClient`;

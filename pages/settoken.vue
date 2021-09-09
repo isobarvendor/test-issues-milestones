@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie'
+import { GET_TOKEN } from '@/store/action_types';
 export default {
 
   mounted() {
@@ -19,12 +19,14 @@ export default {
        }
     }else{
       await this.$store.commit('SET_ERROR',null)
-        let token = Cookie.get('tok_x_e_b');
-        console.log("token",token);
-        if(!token){
+      await this.$store.dispatch(GET_TOKEN)
+            .then((response)=>{
+            })
+        console.log("token",this.$store.state.token);
+        if(!this.$store.state.token){
           token=this.$route.query.token;
+          await this.$store.commit('SET_TOKEN',token)
         }
-       await this.$store.commit('SET_TOKEN',token)
        if(this.$store.state.token){
          Cookie.remove('tok_x_e_b')
           window.location.assign("/");

@@ -5,6 +5,7 @@ import CMSAPI from '../api/cms';
 
 import {
   LOGIN,
+  GET_TOKEN,
   SIGNUP,
   GET_ACCOUNT,
   GET_LIST_PRIZE,
@@ -40,6 +41,19 @@ export default {
     return new Promise((resolve, reject) => {
       const moduleState = state;
         GeneralAPI.login(data)
+        .then(response => {
+          commit('SET_TOKEN', response.data.accessToken);
+          return resolve(response);
+        })
+        .catch(error => {
+          return reject(error);
+        });
+    })
+  },
+  [GET_TOKEN]: ({ commit, state, getters }) => {
+    return new Promise((resolve, reject) => {
+      const moduleState = state;
+        GeneralAPI.getToken()
         .then(response => {
           commit('SET_TOKEN', response.data.accessToken);
           return resolve(response);
