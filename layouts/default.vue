@@ -134,7 +134,7 @@ export default {
           if(serverhost.match(/www/g)){
             location.assign(correctURL);
           }
-            if(serverhost.match(/http:/g)){
+            if(serverhost.match(/http:/g)&&!serverhost.match(/localhost/g)){
             location.assign(httpsURL);
           }
 
