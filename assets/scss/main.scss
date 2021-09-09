@@ -22,8 +22,8 @@ body {
   @include breakpoint(md) {
     font-size: $body-font-size;
   }
-  .v-application{
-    font-family: 'Avenir' !important;
+  .v-application {
+    font-family: "Avenir" !important;
   }
 }
 .main-container {
@@ -75,14 +75,13 @@ a.button {
   bottom: 70px !important;
   z-index: 100;
   @media only screen and(max-width: 500px) {
-    bottom: 140px !important
-
+    bottom: 140px !important;
   }
 }
 
-.at-expanding-share-button{
+.at-expanding-share-button {
   @media only screen and(max-width: 500px) {
-    bottom: 80px !important
+    bottom: 80px !important;
   }
 }
 
@@ -352,36 +351,33 @@ footer {
     text-align: center;
     color: white;
     font-size: 3.4vw;
-    font-family: "Avenir";
+    font-family: "SiamSquare" !important;
   }
   p {
     text-align: center;
     color: white;
     font-size: 1.3vw;
-    font-family: "Avenir";
+    font-family: "SiamSquare" !important;
   }
   @media (max-width: 1300px) {
-      p {
-        font-size: 1.3vw;
-      }
-
+    p {
+      font-size: 1.3vw;
+    }
   }
 
   @media (max-width: 1024px) {
-      p {
-        font-size: 2vw;
-      }
-
+    p {
+      font-size: 2vw;
+    }
   }
 
   @media (max-width: 600px) {
-      p {
-        font-size: 13px !important;
-      }
-      h4 {
-        font-size: 8vw !important;
-      }
-
+    p {
+      font-size: 16px !important;
+    }
+    h4 {
+      font-size: 8vw !important;
+    }
   }
 }
 
@@ -389,29 +385,21 @@ footer {
   /* height: 20% */
   p {
     font-size: 275%;
-    font-family: "Avenir";
+    font-family: "SiamSquare";
+    padding-left: 10px;
+    padding-right: 10px;
   }
   @media screen and (max-width: 736px) {
-
-          p {
-            font-size: 26px;
-          }
-
-
-
+    p {
+      font-size: 20px;
+    }
   }
 
-  @media screen and (max-width: 400px){
-
-
-      p {
-        font-size: 26px;
-        font-family: "Avenir";
-      }
-
-
+  @media screen and (max-width: 400px) {
+    p {
+      font-size: 24px;
+    }
   }
-
 }
 
 .campaign-section {
@@ -1334,6 +1322,6 @@ input:focus::placeholder {
   font-weight: bold;
 }
 
-.at-expanding-share-button-toggle-bg span{
- background-color: #73AA17 !important;
+.at-expanding-share-button-toggle-bg span {
+  background-color: #73aa17 !important;
 }

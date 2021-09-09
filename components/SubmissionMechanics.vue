@@ -29,7 +29,7 @@
       <div class="background-image-joox">
       <img src="/img/landing/back-dots.png" />
     </div> -->
-    <LuckyDraw id="lucky" :data="dataForm" :cms="cms"/>
+    <!--LuckyDraw id="lucky" :data="dataForm" :cms="cms"/-->
     <!-- <div class="desc-joox" >
         <span v-html="jooxMessage"></span>
         div class="joox-listen">
@@ -145,7 +145,7 @@ export default {
                 container: 'body',
                 easing: 'ease-in',
                 lazy: false,
-                offset: -60,
+                offset: 20,
                 force: true,
                 cancelable: true,
                 x: false,
