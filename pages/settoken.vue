@@ -19,13 +19,20 @@ export default {
        }
     }else{
       await this.$store.commit('SET_ERROR',null)
-       await this.$store.commit('SET_TOKEN',this.$route.query.token)
+        let token = getCookie("tok_x_e_b");
+       await this.$store.commit('SET_TOKEN',token)
        if(this.$store.state.token){
+          document.cookie = "tok_x_e_b" +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
           window.location.assign("/");
        }
     }
 
     },
+    getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
   },
 };
 </script>
