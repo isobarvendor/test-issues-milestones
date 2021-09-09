@@ -51,10 +51,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: 'img/icons/fanta.png' }
     ],
     script: [
-      /* {
+      {
         src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61122fd2c425a9d3",
         type: "text/javascript"
-      }, */
+      },
     ],
   },
   /*
@@ -81,7 +81,7 @@ export default {
       src: '~/plugins/vue-countdown',
       ssr: false
     },
-    /* { src: '~/plugins/hotjar', ssr: false }, */
+    { src: '~/plugins/hotjar', ssr: false },
 
   ],
   router: {
