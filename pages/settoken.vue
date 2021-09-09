@@ -23,12 +23,8 @@ export default {
             .then((response)=>{
             })
         console.log("token",this.$store.state.token);
-        if(!this.$store.state.token){
-          token=this.$route.query.token;
-          await this.$store.commit('SET_TOKEN',token)
-        }
+
        if(this.$store.state.token){
-         Cookie.remove('tok_x_e_b')
           window.location.assign("/");
        }
     }
