@@ -20,7 +20,7 @@ export default {
     }else{
       await this.$store.commit('SET_ERROR',null)
         let token = Cookie.get('tok_x_e_b');
-        //console.log("token",token);
+        console.log("token",token);
         if(!token){
           token=this.$route.query.token;
         }
