@@ -61,21 +61,6 @@ export default {
         });
     })
   },
-  [GET_CLIENT_INFO]: ({ commit, state, getters }, data) => {
-    return new Promise((resolve, reject) => {
-      const moduleState = state;
-        GeneralAPI.getClientInfo()
-        .then(response => {
-          var data = response.data.replace(/[\r\n]+/g, '","').replace(/\=+/g, '":"');
-              data = '{"' + data.slice(0, data.lastIndexOf('","')) + '"}';
-          var jsondata = JSON.parse(data);
-          resolve(jsondata);
-        })
-        .catch(error => {
-          return reject(error);
-        });
-    })
-  },
   [REDEEM_PRIZE]: ({ commit, state, getters }, data) => {
     return new Promise((resolve, reject) => {
       const moduleState = state;
