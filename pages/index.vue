@@ -195,7 +195,7 @@ export default {
 
                 let total = 0;
                 this.listPrizesData.forEach(ele => {
-                  total += ele.amountAvailable
+                  total += parseInt(ele.amountAvailable)
                 })
                 this.remaining = total;
 
