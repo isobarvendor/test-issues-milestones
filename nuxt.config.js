@@ -45,6 +45,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { name: 'robots', content: 'noindex, nofollow' },
+      { name: 'facebook-domain-verification', content: 'fop5wqa2sl160uvhoghylkmr3jfo5k' },
       { hid: 'description', name: 'description', content:  'Fanta - PlayOn' }
     ],
     link: [
