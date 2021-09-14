@@ -254,7 +254,8 @@ background-color: #F7941E;
     flex-direction: column;
     align-items: flex-end;
     position: relative;
-    z-index: 1;
+    z-index: 100;
+    
     a{
       text-decoration: none;
       &.active{
@@ -265,9 +266,7 @@ background-color: #F7941E;
       padding-left: 25%;
       padding-bottom: 30px;
     }
-    .nav-button{
-        z-index:12;
-    }
+    
     .menu-container{
         width: 400px;
         height: auto;
@@ -341,14 +340,23 @@ background-color: #F7941E;
         }
     }
 }
+      @media only screen and (max-width: 500px) {
+       .nav-button{
+        position: fixed;
+        
+    }
+     }
     @media only screen and (max-width: 700px) {
         .hide-mobile{
           display: none !important;
         }
+
     }
      @media only screen and (max-width: 1023px) {
        .logout{
              display: none !important;
        }
      }
+     
+     
 </style>
