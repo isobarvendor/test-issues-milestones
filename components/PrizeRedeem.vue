@@ -38,6 +38,7 @@
             <li>5. กดแลกไอเทม</li>
             <li>6. กรอกโค้ดที่ได้มาลงในช่อง</li>
             <li>7. กดยืนยันเพื่อรับไอเทมเป็นอันเสร็จสิ้น</li>
+            <li>8. ไอเทมจะถูกส่งไปที่จดหมายในเกมภายใน 5 นาที</li>
           </ol>
         </div>
         <p>หมายเหตุ: ไอเทมจะถูกส่งไปที่จดหมายในเกมภายใน 5 นาที</p>
@@ -250,7 +251,7 @@ export default {
       height: 26px;
       position: absolute;
       top: 20%;
-      right: 70%;
+      right: 65%;
     }
   }
 }
@@ -336,9 +337,9 @@ export default {
       width: 45%;
     }
     button {
-      width: 20%;
+      width: 30%;
       img {
-        right: 60%;
+        right: 70%;
       }
     }
 
@@ -363,9 +364,7 @@ export default {
   .text-redeem {
     button {
       width: 30%;
-      img {
-        right: 60%;
-      }
+      
     }
   }
   .header-redeem {
@@ -385,7 +384,7 @@ export default {
     }
   }
   .list {
-    width: 80%;
+    width: 100%;
   }
   .redeem-button {
     button {

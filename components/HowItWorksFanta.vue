@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div >
   <div class="container howitworks hidden-sm-and-down">
-    <div class="image">
+    <div class="image-howitworks">
       <img :src="deskImg" />
     </div>
     
@@ -32,9 +32,10 @@ export default {
 .howitworks {
   background-image: url("/develop/background-howto.png");
   background-size: 100% 100%;
+  
 }
 
-.howitworks .image img{
+.howitworks .image-howitworks img{
   height: 100%;
   width: 100%;
   margin-bottom: -0.5%;
