@@ -83,7 +83,7 @@ export default {
                    this.rewards=[...this.rewards,...[...array, ...res]];
                    this.rewards = this.rewards.reverse()
 
-                  console.log(this.rewards)
+                  
                 })
               .catch((error) =>{
                   if (error.response && error.response.data.status == "401") {

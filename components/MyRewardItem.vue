@@ -68,7 +68,8 @@ export default {
     },
     copy(value) {
       let testingCodeToCopy = document.querySelector('.' + value[1]);
-      testingCodeToCopy.value = value[0]
+      testingCodeToCopy.value = value[0];
+      testingCodeToCopy.select();
       try {
         var successful = document.execCommand("copy");
         if (successful) {
