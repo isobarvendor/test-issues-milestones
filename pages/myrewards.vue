@@ -9,7 +9,7 @@
             </div>
             <div class="rewards-area">
                 <div v-for="item in rewards" :key="item.id">
-                    <MyRewardItem :reward="item" />
+                    <MyRewardItem :reward="item"/>
                 </div>
             </div>
 

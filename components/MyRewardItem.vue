@@ -19,8 +19,8 @@
     <v-col cols="9">
       <h3>ROV Box</h3>
       <div v-if="reward.code" class="copy-button-reward">
-        <input type="text" class="redeem-reward" readonly :value="reward.code" />
-        <button @click="copy(reward.code)" class="copy_code-reward">
+        <input type="text" :class="'redeem-rewards redeem-reward-' + reward.id" readonly :value="reward.code" />
+        <button @click="copy([reward.code, 'redeem-reward-' + reward.id])" class="copy_code-reward">
           <img class="image" src="/develop/copy.png" />{{button}}
         </button>
       </div>
@@ -67,10 +67,8 @@ export default {
       }
     },
     copy(value) {
-      let testingCodeToCopy = document.querySelector(".redeem-reward");
-      testingCodeToCopy.setAttribute("type", "text");
-      testingCodeToCopy.value = value
-      testingCodeToCopy.select();
+      let testingCodeToCopy = document.querySelector('.' + value[1]);
+      testingCodeToCopy.value = value[0]
       try {
         var successful = document.execCommand("copy");
         if (successful) {
@@ -116,7 +114,7 @@ export default {
   position: relative;
 }
 
-.redeem-reward {
+.redeem-rewards {
   background: white;
   border-radius: 4px;
   border: 2px solid #73aa17;
