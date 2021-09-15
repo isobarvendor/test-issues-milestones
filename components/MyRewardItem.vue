@@ -13,10 +13,10 @@
       id="audio"
       muted
     ></audio>
-    <v-col cols="2">
+    <v-col cols="3">
       <img :src="reward.image" width="100%" />
     </v-col>
-    <v-col cols="10">
+    <v-col cols="9">
       <h3>ROV Box</h3>
       <div v-if="reward.code" class="copy-button-reward">
         <input type="text" :class="'redeem-rewards redeem-reward-' + reward.id" readonly :value="reward.code" />
