@@ -41,7 +41,7 @@
             <li>8. ไอเทมจะถูกส่งไปที่จดหมายในเกมภายใน 5 นาที</li>
           </ol>
         </div>
-        <p>หมายเหตุ: ไอเทมจะถูกส่งไปที่จดหมายในเกมภายใน 5 นาที</p>
+        <!--p>หมายเหตุ: ไอเทมจะถูกส่งไปที่จดหมายในเกมภายใน 5 นาที</p-->
       </div>
       <!-- <div id="link">
         <u @click="open">https://shortenanything.page.link/eNh4</u>
@@ -364,7 +364,7 @@ export default {
   .text-redeem {
     button {
       width: 30%;
-      
+
     }
   }
   .header-redeem {

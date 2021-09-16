@@ -37,7 +37,7 @@
         </div>
     </div> -->
   </div>
-    <Sticky v-if="submitted" @scroll="playAgain" :label="submissionText.participateAgain"/>
+    <Sticky v-if="submitted" @scroll="playAgain" :label="submissionText.participateAgain" redirect="รางวัลของฉัน"/>
   </div>
  </div>
 </template>
