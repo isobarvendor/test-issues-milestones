@@ -55,7 +55,9 @@ export default {
       const moduleState = state;
         GeneralAPI.getToken()
         .then(response => {
-          commit('SET_TOKEN', response.data.accessToken);
+          if(response.data.accessToken){
+            commit('SET_TOKEN', response.data.accessToken);
+          }
           return resolve(response);
         })
         .catch(error => {
