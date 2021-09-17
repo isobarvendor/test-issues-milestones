@@ -16,15 +16,14 @@ export default {
       await this.$store.commit('SET_ERROR',this.$route.query.error)
         if(this.$store.state.errorLogin)
       {
-         this.$router.push("/")
+          window.location.assign("/");
       }
     }else{
-      await this.$store.commit('SET_TOKEN',null)
       await this.$store.commit('SET_ERROR',null)
       await this.$store.dispatch(GET_TOKEN)
             .then((response)=>{
                  if(this.$store.state.token){
-                      this.$router.push("/")
+                      window.location.assign("/");
                   }
             })
        // console.log("token",this.$store.state.token);
