@@ -36,15 +36,14 @@
           </div>
 
         </swiper-slide>
-        <!--swiper-slide>
+        <swiper-slide>
           <div class="carousell-image" @click="redirect">
             <img id='image' class="hidden-sm-and-up" :src="imgMob ? imgMob : '/img/landing/week 1 prize.png'" />
             <img id='image' class="hidden-xs-only" :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
-
           </div>
 
-        </swiper-slide-->
-        <!--div class="prize-swiper-pagination pagination" slot="pagination"></div-->
+        </swiper-slide>
+        <div class="prize-swiper-pagination pagination" slot="pagination"></div>
 
       </swiper>
     </div>
@@ -342,7 +341,7 @@ export default {
       right: 35%;
 
     }
-    
+
 
 
   }
