@@ -87,9 +87,11 @@ export default {
           }
         }, */
         autoplay: {
-          delay: 40000
+          delay: 5000,
+          stopOnLastSlide:true
         },
         loop:false,
+
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -246,9 +248,7 @@ export default {
     .videoBackgroundFanta{
       max-height: 650px;
     }
-    .carousell-image{
-      height: 600px;
-    }
+
     .masthead #arrow{
       bottom: 6.5%;
       right: 45%;
