@@ -93,6 +93,15 @@
                             <a data-nav="myrewards" id="myReward" @click="clickNav">{{menu.myRewards}}</a>
                         </div>
                     </div>
+                     <div class="img-text"  v-if="logged">
+                      <img src="/img/icons/winners.png" />
+                      <div>
+                        <a data-nav="winners" id="winners" @click="clickNav">{{
+                          menu.winners
+                        }}</a>
+                      </div>
+                    </div>
+
 
                 </div>
                 <!--div class="tnc-container">
@@ -255,7 +264,7 @@ background-color: #F7941E;
     align-items: flex-end;
     position: relative;
     z-index: 100;
-    
+
     a{
       text-decoration: none;
       &.active{
@@ -266,7 +275,7 @@ background-color: #F7941E;
       padding-left: 25%;
       padding-bottom: 30px;
     }
-    
+
     .menu-container{
         width: 400px;
         height: auto;
@@ -343,7 +352,7 @@ background-color: #F7941E;
       @media only screen and (max-width: 500px) {
        .nav-button{
         position: fixed;
-        
+
     }
      }
     @media only screen and (max-width: 700px) {
@@ -357,6 +366,6 @@ background-color: #F7941E;
              display: none !important;
        }
      }
-     
-     
+
+
 </style>

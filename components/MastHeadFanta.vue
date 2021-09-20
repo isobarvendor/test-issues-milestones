@@ -2,6 +2,13 @@
   <div class="container masthead" >
     <div class="swiper">
       <swiper :options="swiperOption" class="swiper-container">
+         <swiper-slide>
+          <div class="carousell-image" @click="redirect">
+            <img id='image' class="hidden-sm-and-up" :src="imgMob ? imgMob : '/img/landing/week 1 prize.png'" />
+            <img id='image' class="hidden-xs-only" :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
+          </div>
+
+        </swiper-slide>
         <swiper-slide>
           <video-background
               :src="videoDesk"
@@ -36,13 +43,7 @@
           </div>
 
         </swiper-slide>
-        <swiper-slide>
-          <div class="carousell-image" @click="redirect">
-            <img id='image' class="hidden-sm-and-up" :src="imgMob ? imgMob : '/img/landing/week 1 prize.png'" />
-            <img id='image' class="hidden-xs-only" :src="imgDesk ? imgDesk : '/img/landing/week 1 prize.png'" />
-          </div>
 
-        </swiper-slide>
         <div class="prize-swiper-pagination pagination" slot="pagination"></div>
 
       </swiper>
@@ -85,10 +86,11 @@ export default {
             spaceBetween: 20
           }
         }, */
-           autoplay: {
-          delay: 5000
+        autoplay: {
+          delay: 40000
         },
-         navigation: {
+        loop:false,
+        navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
@@ -117,7 +119,7 @@ export default {
     },
     redirect(){
       const link = this.data.homepage.mastheadSection.description
-      window.open(link);
+      window.location.assign(link);
     },
     isImage(img){
       if(img.includes("png") || img.includes("jpg")){

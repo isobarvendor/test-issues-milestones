@@ -95,7 +95,8 @@ let language = {
       privacy: "นโยบายข้อมูลส่วนบุคคล",
       terms: "งื่อนไขการเข้าร่วมกิจกรรม",
       logout: "ออกจากระบบ",
-      myRewards: "รางวัลของฉัน"
+      myRewards: "รางวัลของฉัน",
+      winners:"ผู้ชนะ"
     },
     countdown: {
       days: "DAYS",
