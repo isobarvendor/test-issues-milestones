@@ -3,7 +3,7 @@
 </template>
 
 <script>
-
+import { GET_TOKEN } from '@/store/action_types';
 export default {
 
   async mounted() {
@@ -16,15 +16,18 @@ export default {
       await this.$store.commit('SET_ERROR',this.$route.query.error)
         if(this.$store.state.errorLogin)
       {
-         this.$router.push("/")
+          window.location.assign("/");
       }
     }else{
       await this.$store.commit('SET_ERROR',null)
-      await this.$store.commit('SET_TOKEN',this.$route.query.token)
-      if(this.$store.state.token)
-      {
-         this.$router.push("/")
-      }
+      await this.$store.dispatch(GET_TOKEN)
+            .then((response)=>{
+                 if(this.$store.state.token){
+                      window.location.assign("/");
+                  }
+            })
+       // console.log("token",this.$store.state.token);
+
     }
 
     },

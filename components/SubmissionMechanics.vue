@@ -37,7 +37,7 @@
         </div>
     </div> -->
   </div>
-    <Sticky v-if="submitted" @scroll="playAgain" :label="submissionText.participateAgain"/>
+    <Sticky v-if="submitted" @scroll="playAgain" :label="submissionText.participateAgain" redirect="รางวัลของฉัน"/>
   </div>
  </div>
 </template>
@@ -177,7 +177,7 @@ export default {
     margin: auto;
     background-image: url('/develop/background-submission.png');
     background-size: 100% 101%;
-    z-index: 100;
+    z-index: 75;
   }
 
  .prize-chance.joox-section{

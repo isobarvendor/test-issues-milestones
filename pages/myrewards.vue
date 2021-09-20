@@ -9,7 +9,7 @@
             </div>
             <div class="rewards-area">
                 <div v-for="item in rewards" :key="item.id">
-                    <MyRewardItem :reward="item" />
+                    <MyRewardItem :reward="item"/>
                 </div>
             </div>
 
@@ -65,8 +65,10 @@ export default {
             for(let a=0;a<attempt.length;a++){
                 this.$store.dispatch(GET_MY_PRIZE,attempt[a].NPGS[0].configID)
                   .then((response)=>{
-
-                    let res = _.map(response.data.vouchers,(o,index)=>{
+                    let unextracted = _.sortBy(response.data.vouchers, function(dateObj) {
+                      return dateObj.claimTimestamp;
+                    });
+                    let res = _.map(unextracted,(o,index)=>{
                         return {
                           id:index,
                           title:o.name,
@@ -77,7 +79,11 @@ export default {
                           audio:o.prizeName.includes(".") ? o.prizeName : null
                         }
                     });
+                    
                    this.rewards=[...this.rewards,...[...array, ...res]];
+                   this.rewards = this.rewards.reverse()
+
+                  
                 })
               .catch((error) =>{
                   if (error.response && error.response.data.status == "401") {

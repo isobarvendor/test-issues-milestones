@@ -3,6 +3,9 @@
       <div class="container smaller-box" @click="scroll">
         <p>{{label}}</p>
       </div>
+      <div class="container smaller-box" @click="goTo">
+        <p>{{redirect}}</p>
+      </div>
     </div>
 </template>
 
@@ -11,11 +14,16 @@
        name:"Sticky",
         props: {
           label: null,
+          redirect: null
         },
         methods:{
             scroll() {
                 this.$emit("scroll");
             },
+            goTo(){
+              const origin = window.location.origin;
+              window.location.href = origin + "/myrewards"
+            }
         }
     }
 </script>
@@ -34,15 +42,16 @@
     position: fixed;
     bottom: 0;
     height: 70px;
-    display: block;
-    z-index: 99;
+    display: flex;
+    z-index: 50;
+    flex-direction: row;
   }
 
 .smaller-box{
-  width: 90%;
+  width: 45%;
   margin: auto;
   background-color:#73aa17;
-  z-index: 999;
+  z-index: 99;
   bottom: 1;
   position: relative;
   height: 45px;

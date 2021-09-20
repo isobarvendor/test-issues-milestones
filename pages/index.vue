@@ -13,7 +13,7 @@
         <!-- <Prizes v-if="configData" :data="CMSContent[0].exclusivePrizes" :ngpsPrize="listPrizesData ? listPrizesData : []" :exclusivePrizes="configData ? configData.ExclusivePrizes.ExclusivePrizes : false" :winners="CMSContent[0].luckyWinner" :prize="CMSContent[0].prize"/> -->
         <!--HowItWorks :data="CMSContent[0].worksSection" /-->
         <!-- <PrizeRedeem  :data="CMSContent[0]" image="/develop/fanta-logo.png" :config="configData" id="form"/> -->
-        <Sticky v-if="$store.state.login&&!submission&&notCountDown" @scroll="scroll" label="ร่วมสนุกเลย"/>
+        <Sticky v-if="$store.state.login&&!submission&&notCountDown" @scroll="scroll" label="ร่วมสนุกเลย" redirect="รางวัลของฉัน"/>
         <SubmissionMechanics :dataForm="configData" :cms="CMSContent[0]" @changeStatus="changeStatus" id="form" v-if="notCountDown"/>
 
       </div>
@@ -195,7 +195,7 @@ export default {
 
                 let total = 0;
                 this.listPrizesData.forEach(ele => {
-                  total += ele.amountAvailable
+                  total += parseInt(ele.amountAvailable)
                 })
                 this.remaining = total;
 
