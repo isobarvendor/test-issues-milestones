@@ -25,7 +25,7 @@
         </v-row>
         <span v-if="showWinnerDetail">
           <v-card class="table-head">
-            <v-card-title>
+            <!-- <v-card-title>
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
@@ -37,7 +37,7 @@
                 single-line
                 hide-details
               ></v-text-field>
-            </v-card-title>
+            </v-card-title> -->
             <v-data-table
               dark
               :headers="headers"
@@ -106,7 +106,7 @@
         </v-row>
         <span v-if="showWinnerDetail">
           <v-card class="table-head">
-            <v-card-title>
+            <!-- <v-card-title>
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
@@ -118,7 +118,7 @@
                 single-line
                 hide-details
               ></v-text-field>
-            </v-card-title>
+            </v-card-title> -->
             <v-data-table
               dark
               :headers="headers"
@@ -471,6 +471,7 @@ export default {
 .logo-title {
   font-family: "SiamSquare" !important;
   color: white !important;
+  font-size: 30px;
 }
 .winner-details {
   .theme--light.v-input input, .theme--light.v-input textarea{
@@ -544,7 +545,8 @@ export default {
         margin-bottom: 5px;
       }
       .date {
-        font-size: 20px;
+        font-family: "SiamSquare";
+        font-size: 30px;
       }
     }
     .two-container {
@@ -557,7 +559,8 @@ export default {
           margin-bottom: 5px;
         }
         .date {
-          font-size: 20px;
+          font-family: "SiamSquare";
+          font-size: 30px;
         }
       }
     }
@@ -698,6 +701,8 @@ export default {
 }
 .table-head {
   background-color: #77bc1f !important;
+  font-family: "SiamSquare";
+  
 }
 .desc-container {
   .v-data-table.elevation-1.theme--dark {
@@ -712,5 +717,29 @@ export default {
 .top-margin {
   margin-top: 20px;
 }
+
+td{
+  font-size: 1.2rem !important;
+}
+
+th{
+  font-size: 1.2rem !important;
+  
+}
+
+tr{
+  height: 60px;
+}
+@media screen and (max-width: 500px) {
+  .v-data-table__mobile-table-row{
+  height: 150px;
+  }
+}
+
+.v-data-footer{
+  font-size: 19.2px;
+  font-family: "SiamSquare";
+}
+
 
 </style>
