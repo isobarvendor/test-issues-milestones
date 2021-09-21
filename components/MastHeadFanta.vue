@@ -246,6 +246,10 @@ export default {
 
       @media only screen and (min-width: 1200px) {
     .videoBackgroundFanta{
+      max-height: 650px !important;
+    }
+
+    .carousell-image{
       max-height: 650px;
     }
 
@@ -256,10 +260,13 @@ export default {
     }
 
   }
-  @media only screen and (max-width: 1150px) {
+  @media only screen and (max-width: 1200px) {
 
     .carousell-image{
       height: 600px;
+    }
+    .videoBackgroundFanta{
+      max-height: 600px;
     }
      /* #masthead{
       padding: 10px;
@@ -272,7 +279,7 @@ export default {
       max-height: 600px;
     }
     .carousell-image{
-      max-height: 500px;
+      max-height: 600px;
     }
      /* #masthead{
       padding: 10px;
