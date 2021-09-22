@@ -33,8 +33,9 @@ export default {
   },
   */
   checkMixCode(token, data) {
-    return axios.get(
-      `${origin}/api/mix-codes/verify/${data.programmeId}/${data.pin}`,
+    return axios.post(
+      `${origin}/api/mix-codes/verify`,
+      data,
       setHeader(token)
     );
     // return axios.get(`/mock/mixcode`, setHeader(token));

@@ -426,6 +426,8 @@ export default {
               this.errorMessage = this.submissionText.errorPinCode;
               return false;
             }
+            const captchaResponse = await this.$recaptcha.execute("validation");
+            request.captchaResponse = captchaResponse;
             this.$store
               .dispatch(CHECK_MIXCODE, request)
               .then(response => {
@@ -515,10 +517,14 @@ export default {
     }
   },
   beforeMount() {},
-  mounted() {
-    this.getAccount();
-    // console.log(this.errors);
+  async mounted() {
+    try {
+      await this.getAccount();
+    } catch (e) {
+      console.error(e);
+    }
   },
+
   watch: {
     "form.phoneNumber": function(val) {
       let envs = this.$config;
