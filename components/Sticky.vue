@@ -1,9 +1,9 @@
 <template>
     <div class="container sticky">
-      <div class="container smaller-box" @click="scroll">
+      <div class="container smaller-box" @click="scroll" id="scrollToSubmission">
         <p>{{label}}</p>
       </div>
-      <div class="container smaller-box" @click="goTo">
+      <div class="container smaller-box" @click="goTo" id="redirectToRewards">
         <p>{{redirect}}</p>
       </div>
     </div>
