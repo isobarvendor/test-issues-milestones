@@ -82,11 +82,15 @@
                   @click="showWinners(item2.week)"
                 >
                   <div class="week">
-                    {{ monthName(item2.week) }}
-                    {{ item2.week }}
+                    <!-- {{ monthName(item2.week) }}
+                    {{ item2.week }} -->
                   </div>
                   <div class="date">
-                    {{ startMonth(item2.week) }} - {{ endMonth(item2.week) }}
+                    <!-- {{ startMonth(item2.week) }} - {{ endMonth(item2.week) }} -->
+
+                    {{ winnerLists[index2].startDate }} -
+                    <!-- {{ endMonth(winnerLists[0].week) }} -->
+                    {{ winnerLists[index2].endDate }}
                   </div>
                 </div>
               </div>
