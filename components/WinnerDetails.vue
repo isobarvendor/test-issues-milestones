@@ -1,9 +1,9 @@
 <template>
   <div class="winner-details container redbox-withwhiteborder">
     <v-row no-gutters>
-      <v-col cols="12" sm="12" md="4" >
+      <v-col cols="12" sm="12" md="4">
         <v-row no-gutters class="logo-title">
-          <v-col cols="4" md="12" sm="4" >
+          <v-col cols="4" md="12" sm="4">
             <img src="/develop/fanta-logo.png" class="logo" />
           </v-col>
 
@@ -14,18 +14,18 @@
           </v-col>
         </v-row>
         <div class="desc-container desc-mobile" v-if="$vuetify.breakpoint.xs">
-                  <div class="close-icon" @click="close">
-          <img src="/img/icons/close.png" />
-        </div>
-        <v-row no-gutters class="logo-title">
-          <h1>{{ winnerText.header }}</h1>
-        </v-row>
-        <v-row no-gutters class="logo-title">
-          <!-- <p>All winners will be contacted by 31st July</p> -->
-        </v-row>
-        <span v-if="showWinnerDetail">
-          <v-card class="table-head">
-            <!-- <v-card-title>
+          <div class="close-icon" @click="close">
+            <img src="/img/icons/close.png" />
+          </div>
+          <v-row no-gutters class="logo-title">
+            <h1>{{ winnerText.header }}</h1>
+          </v-row>
+          <v-row no-gutters class="logo-title">
+            <!-- <p>All winners will be contacted by 31st July</p> -->
+          </v-row>
+          <span v-if="showWinnerDetail">
+            <v-card class="table-head">
+              <!-- <v-card-title>
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
@@ -38,64 +38,70 @@
                 hide-details
               ></v-text-field>
             </v-card-title> -->
-            <v-data-table
-              dark
-              :headers="headers"
-              :items="winnerWeekDetail"
-              :page.sync="page"
-              :pageCount.sync="numberOfPages"
-              :search.sync="search"
-              :options.sync="options"
-              :server-items-length.sync="totalWinner"
-              :loading="loading"
-              class="elevation-1"
-            ></v-data-table>
-          </v-card>
-        </span>
-        <span v-else>
-          <div class="winner-body">
-            <div
-              class="first-box box"
-              :key="'winner' + index"
-              @click="showWinners(winnerLists[0].week)"
-              v-if="winnerLists.length == 1"
-            >
-              <div class="week">
-                <!-- {{ monthName(winnerLists[0].week) }} -->
-              </div>
-              <div class="date">
-                {{ winnerLists[0].startDate }} -
-                <!-- {{ endMonth(winnerLists[0].week) }} -->
-                {{ winnerLists[0].endDate }}
-              </div>
-            </div>
-            <div
-              v-else
-              :class="item.length == 2 ? 'two-container' : 'top-margin'"
-              v-for="(item, index) in winnerListsSecond"
-              :key="'winner' + index"
-            >
+              <v-data-table
+                dark
+                :headers="headers"
+                :items="winnerWeekDetail"
+                :page.sync="page"
+                :pageCount.sync="numberOfPages"
+                :search.sync="search"
+                :options.sync="options"
+                :server-items-length.sync="totalWinner"
+                :loading="loading"
+                class="elevation-1"
+              ></v-data-table>
+            </v-card>
+          </span>
+          <span v-else>
+            <div class="winner-body">
               <div
-                class="second-box box"
-                v-for="(item2, index2) in item"
-                :key="'winners' + index2"
-                @click="showWinners(item2.week)"
+                class="first-box box"
+                :key="'winner' + index"
+                @click="showWinners(winnerLists[0].week)"
+                v-if="winnerLists.length == 1"
               >
                 <div class="week">
-                  {{ monthName(item2.week) }}
-                  {{ item2.week }}
+                  <!-- {{ monthName(winnerLists[0].week) }} -->
                 </div>
                 <div class="date">
-                  {{ startMonth(item2.week) }} - {{ endMonth(item2.week) }}
+                  {{ winnerLists[0].startDate }} -
+                  <!-- {{ endMonth(winnerLists[0].week) }} -->
+                  {{ winnerLists[0].endDate }}
+                </div>
+              </div>
+              <div
+                v-else
+                :class="item.length == 2 ? 'two-container' : 'top-margin'"
+                v-for="(item, index) in winnerListsSecond"
+                :key="'winner' + index"
+              >
+                <div
+                  class="second-box box"
+                  v-for="(item2, index2) in item"
+                  :key="'winners' + index2"
+                  @click="showWinners(item2.week)"
+                >
+                  <div class="week">
+                    {{ monthName(item2.week) }}
+                    {{ item2.week }}
+                  </div>
+                  <div class="date">
+                    {{ startMonth(item2.week) }} - {{ endMonth(item2.week) }}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </span>
+          </span>
         </div>
       </v-col>
-      <v-col cols="12" sm="12" md="8" class="desc-container" v-if="!$vuetify.breakpoint.xs" >
-                <div class="close-icon" @click="close">
+      <v-col
+        cols="12"
+        sm="12"
+        md="8"
+        class="desc-container"
+        v-if="!$vuetify.breakpoint.xs"
+      >
+        <div class="close-icon" @click="close">
           <img src="/img/icons/close.png" />
         </div>
         <v-row no-gutters class="logo-title">
@@ -163,11 +169,14 @@
                 @click="showWinners(item2.week)"
               >
                 <div class="week">
-                  {{ monthName(item2.week) }}
-                  {{ item2.week }}
+                  <!-- {{ monthName(item2.week) }}
+                  {{ item2.week }} -->
                 </div>
                 <div class="date">
-                  {{ startMonth(item2.week) }} - {{ endMonth(item2.week) }}
+                  <!-- {{ startMonth(item2.week) }} - {{ endMonth(item2.week) }} -->
+                  {{ winnerLists[index2].startDate }} -
+                  <!-- {{ endMonth(winnerLists[0].week) }} -->
+                  {{ winnerLists[index2].endDate }}
                 </div>
               </div>
             </div>
@@ -270,7 +279,7 @@ export default {
             .add(12, "day")
             .format("DD MMM YYYY"),
           endDate: moment(startDate)
-            .add(23, "day")
+            .add(18, "day")
             .format("DD MMM YYYY")
         }
       ];
@@ -474,7 +483,8 @@ export default {
   font-size: 30px;
 }
 .winner-details {
-  .theme--light.v-input input, .theme--light.v-input textarea{
+  .theme--light.v-input input,
+  .theme--light.v-input textarea {
     color: #fff !important;
   }
 
@@ -578,15 +588,33 @@ export default {
     padding-top: 30px;
   }
   @media only screen and (max-width: 1199px) {
-    .desc-mobile{
+    .desc-mobile {
       padding-right: 0px !important;
-      .v-data-table-header-mobile th, .v-data-table__mobile-row:first-child{
+      .v-data-table-header-mobile th,
+      .v-data-table__mobile-row:first-child {
         display: none !important;
       }
-      .theme--dark.v-data-table > .v-data-table__wrapper > table > tbody > tr:not(:last-child) > td:last-child, .theme--dark.v-data-table > .v-data-table__wrapper > table > tbody > tr:not(:last-child) > th:last-child, .theme--dark.v-data-table > .v-data-table__wrapper > table > thead > tr:last-child > th{
+      .theme--dark.v-data-table
+        > .v-data-table__wrapper
+        > table
+        > tbody
+        > tr:not(:last-child)
+        > td:last-child,
+      .theme--dark.v-data-table
+        > .v-data-table__wrapper
+        > table
+        > tbody
+        > tr:not(:last-child)
+        > th:last-child,
+      .theme--dark.v-data-table
+        > .v-data-table__wrapper
+        > table
+        > thead
+        > tr:last-child
+        > th {
         border-bottom: solid 1px #fff !important;
       }
-      .theme--dark.v-data-table .v-data-footer{
+      .theme--dark.v-data-table .v-data-footer {
         border-top: solid 1px #fff !important;
       }
     }
@@ -702,7 +730,6 @@ export default {
 .table-head {
   background-color: #77bc1f !important;
   font-family: "SiamSquare";
-  
 }
 .desc-container {
   .v-data-table.elevation-1.theme--dark {
@@ -718,28 +745,25 @@ export default {
   margin-top: 20px;
 }
 
-td{
+td {
   font-size: 1.2rem !important;
 }
 
-th{
+th {
   font-size: 1.2rem !important;
-  
 }
 
-tr{
+tr {
   height: 60px;
 }
 @media screen and (max-width: 500px) {
-  .v-data-table__mobile-table-row{
-  height: 150px;
+  .v-data-table__mobile-table-row {
+    height: 150px;
   }
 }
 
-.v-data-footer{
+.v-data-footer {
   font-size: 19.2px;
   font-family: "SiamSquare";
 }
-
-
 </style>
